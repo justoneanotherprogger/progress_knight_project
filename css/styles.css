@@ -1,0 +1,544 @@
+/* w3 overrides */
+
+.w3-button, .w3-bar-item {
+    padding: 0.4em 0.8em;
+}
+
+.w3-margin {
+    margin: 0.8em !important
+}
+
+.w3-margin-top {
+    margin-top: 0.8em !important
+}
+
+.w3-margin-bottom {
+    margin-bottom: 0.8em !important
+}
+
+.w3-margin-left {
+    margin-left: 0.8em !important
+}
+
+.w3-margin-right {
+    margin-right: 0.8em !important
+}
+
+.w3-bordered tr {
+    border-bottom: 0.05em solid #ddd
+}
+
+.w3-striped tbody tr:nth-child(even) {
+    background-color: #f1f1f1
+}
+
+.w3-bordered th {
+    height: 2em;
+    padding: 0.4em 1em 0 1em;
+}
+
+.w3-bordered td {
+    height: 2em;
+    padding: 0 0 0 0;
+    padding-left: 0.8em;
+}
+
+.w3-table td:first-child, .w3-table th:first-child {
+    padding-left: 0.3em;
+}
+
+.w3-padding {
+    padding: 0.4em 0.8em !important;
+}
+
+/*main*/
+
+body {
+    background-color: rgb(243, 243, 243);
+}
+
+.text-caption {
+    font-size: larger;
+    text-align: center;
+}
+
+#resources .text-caption + div {
+    text-align: center;
+}
+
+#info .text-caption + div {
+    text-align: center;
+}
+
+table {
+    white-space: normal;
+    line-height: normal;
+    font-weight: normal;
+    font-style: normal;
+    text-align: start;
+    font-variant: normal;
+}
+
+td {
+    vertical-align: middle !important;
+}
+
+.legendary {
+    color: rgb(245, 119, 13);
+}
+
+/* .effect {
+    margin-bottom: 0.8rem;
+} */
+
+.current {
+    background-color: orange !important;    
+}
+
+.current-hero {
+    background-color: rgb(39, 234, 17) !important;
+}
+
+.progress-text {
+    position: absolute;
+    top: 5%;
+    left: 0.5em;
+    bottom: 0%;
+    color: white
+}
+
+.progress-bar {
+    margin-top: 0.05em;
+    position: relative;
+    background-color: rgb(12, 101, 173);    
+    width: 100%;
+}
+
+.progress-fill {
+    height: 1.6em;
+    background-color: rgb(46, 148, 231);
+}
+
+.progress-bar-hero {
+    margin-top: 0.05em;
+    position: relative;
+    background-color: rgb(108, 59, 59);
+    width: 100%;
+}
+
+.progress-fill-hero {
+    height: 1.6em;
+    background-color: rgb(165, 60, 21);
+}
+
+.progress-bar-finished {
+    margin-top: 0.05em;
+    position: relative;
+    background-color: rgb(165, 60, 21);    
+    width: 100%;
+}
+
+.progress-fill-finished {
+    height: 1.6em;
+    background-color: rgb(212, 80, 30);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.hiddenTask {
+    display: none !important;
+}
+
+.button {
+    border: 0.1em groove black !important;
+}
+
+.button-no-button {
+    color: white !important;
+    border: 0 !important;
+    width: 100%;
+    text-align: left;
+}
+
+.button-no-button:hover {
+    cursor: pointer; 
+}
+
+.item-button {
+    background-color: white;
+    text-align: center;
+    width: 93%;
+    height: 1.8em;
+    padding: 0;
+}
+
+.item-button:hover {
+    cursor: pointer;
+    background-color: rgb(192, 192, 192);
+}
+
+.item-header-row:hover {
+    cursor: pointer;    
+}
+
+button:focus {
+    outline: none;
+}
+
+.scroll {
+    overflow-y: auto;    
+}
+
+.tooltip, .tooltip-pointer {
+    position: relative;
+    display: inline-block;
+}
+
+.challenge-title {
+    color: red;
+    border-bottom: 0.1em solid red;
+    padding-bottom: 0.4em;
+    margin-bottom: 0.4em;
+}
+
+.challenge {
+    border: 0.1em solid red;
+}
+
+.game-paused {
+    border: 0.1em solid blue;
+}
+
+.dark-matter-title {
+    color:gold;
+    border-bottom: 0.1em solid goldenrod;
+    padding-bottom: 0.4em;
+    margin-bottom: 0.4em;
+}
+
+.metaverse-title {
+    color: rgb(24, 210, 217);
+    border-bottom: 0.1em solid rgb(24, 210, 217);
+    padding-bottom: 0.4em;
+    margin-bottom: 0.4em;
+}
+  
+.tooltip .tooltipText {
+    visibility: hidden;
+    width: 25em;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 0.5em 0.5em;
+
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(92, 92, 247);
+    border-radius: 6px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 102%;
+    width: 32em;
+
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.tooltip:hover .tooltipText {
+    visibility: visible;
+    opacity: 0.8;
+}
+
+.tooltip-pointer .tooltipText-pointer {
+    visibility: hidden;
+    width: 20em;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 0.5em;
+    padding: 0.5em 0.5em;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 5%;       
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.tooltip-pointer:hover .tooltipText-pointer {
+    visibility: visible;
+    opacity: 0.8;
+}
+
+.sidebar-element {
+    margin-bottom: 0.8em;
+}
+
+.topbar-element {
+    font-size: small;
+    max-width: 15rem;
+}
+
+.slidecontainer {
+    width: 100%;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.panel {
+    background-color: white;
+    border-color: rgb(243, 243, 243);
+}
+
+.small-margin  {
+    margin-bottom: 0.1em;
+}
+
+.heading {
+  position: relative;
+}
+
+.header img {
+  position: static;
+  float: left;
+  width: 36px;
+  height: 36px;
+}
+
+.header h1 {
+  position: static;
+  top: 2px;
+  left: 10px;
+}
+
+.row {
+    display: flex;
+    align-items: flex-start;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.quick-bar {
+    top: 125px;
+}
+
+.tabs-tab-column {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 65em;
+    height: auto;
+}
+
+.tabs-main-column {
+    width: 65em;
+    height: auto;
+    float: right;
+    margin-bottom: 4em;
+}
+
+.plain-tab-column {
+    width: 164em;
+    height: auto;
+}
+
+.plain-main-column {
+    width: 164em;
+    height: auto;
+    float: right;
+    margin-bottom: 4em;
+}
+
+.page-column {
+    width: 56em;
+    height: auto;
+}
+
+.settings-main-column {
+    width: 56em;
+    height: auto;
+    float: right;
+    margin-bottom: 4em;
+}
+
+.baritem {
+    height: auto;
+    text-align: center;
+}
+
+
+.outer-circle {
+    width: 1.7em;
+    height: 1.7em;
+    border-radius: 50%;
+    border: solid 0.12em #ccc;    
+}
+
+.center-g-inside {
+    display: grid;
+    place-items: center;    
+}
+
+
+.inner-circle {    
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+}
+
+.selected {
+    color: rgb(39, 234, 17)!important 
+}
+
+.reward {
+    color: rgb(64, 237, 23);
+    padding-bottom: 0.5em;
+}
+
+.perk {
+    background-color: #EA4C89;
+    border-style: solid;
+    border-width: 0.1em;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: larger;
+    height: 4em;
+    line-height: 1.5em;
+    list-style: none;
+    margin: 0;
+    outline: none;
+    padding: 0.5em 0.5em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin: 0.6em 0.7em 0.6em 0.7em;    
+}
+
+.perk:hover {
+    background-color: #F082AC;
+}
+
+.perk-grid {
+    display: grid;
+    grid-template-columns: 27em 27em
+}
+
+.active-perk {
+    background-color: green;
+}
+
+.active-perk:hover {
+    background-color: #02bb11;
+}
+
+.perk-tool {
+    background-color: #066182;
+    height: 2.5em;
+}
+
+.perk-tool:hover {
+    background-color: #0691c3;
+}
+
+.perk-locked, .perk-locked:hover{
+    background-color: #3e3e3e;
+}
+
+.color-happiness {
+    color: rgb(15, 105, 207);
+}
+.color-evil {
+    color: rgb(240, 0, 0);
+}
+.color-essence {
+    color: rgb(24, 210, 217);
+}
+.color-dark-matter {
+    color: rgb(132, 99, 206);
+}
+.color-dark-orbs {
+    color: rgb(143, 114, 207);
+}
+.color-time-warping {
+    color: rgb(204, 34, 219);
+}
+.color-hypercubes {
+    color: rgb(9, 160, 230);
+}
+.color-perk-points {
+    color: rgb(217, 24, 119);
+}
+.color-income {
+    color: lightgreen;
+}
+
+.perk-boost {
+    margin: 0;
+    padding: 0.2em 0.5em 1em 0.5em;
+    height: 2em;
+}
+
+.perk-boost-cooldown, .perk-boost-cooldown:hover {
+    background-color: #066182;
+}
+
+.perk-boost-active, .perk-boost-active:hover {
+    background-color: #02bb11;
+}
+
+.button-transcend {
+    background-color: #b8f4cb !important;
+}
+
+.button-transcend:hover {
+    background-color: #cef5da !important;   
+}
+
+.button-evil {
+    background-color: #f0b5b5 !important;
+}
+
+.button-evil:hover {
+    background-color: #f2caca !important;
+}
+
+.rowtitle {
+    padding: 0.3em 1em 0em 1em !important;
+}
+
+.congrats {
+    margin-top: 1em;
+    padding: 1em 1em 1em 1em !important;
+    font-size: 320%;
+    color: #d30202;
+    text-align: center;
+    border: 0.01em solid red;
+    border-radius: 0.5em;
+    animation: currency-rainbow 40s infinite;
+}
+
+.resource {
+    margin-block-start: auto;
+    margin-block-end: auto;
+}
