@@ -1,0 +1,106 @@
+# English (default)
+site_title: Progress Knight Quest mod
+
+# Resources
+balance: Balance
+net: Net
+income: Income
+expense: Expense
+evil: Evil
+essence: Essence
+dark_matter: Dark Matter
+dark_orbs: Dark Orbs
+hypercubes: Hypercubes
+happiness: Life Comfort
+inspiration: Inspiration
+greed: Greed
+time_warping: Time Warping
+
+# Sidebar
+lifespan: Lifespan
+real_time: Real Time
+years: years
+pause: Pause
+boost: Boost
+task: Task
+
+# Tabs
+tab_hero: Hero
+tab_skills: Skills
+tab_shop: Shop
+tab_challenges: Challenges
+tab_milestones: Milestones
+tab_rebirth: Amulet
+tab_dark_matter: Dark Matter
+tab_metaverse: Metaverse
+tab_settings: Settings
+
+# Challenges
+challenge_title: In challenge
+starting_challenge: Starting a challenge will <b>reset</b> your coins, levels and max levels.
+challenge_advance: The more you advance in the challenge, the higher the reward.
+challenge_rewards_active: Challenge rewards are always active, even in challenges.
+exit_challenge: Exit challenge
+
+# Rebirth
+rebirth_1: Touch the eye
+rebirth_2: Embrace evil
+rebirth_3: Transcend
+rebirth_4: Collapse the universe
+rebirth_5: Metaverse
+
+# Dark Matter Shop
+dark_matter_shop: Dark Matter
+dark_orbs_shop: Dark Orbs
+a_miracle: A miracle
+a_deal_with_chairman: A deal with the Chairman
+a_gift_from_god: A gift from God
+gotta_be_fast: Gotta be fast
+life_coach: Life coach
+dark_orb_generator: Dark Orb Generator
+
+# Metaverse
+altar: Altar
+perks: Perks
+welcome_metaverse: <b>Welcome to Metaverse!</b>
+lifespan_infinite: Lifespan is now infinite.
+sacrifice: Sacrifice
+metaverse_perks: Metaverse Perks
+
+# Settings
+settings: Settings
+stats: Stats
+stats_tab: Stats
+changelog: Changelog
+import_save: Import save
+export_save: Export save
+import_save_placeholder: Enter save here
+hard_reset: Hard reset game
+links: Links
+
+# Settings options
+sticky_sidebar: Sticky sidebar
+currency_notation: Currency notation
+number_notation: Number notation
+layout: Layout
+font_size: Font size
+color_scheme: Color scheme
+dangerous_keybinds: Dangerous Keybinds
+
+# Misc
+required: Required
+next_effect: Next effect
+active: Active
+effect: Effect
+goal: Goal
+reward: Reward
+level: Level
+xp_day: XP/day
+xp_left: XP left
+max_level: Max lvl
+value_type: Value type
+cost: Cost
+buy: Buy
+upgrade: Upgrade
+reset_abilities: Reset Abilities
+version: Version

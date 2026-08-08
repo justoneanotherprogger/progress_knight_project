@@ -542,3 +542,14 @@ button:focus {
     margin-block-start: auto;
     margin-block-end: auto;
 }
+
+/* Language switcher */
+.lang-btn {
+    margin: 0.2em;
+}
+
+.lang-btn.selected {
+    background-color: rgb(39, 234, 17) !important;
+    color: white !important;
+    border: 0.1em solid rgb(39, 234, 17) !important;
+}

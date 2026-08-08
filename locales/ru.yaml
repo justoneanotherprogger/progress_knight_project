@@ -1,0 +1,106 @@
+# Русский (Russian)
+site_title: Progress Knight Quest mod
+
+# Resources
+balance: Баланс
+net: Чистыми
+income: Доход
+expense: Расход
+evil: Зло
+essence: Эссенция
+dark_matter: Тёмная материя
+dark_orbs: Тёмные сферы
+hypercubes: Гиперкубы
+happiness: Удобства жизни
+inspiration: Вдохновение
+greed: Жадность
+time_warping: Искажение времени
+
+# Sidebar
+lifespan: Продолжительность жизни
+real_time: Реальное время
+years: лет
+pause: Пауза
+boost: Ускорение
+task: Задание
+
+# Tabs
+tab_hero: Герой
+tab_skills: Навыки
+tab_shop: Магазин
+tab_challenges: Испытания
+tab_milestones: Вехи
+tab_rebirth: Амулет
+tab_dark_matter: Тёмная материя
+tab_metaverse: Метавселенная
+tab_settings: Настройки
+
+# Challenges
+challenge_title: В испытании
+starting_challenge: Начало испытания <b>сбросит</b> ваши монеты, уровни и максимальные уровни.
+challenge_advance: Чем дальше вы продвинетесь в испытании, тем выше награда.
+challenge_rewards_active: Награды за испытания всегда активны, даже во время испытаний.
+exit_challenge: Выйти из испытания
+
+# Rebirth
+rebirth_1: Прикоснуться к глазу
+rebirth_2: Принять зло
+rebirth_3: Трансцендировать
+rebirth_4: Свернуть вселенную
+rebirth_5: Метавселенная
+
+# Dark Matter Shop
+dark_matter_shop: Тёмная материя
+dark_orbs_shop: Тёмные сферы
+a_miracle: Чудо
+a_deal_with_chairman: Сделка с Председателем
+a_gift_from_god: Дар от Бога
+gotta_be_fast: Нужно быть быстрым
+life_coach: Коуч по жизни
+dark_orb_generator: Генератор тёмных сфер
+
+# Metaverse
+altar: Алтарь
+perks: Перки
+welcome_metaverse: <b>Добро пожаловать в Метавселенную!</b>
+lifespan_infinite: Продолжительность жизни теперь бесконечна.
+sacrifice: Жертвовать
+metaverse_perks: Перки Метавселенной
+
+# Settings
+settings: Настройки
+stats: Статистика
+stats_tab: Статистика
+changelog: Список изменений
+import_save: Импорт сохранения
+export_save: Экспорт сохранения
+import_save_placeholder: Вставьте сохранение сюда
+hard_reset: Полный сброс игры
+links: Ссылки
+
+# Settings options
+sticky_sidebar: Закреплённая боковая панель
+currency_notation: Обозначение валют
+number_notation: Обозначение чисел
+layout: Макет
+font_size: Размер шрифта
+color_scheme: Цветовая схема
+dangerous_keybinds: Опасные горячие клавиши
+
+# Misc
+required: Требуется
+next_effect: Следующий эффект
+active: Активно
+effect: Эффект
+goal: Цель
+reward: Награда
+level: Уровень
+xp_day: Опыт/день
+xp_left: Опыт до следующего
+max_level: Макс. уровень
+value_type: Тип значения
+cost: Стоимость
+buy: Купить
+upgrade: Улучшить
+reset_abilities: Сбросить способности
+version: Версия

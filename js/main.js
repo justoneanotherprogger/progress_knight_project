@@ -1472,3 +1472,8 @@ function getGreed() {
     const greed = getBaseLog(adultAge, age)
     return greed
 }
+
+// Re-apply translations when language changes
+document.addEventListener('i18n:changed', () => {
+    updateUI();
+});

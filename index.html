@@ -27,13 +27,13 @@
 						<span></span>
 						<span></span>
 					</div>
-					<div style="color: gray">Balance</div>
+					<div style="color: gray" data-i18n="balance"></div>
                 </div>
 
                 <div id="income" class="resource topbar-element">
                     <ul>
 						<li>
-							<span class="color-hypercubes">Net: </span><b id="signDisplay"></b>
+							<span class="color-hypercubes" data-i18n="net"></span>: <b id="signDisplay"></b>
 							<div id="netDisplay" style="display: inline;">
 								<span></span>
 								<span></span>
@@ -43,7 +43,7 @@
 							</div>
 						</li>
 						<li>
-							<span class="color-income">Income: </span>
+							<span class="color-income" data-i18n="income"></span>:
 							<div id="incomeDisplay" style="display: inline;">
 								<span></span>
 								<span></span>
@@ -53,7 +53,7 @@
 							</div>
 						</li>
 						<li>
-							<span style="color: red">Expense: </span>
+							<span style="color: red" data-i18n="expense"></span>:
 							<div id="expenseDisplay" style="display: inline;">
 								<span></span>
 								<span></span>
@@ -65,23 +65,23 @@
 					</ul>
                 </div>
 				<div id="evilInfo" class="hidden resource topbar-element">
-					<div class="text-caption"><span class="color-evil">Evil: </span><span id="evilDisplay"></span></div>
+					<div class="text-caption">					<span class="color-evil" data-i18n="evil"></span>: <span id="evilDisplay"></span></div>
 					<div style="color: gray" class="sidebar-element">Affects Dark Magic XP gain</div>
 				</div>
 				<div id="essenceInfo" class="hidden resource topbar-element">
-					<div class="text-caption"><span class="color-essence">Essence: </span><span id="essenceDisplay"></span></div>
+					<div class="text-caption">					<span class="color-essence" data-i18n="essence"></span>: <span id="essenceDisplay"></span></div>
 					<div style="color: gray" class="sidebar-element">Affects Almightiness XP gain</div>
 				</div>
 				<div id="darkMatterInfo" class="hidden resource topbar-element">
-					<div class="text-caption"><span class="color-dark-matter">Dark Matter: </span><span id="darkMatterDisplay"></span></div>
+					<div class="text-caption">					<span class="color-dark-matter" data-i18n="dark_matter"></span>: <span id="darkMatterDisplay"></span></div>
 					<div style="color: gray" class="sidebar-element">Affects all XP gain</div>
 				</div>
 				<div id="darkOrbsInfo" class="hidden resource topbar-element">
-					<div class="text-caption"><span class="color-dark-orbs">Dark Orbs: </span><span id="darkOrbsDisplay"></span></div>
+					<div class="text-caption">					<span class="color-dark-orbs" data-i18n="dark_orbs"></span>: <span id="darkOrbsDisplay"></span></div>
 					<div style="color: gray" class="sidebar-element">Used to buy items in the Dark Matter shop</div>
 				</div>
 				<div id="hypercubesInfo" class="resource topbar-element">
-					<div class="text-caption"><span class="color-hypercubes">Hypercubes: </span><span id="hypercubesDisplay"></span></div>
+					<div class="text-caption">					<span class="color-hypercubes" data-i18n="hypercubes"></span>: <span id="hypercubesDisplay"></span></div>
 					<div style="color: gray" class="sidebar-element">for Metaverse sacrifices</div>
 				</div>
           	</div>
@@ -113,9 +113,9 @@
 					<br>Real Time: <span id="realtimeDisplay">00:00:00</span>
 					<div id="fps"></div>
 				</div>
-				<button id="pauseButton" class="w3-button button sidebar-element" onClick="togglePause()">Pause</button>
+				<button id="pauseButton" class="w3-button button sidebar-element" onClick="togglePause()" data-i18n="pause"></button>
 				<div id="boostPanel" class="sidebar-element" style="color: gray">
-					<button id="boostButton" class="perk perk-boost" onClick="applyBoost()">Boost</button>
+					<button id="boostButton" class="perk perk-boost" onClick="applyBoost()" data-i18n="boost"></button>
 					<span style="padding-left:0.4em" id="boostCooldownDisplay">00:00</span>
 				</div>
 				<div id="quickTaskDisplay" class="hidden">
@@ -125,7 +125,7 @@
 					</div>
 				</div>
 
-				<div class="text-caption" style="padding-top: 0.2em"><span class="color-happiness">Life Comfort: </span><span id="happinessDisplay"></span></div>
+				<div class="text-caption" style="padding-top: 0.2em"><span class="color-happiness" data-i18n="happiness"></span>: <span id="happinessDisplay"></span></div>
 				<div style="color: gray" class="sidebar-element">Affects all XP gain</div>
 
 				<div class="text-caption" style="padding-top: 0.2em"><span style="color: rgb(207, 21, 15)">Inspiration: </span><span id="inspirationDisplay"></span></div>
@@ -141,32 +141,32 @@
 					<div style="color: gray" class="sidebar-element">Affects game speed</div>
 				</div>
 				<div id="rebirthButton1" class="hidden">
-					<button class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100%" onClick="rebirthOne()">Touch the eye</button>
+					<button class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100%" onClick="rebirthOne()" data-i18n="rebirth_1"></button>
 				</div>
 				<div id="rebirthButton2" class="hidden">
-					<button class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100% " onClick="rebirthTwo()">Embrace evil: <span class="color-evil" id="evilGainButtonDisplay"></span></button>
+					<button class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100% " onClick="rebirthTwo()"><span data-i18n="rebirth_2"></span>: <span class="color-evil" id="evilGainButtonDisplay"></span></button>
 				</div>
 				<div id="rebirthButton3" class="hidden">
-					<button class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100% " onClick="rebirthThree()">Transcend: <span class="color-essence" id="essenceGainButtonDisplay"></span></button>
+					<button class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100% " onClick="rebirthThree()"><span data-i18n="rebirth_3"></span>: <span class="color-essence" id="essenceGainButtonDisplay"></span></button>
 				</div>
 				<div id="rebirthButton4" class="hidden">
-					<button class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100% " onClick="rebirthFour()">Collapse the universe: <span class="color-dark-matter" id="darkMatterGainButtonDisplay"></span></button>
+					<button class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100% " onClick="rebirthFour()"><span data-i18n="rebirth_4"></span>: <span class="color-dark-matter" id="darkMatterGainButtonDisplay"></span></button>
 				</div>
 				<div id="rebirthButton5" class="hidden">
-					<button class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100% " onClick="rebirthFive()">Metaverse: <span id="metaversePerkPointsGainButtonDisplay"></span></button>
+					<button class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100% " onClick="rebirthFive()"><span data-i18n="rebirth_5"></span>: <span id="metaversePerkPointsGainButtonDisplay"></span></button>
 				</div>
 			</div>
 			<div class="column">
 				<div id="tabcolumn" class="panel w3-margin-left tabs-tab-column">
-					<div class="w3-button w3-bar-item tabButton baritem" id="jobsTabButton" onClick="setTab('jobs')">Hero</div>
-					<div class="w3-button w3-bar-item tabButton baritem hidden" id="skillsTabButton" onClick="setTab('skills')">Skills</div>
-					<div class="w3-button w3-bar-item tabButton baritem hidden" id="shopTabButton" onClick="setTab('shop')">Shop</div>
-					<div class="w3-button w3-bar-item tabButton baritem" id="challengesTabButton" onClick="setTab('challenges')">Challenges</div>
-					<div class="w3-button w3-bar-item tabButton baritem" id="milestonesTabButton" onClick="setTab('milestones')">Milestones</div>
-					<div class="w3-button w3-bar-item tabButton baritem" id="rebirthTabButton" onClick="setTab('rebirth')">Amulet</div>
-					<div class="w3-button w3-bar-item tabButton baritem" id="darkMatterTabButton" onClick="setTab('darkMatter')">Dark Matter</div>
-					<div class="w3-button w3-bar-item tabButton baritem" id="metaverseTabButton" onClick="setTab('metaverse')">Metaverse</div>
-					<div class="w3-button w3-bar-item tabButton baritem" id="settingsTabButton" onClick="setTab('settings')">Settings</div>
+					<div class="w3-button w3-bar-item tabButton baritem" id="jobsTabButton" onClick="setTab('jobs')" data-i18n="tab_hero"></div>
+					<div class="w3-button w3-bar-item tabButton baritem hidden" id="skillsTabButton" onClick="setTab('skills')" data-i18n="tab_skills"></div>
+					<div class="w3-button w3-bar-item tabButton baritem hidden" id="shopTabButton" onClick="setTab('shop')" data-i18n="tab_shop"></div>
+					<div class="w3-button w3-bar-item tabButton baritem" id="challengesTabButton" onClick="setTab('challenges')" data-i18n="tab_challenges"></div>
+					<div class="w3-button w3-bar-item tabButton baritem" id="milestonesTabButton" onClick="setTab('milestones')" data-i18n="tab_milestones"></div>
+					<div class="w3-button w3-bar-item tabButton baritem" id="rebirthTabButton" onClick="setTab('rebirth')" data-i18n="tab_rebirth"></div>
+					<div class="w3-button w3-bar-item tabButton baritem" id="darkMatterTabButton" onClick="setTab('darkMatter')" data-i18n="tab_dark_matter"></div>
+					<div class="w3-button w3-bar-item tabButton baritem" id="metaverseTabButton" onClick="setTab('metaverse')" data-i18n="tab_metaverse"></div>
+					<div class="w3-button w3-bar-item tabButton baritem" id="settingsTabButton" onClick="setTab('settings')" data-i18n="tab_settings"></div>
 				</div>
 				<div id="maincolumn" class="panel w3-margin-left w3-margin-top w3-padding tabs-main-column">
 					<div id="hero">
@@ -306,13 +306,13 @@
 							<div id="challengeTab1" class="tabChallenge">
 								<div id="challengePage1" class="panel page-column w3-padding">
 									<div>
-										<div class="color-evil">Starting a challenge will <b>reset</b> your coins, levels and max levels.</div>
-										<div>The more you advance in the challenge, the higher the reward.</div>
-										<div>Challenge rewards are always active, even in challenges.</div>										
+									<div class="color-evil" data-i18n="starting_challenge"></div>
+									<div data-i18n="challenge_advance"></div>
+									<div data-i18n="challenge_rewards_active"></div>
 									</div>
 									<div id="exitChallengeDiv">
 										<p>Current challenge: <b><span id="activeChallengeName"></span></b></p>
-										<button class="w3-button button" onclick="exitChallenge()">Exit challenge</button>
+										<button class="w3-button button" onclick="exitChallenge()" data-i18n="exit_challenge"></button>
 										<div class="currentChallengeReward an_unhappy_life hidden" style="display: inline; padding-left:1em">Current reward: Multiplies <span class="color-happiness">Life Comfort</span> by x<span id="currentChallengeBuff1"></span></div>
 										<div class="currentChallengeReward rich_and_the_poor hidden" style="display: inline; padding-left:1em">Current reward: Multiplies <span class="color-income">Income</span> by x<span id="currentChallengeBuff2"></span></div>
 										<div class="currentChallengeReward time_does_not_fly hidden" style="display: inline; padding-left:1em">Current reward: Multiplies <span class="color-time-warping">Time Warping</span> by x<span id="currentChallengeBuff3"></span></div>
@@ -524,13 +524,13 @@
 										<div class="text-caption dark-matter-title">Dark Orb Generator</div>
 										<div style="color:gray; padding-bottom:0.3em">Generates <b id="darkOrbGenerator"></b> <span class="color-dark-orbs">Dark Orb</span> per day</div>
 										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="darkOrbGeneratorCost"></b> <span class="color-dark-matter">Dark Matter</span></div>
-										<button class="w3-button button" id="darkOrbGeneratorBuyButton" onclick="buyDarkOrbGenerator()">Upgrade</button>
+										<button class="w3-button button" id="darkOrbGeneratorBuyButton" onclick="buyDarkOrbGenerator()" data-i18n="upgrade"></button>
 									</div>
 									<div style="padding-top:2em">
 										<div class="text-caption dark-matter-title">A miracle</div>
 										<div style="color:gray; padding-bottom:0.3em">Keep <b>Magic Eye</b> when performing a Dark Matter or lower reset</div>
 										<div id="aMiracleCost" style="color:gray; padding-bottom: 0.5em;">Cost: <b>10</b> <span class="color-dark-matter">Dark Matter</span></div>
-										<button class="w3-button button" id="aMiracleBuyButton" onclick="buyAMiracle()">Buy</button>
+										<button class="w3-button button" id="aMiracleBuyButton" onclick="buyAMiracle()" data-i18n="buy"></button>
 									</div>
 									<div class="text-caption" style="padding-top:4em">
 										<div class="text-caption"><span class="color-dark-orbs">Dark Orbs: </span><span id="darkOrbsShopDisplay"></span></div>
@@ -539,25 +539,25 @@
 										<div class="text-caption dark-matter-title">A deal with the Chairman</div>
 										<div style="color:gray; padding-bottom: 0.5em;">Reward: Multiply <span style="color: rgb(199, 21, 133);">T.A.A & Magic</span> XP gain by x<span id="aDealWithTheChairmanEffect"></span></div>
 										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="aDealWithTheChairmanCost"></b> <span class="color-dark-orbs">Dark Orbs</span></div>
-										<button class="w3-button button" id="aDealWithTheChairmanBuyButton" onclick="buyADealWithTheChairman()">Upgrade</button>
+										<button class="w3-button button" id="aDealWithTheChairmanBuyButton" onclick="buyADealWithTheChairman()" data-i18n="upgrade"></button>
 									</div>
 									<div style="padding-top:2em">
 										<div class="text-caption dark-matter-title">A gift from God</div>
 										<div style="color:gray; padding-bottom: 0.5em;">Reward: Multiply <span class="color-essence">Essence</span> gain by x<span id="aGiftFromGodEffect"></span></div>
 										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="aGiftFromGodCost"></b> <span class="color-dark-orbs">Dark Orbs</span></div>
-										<button class="w3-button button" id="aGiftFromGodBuyButton" onclick="buyAGiftFromGod()">Upgrade</button>
+										<button class="w3-button button" id="aGiftFromGodBuyButton" onclick="buyAGiftFromGod()" data-i18n="upgrade"></button>
 									</div>
 									<div style="padding-top:2em">
 										<div class="text-caption dark-matter-title">Gotta be fast</div>
 										<div style="color:gray; padding-bottom: 0.5em;">Reward: Multiply <span class="color-time-warping">Time Warping</span> by x<span id="gottaBeFastEffect"></span></div>
 										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="gottaBeFastCost"></b> <span class="color-dark-orbs">Dark Orbs</span></div>
-										<button class="w3-button button" id="gottaBeFastBuyButton" onclick="buyGottaBeFast()">Upgrade</button>
+										<button class="w3-button button" id="gottaBeFastBuyButton" onclick="buyGottaBeFast()" data-i18n="upgrade"></button>
 									</div>
 									<div style="padding-top:2em">
 										<div class="text-caption dark-matter-title">Life coach</div>
 										<div style="color:gray; padding-bottom: 0.5em;">Reward: Multiply <span class="color-income">Income</span> by x<span id="lifeCoachEffect"></span></div>
 										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="lifeCoachCost"></b> <span class="color-dark-orbs">Dark Orbs</span></div>
-										<button class="w3-button button" id="lifeCoachBuyButton" onclick="buyLifeCoach()">Upgrade</button>
+										<button class="w3-button button" id="lifeCoachBuyButton" onclick="buyLifeCoach()" data-i18n="upgrade"></button>
 									</div>
 								</div>
 							</div>
@@ -570,7 +570,7 @@
 										<div style="color:gray; padding-bottom:0.3em">
 											You can only choose 1 upgrade in each category; pick wisely. You can reset the abilities, but you will <b>NOT</b> get your <span class="color-dark-matter">Dark Matter</span> back!
 										</div>
-										<button class="w3-button button" onclick="resetSkillTree()">Reset Abilities</button>
+										<button class="w3-button button" onclick="resetSkillTree()" data-i18n="reset_abilities"></button>
 									</div>
 									<div style="padding-top:2em">
 										<div class="text-caption dark-matter-title">Speed is life</div>
@@ -703,43 +703,43 @@
 										<div class="text-caption metaverse-title">Increase Hypercube Gain</div>
 										<div style="color:gray; padding-bottom: 0.3em;">Current gain: <b id="hypercubeGain"></b> / s</div>
 										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="hypercubeGainCost"></b> <span class="color-hypercubes">Hypercubes</span></div>
-										<button class="w3-button button" id="hypercubeGainBuyButton" onclick="buyHypercubeGain()">Sacrifice</button>
+										<button class="w3-button button" id="hypercubeGainBuyButton" onclick="buyHypercubeGain()" data-i18n="sacrifice"></button>
 									</div>
 									<div id="ReduceBoostCooldownAltar" style="padding-top:2em">
 										<div class="text-caption metaverse-title">Reduce Boost Cooldown</div>
 										<div style="color:gray; padding-bottom: 0.3em;">Current cooldown: <b id="reduceBoostCooldown"></b></div>
 										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="reduceBoostCooldownCost"></b> <span class="color-hypercubes">Hypercubes</span></div>
-										<button class="w3-button button" id="reduceBoostCooldownBuyButton" onclick="buyReduceBoostCooldown()">Sacrifice</button>
+										<button class="w3-button button" id="reduceBoostCooldownBuyButton" onclick="buyReduceBoostCooldown()" data-i18n="sacrifice"></button>
 									</div>
 									<div id="IncreaseBoostDurationAltar" style="padding-top:2em">
 										<div class="text-caption metaverse-title">Increase Boost Duration</div>
 										<div style="color:gray; padding-bottom: 0.3em;">Current duration: <b id="boostDuration"></b></div>
 										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="boostDurationCost"></b> <span class="color-hypercubes">Hypercubes</span></div>
-										<button class="w3-button button" id="boostDurationBuyButton" onclick="buyBoostDuration()">Sacrifice</button>
+										<button class="w3-button button" id="boostDurationBuyButton" onclick="buyBoostDuration()" data-i18n="sacrifice"></button>
 									</div>
 									<div id="EvilAltar" style="padding-top:2em">
 										<div class="text-caption metaverse-title">Gain evil at new transcension</div>
 										<div style="color:gray; padding-bottom: 0.3em;">Current gain: <b id="evilTranGain"></b> <span class="color-evil">Evil</span></div>
 										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="evilTranCost"></b> <span class="color-hypercubes">Hypercubes</span></div>
-										<button class="w3-button button" id="evilTranBuyButton" onclick="buyEvilTran()">Sacrifice</button>
+										<button class="w3-button button" id="evilTranBuyButton" onclick="buyEvilTran()" data-i18n="sacrifice"></button>
 									</div>
 									<div id="EssenceAltar" style="padding-top:2em">
 										<div class="text-caption metaverse-title">Essence gain multiplier</div>
 										<div style="color:gray; padding-bottom: 0.3em;">Current multiplier: x<b id="essenceMultGain"></b> <span class="color-essence">Essence</span></div>
 										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="essenceMultCost"></b> <span class="color-hypercubes">Hypercubes</span></div>
-										<button class="w3-button button" id="essenceMultButton" onclick="buyEssenceMult()">Sacrifice</button>
+										<button class="w3-button button" id="essenceMultButton" onclick="buyEssenceMult()" data-i18n="sacrifice"></button>
 									</div>
 									<div id="ChallengeAltar" style="padding-top:2em">
 										<div class="text-caption metaverse-title">Challenges are not reset on collapse</div>
 										<div style="color:gray; padding-bottom: 0.3em;"><span style="color: rgb(10, 238, 43)"><b id="challengeAltarState"></b></span></div>
 										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="challengeAltarCost"></b> <span class="color-hypercubes">Hypercubes</span></div>
-										<button class="w3-button button" id="challengeAltarButton" onclick="buyChallengeAltar()">Sacrifice</button>
+										<button class="w3-button button" id="challengeAltarButton" onclick="buyChallengeAltar()" data-i18n="sacrifice"></button>
 									</div>
 									<div id="DarkMaterAltar" style="padding-top:2em">
 										<div class="text-caption metaverse-title">Dark Matter gain multiplier</div>
 										<div style="color:gray; padding-bottom: 0.3em;">Current multiplier: x<b id="darkMatterMultGain"></b> <span class="color-dark-matter">Dark Matter</span></div>
 										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="darkMatterMultCost"></b> <span class="color-hypercubes">Hypercubes</span></div>
-										<button class="w3-button button" id="darkMaterMultButton" onclick="buyDarkMaterMult()">Sacrifice</button>
+										<button class="w3-button button" id="darkMaterMultButton" onclick="buyDarkMaterMult()" data-i18n="sacrifice"></button>
 									</div>
 								</div>
 							</div>
@@ -774,9 +774,9 @@
 					</div>
 					<div class="tab column" style="display:none" id="settings">
 						<div id="tabcolumnSettings" class="panel w3-padding page-column">
-							<div class="w3-button w3-bar-item tabButtonSettings baritem w3-blue-gray" id="settingsTabTabButton" onClick="setTabSettings('settingsTab')">Settings</div>
-							<div class="w3-button w3-bar-item tabButtonSettings baritem" id="statsTabTabButton" onClick="setTabSettings('statsTab')">Stats</div>
-							<div class="w3-button w3-bar-item tabButtonSettings baritem" id="changelogTabTabButton" onClick="setTabSettings('changelogTab')">Changelog</div>
+								<div class="w3-button w3-bar-item tabButtonSettings baritem w3-blue-gray" id="settingsTabTabButton" onClick="setTabSettings('settingsTab')" data-i18n="settings"></div>
+								<div class="w3-button w3-bar-item tabButtonSettings baritem" id="statsTabTabButton" onClick="setTabSettings('statsTab')" data-i18n="stats_tab"></div>
+								<div class="w3-button w3-bar-item tabButtonSettings baritem" id="changelogTabTabButton" onClick="setTabSettings('changelogTab')" data-i18n="changelog"></div>
 						</div>
 						<div id="maincolumnSettings" class="panel w3-margin-left w3-margin-top">
 							<div id="settingsTab" class="tabSettings">
@@ -784,11 +784,18 @@
 									<ul>
 										<li>
 											<div class="text-caption">
-												<button class="w3-button button" onClick="importGameData()">Import save</button>
-												<button class="w3-button button" onClick="exportGameData()" onmouseout="outExportButton()">Export save</button><span class="tooltiptext" id="exportTooltip"></span>
+											<button class="w3-button button" onClick="importGameData()" data-i18n="import_save"></button>
+											<button class="w3-button button" onClick="exportGameData()" onmouseout="outExportButton()" data-i18n="export_save"></button><span class="tooltiptext" id="exportTooltip"></span>
 												<form style="margin-top: 0.8em" autocomplete="off">
-													<input id="importExportBox" placeholder="Enter save here" type="text" style="width:20em">
+													<input id="importExportBox" data-i18n-placeholder="import_save_placeholder" type="text" style="width:20em">
 												</form>
+											</div>
+										</li>
+										<li>
+											<div class="text-caption" style="margin-top: 0.4em;">Language</div>
+											<div style="padding: 0.4em">
+											<button class="w3-button button lang-btn selected" data-lang="en" onclick="setLang('en')">English</button>
+											<button class="w3-button button lang-btn" data-lang="ru" onclick="setLang('ru')">Русский</button>
 											</div>
 										</li>
 										<li>
@@ -862,7 +869,7 @@
 										</li>
 										<li>
 											<div class="text-caption" style="margin-top: 0.4em;">
-												<button class="w3-button button w3-red" onClick="resetGameData()">Hard reset game</button>
+												<button class="w3-button button w3-red" onClick="resetGameData()" data-i18n="hard_reset"></button>
 											</div>
 										</li>
 										<li>
@@ -947,6 +954,7 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="js/i18n.js"></script>
 	<script type="text/javascript" src="js/utils.js"></script>
 	<script type="text/javascript" src="js/ui.js"></script>
 	<script type="text/javascript" src="js/math.js"></script>
