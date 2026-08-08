@@ -1,0 +1,94 @@
+# Settings
+settings: Settings
+stats: Stats
+stats_tab: Stats
+changelog: Changelog
+import_save: Import save
+export_save: Export save
+import_save_placeholder: Enter save here
+hard_reset: Hard reset game
+links: Links
+language: Language
+
+# Settings options
+sticky_sidebar: Sticky sidebar
+currency_notation: Currency notation
+number_notation: Number notation
+layout: Layout
+font_size: Font size
+color_scheme: Color scheme
+dangerous_keybinds: Dangerous Keybinds
+
+# Currency options
+currency_medieval: Medieval
+currency_extended: Extended
+currency_british: British £sd
+currency_modern: Modern $
+
+# Notation options
+notation_standard: Standard
+notation_scientific: Scientific
+notation_engineering: Engineering
+
+# Layout options
+layout_standard: Standard
+layout_wide: W I D E
+
+# Font size
+font_smaller: Smaller
+font_larger: Larger
+font_size_tooltip: Keep pressing to change more
+
+# Theme options
+theme_light: Light
+theme_dark: Dark
+theme_colorblind: Color Blind Friendly
+
+# Keybinds
+enabled: Enabled
+disabled: Disabled
+
+# Shortcuts
+shortcuts: Shortcuts
+shortcut_arrows: Arrow Keys - Menu navigation
+shortcut_space: Spacebar - Pause
+shortcut_q: q - Touch the eye
+shortcut_e: e - Embrace evil
+shortcut_t: t - Transcend
+shortcut_u: u - Collapse the universe
+shortcut_g: g - Go to Metaverse
+shortcut_challenge: 1 - Enter / Exit Challenge 1, etc
+
+# Links
+links_based_on: 'Based on a <a href="https://symb1.github.io/progress_knight_2/" target="_blank">Progress Knight 2.0</a> mod'
+links_original_game: 'Original game: <a href="https://ihtasham42.github.io/progress-knight/" target="_blank">Progress Knight</a>'
+links_discord: '<a href="https://discord.gg/fTRS4pHGka" target="_blank">Join the discord community! <img src="img/discord_icon.png" style="width:3em; height:3em;"></a>'
+links_github: '<a href="https://github.com/indomit/progress_knight_2" target="_blank">Github page</a>'
+
+# Stats
+stats_start_date: "You started playing the game on <span id=\"startDateDisplay\"></span>, <span id=\"playedDaysDisplay\"></span> days ago."
+stats_played_real_time: "You have played for <span id=\"playedRealTimeDisplay\"></span> (real time)."
+stats_played_game_time: "Your existance has spanned <span id=\"playedGameTimeDisplay\"></span> days (game time)."
+stats_rebirth1_count: "You have touched the eye <span id=\"rebirthOneCountDisplay\"></span> times."
+stats_rebirth1_time: "You have spent <span id=\"rebirthOneTimeDisplay\"></span> in this life."
+stats_rebirth1_fastest: "Your fastest touch is in <span id=\"rebirthOneFastestDisplay\"></span>."
+stats_rebirth2_count: "You have embraced evil <span id=\"rebirthTwoCountDisplay\"></span> times."
+stats_rebirth2_time: "You have spent <span id=\"rebirthTwoTimeDisplay\"></span> in this embrace."
+stats_rebirth2_fastest: "Your fastest embrace is in <span id=\"rebirthTwoFastestDisplay\"></span>."
+stats_evil_gain: "You gain <span id=\"evilPerSecondDisplay\"></span> evil/s. Maximum <span id=\"maxEvilPerSecondDisplay\"></span> evil/s was at <span id=\"maxEvilPerSecondRtDisplay\"></span>."
+stats_rebirth3_count: "You have transcended <span id=\"rebirthThreeCountDisplay\"></span> times."
+stats_rebirth3_time: "You have spent <span id=\"rebirthThreeTimeDisplay\"></span> in this transcension."
+stats_rebirth3_fastest: "Your fastest transcension is in <span id=\"rebirthThreeFastestDisplay\"></span>."
+stats_essence_gain: "You gain <span id=\"essencePerSecondDisplay\"></span> essence/s. Maximum <span id=\"maxEssencePerSecondDisplay\"></span> essence/s was at <span id=\"maxEssencePerSecondRtDisplay\"></span>."
+stats_rebirth4_count: "You have collapsed the universe <span id=\"rebirthFourCountDisplay\"></span> times."
+stats_rebirth4_time: "You have spent <span id=\"rebirthFourTimeDisplay\"></span> in this collapse."
+stats_rebirth4_fastest: "Your fastest collapse is in <span id=\"rebirthFourFastestDisplay\"></span>."
+stats_rebirth5_count: "You traveled to the Metaverse <span id=\"rebirthFiveCountDisplay\"></span> times."
+stats_rebirth5_time: "You have spent <span id=\"rebirthFiveTimeDisplay\"></span> in this Metaverse."
+stats_rebirth5_fastest: "Your fastest Metaverse is in <span id=\"rebirthFiveFastestDisplay\"></span>."
+stats_challenge_1: 'Challenge 1 Reward: Multiplies life comfort by x<span id="challengeHappinessBuffDisplay"></span>.'
+stats_challenge_2: 'Challenge 2 Reward: Multiplies income by x<span id="challengeIncomeBuffDisplay"></span>.'
+stats_challenge_3: 'Challenge 3 Reward: Multiplies time warping by x<span id="challengeTimewarpingBuffDisplay"></span>.'
+stats_challenge_4: "Challenge 4 Reward: Multiplies essence gain by x<span id=\"challengeEssenceGainBuffDisplay\"></span>."
+stats_challenge_5: "Challenge 5 Reward: Multiplies evil gain by x<span id=\"challengeEvilGainBuffDisplay\"></span>."
+stats_challenge_6: "Challenge 6 Reward: Multiplies Dark Matter gain by x<span id=\"challengeDarkMaterGainBuffDisplay\"></span>."

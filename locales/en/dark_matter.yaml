@@ -1,0 +1,43 @@
+# Dark Matter Shop
+dark_matter_shop: Dark Matter
+dark_orbs_shop: Dark Orbs
+a_miracle: A miracle
+a_miracle_desc: "Keep <b>Magic Eye</b> when performing a Dark Matter or lower reset"
+a_deal_with_chairman: A deal with the Chairman
+a_deal_with_chairman_desc: 'Reward: Multiply <span style="color: rgb(199, 21, 133);">T.A.A & Magic</span> XP gain by x{0}'
+a_gift_from_god: A gift from God
+a_gift_from_god_desc: 'Reward: Multiply <span class="color-essence">Essence</span> gain by x{0}'
+gotta_be_fast: Gotta be fast
+gotta_be_fast_desc: 'Reward: Multiply <span class="color-time-warping">Time Warping</span> by x{0}'
+life_coach: Life coach
+life_coach_desc: 'Reward: Multiply <span class="color-income">Income</span> by x{0}'
+dark_orb_generator: Dark Orb Generator
+dark_orb_generator_desc: 'Generates <b id="darkOrbGenerator"></b> <span class="color-dark-orbs">Dark Orb</span> per day'
+abilities_warning: 'You can only choose 1 upgrade in each category; pick wisely. You can reset the abilities, but you will <b>NOT</b> get your <span class="color-dark-matter">Dark Matter</span> back!'
+
+# Dark Matter Abilities
+speed_is_life: Speed is life
+speed_is_life_1: 'Multiply <span class="color-time-warping">Time Warping</span> by <b>3x</b>'
+speed_is_life_1_neg: ', but divide <span class="color-evil">Evil</span> gain by <b>2x</b>'
+speed_is_life_2: 'Multiply <span class="color-time-warping">Time Warping</span> by <b>7x</b>'
+speed_is_life_2_neg: ', but divide <span class="color-essence">Essence</span> gain by <b>2x</b>'
+your_greatest_debt: Your greatest debt
+your_greatest_debt_1: 'Multiply <span style="color:rgb(255, 204, 102)">all XP</span> gain by <b>500x</b>'
+your_greatest_debt_1_neg: ', but divide <span class="color-income">Income</span> by <b>10x</b>'
+your_greatest_debt_2: 'Multiply <span class="color-evil">Evil gain</span> by <b>100x</b>'
+your_greatest_debt_2_neg: ', but divide <span class="color-income">Income</span> by <b>2x</b>'
+essence_collector: Essence collector
+essence_collector_1: "Multiply <span class=\"color-essence\">Essence</span> gain by <b>500x</b>"
+essence_collector_1_neg: ', but divide <span class="color-evil">Evil</span> gain by <b>2x</b>'
+essence_collector_2: "Multiply <span class=\"color-essence\">Essence</span> gain by <b>1000x</b>"
+essence_collector_2_neg: ', but divide <span class="color-income">Income</span> by <b>25x</b>'
+explosion_of_the_universe: Explosion of the universe
+explosion_of_the_universe_1: "Multiply <span style=\"color:rgb(255, 204, 102)\">all XP</span> gain by <b>1e100x</b>"
+explosion_of_the_universe_1_neg: ', but divide <span class="color-essence">Essence</span> gain by <b>2x</b>'
+explosion_of_the_universe_2: "Multiply <span style=\"color:rgb(255, 204, 102)\">all XP</span> gain by <b>1e150x</b>"
+explosion_of_the_universe_2_neg: ', but divide <span class="color-income">Income</span> by <b>1e5x</b>'
+multiverse_explorer: Multiverse explorer
+multiverse_explorer_1: "Multiply <span class=\"color-essence\">Essence</span> gain by <b>5000x</b>"
+multiverse_explorer_1_neg: ', but divide <span class="color-time-warping">Time Warping</span> by <b>1000x</b>'
+multiverse_explorer_2: "Multiply <span class=\"color-essence\">Essence</span> gain by <b>10000x</b>"
+multiverse_explorer_2_neg: ', but divide <span class="color-dark-matter">Dark Matter</span> gain by <b>100x</b>'

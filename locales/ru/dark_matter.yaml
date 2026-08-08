@@ -1,0 +1,43 @@
+# Dark Matter Shop
+dark_matter_shop: Тёмная материя
+dark_orbs_shop: Тёмные сферы
+a_miracle: Чудо
+a_miracle_desc: 'Сохранить <b>Магический Глаз</b> при сбросе Тёмной материи или ниже'
+a_deal_with_chairman: Сделка с Председателем
+a_deal_with_chairman_desc: 'Награда: Умножает получение опыта <span style="color: rgb(199, 21, 133);">Т.А.А и Магии</span> на x{0}'
+a_gift_from_god: Дар от Бога
+a_gift_from_god_desc: 'Награда: Умножает получение <span class="color-essence">Эссенции</span> на x{0}'
+gotta_be_fast: Нужно быть быстрым
+gotta_be_fast_desc: 'Награда: Умножает <span class="color-time-warping">Искажение времени</span> на x{0}'
+life_coach: Коуч по жизни
+life_coach_desc: 'Награда: Умножает <span class="color-income">Доход</span> на x{0}'
+dark_orb_generator: Генератор тёмных сфер
+dark_orb_generator_desc: 'Генерирует <b id="darkOrbGenerator"></b> <span class="color-dark-orbs">Тёмную сферу</span> в день'
+abilities_warning: 'Вы можете выбрать только 1 улучшение в каждой категории; выбирайте мудро. Вы можете сбросить способности, но <b>НЕ</b> получите обратно свою <span class="color-dark-matter">Тёмную материю</span>!'
+
+# Dark Matter Abilities
+speed_is_life: Скорость — это жизнь
+speed_is_life_1: 'Умножает <span class="color-time-warping">Искажение времени</span> на <b>3x</b>'
+speed_is_life_1_neg: ', но делит получение <span class="color-evil">Зла</span> на <b>2x</b>'
+speed_is_life_2: 'Умножает <span class="color-time-warping">Искажение времени</span> на <b>7x</b>'
+speed_is_life_2_neg: ', но делит получение <span class="color-essence">Эссенции</span> на <b>2x</b>'
+your_greatest_debt: Ваш величайший долг
+your_greatest_debt_1: 'Умножает получение <span style="color:rgb(255, 204, 102)">всего опыта</span> на <b>500x</b>'
+your_greatest_debt_1_neg: ', но делит <span class="color-income">Доход</span> на <b>10x</b>'
+your_greatest_debt_2: 'Умножает получение <span class="color-evil">Зла</span> на <b>100x</b>'
+your_greatest_debt_2_neg: ', но делит <span class="color-income">Доход</span> на <b>2x</b>'
+essence_collector: Коллекционер эссенции
+essence_collector_1: 'Умножает получение <span class="color-essence">Эссенции</span> на <b>500x</b>'
+essence_collector_1_neg: ', но делит получение <span class="color-evil">Зла</span> на <b>2x</b>'
+essence_collector_2: 'Умножает получение <span class="color-essence">Эссенции</span> на <b>1000x</b>'
+essence_collector_2_neg: ', но делит <span class="color-income">Доход</span> на <b>25x</b>'
+explosion_of_the_universe: Взрыв вселенной
+explosion_of_the_universe_1: 'Умножает получение <span style="color:rgb(255, 204, 102)">всего опыта</span> на <b>1e100x</b>'
+explosion_of_the_universe_1_neg: ', но делит получение <span class="color-essence">Эссенции</span> на <b>2x</b>'
+explosion_of_the_universe_2: 'Умножает получение <span style="color:rgb(255, 204, 102)">всего опыта</span> на <b>1e150x</b>'
+explosion_of_the_universe_2_neg: ', но делит <span class="color-income">Доход</span> на <b>1e5x</b>'
+multiverse_explorer: Исследователь мультивселенной
+multiverse_explorer_1: 'Умножает получение <span class="color-essence">Эссенции</span> на <b>5000x</b>'
+multiverse_explorer_1_neg: ', но делит <span class="color-time-warping">Искажение времени</span> на <b>1000x</b>'
+multiverse_explorer_2: 'Умножает получение <span class="color-essence">Эссенции</span> на <b>10000x</b>'
+multiverse_explorer_2_neg: ', но делит получение <span class="color-dark-matter">Тёмной материи</span> на <b>100x</b>'

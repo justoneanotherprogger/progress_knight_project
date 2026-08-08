@@ -1,0 +1,101 @@
+# Common UI elements
+site_title: Progress Knight Quest mod
+
+# Header
+app_title: Progress Knight Quest
+app_title_sup: mod
+
+# Resource bar labels
+balance: Balance
+net: Net
+income: Income
+expense: Expense
+evil: Evil
+essence: Essence
+dark_matter: Dark Matter
+dark_orbs: Dark Orbs
+hypercubes: Hypercubes
+
+# Resource descriptions
+evil_desc: Affects Dark Magic XP gain
+essence_desc: Affects Almightiness XP gain
+dark_matter_desc: Affects all XP gain
+dark_orbs_desc: Used to buy items in the Dark Matter shop
+hypercubes_desc: for Metaverse sacrifices
+
+# Sidebar
+lifespan: Lifespan
+real_time: Real Time
+years: years
+pause: Pause
+boost: Boost
+task: Task
+age_display_default: Age 14 Day 0
+death_title: Age has caught up to you
+death_desc: Your age has met your lifespan; use the amulet to rebirth before you pass away
+error_site_broken: ⚠️ Oh no! It looks like something on the site broke.. If this issue persists, feel free to contact the developers.
+
+# Tabs
+tab_hero: Hero
+tab_skills: Skills
+tab_shop: Shop
+tab_challenges: Challenges
+tab_milestones: Milestones
+tab_rebirth: Amulet
+tab_dark_matter: Dark Matter
+tab_metaverse: Metaverse
+tab_settings: Settings
+
+# Table headers
+col_job: Job
+col_item: Item
+max_short: Max
+expense_day: Expense/day
+milestone_tier: Milestone Tier
+milestone: Milestone
+autobuy_tooltip: Click to activate auto-buy
+all_xp: all XP
+or: OR
+
+# Sidebar resources
+happiness: Life Comfort
+inspiration: Inspiration
+greed: Greed
+time_warping: Time Warping
+
+# Resource descriptions (sidebar)
+happiness_desc: Affects all XP gain
+inspiration_desc: Affects all XP gain
+inspiration_decay: Decays slowly with age
+greed_desc: Affects all income
+greed_rise: Rises slowly with age
+time_warping_desc: Affects game speed
+
+# Rebirth buttons
+rebirth_1: Touch the eye
+rebirth_2: Embrace evil
+rebirth_3: Transcend
+rebirth_4: Collapse the universe
+rebirth_5: Metaverse
+go_to_metaverse: Go to Metaverse
+
+# Misc
+required: Required
+next_effect: Next effect
+active: Active
+effect: Effect
+goal: Goal
+reward: Reward
+level: Level
+xp_day: XP/day
+xp_left: XP left
+max_level: Max lvl
+value_type: Value type
+cost: Cost
+buy: Buy
+upgrade: Upgrade
+reset_abilities: Reset Abilities
+version: Version
+tab_abilities: Abilities
+essence_lower: essence
+challenge_title: In challenge

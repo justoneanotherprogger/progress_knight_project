@@ -1,0 +1,101 @@
+# Common UI elements
+site_title: Progress Knight Quest mod
+
+# Header
+app_title: Progress Knight Quest
+app_title_sup: mod
+
+# Resource bar labels
+balance: Баланс
+net: Чистыми
+income: Доход
+expense: Расход
+evil: Зло
+essence: Эссенция
+dark_matter: Тёмная материя
+dark_orbs: Тёмные сферы
+hypercubes: Гиперкубы
+
+# Resource descriptions
+evil_desc: Влияет на получение опыта Тёмной магии
+essence_desc: Влияет на получение опыта Всемогущества
+dark_matter_desc: Влияет на получение всего опыта
+dark_orbs_desc: Используются для покупки предметов в магазине Тёмной материи
+hypercubes_desc: для жертвоприношений в Метавселенной
+
+# Sidebar
+lifespan: Продолжительность жизни
+real_time: Реальное время
+years: лет
+pause: Пауза
+boost: Ускорение
+task: Задание
+age_display_default: Возраст 14 День 0
+death_title: Возраст догнал вас
+death_desc: Ваш возраст достиг предела продолжительности жизни; используйте амулет для перерождения до того, как вы умрёте
+error_site_broken: О нет! Похоже, что-то на сайте сломалось.. Если проблема сохраняется, свяжитесь с разработчиками.
+
+# Tabs
+tab_hero: Герой
+tab_skills: Навыки
+tab_shop: Магазин
+tab_challenges: Испытания
+tab_milestones: Вехи
+tab_rebirth: Амулет
+tab_dark_matter: Тёмная материя
+tab_metaverse: Метавселенная
+tab_settings: Настройки
+
+# Table headers
+col_job: Работа
+col_item: Предмет
+max_short: Макс
+expense_day: Расход/день
+milestone_tier: Уровень Вехи
+milestone: Веха
+autobuy_tooltip: Нажмите для активации автопокупки
+all_xp: весь опыт
+or: ИЛИ
+
+# Sidebar resources
+happiness: Удобства жизни
+inspiration: Вдохновение
+greed: Жадность
+time_warping: Искажение времени
+
+# Resource descriptions (sidebar)
+happiness_desc: Влияет на получение всего опыта
+inspiration_desc: Влияет на получение всего опыта
+inspiration_decay: Медленно снижается с возрастом
+greed_desc: Влияет на весь доход
+greed_rise: Медленно растёт с возрастом
+time_warping_desc: Влияет на скорость игры
+
+# Rebirth buttons
+rebirth_1: Прикоснуться к глазу
+rebirth_2: Принять зло
+rebirth_3: Трансцендировать
+rebirth_4: Свернуть вселенную
+rebirth_5: Метавселенная
+go_to_metaverse: Перейти в Метавселенную
+
+# Misc
+required: Требуется
+next_effect: Следующий эффект
+active: Активно
+effect: Эффект
+goal: Цель
+reward: Награда
+level: Уровень
+xp_day: Опыт/день
+xp_left: Опыт до следующего
+max_level: Макс. уровень
+value_type: Тип значения
+cost: Стоимость
+buy: Купить
+upgrade: Улучшить
+reset_abilities: Сбросить способности
+version: Версия
+tab_abilities: Способности
+essence_lower: эссенции
+challenge_title: В испытании
