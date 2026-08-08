@@ -29,7 +29,7 @@ function setLang(lang) {
 function applyTranslations() {
     for (const [id, text] of Object.entries(I18N[currentLang])) {
         const el = document.getElementById(id);
-        if (el) {
+        if (el && !el.hasAttribute('data-i18n-skip')) {
             el.innerHTML = text;
         }
     }
