@@ -8,14 +8,14 @@
 	<link rel="stylesheet" type="text/css" href="css/dark.css">
 	<link rel="stylesheet" type="text/css" href="css/colorblind.css">
 	<link rel="stylesheet" type="text/css" href="css/currencies.css">
-	<title>Progress Knight Quest mod</title>
+	<title data-i18n="site_title"></title>
 	<link rel="shortcut icon" href="img/logo.ico" />
 </head>
 <body id="body" class="dark" style="font-size: x-small">
 	<div class="w3-margin">
 		<div class="header">
 			<img src="img/logos.png" alt="logos" />
-			<h3>Progress Knight Quest<sup>mod</sup></h3>
+			<h3><span data-i18n="app_title"></span><sup data-i18n="app_title_sup"></sup></h3>
 		</div>
 		<div id="resources" class="row" style="top: 0; z-index: 1;">
             <div class="panel w3-padding" style="width: 86em; display: flex; justify-content: space-between; column-gap: 20px; border-width: 1em 0 1em 0; border-style: solid;">
@@ -66,30 +66,30 @@
                 </div>
 				<div id="evilInfo" class="hidden resource topbar-element">
 					<div class="text-caption">					<span class="color-evil" data-i18n="evil"></span>: <span id="evilDisplay"></span></div>
-					<div style="color: gray" class="sidebar-element">Affects Dark Magic XP gain</div>
+					<div style="color: gray" class="sidebar-element" data-i18n="evil_desc"></div>
 				</div>
 				<div id="essenceInfo" class="hidden resource topbar-element">
 					<div class="text-caption">					<span class="color-essence" data-i18n="essence"></span>: <span id="essenceDisplay"></span></div>
-					<div style="color: gray" class="sidebar-element">Affects Almightiness XP gain</div>
+					<div style="color: gray" class="sidebar-element" data-i18n="essence_desc"></div>
 				</div>
 				<div id="darkMatterInfo" class="hidden resource topbar-element">
 					<div class="text-caption">					<span class="color-dark-matter" data-i18n="dark_matter"></span>: <span id="darkMatterDisplay"></span></div>
-					<div style="color: gray" class="sidebar-element">Affects all XP gain</div>
+					<div style="color: gray" class="sidebar-element" data-i18n="dark_matter_desc"></div>
 				</div>
 				<div id="darkOrbsInfo" class="hidden resource topbar-element">
 					<div class="text-caption">					<span class="color-dark-orbs" data-i18n="dark_orbs"></span>: <span id="darkOrbsDisplay"></span></div>
-					<div style="color: gray" class="sidebar-element">Used to buy items in the Dark Matter shop</div>
+					<div style="color: gray" class="sidebar-element" data-i18n="dark_orbs_desc"></div>
 				</div>
 				<div id="hypercubesInfo" class="resource topbar-element">
 					<div class="text-caption">					<span class="color-hypercubes" data-i18n="hypercubes"></span>: <span id="hypercubesDisplay"></span></div>
-					<div style="color: gray" class="sidebar-element">for Metaverse sacrifices</div>
+					<div style="color: gray" class="sidebar-element" data-i18n="hypercubes_desc"></div>
 				</div>
           	</div>
         </div>
 		<div id="row" class="row">
 			<div id="info" class="panel w3-padding quick-bar" style="width:20em">
 				<div id="challengeTitle" class="challenge-title" hidden="hidden">
-					In challenge: <span id="challengeName"></span>
+					<span data-i18n="challenge_title"></span>: <span id="challengeName"></span>
 					<div style="padding-top:0.3em">
 						<div class="sidebarChallengeReward an_unhappy_life hidden"><span class="color-happiness">Life Comfort</span> x<span id="sidebarCurrentChallengeBuff1"></span> / x<span id="sidebarChallengeBuff1"></span></div>
 						<div class="sidebarChallengeReward rich_and_the_poor hidden"><span class="color-income">Income</span> x<span id="sidebarCurrentChallengeBuff2"></span> / x<span id="sidebarChallengeBuff2"></span></div>
@@ -100,17 +100,17 @@
 					</div>
 				</div>
 				<div class="text-caption" id="errorInfo" hidden="hidden">
-					<div>⚠️ Oh no! It looks like something on the site broke.. If this issue persists, feel free to contact the developers.</div>
+					<div data-i18n="error_site_broken"></div>
 					<br>
 				</div>
 				<div id="deathText" class="hidden">
-					<div class="text-caption" style="color: red">Age has caught up to you</div>
-					<div class="sidebar-element" style="color: gray">Your age has met your lifespan; use the amulet to rebirth before you pass away</div>
+					<div class="text-caption" style="color: red" data-i18n="death_title"></div>
+					<div class="sidebar-element" style="color: gray" data-i18n="death_desc"></div>
 				</div>
 				<div class="text-caption"><span id="ageDisplay">Age 14 Day 0</span></div>
 				<div class="sidebar-element" style="color: gray">
-					Lifespan: <span id="lifespanDisplay">70</span> years
-					<br>Real Time: <span id="realtimeDisplay">00:00:00</span>
+					<span data-i18n="lifespan"></span>: <span id="lifespanDisplay">70</span> <span data-i18n="years"></span>
+					<br><span data-i18n="real_time"></span>: <span id="realtimeDisplay">00:00:00</span>
 					<div id="fps"></div>
 				</div>
 				<button id="pauseButton" class="w3-button button sidebar-element" onClick="togglePause()" data-i18n="pause"></button>
@@ -121,24 +121,24 @@
 				<div id="quickTaskDisplay" class="hidden">
 					<div class="small-margin inline job progress-bar progressBar">
 						<div class="progress-fill progressFill current"></div>
-						<div class="progress-text name">Task</div>
+						<div class="progress-text name" data-i18n="task"></div>
 					</div>
 				</div>
 
 				<div class="text-caption" style="padding-top: 0.2em"><span class="color-happiness" data-i18n="happiness"></span>: <span id="happinessDisplay"></span></div>
-				<div style="color: gray" class="sidebar-element">Affects all XP gain</div>
+				<div style="color: gray" class="sidebar-element" data-i18n="happiness_desc"></div>
 
-				<div class="text-caption" style="padding-top: 0.2em"><span style="color: rgb(207, 21, 15)">Inspiration: </span><span id="inspirationDisplay"></span></div>
-				<div style="color: gray"">Affects all XP gain</div>
-				<div style="color: rgb(168, 111, 111)" class="sidebar-element">Decays slowly with age</div>
+				<div class="text-caption" style="padding-top: 0.2em"><span style="color: rgb(207, 21, 15)" data-i18n="inspiration"></span>: <span id="inspirationDisplay"></span></div>
+				<div style="color: gray"" data-i18n="inspiration_desc"></div>
+				<div style="color: rgb(168, 111, 111)" class="sidebar-element" data-i18n="inspiration_decay"></div>
 
-				<div class="text-caption" style="padding-top: 0.2em"><span style="color: rgb(92, 207, 15)">Greed: </span><span id="greedDisplay"></span></div>
-				<div style="color: gray"">Affects all income</div>
-				<div style="color: rgb(168, 111, 111)" class="sidebar-element">Rises slowly with age</div>
+				<div class="text-caption" style="padding-top: 0.2em"><span style="color: rgb(92, 207, 15)" data-i18n="greed"></span>: <span id="greedDisplay"></span></div>
+				<div style="color: gray"" data-i18n="greed_desc"></div>
+				<div style="color: rgb(168, 111, 111)" class="sidebar-element" data-i18n="greed_rise"></div>
 
 				<div id="timeWarping">
-					<div class="text-caption"><span class="color-time-warping">Time Warping: </span><span id="timeWarpingDisplay"></span></div>
-					<div style="color: gray" class="sidebar-element">Affects game speed</div>
+					<div class="text-caption"><span class="color-time-warping" data-i18n="time_warping"></span>: <span id="timeWarpingDisplay"></span></div>
+					<div style="color: gray" class="sidebar-element" data-i18n="time_warping_desc"></div>
 				</div>
 				<div id="rebirthButton1" class="hidden">
 					<button class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100%" onClick="rebirthOne()" data-i18n="rebirth_1"></button>
@@ -172,12 +172,12 @@
 					<div id="hero">
 						<template class="headerRowTaskTemplate">
 							<tr>
-								<th class="rowtitle category" style="width: 20em">Job</th>
-								<th class="rowtitle">Level</th>
-								<th class="rowtitle valueType" style="width: 18em">Value type</th>
-								<th class="rowtitle">XP/day</th>
-								<th class="rowtitle">XP&nbsp;left</th>
-								<th class="rowtitle maxLevel">Max lvl</th>
+								<th class="rowtitle category" style="width: 20em" data-i18n="col_job"></th>
+								<th class="rowtitle" data-i18n="level"></th>
+								<th class="rowtitle valueType" style="width: 18em" data-i18n="value_type"></th>
+								<th class="rowtitle" data-i18n="xp_day"></th>
+								<th class="rowtitle" data-i18n="xp_left"></th>
+								<th class="rowtitle maxLevel" data-i18n="max_level"></th>
 							</tr>
 						</template>
 						<template class="rowTaskTemplate">
@@ -185,11 +185,11 @@
 								<td>
 									<div class="progress-bar progressBar tooltip">
 										<div class="progress-fill progressFill"></div>
-										<div class="progress-text name">Task</div>
+										<div class="progress-text name" data-i18n="task"></div>
 										<span class="tooltipText"></span>
 									</div>
 								</td>
-								<td class="level">Level</td>
+								<td class="level" data-i18n="level"></td>
 								<td class="value">
 									<div class="effect"></div>
 									<div class="income">
@@ -199,22 +199,22 @@
 										<span></span>
 									</div>
 								</td>
-								<td class="xpGain">Xp/day</td>
-								<td class="xpLeft">Xp left</td>
-								<td class="maxLevel">Max</td>
+								<td class="xpGain" data-i18n="xp_day"></td>
+								<td class="xpLeft" data-i18n="xp_left"></td>
+								<td class="maxLevel" data-i18n="max_short"></td>
 							</tr>
 						</template>
 						<template class="headerRowItemTemplate">
 							<tr class="item-header-row" onclick="forceAutobuy()">
 								<th class="category" style="width: 20em">
 									<button class="button-no-button tooltip" style="background-color:transparent;" onclick="forceAutobuy()">
-										<span class="name">Item</span>
-										<span class="tooltipText">Click to activate auto-buy</span>
+										<span class="name" data-i18n="col_item"></span>
+										<span class="tooltipText" data-i18n="autobuy_tooltip"></span>
 									</button>
 								</th>
-								<th>Active</th>
-								<th style="width: 20em">Effect</th>
-								<th>Expense/day</th>
+								<th data-i18n="active"></th>
+								<th style="width: 20em" data-i18n="effect"></th>
+								<th data-i18n="expense_day"></th>
 							</tr>
 						</template>
 						<template class="rowItemTemplate">
@@ -241,9 +241,9 @@
 						</template>
 						<template class="headerRowMilestoneTemplate">
 							<tr>
-								<th style="width: 6em">Goal</th>
-								<th style="width: 15em" class="category">Milestone Tier</th>
-								<th>Effect</th>
+								<th style="width: 6em" data-i18n="goal"></th>
+								<th style="width: 15em" class="category" data-i18n="milestone_tier"></th>
+								<th data-i18n="effect"></th>
 							</tr>
 						</template>
 						<template class="rowMilestoneTemplate">
@@ -253,7 +253,7 @@
 									<div class="progress-bar progressBar tooltip" style="width: 100%">
 										<div class="progress-fill progressFill" style="background-color: green"></div>
 										<span class="tooltipText"></span>
-										<div class="progress-text name">Milestone</div>
+										<div class="progress-text name" data-i18n="milestone"></div>
 									</div>
 								</td>
 								<td class="description"></td>
@@ -261,7 +261,7 @@
 						</template>
 						<template class="requiredRowTemplate">
 							<td style="padding-left: 0.8em;padding-top: 0.2rem;" colspan=5>
-								<span class="w3-text-gray">Required:</span>
+								<span class="w3-text-gray" data-i18n="required"></span>:
 								<div class="value" colspan=5 style="display:inline">
 									<span class="levels color-income"></span>
 									<div class="coins" style="display:inline">
@@ -275,8 +275,8 @@
 									<span class="darkMatter color-dark-matter"></span>
 									<span class="hypercube color-hypercubes"></span>
 								</div>
-								<div class="effect">
-									<span class="w3-text-gray">Next effect:</span> <span class="effectValue"></span>
+							<div class="effect">
+								<span class="w3-text-gray" data-i18n="next_effect"></span>: <span class="effectValue"></span>
 								</div>
 							</td>
 						</template>
@@ -311,7 +311,7 @@
 									<div data-i18n="challenge_rewards_active"></div>
 									</div>
 									<div id="exitChallengeDiv">
-										<p>Current challenge: <b><span id="activeChallengeName"></span></b></p>
+										<p><span data-i18n="current_challenge"></span> <b><span id="activeChallengeName"></span></b></p>
 										<button class="w3-button button" onclick="exitChallenge()" data-i18n="exit_challenge"></button>
 										<div class="currentChallengeReward an_unhappy_life hidden" style="display: inline; padding-left:1em">Current reward: Multiplies <span class="color-happiness">Life Comfort</span> by x<span id="currentChallengeBuff1"></span></div>
 										<div class="currentChallengeReward rich_and_the_poor hidden" style="display: inline; padding-left:1em">Current reward: Multiplies <span class="color-income">Income</span> by x<span id="currentChallengeBuff2"></span></div>
@@ -321,53 +321,46 @@
 										<div class="currentChallengeReward the_darkest_time hidden" style="display: inline; padding-left:1em">Current reward: Multiplies <span class="color-dark-matter">Dark Matter</span> gain by x<span id="currentChallengeBuff6"></span></div>
 									</div>
 									<div id="anUnhappyLifeChallenge" style="padding-top:2em">
-										<div class="text-caption challenge-title">1. An unhappy life</div>
-										<div style="color:gray; padding-bottom:0.3em">Reduces life comfort by ^0.5</div>
-										<div style="color: gold; padding-bottom: 0.3em">Goal: Reach <span id="challengeGoal1">992.2M</span> <span class="color-happiness">Life Comfort</span></div>
-										<div id="challengeReward1" class="reward">Reward: Multiplies <span class="color-happiness">Life Comfort</span> by x<span id="challengeHappinessBuff">1</span></div>
-										<button id="challengeButton1" class="w3-button button" onclick="enterChallenge('an_unhappy_life')">Enter challenge</button>
+										<div class="text-caption challenge-title" data-i18n="challenge_1_name"></div>
+										<div style="color:gray; padding-bottom:0.3em" data-i18n="challenge_1_desc"></div>
+										<div style="color: gold; padding-bottom: 0.3em"><span data-i18n="challenge_1_goal" data-i18n-args='["<span id=&quot;challengeGoal1&quot;>992.2M</span>"]'></span></div>
+										<div id="challengeReward1" class="reward"><span data-i18n="challenge_1_reward" data-i18n-args='["<span id=&quot;challengeHappinessBuff&quot;>1</span>"]'></span></div>
+										<button id="challengeButton1" class="w3-button button" onclick="enterChallenge('an_unhappy_life')" data-i18n="enter_challenge"></button>
 									</div>
 									<div id="theRichAndThePoorChallenge" style="padding-top:2em">
-										<div class="text-caption challenge-title">2. The rich and the poor</div>
-										<div style="color:gray; padding-bottom:0.3em">Reduces income by ^0.35</div>
-										<div style="color: gold; padding-bottom: 0.3em">
-											Goal: Reach <div id="challengeGoal2" class="coins" style="display:inline">
-												<span></span>
-												<span></span>
-												<span></span>
-												<span></span>
-											</div> <span class="color-income">Income</span>
-										</div>
-										<div id="challengeReward2" class="reward">Reward: Multiplies <span class="color-income">Income</span> by x<span id="challengeIncomeBuff">1</span></div>
-										<button id="challengeButton2" class="w3-button button" onclick="enterChallenge('rich_and_the_poor')">Enter challenge</button>
+										<div class="text-caption challenge-title" data-i18n="challenge_2_name"></div>
+										<div style="color:gray; padding-bottom:0.3em" data-i18n="challenge_2_desc"></div>
+										<div style="color: gold; padding-bottom: 0.3em"><span data-i18n="challenge_2_goal" data-i18n-args='["<div id=&quot;challengeGoal2&quot; class=&quot;coins&quot;><span></span><span></span><span></span><span></span></div>"]'></span></div>
+										<div id="challengeReward2" class="reward"><span data-i18n="challenge_2_reward" data-i18n-args='["<span id=&quot;challengeIncomeBuff&quot;>1</span>"]'></span></div>
+										<button id="challengeButton2" class="w3-button button" onclick="enterChallenge('rich_and_the_poor')" data-i18n="enter_challenge"></button>
 									</div>
 									<div id="timeDoesNotFlyChallenge" style="padding-top:2em">
-										<div class="text-caption challenge-title">3. Time does not fly</div>
-										<div style="color: gray; padding-bottom: 0.3em">Reduces time warping by ^0.7</div>
-										<div style="color: gold; padding-bottom: 0.3em">Goal: Reach x<span id="challengeGoal3">1.0M</span> <span class="color-time-warping">Time Warping</span></div>
-										<div id="challengeReward3" class="reward">Reward: Multiplies <span class="color-time-warping">Time Warping</span> by x<span id="challengeTimewarpingBuff">1</span></div>
-										<button id="challengeButton3" class="w3-button button" onclick="enterChallenge('time_does_not_fly')">Enter challenge</button>
+										<div class="text-caption challenge-title" data-i18n="challenge_3_name"></div>
+										<div style="color: gray; padding-bottom: 0.3em" data-i18n="challenge_3_desc"></div>
+										<div style="color: gold; padding-bottom: 0.3em"><span data-i18n="challenge_3_goal" data-i18n-args='["<span id=&quot;challengeGoal3&quot;>1.0M</span>"]'></span></div>
+										<div id="challengeReward3" class="reward"><span data-i18n="challenge_3_reward" data-i18n-args='["<span id=&quot;challengeTimewarpingBuff&quot;>1</span>"]'></span></div>
+										<button id="challengeButton3" class="w3-button button" onclick="enterChallenge('time_does_not_fly')" data-i18n="enter_challenge"></button>
 									</div>
 									<div id="danceWithTheDevilChallenge" style="padding-top:2em">
-										<div class="text-caption challenge-title">4. Dance with the devil</div>
-										<div style="color: gray; padding-bottom: 0.3em">Reduces Dark Magic and Almightiness XP effect enormously, max level reduces XP gain and life comfort is reduced by ^0.075</div>
-										<div style="color: gold; padding-bottom: 0.3em">Goal: Reach <span id="challengeGoal4">5.8k</span> <span class="color-evil">Evil</span> gain</div>
-										<div id="challengeReward4" class="reward">Reward: Multiplies <span class="color-essence">Essence</span> gain by x<span id="challengeEssenceGainBuff">1</span></div>
-										<button id="challengeButton4" class="w3-button button" onclick="enterChallenge('dance_with_the_devil')">Enter challenge</button>
+										<div class="text-caption challenge-title" data-i18n="challenge_4_name"></div>
+										<div style="color: gray; padding-bottom: 0.3em" data-i18n="challenge_4_desc"></div>
+										<div style="color: gold; padding-bottom: 0.3em"><span data-i18n="challenge_4_goal" data-i18n-args='["<span id=&quot;challengeGoal4&quot;>5.8k</span>"]'></span> <span data-i18n="evil"></span></div>
+										<div id="challengeReward4" class="reward"><span data-i18n="challenge_4_reward" data-i18n-args='["<span id=&quot;challengeEssenceGainBuff&quot;>1</span>"]'></span></div>
+										<button id="challengeButton4" class="w3-button button" onclick="enterChallenge('dance_with_the_devil')" data-i18n="enter_challenge"></button>
 									</div>
 									<div id="legendsNeverDieChallenge" style="padding-top:2em">
-										<div class="text-caption challenge-title">5. Legends never die</div>
-										<div style="color: gray; padding-bottom: 0.3em">Reduces your lifespan by ^0.72, time warping by ^0.75, life comfort does nothing and Dark Magic XP effect is always 1x. <span id="challenge5MetaverseLifespanDebuff">The infinite lifespan buff from Metaverse is disabled.</span></div>
-										<div style="color: gold; padding-bottom: 0.3em">Goal: Reach <span id="challengeGoal5">Chairman lvl 1227</span></div>
-										<div id="challengeReward5" class="reward">Reward: Multiplies <span class="color-evil">Evil</span> gain by x<span id="challengeEvilGainBuff">1</span></div>
-										<button id="challengeButton5" class="w3-button button" onclick="enterChallenge('legends_never_die')">Enter challenge</button>
+										<div class="text-caption challenge-title" data-i18n="challenge_5_name"></div>
+										<div style="color: gray; padding-bottom: 0.3em" data-i18n="challenge_5_desc"></div>
+										<div style="color: gold; padding-bottom: 0.3em"><span data-i18n="challenge_5_goal" data-i18n-args='["<span id=&quot;challengeGoal5&quot;>Chairman lvl 1227</span>"]"></span></div>
+										<div id="challengeReward5" class="reward"><span data-i18n="challenge_5_reward" data-i18n-args='["<span id=&quot;challengeEvilGainBuff&quot;>1</span>"]'></span></div>
+										<button id="challengeButton5" class="w3-button button" onclick="enterChallenge('legends_never_die')" data-i18n="enter_challenge"></button>
 									</div>
 									<div id="theDarkestTimeChallenge" style="padding-top:2em">
-										<div class="text-caption challenge-title">6. The darkest time</div>
-										<div style="color: gray; padding-bottom: 0.3em">All previous challenges combined. Dark Matter items are disabled. First 4 Dark Matter abilities grant all debuffs and no positive effects. Income is 0.</div>
-										<div style="color: gold; padding-bottom: 0.3em">Goal: Reach <span id="challengeGoal6">Chairman lvl 1227</span></div>
-										<div id="challengeReward6" class="reward">Reward: Multiplies <span class="color-dark-matter">Dark Matter</span> gain by x<span id="challengeDarkMatterGainBuff">1</span></div>
-										<button id="challengeButton6" class="w3-button button" onclick="enterChallenge('the_darkest_time')">Enter challenge</button>
+										<div class="text-caption challenge-title" data-i18n="challenge_6_name"></div>
+										<div style="color: gray; padding-bottom: 0.3em" data-i18n="challenge_6_desc"></div>
+										<div style="color: gold; padding-bottom: 0.3em"><span data-i18n="challenge_6_goal" data-i18n-args='["<span id=&quot;challengeGoal6&quot;>Chairman lvl 1227</span>"]'></span></div>
+										<div id="challengeReward6" class="reward"><span data-i18n="challenge_6_reward" data-i18n-args='["<span id=&quot;challengeDarkMatterGainBuff&quot;>1</span>"]'></span></div>
+										<button id="challengeButton6" class="w3-button button" onclick="enterChallenge('the_darkest_time')" data-i18n="enter_challenge"></button>
 									</div>
 								</div>
 							</div>
@@ -390,120 +383,14 @@
 							<div id="rebirthTab1" class="tabRebirth">
 								<div id="rebirthPage" class="panel page-column">
 									<ul>
-										<li id="rebirthNote0" class="hidden">
-											You stumble across a strange looking amulet on your 25th birthday. It does not look like
-											it has any worth on the market given that it's made from cheap-looking copper. However, you
-											feel a weird urge to keep the amulet, so you slip it into your pocket for safekeeping.
-										</li>
-										<li id="rebirthNote1" class="hidden">
-											On your 45th birthday, you feel the amulet shiver uncontrollably in your pocket. You take it
-											out and the constant shivering suddenly stops. More to your bizarre surprise, you notice
-											a strange etching on the centre of the amulet.
-										</li>
-										<li id="rebirthNote2" class="hidden">
-											<div style="margin-bottom: 0.4em">
-												On your 65th birthday, you once again encounter the strange, unexplained shivering from your
-												amulet. But this time, a living eyeball emerges from the centre. Although terribly frightened,
-												you realise you do not have many years to live left anyway so you consider touching the eye
-												to see what happens.
-											</div>
-											<i style="color: grey">
-												By touching the eyeball, you will be reborn and have to restart life again, losing all your levels and coins.
-												However, you will gain <b>xp multipliers</b> for your heroes and skills equivalent to: <b>1 + the max level of the hero or skill / 10.</b>
-												This means you will learn everything again much more quickly than you did in your previous life. <span class="color-evil">
-													Something tells you that the amulet might evolve after living for <b>2 whole centuries</b>...
-												</span>
-											</i>
-											<br>
-											<button class="w3-button button" style="margin-bottom: 0.4em; margin-top: 0.4em " onClick="rebirthOne()">Touch the eye</button>
-											<br>
-										</li>
-										<li id="rebirthNote3" class="hidden">
-											<div style="margin-bottom: 0.4em;">
-												Your gut instinct was right. The moment you hit the grand age of 200, you hear an ominous hum coming from the amulet.
-												A mouth emerges from its surface and begins to cackle, and proceeds to say: "So you've made it this far... Are you ready to embrace evil?"
-												<br><span class="color-evil">
-													The amulet might transform even further after living for a <b>millennium</b>.
-												</span>
-											</div>
-											<i class="color-evil">
-												If you decide to embrace evil, all of your levels, coins and even max levels will be reset.
-												You will be reborn as a fresh slate. However, you will unlock a new line of skills and gain
-												<b><span id="evilGainDisplay"></span> evil</b>, which will heavily impact your future lives.
-											</i>
-											<br>
-											<button class="w3-button button" style="margin-bottom: 0.4em; margin-top: 0.4em " onClick="rebirthTwo()">Embrace evil</button>
-											<br>
-										</li>
-										<li id="rebirthNote4" class="hidden">
-											<div style="margin-bottom: 0.4em;">
-												A thousand years have come and gone and yet, you still remain alive... somehow. You feel your amulet shivering again and to your surprise, you see small tendrils
-												full of eyeballs emergin from it. As you are about to drop the amulet, you hear frightening screech followed by whispers in your head... <b>"You have to embrace the Void..."</b>
-												<br>
-												<span class="color-evil">
-													The amulet will reach its final form after <b>ten millennia</b>!
-												</span>
-											</div>
-											<i style="color: rgb(204, 0, 255)">
-												You have unlocked <b>"The Void"</b> class category along with <b>"Void Manipulation"</b> skills.
-											</i>
-										</li>
-										<li id="rebirthNote5" class="hidden">
-											<div style="margin-bottom: 0.4em;">
-												Ten millenia have passed... most of them spent serving the Void, yet there is still a glimpse of humanity inside of you. All of the sudden your amulet starts to glow in the distance,
-												illuminating darkness around you with the brightness of a thousand suns. With the very last remnant of your free will, you run to your amulet and touch it... <b>
-													"You are now part of something bigger than yourself..."
-												</b>
-											</div>
-											<i style="color: rgb(255, 204, 102)">
-												You have unlocked <b>"Galactic Council"</b> class category along with <b>"Celestial Powers"</b> skills.
-												<i style="color: grey">
-													<br>
-													If you decide to <b>transcend</b>, you will be reborn once again, losing all your coins, <b>evil</b> and current levels.
-													However, your max levels won't be erased, but instead multiplied with the effect from the <b>Cosmic Recollection</b> skill and you will gain
-													<i class="color-essence">
-														<b><span id="essenceGainDisplay"></span> essence</b>,
-													</i>
-													along with new skills that will boost you even further in your journey.
-													<br>
-													<i style="color: rgb(200, 0, 0)">
-														Transcend will only appear if you have the <b>Cosmic Recollection</b> skill unlocked!
-													</i>
-												</i>
-												<br>
-											</i>
-											<div style="margin-bottom: 0.4em;" id="rebirthNote6" class="hidden">
-												<button class="w3-button button" style="margin-bottom: 0.4em; margin-top: 0.4em" onClick="rebirthThree()">Transcend</button>
-											</div>
-										</li>
-										<li id="rebirthNote7" class="hidden">
-											<i class="color-dark-matter">
-												You are starting to become way too powerful. The end of the universe may be near...
-											</i>
-											<i style="color: grey">
-												<br>
-												If you decide to <b>collapse the universe</b>, all of your levels, coins, max levels, evil, and <b>essence</b> will be reset. You will be reborn as a fresh slate in a new universe, with no memory of milestones and challenges from any of your past selves. In exchange, you will unlock a third new line of skills and gain
-												<i class="color-dark-matter">
-													<b><span id="darkMatterGainDisplay"></span> Dark Matter</b>,
-												</i>
-												which will boost you much further in your journey across the multiverse.
-											</i>
-											<br>
-											<button class="w3-button button" style="margin-bottom: 0.4em; margin-top: 0.4em " onClick="rebirthFour()">Collapse the universe</button>
-										</li>
-										<li id="rebirthNote8" class="hidden">
-											<i class="color-hypercubes">
-												You have discovered the Metaverse!
-											</i>
-											<i style="color: grey">
-												<br>
-												When you go to the Metaverse, you will lose everything that you have earned before. You will start from scratch, but over time you will become far superior.
-												<span id="hypercubeCapText">Your hypercubes cap will be increased to <span class="color-hypercubes" id="hypercubeCapDisplay"></span>.</span>
-												<span id="perkPointsGainText">You will gain <span class="color-perk-points"><span id="perkPointsGainDisplay"></span> Metaverse perk points</span>.</span>
-											</i>
-											<br>
-											<button class="w3-button button" style="margin-bottom: 0.4em; margin-top: 0.4em " onClick="rebirthFive()">Go to Metaverse</button>
-										</li>
+										<li id="rebirthNote0" class="hidden" data-i18n="rebirth_note_0"></li>
+										<li id="rebirthNote1" class="hidden" data-i18n="rebirth_note_1"></li>
+										<li id="rebirthNote2" class="hidden" data-i18n="rebirth_note_2"></li>
+										<li id="rebirthNote3" class="hidden" data-i18n="rebirth_note_3"></li>
+										<li id="rebirthNote4" class="hidden" data-i18n="rebirth_note_4"></li>
+										<li id="rebirthNote5" class="hidden" data-i18n="rebirth_note_5"></li>
+										<li id="rebirthNote7" class="hidden" data-i18n="rebirth_note_7"></li>
+										<li id="rebirthNote8" class="hidden" data-i18n="rebirth_note_8"></li>
 									</ul>
 								</div>
 							</div>
@@ -514,11 +401,11 @@
 							<div class="w3-button w3-bar-item tabButtonDarkMatter baritem w3-blue-gray" id="shopTabTabButton" onClick="setTabDarkMatter('shopTab')">Shop</div>
 							<div class="w3-button w3-bar-item tabButtonDarkMatter baritem" id="skillTreeTabTabButton" onClick="setTabDarkMatter('skillTreeTab')">Abilities</div>
 						</div>
-						<div id="maincolumnDarkMatter" class="panel w3-margin-left w3-margin-top">
+								<div id="maincolumnDarkMatter" class="panel w3-margin-left w3-margin-top">
 							<div id="shopTab" class="tabDarkMatter">
 								<div id="shopTabPage" class="panel page-column w3-padding">
 									<div class="text-caption" style="padding-top:0em">
-										<div class="text-caption"><span class="color-dark-matter">Dark Matter: </span><span id="darkMatterShopDisplay"></span></div>
+										<div class="text-caption"><span class="color-dark-matter" data-i18n="dark_matter_shop"></span>: <span id="darkMatterShopDisplay"></span></div>
 									</div>
 									<div style="padding-top:2em">
 										<div class="text-caption dark-matter-title">Dark Orb Generator</div>
@@ -542,21 +429,21 @@
 										<button class="w3-button button" id="aDealWithTheChairmanBuyButton" onclick="buyADealWithTheChairman()" data-i18n="upgrade"></button>
 									</div>
 									<div style="padding-top:2em">
-										<div class="text-caption dark-matter-title">A gift from God</div>
-										<div style="color:gray; padding-bottom: 0.5em;">Reward: Multiply <span class="color-essence">Essence</span> gain by x<span id="aGiftFromGodEffect"></span></div>
-										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="aGiftFromGodCost"></b> <span class="color-dark-orbs">Dark Orbs</span></div>
+										<div class="text-caption dark-matter-title" data-i18n="a_gift_from_god"></div>
+										<div style="color:gray; padding-bottom: 0.5em;" data-i18n="a_gift_from_god_desc"></div>
+										<div style="color:gray; padding-bottom: 0.5em;"><span data-i18n="cost"></span>: <b id="aGiftFromGodCost"></b> <span class="color-dark-orbs" data-i18n="dark_orbs"></span></div>
 										<button class="w3-button button" id="aGiftFromGodBuyButton" onclick="buyAGiftFromGod()" data-i18n="upgrade"></button>
 									</div>
 									<div style="padding-top:2em">
-										<div class="text-caption dark-matter-title">Gotta be fast</div>
-										<div style="color:gray; padding-bottom: 0.5em;">Reward: Multiply <span class="color-time-warping">Time Warping</span> by x<span id="gottaBeFastEffect"></span></div>
-										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="gottaBeFastCost"></b> <span class="color-dark-orbs">Dark Orbs</span></div>
+										<div class="text-caption dark-matter-title" data-i18n="gotta_be_fast"></div>
+										<div style="color:gray; padding-bottom: 0.5em;" data-i18n="gotta_be_fast_desc"></div>
+										<div style="color:gray; padding-bottom: 0.5em;"><span data-i18n="cost"></span>: <b id="gottaBeFastCost"></b> <span class="color-dark-orbs" data-i18n="dark_orbs"></span></div>
 										<button class="w3-button button" id="gottaBeFastBuyButton" onclick="buyGottaBeFast()" data-i18n="upgrade"></button>
 									</div>
 									<div style="padding-top:2em">
-										<div class="text-caption dark-matter-title">Life coach</div>
-										<div style="color:gray; padding-bottom: 0.5em;">Reward: Multiply <span class="color-income">Income</span> by x<span id="lifeCoachEffect"></span></div>
-										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="lifeCoachCost"></b> <span class="color-dark-orbs">Dark Orbs</span></div>
+										<div class="text-caption dark-matter-title" data-i18n="life_coach"></div>
+										<div style="color:gray; padding-bottom: 0.5em;" data-i18n="life_coach_desc"></div>
+										<div style="color:gray; padding-bottom: 0.5em;"><span data-i18n="cost"></span>: <b id="lifeCoachCost"></b> <span class="color-dark-orbs" data-i18n="dark_orbs"></span></div>
 										<button class="w3-button button" id="lifeCoachBuyButton" onclick="buyLifeCoach()" data-i18n="upgrade"></button>
 									</div>
 								</div>
@@ -567,32 +454,25 @@
 										<div class="text-caption"><span class="color-dark-matter" id="skillTreePageDarkMaterTitle">Dark Matter: </span><span id="darkMatterSkillsDisplay"></span></div>
 									</div>
 									<div style="padding-top:2em">
-										<div style="color:gray; padding-bottom:0.3em">
-											You can only choose 1 upgrade in each category; pick wisely. You can reset the abilities, but you will <b>NOT</b> get your <span class="color-dark-matter">Dark Matter</span> back!
+										<div style="color:gray; padding-bottom:0.3em" data-i18n="abilities_warning">
 										</div>
 										<button class="w3-button button" onclick="resetSkillTree()" data-i18n="reset_abilities"></button>
 									</div>
 									<div style="padding-top:2em">
-										<div class="text-caption dark-matter-title">Speed is life</div>
+										<div class="text-caption dark-matter-title" data-i18n="speed_is_life"></div>
 										<div style="color:gray; padding-bottom:0.3em">
-											<button id="speedIsLife1" class="w3-button button" onclick="buySpeedOfLife(1)">Buy</button> -
-											Multiply <span class="color-time-warping">Time Warping</span> by <b>3x</b><span class="negative-effect">
-												,
-												but divide <span class="color-evil">Evil</span> gain by <b>2x</b>
-											</span>
+											<button id="speedIsLife1" class="w3-button button" onclick="buySpeedOfLife(1)" data-i18n="buy"></button> -
+											<span data-i18n="speed_is_life_1"></span>
 										</div>
-										<div class="darkMatterSkillOR" style="padding: 0.6em">OR</div>
+										<div class="darkMatterSkillOR" style="padding: 0.6em" data-i18n="or"></div>
 										<div style="color:gray; padding-bottom:0.3em">
-											<button id="speedIsLife2" class="w3-button button" onclick="buySpeedOfLife(2)">Buy</button> -
-											Multiply <span class="color-time-warping">Time Warping</span> by <b>7x</b><span class="negative-effect">
-												,
-												but divide <span class="color-essence">Essence</span> gain by <b>2x</b>
-											</span>
+											<button id="speedIsLife2" class="w3-button button" onclick="buySpeedOfLife(2)" data-i18n="buy"></button> -
+											<span data-i18n="speed_is_life_2"></span>
 										</div>
-										<div id="speedIsLifeCost" style="color:gray; padding-bottom: 0.5em;">Cost: <b>100</b> <span class="color-dark-matter">Dark Matter</span></div>
+										<div id="speedIsLifeCost" style="color:gray; padding-bottom: 0.5em;"><span data-i18n="cost"></span>: <b>100</b> <span class="color-dark-matter" data-i18n="dark_matter"></span></div>
 									</div>
 									<div style="padding-top:2em">
-										<div class="text-caption dark-matter-title">Your greatest debt</div>
+										<div class="text-caption dark-matter-title" data-i18n="your_greatest_debt"></div>
 										<div style="color:gray; padding-bottom:0.3em">
 											<button id="yourGreatestDebt1" class="w3-button button" onclick="buyYourGreatestDebt(1)">Buy</button> -
 											Multiply <span style="color:rgb(255, 204, 102)">all XP</span> gain by <b>500x</b><span class="negative-effect">
@@ -611,7 +491,7 @@
 										<div id="yourGreatestDebtCost" style="color:gray; padding-bottom: 0.5em;">Cost: <b>1k</b> <span class="color-dark-matter">Dark Matter</span></div>
 									</div>
 									<div style="padding-top:2em">
-										<div class="text-caption dark-matter-title">Essence collector</div>
+										<div class="text-caption dark-matter-title" data-i18n="essence_collector"></div>
 										<div style="color:gray; padding-bottom:0.3em">
 											<button id="essenceCollector1" class="w3-button button" onclick="buyEssenceCollector(1)">Buy</button> -
 											Multiply <span class="color-essence">Essence</span> gain by <b>500x</b><span class="negative-effect">
@@ -630,7 +510,7 @@
 										<div id="essenceCollectorCost" style="color:gray; padding-bottom: 0.5em;">Cost: <b>10k</b> <span class="color-dark-matter">Dark Matter</span></div>
 									</div>
 									<div style="padding-top:2em">
-										<div class="text-caption dark-matter-title">Explosion of the universe</div>
+										<div class="text-caption dark-matter-title" data-i18n="explosion_of_the_universe"></div>
 										<div style="color:gray; padding-bottom:0.3em">
 											<button id="explosionOfTheUniverse1" class="w3-button button" onclick="buyExplosionOfTheUniverse(1)">Buy</button> -
 											Multiply <span style="color:rgb(255, 204, 102)">all XP</span> gain by <b>1e100x</b><span class="negative-effect">
@@ -649,7 +529,7 @@
 										<div id="explosionOfTheUniverseCost" style="color:gray; padding-bottom: 0.5em;">Cost: <b>100k</b> <span class="color-dark-matter">Dark Matter</span></div>
 									</div>
 									<div style="padding-top:2em">
-										<div class="text-caption dark-matter-title">Multiverse explorer</div>
+										<div class="text-caption dark-matter-title" data-i18n="multiverse_explorer"></div>
 										<div style="color:gray; padding-bottom:0.3em">
 											<button id="multiverseExplorer1" class="w3-button button" onclick="buyMultiverseExplorer(1)">Buy</button> -
 											Multiply <span class="color-essence">Essence</span> gain by <b>5000x</b><span class="negative-effect">
@@ -673,72 +553,72 @@
 					</div>
 					<div class="tab column" style="display:none" id="metaverse">
 						<div id="tabcolumnMetaverse" class="panel w3-margin-left" style="display: flex">
-							<div class="w3-button w3-bar-item tabButtonMetaverse baritem w3-blue-gray" id="metaverseTab1TabButton" onClick="setTabMetaverse('metaverseTab1')">Altar</div>
-							<div class="w3-button w3-bar-item tabButtonMetaverse baritem" id="metaverseTab2TabButton" onClick="setTabMetaverse('metaverseTab2')">Perks</div>
+							<div class="w3-button w3-bar-item tabButtonMetaverse baritem w3-blue-gray" id="metaverseTab1TabButton" onClick="setTabMetaverse('metaverseTab1')" data-i18n="altar"></div>
+							<div class="w3-button w3-bar-item tabButtonMetaverse baritem" id="metaverseTab2TabButton" onClick="setTabMetaverse('metaverseTab2')" data-i18n="perks"></div>
 						</div>
 						<div id="maincolumnMetaverse" class="panel w3-margin-left w3-margin-top">
-							<div id="metaverseTab1" class="tabMetaverse">
+								<div id="metaverseTab1" class="tabMetaverse">
 								<div id="metaversePage1" class="panel page-column w3-padding">
 									<div class="text-caption" style="padding-top:0em">
-										<div class="text-caption"><span class="color-essence"><b>Welcome to Metaverse!</b></span></div>
+										<div class="text-caption"><span class="color-essence"><b data-i18n="welcome_metaverse"></b></span></div>
 									</div>
 									<div style="padding-top:1em">
-										<div class="text-caption">Lifespan is now infinite.</div>
-										<div class="text-caption">The more hypercubes you have, the more sacrifice opportunities will open up.</div>
+										<div class="text-caption" data-i18n="lifespan_infinite"></div>
+										<div class="text-caption" data-i18n="metaverse_hypercube_hint"></div>
 									</div>
 									<div style="border-bottom: 0.1em solid rgb(24, 210, 217); padding-top: 2em;"></div>
 									<div style="padding-top:1em">
-										<div class="text-caption"><span class="color-hypercubes">Hypercubes:</span> <span id="hypercubesMetaDisplay"></span></div>
-										<div id="currentHypercubesCap" style="color:red">Current hypercubes cap: <span id="currentHypercubesCapValue"></span></div>
+										<div class="text-caption"><span class="color-hypercubes" data-i18n="hypercubes"></span>: <span id="hypercubesMetaDisplay"></span></div>
+										<div id="currentHypercubesCap" style="color:red" data-i18n="current_hypercubes_cap"></div>
 										<div id="timeTillNextHypercubePower1" style="color:gray;"></div>
 										<div id="timeTillNextHypercubePower2" style="color:gray;"></div>
 										<div id="timeTillNextHypercubePower3" style="color:gray;"></div>
-										<div style="color:gray;"><span>Total hypercube gain bonus:</span> <span id="hypercubesBonusMetaDisplay"></span></div>
+										<div style="color:gray;"><span data-i18n="total_hypercube_bonus"></span></div>
 									</div>
 									<div style="padding-top:1em">
-										<button id="boostMetaButton" class="perk perk-boost" onclick="applyBoost()"> Boost </button>
+										<button id="boostMetaButton" class="perk perk-boost" onclick="applyBoost()" data-i18n="boost"></button>
 										<span id="boostCooldownMetaDisplay">00:00</span>
 									</div>
 									<div id="IncreaseHypercubeGainAltar" style="padding-top:2em">
-										<div class="text-caption metaverse-title">Increase Hypercube Gain</div>
-										<div style="color:gray; padding-bottom: 0.3em;">Current gain: <b id="hypercubeGain"></b> / s</div>
-										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="hypercubeGainCost"></b> <span class="color-hypercubes">Hypercubes</span></div>
+										<div class="text-caption metaverse-title" data-i18n="altar_hypercube_gain"></div>
+										<div style="color:gray; padding-bottom: 0.3em;" data-i18n="current_gain_per_s"></div>
+										<div style="color:gray; padding-bottom: 0.5em;"><span data-i18n="cost"></span>: <b id="hypercubeGainCost"></b> <span class="color-hypercubes" data-i18n="hypercubes"></span></div>
 										<button class="w3-button button" id="hypercubeGainBuyButton" onclick="buyHypercubeGain()" data-i18n="sacrifice"></button>
 									</div>
 									<div id="ReduceBoostCooldownAltar" style="padding-top:2em">
-										<div class="text-caption metaverse-title">Reduce Boost Cooldown</div>
-										<div style="color:gray; padding-bottom: 0.3em;">Current cooldown: <b id="reduceBoostCooldown"></b></div>
-										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="reduceBoostCooldownCost"></b> <span class="color-hypercubes">Hypercubes</span></div>
+										<div class="text-caption metaverse-title" data-i18n="altar_boost_cooldown"></div>
+										<div style="color:gray; padding-bottom: 0.3em;" data-i18n="current_cooldown"></div>
+										<div style="color:gray; padding-bottom: 0.5em;"><span data-i18n="cost"></span>: <b id="reduceBoostCooldownCost"></b> <span class="color-hypercubes" data-i18n="hypercubes"></span></div>
 										<button class="w3-button button" id="reduceBoostCooldownBuyButton" onclick="buyReduceBoostCooldown()" data-i18n="sacrifice"></button>
 									</div>
 									<div id="IncreaseBoostDurationAltar" style="padding-top:2em">
-										<div class="text-caption metaverse-title">Increase Boost Duration</div>
-										<div style="color:gray; padding-bottom: 0.3em;">Current duration: <b id="boostDuration"></b></div>
-										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="boostDurationCost"></b> <span class="color-hypercubes">Hypercubes</span></div>
+										<div class="text-caption metaverse-title" data-i18n="altar_boost_duration"></div>
+										<div style="color:gray; padding-bottom: 0.3em;" data-i18n="current_duration"></div>
+										<div style="color:gray; padding-bottom: 0.5em;"><span data-i18n="cost"></span>: <b id="boostDurationCost"></b> <span class="color-hypercubes" data-i18n="hypercubes"></span></div>
 										<button class="w3-button button" id="boostDurationBuyButton" onclick="buyBoostDuration()" data-i18n="sacrifice"></button>
 									</div>
 									<div id="EvilAltar" style="padding-top:2em">
-										<div class="text-caption metaverse-title">Gain evil at new transcension</div>
-										<div style="color:gray; padding-bottom: 0.3em;">Current gain: <b id="evilTranGain"></b> <span class="color-evil">Evil</span></div>
-										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="evilTranCost"></b> <span class="color-hypercubes">Hypercubes</span></div>
+										<div class="text-caption metaverse-title" data-i18n="altar_evil_gain"></div>
+										<div style="color:gray; padding-bottom: 0.3em;" data-i18n="current_gain"></div>
+										<div style="color:gray; padding-bottom: 0.5em;"><span data-i18n="cost"></span>: <b id="evilTranCost"></b> <span class="color-hypercubes" data-i18n="hypercubes"></span></div>
 										<button class="w3-button button" id="evilTranBuyButton" onclick="buyEvilTran()" data-i18n="sacrifice"></button>
 									</div>
 									<div id="EssenceAltar" style="padding-top:2em">
-										<div class="text-caption metaverse-title">Essence gain multiplier</div>
-										<div style="color:gray; padding-bottom: 0.3em;">Current multiplier: x<b id="essenceMultGain"></b> <span class="color-essence">Essence</span></div>
-										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="essenceMultCost"></b> <span class="color-hypercubes">Hypercubes</span></div>
+										<div class="text-caption metaverse-title" data-i18n="altar_essence_mult"></div>
+										<div style="color:gray; padding-bottom: 0.3em;" data-i18n="current_multiplier"></div>
+										<div style="color:gray; padding-bottom: 0.5em;"><span data-i18n="cost"></span>: <b id="essenceMultCost"></b> <span class="color-hypercubes" data-i18n="hypercubes"></span></div>
 										<button class="w3-button button" id="essenceMultButton" onclick="buyEssenceMult()" data-i18n="sacrifice"></button>
 									</div>
 									<div id="ChallengeAltar" style="padding-top:2em">
-										<div class="text-caption metaverse-title">Challenges are not reset on collapse</div>
+										<div class="text-caption metaverse-title" data-i18n="altar_challenge_keep"></div>
 										<div style="color:gray; padding-bottom: 0.3em;"><span style="color: rgb(10, 238, 43)"><b id="challengeAltarState"></b></span></div>
-										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="challengeAltarCost"></b> <span class="color-hypercubes">Hypercubes</span></div>
+										<div style="color:gray; padding-bottom: 0.5em;"><span data-i18n="cost"></span>: <b id="challengeAltarCost"></b> <span class="color-hypercubes" data-i18n="hypercubes"></span></div>
 										<button class="w3-button button" id="challengeAltarButton" onclick="buyChallengeAltar()" data-i18n="sacrifice"></button>
 									</div>
 									<div id="DarkMaterAltar" style="padding-top:2em">
-										<div class="text-caption metaverse-title">Dark Matter gain multiplier</div>
-										<div style="color:gray; padding-bottom: 0.3em;">Current multiplier: x<b id="darkMatterMultGain"></b> <span class="color-dark-matter">Dark Matter</span></div>
-										<div style="color:gray; padding-bottom: 0.5em;">Cost: <b id="darkMatterMultCost"></b> <span class="color-hypercubes">Hypercubes</span></div>
+										<div class="text-caption metaverse-title" data-i18n="altar_dark_matter_mult"></div>
+										<div style="color:gray; padding-bottom: 0.3em;" data-i18n="current_multiplier"></div>
+										<div style="color:gray; padding-bottom: 0.5em;"><span data-i18n="cost"></span>: <b id="darkMatterMultCost"></b> <span class="color-hypercubes" data-i18n="hypercubes"></span></div>
 										<button class="w3-button button" id="darkMaterMultButton" onclick="buyDarkMaterMult()" data-i18n="sacrifice"></button>
 									</div>
 								</div>
@@ -746,27 +626,27 @@
 							<div id="metaverseTab2" class="tabMetaverse">
 								<div id="metaversePage2" class="panel page-column w3-padding">
 									<div class="text-caption" style="padding-top:0em; padding-left:1em;">
-										<div class="text-caption"><span class="color-perk-points"><b>Metaverse Perks</b></span></div>
+										<div class="text-caption"><span class="color-perk-points"><b data-i18n="metaverse_perks"></b></span></div>
 									</div>
 									<div style="padding-top:1em">
-										<div class="text-caption" style="padding-left: 1em;">You have <b><span id="perkPointDisplay" class="color-perk-points"></span></b> unspent Metaverse perk points. Total points: <b><span id="totalPerkPointDisplay" class="color-perk-points"></span></b>.</div>
-										<div id="mppInfo" class="text-caption" style="padding-left: 1em;">You can freely activate and deactivate perks for the points you have.</div>
-										<div id="mppInfo2" class="text-caption" style="padding-left: 1em;">Bonus to Dark Matter gain is x<span id="mppDMBuff"></span>.</div>
+										<div class="text-caption" style="padding-left: 1em;" data-i18n="unspent_perk_points"></div>
+										<div id="mppInfo" class="text-caption" style="padding-left: 1em;" data-i18n="perks_info"></div>
+										<div id="mppInfo2" class="text-caption" style="padding-left: 1em;" data-i18n="perks_dm_bonus"></div>
 									</div>
 									<div style="border-bottom: 0.1em solid rgb(217, 24, 119); padding-top: 2em;"></div>
 									<div id="perksLayout" class="perk-grid" style="padding-top:0em">
 										<template class="perkItem">
-											<button class="perk"><div class="perkName"></div><div style="font-size: smaller;">Cost: <span class="perkCost">1</span> MPP</div></button>
+											<button class="perk"><div class="perkName"></div><div style="font-size: smaller;"><span data-i18n="cost"></span>: <span class="perkCost">1</span> <span data-i18n="mpp_short"></span></div></button>
 										</template>
 									</div>
 									<div style="border-bottom: 0.1em solid rgb(217, 24, 119); padding-top: 0em; "></div>
 									<div id="perkTools" class="perk-grid" style="padding-top:0em">
-										<button class="perk perk-tool" onclick="collectPerkPoints(0)"><div>Assign unspent perk points</div></button>
-										<button class="perk perk-tool" onclick="collectPerkPoints(1)"><div>Collect all perk points</div></button>
+										<button class="perk perk-tool" onclick="collectPerkPoints(0)"><div data-i18n="assign_perk_points"></div></button>
+										<button class="perk perk-tool" onclick="collectPerkPoints(1)"><div data-i18n="collect_perk_points"></div></button>
 									</div>
 									<div id="Congratulations" class="congrats hidden">
-										<div>Congratulations!</div>
-										<div>You have beaten the game!</div>
+										<div data-i18n="congratulations"></div>
+										<div data-i18n="beaten_the_game"></div>
 									</div>
 								</div>
 							</div>
@@ -792,79 +672,79 @@
 											</div>
 										</li>
 										<li>
-											<div class="text-caption" style="margin-top: 0.4em;">Language</div>
+											<div class="text-caption" style="margin-top: 0.4em;" data-i18n="language"></div>
 											<div style="padding: 0.4em">
 											<button class="w3-button button lang-btn selected" data-lang="en" onclick="setLang('en')">English</button>
 											<button class="w3-button button lang-btn" data-lang="ru" onclick="setLang('ru')">Русский</button>
 											</div>
 										</li>
 										<li>
-											<div class="text-caption" style="margin-top: 0.4em;">Settings</div>
+											<div class="text-caption" style="margin-top: 0.4em;" data-i18n="settings"></div>
 											<table class="w3-table w3-bordered">
 												<tr>
-													<td style="padding: 0.4em; width:15em">Sticky sidebar</td>
+													<td style="padding: 0.4em; width:15em" data-i18n="sticky_sidebar"></td>
 													<td><input id="settingsStickySidebar" type="checkbox" style="width:1.6em;height:1.6em" onclick="setStickySidebar(this.checked)" /></td>
 												</tr>
 												<tr>
-													<td>Currency notation</td>
+													<td data-i18n="currency_notation"></td>
 													<td style="padding: 0.4em">
-														<button class="w3-button button CurrencyNotation selected" onclick="setCurrency(0)">Medieval</button>
-														<button class="w3-button button CurrencyNotation" onclick="setCurrency(1)">Extended</button>
-														<button class="w3-button button CurrencyNotation" onclick="setCurrency(2)">British £sd</button>
-														<button class="w3-button button CurrencyNotation" onclick="setCurrency(3)">Modern $</button>
+														<button class="w3-button button CurrencyNotation selected" onclick="setCurrency(0)" data-i18n="currency_medieval"></button>
+														<button class="w3-button button CurrencyNotation" onclick="setCurrency(1)" data-i18n="currency_extended"></button>
+														<button class="w3-button button CurrencyNotation" onclick="setCurrency(2)" data-i18n="currency_british"></button>
+														<button class="w3-button button CurrencyNotation" onclick="setCurrency(3)" data-i18n="currency_modern"></button>
 													</td>
 												</tr>
 												<tr>
-													<td>Number notation</td>
+													<td data-i18n="number_notation"></td>
 													<td style="padding: 0.4em">
-														<button class="w3-button button Notation selected" onclick="setNotation(0)">Standard</button>
-														<button class="w3-button button Notation" onclick="setNotation(1)">Scientific</button>
-														<button class="w3-button button Notation" onclick="setNotation(2)">Engineering</button>
+														<button class="w3-button button Notation selected" onclick="setNotation(0)" data-i18n="notation_standard"></button>
+														<button class="w3-button button Notation" onclick="setNotation(1)" data-i18n="notation_scientific"></button>
+														<button class="w3-button button Notation" onclick="setNotation(2)" data-i18n="notation_engineering"></button>
 													</td>
 												</tr>
 												<tr>
-													<td>Layout</td>
+													<td data-i18n="layout"></td>
 													<td style="padding: 0.4em">
-														<button class="w3-button button Layout" onclick="setLayout(1)">Standard</button>
-														<button class="w3-button button Layout" onclick="setLayout(0)">W I D E</button>
+														<button class="w3-button button Layout" onclick="setLayout(1)" data-i18n="layout_standard"></button>
+														<button class="w3-button button Layout" onclick="setLayout(0)" data-i18n="layout_wide"></button>
 													</td>
 												</tr>
 												<tr>
-													<td>Font size</td>
+													<td data-i18n="font_size"></td>
 													<td style="padding: 0.4em">
-														<button class="w3-button button" onmouseover="onFontButtonHover()" onmouseout="onFontButtonStopHover()" onclick="setFontSize(gameData.settings.fontSize - 1)">Smaller</button>
-														<button class="w3-button button" onmouseover="onFontButtonHover()" onmouseout="onFontButtonStopHover()" onclick="setFontSize(gameData.settings.fontSize + 1)">Larger</button>
-														<span class="tooltiptext hidden" id="fontSizeTooltip" style="color: gray">Keep pressing to change more</span>
+														<button class="w3-button button" onmouseover="onFontButtonHover()" onmouseout="onFontButtonStopHover()" onclick="setFontSize(gameData.settings.fontSize - 1)" data-i18n="font_smaller"></button>
+														<button class="w3-button button" onmouseover="onFontButtonHover()" onmouseout="onFontButtonStopHover()" onclick="setFontSize(gameData.settings.fontSize + 1)" data-i18n="font_larger"></button>
+														<span class="tooltiptext hidden" id="fontSizeTooltip" style="color: gray" data-i18n="font_size_tooltip"></span>
 													</td>
 												</tr>
 												<tr>
-													<td> Color scheme</td>
+													<td data-i18n="color_scheme"></td>
 													<td style="padding: 0.4em">
-														<button class="w3-button button Theme" onClick="setTheme(0, true)">Light</button>
-														<button class="w3-button button Theme" onClick="setTheme(1, true)">Dark</button>
-														<button class="w3-button button Theme" onClick="setTheme(2, true)">Color Blind Friendly</button>
+														<button class="w3-button button Theme" onClick="setTheme(0, true)" data-i18n="theme_light"></button>
+														<button class="w3-button button Theme" onClick="setTheme(1, true)" data-i18n="theme_dark"></button>
+														<button class="w3-button button Theme" onClick="setTheme(2, true)" data-i18n="theme_colorblind"></button>
 													</td>
 												</tr>
 												<tr>
-													<td> Dangerous Keybinds</td>
+													<td data-i18n="dangerous_keybinds"></td>
 													<td style="padding: 0.4em">
-														<button class="w3-button button EnableKeybinds" onClick="setEnableKeybinds(true)">Enabled</button>
-														<button class="w3-button button EnableKeybinds" onClick="setEnableKeybinds(false)">Disabled</button>
+														<button class="w3-button button EnableKeybinds" onClick="setEnableKeybinds(true)" data-i18n="enabled"></button>
+														<button class="w3-button button EnableKeybinds" onClick="setEnableKeybinds(false)" data-i18n="disabled"></button>
 													</td>
 												</tr>
 											</table>
 										</li>
 										<li>
-											<div class="text-caption" style="margin-top: 0.4em;">Shortcuts</div>
+											<div class="text-caption" style="margin-top: 0.4em;" data-i18n="shortcuts"></div>
 											<div style="margin-bottom: 8px;">
-												<div>Arrow Keys - Menu navigation</div>
-												<div>Spacebar - Pause</div>
-												<div id="key1" class="hidden">q - Touch the eye</div>
-												<div id="key2" class="hidden">e - Embrace evil</div>
-												<div id="key3" class="hidden">t - Transcend</div>
-												<div id="key4" class="hidden">u - Collapse the universe</div>
-												<div id="key5" class="hidden">g - Go to Metaverse</div>
-												<div id="keyChallenge" class="hidden">1 - Enter / Exit Challenge 1, etc</div>
+												<div data-i18n="shortcut_arrows"></div>
+												<div data-i18n="shortcut_space"></div>
+												<div id="key1" class="hidden" data-i18n="shortcut_q"></div>
+												<div id="key2" class="hidden" data-i18n="shortcut_e"></div>
+												<div id="key3" class="hidden" data-i18n="shortcut_t"></div>
+												<div id="key4" class="hidden" data-i18n="shortcut_u"></div>
+												<div id="key5" class="hidden" data-i18n="shortcut_g"></div>
+												<div id="keyChallenge" class="hidden" data-i18n="shortcut_challenge"></div>
 											</div>
 										</li>
 										<li>
@@ -873,13 +753,8 @@
 											</div>
 										</li>
 										<li>
-											<div class="text-caption" style="margin-top: 0.4em;">Links</div>
-											<div style="margin-bottom: 8px;">
-												Based on a <a href="https://symb1.github.io/progress_knight_2/" target="_blank">Progress Knight 2.0</a> mod
-												<br>Original game: <a href="https://ihtasham42.github.io/progress-knight/" target="_blank">Progress Knight</a>
-												<br><a href="https://discord.gg/fTRS4pHGka" target="_blank">Join the discord community! <img src="img/discord_icon.png" style="width:3em; height:3em;"></a>
-												<br><a href="https://github.com/indomit/progress_knight_2" target="_blank">Github page</a>
-											</div>
+											<div class="text-caption" style="margin-top: 0.4em;" data-i18n="links"></div>
+											<div style="margin-bottom: 8px;" data-i18n="links_based_on"></div>
 										</li>
 									</ul>
 									<span id="version" style="font-size:smaller; float:right" class="w3-text-gray">Version: 2.3.3</span>

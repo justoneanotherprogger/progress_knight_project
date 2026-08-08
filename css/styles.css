@@ -549,7 +549,8 @@ button:focus {
 }
 
 .lang-btn.selected {
-    background-color: rgb(39, 234, 17) !important;
-    color: white !important;
-    border: 0.1em solid rgb(39, 234, 17) !important;
+    background-color: #333 !important;
+    color: #fff !important;
+    border: 0.1em solid #555 !important;
+    font-weight: bold;
 }
