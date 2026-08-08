@@ -28,6 +28,7 @@ lifespan: Lifespan
 real_time: Real Time
 years: years
 pause: Pause
+play: Play
 boost: Boost
 task: Task
 age_display_default: Age 14 Day 0

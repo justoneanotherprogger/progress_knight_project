@@ -1120,6 +1120,7 @@ function renderSkillTreeButton(element, categoryBought, elementBought, canBuy) {
 
 function setSignDisplay() {
     const signDisplay = document.getElementById("signDisplay")
+    if (!signDisplay) return
 
     if (getNet() > -1 && getNet() < 1) {
         signDisplay.textContent = ""
