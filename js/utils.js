@@ -162,9 +162,9 @@ function formatAge(days) {
     const years = daysToYears(days)
     const day = getCurrentDay(days)
     if (years > 10000)
-        return "Age " + format(years)
+        return t("age") + " " + format(years)
     else
-        return "Age " + years + " Day " + day
+        return t("age") + " " + years + " " + t("day") + " " + day
 }
 
 function getBaseLog(x, y) {
@@ -236,9 +236,9 @@ function getChallengeTaskGoalProgress(taskName) {
 
 function getFormattedChallengeTaskGoal(taskName, level) {
     if (level < 100000)
-        return taskName + " lvl " + formatLevel(level)
+        return t(taskName) + " " + t("lvl") + " " + formatLevel(level)
     else
-        return "Great " + taskName + " lvl " + formatLevel(Math.ceil(level / 1000))
+        return t("great") + " " + t(taskName) + " " + t("lvl") + " " + formatLevel(Math.ceil(level / 1000))
 }
 
 function getFormattedTitle(parameter) {    

@@ -1,0 +1,178 @@
+<div class="tab column" style="display:none" id="settings">
+					<div id="tabcolumnSettings" class="panel w3-padding page-column">
+							<div class="w3-button w3-bar-item tabButtonSettings baritem w3-blue-gray" id="settingsTabTabButton" onClick="setTabSettings('settingsTab')"><span id="settings_tab_header"></span></div>
+							<div class="w3-button w3-bar-item tabButtonSettings baritem" id="statsTabTabButton" onClick="setTabSettings('statsTab')"><span id="stats_tab_header"></span></div>
+							<div class="w3-button w3-bar-item tabButtonSettings baritem" id="changelogTabTabButton" onClick="setTabSettings('changelogTab')"><span id="changelog_tab_header"></span></div>
+					</div>
+					<div id="maincolumnSettings" class="panel w3-margin-left w3-margin-top">
+						<div id="settingsTab" class="tabSettings">
+							<div id="settingsPage" style="flex: 1; margin-left: 0.5em;">
+								<ul>
+									<li>
+										<div class="text-caption">
+										<button class="w3-button button" id="import_save" onClick="importGameData()"></button>
+										<button class="w3-button button" id="export_save" onClick="exportGameData()" onmouseout="outExportButton()"></button><span class="tooltiptext" id="exportTooltip"></span>
+											<form style="margin-top: 0.8em" autocomplete="off">
+												<input id="importExportBox" placeholder="Enter save here" type="text" style="width:20em">
+											</form>
+										</div>
+									</li>
+									<li>
+										<div class="text-caption" style="margin-top: 0.4em;"></div>
+										<table class="w3-table w3-bordered">
+											<tr>
+												<td style="padding: 0.4em; width:15em" id="sticky_sidebar"></td>
+												<td><input id="settingsStickySidebar" type="checkbox" style="width:1.6em;height:1.6em" onclick="setStickySidebar(this.checked)" /></td>
+											</tr>
+											<tr>
+												<td id="language"></td>
+												<td style="padding: 0.4em">
+													<button class="w3-button button lang-btn" data-lang="en" onclick="setLang('en')">English</button>
+													<button class="w3-button button lang-btn" data-lang="ru" onclick="setLang('ru')">Русский</button>
+												</td>
+											</tr>
+											<tr>
+												<td id="currency_notation"></td>
+												<td style="padding: 0.4em">
+													<button class="w3-button button CurrencyNotation selected" onclick="setCurrency(0)"></button>
+													<button class="w3-button button CurrencyNotation" onclick="setCurrency(1)"></button>
+													<button class="w3-button button CurrencyNotation" onclick="setCurrency(2)"></button>
+													<button class="w3-button button CurrencyNotation" onclick="setCurrency(3)"></button>
+												</td>
+											</tr>
+											<tr>
+												<td id="number_notation"></td>
+												<td style="padding: 0.4em">
+													<button class="w3-button button Notation selected" onclick="setNotation(0)"></button>
+													<button class="w3-button button Notation" onclick="setNotation(1)"></button>
+													<button class="w3-button button Notation" onclick="setNotation(2)"></button>
+												</td>
+											</tr>
+											<tr>
+												<td id="layout"></td>
+												<td style="padding: 0.4em">
+													<button class="w3-button button Layout" onclick="setLayout(1)"></button>
+													<button class="w3-button button Layout" onclick="setLayout(0)"></button>
+												</td>
+											</tr>
+											<tr>
+												<td id="font_size"></td>
+												<td style="padding: 0.4em">
+													<button class="w3-button button" onmouseover="onFontButtonHover()" onmouseout="onFontButtonStopHover()" onclick="setFontSize(gameData.settings.fontSize - 1)"></button>
+													<button class="w3-button button" onmouseover="onFontButtonHover()" onmouseout="onFontButtonStopHover()" onclick="setFontSize(gameData.settings.fontSize + 1)"></button>
+													<span class="tooltiptext hidden" id="fontSizeTooltip" style="color: gray"></span>
+												</td>
+											</tr>
+											<tr>
+												<td id="color_scheme"></td>
+												<td style="padding: 0.4em">
+													<button class="w3-button button Theme" onClick="setTheme(0, true)"></button>
+													<button class="w3-button button Theme" onClick="setTheme(1, true)"></button>
+													<button class="w3-button button Theme" onClick="setTheme(2, true)"></button>
+												</td>
+											</tr>
+											<tr>
+												<td id="dangerous_keybinds"></td>
+												<td style="padding: 0.4em">
+													<button class="w3-button button EnableKeybinds" onClick="setEnableKeybinds(true)"></button>
+													<button class="w3-button button EnableKeybinds" onClick="setEnableKeybinds(false)"></button>
+												</td>
+											</tr>
+										</table>
+									</li>
+									<li>
+										<div class="text-caption" style="margin-top: 0.4em;"></div>
+										<div style="margin-bottom: 8px;">
+											<div></div>
+											<div></div>
+											<div id="key1"></div>
+											<div id="key2"></div>
+											<div id="key3"></div>
+											<div id="key4"></div>
+											<div id="key5"></div>
+											<div id="keyChallenge"></div>
+										</div>
+									</li>
+									<li>
+										<div class="text-caption" style="margin-top: 0.4em;">
+											<button class="w3-button button w3-red" id="hard_reset" onClick="resetGameData()"></button>
+										</div>
+									</li>
+									<li>
+										<div class="text-caption" style="margin-top: 0.4em;" id="links"></div>
+										<div style="margin-bottom: 8px;">
+											<div id="links_based_on"></div>
+											<div id="links_original_game"></div>
+											<div id="links_discord"></div>
+											<div id="links_github"></div>
+										</div>
+									</li>
+								</ul>
+								<span id="version" style="font-size:smaller; float:right" class="w3-text-gray"></span>
+							</div>
+						</div>
+						<div id="statsTab" class="tabSettings">
+							<div id="statsPage" style="flex: 1; margin-left: 0.5em;">
+								<div>
+									<ul>
+										<li id="stats_start_date">You started playing the game on <span id="startDateDisplay"></span>, <span id="playedDaysDisplay"></span> days ago.</li>
+										<li id="stats_played_real_time">You have played for <span id="playedRealTimeDisplay"></span> (real time).</li>
+										<li id="stats_played_game_time">Your existance has spanned <span id="playedGameTimeDisplay"></span> days (game time).</li>
+									</ul>
+								</div>
+								<div id="statsRebirth1" class="hidden">
+									<ul>
+										<li id="stats_rebirth1_count">You have touched the eye <span id="rebirthOneCountDisplay"></span> times.</li>
+										<li id="stats_rebirth1_time">You have spent <span id="rebirthOneTimeDisplay"></span> in this life.</li>
+										<li id="stats_rebirth1_fastest">Your fastest touch is in <span id="rebirthOneFastestDisplay"></span>.</li>
+									</ul>
+								</div>
+								<div id="statsRebirth2" class="hidden">
+									<ul>
+										<li id="stats_rebirth2_count">You have embraced evil <span id="rebirthTwoCountDisplay"></span> times.</li>
+										<li id="stats_rebirth2_time">You have spent <span id="rebirthTwoTimeDisplay"></span> in this embrace.</li>
+										<li id="stats_rebirth2_fastest">Your fastest embrace is in <span id="rebirthTwoFastestDisplay"></span>.</li>
+										<li id="stats_evil_gain" class="hidden">You gain <span id="evilPerSecondDisplay"></span> evil/s. Maximum <span id="maxEvilPerSecondDisplay"></span> evil/s was at <span id="maxEvilPerSecondRtDisplay"></span>.</li>
+									</ul>
+								</div>
+								<div id="statsRebirth3" class="hidden">
+									<ul>
+										<li id="stats_rebirth3_count">You have transcended <span id="rebirthThreeCountDisplay"></span> times.</li>
+										<li id="stats_rebirth3_time">You have spent <span id="rebirthThreeTimeDisplay"></span> in this transcension.</li>
+										<li id="stats_rebirth3_fastest">Your fastest transcension is in <span id="rebirthThreeFastestDisplay"></span>.</li>
+										<li id="stats_essence_gain" class="hidden">You gain <span id="essencePerSecondDisplay"></span> essence/s. Maximum <span id="maxEssencePerSecondDisplay"></span> essence/s was at <span id="maxEssencePerSecondRtDisplay"></span>.</li>
+									</ul>
+								</div>
+								<div id="statsRebirth4" class="hidden">
+									<ul>
+										<li id="stats_rebirth4_count">You have collapsed the universe <span id="rebirthFourCountDisplay"></span> times.</li>
+										<li id="stats_rebirth4_time">You have spent <span id="rebirthFourTimeDisplay"></span> in this collapse.</li>
+										<li id="stats_rebirth4_fastest">Your fastest collapse is in <span id="rebirthFourFastestDisplay"></span>.</li>
+									</ul>
+								</div>
+								<div id="statsRebirth5" class="hidden">
+									<ul>
+										<li id="stats_rebirth5_count">You traveled to the Metaverse <span id="rebirthFiveCountDisplay"></span> times.</li>
+										<li id="stats_rebirth5_time">You have spent <span id="rebirthFiveTimeDisplay"></span> in this Metaverse.</li>
+										<li id="stats_rebirth5_fastest">Your fastest Metaverse is in <span id="rebirthFiveFastestDisplay"></span>.</li>
+									</ul>
+								</div>
+								<div id="statsChallenges">
+									<ul>
+										<li id="stats_challenge_1">Challenge 1 Reward: Multiplies life comfort by x<span id="challengeHappinessBuffDisplay"></span>.</li>
+										<li id="stats_challenge_2">Challenge 2 Reward: Multiplies income by x<span id="challengeIncomeBuffDisplay"></span>.</li>
+										<li id="stats_challenge_3">Challenge 3 Reward: Multiplies time warping by x<span id="challengeTimewarpingBuffDisplay"></span>.</li>
+										<li id="stats_challenge_4">Challenge 4 Reward: Multiplies essence gain by x<span id="challengeEssenceGainBuffDisplay"></span>.</li>
+										<li id="stats_challenge_5">Challenge 5 Reward: Multiplies evil gain by x<span id="challengeEvilGainBuffDisplay"></span>.</li>
+										<li id="stats_challenge_6">Challenge 6 Reward: Multiplies Dark Matter gain by x<span id="challengeDarkMaterGainBuffDisplay"></span>.</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div id="changelogTab" class="tabSettings">
+							<div id="changelogPage" style="flex: 1; margin-left: 0.5em;">
+								<div id="changelog"></div>
+							</div>
+						</div>
+					</div>
+				</div>

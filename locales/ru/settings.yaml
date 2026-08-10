@@ -1,0 +1,94 @@
+# Settings
+stats_tab_header: Статистика
+settings_tab_header: Настройки
+changelog_tab_header: История изменений
+import_save: Импорт сохранения
+export_save: Экспорт сохранения
+import_save_placeholder: Вставьте сохранение сюда
+save_copied: Сохранение скопировано в буфер обмена!
+hard_reset: Полный сброс игры
+links: Ссылки
+language: Язык
+
+# Settings options
+sticky_sidebar: Закреплённая боковая панель
+currency_notation: Обозначение валют
+number_notation: Обозначение чисел
+layout: Макет
+font_size: Размер шрифта
+color_scheme: Цветовая схема
+dangerous_keybinds: Опасные горячие клавиши
+
+# Currency options
+currency_medieval: Средневековое
+currency_extended: Расширенное
+currency_british: Британское £sd
+currency_modern: Современное $
+
+# Notation options
+notation_standard: Стандартное
+notation_scientific: Научное
+notation_engineering: Инженерное
+
+# Layout options
+layout_standard: Стандартный
+layout_wide: Ш И Р О К И Й
+
+# Font size
+font_smaller: Меньше
+font_larger: Больше
+font_size_tooltip: Продолжайте нажимать для большего изменения
+
+# Theme options
+theme_light: Светлая
+theme_dark: Тёмная
+theme_colorblind: Для дальтоников
+
+# Keybinds
+enabled: Включены
+disabled: Отключены
+
+# Shortcuts
+shortcuts: Горячие клавиши
+shortcut_arrows: Стрелки - Навигация по меню
+shortcut_space: Пробел - Пауза
+shortcut_q: q - Прикоснуться к глазу
+shortcut_e: e - Принять зло
+shortcut_t: t - Трансцендировать
+shortcut_u: u - Свернуть вселенную
+shortcut_g: g - Перейти в Метавселенную
+shortcut_challenge: 1 - Войти / Выйти из Испытания 1 и т.д.
+
+# Links
+links_based_on: 'Основано на модификации <a href="https://symb1.github.io/progress_knight_2/" target="_blank">Progress Knight 2.0</a> · <a href="https://github.com/indomit/progress_knight_2" target="_blank">GitHub</a>'
+links_original_game: 'Оригинальная игра: <a href="https://ihtasham42.github.io/progress-knight/" target="_blank">Progress Knight</a>'
+links_discord: '<a href="https://discord.gg/fTRS4pHGka" target="_blank">Присоединиться к сообществу Discord! <img src="img/discord_icon.png" style="width:3em; height:3em;"></a>'
+links_github: '<a href="https://github.com/justoneanotherprogger/progress_knight_project" target="_blank">Страница этой модификации на GitHub</a>'
+
+# Stats
+stats_start_date: 'Вы начали играть в игру <span id="startDateDisplay"></span>, <span id="playedDaysDisplay"></span> дней назад.'
+stats_played_real_time: 'Вы играли <span id="playedRealTimeDisplay"></span> (реальное время).'
+stats_played_game_time: 'Ваше существование охватывает <span id="playedGameTimeDisplay"></span> дней (игровое время).'
+stats_rebirth1_count: 'Вы прикасались к глазу <span id="rebirthOneCountDisplay"></span> раз.'
+stats_rebirth1_time: 'Вы провели <span id="rebirthOneTimeDisplay"></span> в этой жизни.'
+stats_rebirth1_fastest: 'Ваше самое быстрое прикосновение: <span id="rebirthOneFastestDisplay"></span>.'
+stats_rebirth2_count: 'Вы принимали зло <span id="rebirthTwoCountDisplay"></span> раз.'
+stats_rebirth2_time: 'Вы провели <span id="rebirthTwoTimeDisplay"></span> в этом принятии.'
+stats_rebirth2_fastest: 'Ваше самое быстрое принятие: <span id="rebirthTwoFastestDisplay"></span>.'
+stats_evil_gain: 'Вы получаете <span id="evilPerSecondDisplay"></span> зла/с. Максимум <span id="maxEvilPerSecondDisplay"></span> зла/с был при <span id="maxEvilPerSecondRtDisplay"></span>.'
+stats_rebirth3_count: 'Вы трансцендировали <span id="rebirthThreeCountDisplay"></span> раз.'
+stats_rebirth3_time: 'Вы провели <span id="rebirthThreeTimeDisplay"></span> в этой трансценденции.'
+stats_rebirth3_fastest: 'Ваша самая быстрая трансценденция: <span id="rebirthThreeFastestDisplay"></span>.'
+stats_essence_gain: 'Вы получаете <span id="essencePerSecondDisplay"></span> эссенции/с. Максимум <span id="maxEssencePerSecondDisplay"></span> эссенции/с был при <span id="maxEssencePerSecondRtDisplay"></span>.'
+stats_rebirth4_count: 'Вы сворачивали вселенную <span id="rebirthFourCountDisplay"></span> раз.'
+stats_rebirth4_time: 'Вы провели <span id="rebirthFourTimeDisplay"></span> в этом свёртывании.'
+stats_rebirth4_fastest: 'Ваше самое быстрое свёртывание: <span id="rebirthFourFastestDisplay"></span>.'
+stats_rebirth5_count: 'Вы путешествовали в Метавселенную <span id="rebirthFiveCountDisplay"></span> раз.'
+stats_rebirth5_time: 'Вы провели <span id="rebirthFiveTimeDisplay"></span> в этой Метавселенной.'
+stats_rebirth5_fastest: 'Ваше самое быстрое путешествие в Метавселенную: <span id="rebirthFiveFastestDisplay"></span>.'
+stats_challenge_1: 'Награда за Испытание 1: Умножает удобства жизни на x<span id="challengeHappinessBuffDisplay"></span>.'
+stats_challenge_2: 'Награда за Испытание 2: Умножает доход на x<span id="challengeIncomeBuffDisplay"></span>.'
+stats_challenge_3: 'Награда за Испытание 3: Умножает искажение времени на x<span id="challengeTimewarpingBuffDisplay"></span>.'
+stats_challenge_4: 'Награда за Испытание 4: Умножает получение эссенции на x<span id="challengeEssenceGainBuffDisplay"></span>.'
+stats_challenge_5: 'Награда за Испытание 5: Умножает получение зла на x<span id="challengeEvilGainBuffDisplay"></span>.'
+stats_challenge_6: 'Награда за Испытание 6: Умножает получение Тёмной материи на x<span id="challengeDarkMaterGainBuffDisplay"></span>.'

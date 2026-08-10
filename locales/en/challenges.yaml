@@ -1,0 +1,42 @@
+# Challenges tab
+starting_challenge: "Starting a challenge will <b>reset</b> your coins, levels and max levels."
+challenge_advance: The more you advance in the challenge, the higher the reward.
+challenge_rewards_active: Challenge rewards are always active, even in challenges.
+exit_challenge: Exit challenge
+current_challenge: "Current challenge:"
+enter_challenge: Enter challenge
+
+# Challenge names and descriptions
+challenge_1_name: 1. An unhappy life
+challenge_1_desc: Reduces life comfort by ^0.5
+challenge_1_goal: "Goal: Reach {0} Life Comfort"
+challenge_1_reward: "Reward: Multiplies Life Comfort by x{0}"
+challenge_2_name: 2. The rich and the poor
+challenge_2_desc: Reduces income by ^0.35
+challenge_2_goal: "Goal: Reach {0} Income"
+challenge_2_reward: "Reward: Multiplies Income by x{0}"
+challenge_3_name: 3. Time does not fly
+challenge_3_desc: Reduces time warping by ^0.7
+challenge_3_goal: "Goal: Reach x{0} Time Warping"
+challenge_3_reward: "Reward: Multiplies Time Warping by x{0}"
+challenge_4_name: 4. Dance with the devil
+challenge_4_desc: Reduces Dark Magic and Almightiness XP effect enormously, max level reduces XP gain and life comfort is reduced by ^0.075
+challenge_4_goal: "Goal: Reach {0} Evil gain"
+challenge_4_reward: "Reward: Multiplies Essence gain by x{0}"
+challenge_5_name: 5. Legends never die
+challenge_5_desc: Reduces your lifespan by ^0.72, time warping by ^0.75, life comfort does nothing and Dark Magic XP effect is always 1x.
+challenge_5_meta_debuff: The infinite lifespan buff from Metaverse is disabled.
+challenge_5_goal: "Goal: Reach {0}"
+challenge_5_reward: "Reward: Multiplies Evil gain by x{0}"
+challenge_6_name: 6. The darkest time
+challenge_6_desc: All previous challenges combined. Dark Matter items are disabled. First 4 Dark Matter abilities grant all debuffs and no positive effects. Income is 0.
+challenge_6_goal: "Goal: Reach {0}"
+challenge_6_reward: "Reward: Multiplies Dark Matter gain by x{0}"
+
+# Current challenge rewards
+current_reward_happiness: "Current reward: Multiplies Life Comfort by x{0}"
+current_reward_income: "Current reward: Multiplies Income by x{0}"
+current_reward_timewarping: "Current reward: Multiplies Time Warping by x{0}"
+current_reward_essence: "Current reward: Multiplies Essence gain by x{0}"
+current_reward_evil: "Current reward: Multiplies Evil gain by x{0}"
+current_reward_dark_matter: "Current reward: Multiplies Dark Matter gain by x{0}"

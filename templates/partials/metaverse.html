@@ -1,0 +1,107 @@
+<div class="tab column" style="display:none" id="metaverse">
+					<div id="tabcolumnMetaverse" class="panel w3-margin-left" style="display: flex">
+						<div class="w3-button w3-bar-item tabButtonMetaverse baritem w3-blue-gray" id="metaverseTab1TabButton" onClick="setTabMetaverse('metaverseTab1')"></div>
+						<div class="w3-button w3-bar-item tabButtonMetaverse baritem" id="metaverseTab2TabButton" onClick="setTabMetaverse('metaverseTab2')"></div>
+					</div>
+					<div id="maincolumnMetaverse" class="panel w3-margin-left w3-margin-top">
+							<div id="metaverseTab1" class="tabMetaverse">
+							<div id="metaversePage1" class="panel page-column w3-padding">
+								<div class="text-caption" style="padding-top:0em">
+									<div class="text-caption"><span class="color-essence"><b></b></span></div>
+								</div>
+								<div style="padding-top:1em">
+									<div class="text-caption"></div>
+									<div class="text-caption"></div>
+								</div>
+								<div style="border-bottom: 0.1em solid rgb(24, 210, 217); padding-top: 2em;"></div>
+								<div style="padding-top:1em">
+									<div class="text-caption"><span class="color-hypercubes"></span>: <span id="hypercubesMetaDisplay"></span> <b id="hypercubesBonusMetaDisplay"></b></div>
+									<div id="currentHypercubesCap" style="color:red"><span id="current_hypercubes_cap"></span> <span id="currentHypercubesCapValue"></span></div>
+									<div id="timeTillNextHypercubePower1" style="color:gray;"></div>
+									<div id="timeTillNextHypercubePower2" style="color:gray;"></div>
+									<div id="timeTillNextHypercubePower3" style="color:gray;"></div>
+									<div style="color:gray;"><span></span></div>
+								</div>
+								<div style="padding-top:1em">
+									<button id="boostMetaButton" class="perk perk-boost" onclick="applyBoost()"></button>
+									<span id="boostCooldownMetaDisplay">00:00</span>
+								</div>
+								<div id="IncreaseHypercubeGainAltar" style="padding-top:2em">
+									<div class="text-caption metaverse-title" id="altar_hypercube_gain"></div>
+									<div style="color:gray; padding-bottom: 0.3em;"></div>
+									<div style="color:gray; padding-bottom: 0.5em;"><span></span>: <b id="hypercubeGainCost"></b> <span class="color-hypercubes"></span></div>
+									<div style="color:gray; padding-bottom: 0.3em;"><span id="hypercubeGain"></span></div>
+<button class="w3-button button" id="hypercubeGainBuyButton" onclick="buyHypercubeGain()"></button>
+								</div>
+								<div id="ReduceBoostCooldownAltar" style="padding-top:2em">
+									<div class="text-caption metaverse-title" id="altar_boost_cooldown"></div>
+									<div style="color:gray; padding-bottom: 0.3em;"></div>
+									<div style="color:gray; padding-bottom: 0.5em;"><span></span>: <b id="reduceBoostCooldownCost"></b> <span class="color-hypercubes"></span></div>
+									<div style="color:gray; padding-bottom: 0.3em;"><span id="reduceBoostCooldown"></span></div>
+<button class="w3-button button" id="reduceBoostCooldownBuyButton" onclick="buyReduceBoostCooldown()"></button>
+								</div>
+								<div id="IncreaseBoostDurationAltar" style="padding-top:2em">
+									<div class="text-caption metaverse-title" id="altar_boost_duration"></div>
+									<div style="color:gray; padding-bottom: 0.3em;"></div>
+									<div style="color:gray; padding-bottom: 0.5em;"><span></span>: <b id="boostDurationCost"></b> <span class="color-hypercubes"></span></div>
+									<div style="color:gray; padding-bottom: 0.3em;"><span id="boostDuration"></span></div>
+<button class="w3-button button" id="boostDurationBuyButton" onclick="buyBoostDuration()"></button>
+								</div>
+								<div id="EvilAltar" style="padding-top:2em">
+									<div class="text-caption metaverse-title" id="altar_evil_gain"></div>
+									<div style="color:gray; padding-bottom: 0.3em;"></div>
+									<div style="color:gray; padding-bottom: 0.5em;"><span></span>: <b id="evilTranCost"></b> <span class="color-hypercubes"></span></div>
+									<div style="color:gray; padding-bottom: 0.3em;"><span id="evilTranGain"></span></div>
+<button class="w3-button button" id="evilTranBuyButton" onclick="buyEvilTran()"></button>
+								</div>
+								<div id="EssenceAltar" style="padding-top:2em">
+									<div class="text-caption metaverse-title" id="altar_essence_mult"></div>
+									<div style="color:gray; padding-bottom: 0.3em;"></div>
+									<div style="color:gray; padding-bottom: 0.5em;"><span></span>: <b id="essenceMultCost"></b> <span class="color-hypercubes"></span></div>
+									<div style="color:gray; padding-bottom: 0.3em;"><span id="essenceMultGain"></span></div>
+<button class="w3-button button" id="essenceMultButton" onclick="buyEssenceMult()"></button>
+								</div>
+								<div id="ChallengeAltar" style="padding-top:2em">
+									<div class="text-caption metaverse-title" id="altar_challenge_keep"></div>
+									<div style="color:gray; padding-bottom: 0.3em;"><span style="color: rgb(10, 238, 43)"><b id="challengeAltarState"></b></span></div>
+									<div style="color:gray; padding-bottom: 0.5em;"><span></span>: <b id="challengeAltarCost"></b> <span class="color-hypercubes"></span></div>
+									<button class="w3-button button" id="challengeAltarButton" onclick="buyChallengeAltar()"></button>
+								</div>
+								<div id="DarkMaterAltar" style="padding-top:2em">
+									<div class="text-caption metaverse-title" id="altar_dark_matter_mult"></div>
+									<div style="color:gray; padding-bottom: 0.3em;"></div>
+									<div style="color:gray; padding-bottom: 0.5em;"><span></span>: <b id="darkMatterMultCost"></b> <span class="color-hypercubes"></span></div>
+									<div style="color:gray; padding-bottom: 0.3em;"><span id="darkMatterMultGain"></span></div>
+<button class="w3-button button" id="darkMaterMultButton" onclick="buyDarkMaterMult()"></button>
+								</div>
+							</div>
+						</div>
+						<div id="metaverseTab2" class="tabMetaverse">
+							<div id="metaversePage2" class="panel page-column w3-padding">
+								<div class="text-caption" style="padding-top:0em; padding-left:1em;">
+									<div class="text-caption"><span class="color-perk-points"><b></b></span></div>
+								</div>
+								<div style="padding-top:1em">
+									<div class="text-caption" id="unspent_perk_points"></div>
+									<div id="mppInfo" class="text-caption" style="padding-left: 1em;"></div>
+									<div id="mppInfo2" class="text-caption" hidden style="padding-left: 1em;"><span id="mppDMBuff"></span></div>
+								</div>
+								<div style="border-bottom: 0.1em solid rgb(217, 24, 119); padding-top: 2em;"></div>
+								<div id="perksLayout" class="perk-grid" style="padding-top:0em">
+									<template class="perkItem">
+										<button class="perk"><div class="perkName"></div><div style="font-size: smaller;"><span></span>: <span class="perkCost">1</span> <span></span></div></button>
+									</template>
+								</div>
+								<div style="border-bottom: 0.1em solid rgb(217, 24, 119); padding-top: 0em; "></div>
+								<div id="perkTools" class="perk-grid" style="padding-top:0em">
+									<button class="perk perk-tool" onclick="collectPerkPoints(0)"><div></div></button>
+									<button class="perk perk-tool" onclick="collectPerkPoints(1)"><div></div></button>
+								</div>
+								<div id="Congratulations" class="congrats hidden">
+									<div></div>
+									<div></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>

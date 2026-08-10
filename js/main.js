@@ -62,7 +62,7 @@ function addMultipliers() {
         } else if (skillCategories["Void Manipulation"].includes(task.name)) {
             task.xpMultipliers.push(getBindedItemEffect("Void Necklace"))
             task.xpMultipliers.push(getBindedItemEffect("Void Orb"))
-        } else if (jobCategories["The Arcane Association"].includes(task.name)) {
+        } else if (jobCategories["Mage Collegium"].includes(task.name)) {
             task.xpMultipliers.push(getBindedTaskEffect("Mana Control"))
             task.xpMultipliers.push(getTaaAndMagicXpGain)
             task.incomeMultipliers.push(getBindedTaskEffect("All Seeing Eye"))
@@ -438,27 +438,8 @@ function goBankrupt() {
     autoBuyEnabled = true
 }
 
-async function downloadFile() {
-    let response = await fetch("./changelog.txt");
-
-    if (response.status != 200) {
-        throw new Error("Server Error");
-    }
-
-    // read response stream as text
-    let text_data = await response.text();
-
-    return text_data;
-}
-
 document.querySelector("#changelogTabTabButton").addEventListener('click', async function () {
-    try {
-        let text_data = await downloadFile();
-        document.querySelector("#changelog").textContent = text_data;
-    }
-    catch (e) {
-        alert(e.message);
-    }
+    renderChangelog();
 });
 
 function togglePause() {
@@ -1116,7 +1097,7 @@ function replaceSaveDict(dict, saveDict) {
             if (saveDict[key].type != tempData["requirements"][key].type) {
                 saveDict[key] = tempData["requirements"][key]
             }
-            else if (saveDict[key].querySelectors == undefined) {
+            else {
                 saveDict[key].querySelectors = tempData["requirements"][key].querySelectors
             }
 
@@ -1354,7 +1335,7 @@ function exportGameData() {
 function copyTextToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
         const tooltip = document.getElementById("exportTooltip");
-        tooltip.innerHTML = "&nbsp;&nbsp;Save copied to clipboard!" ;
+        tooltip.innerHTML = t("save_copied") ;
     }, err => {
         //console.error('Async: Could not copy text: ', err);
     })
@@ -1472,3 +1453,10 @@ function getGreed() {
     const greed = getBaseLog(adultAge, age)
     return greed
 }
+
+// Re-apply translations when language changes
+document.addEventListener('i18n:changed', () => {
+    updateUI();
+    refreshSettingsButtons();
+    refreshLangButtons();
+});

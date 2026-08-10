@@ -1,0 +1,34 @@
+# Metaverse
+altar: Алтарь
+perks: Перки
+welcome_metaverse: '<b>Добро пожаловать в Метавселенную!</b>'
+lifespan_infinite: Продолжительность жизни теперь бесконечна.
+metaverse_hypercube_hint: Чем больше у вас гиперкубов, тем больше возможностей для жертвоприношений откроется.
+sacrifice: Жертвовать
+metaverse_perks: Перки Метавселенной
+current_hypercubes_cap: 'Текущий лимит гиперкубов:'
+total_hypercube_bonus: 'Общий бонус к получению гиперкубов:'
+
+# Metaverse Altars
+altar_hypercube_gain: Увеличить получение гиперкубов
+altar_boost_cooldown: Уменьшить перезарядку ускорения
+altar_boost_duration: Увеличить длительность ускорения
+altar_evil_gain: Получение зла при новом трансцендировании
+altar_essence_mult: Множитель получения эссенции
+altar_challenge_keep: Испытания не сбрасываются при свёртывании
+altar_dark_matter_mult: Множитель получения Тёмной материи
+current_gain_per_s: 'Текущее получение: {0} / с'
+current_cooldown: 'Текущая перезарядка: {0}'
+current_duration: 'Текущая длительность: {0}'
+current_gain: 'Текущее получение: {0}'
+current_multiplier: 'Текущий множитель: x{0}'
+
+# Metaverse Perks
+unspent_perk_points: 'У вас есть <b><span id="perkPointDisplay" class="color-perk-points"></span></b> непотраченных очков перков Метавселенной. Всего очков: <b><span id="totalPerkPointDisplay" class="color-perk-points"></span></b>.'
+perks_info: Вы можете свободно активировать и деактивировать перки для имеющихся у вас очков.
+perks_dm_bonus: 'Бонус к получению Тёмной материи: x{0}.'
+mpp_short: ОПМ
+assign_perk_points: Распределить непотраченные очки
+collect_perk_points: Собрать все очки
+congratulations: Поздравляем!
+beaten_the_game: Вы прошли игру!

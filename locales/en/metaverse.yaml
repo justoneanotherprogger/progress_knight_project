@@ -1,0 +1,34 @@
+# Metaverse
+altar: Altar
+perks: Perks
+welcome_metaverse: "<b>Welcome to Metaverse!</b>"
+lifespan_infinite: Lifespan is now infinite.
+metaverse_hypercube_hint: The more hypercubes you have, the more sacrifice opportunities will open up.
+sacrifice: Sacrifice
+metaverse_perks: Metaverse Perks
+current_hypercubes_cap: "Current hypercubes cap:"
+total_hypercube_bonus: "Total hypercube gain bonus:"
+
+# Metaverse Altars
+altar_hypercube_gain: Increase Hypercube Gain
+altar_boost_cooldown: Reduce Boost Cooldown
+altar_boost_duration: Increase Boost Duration
+altar_evil_gain: Gain evil at new transcension
+altar_essence_mult: Essence gain multiplier
+altar_challenge_keep: Challenges are not reset on collapse
+altar_dark_matter_mult: Dark Matter gain multiplier
+current_gain_per_s: "Current gain: {0} / s"
+current_cooldown: "Current cooldown: {0}"
+current_duration: "Current duration: {0}"
+current_gain: "Current gain: {0}"
+current_multiplier: "Current multiplier: x{0}"
+
+# Metaverse Perks
+unspent_perk_points: "You have <b><span id=\"perkPointDisplay\" class=\"color-perk-points\"></span></b> unspent Metaverse perk points. Total points: <b><span id=\"totalPerkPointDisplay\" class=\"color-perk-points\"></span></b>."
+perks_info: You can freely activate and deactivate perks for the points you have.
+perks_dm_bonus: "Bonus to Dark Matter gain is x{0}."
+mpp_short: MPP
+assign_perk_points: Assign unspent perk points
+collect_perk_points: Collect all perk points
+congratulations: Congratulations!
+beaten_the_game: You have beaten the game!

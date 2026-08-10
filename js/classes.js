@@ -196,7 +196,7 @@ class Skill extends Task {
     }
 
     getEffectDescription() {
-        return "x" + format(this.getEffect(), 2) + " " + this.baseData.description
+        return "x" + format(this.getEffect(), 2) + " " + t(this.baseData.description)
     }
 }
 
@@ -249,15 +249,15 @@ class Item {
             }
 
             if (itemCategories["Properties"].includes(this.name)) {
-                description = "Life Comfort"
+                description = "happiness"
                 effect = this.baseData.heroeffect
             }
         }
         else {
-            if (itemCategories["Properties"].includes(this.name)) description = "Life Comfort"
+            if (itemCategories["Properties"].includes(this.name)) description = "happiness"
         }
 
-        return "x" + format(effect) + " " + description
+        return "x" + format(effect) + " " + t(description)
     }
 
     getExpense(heroic) {

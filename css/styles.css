@@ -1,5 +1,29 @@
 /* w3 overrides */
 
+.info-box {
+    border-left: 3px solid #4a90d9;
+    background: rgba(74, 144, 217, 0.10);
+    padding: 0.45em 0.7em;
+    margin-bottom: 0.9em;
+}
+
+.hint-box {
+    font-style: italic;
+    color: gray;
+    margin-bottom: 0.9em;
+}
+
+.warning-box {
+    border-left: 3px solid #d9a13a;
+    background: rgba(217, 161, 58, 0.10);
+    padding: 0.45em 0.7em;
+    margin-bottom: 0.9em;
+}
+
+.headerRow th {
+    white-space: nowrap;
+}
+
 .w3-button, .w3-bar-item {
     padding: 0.4em 0.8em;
 }
@@ -67,6 +91,11 @@ body {
 }
 
 #info .text-caption + div {
+    text-align: center;
+}
+
+#info #inspiration_decay,
+#info #greed_rise {
     text-align: center;
 }
 
@@ -439,6 +468,20 @@ button:focus {
     background-color: #F082AC;
 }
 
+#settings ul,
+#statsTab ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#settings ul {
+    margin: 0;
+}
+
+#statsTab ul {
+    margin: 1em 0;
+}
+
 .perk-grid {
     display: grid;
     grid-template-columns: 27em 27em
@@ -541,4 +584,9 @@ button:focus {
 .resource {
     margin-block-start: auto;
     margin-block-end: auto;
+}
+
+/* Language switcher */
+.lang-btn {
+    margin: 0.2em;
 }

@@ -1,0 +1,68 @@
+<div class="tab column" style="display:none" id="challenges">
+					<div id="tabcolumnChallenges" class="panel w3-margin-left" style="display: contents">
+					</div>
+					<div id="maincolumnChallenges" class="panel w3-margin-left w3-margin-top">
+						<div id="challengeTab1" class="tabChallenge">
+							<div id="challengePage1" class="panel page-column w3-padding">
+								<div>
+								<div class="color-evil"></div>
+								<div></div>
+								<div></div>
+								</div>
+								<div id="exitChallengeDiv">
+									<p><span id="current_challenge"></span> <b><span id="activeChallengeName"></span></b></p>
+									<button class="w3-button button" id="exit_challenge" onclick="exitChallenge()"></button>
+									<div class="currentChallengeReward an_unhappy_life hidden" style="display: inline; padding-left:1em"><span id="current_reward_happiness"></span> x<span id="currentChallengeBuff1"></span></div>
+									<div class="currentChallengeReward rich_and_the_poor hidden" style="display: inline; padding-left:1em"><span id="current_reward_income"></span> x<span id="currentChallengeBuff2"></span></div>
+									<div class="currentChallengeReward time_does_not_fly hidden" style="display: inline; padding-left:1em"><span id="current_reward_timewarping"></span> x<span id="currentChallengeBuff3"></span></div>
+									<div class="currentChallengeReward dance_with_the_devil hidden" style="display: inline; padding-left:1em"><span id="current_reward_essence"></span> x<span id="currentChallengeBuff4"></span></div>
+									<div class="currentChallengeReward legends_never_die hidden" style="display: inline; padding-left:1em"><span id="current_reward_evil"></span> x<span id="currentChallengeBuff5"></span></div>
+									<div class="currentChallengeReward the_darkest_time hidden" style="display: inline; padding-left:1em"><span id="current_reward_dark_matter"></span> x<span id="currentChallengeBuff6"></span></div>
+								</div>
+								<div id="anUnhappyLifeChallenge" style="padding-top:2em">
+									<div class="text-caption challenge-title" id="challenge_1_name"></div>
+									<div style="color:gray; padding-bottom:0.3em" id="challenge_1_desc"></div>
+									<div style="color: gold; padding-bottom:0.3em"><span id="challengeGoal1"></span></div>
+									<div id="challengeReward1" class="reward"><span id="challenge_1_reward"></span> <span class="color-happiness" id="challengeHappinessBuff"></span></div>
+									<button id="challengeButton1" class="w3-button button" onclick="enterChallenge('an_unhappy_life')"></button>
+								</div>
+								<div id="theRichAndThePoorChallenge" style="padding-top:2em">
+									<div class="text-caption challenge-title" id="challenge_2_name"></div>
+									<div style="color:gray; padding-bottom:0.3em" id="challenge_2_desc"></div>
+									<div style="color: gold; padding-bottom:0.3em"><span id="challengeGoal2"></span></div>
+									<div id="challengeReward2" class="reward"><span id="challenge_2_reward"></span> <span class="color-income" id="challengeIncomeBuff"></span></div>
+									<button id="challengeButton2" class="w3-button button" onclick="enterChallenge('rich_and_the_poor')"></button>
+								</div>
+								<div id="timeDoesNotFlyChallenge" style="padding-top:2em">
+									<div class="text-caption challenge-title" id="challenge_3_name"></div>
+									<div style="color: gray; padding-bottom: 0.3em" id="challenge_3_desc"></div>
+									<div style="color: gold; padding-bottom:0.3em"><span id="challengeGoal3"></span></div>
+									<div id="challengeReward3" class="reward"><span id="challenge_3_reward"></span> <span class="color-time-warping" id="challengeTimewarpingBuff"></span></div>
+									<button id="challengeButton3" class="w3-button button" onclick="enterChallenge('time_does_not_fly')"></button>
+								</div>
+								<div id="danceWithTheDevilChallenge" style="padding-top:2em">
+									<div class="text-caption challenge-title" id="challenge_4_name"></div>
+									<div style="color: gray; padding-bottom: 0.3em" id="challenge_4_desc"></div>
+									<div style="color: gold; padding-bottom:0.3em"><span id="challengeGoal4"></span></div>
+									<div id="challengeReward4" class="reward"><span id="challenge_4_reward"></span> <span class="color-essence" id="challengeEssenceGainBuff"></span></div>
+									<button id="challengeButton4" class="w3-button button" onclick="enterChallenge('dance_with_the_devil')"></button>
+								</div>
+								<div id="legendsNeverDieChallenge" style="padding-top:2em">
+									<div class="text-caption challenge-title" id="challenge_5_name"></div>
+									<div style="color: gray; padding-bottom: 0.3em" id="challenge_5_desc"></div>
+									<div style="color: gold; padding-bottom:0.3em"><span id="challengeGoal5"></span></div>
+									<div id="challengeReward5" class="reward"><span id="challenge_5_reward"></span> <span class="color-evil" id="challengeEvilGainBuff"></span></div>
+									<div style="color:red; padding-bottom:0.3em" id="challenge5MetaverseLifespanDebuff"></div>
+									<button id="challengeButton5" class="w3-button button" onclick="enterChallenge('legends_never_die')"></button>
+								</div>
+								<div id="theDarkestTimeChallenge" style="padding-top:2em">
+									<div class="text-caption challenge-title" id="challenge_6_name"></div>
+									<div style="color: gray; padding-bottom: 0.3em" id="challenge_6_desc"></div>
+									<div style="color: gold; padding-bottom:0.3em"><span id="challengeGoal6"></span></div>
+									<div id="challengeReward6" class="reward"><span id="challenge_6_reward"></span> <span class="color-dark-matter" id="challengeDarkMatterGainBuff"></span></div>
+									<button id="challengeButton6" class="w3-button button" onclick="enterChallenge('the_darkest_time')"></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
