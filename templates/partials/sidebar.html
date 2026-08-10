@@ -1,0 +1,69 @@
+<div id="info" class="panel w3-padding quick-bar" style="width:20em">
+				<div id="challengeTitle" class="challenge-title" hidden="hidden">
+					<span id="challengeTitleLabel"></span>: <span id="challengeName"></span>
+					<div style="padding-top:0.3em">
+						<div class="sidebarChallengeReward an_unhappy_life hidden"><span class="color-happiness" id="reward_happiness"></span> x<span id="sidebarCurrentChallengeBuff1"></span> / x<span id="sidebarChallengeBuff1"></span></div>
+						<div class="sidebarChallengeReward rich_and_the_poor hidden"><span class="color-income" id="reward_income"></span> x<span id="sidebarCurrentChallengeBuff2"></span> / x<span id="sidebarChallengeBuff2"></span></div>
+						<div class="sidebarChallengeReward time_does_not_fly hidden"><span class="color-time-warping" id="reward_time_warping"></span> x<span id="sidebarCurrentChallengeBuff3"></span> / x<span id="sidebarChallengeBuff3"></span></div>
+						<div class="sidebarChallengeReward dance_with_the_devil hidden"><span class="color-essence" id="reward_essence"></span> x<span id="sidebarCurrentChallengeBuff4"></span> / x<span id="sidebarChallengeBuff4"></span></div>
+						<div class="sidebarChallengeReward legends_never_die hidden"><span class="color-evil" id="reward_evil"></span> x<span id="sidebarCurrentChallengeBuff5"></span> / x<span id="sidebarChallengeBuff5"></span></div>
+						<div class="sidebarChallengeReward the_darkest_time hidden"><span class="color-dark-matter" id="reward_dark_matter"></span> x<span id="sidebarCurrentChallengeBuff6"></span> / x<span id="sidebarChallengeBuff6"></span></div>
+					</div>
+				</div>
+				<div class="text-caption" id="errorInfo" hidden="hidden">
+					<div id="errorText"></div>
+					<br>
+				</div>
+				<div id="deathText" class="hidden">
+					<div class="text-caption" style="color: red" id="deathTitle"></div>
+					<div class="sidebar-element" style="color: gray" id="deathDesc"></div>
+				</div>
+				<div class="text-caption"><span id="ageDisplay">Age 14 Day 0</span></div>
+				<div class="sidebar-element" style="color: gray">
+					<span id="lifespan"></span>: <span id="lifespanDisplay">70</span> <span id="years"></span>
+					<br><span id="real_time"></span>: <span id="realtimeDisplay">00:00:00</span>
+					<div id="fps"></div>
+				</div>
+				<button id="pauseButton" class="w3-button button sidebar-element" onClick="togglePause()" data-i18n="pause"></button>
+				<div id="boostPanel" class="sidebar-element" style="color: gray">
+					<button id="boostButton" class="perk perk-boost" onClick="applyBoost()"></button>
+					<span style="padding-left:0.4em" id="boostCooldownDisplay">00:00</span>
+				</div>
+				<div id="quickTaskDisplay" class="hidden">
+					<div class="small-margin inline job progress-bar progressBar">
+						<div class="progress-fill progressFill current"></div>
+						<div class="progress-text name"></div>
+					</div>
+				</div>
+
+				<div class="text-caption" style="padding-top: 0.2em"><span class="color-happiness" id="happiness"></span>: <span id="happinessDisplay"></span></div>
+				<div style="color: gray" class="sidebar-element" id="happiness_desc"></div>
+
+				<div class="text-caption" style="padding-top: 0.2em"><span style="color: rgb(207, 21, 15)" id="inspiration"></span>: <span id="inspirationDisplay"></span></div>
+				<div style="color: gray"" id="inspiration_desc"></div>
+				<div style="color: rgb(168, 111, 111)" class="sidebar-element" id="inspiration_decay"></div>
+
+				<div class="text-caption" style="padding-top: 0.2em"><span style="color: rgb(92, 207, 15)" id="greed"></span>: <span id="greedDisplay"></span></div>
+				<div style="color: gray"" id="greed_desc"></div>
+				<div style="color: rgb(168, 111, 111)" class="sidebar-element" id="greed_rise"></div>
+
+				<div id="timeWarping">
+					<div class="text-caption"><span class="color-time-warping" id="time_warping"></span>: <span id="timeWarpingDisplay"></span></div>
+					<div style="color: gray" class="sidebar-element" id="time_warping_desc"></div>
+				</div>
+				<div id="rebirthButton1" class="hidden">
+					<button id="rebirthBtn1" class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100%" onClick="rebirthOne()"></button>
+				</div>
+				<div id="rebirthButton2" class="hidden">
+					<button id="rebirthBtn2" class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100% " onClick="rebirthTwo()"></button>
+				</div>
+				<div id="rebirthButton3" class="hidden">
+					<button id="rebirthBtn3" class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100% " onClick="rebirthThree()"></button>
+				</div>
+				<div id="rebirthButton4" class="hidden">
+					<button id="rebirthBtn4" class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100% " onClick="rebirthFour()"></button>
+				</div>
+				<div id="rebirthButton5" class="hidden">
+					<button id="rebirthBtn5" class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100% " onClick="rebirthFive()"></button>
+				</div>
+			</div>

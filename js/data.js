@@ -183,20 +183,20 @@ const jobBaseData = {
 
 const skillBaseData = {
     "Concentration": { name: "Concentration", maxXp: 100, heroxp: 36, effect: 0.01, description: "Skill XP" },
-    "Productivity": { name: "Productivity", maxXp: 100, heroxp: 37, effect: 0.01, description: "Hero XP" },
+    "Productivity": { name: "Productivity", maxXp: 100, heroxp: 37, effect: 0.01, description: "Job XP" },
     "Bargaining": { name: "Bargaining", maxXp: 100, heroxp: 38, effect: -0.01, description: "Reduced Expenses" },
     "Meditation": { name: "Meditation", maxXp: 100, heroxp: 39, effect: 0.01, description: "Life Comfort" },
 
-    "Strength": { name: "Strength", maxXp: 100, heroxp: 40, effect: 0.01, description: "Military Pay" },
-    "Battle Tactics": { name: "Battle Tactics", maxXp: 100, heroxp: 41, effect: 0.01, description: "Military XP" },
+    "Strength": { name: "Strength", maxXp: 100, heroxp: 40, effect: 0.01, description: "Army Pay" },
+    "Battle Tactics": { name: "Battle Tactics", maxXp: 100, heroxp: 41, effect: 0.01, description: "Army XP" },
     "Muscle Memory": { name: "Muscle Memory", maxXp: 100, heroxp: 42, effect: 0.01, description: "Strength XP" },
 
-    "Mana Control": { name: "Mana Control", maxXp: 100, heroxp: 46, effect: 0.01, description: "T.A.A. XP" },
+    "Mana Control": { name: "Mana Control", maxXp: 100, heroxp: 46, effect: 0.01, description: "Collegium XP" },
     "Life Essence": { name: "Life Essence", maxXp: 100, heroxp: 82, effect: 0.01, description: "Longer Lifespan" },
     "Time Warping": { name: "Time Warping", maxXp: 100, heroxp: 82, effect: 0.01, description: "Gamespeed" },
     "Astral Body": { name: "Astral Body", maxXp: 100, heroxp: 100, effect: 0.0035, description: "Longer lifespan" },
     "Temporal Dimension": { name: "Temporal Dimension", maxXp: 100, heroxp: 115, effect: 0.006, description: "Gamespeed" },
-    "All Seeing Eye": { name: "All Seeing Eye", maxXp: 100, heroxp: 120, effect: 0.0027, description: "T.A.A Pay" },
+    "All Seeing Eye": { name: "All Seeing Eye", maxXp: 100, heroxp: 120, effect: 0.0027, description: "Collegium Pay" },
     "Brainwashing": { name: "Brainwashing", maxXp: 100, heroxp: 145, effect: -0.01, description: "Reduced Expenses" },
 
     "Dark Influence": { name: "Dark Influence", maxXp: 100, heroxp: 155, effect: 0.01, description: "All XP" },
@@ -204,8 +204,8 @@ const skillBaseData = {
     "Intimidation": { name: "Intimidation", maxXp: 100, heroxp: 157, effect: -0.01, description: "Reduced Expenses" },
     "Demon Training": { name: "Demon Training", maxXp: 100, heroxp: 174, effect: 0.01, description: "All XP" },
     "Blood Meditation": { name: "Blood Meditation", maxXp: 100, heroxp: 176, effect: 0.01, description: "Evil Gain" },
-    "Demon's Wealth": { name: "Demon's Wealth", maxXp: 100, heroxp: 178, effect: 0.002, description: "Hero Pay" },
-    "Dark Knowledge": { name: "Dark Knowledge", maxXp: 100, heroxp: 180, effect: 0.003, description: "Hero XP" },
+    "Demon's Wealth": { name: "Demon's Wealth", maxXp: 100, heroxp: 178, effect: 0.002, description: "Job Pay" },
+    "Dark Knowledge": { name: "Dark Knowledge", maxXp: 100, heroxp: 180, effect: 0.003, description: "Job XP" },
 
     "Void Influence": { name: "Void Influence", maxXp: 100, heroxp: 206, effect: 0.0028, description: "All XP" },
     "Time Loop": { name: "Time Loop", maxXp: 100, heroxp: 207, effect: 0.001, description: "Gamespeed" },
@@ -272,8 +272,8 @@ const itemBaseData = {
     // Misc
     "Book": { name: "Book", expense: 10, effect: 1.5, description: "Skill XP", heromult: 2, heroeffect: 10 },
     "Dumbbells": { name: "Dumbbells", expense: 50, effect: 1.5, description: "Strength XP", heromult: 2, heroeffect: 10 },
-    "Personal Squire": { name: "Personal Squire", expense: 200, effect: 2, description: "Hero XP", heromult: 3, heroeffect: 10 },
-    "Steel Longsword": { name: "Steel Longsword", expense: 1000, effect: 2, description: "Military XP", heromult: 3, heroeffect: 10 },
+    "Personal Squire": { name: "Personal Squire", expense: 200, effect: 2, description: "Job XP", heromult: 3, heroeffect: 10 },
+    "Steel Longsword": { name: "Steel Longsword", expense: 1000, effect: 2, description: "Army XP", heromult: 3, heroeffect: 10 },
     "Butler": { name: "Butler", expense: 7500, effect: 1.5, description: "Life Comfort", heromult: 4, heroeffect: 10 },
     "Sapphire Charm": { name: "Sapphire Charm", expense: 50000, effect: 3, description: "Magic XP", heromult: 4, heroeffect: 10 },
     "Study Desk": { name: "Study Desk", expense: 1000000, effect: 2, description: "Skill XP", heromult: 5, heroeffect: 10 },
@@ -298,7 +298,7 @@ const itemBaseData = {
 
 const requirementsBaseData = {
     // Categories
-    "The Arcane Association": new TaskRequirement([removeSpaces(".The Arcane Association")], [{ task: "Concentration", requirement: 200 }, { task: "Meditation", requirement: 200 }]),
+    "Mage Collegium": new TaskRequirement([removeSpaces(".Mage Collegium")], [{ task: "Concentration", requirement: 200 }, { task: "Meditation", requirement: 200 }]),
     "Galactic Council": new AgeRequirement([removeSpaces(".Galactic Council")], [{ requirement: 10000 }]),
     "The Void": new AgeRequirement([removeSpaces(".The Void")], [{ requirement: 1000 }]),
     "Void Manipulation": new AgeRequirement([removeSpaces(".Void Manipulation")], [{ requirement: 1000 }]),
@@ -313,15 +313,28 @@ const requirementsBaseData = {
     
     // Rebirth items
     "Rebirth tab": new AgeRequirement(["#rebirthTabButton"], [{ requirement: 25 }]),
-    "Rebirth note 0": new AgeRequirement(["#rebirthNote0"], [{ requirement: 25 }]),
-    "Rebirth note 1": new AgeRequirement(["#rebirthNote1"], [{ requirement: 45 }]),
-    "Rebirth note 2": new AgeRequirement(["#rebirthNote2"], [{ requirement: 65 }]),
-    "Rebirth note 3": new AgeRequirement(["#rebirthNote3"], [{ requirement: 200 }]),
-    "Rebirth note 4": new AgeRequirement(["#rebirthNote4"], [{ requirement: 1000 }]),
-    "Rebirth note 5": new AgeRequirement(["#rebirthNote5"], [{ requirement: 10000 }]),
-    "Rebirth note 6": new TaskRequirement(["#rebirthNote6"], [{ task: "Cosmic Recollection", requirement: 1 }]),
-    "Rebirth note 7": new EssenceRequirement(["#rebirthNote7"], [{ requirement: 5e10 }]),
-    "Rebirth note 8": new EssenceRequirement(["#rebirthNote8"], [{ requirement: 1e60 }]),
+    "Rebirth note 0": new AgeRequirement(["#rebirth_note_0"], [{ requirement: 25 }]),
+    "Rebirth note 1": new AgeRequirement(["#rebirth_note_1"], [{ requirement: 45 }]),
+    "Rebirth note 2": new AgeRequirement(["#rebirth_note_2"], [{ requirement: 65 }]),
+    "Rebirth note 2 info": new AgeRequirement(["#rebirth_note_2_info"], [{ requirement: 65 }]),
+    "Rebirth note 2 hint": new AgeRequirement(["#rebirth_note_2_hint"], [{ requirement: 65 }]),
+    "Rebirth note 3": new AgeRequirement(["#rebirth_note_3"], [{ requirement: 200 }]),
+    "Rebirth note 3 hint": new AgeRequirement(["#rebirth_note_3_hint"], [{ requirement: 200 }]),
+    "Rebirth note 3 info": new AgeRequirement(["#rebirth_note_3_info"], [{ requirement: 200 }]),
+    "Rebirth note 4": new AgeRequirement(["#rebirth_note_4"], [{ requirement: 1000 }]),
+    "Rebirth note 4 hint": new AgeRequirement(["#rebirth_note_4_hint"], [{ requirement: 1000 }]),
+    "Rebirth note 4 unlock": new AgeRequirement(["#rebirth_note_4_unlock"], [{ requirement: 1000 }]),
+    "Rebirth note 5": new AgeRequirement(["#rebirth_note_5"], [{ requirement: 10000 }]),
+    "Rebirth note 5 unlock": new AgeRequirement(["#rebirth_note_5_unlock"], [{ requirement: 10000 }]),
+    "Rebirth note 5 info": new AgeRequirement(["#rebirth_note_5_info"], [{ requirement: 10000 }]),
+    "Rebirth note 5 warning": new AgeRequirement(["#rebirth_note_5_warning"], [{ requirement: 10000 }]),
+    "Rebirth note 6": new TaskRequirement(["#rebirth_note_6"], [{ task: "Cosmic Recollection", requirement: 1 }]),
+    "Rebirth note 7": new EssenceRequirement(["#rebirth_note_7"], [{ requirement: 5e10 }]),
+    "Rebirth note 7 info": new EssenceRequirement(["#rebirth_note_7_info"], [{ requirement: 5e10 }]),
+    "Rebirth note 8": new EssenceRequirement(["#rebirth_note_8"], [{ requirement: 1e60 }]),
+    "Rebirth note 8 info": new EssenceRequirement(["#rebirth_note_8_info"], [{ requirement: 1e60 }]),
+    "Hypercube cap text": new EssenceRequirement(["#hypercube_cap_text"], [{ requirement: 1e60 }]),
+    "Perk points gain text": new EssenceRequirement(["#perk_points_gain_text"], [{ requirement: 1e60 }]),
 
     "Rebirth button 1": new AgeRequirement(["#rebirthButton1"], [{ requirement: 65 }]),
     "Rebirth button 2": new AgeRequirement(["#rebirthButton2"], [{ requirement: 200 }]),
@@ -329,8 +342,8 @@ const requirementsBaseData = {
     "Rebirth button 4": new EssenceRequirement(["#rebirthButton4"], [{ requirement: 5e10 }]),
     "Rebirth button 5": new EssenceRequirement(["#rebirthButton5"], [{ requirement: 1e60 }]),
 
-    "Rebirth stats evil": new AgeRequirement(["#statsEvilGain"], [{ requirement: 200 }]),
-    "Rebirth stats essence": new TaskRequirement(["#statsEssenceGain"], [{ task: "Cosmic Recollection", requirement: 1 }]),
+    "Rebirth stats evil": new AgeRequirement(["#stats_evil_gain"], [{ requirement: 200 }]),
+    "Rebirth stats essence": new TaskRequirement(["#stats_essence_gain"], [{ task: "Cosmic Recollection", requirement: 1 }]),
 
     // Sidebar items
     "Quick task display": new AgeRequirement(["#quickTaskDisplay"], [{ requirement: 20 }]),
@@ -358,7 +371,7 @@ const requirementsBaseData = {
     "Holy Knight": new TaskRequirement([getQuerySelector("Holy Knight")], [{ task: "Mana Control", requirement: 500 }, { task: "Veteran Knight", requirement: 10 }]),
     "Lieutenant General": new TaskRequirement([getQuerySelector("Lieutenant General")], [{ task: "Mana Control", requirement: 1000 }, { task: "Battle Tactics", requirement: 1000 }, { task: "Holy Knight", requirement: 10 }]),
 
-    // The Arcane Association
+    // Mage Collegium
     "Student": new TaskRequirement([getQuerySelector("Student")], [{ task: "Concentration", requirement: 200 }, { task: "Meditation", requirement: 200 }]),
     "Apprentice Mage": new TaskRequirement([getQuerySelector("Apprentice Mage")], [{ task: "Mana Control", requirement: 400 }, { task: "Student", requirement: 10 }]),
     "Adept Mage": new TaskRequirement([getQuerySelector("Adept Mage")], [{ task: "Mana Control", requirement: 700 }, { task: "Apprentice Mage", requirement: 10 }]),
@@ -541,21 +554,13 @@ const requirementsBaseData = {
     "Metaverse Perks": new PerkPointRequirement(["#metaversePage2"], [{ requirement: 1 }]),
     "Metaverse Perks Button": new PerkPointRequirement(["#metaverseTab2TabButton"], [{ requirement: 1 }]),
 
-    // ShortKeyInfo
-    "keyChallenge": new EvilRequirement(["#keyChallenge"], [{ requirement: 10000 }]),
-    "key1": new AgeRequirement(["#key1"], [{ requirement: 65 }]),
-    "key2": new AgeRequirement(["#key2"], [{ requirement: 200 }]),
-    "key3": new TaskRequirement(["#key3"], [{ task: "Cosmic Recollection", requirement: 1 }]),
-    "key4": new EssenceRequirement(["#key4"], [{ requirement: 5e10 }]),
-    "key5": new EssenceRequirement(["#key5"], [{ requirement: 1e90 }]),
-
     "Congratulations": new EssenceRequirement(["#Congratulations"], [{ requirement: 1e300 }]),
 }
 
 const jobCategories = {
     "Common work": ["Beggar", "Farmer", "Fisherman", "Miner", "Blacksmith", "Merchant"],
     "Military": ["Squire", "Footman", "Veteran footman", "Centenary", "Knight", "Veteran Knight", "Holy Knight", "Lieutenant General"],
-    "The Arcane Association": ["Student", "Apprentice Mage", "Adept Mage", "Master Wizard", "Archmage", "Chronomancer", "Chairman", "Imperator"],
+    "Mage Collegium": ["Student", "Apprentice Mage", "Adept Mage", "Master Wizard", "Archmage", "Chronomancer", "Chairman", "Imperator"],
     "The Void": ["Corrupted", "Void Slave", "Void Fiend", "Abyss Anomaly", "Void Wraith", "Void Reaver", "Void Lord", "Abyss God"],
     "Galactic Council": ["Eternal Wanderer", "Nova", "Sigma Proioxis", "Acallaris", "One Above All"],
     "Metaverse Guards": ["Snow Crash", "Player One", "Lost in the dark", "Omega"]
@@ -580,7 +585,7 @@ const itemCategories = {
 const headerRowColors = {
     "Common work": "#55a630",
     "Military": "#e63946",
-    "The Arcane Association": "#C71585",
+    "Mage Collegium": "#C71585",
     "The Void": "#762B91",
     "Galactic Council": "#D5C010",
     "Fundamentals": "#55a630",
@@ -605,7 +610,7 @@ const headerRowColors = {
 const headerRowTextColors = {
     "Common work": "darkblue",
     "Military": "purple",
-    "The Arcane Association": "magenta",
+    "Mage Collegium": "magenta",
     "The Void": "white",
     "Galactic Council": "purple",
     "Fundamentals": "purple",

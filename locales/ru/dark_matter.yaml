@@ -1,10 +1,12 @@
 # Dark Matter Shop
 dark_matter_shop: Тёмная материя
 dark_orbs_shop: Тёмные сферы
+dm_tab_shop: Магазин
+dm_tab_abilities: Способности
 a_miracle: Чудо
 a_miracle_desc: 'Сохранить <b>Магический Глаз</b> при сбросе Тёмной материи или ниже'
 a_deal_with_chairman: Сделка с Председателем
-a_deal_with_chairman_desc: 'Награда: Умножает получение опыта <span style="color: rgb(199, 21, 133);">Т.А.А и Магии</span> на x{0}'
+a_deal_with_chairman_desc: 'Награда: Умножает получение опыта <span style="color: rgb(199, 21, 133);">Коллегии и Магии</span> на x{0}'
 a_gift_from_god: Дар от Бога
 a_gift_from_god_desc: 'Награда: Умножает получение <span class="color-essence">Эссенции</span> на x{0}'
 gotta_be_fast: Нужно быть быстрым
@@ -12,7 +14,7 @@ gotta_be_fast_desc: 'Награда: Умножает <span class="color-time-wa
 life_coach: Коуч по жизни
 life_coach_desc: 'Награда: Умножает <span class="color-income">Доход</span> на x{0}'
 dark_orb_generator: Генератор тёмных сфер
-dark_orb_generator_desc: 'Генерирует <b id="darkOrbGenerator"></b> <span class="color-dark-orbs">Тёмную сферу</span> в день'
+dark_orb_generator_desc: 'Генерирует {0} <span class="color-dark-orbs">Тёмную сферу</span> в день'
 abilities_warning: 'Вы можете выбрать только 1 улучшение в каждой категории; выбирайте мудро. Вы можете сбросить способности, но <b>НЕ</b> получите обратно свою <span class="color-dark-matter">Тёмную материю</span>!'
 
 # Dark Matter Abilities

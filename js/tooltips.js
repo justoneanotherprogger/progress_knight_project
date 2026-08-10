@@ -24,7 +24,7 @@ const tooltips = {
     "Master Wizard": "Utilise advanced spells to ravage and destroy entire legions of enemy soldiers. Only a small percentage of mages deserve to attain this role and are rewarded with an insanely high pay.",
     "Archmage": "Blessed with unparalleled talent, perform unbelievable feats with magic at will. It is said that an archmage has enough destructive power to wipe an empire off the map.",
     "Chronomancer": "Specialize in harnessing temporal energies that alter the flow of time with supernatural divinations and otherwordly expertise.",
-    "Chairman": "Spend your days administrating The Arcane Association and investigate the concepts of true immortality. The chairman receives ludicrous amounts of pay daily.",
+    "Chairman": "Spend your days administrating the Mage Collegium and investigate the concepts of true immortality. The chairman receives ludicrous amounts of pay daily.",
     "Imperator": "You wield an unlimited power, making you unstoppable. By ruling with an iron fist, everyone in the Arcane Association has to obey your commands.",
 
     // The Void
@@ -67,7 +67,7 @@ const tooltips = {
     "Time Warping": "Bend space and time through forbidden techniques, speeding up your learning processes.",
     "Astral Body": "Lengthen your lifespan drastically beyond comprehension by harnessing ethereal energy.",
     "Temporal Dimension": "Create your own pocket dimension where centuries go by in mere seconds.",
-    "All Seeing Eye": "As the highest rank of T.A.A, all funds go directly to you.",
+    "All Seeing Eye": "As the highest rank of the Mage Collegium, all funds go directly to you.",
     "Brainwashing": "A technique designed to manipulate human thought and action against their desire.",
 
     // Dark Magic - Evil Required
@@ -179,18 +179,18 @@ const tooltips = {
     "New Beginning": "Try to upgrade One Above All to level 2000",
 
     // Heroic Milestones
-    "Rise of Great Heroes": "Every active Great job or skill will increase Essence gain a bit.",
-    "Lazy Heroes": "Total Hero XP multiplier is 5e20",
-    "Dirty Heroes": "Total Hero XP multiplier is 5e35",
-    "Angry Heroes": "Total Hero XP multiplier is 5e50",
-    "Tired Heroes": "Total Hero XP multiplier is 5e65",
-    "Scared Heroes": "Total Hero XP multiplier is 5e80",
-    "Good Heroes": "Total Hero XP multiplier is 5e95",
-    "Funny Heroes": "Total Hero XP multiplier is 5e120",
-    "Beautiful Heroes": "Total Hero XP multiplier is 5e170",
-    "Awesome Heroes": "Total Hero XP multiplier is 5e180",
-    "Furious Heroes": "Total Hero XP multiplier is 5e198",
-    "Superb Heroes": "Total Hero XP multiplier is 5e201",
+    "Rise of Great Heroes": "Every active Great job or skill (a slot with the \"Great\" status) will increase Essence gain a bit.",
+    "Lazy Heroes": "Total Great XP multiplier is 5e20",
+    "Dirty Heroes": "Total Great XP multiplier is 5e35",
+    "Angry Heroes": "Total Great XP multiplier is 5e50",
+    "Tired Heroes": "Total Great XP multiplier is 5e65",
+    "Scared Heroes": "Total Great XP multiplier is 5e80",
+    "Good Heroes": "Total Great XP multiplier is 5e95",
+    "Funny Heroes": "Total Great XP multiplier is 5e120",
+    "Beautiful Heroes": "Total Great XP multiplier is 5e170",
+    "Awesome Heroes": "Total Great XP multiplier is 5e180",
+    "Furious Heroes": "Total Great XP multiplier is 5e198",
+    "Superb Heroes": "Total Great XP multiplier is 5e201",
     "A new beginning": "Unlocks the ability to reset for Dark Matter",
 
     // Dark Milestones

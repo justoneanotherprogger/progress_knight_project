@@ -1,11 +1,11 @@
 # Settings
-settings: Настройки
-stats: Статистика
-stats_tab: Статистика
-changelog: Список изменений
+stats_tab_header: Статистика
+settings_tab_header: Настройки
+changelog_tab_header: История изменений
 import_save: Импорт сохранения
 export_save: Экспорт сохранения
 import_save_placeholder: Вставьте сохранение сюда
+save_copied: Сохранение скопировано в буфер обмена!
 hard_reset: Полный сброс игры
 links: Ссылки
 language: Язык
@@ -60,10 +60,10 @@ shortcut_g: g - Перейти в Метавселенную
 shortcut_challenge: 1 - Войти / Выйти из Испытания 1 и т.д.
 
 # Links
-links_based_on: 'Основано на модификации <a href="https://symb1.github.io/progress_knight_2/" target="_blank">Progress Knight 2.0</a>'
+links_based_on: 'Основано на модификации <a href="https://symb1.github.io/progress_knight_2/" target="_blank">Progress Knight 2.0</a> · <a href="https://github.com/indomit/progress_knight_2" target="_blank">GitHub</a>'
 links_original_game: 'Оригинальная игра: <a href="https://ihtasham42.github.io/progress-knight/" target="_blank">Progress Knight</a>'
 links_discord: '<a href="https://discord.gg/fTRS4pHGka" target="_blank">Присоединиться к сообществу Discord! <img src="img/discord_icon.png" style="width:3em; height:3em;"></a>'
-links_github: '<a href="https://github.com/indomit/progress_knight_2" target="_blank">Страница GitHub</a>'
+links_github: '<a href="https://github.com/justoneanotherprogger/progress_knight_project" target="_blank">Страница этой модификации на GitHub</a>'
 
 # Stats
 stats_start_date: 'Вы начали играть в игру <span id="startDateDisplay"></span>, <span id="playedDaysDisplay"></span> дней назад.'

@@ -7,9 +7,9 @@ app_title_sup: mod
 
 # Resource bar labels
 balance: Balance
-net: Net
-income: Income
-expense: Expense
+net_text: Net
+income_text: Income
+expense_text: Expense
 evil: Evil
 essence: Essence
 dark_matter: Dark Matter
@@ -31,18 +31,20 @@ pause: Pause
 play: Play
 boost: Boost
 task: Task
+age: Age
+day: Day
 age_display_default: Age 14 Day 0
 death_title: Age has caught up to you
 death_desc: Your age has met your lifespan; use the amulet to rebirth before you pass away
 error_site_broken: ⚠️ Oh no! It looks like something on the site broke.. If this issue persists, feel free to contact the developers.
 
 # Tabs
-tab_hero: Hero
+tab_hero: Jobs
 tab_skills: Skills
-tab_shop: Shop
+tab_holdings: Holdings
 tab_challenges: Challenges
 tab_milestones: Milestones
-tab_rebirth: Amulet
+tab_rebirth: Notes
 tab_dark_matter: Dark Matter
 tab_metaverse: Metaverse
 tab_settings: Settings
@@ -51,6 +53,7 @@ tab_settings: Settings
 col_job: Job
 col_item: Item
 max_short: Max
+income_day: Income/day
 expense_day: Expense/day
 milestone_tier: Milestone Tier
 milestone: Milestone
@@ -63,6 +66,14 @@ happiness: Life Comfort
 inspiration: Inspiration
 greed: Greed
 time_warping: Time Warping
+
+# Sidebar challenge reward labels
+reward_happiness: Life Comfort
+reward_income: Income
+reward_time_warping: Time Warping
+reward_essence: Essence
+reward_evil: Evil
+reward_dark_matter: Dark Matter
 
 # Resource descriptions (sidebar)
 happiness_desc: Affects all XP gain
@@ -79,10 +90,13 @@ rebirth_3: Transcend
 rebirth_4: Collapse the universe
 rebirth_5: Metaverse
 go_to_metaverse: Go to Metaverse
+perk_points: Perk Points
+unlock_hypercubes: Unlock Hypercubes
 
 # Misc
-required: Required
-next_effect: Next effect
+required: Required for next
+next_effect: Effect of next
+unknown: Unknown
 active: Active
 effect: Effect
 goal: Goal
@@ -96,7 +110,74 @@ cost: Cost
 buy: Buy
 upgrade: Upgrade
 reset_abilities: Reset Abilities
-version: Version
+version: Version 0.1.0
+lang_en: English
+lang_ru: Русский
 tab_abilities: Abilities
+great: Great
+lvl: lvl
 essence_lower: essence
 challenge_title: In challenge
+
+# Effect descriptions (from data.js)
+"All XP": All XP
+"Dark Matter Gain": Dark Matter Gain
+"Essence + Evil Gain": Essence + Evil Gain
+"Essence Gain": Essence Gain
+"Evil Gain": Evil Gain
+"Fundamentals XP": Fundamentals XP
+"Galactic Council XP": Galactic Council XP
+"Gamespeed": Gamespeed
+"Job Pay": Job Pay
+"Job XP": Job XP
+"Hypercube Gain": Hypercube Gain
+"Increased Life Comfort": Increased Life Comfort
+"Life Comfort": Life Comfort
+"Longer Lifespan": Longer Lifespan
+"Longer lifespan": Longer lifespan
+"Magic XP": Magic XP
+"Max Lvl Multiplier": Max Lvl Multiplier
+"Army Pay": Army Pay
+"Army XP": Army XP
+"Reduced Expenses": Reduced Expenses
+"Skill XP": Skill XP
+"Strength XP": Strength XP
+"Collegium Pay": Collegium Pay
+"Collegium XP": Collegium XP
+"The Void XP": The Void XP
+"Void Manipulation XP": Void Manipulation XP
+
+"Automatically gain max levels at age 65": Automatically gain max levels at age 65
+"Automatically gain max levels": Automatically gain max levels
+"Passively gain a small amount of Evil": Passively gain a small amount of Evil
+"Essence gain": Essence gain
+"x2 Time Warping": x2 Time Warping
+"Passively gain a huge amount of Evil": Passively gain a huge amount of Evil
+"x5 Evil gain": x5 Evil gain
+"x10M Happiness": x10M Happiness
+"Essence gain (increases over time, influenced by time warping)": Essence gain (increases over time, influenced by time warping)
+"Heroic jobs, skills and items are unlocked": Heroic jobs, skills and items are unlocked
+"Essence gain + x10000 Hero XP": Essence gain + x10000 Hero XP
+"Hero XP": Hero XP
+"Unlocks Dark Matter": Unlocks Dark Matter
+"Makes Hell Portal even stronger": Makes Hell Portal even stronger
+"Passively gain a small amount of Essence": Passively gain a small amount of Essence
+"Multiply Dark Matter gain by 10x": Multiply Dark Matter gain by 10x
+"Unlocks Dark Matter Abilities": Unlocks Dark Matter Abilities
+"Multiply Dark Orb gain by 1e10x": Multiply Dark Orb gain by 1e10x
+"Multiply Dark Matter gain by 3x": Multiply Dark Matter gain by 3x
+"Multiply Essence gain by 1000x": Multiply Essence gain by 1000x
+"Multiply Evil gain by 1e15x": Multiply Evil gain by 1e15x
+"Multiply Darkness xp gain by 1e50x": Multiply Darkness xp gain by 1e50x
+"Multiply Time Warping and Lifespan by 1000x. Heavily boosts Faint Hope": Multiply Time Warping and Lifespan by 1000x. Heavily boosts Faint Hope
+"Multiply your lifespan by 1e5x. New challenge unlocked. Dark Matter boosts essence gain.": Multiply your lifespan by 1e5x. New challenge unlocked. Dark Matter boosts essence gain.
+"Multiply Dark Matter gain by 500x": Multiply Dark Matter gain by 500x
+"Unlocks Metaverse": Unlocks Metaverse
+"Faint Hope does not reset on transcend or collapse": Faint Hope does not reset on transcend or collapse
+"Unlocks Metaverse Perks, Metaverse Guards Job Category": Unlocks Metaverse Perks, Metaverse Guards Job Category
+"Faint Hope always at maximum": Faint Hope always at maximum
+"Multiply Time Warping by 1000x, Multiply all xp gain by 1e50x": Multiply Time Warping by 1000x, Multiply all xp gain by 1e50x
+"Unspent Multiverse Perk Points buffs Dark Matter": Unspent Multiverse Perk Points buffs Dark Matter
+"Congratulations! You have beaten the game!": Congratulations! You have beaten the game!
+"Great XP": Great XP
+"Essence gain + x10000 Great XP": Essence gain + x10000 Great XP

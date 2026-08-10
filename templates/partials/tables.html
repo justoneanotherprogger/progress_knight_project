@@ -1,0 +1,130 @@
+<div id="hero">
+					<template class="headerRowTaskTemplate">
+						<tr>
+							<th class="rowtitle category" style="width: 20em"></th>
+							<th class="rowtitle"></th>
+							<th class="rowtitle valueType" style="width: 18em"></th>
+							<th class="rowtitle"></th>
+							<th class="rowtitle"></th>
+							<th class="rowtitle maxLevel"></th>
+						</tr>
+					</template>
+					<template class="rowTaskTemplate">
+						<tr>
+							<td>
+								<div class="progress-bar progressBar tooltip">
+									<div class="progress-fill progressFill"></div>
+				<div class="progress-text name" id="taskLabel"></div>
+									<span class="tooltipText"></span>
+								</div>
+							</td>
+							<td class="level"></td>
+							<td class="value">
+								<div class="effect"></div>
+								<div class="income">
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+								</div>
+							</td>
+							<td class="xpGain"></td>
+							<td class="xpLeft"></td>
+							<td class="maxLevel"></td>
+						</tr>
+					</template>
+					<template class="headerRowItemTemplate">
+						<tr class="item-header-row" onclick="forceAutobuy()">
+							<th class="category" style="width: 20em">
+								<button class="button-no-button tooltip" style="background-color:transparent;" onclick="forceAutobuy()">
+									<span class="name"></span>
+									<span class="tooltipText"></span>
+								</button>
+							</th>
+							<th></th>
+							<th style="width: 20em"></th>
+							<th></th>
+						</tr>
+					</template>
+					<template class="rowItemTemplate">
+						<tr>
+							<td>
+								<button class="button item-button tooltip">
+									<span class="name"></span>
+									<span class="tooltipText">tooltip</span>
+								</button>
+							</td>
+							<td>
+								<div class="outer-circle center-g-inside">
+									<div class="active inner-circle"></div>
+								</div>
+							</td>
+							<td class="effect"></td>
+							<td class="expense">
+								<span></span>
+								<span></span>
+								<span></span>
+								<span></span>
+							</td>
+						</tr>
+					</template>
+					<template class="headerRowMilestoneTemplate">
+						<tr>
+							<th style="width: 6em"></th>
+							<th style="width: 15em" class="category"></th>
+							<th></th>
+						</tr>
+					</template>
+					<template class="rowMilestoneTemplate">
+						<tr>
+							<td class="essence color-essence"></td>
+							<td>
+								<div class="progress-bar progressBar tooltip" style="width: 100%">
+									<div class="progress-fill progressFill" style="background-color: green"></div>
+									<span class="tooltipText"></span>
+									<div class="progress-text name"></div>
+								</div>
+							</td>
+							<td class="description"></td>
+						</tr>
+					</template>
+					<template class="requiredRowTemplate">
+						<td style="padding-left: 0.8em;padding-top: 0.2rem;" colspan=5>
+							<span class="w3-text-gray"></span>:
+							<div class="value" colspan=5 style="display:inline">
+								<span class="levels color-income"></span>
+								<div class="coins" style="display:inline">
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+								</div>
+								<span class="evil color-evil"></span>
+								<span class="essence color-essence"></span>
+								<span class="darkMatter color-dark-matter"></span>
+								<span class="hypercube color-hypercubes"></span>
+							</div>
+						<div class="effect">
+							<span class="w3-text-gray"></span>: <span class="effectValue"></span>
+							</div>
+						</td>
+					</template>
+					<div class="tab" id="jobs">
+						<div id="jobPage" style="flex: 1; margin-left: 0.5em;">
+							<table id="jobTable" class="w3-table w3-bordered">
+							</table>
+						</div>
+						<div id="skillPage" style="flex: 1; margin-left: 0.5em;">
+							<table id="skillTable" class="w3-table w3-bordered">
+							</table>
+						</div>
+						<div id="itemPage" style="flex: 1; margin-left: 0.5em;">
+							<table id="itemTable" class="w3-table w3-bordered">
+							</table>
+						</div>
+					</div>
+					<div class="tab hidden" id="skills">
+					</div>
+					<div class="tab hidden" id="shop">
+					</div>
+				</div>

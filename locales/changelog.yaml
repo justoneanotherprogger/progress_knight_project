@@ -1,0 +1,30 @@
+- version: 0.1.0
+  date: 08.08.2026
+  en:
+    - Added Russian localization
+    - "Refactored the base: UI generated from templates, translations built from YAML section files"
+  ru:
+    - Добавлена русская локализация
+    - "Отрефакторена основа: интерфейс собирается из шаблонов, переводы — из YAML-файлов по секциям"
+- version: 0.0.3
+  date: 24.08.2023
+  en:
+    - Implemented Inspiration and Greed
+    - Changed formula of skill effect
+  ru:
+    - Реализованы Вдохновение и Жадность
+    - Изменена формула эффекта навыков
+- version: 0.0.2
+  date: 24.08.2023
+  en:
+    - Age changes (start at 16, base lifespan 75)
+    - Interface adjustments
+  ru:
+    - Изменения возраста (старт в 16, базовая продолжительность жизни 75)
+    - Правки интерфейса
+- version: 0.0.1
+  date: 24.08.2023
+  en:
+    - Changed target project from Progress Knight 2 to Progress Knight Quest due to interesting mechanics
+  ru:
+    - Целевой проект изменён с Progress Knight 2 на Progress Knight Quest из-за интересных механик

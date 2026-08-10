@@ -1,10 +1,12 @@
 # Dark Matter Shop
 dark_matter_shop: Dark Matter
 dark_orbs_shop: Dark Orbs
+dm_tab_shop: Shop
+dm_tab_abilities: Abilities
 a_miracle: A miracle
 a_miracle_desc: "Keep <b>Magic Eye</b> when performing a Dark Matter or lower reset"
 a_deal_with_chairman: A deal with the Chairman
-a_deal_with_chairman_desc: 'Reward: Multiply <span style="color: rgb(199, 21, 133);">T.A.A & Magic</span> XP gain by x{0}'
+a_deal_with_chairman_desc: 'Reward: Multiply <span style="color: rgb(199, 21, 133);">Collegium & Magic</span> XP gain by x{0}'
 a_gift_from_god: A gift from God
 a_gift_from_god_desc: 'Reward: Multiply <span class="color-essence">Essence</span> gain by x{0}'
 gotta_be_fast: Gotta be fast
@@ -12,7 +14,7 @@ gotta_be_fast_desc: 'Reward: Multiply <span class="color-time-warping">Time Warp
 life_coach: Life coach
 life_coach_desc: 'Reward: Multiply <span class="color-income">Income</span> by x{0}'
 dark_orb_generator: Dark Orb Generator
-dark_orb_generator_desc: 'Generates <b id="darkOrbGenerator"></b> <span class="color-dark-orbs">Dark Orb</span> per day'
+dark_orb_generator_desc: 'Generates {0} <span class="color-dark-orbs">Dark Orb</span> per day'
 abilities_warning: 'You can only choose 1 upgrade in each category; pick wisely. You can reset the abilities, but you will <b>NOT</b> get your <span class="color-dark-matter">Dark Matter</span> back!'
 
 # Dark Matter Abilities
