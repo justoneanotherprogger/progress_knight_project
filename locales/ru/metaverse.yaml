@@ -1,11 +1,11 @@
 # Metaverse
 altar: Алтарь
-perks: Перки
+perks: Дары
 welcome_metaverse: '<b>Добро пожаловать в Метавселенную!</b>'
 lifespan_infinite: Продолжительность жизни теперь бесконечна.
 metaverse_hypercube_hint: Чем больше у вас гиперкубов, тем больше возможностей для жертвоприношений откроется.
 sacrifice: Жертвовать
-metaverse_perks: Перки Метавселенной
+metaverse_perks: Дары Метавселенной
 current_hypercubes_cap: 'Текущий лимит гиперкубов:'
 total_hypercube_bonus: 'Общий бонус к получению гиперкубов:'
 
@@ -24,8 +24,8 @@ current_gain: 'Текущее получение: {0}'
 current_multiplier: 'Текущий множитель: x{0}'
 
 # Metaverse Perks
-unspent_perk_points: 'У вас есть <b><span id="perkPointDisplay" class="color-perk-points"></span></b> непотраченных очков перков Метавселенной. Всего очков: <b><span id="totalPerkPointDisplay" class="color-perk-points"></span></b>.'
-perks_info: Вы можете свободно активировать и деактивировать перки для имеющихся у вас очков.
+unspent_perk_points: 'У вас есть <b><span id="perkPointDisplay" class="color-perk-points"></span></b> непотраченных очков даров Метавселенной. Всего очков: <b><span id="totalPerkPointDisplay" class="color-perk-points"></span></b>.'
+perks_info: Вы можете свободно активировать и деактивировать дары для имеющихся у вас очков.
 perks_dm_bonus: 'Бонус к получению Тёмной материи: x{0}.'
 mpp_short: ОПМ
 assign_perk_points: Распределить непотраченные очки

@@ -4,7 +4,7 @@ dark_orbs_shop: Тёмные сферы
 dm_tab_shop: Магазин
 dm_tab_abilities: Способности
 a_miracle: Чудо
-a_miracle_desc: 'Сохранить <b>Магический Глаз</b> при сбросе Тёмной материи или ниже'
+a_miracle_desc: 'Сохраняет <b>Магический глаз</b> при сворачивании вселенной и любых более ранних сбросах.'
 a_deal_with_chairman: Сделка с Председателем
 a_deal_with_chairman_desc: 'Награда: Умножает получение опыта <span style="color: rgb(199, 21, 133);">Коллегии и Магии</span> на x{0}'
 a_gift_from_god: Дар от Бога
