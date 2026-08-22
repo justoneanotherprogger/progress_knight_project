@@ -1346,16 +1346,6 @@ function outExportButton() {
     tooltip.textContent = "";
 }
 
-function onFontButtonHover() {
-    const tooltip = document.getElementById("fontSizeTooltip");
-    tooltip.classList.remove("hidden")
-}
-
-function onFontButtonStopHover() {
-    const tooltip = document.getElementById("fontSizeTooltip");
-    tooltip.classList.add("hidden")
-}
-
 function isNextDarkMagicSkillInReach() {
     const totalEvil = gameData.evil + getEvilGain()
 
@@ -1459,4 +1449,5 @@ document.addEventListener('i18n:changed', () => {
     updateUI();
     refreshSettingsButtons();
     refreshLangButtons();
+    updateFontSizeIndicator();
 });
