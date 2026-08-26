@@ -1,0 +1,4 @@
+#!/bin/sh
+# Source file size ratchet — see scripts/check_file_size.py.
+# Enable repo-local hooks once per clone: git config core.hooksPath hooks
+python scripts/check_file_size.py || exit 1
