@@ -241,7 +241,6 @@ function copyTextToClipboard(text) {
         const tooltip = document.getElementById("exportTooltip");
         tooltip.innerHTML = t("save_copied") ;
     }, err => {
-        //console.error('Async: Could not copy text: ', err);
     })
 }
 

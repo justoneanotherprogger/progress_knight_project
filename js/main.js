@@ -164,24 +164,9 @@ var gameloop = setInterval(function() {
     ticking = true;
     update();
 
-    // fps for debug only
-    //var thisFrameTime = (thisLoop = new Date) - lastLoop;
-    //frameTime += (thisFrameTime - frameTime) / filterStrength;
-    //lastLoop = thisLoop;
-
     ticking = false;
 }, 1000 / updateSpeed)
 var saveloop = setInterval(saveGameData, 3000)
-
-/* FPS */
-/*
-var filterStrength = 20;
-var frameTime = 0, lastLoop = new Date, thisLoop;
-var fpsOut = document.getElementById('fps');
-setInterval(function () {
-    fpsOut.innerHTML = (1000 / frameTime).toFixed(1) + " fps";
-}, 1000);
-*/
 
 // Re-apply translations when language changes
 document.addEventListener('i18n:changed', () => {
