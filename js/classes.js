@@ -177,11 +177,10 @@ class Job extends Task {
 
     getIncome() {
         const income = (this.isHero ? heroIncomeMult
-            * (this.baseData.heroxp > 78 ? 1e6 : 1)
-            * (this.baseData.heroxp > 130 ? 1e5 : 1)
+            * (this.baseData.heroxp > 78 ? JOB_INCOME_HERO_THRESHOLD_78 : 1)
+            * (this.baseData.heroxp > 130 ? JOB_INCOME_HERO_THRESHOLD_130 : 1)
             : 1) * applyMultipliers(this.baseData.income, this.incomeMultipliers) * getChallengeBonus("rich_and_the_poor")
-
-        return gameData.active_challenge == "rich_and_the_poor" || gameData.active_challenge == "the_darkest_time" ? Math.pow(income, 0.35) : income
+        return gameData.active_challenge == "rich_and_the_poor" || gameData.active_challenge == "the_darkest_time" ? Math.pow(income, CHALLENGE_RICH_INCOME_EXPONENT) : income
     }
 }
 
@@ -191,7 +190,7 @@ class Skill extends Task {
     }
 
     getEffect() {
-        var effect = 1 + this.baseData.effect * (this.isHero ? 1000 * this.level + 8000 : this.level) * Math.pow(1.01, getBaseLog(10, this.level + 1))
+        var effect = 1 + this.baseData.effect * (this.isHero ? SKILL_HERO_LEVEL_MULTIPLIER * this.level + SKILL_HERO_FLAT_BONUS : this.level) * Math.pow(SKILL_LEVEL_EXPONENT_BASE, getBaseLog(10, this.level + 1))
         return effect
     }
 
@@ -263,7 +262,7 @@ class Item {
     getExpense(heroic) {
         if (heroic === undefined)
             heroic = this.isHero
-        return (heroic ? 4 * Math.pow(10, this.baseData.heromult) * heroIncomeMult : 1)
+        return (heroic ? JOB_INCOME_HERO_BASE_MULTIPLIER * Math.pow(10, this.baseData.heromult) * heroIncomeMult : 1)
             * applyMultipliers(this.baseData.expense, this.expenseMultipliers)
     }
 }
@@ -359,8 +358,6 @@ class EssenceRequirement extends Requirement {
     }
 
     getCondition(isHero, requirement) {
-        //return gameData.essence >= requirement.requirement
-
         if (isHero && requirement.herequirement != null)
             return gameData.essence >= requirement.herequirement
         else
