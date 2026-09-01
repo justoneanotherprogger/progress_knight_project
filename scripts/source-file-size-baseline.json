@@ -4,7 +4,7 @@
   "exclude_dirs": [".git", ".letta", "node_modules"],
   "baseline": {
     "js/ui.js": 1474,
-    "js/main.js": 1462,
+    "js/main.js": 1348,
     "js/math.js": 3
   }
 }
