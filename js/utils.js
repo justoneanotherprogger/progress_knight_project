@@ -171,9 +171,6 @@ function getBaseLog(x, y) {
     return Math.log(y) / Math.log(x);
 }
 
-function yearsToDays(years) {
-    return years * 365
-}
 
 function daysToYears(days) {
     return Math.floor(days / 365)
@@ -181,10 +178,6 @@ function daysToYears(days) {
 
 function getCurrentDay(days) {
     return Math.floor(days - daysToYears(days) * 365)
-}
-
-function getElementsByClass(className) {
-    return document.getElementsByClassName(removeSpaces(className))
 }
 
 function removeSpaces(string) {
