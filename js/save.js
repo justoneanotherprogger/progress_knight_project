@@ -248,13 +248,3 @@ function outExportButton() {
     const tooltip = document.getElementById("exportTooltip");
     tooltip.textContent = "";
 }
-
-function onFontButtonHover() {
-    const tooltip = document.getElementById("fontSizeTooltip");
-    tooltip.classList.remove("hidden")
-}
-
-function onFontButtonStopHover() {
-    const tooltip = document.getElementById("fontSizeTooltip");
-    tooltip.classList.add("hidden")
-}

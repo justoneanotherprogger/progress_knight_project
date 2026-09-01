@@ -3,6 +3,10 @@ __pycache__/
 *.pyc
 *.pyo
 
+# Build output
+js/translations.js
+index.html
+
 # Virtual environment
 venv/
 .env

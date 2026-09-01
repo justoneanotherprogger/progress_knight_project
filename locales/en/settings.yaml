@@ -37,7 +37,6 @@ layout_wide: W I D E
 # Font size
 font_smaller: Smaller
 font_larger: Larger
-font_size_tooltip: Keep pressing to change more
 
 # Theme options
 theme_light: Light
