@@ -113,6 +113,11 @@ function setFontSize(id) {
     document.getElementById("body").style.fontSize = fontSizes[id]
 }
 
+function updateFontSizeIndicator() {
+    const label = document.getElementById("font_size")
+    if (label) label.innerHTML = t("font_size") + " " + gameData.settings.fontSize + "/7"
+}
+
 function setSignDisplay() {
     const signDisplay = document.getElementById("signDisplay")
     if (!signDisplay) return
