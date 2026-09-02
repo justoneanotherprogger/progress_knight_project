@@ -90,7 +90,7 @@ function renderSideBar() {
         document.getElementById("challengeTitle").hidden = true
         document.getElementById("info").classList.remove("challenge")
     } else {
-        document.getElementById("challengeName").textContent = getFormattedTitle(gameData.active_challenge)
+        document.getElementById("challengeName").textContent = getChallengeTranslatedName(gameData.active_challenge)
         document.getElementById("challengeTitle").hidden = false
         document.getElementById("info").classList.add("challenge")
         // challenge reward

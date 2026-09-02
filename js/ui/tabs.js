@@ -102,7 +102,7 @@ function renderShop() {
 }
 
 function renderChallenges() {
-    document.getElementById("activeChallengeName").textContent = getFormattedTitle(gameData.active_challenge)
+    document.getElementById("activeChallengeName").textContent = getChallengeTranslatedName(gameData.active_challenge)
 
     if (gameData.active_challenge == "") {
         document.getElementById("exitChallengeDiv").hidden = true

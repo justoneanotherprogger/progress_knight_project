@@ -240,3 +240,17 @@ function getFormattedTitle(parameter) {
 
     return title
 }
+
+const CHALLENGE_KEY_TO_NUMBER = {
+    an_unhappy_life: 1,
+    rich_and_the_poor: 2,
+    time_does_not_fly: 3,
+    dance_with_the_devil: 4,
+    legends_never_die: 5,
+    the_darkest_time: 6,
+}
+
+function getChallengeTranslatedName(challengeKey) {
+    const num = CHALLENGE_KEY_TO_NUMBER[challengeKey]
+    return num ? t("challenge_" + num + "_name") : challengeKey
+}
