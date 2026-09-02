@@ -35,7 +35,7 @@ age: Age
 day: Day
 age_display_default: Age 14 Day 0
 death_title: Age has caught up to you
-death_desc: Your age has met your lifespan; use the amulet to rebirth before you pass away
+death_desc: Your age has met your lifespan
 error_site_broken: ⚠️ Oh no! It looks like something on the site broke.. If this issue persists, feel free to contact the developers.
 
 # Tabs
