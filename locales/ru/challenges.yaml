@@ -5,6 +5,7 @@ challenge_rewards_active: Награды за испытания всегда а
 exit_challenge: Выйти из испытания
 current_challenge: 'Текущее испытание:'
 enter_challenge: Начать испытание
+challengeTitleLabel: Испытание
 
 # Challenge names and descriptions
 challenge_1_name: 1. Несчастная жизнь

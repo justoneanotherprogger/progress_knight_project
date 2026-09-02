@@ -5,6 +5,7 @@ challenge_rewards_active: Challenge rewards are always active, even in challenge
 exit_challenge: Exit challenge
 current_challenge: "Current challenge:"
 enter_challenge: Enter challenge
+challengeTitleLabel: Challenge
 
 # Challenge names and descriptions
 challenge_1_name: 1. An unhappy life
