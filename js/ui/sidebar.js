@@ -15,15 +15,15 @@ function renderSideBar() {
     document.getElementById("boostCooldownDisplay").textContent = getBoostCooldownString()            
     updateButtonText("pauseButton", gameData.paused ? t("play") : t("pause"))
     updateButtonText("rebirthBtn1", t("rebirth_1"))
-    updateButtonHTML("rebirthBtn2", t("rebirth_2") + " <span class=\"color-evil\">(+" + format(getEvilGain()) + " " + t("evil") + ")</span>")
-    updateButtonHTML("rebirthBtn3", t("rebirth_3") + " <span class=\"color-essence\">(+" + format(getEssenceGain()) + " " + t("essence") + ")</span>")
-    updateButtonHTML("rebirthBtn4", t("rebirth_4") + " <span class=\"color-dark-matter\">(+" + format(getDarkMatterGain()) + " " + t("dark_matter") + ")</span>")
+    setRebirthButton("rebirthBtn2", t("rebirth_2"), "<span class=\"color-evil\">(+" + format(getEvilGain()) + " " + t("evil") + ")</span>")
+    setRebirthButton("rebirthBtn3", t("rebirth_3"), "<span class=\"color-essence\">(+" + format(getEssenceGain()) + " " + t("essence") + ")</span>")
+    setRebirthButton("rebirthBtn4", t("rebirth_4"), "<span class=\"color-dark-matter\">(+" + format(getDarkMatterGain()) + " " + t("dark_matter") + ")</span>")
     if (gameData.essence > 1e90)
-        updateButtonHTML("rebirthBtn5", t("rebirth_5") + " <span class=\"color-perk-points\">(+" + formatTreshold(getMetaversePerkPointsGain()) + " " + t("perk_points") + ")</span>")
+        setRebirthButton("rebirthBtn5", t("rebirth_5"), "<span class=\"color-perk-points\">(+" + formatTreshold(getMetaversePerkPointsGain()) + " " + t("perk_points") + ")</span>")
     else if (gameData.rebirthFiveCount > 0)
-        updateButtonHTML("rebirthBtn5", t("rebirth_5") + " <span class=\"color-hypercubes\">(" + format(getHypercubeCap(1)) + " " + t("hypercubes") + ")</span>")
+        setRebirthButton("rebirthBtn5", t("rebirth_5"), "<span class=\"color-hypercubes\">(" + format(getHypercubeCap(1)) + " " + t("hypercubes") + ")</span>")
     else
-        updateButtonHTML("rebirthBtn5", t("rebirth_5"))
+        setRebirthButton("rebirthBtn5", t("rebirth_5"), "")
     document.getElementById("boostPanel").hidden = gameData.rebirthFiveCount == 0
     renderBoostButton("boostButton")
 

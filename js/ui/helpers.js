@@ -21,6 +21,17 @@ function updateButtonHTML(id, html) {
     }
 }
 
+function setRebirthButton(id, label, gainHTML) {
+    const button = document.getElementById(id)
+    const labelEl = button.querySelector(".rebirth-label")
+    const gainEl = button.querySelector(".rebirth-gain")
+    if (labelEl.textContent != label) labelEl.textContent = label
+    if (gainEl.dataset.html != gainHTML) {
+        gainEl.innerHTML = gainHTML
+        gainEl.dataset.html = gainHTML
+    }
+}
+
 function renderProgressBar(task, progressFill, progressBar){
     if (task.isFinished) {
         let width = 0
