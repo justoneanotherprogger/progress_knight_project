@@ -7,6 +7,9 @@ export_save: Export save
 import_save_placeholder: Enter save here
 save_copied: Save copied to clipboard!
 hard_reset: Hard reset game
+admin_password_label: Admin password
+admin_speed_label: Speed
+admin_check_button: Check
 links: Links
 language: Language
 

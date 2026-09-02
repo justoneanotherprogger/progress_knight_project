@@ -146,6 +146,7 @@ for (const key in gameData.requirements) {
 loadGameData()
 
 initializeUI()
+initAdminPanel()
 
 setCustomEffects()
 addMultipliers()

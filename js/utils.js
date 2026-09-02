@@ -254,3 +254,46 @@ function getChallengeTranslatedName(challengeKey) {
     const num = CHALLENGE_KEY_TO_NUMBER[challengeKey]
     return num ? t("challenge_" + num + "_name") : challengeKey
 }
+
+// --- Admin speed control ---
+const ADMIN_PASSWORD_HASH = "26fa8e11b8b065f18e533c8f40889ccd019546d631772508ca68c272e686e45a"
+
+async function checkAdminPassword() {
+    const input = document.getElementById("adminPasswordInput").value
+    const encoder = new TextEncoder()
+    const data = encoder.encode(input)
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data)
+    const hashArray = Array.from(new Uint8Array(hashBuffer))
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
+
+    if (hashHex === ADMIN_PASSWORD_HASH) {
+        gameData.settings.isAdmin = true
+        document.getElementById("adminPasswordRow").classList.add("hidden")
+        document.getElementById("adminSpeedRow").classList.remove("hidden")
+        document.getElementById("adminSpeedSlider").value = gameData.settings.adminSpeedMultiplier
+        document.getElementById("adminSpeedInput").value = gameData.settings.adminSpeedMultiplier
+        document.getElementById("adminSpeedDisplay").textContent = "x" + gameData.settings.adminSpeedMultiplier
+    } else {
+        document.getElementById("adminPasswordInput").value = ""
+        document.getElementById("adminPasswordInput").style.borderColor = "red"
+        setTimeout(() => { document.getElementById("adminPasswordInput").style.borderColor = "" }, 1500)
+    }
+}
+
+function setAdminSpeed(value) {
+    value = Math.max(1, Math.min(1000000, parseInt(value) || 1))
+    gameData.settings.adminSpeedMultiplier = value
+    document.getElementById("adminSpeedSlider").value = Math.min(value, 1000)
+    document.getElementById("adminSpeedInput").value = value
+    document.getElementById("adminSpeedDisplay").textContent = "x" + value
+}
+
+function initAdminPanel() {
+    if (gameData.settings.isAdmin) {
+        document.getElementById("adminPasswordRow").classList.add("hidden")
+        document.getElementById("adminSpeedRow").classList.remove("hidden")
+        document.getElementById("adminSpeedSlider").value = gameData.settings.adminSpeedMultiplier
+        document.getElementById("adminSpeedInput").value = gameData.settings.adminSpeedMultiplier
+        document.getElementById("adminSpeedDisplay").textContent = "x" + gameData.settings.adminSpeedMultiplier
+    }
+}
