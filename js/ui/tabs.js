@@ -198,7 +198,7 @@ function renderMilestones() {
         row.querySelector(".essence").textContent = format(milestone.expense)
 
 
-        let desc = milestone.description
+        let desc = t(milestone.description)
         if (milestone.getEffect != null)
             desc = "x" + format(milestone.getEffect(), 1) + " " + desc
 
