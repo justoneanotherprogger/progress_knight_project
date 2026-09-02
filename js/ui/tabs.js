@@ -109,8 +109,10 @@ function renderChallenges() {
 
         for (let i = 1; i <= Object.keys(gameData.challenges).length; i++) {
             const element = document.getElementById("challengeButton" + i)
-            if (element != null)
+            if (element != null) {
+                element.textContent = t("enter_challenge")
                 element.classList.remove("hidden")
+            }
 
         }
     } else {
