@@ -36,9 +36,7 @@ function fitText(element, maxFontSize) {
     let size = maxFontSize
     element.style.fontSize = size + "px"
     const button = element.parentElement
-    const gainEl = button.querySelector(".rebirth-gain")
-    const gainWidth = gainEl ? gainEl.offsetWidth : 0
-    while (element.scrollWidth + gainWidth > button.clientWidth && size > 6) {
+    while (button.scrollWidth > button.clientWidth && size > 6) {
         size--
         element.style.fontSize = size + "px"
     }
