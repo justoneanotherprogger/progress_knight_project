@@ -438,6 +438,11 @@ button:focus {
     padding-bottom: 0.5em;
 }
 
+.rebirth-label {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 .sidebarChallengeReward {
     text-align: center;
 }

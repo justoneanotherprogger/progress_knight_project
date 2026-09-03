@@ -32,6 +32,15 @@ function setRebirthButton(id, label, gainHTML) {
     }
 }
 
+function fitText(element, maxFontSize) {
+    let size = maxFontSize
+    element.style.fontSize = size + "px"
+    while (element.scrollWidth > element.clientWidth && size > 6) {
+        size--
+        element.style.fontSize = size + "px"
+    }
+}
+
 function renderProgressBar(task, progressFill, progressBar){
     if (task.isFinished) {
         let width = 0
