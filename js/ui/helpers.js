@@ -35,10 +35,12 @@ function setRebirthButton(id, label, gainHTML) {
 function fitText(element, maxFontSize) {
     let size = maxFontSize
     element.style.fontSize = size + "px"
+    const originalHeight = element.offsetHeight
     while (element.scrollWidth > element.clientWidth && size > 6) {
         size--
         element.style.fontSize = size + "px"
     }
+    element.style.minHeight = (size < maxFontSize ? originalHeight : "") + "px"
 }
 
 function renderProgressBar(task, progressFill, progressBar){
