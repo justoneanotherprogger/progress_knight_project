@@ -35,7 +35,10 @@ function setRebirthButton(id, label, gainHTML) {
 function fitText(element, maxFontSize) {
     let size = maxFontSize
     element.style.fontSize = size + "px"
-    while (element.scrollWidth > element.clientWidth && size > 6) {
+    const button = element.parentElement
+    const gainEl = button.querySelector(".rebirth-gain")
+    const availableWidth = button.clientWidth - (gainEl ? gainEl.offsetWidth : 0)
+    while (element.scrollWidth > availableWidth && size > 6) {
         size--
         element.style.fontSize = size + "px"
     }
