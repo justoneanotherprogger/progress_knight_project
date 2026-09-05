@@ -159,7 +159,7 @@ function getUnpausedGameSpeed() {
     const speedSpeedSpeed = gameData.requirements["Speed speed speed"].isCompleted() ? SPEED_SPEED_SPEED_MULTIPLIER : 1
     const timeIsAFlatCircle = gameData.requirements["Time is a flat circle"].isCompleted() ? TIME_IS_A_FLAT_CIRCLE_MULTIPLIER : 1
     const timeWarpingSpeed = boostWarping * timeWarping.getEffect() * temporalDimension.getEffect() * timeLoop.getEffect() * warpDrive * speedSpeedSpeed * timeIsAFlatCircle
-    const gameSpeed = baseGameSpeed * timeWarpingSpeed * getChallengeBonus("time_does_not_fly") * getGottaBeFastGain() * getDarkMatterSkillTimeWarping() 
+    const gameSpeed = baseGameSpeed * timeWarpingSpeed * getChallengeBonus("time_does_not_fly") * getGottaBeFastGain() * getDarkMatterSkillTimeWarping() * gameData.settings.adminSpeedMultiplier
     if (gameData.active_challenge == "time_does_not_fly" || gameData.active_challenge == "the_darkest_time")
         return Math.pow(gameSpeed, CHALLENGE_TIME_WARP_EXPONENT)
     if (gameData.active_challenge == "legends_never_die")

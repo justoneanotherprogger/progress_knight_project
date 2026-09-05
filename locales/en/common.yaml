@@ -35,7 +35,7 @@ age: Age
 day: Day
 age_display_default: Age 14 Day 0
 death_title: Age has caught up to you
-death_desc: Your age has met your lifespan; use the amulet to rebirth before you pass away
+death_desc: Your age has met your lifespan
 error_site_broken: ⚠️ Oh no! It looks like something on the site broke.. If this issue persists, feel free to contact the developers.
 
 # Tabs
@@ -108,6 +108,8 @@ max_level: Max lvl
 value_type: Value type
 cost: Cost
 buy: Buy
+accepted: Accepted
+rejected: Rejected
 upgrade: Upgrade
 reset_abilities: Reset Abilities
 version: Version 0.1.0
@@ -155,7 +157,7 @@ challenge_title: In challenge
 "Passively gain a huge amount of Evil": Passively gain a huge amount of Evil
 "x5 Evil gain": x5 Evil gain
 "x10M Happiness": x10M Happiness
-"Essence gain (increases over time, influenced by time warping)": Essence gain (increases over time, influenced by time warping)
+"Essence gain (increases over time, influenced by time warping)": Essence gain (grows with real time)
 "Heroic jobs, skills and items are unlocked": Heroic jobs, skills and items are unlocked
 "Essence gain + x10000 Hero XP": Essence gain + x10000 Hero XP
 "Hero XP": Hero XP

@@ -102,15 +102,17 @@ function renderShop() {
 }
 
 function renderChallenges() {
-    document.getElementById("activeChallengeName").textContent = getFormattedTitle(gameData.active_challenge)
+    document.getElementById("activeChallengeName").textContent = getChallengeTranslatedName(gameData.active_challenge)
 
     if (gameData.active_challenge == "") {
         document.getElementById("exitChallengeDiv").hidden = true
 
         for (let i = 1; i <= Object.keys(gameData.challenges).length; i++) {
             const element = document.getElementById("challengeButton" + i)
-            if (element != null)
+            if (element != null) {
+                element.textContent = t("enter_challenge")
                 element.classList.remove("hidden")
+            }
 
         }
     } else {
@@ -196,7 +198,7 @@ function renderMilestones() {
         row.querySelector(".essence").textContent = format(milestone.expense)
 
 
-        let desc = milestone.description
+        let desc = t(milestone.description)
         if (milestone.getEffect != null)
             desc = "x" + format(milestone.getEffect(), 1) + " " + desc
 
@@ -346,9 +348,43 @@ function renderPerks() {
 
 function renderDarkMatter() {
     // Display currency
+    document.getElementById("darkMatterShopCurrency").textContent = t("dark_matter")
     document.getElementById("darkMatterShopDisplay").textContent = format(gameData.dark_matter)
     document.getElementById("darkMatterSkillsDisplay").textContent = gameData.settings.layout == 0 ? "" : format(gameData.dark_matter)    
     document.getElementById("darkOrbsShopDisplay").textContent = formatTreshold(gameData.dark_orbs)
+
+    // Shop button texts
+    document.getElementById("darkOrbGeneratorBuyButton").textContent = t("buy")
+    document.getElementById("aMiracleBuyButton").textContent = t("buy")
+    document.getElementById("aDealWithTheChairmanBuyButton").textContent = t("buy")
+    document.getElementById("aGiftFromGodBuyButton").textContent = t("buy")
+    document.getElementById("gottaBeFastBuyButton").textContent = t("buy")
+    document.getElementById("lifeCoachBuyButton").textContent = t("buy")
+
+    // Reset abilities button
+    document.getElementById("resetAbilitiesButton").textContent = t("reset_abilities")
+
+    // Shop item titles (ensure translated even if applyTranslations missed them)
+    document.getElementById("dark_orb_generator").textContent = t("dark_orb_generator")
+    document.getElementById("a_miracle").textContent = t("a_miracle")
+    document.getElementById("a_deal_with_chairman").textContent = t("a_deal_with_chairman")
+    document.getElementById("a_gift_from_god").textContent = t("a_gift_from_god")
+    document.getElementById("gotta_be_fast").textContent = t("gotta_be_fast")
+    document.getElementById("life_coach").textContent = t("life_coach")
+
+    // Cost labels
+    document.getElementById("darkOrbGeneratorCostLabel").textContent = t("cost")
+    document.getElementById("darkOrbGeneratorCurrency").textContent = t("dark_matter")
+    document.getElementById("aMiracleCostLabel").textContent = t("cost")
+    document.getElementById("aMiracleCurrency").textContent = t("dark_matter")
+    document.getElementById("aDealWithTheChairmanCostLabel").textContent = t("cost")
+    document.getElementById("aDealWithTheChairmanCurrency").textContent = t("dark_orbs")
+    document.getElementById("aGiftFromGodCostLabel").textContent = t("cost")
+    document.getElementById("aGiftFromGodCurrency").textContent = t("dark_orbs")
+    document.getElementById("gottaBeFastCostLabel").textContent = t("cost")
+    document.getElementById("gottaBeFastCurrency").textContent = t("dark_orbs")
+    document.getElementById("lifeCoachCostLabel").textContent = t("cost")
+    document.getElementById("lifeCoachCurrency").textContent = t("dark_orbs")
 
     // Dark Matter Shop
     document.getElementById("dark_orb_generator_desc").innerHTML = t("dark_orb_generator_desc", format(getDarkOrbGeneration()))
@@ -382,6 +418,28 @@ function renderDarkMatter() {
     renderDarkMatterShopButton("aGiftFromGodBuyButton", canBuyAGiftFromGod())
     renderDarkMatterShopButton("gottaBeFastBuyButton", canBuyGottaBeFast())
     renderDarkMatterShopButton("lifeCoachBuyButton", canBuyLifeCoach())
+
+    // Dark Matter Ability tree — titles
+    document.getElementById("speed_is_life").textContent = t("speed_is_life")
+    document.getElementById("your_greatest_debt").textContent = t("your_greatest_debt")
+    document.getElementById("essence_collector").textContent = t("essence_collector")
+    document.getElementById("explosion_of_the_universe").textContent = t("explosion_of_the_universe")
+    document.getElementById("multiverse_explorer").textContent = t("multiverse_explorer")
+
+    // Skill tree title label
+    document.getElementById("skillTreePageDarkMaterTitle").textContent = t("dark_matter") + ": "
+
+    // Ability descriptions
+    document.getElementById("speedIsLife1Desc").innerHTML = t("speed_is_life_1")
+    document.getElementById("speedIsLife2Desc").innerHTML = t("speed_is_life_2")
+    document.getElementById("yourGreatestDebt1Desc").innerHTML = t("your_greatest_debt_1")
+    document.getElementById("yourGreatestDebt2Desc").innerHTML = t("your_greatest_debt_2")
+    document.getElementById("essenceCollector1Desc").innerHTML = t("essence_collector_1")
+    document.getElementById("essenceCollector2Desc").innerHTML = t("essence_collector_2")
+    document.getElementById("explosionOfTheUniverse1Desc").innerHTML = t("explosion_of_the_universe_1")
+    document.getElementById("explosionOfTheUniverse2Desc").innerHTML = t("explosion_of_the_universe_2")
+    document.getElementById("multiverseExplorer1Desc").innerHTML = t("multiverse_explorer_1")
+    document.getElementById("multiverseExplorer2Desc").innerHTML = t("multiverse_explorer_2")
 
     // Dark Matter Ability tree
     renderSkillTreeButton(document.getElementById("speedIsLife1"), gameData.dark_matter_shop.speed_is_life != 0, [1, 3].includes(gameData.dark_matter_shop.speed_is_life), gameData.dark_matter >= 100)
@@ -801,17 +859,17 @@ function renderSkillTreeButton(element, categoryBought, elementBought, canBuy) {
 
         if (categoryBought) {
             if (elementBought) {
-                element.textContent = "Accepted"
+                element.textContent = t("accepted")
                 element.classList.add("w3-green")
                 element.classList.remove("w3-red")
             } else {
-                element.textContent = "Rejected"
+                element.textContent = t("rejected")
                 element.classList.add("w3-red")
                 element.classList.remove("w3-green")
             }
         }
         else {
-            element.textContent = "Buy"
+            element.textContent = t("buy")
             element.classList.remove("w3-green")
             element.classList.remove("w3-red")
         }
@@ -820,11 +878,11 @@ function renderSkillTreeButton(element, categoryBought, elementBought, canBuy) {
         element.disabled = elementBought
 
         if (elementBought) {
-            element.textContent = "Accepted"
+            element.textContent = t("accepted")
             element.classList.add("w3-green")
             element.classList.remove("w3-red")
         } else {
-            element.textContent = "Buy"
+            element.textContent = t("buy")
             element.classList.remove("w3-green")
             element.classList.remove("w3-red")
         }

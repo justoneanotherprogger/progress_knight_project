@@ -92,12 +92,32 @@
 											<div id="keyChallenge"></div>
 										</div>
 									</li>
-									<li>
-										<div class="text-caption" style="margin-top: 0.4em;">
-											<button class="w3-button button w3-red" id="hard_reset" onClick="resetGameData()"></button>
-										</div>
-									</li>
-									<li>
+								<li>
+									<div class="text-caption" style="margin-top: 0.4em;">
+										<button class="w3-button button w3-red" id="hard_reset" onClick="resetGameData()"></button>
+									</div>
+								</li>
+								<li id="adminPanel">
+									<div class="text-caption" style="margin-top: 0.4em;"></div>
+									<table class="w3-table w3-bordered">
+										<tr id="adminPasswordRow">
+											<td style="padding: 0.4em; width:15em" id="admin_password_label"></td>
+											<td style="padding: 0.4em">
+												<input id="adminPasswordInput" type="password" style="width:15em" />
+												<button class="w3-button button" id="admin_check_button" onclick="checkAdminPassword()"></button>
+											</td>
+										</tr>
+										<tr id="adminSpeedRow" class="hidden">
+											<td style="padding: 0.4em" id="admin_speed_label"></td>
+											<td style="padding: 0.4em">
+												<input id="adminSpeedSlider" type="range" min="1" max="1000" value="1" style="width:12em; vertical-align:middle" oninput="setAdminSpeed(this.value)" />
+												<input id="adminSpeedInput" type="number" min="1" max="1000000" value="1" style="width:6em; vertical-align:middle" oninput="setAdminSpeed(this.value)" />
+												<span id="adminSpeedDisplay">x1</span>
+											</td>
+										</tr>
+									</table>
+								</li>
+								<li>
 										<div class="text-caption" style="margin-top: 0.4em;" id="links"></div>
 										<div style="margin-bottom: 8px;">
 											<div id="links_based_on"></div>

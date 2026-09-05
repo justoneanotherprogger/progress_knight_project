@@ -7,6 +7,9 @@ export_save: Экспорт сохранения
 import_save_placeholder: Вставьте сохранение сюда
 save_copied: Сохранение скопировано в буфер обмена!
 hard_reset: Полный сброс игры
+admin_password_label: Пароль админа
+admin_speed_label: Скорость
+admin_check_button: Проверить
 links: Ссылки
 language: Язык
 

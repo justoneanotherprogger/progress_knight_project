@@ -35,7 +35,7 @@ age: Возраст
 day: День
 age_display_default: Возраст 14 День 0
 death_title: Возраст догнал вас
-death_desc: Ваш возраст достиг предела продолжительности жизни; используйте амулет для перерождения до того, как вы умрёте
+death_desc: Ваш возраст достиг предела продолжительности жизни
 error_site_broken: О нет! Похоже, что-то на сайте сломалось.. Если проблема сохраняется, свяжитесь с разработчиками.
 
 # Tabs
@@ -108,6 +108,8 @@ max_level: Макс. ур.
 value_type: Тип значения
 cost: Стоимость
 buy: Купить
+accepted: Выбрано
+rejected: Отвергнуто
 upgrade: Улучшить
 reset_abilities: Сбросить способности
 version: Версия 0.1.0
@@ -155,12 +157,12 @@ challenge_title: В испытании
 "Passively gain a huge amount of Evil": Пассивно получает много зла
 "x5 Evil gain": x5 прирост зла
 "x10M Happiness": x10M удобство жизни
-"Essence gain (increases over time, influenced by time warping)": Прирост эссенции (растёт со временем, зависит от искажения времени)
+"Essence gain (increases over time, influenced by time warping)": Прирост эссенции (растёт с реальным временем)
 "Heroic jobs, skills and items are unlocked": Открываются Великие работы, навыки и предметы
 "Essence gain + x10000 Hero XP": Прирост эссенции + x10000 опыта Великих
 "Hero XP": Опыт Великих
 "Unlocks Dark Matter": Открывает Тёмную материю
-"Makes Hell Portal even stronger": Делает Адский портал ещё сильнее
+"Makes Hell Portal even stronger": Делает Врата Ада ещё сильнее
 "Passively gain a small amount of Essence": Пассивно получает немного эссенции
 "Multiply Dark Matter gain by 10x": Умножает прирост Тёмной материи на 10x
 "Unlocks Dark Matter Abilities": Открывает способности Тёмной материи

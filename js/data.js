@@ -58,6 +58,8 @@
         fontSize: 3,
         selectedTab: 'jobs',
         enableKeybinds: false,
+        isAdmin: false,
+        adminSpeedMultiplier: 1,
     },
     stats: {
         startDate: new Date(),
