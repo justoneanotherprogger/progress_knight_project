@@ -108,6 +108,8 @@ max_level: Max lvl
 value_type: Value type
 cost: Cost
 buy: Buy
+accepted: Accepted
+rejected: Rejected
 upgrade: Upgrade
 reset_abilities: Reset Abilities
 version: Version 0.1.0

@@ -108,6 +108,8 @@ max_level: Макс. ур.
 value_type: Тип значения
 cost: Стоимость
 buy: Купить
+accepted: Выбрано
+rejected: Отвергнуто
 upgrade: Улучшить
 reset_abilities: Сбросить способности
 version: Версия 0.1.0
