@@ -346,6 +346,25 @@ function renderPerks() {
     }
 }
 
+function getDarkMatterSkillDesc(key, level) {
+    // key: "speed_is_life", "your_greatest_debt", etc.
+    // level: 1, 2 (we only show 1 or 2 in UI, 3 is handled internally)
+    const skillValue = gameData.dark_matter_shop[key]
+
+    // Default: just positive effect (level 1)
+    let desc = t(key + "_" + level)
+
+    // For level 2, always show negative effect regardless of actual skillValue
+    // because the UI always shows level 2 (when both_dark_mater_skills == 1)
+    if (level == 2) {
+        desc += t(key + "_" + level + "_neg")
+    }
+
+    // For level 1, no negative effect
+
+    return desc
+}
+
 function renderDarkMatter() {
     // Display currency
     document.getElementById("darkMatterShopCurrency").textContent = t("dark_matter")
@@ -430,16 +449,28 @@ function renderDarkMatter() {
     document.getElementById("skillTreePageDarkMaterTitle").textContent = t("dark_matter") + ": "
 
     // Ability descriptions
-    document.getElementById("speedIsLife1Desc").innerHTML = t("speed_is_life_1")
-    document.getElementById("speedIsLife2Desc").innerHTML = t("speed_is_life_2")
-    document.getElementById("yourGreatestDebt1Desc").innerHTML = t("your_greatest_debt_1")
-    document.getElementById("yourGreatestDebt2Desc").innerHTML = t("your_greatest_debt_2")
-    document.getElementById("essenceCollector1Desc").innerHTML = t("essence_collector_1")
-    document.getElementById("essenceCollector2Desc").innerHTML = t("essence_collector_2")
-    document.getElementById("explosionOfTheUniverse1Desc").innerHTML = t("explosion_of_the_universe_1")
-    document.getElementById("explosionOfTheUniverse2Desc").innerHTML = t("explosion_of_the_universe_2")
-    document.getElementById("multiverseExplorer1Desc").innerHTML = t("multiverse_explorer_1")
-    document.getElementById("multiverseExplorer2Desc").innerHTML = t("multiverse_explorer_2")
+    document.getElementById("speedIsLife1Desc").innerHTML = getDarkMatterSkillDesc("speed_is_life", 1)
+    document.getElementById("speedIsLife2Desc").innerHTML = getDarkMatterSkillDesc("speed_is_life", 2)
+    document.getElementById("yourGreatestDebt1Desc").innerHTML = getDarkMatterSkillDesc("your_greatest_debt", 1)
+    document.getElementById("yourGreatestDebt2Desc").innerHTML = getDarkMatterSkillDesc("your_greatest_debt", 2)
+    document.getElementById("essenceCollector1Desc").innerHTML = getDarkMatterSkillDesc("essence_collector", 1)
+    document.getElementById("essenceCollector2Desc").innerHTML = getDarkMatterSkillDesc("essence_collector", 2)
+    document.getElementById("explosionOfTheUniverse1Desc").innerHTML = getDarkMatterSkillDesc("explosion_of_the_universe", 1)
+    document.getElementById("explosionOfTheUniverse2Desc").innerHTML = getDarkMatterSkillDesc("explosion_of_the_universe", 2)
+    document.getElementById("multiverseExplorer1Desc").innerHTML = getDarkMatterSkillDesc("multiverse_explorer", 1)
+    document.getElementById("multiverseExplorer2Desc").innerHTML = getDarkMatterSkillDesc("multiverse_explorer", 2)
+
+    // Dark Matter Ability tree - cost labels and currency
+    document.getElementById("speedIsLifeCurrencyLabel").textContent = t("cost")
+    document.getElementById("speedIsLifeCurrencyIcon").textContent = t("dark_matter")
+    document.getElementById("yourGreatestDebtCurrencyLabel").textContent = t("cost")
+    document.getElementById("yourGreatestDebtCurrencyIcon").textContent = t("dark_matter")
+    document.getElementById("essenceCollectorCurrencyLabel").textContent = t("cost")
+    document.getElementById("essenceCollectorCurrencyIcon").textContent = t("dark_matter")
+    document.getElementById("explosionOfTheUniverseCurrencyLabel").textContent = t("cost")
+    document.getElementById("explosionOfTheUniverseCurrencyIcon").textContent = t("dark_matter")
+    document.getElementById("multiverseExplorerCurrencyLabel").textContent = t("cost")
+    document.getElementById("multiverseExplorerCurrencyIcon").textContent = t("dark_matter")
 
     // Dark Matter Ability tree
     renderSkillTreeButton(document.getElementById("speedIsLife1"), gameData.dark_matter_shop.speed_is_life != 0, [1, 3].includes(gameData.dark_matter_shop.speed_is_life), gameData.dark_matter >= 100)
