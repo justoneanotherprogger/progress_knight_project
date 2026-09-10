@@ -19,6 +19,7 @@ function renderSideBar() {
     setRebirthButton("rebirthBtn3", t("rebirth_3"), "<span class=\"color-essence\">(+" + format(getEssenceGain()) + " " + t("essence") + ")</span>")
     fitText(document.getElementById("rebirthBtn3"), 16)
     setRebirthButton("rebirthBtn4", t("rebirth_4"), "<span class=\"color-dark-matter\">(+" + format(getDarkMatterGain()) + " " + t("dark_matter") + ")</span>")
+    fitText(document.getElementById("rebirthBtn4"), 16)
     if (gameData.essence > 1e90)
         setRebirthButton("rebirthBtn5", t("rebirth_5"), "<span class=\"color-perk-points\">(+" + formatTreshold(getMetaversePerkPointsGain()) + " " + t("perk_points") + ")</span>")
     else if (gameData.rebirthFiveCount > 0)
