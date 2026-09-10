@@ -68,10 +68,13 @@ class Task {
     }
 
     getXpGainBigInt() {
-        let xpGain = BigInt(Math.floor(this.isHero ? getHeroXpGainMultipliers(this) : 1))
+        let baseValue = this.isHero ? getHeroXpGainMultipliers(this) : 1
+        let xpGain = BigInt(Math.floor(Number(baseValue)))
 
         this.xpMultipliers.forEach(multiplier => {
-            xpGain *= BigInt(Math.ceil(multiplier()))
+            let val = Number(multiplier())
+            if (!isFinite(val)) val = 1
+            xpGain *= BigInt(Math.ceil(val))
         })
 
         return xpGain

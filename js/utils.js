@@ -1,34 +1,50 @@
 function softcap(value, cap, power = 0.5) {
     if (value <= cap) return value
 
-    return Math.pow(value, power) * Math.pow(cap, 1 - power)
+    // Use Decimal for large numbers to avoid Infinity from Math.pow
+    const decValue = toInfinityNumber(value)
+    const decCap = toInfinityNumber(cap)
+    return decValue.pow(power).times(decCap.pow(1 - power))
 }
 
 function format(number, decimals = 1) {
+    // Convert to Decimal for large numbers
+    const decNumber = toInfinityNumber(number);
+
+    // Special case: if number is very large (>= 1e1000), use e1000 notation
+    if (decNumber.gte(new Decimal('1e1000'))) {
+        return formatInfinityNumber(number);
+    }
+
+    // Old formatting for smaller numbers - use JS Math for calculations
     const units = ["", "k", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "O", "N", "D", "Ud", "Dd", "Td", "Qad", "Qid", "Sxd", "Spd", "Od", "Nd", "V", "Uv", "Dv", "Tv",
     "Qav", "Qiv", "Sxv", "Spv", "Ov", "Nv", "Tr", "Ut", "Dt", "Tt"]
 
     // what tier? (determines SI symbol)
-    const tier = Math.log10(number) / 3 | 0;
-    if (tier <= 0) return math.floor(number, decimals).toFixed(decimals);
+    const log10 = decNumber.log10();
+    const tier = Math.floor(log10 / 3);
+
+    if (tier <= 0) {
+        return decNumber.toFixed(decimals);
+    }
 
     if ((gameData.settings.numberNotation == 0 || tier < 3) && (tier < units.length)) {
         const suffix = units[tier];
         const scale = Math.pow(10, tier * 3);
-        const scaled = number / scale;
-        return math.floor(scaled, decimals).toFixed(decimals) + suffix;
+        const scaled = decNumber / scale;
+        return scaled.toFixed(decimals) + suffix;
     } else {
         if (gameData.settings.numberNotation == 1) {
-            const exp = Math.log10(number) | 0;
+            const exp = Math.floor(log10);
             const scale = Math.pow(10, exp);
-            const scaled = number / scale;
-            return math.floor(scaled, decimals).toFixed(decimals) + "e" + exp;
+            const scaled = decNumber / scale;
+            return scaled.toFixed(decimals) + "e" + exp;
         }
         else {
-            const exp = Math.log10(number) / 3 | 0;
+            const exp = Math.floor(log10 / 3);
             const scale = Math.pow(10, exp * 3);
-            const scaled = number / scale;
-            return math.floor(scaled, decimals).toFixed(decimals) + "e" + exp * 3;
+            const scaled = decNumber / scale;
+            return scaled.toFixed(decimals) + "e" + exp * 3;
         }
     }
 }

@@ -1,18 +1,51 @@
 // calculations.js — pure calculation functions
+// Uses Decimal from break_infinity.js
+
+function toInfinityNumber(n) {
+  if (typeof n == 'undefined' || n === null) return new Decimal(0);
+  return new Decimal(n);
+}
+
+function formatInfinityNumber(num) {
+  if (typeof num == 'undefined' || num === null) return '0';
+  var b = new Decimal(num);
+  var str = b.toString();
+
+  // Handle Infinity/NaN
+  if (!isFinite(b.mantissa)) return str;
+
+  // For numbers >= 1e1000, show only e1000 notation without mantissa
+  if (b.gte(new Decimal('1e1000'))) {
+    var exponent = b.exponent.toString();
+    // Remove leading '+' if present
+    if (exponent.startsWith('+')) {
+      exponent = exponent.substring(1);
+    }
+    return 'e' + exponent;
+  }
+
+  // For smaller numbers, show normal Decimal representation with 2 decimal places
+  // Remove leading '+' from exponent in e-notation
+  if (str.includes('e') && str.includes('+')) {
+    return str.replace('e+', 'e');
+  }
+  // Use toFixed(2) to limit to 2 decimal places
+  return parseFloat(str).toFixed(2);
+}
 
 function getHeroXpGainMultipliers(job) {
     let baseMult = job instanceof Job ? HERO_XP_BASE_JOB : 1
     for (const { requirement, multiplier, jobExtra } of HERO_MILESTONE_MULTIPLIERS) {
         if (gameData.requirements[requirement].isCompleted()) {
-            baseMult *= multiplier
-            if (jobExtra && job instanceof Job) baseMult *= jobExtra
+            baseMult *= toInfinityNumber(multiplier)
+            if (jobExtra && job instanceof Job) baseMult *= toInfinityNumber(jobExtra)
         }
     }
     return baseMult
 }
 
 function getDarknessXpGain() {
-    return gameData.requirements["Strange Magic"].isCompleted() ? STRANGE_MAGIC_MULTIPLIER : 1
+    return gameData.requirements["Strange Magic"].isCompleted() ? toInfinityNumber(STRANGE_MAGIC_MULTIPLIER) : 1
 }
 
 function getHappiness() {
@@ -21,12 +54,12 @@ function getHappiness() {
     const butlerEffect = getBindedItemEffect("Butler")
     const mindreleaseEffect = getBindedTaskEffect("Mind Release")
     const multiverseFragment = getBindedItemEffect("Multiverse Fragment")
-    const godsBlessings = gameData.requirements["God's Blessings"].isCompleted() ? GODS_BLESSINGS_MULTIPLIER : 1
+    const godsBlessings = gameData.requirements["God's Blessings"].isCompleted() ? toInfinityNumber(GODS_BLESSINGS_MULTIPLIER) : 1
     const stairWayToHeaven = getBindedItemEffect("Stairway to heaven")
     const happiness = godsBlessings * meditationEffect() * butlerEffect() * mindreleaseEffect()
         * multiverseFragment() * gameData.currentProperty.getEffect() * getChallengeBonus("an_unhappy_life") * stairWayToHeaven()
-    if (gameData.active_challenge == "dance_with_the_devil") return Math.pow(happiness, CHALLENGE_DANCE_HAPPINESS_EXPONENT)
-    if (gameData.active_challenge == "an_unhappy_life") return Math.pow(happiness, CHALLENGE_UNHAPPY_HAPPINESS_EXPONENT)
+    if (gameData.active_challenge == "dance_with_the_devil") return toInfinityNumber(Math.pow(happiness, CHALLENGE_DANCE_HAPPINESS_EXPONENT))
+    if (gameData.active_challenge == "an_unhappy_life") return toInfinityNumber(Math.pow(happiness, CHALLENGE_UNHAPPY_HAPPINESS_EXPONENT))
     return happiness
 }
 
@@ -91,10 +124,10 @@ function getEvilGain() {
     const absoluteWish = gameData.taskData ["Absolute Wish"]
     const oblivionEmbodiment = gameData.taskData ["Void Embodiment"]
     const yingYang = gameData.taskData["Yin Yang"]
-    const inferno = gameData.requirements["Inferno"].isCompleted() ? INFERNO_MULTIPLIER : 1    
-    const theDevilInsideYou = gameData.requirements["The Devil inside you"].isCompleted() ? THE_DEVIL_INSIDE_YOU_MULTIPLIER : 1
+    const inferno = gameData.requirements["Inferno"].isCompleted() ? toInfinityNumber(INFERNO_MULTIPLIER) : 1
+    const theDevilInsideYou = gameData.requirements["The Devil inside you"].isCompleted() ? toInfinityNumber(THE_DEVIL_INSIDE_YOU_MULTIPLIER) : 1
     const stairWayToHell = getBindedItemEffect("Highway to hell")
-    const evilBooster = (gameData.perks.evil_booster == 1) ? EVIL_BOOSTER_MULTIPLIER : 1
+    const evilBooster = (gameData.perks.evil_booster == 1) ? toInfinityNumber(EVIL_BOOSTER_MULTIPLIER) : 1
     return evilControl.getEffect() * bloodMeditation.getEffect() * absoluteWish.getEffect()
         * oblivionEmbodiment.getEffect() * yingYang.getEffect() * inferno * getChallengeBonus("legends_never_die")
         * getDarkMatterSkillEvil() * theDevilInsideYou * stairWayToHell() * evilBooster
@@ -108,22 +141,22 @@ function getEssenceGain() {
     const rise = milestoneData["Rise of Great Heroes"]
     const darkMagician = gameData.taskData["Dark Magician"]
 
-    const theNewGold = gameData.requirements["The new gold"].isCompleted() ? THE_NEW_GOLD_MULTIPLIER : 1
+    const theNewGold = gameData.requirements["The new gold"].isCompleted() ? toInfinityNumber(THE_NEW_GOLD_MULTIPLIER) : 1
     const lifeIsValueable = gameData.requirements["Life is valueable"].isCompleted() ? gameData.dark_matter : 1
 
     return essenceControl.getEffect() * essenceCollector.getEffect() * transcendentMaster.getEffect()
         * faintHope.getEffect() * rise.getEffect() * getChallengeBonus("dance_with_the_devil")
-        * getAGiftFromGodEssenceGain() * darkMagician.getEffect() * getDarkMatterSkillEssence() 
-        * theNewGold * lifeIsValueable *  essenceMultGain()
+        * getAGiftFromGodEssenceGain() * darkMagician.getEffect() * getDarkMatterSkillEssence()
+        * theNewGold * toInfinityNumber(lifeIsValueable) *  essenceMultGain()
 }
 
 function getDarkMatterGain() {
     const darkRuler = gameData.taskData["Dark Ruler"]
-    const darkMatterHarvester = gameData.requirements["Dark Matter Harvester"].isCompleted() ? DARK_MATTER_HARVESTER_MULTIPLIER : 1
-    const darkMatterMining = gameData.requirements["Dark Matter Mining"].isCompleted() ? DARK_MATTER_MINING_MULTIPLIER : 1
-    const darkMatterMillionaire = gameData.requirements["Dark Matter Millionaire"].isCompleted() ? DARK_MATTER_MILLIONAIRE_MULTIPLIER : 1
+    const darkMatterHarvester = gameData.requirements["Dark Matter Harvester"].isCompleted() ? toInfinityNumber(DARK_MATTER_HARVESTER_MULTIPLIER) : 1
+    const darkMatterMining = gameData.requirements["Dark Matter Mining"].isCompleted() ? toInfinityNumber(DARK_MATTER_MINING_MULTIPLIER) : 1
+    const darkMatterMillionaire = gameData.requirements["Dark Matter Millionaire"].isCompleted() ? toInfinityNumber(DARK_MATTER_MILLIONAIRE_MULTIPLIER) : 1
     const Desintegration = gameData.itemData['Desintegration'].getEffect()
-    const TheEndIsNear = getUnspentPerksDarkmatterGainBuff() 
+    const TheEndIsNear = getUnspentPerksDarkmatterGainBuff()
     return 1 * darkRuler.getEffect() * darkMatterHarvester * darkMatterMining * darkMatterMillionaire * getChallengeBonus("the_darkest_time") * getDarkMatterSkillDarkMater() * darkMatterMultGain() *
         (Desintegration == 0 ? 1 : Desintegration) * TheEndIsNear
 }
