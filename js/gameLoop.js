@@ -16,7 +16,8 @@ function update(needUpdateUI = true) {
     }
     increaseCoins()
 
-    gameData.dark_orbs += applySpeed(getDarkOrbGeneration())
+    const orbGeneration = getDarkOrbGeneration()
+    gameData.dark_orbs = gameData.dark_orbs.add(orbGeneration.mul(getGameSpeed() / updateSpeed))
     gameData.hypercubes += applySpeed(getHypercubeGeneration())
     if (gameData.hypercubes > getHypercubeCap())
         gameData.hypercubes = getHypercubeCap()
@@ -59,7 +60,7 @@ function updateStats() {
 function autoPerks() {
     if (gameData.perks.auto_boost == 1 && !gameData.boost_active && gameData.boost_cooldown <= 0)
         applyBoost()
-    if (gameData.perks.auto_dark_orb == 1 && gameData.dark_matter >= getDarkOrbGeneratorCost() * PERK_AUTO_SACRIFICE_COST_MULTIPLIER && gameData.dark_orbs != Infinity)
+    if (gameData.perks.auto_dark_orb == 1 && gameData.dark_matter >= getDarkOrbGeneratorCost() * PERK_AUTO_SACRIFICE_COST_MULTIPLIER && !isDecimalInfinity(gameData.dark_orbs))
         buyDarkOrbGenerator()
     if (gameData.perks.auto_dark_orb == 1 && gameData.dark_matter >= PERK_AUTO_DARK_ORB_MIRACLE_COST && gameData.dark_matter_shop.a_miracle == false)
         buyAMiracle()

@@ -8,7 +8,7 @@
     evil: 0,
     essence: 0,
     dark_matter: 0,
-    dark_orbs: 0,
+    dark_orbs: new Decimal(0),
     hypercubes: 0,
     perks_points: 0,
     perks: {

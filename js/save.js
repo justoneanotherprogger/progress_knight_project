@@ -154,8 +154,11 @@ function loadGameData() {
             if (gameData.dark_matter == null || isNaN(gameData.dark_matter))
                 gameData.dark_matter = 0
 
-            if (gameData.dark_orbs == null || isNaN(gameData.dark_matter) || isNaN(gameData.dark_orbs))
+            if (gameData.dark_orbs == null || isNaN(gameData.dark_orbs))
                 gameData.dark_orbs = 0
+
+            // Dark orbs are stored as Decimal
+            gameData.dark_orbs = toInfinityNumber(gameData.dark_orbs)
 
             if (gameData.hypercubes == null || isNaN(gameData.hypercubes))
                 gameData.hypercubes = 0
