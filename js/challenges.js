@@ -25,7 +25,8 @@ function exitChallenge() {
 
 function toChallengeDecimal(value, fallback = 0) {
     const dec = toInfinityNumber(value)
-    return dec.isNaN() ? new Decimal(fallback) : dec
+    // Decimal from break_infinity.js stores NaN as Number.NaN in mantissa
+    return Number.isNaN(dec.mantissa) ? new Decimal(fallback) : dec
 }
 
 function updateChallengeProgress(key, value) {
