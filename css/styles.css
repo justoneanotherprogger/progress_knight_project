@@ -132,6 +132,7 @@ td {
     position: absolute;
     top: 5%;
     left: 0.5em;
+    right: 0;
     bottom: 0%;
     color: white
 }
