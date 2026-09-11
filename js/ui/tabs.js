@@ -26,7 +26,12 @@ function renderJobs() {
         gameData.rebirthOneCount > 0 ? maxLevel.classList.remove("hidden") : maxLevel.classList.add("hidden")
 
         const progressBar = task.querySelector(".progressBar", row)
-        progressBar.querySelector(".name").textContent = (task.isHero ? t("great") + " " : "") + t(task.name)
+        const nameEl = progressBar.querySelector(".name")
+        const nameText = (task.isHero ? t("great") + " " : "") + t(task.name)
+        if (nameEl.textContent != nameText) {
+            nameEl.textContent = nameText
+            fitText(nameEl, 16)
+        }
         const progressFill = task.querySelector(".progressFill", row)
         renderProgressBar(task, progressFill, progressBar)
 
@@ -65,7 +70,12 @@ function renderSkills() {
         gameData.rebirthOneCount > 0 ? maxLevel.classList.remove("hidden") : maxLevel.classList.add("hidden")
 
         const progressBar = task.querySelector(".progressBar", row)
-        progressBar.querySelector(".name").textContent = (task.isHero ? t("great") + " " : "") + t(task.name)
+        const nameEl = progressBar.querySelector(".name")
+        const nameText = (task.isHero ? t("great") + " " : "") + t(task.name)
+        if (nameEl.textContent != nameText) {
+            nameEl.textContent = nameText
+            fitText(nameEl, 16)
+        }
         const progressFill = task.querySelector(".progressFill", row)
         renderProgressBar(task, progressFill, progressBar)
 
