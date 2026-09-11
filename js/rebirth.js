@@ -87,7 +87,7 @@ function rebirthFive() {
     gameData.essence = 0
     gameData.evil = 0
     gameData.dark_matter = 0
-    gameData.dark_orbs = 0
+    gameData.dark_orbs = new Decimal(0)
     gameData.dark_matter_shop.dark_orb_generator = 0
     gameData.dark_matter_shop.a_miracle = false
 
