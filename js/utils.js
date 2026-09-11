@@ -36,14 +36,13 @@ function format(number, decimals = 1) {
     } else {
         if (gameData.settings.numberNotation == 1) {
             const exp = Math.floor(log10);
-            const scale = Math.pow(10, exp);
-            const scaled = decNumber / scale;
+            // Math.pow(10, exp) becomes Infinity past 1e308; keep scaling in Decimal
+            const scaled = decNumber.div(new Decimal(10).pow(exp));
             return scaled.toFixed(decimals) + "e" + exp;
         }
         else {
             const exp = Math.floor(log10 / 3);
-            const scale = Math.pow(10, exp * 3);
-            const scaled = decNumber / scale;
+            const scaled = decNumber.div(new Decimal(10).pow(exp * 3));
             return scaled.toFixed(decimals) + "e" + exp * 3;
         }
     }
