@@ -327,7 +327,7 @@ document.getElementById("reduceBoostCooldown").innerHTML = t("current_cooldown",
     else
         document.getElementById("challengeAltarButton").classList.add("hidden")
 
-    document.getElementById("darkMatterMultGain").textContent = format(darkMatterMultGain(), 2)
+    document.getElementById("darkMatterMultGain").innerHTML = t("current_multiplier", format(darkMatterMultGain(), 2))
     document.getElementById("darkMatterMultCost").textContent = format(darkMatterMultCost())
     document.getElementById("darkMaterMultButton").textContent = t("buy")
     document.getElementById("darkMaterMultButton").disabled = !canBuyDarkMatterMult()
