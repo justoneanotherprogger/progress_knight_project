@@ -130,7 +130,7 @@ function getEvilGain() {
     const evilBooster = (gameData.perks.evil_booster == 1) ? toInfinityNumber(EVIL_BOOSTER_MULTIPLIER) : 1
     return evilControl.getEffect() * bloodMeditation.getEffect() * absoluteWish.getEffect()
         * oblivionEmbodiment.getEffect() * yingYang.getEffect() * inferno * getChallengeBonus("legends_never_die")
-        * getDarkMatterSkillEvil() * theDevilInsideYou * stairWayToHell() * evilBooster
+        * getDarkMatterSkillEvil() * theDevilInsideYou * stairWayToHell() * evilBooster * getGreed()
 }
 
 function getEssenceGain() {
@@ -147,7 +147,7 @@ function getEssenceGain() {
     return essenceControl.getEffect() * essenceCollector.getEffect() * transcendentMaster.getEffect()
         * faintHope.getEffect() * rise.getEffect() * getChallengeBonus("dance_with_the_devil")
         * getAGiftFromGodEssenceGain() * darkMagician.getEffect() * getDarkMatterSkillEssence()
-        * theNewGold * toInfinityNumber(lifeIsValueable) *  essenceMultGain()
+        * theNewGold * toInfinityNumber(lifeIsValueable) *  essenceMultGain() * getGreed()
 }
 
 function getDarkMatterGain() {
@@ -158,7 +158,7 @@ function getDarkMatterGain() {
     const Desintegration = gameData.itemData['Desintegration'].getEffect()
     const TheEndIsNear = getUnspentPerksDarkmatterGainBuff()
     return 1 * darkRuler.getEffect() * darkMatterHarvester * darkMatterMining * darkMatterMillionaire * getChallengeBonus("the_darkest_time") * getDarkMatterSkillDarkMater() * darkMatterMultGain() *
-        (Desintegration == 0 ? 1 : Desintegration) * TheEndIsNear
+        (Desintegration == 0 ? 1 : Desintegration) * TheEndIsNear * getGreed()
 }
 
 function getDarkMatter() {
