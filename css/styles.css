@@ -134,7 +134,9 @@ td {
     left: 0.5em;
     right: 0;
     bottom: 0%;
-    color: white
+    color: white;
+    display: flex;
+    align-items: center;
 }
 
 .progress-bar {
