@@ -218,6 +218,10 @@ function renderMilestones() {
             desc = "x" + format(milestone.baseData.effect, 0) + " " + desc
 
         row.querySelector(".description").textContent = desc
+
+        const milestoneName = row.querySelector(".name")
+        milestoneName.style.whiteSpace = "nowrap"
+        fitText(milestoneName, 16)
     }
 }
 
