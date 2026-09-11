@@ -151,6 +151,7 @@ initAdminPanel()
 setCustomEffects()
 addMultipliers()
 
+applyTranslations()
 update()
 
 setTab(gameData.settings.selectedTab)
