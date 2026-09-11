@@ -270,16 +270,37 @@ function renderMetaverse() {
 
     renderBoostButton("boostMetaButton")
 
+    // Display currency
+    document.getElementById("metaverseHypercubes").textContent = t("hypercubes")
+
     document.getElementById("hypercubesMetaDisplay").textContent = format(gameData.hypercubes)
     document.getElementById("hypercubesBonusMetaDisplay").textContent = "x" + format(getHypercubeGeneration() / 0.03)
     document.getElementById("boostCooldownMetaDisplay").textContent = getBoostCooldownString()  
 
+    // Cost labels & currencies
+    document.getElementById("hypercubeGainCostLabel").textContent = t("cost")
+    document.getElementById("hypercubeGainCostCurrency").textContent = t("hypercubes")
+    document.getElementById("reduceBoostCooldownCostLabel").textContent = t("cost")
+    document.getElementById("reduceBoostCooldownCostCurrency").textContent = t("hypercubes")
+    document.getElementById("boostDurationCostLabel").textContent = t("cost")
+    document.getElementById("boostDurationCostCurrency").textContent = t("hypercubes")
+    document.getElementById("evilTranCostLabel").textContent = t("cost")
+    document.getElementById("evilTranCostCurrency").textContent = t("hypercubes")
+    document.getElementById("essenceMultCostLabel").textContent = t("cost")
+    document.getElementById("essenceMultCostCurrency").textContent = t("hypercubes")
+    document.getElementById("challengeAltarCostLabel").textContent = t("cost")
+    document.getElementById("challengeAltarCostCurrency").textContent = t("hypercubes")
+    document.getElementById("darkMatterMultCostLabel").textContent = t("cost")
+    document.getElementById("darkMatterMultCostCurrency").textContent = t("hypercubes")  
+
 document.getElementById("reduceBoostCooldown").innerHTML = t("current_cooldown", formatTime(getBoostCooldownSeconds()))
     document.getElementById("reduceBoostCooldownCost").textContent = format(reduceBoostCooldownCost())
+    document.getElementById("reduceBoostCooldownBuyButton").textContent = t("buy")
     document.getElementById("reduceBoostCooldownBuyButton").disabled = !canBuyReduceBoostCooldown()
 
     document.getElementById("boostDuration").innerHTML = t("current_duration", formatTime(getBoostTimeSeconds()))
     document.getElementById("boostDurationCost").textContent = format(boostDurationCost())
+    document.getElementById("boostDurationBuyButton").textContent = t("buy")
     document.getElementById("boostDurationBuyButton").disabled = !canBuyBoostDuration()
 
     document.getElementById("hypercubeGain").innerHTML = t("current_gain_per_s", format(getHypercubeGeneration() * getUnpausedGameSpeed(),2))
@@ -289,14 +310,17 @@ document.getElementById("reduceBoostCooldown").innerHTML = t("current_cooldown",
 
     document.getElementById("evilTranGain").innerHTML = t("current_gain", format(evilTranGain(), 2))
     document.getElementById("evilTranCost").textContent = format(evilTranCost())
+    document.getElementById("evilTranBuyButton").textContent = t("buy")
     document.getElementById("evilTranBuyButton").disabled = !canBuyEvilTran()
 
     document.getElementById("essenceMultGain").innerHTML = t("current_multiplier", format(essenceMultGain(), 2))
     document.getElementById("essenceMultCost").textContent = format(essenceMultCost())
+    document.getElementById("essenceMultButton").textContent = t("buy")
     document.getElementById("essenceMultButton").disabled = !canBuyEssenceMult()
 
     document.getElementById("challengeAltarCost").textContent = format(challengeAltarCost())
     document.getElementById("challengeAltarState").textContent = gameData.metaverse.challenge_altar == 0 ? "" : "Active"
+    document.getElementById("challengeAltarButton").textContent = t("buy")
     document.getElementById("challengeAltarButton").disabled = !canBuyChallengeAltar()
     if (gameData.metaverse.challenge_altar == 0)
         document.getElementById("challengeAltarButton").classList.remove("hidden")
@@ -305,6 +329,7 @@ document.getElementById("reduceBoostCooldown").innerHTML = t("current_cooldown",
 
     document.getElementById("darkMatterMultGain").textContent = format(darkMatterMultGain(), 2)
     document.getElementById("darkMatterMultCost").textContent = format(darkMatterMultCost())
+    document.getElementById("darkMaterMultButton").textContent = t("buy")
     document.getElementById("darkMaterMultButton").disabled = !canBuyDarkMatterMult()
 
     // Perks
