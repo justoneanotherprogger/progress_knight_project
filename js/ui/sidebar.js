@@ -6,6 +6,7 @@ function renderSideBar() {
 
     const progressBar = quickTaskDisplayElement.getElementsByClassName("job")[0]
     const currentJobName = progressBar.querySelector(".name")
+    currentJobName.style.whiteSpace = "nowrap"
     currentJobName.textContent = (task.isHero ? t("great") + " " : "") + t(task.name) + " " + t("lvl") + " " + formatLevel(task.level)
     fitText(currentJobName, 16)
     const progressFill = progressBar.getElementsByClassName("progressFill")[0]

@@ -30,6 +30,7 @@ function renderJobs() {
         const nameText = (task.isHero ? t("great") + " " : "") + t(task.name)
         if (nameEl.textContent != nameText) {
             nameEl.textContent = nameText
+            nameEl.style.whiteSpace = "nowrap"
             fitText(nameEl, 16)
         }
         const progressFill = task.querySelector(".progressFill", row)
@@ -74,6 +75,7 @@ function renderSkills() {
         const nameText = (task.isHero ? t("great") + " " : "") + t(task.name)
         if (nameEl.textContent != nameText) {
             nameEl.textContent = nameText
+            nameEl.style.whiteSpace = "nowrap"
             fitText(nameEl, 16)
         }
         const progressFill = task.querySelector(".progressFill", row)
