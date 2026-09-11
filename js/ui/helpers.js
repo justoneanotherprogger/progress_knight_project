@@ -33,6 +33,9 @@ function setRebirthButton(id, label, gainHTML) {
 }
 
 function fitText(element, maxFontSize) {
+    const cacheKey = element.textContent + "|" + element.clientWidth
+    if (element.dataset.fitText == cacheKey) return
+
     let size = maxFontSize
     element.style.fontSize = size + "px"
     const originalHeight = element.offsetHeight
@@ -41,6 +44,7 @@ function fitText(element, maxFontSize) {
         element.style.fontSize = size + "px"
     }
     element.style.minHeight = (size < maxFontSize ? originalHeight : "") + "px"
+    element.dataset.fitText = cacheKey
 }
 
 function renderProgressBar(task, progressFill, progressBar){
