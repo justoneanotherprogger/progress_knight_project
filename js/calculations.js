@@ -201,7 +201,7 @@ function getUnpausedGameSpeed() {
 }
 
 function getLifespan() {
-    const coinpile = COINPILE_MULTIPLIER * gameData.coins.plus(1).log(COINPILE_LOG_BASE).toNumber()
+    const coinpile = COINPILE_MULTIPLIER * gameData.coins.plus(1).log(COINPILE_LOG_BASE)
     const immortality = gameData.taskData["Life Essence"]
     const superImmortality = gameData.taskData["Astral Body"]
     const higherDimensions = gameData.taskData["Higher Dimensions"]
