@@ -106,7 +106,7 @@ function getAGiftFromGodEssenceGain() {
 function getLifeCoachIncomeGain() {
     if (gameData.active_challenge == "the_darkest_time") return 1
 
-    return Math.pow(14, gameData.dark_matter_shop.life_coach)
+    return new Decimal(14).pow(gameData.dark_matter_shop.life_coach)
 }
 
 function getGottaBeFastGain() {

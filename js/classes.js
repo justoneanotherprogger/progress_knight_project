@@ -64,7 +64,7 @@ class Task {
     }
 
     getXpGain() {
-        return (this.isHero ? getHeroXpGainMultipliers(this) : 1) * applyMultipliers(10, this.xpMultipliers)
+        return (this.isHero ? getHeroXpGainMultipliers(this) : 1) * applyMultipliers(10, this.xpMultipliers).toNumber()
     }
 
     getXpGainBigInt() {
@@ -179,11 +179,13 @@ class Job extends Task {
     }
 
     getIncome() {
-        const income = (this.isHero ? heroIncomeMult
+        const income = toInfinityNumber(this.isHero ? heroIncomeMult
             * (this.baseData.heroxp > 78 ? JOB_INCOME_HERO_THRESHOLD_78 : 1)
             * (this.baseData.heroxp > 130 ? JOB_INCOME_HERO_THRESHOLD_130 : 1)
-            : 1) * applyMultipliers(this.baseData.income, this.incomeMultipliers) * getChallengeBonus("rich_and_the_poor")
-        return gameData.active_challenge == "rich_and_the_poor" || gameData.active_challenge == "the_darkest_time" ? Math.pow(income, CHALLENGE_RICH_INCOME_EXPONENT) : income
+            : 1)
+            .times(applyMultipliers(this.baseData.income, this.incomeMultipliers))
+            .times(getChallengeBonus("rich_and_the_poor"))
+        return gameData.active_challenge == "rich_and_the_poor" || gameData.active_challenge == "the_darkest_time" ? income.pow(CHALLENGE_RICH_INCOME_EXPONENT) : income
     }
 }
 
@@ -265,8 +267,8 @@ class Item {
     getExpense(heroic) {
         if (heroic === undefined)
             heroic = this.isHero
-        return (heroic ? JOB_INCOME_HERO_BASE_MULTIPLIER * Math.pow(10, this.baseData.heromult) * heroIncomeMult : 1)
-            * applyMultipliers(this.baseData.expense, this.expenseMultipliers)
+        return toInfinityNumber(heroic ? JOB_INCOME_HERO_BASE_MULTIPLIER * Math.pow(10, this.baseData.heromult) * heroIncomeMult : 1)
+            .times(applyMultipliers(this.baseData.expense, this.expenseMultipliers))
     }
 }
 

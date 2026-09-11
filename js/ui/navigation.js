@@ -122,10 +122,10 @@ function setSignDisplay() {
     const signDisplay = document.getElementById("signDisplay")
     if (!signDisplay) return
 
-    if (getNet() > -1 && getNet() < 1) {
+    if (getNet().gt(-1) && getNet().lt(1)) {
         signDisplay.textContent = ""
         signDisplay.style.color = "gray"
-    } else if (getIncome() > getExpense()) {
+    } else if (getIncome().gt(getExpense())) {
         signDisplay.textContent = "+"
         signDisplay.style.color = "green"
     } else {

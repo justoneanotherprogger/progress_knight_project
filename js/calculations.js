@@ -89,11 +89,11 @@ function getEssenceXpGain() {
 }
 
 function applyMultipliers(value, multipliers) {
-    var finalMultiplier = 1
+    var finalMultiplier = new Decimal(1)
     multipliers.forEach((multiplierFunction) => {
-        finalMultiplier *= multiplierFunction()
+        finalMultiplier = finalMultiplier.times(toInfinityNumber(multiplierFunction()))
     })
-    return value * finalMultiplier
+    return toInfinityNumber(value).times(finalMultiplier)
 }
 
 function applySpeed(value) {
@@ -101,6 +101,8 @@ function applySpeed(value) {
         return 0
     if (value == Infinity)
         return Infinity
+    if (value instanceof Decimal)
+        return value.times(getGameSpeed()).div(updateSpeed)
     return value * getGameSpeed() / updateSpeed
 }
 
@@ -109,6 +111,8 @@ function applyUnpausedSpeed(value) {
         return 0
     if (value == Infinity)
         return Infinity
+    if (value instanceof Decimal)
+        return value.times(getUnpausedGameSpeed()).div(updateSpeed)
     return value * getUnpausedGameSpeed() / updateSpeed
 }
 

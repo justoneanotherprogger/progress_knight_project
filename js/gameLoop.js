@@ -82,12 +82,12 @@ function autoPerks() {
 }
 
 function autoPromote() {
-    let maxIncome = 0;
+    let maxIncome = new Decimal(0);
     for (const key in gameData.taskData) {
         const task = gameData.taskData[key]
         if (task instanceof Job && gameData.requirements[key].isCompleted()) {
             const income = task.getIncome();
-            if (income > maxIncome) {
+            if (income.gt(maxIncome)) {
                 maxIncome = income
                 gameData.currentJob = task
             }
@@ -98,7 +98,7 @@ function autoPromote() {
 function autoBuy() {
     if (!autoBuyEnabled) return
 
-    let usedExpense = 0
+    let usedExpense = new Decimal(0)
     const income = getIncome()
 
     for (const key in gameData.itemData) {
@@ -107,7 +107,7 @@ function autoBuy() {
             const expense = item.getExpense()
 
             if (itemCategories['Properties'].indexOf(key) != -1) {
-                if (expense < income && expense >= usedExpense) {
+                if (expense.lt(income) && expense.gte(usedExpense)) {
                     gameData.currentProperty = item
                     usedExpense = expense
                 }
@@ -116,7 +116,7 @@ function autoBuy() {
     }
 
     for (const key in gameData.currentMisc) {
-        usedExpense += gameData.currentMisc[key].getExpense()
+        usedExpense = usedExpense.plus(gameData.currentMisc[key].getExpense())
     }
 
     for (const key in gameData.itemData) {
@@ -124,10 +124,10 @@ function autoBuy() {
             const item = gameData.itemData[key]
             const expense = item.getExpense()
             if (itemCategories['Misc'].indexOf(key) != -1) {
-                if (expense < income - usedExpense) {
+                if (expense.lt(income.minus(usedExpense))) {
                     if (gameData.currentMisc.indexOf(item) == -1) {
                         gameData.currentMisc.push(item)
-                        usedExpense += expense
+                        usedExpense = usedExpense.plus(expense)
                     }
                 }
             }
@@ -182,7 +182,7 @@ function applyExpenses() {
 
     if (gameData.coins.lt(0)) {
         gameData.coins = new Decimal(0)
-        if (getIncome() < getExpense())
+        if (getIncome().lt(getExpense()))
             goBankrupt()
     }
 }

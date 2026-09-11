@@ -67,21 +67,20 @@ function setNotation(index) {
 }
 
 function getNet() {
-    return Math.abs(getIncome() - getExpense())
+    return getIncome().minus(getExpense()).abs()
 }
 
 function getIncome() {
     if (gameData.active_challenge == "the_darkest_time")
-        return 0
+        return new Decimal(0)
     
-    return gameData.currentJob.getIncome() * getDarkMatterSkillIncome()
+    return gameData.currentJob.getIncome().times(getDarkMatterSkillIncome())
 }
 
 function getExpense() {
-    var expense = 0
-    expense += gameData.currentProperty.getExpense()
+    var expense = toInfinityNumber(gameData.currentProperty.getExpense())
     for (misc of gameData.currentMisc) {
-        expense += misc.getExpense()
+        expense = expense.plus(misc.getExpense())
     }
     return expense
 }
