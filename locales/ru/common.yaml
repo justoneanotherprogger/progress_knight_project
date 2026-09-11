@@ -79,7 +79,7 @@ reward_dark_matter: Тёмная материя
 happiness_desc: Влияет на получение всего опыта
 inspiration_desc: Влияет на получение всего опыта
 inspiration_decay: Медленно снижается с возрастом
-greed_desc: Влияет на доход и добычу зла, эссенции и тёмной материи
+greed_desc: Влияет на весь доход
 greed_rise: Медленно растёт с возрастом
 time_warping_desc: Влияет на скорость игры
 

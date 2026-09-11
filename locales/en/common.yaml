@@ -79,7 +79,7 @@ reward_dark_matter: Dark Matter
 happiness_desc: Affects all XP gain
 inspiration_desc: Affects all XP gain
 inspiration_decay: Decays slowly with age
-greed_desc: Affects all income and evil, essence and dark matter gains
+greed_desc: Affects all income
 greed_rise: Rises slowly with age
 time_warping_desc: Affects game speed
 
