@@ -232,6 +232,8 @@ function renderDarkMatterShopButton(elemName, condition) {
 function renderBoostButton(elemName) {
     // render boost button to look nicier :)
     const boostButton = document.getElementById(elemName)
+    if (boostButton == null) return
+    boostButton.textContent = t("boost")
     if (gameData.boost_active) {
         // active
         boostButton.classList.add("perk-boost-active")
@@ -282,6 +284,7 @@ document.getElementById("reduceBoostCooldown").innerHTML = t("current_cooldown",
 
     document.getElementById("hypercubeGain").innerHTML = t("current_gain_per_s", format(getHypercubeGeneration() * getUnpausedGameSpeed(),2))
     document.getElementById("hypercubeGainCost").textContent = format(hypercubeGainCost())
+    document.getElementById("hypercubeGainBuyButton").textContent = t("buy")
     document.getElementById("hypercubeGainBuyButton").disabled = !canBuyHypercubeGain()
 
     document.getElementById("evilTranGain").innerHTML = t("current_gain", format(evilTranGain(), 2))
