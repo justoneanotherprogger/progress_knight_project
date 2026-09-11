@@ -79,7 +79,7 @@
 						<div id="metaverseTab2" class="tabMetaverse">
 							<div id="metaversePage2" class="panel page-column w3-padding">
 								<div class="text-caption" style="padding-top:0em; padding-left:1em;">
-									<div class="text-caption"><span class="color-perk-points"><b></b></span></div>
+									<div class="text-caption"><span class="color-perk-points" id="metaverse_perks"></span></div>
 								</div>
 								<div style="padding-top:1em">
 									<div class="text-caption" id="unspent_perk_points"></div>
@@ -89,17 +89,17 @@
 								<div style="border-bottom: 0.1em solid rgb(217, 24, 119); padding-top: 2em;"></div>
 								<div id="perksLayout" class="perk-grid" style="padding-top:0em">
 									<template class="perkItem">
-										<button class="perk"><div class="perkName"></div><div style="font-size: smaller;"><span></span>: <span class="perkCost">1</span> <span></span></div></button>
+										<button class="perk"><div class="perkName"></div><div style="font-size: smaller;"><span class="perkCostLabel"></span>: <span class="perkCost">1</span> <span class="perkCurrency"></span></div></button>
 									</template>
 								</div>
 								<div style="border-bottom: 0.1em solid rgb(217, 24, 119); padding-top: 0em; "></div>
 								<div id="perkTools" class="perk-grid" style="padding-top:0em">
-									<button class="perk perk-tool" onclick="collectPerkPoints(0)"><div></div></button>
-									<button class="perk perk-tool" onclick="collectPerkPoints(1)"><div></div></button>
+									<button class="perk perk-tool" onclick="collectPerkPoints(0)"><div id="assign_perk_points"></div></button>
+									<button class="perk perk-tool" onclick="collectPerkPoints(1)"><div id="collect_perk_points"></div></button>
 								</div>
 								<div id="Congratulations" class="congrats hidden">
-									<div></div>
-									<div></div>
+									<div id="congratulations"></div>
+									<div id="beaten_the_game"></div>
 								</div>
 							</div>
 						</div>

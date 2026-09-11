@@ -245,7 +245,9 @@ function createPerks(perkLayoutName) {
 function createPerk(template, name) {
     const button = template[0].content.firstElementChild.cloneNode(true)
     button.getElementsByClassName("perkName")[0].textContent = getMetaversePerkName(name)
+    button.getElementsByClassName("perkCostLabel")[0].textContent = t("cost")
     button.getElementsByClassName("perkCost")[0].textContent = getPerkCost(name)
+    button.getElementsByClassName("perkCurrency")[0].textContent = t("mpp_short")
     button.id = "id" + removeSpaces(removeStrangeCharacters(name))
     button.onclick = () => { buyPerk(name) }    
 
