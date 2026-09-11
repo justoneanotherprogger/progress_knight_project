@@ -94,7 +94,7 @@ function renderShop() {
         const item = gameData.itemData[key]
         const row = getRowByName(item.name)
         const button = row.querySelector(".button")
-        button.disabled = gameData.coins < item.getExpense()
+        button.disabled = gameData.coins.lt(item.getExpense())
         const name = button.querySelector(".name")
 
         if (isHeroesUnlocked())

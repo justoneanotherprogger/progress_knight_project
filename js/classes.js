@@ -328,7 +328,7 @@ class CoinRequirement extends Requirement {
     }
 
     getCondition(isHero, requirement) {
-        return gameData.coins >= requirement.requirement
+        return gameData.coins.gte(requirement.requirement)
     }
 }
 

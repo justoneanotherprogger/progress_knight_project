@@ -136,7 +136,7 @@ function autoBuy() {
 }
 
 function increaseCoins() {
-    gameData.coins += applySpeed(getIncome())
+    gameData.coins = gameData.coins.plus(applySpeed(getIncome()))
 }
 
 function increaseDays() {
@@ -175,20 +175,20 @@ function increaseRealtime() {
 }
 
 function applyExpenses() {
-    if (gameData.coins == Infinity)
+    if (!isFinite(gameData.coins.mantissa))
         return
 
-    gameData.coins -= applySpeed(getExpense())
+    gameData.coins = gameData.coins.minus(applySpeed(getExpense()))
 
-    if (gameData.coins < 0) {
-        gameData.coins = 0
+    if (gameData.coins.lt(0)) {
+        gameData.coins = new Decimal(0)
         if (getIncome() < getExpense())
             goBankrupt()
     }
 }
 
 function goBankrupt() {
-    gameData.coins = 0
+    gameData.coins = new Decimal(0)
     gameData.currentProperty = gameData.itemData["Homeless"]
     gameData.currentMisc = []
     autoBuyEnabled = true

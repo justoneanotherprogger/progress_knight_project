@@ -2,7 +2,7 @@
     taskData: {},
     itemData: {},
 
-    coins: 0,
+    coins: new Decimal(0),
     days: 365 * 16,
     totalDays: 0,
     evil: 0,

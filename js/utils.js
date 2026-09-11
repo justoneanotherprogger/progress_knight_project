@@ -96,6 +96,8 @@ function formatCoins(coins, element) {
         c.textContent = "";
     }
 
+    const coinsDec = toInfinityNumber(coins)
+
     switch (gameData.settings.currencyNotation) {
         case 0:
         case 1:
@@ -107,18 +109,19 @@ function formatCoins(coins, element) {
                 const m = money2[i];
                 const prev = money2[i - 1];
                 const diff = prev ? prev.value / m.value : Infinity;
-                const amount = Math.floor(coins / m.value) % diff;
-                if ((amount > 0 || (coins < 1 && m.value == 1))) {
-                    element.children[coinsUsed].textContent = (m.prefix ?? "") + format(amount, amount < 1000 ? 0 : 2) + m.name
+                const scaled = coinsDec.div(m.value).floor()
+                const amount = diff === Infinity ? scaled : scaled.minus(toInfinityNumber(diff).times(scaled.div(diff).floor()))
+                if ((amount.gt(0) || (coinsDec.lt(1) && m.value == 1))) {
+                    element.children[coinsUsed].textContent = (m.prefix ?? "") + format(amount, amount.lt(1000) ? 0 : 2) + m.name
                     element.children[coinsUsed].style.color = m.color
                     element.children[coinsUsed].className = m.class ? m.class : ""
                     coinsUsed++
                 }
-                if (coinsUsed >= 2 || amount >= 100) break;
+                if (coinsUsed >= 2 || amount.gte(100)) break;
             }
             break;
         case 3:
-            element.children[0].textContent = "$" + format(coins / 100, 2)
+            element.children[0].textContent = "$" + format(coinsDec.div(100), 2)
             element.children[0].style.color = "#E5C100"
             element.children[0].className = ""
             break;

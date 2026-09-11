@@ -195,7 +195,7 @@ function rebirthReset(set_tab_to_jobs = true) {
         }
         else setTab("jobs")
     }
-    gameData.coins = 0
+    gameData.coins = new Decimal(0)
     gameData.days = DEFAULT_STARTING_AGE
     gameData.realtime = 0
     gameData.currentJob = gameData.taskData["Beggar"]

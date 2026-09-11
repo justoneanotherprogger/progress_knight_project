@@ -142,6 +142,9 @@ function loadGameData() {
             if (gameData.coins == null)
                 gameData.coins = 0
 
+            // Coins are stored as Decimal
+            gameData.coins = toInfinityNumber(gameData.coins)
+
             if (gameData.essence == null)
                 gameData.essence = 0
 
