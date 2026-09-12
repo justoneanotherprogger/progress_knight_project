@@ -99,10 +99,10 @@ function applyMultipliers(value, multipliers) {
 function applySpeed(value) {
     if (value == 0)
         return 0
-    if (value == Infinity)
-        return Infinity
     if (value instanceof Decimal)
         return value.times(getGameSpeed()).div(updateSpeed)
+    if (value == Infinity)
+        return Infinity
     return value * getGameSpeed() / updateSpeed
 }
 

@@ -137,7 +137,8 @@ function autoBuy() {
 
 function increaseCoins() {
     const gain = applySpeed(getIncome())
-    if (!isFinite(gain.mantissa) || !isFinite(gameData.coins.mantissa))
+    const gainIsFinite = gain instanceof Decimal ? isFinite(gain.mantissa) : isFinite(gain)
+    if (!gainIsFinite || !isFinite(gameData.coins.mantissa))
         return
 
     gameData.coins = gameData.coins.plus(gain)
