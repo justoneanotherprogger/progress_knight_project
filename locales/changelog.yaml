@@ -1,3 +1,13 @@
+- version: 0.1.1
+  date: 12.09.2026
+  en:
+    - "Localization polish: switching language instantly translates all tabs and the changelog"
+    - "Large numbers no longer break: at extreme values the game shows real numbers instead of infinity"
+    - "Long names in tables now fit their buttons, plus small late-game balance tweaks (greed affects more resources, growth caps removed)"
+  ru:
+    - "Полировка локализации: смена языка мгновенно переводит все вкладки и ченджлог"
+    - "Большие числа больше не ломаются: на запредельных значениях игра показывает настоящие числа вместо бесконечности"
+    - "Длинные названия в таблицах подстраиваются под размер кнопок, плюс небольшие правки баланса поздней игры (жадность влияет на больше ресурсов, убраны потолки роста)"
 - version: 0.1.0
   date: 08.08.2026
   en:
