@@ -94,7 +94,7 @@ function getDarkOrbGeneration() {
 function getTaaAndMagicXpGain() {
     if (gameData.active_challenge == "the_darkest_time") return 1
 
-    return Math.pow(4, gameData.dark_matter_shop.a_deal_with_the_chairman)
+    return new Decimal(4).pow(gameData.dark_matter_shop.a_deal_with_the_chairman)
 }
 
 function getAGiftFromGodEssenceGain() {
