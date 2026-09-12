@@ -110,17 +110,20 @@ function renderSideBar() {
     updateResourceScale()
 }
 
-// Keeps the quick bar's bottom edge at the window's bottom edge:
+// Keeps the quick bar's bottom edge a few pixels above the window's bottom
+// edge (6px breather), never touching it:
 // sticky top can be 146px (pinned under the resources bar) or higher (page at top).
 // Recalculated on scroll/resize only — never per frame — so the layout it
 // triggers cannot feed back into the measurement. top is clamped to the
 // sticky offset so a scrolled-off panel cannot request an unbounded height.
+const QUICK_BAR_BOTTOM_GAP = 6
+
 function updateQuickBarHeight() {
     const panel = document.getElementById("info")
     if (!panel) return
 
     const top = Math.max(146, panel.getBoundingClientRect().top)
-    const desired = Math.max(0, window.innerHeight - top)
+    const desired = Math.max(0, window.innerHeight - top - QUICK_BAR_BOTTOM_GAP)
     const current = parseFloat(panel.style.height)
 
     if (isNaN(current) || Math.abs(current - desired) > 0.5)
