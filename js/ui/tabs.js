@@ -318,7 +318,7 @@ document.getElementById("reduceBoostCooldown").innerHTML = t("current_cooldown",
     document.getElementById("essenceMultButton").disabled = !canBuyEssenceMult()
 
     document.getElementById("challengeAltarCost").textContent = format(challengeAltarCost())
-    document.getElementById("challengeAltarState").textContent = gameData.metaverse.challenge_altar == 0 ? "" : "Active"
+    document.getElementById("challengeAltarState").textContent = gameData.metaverse.challenge_altar == 0 ? "" : t("active")
     document.getElementById("challengeAltarButton").textContent = t("buy")
     document.getElementById("challengeAltarButton").disabled = !canBuyChallengeAltar()
     if (gameData.metaverse.challenge_altar == 0)
