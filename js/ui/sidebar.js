@@ -110,13 +110,15 @@ function renderSideBar() {
     updateResourceScale()
 }
 
-// Keeps the quick bar's bottom edge a few pixels above the window's bottom
-// edge (6px breather), never touching it:
+// Keeps the quick bar's bottom edge a small breather above the window's
+// bottom edge. 8px matches the browser-default body margin-bottom, so the
+// page height lands exactly on the window edge and no phantom scrollbar
+// appears even when no block reaches the bottom:
 // sticky top can be 146px (pinned under the resources bar) or higher (page at top).
 // Recalculated on scroll/resize only — never per frame — so the layout it
 // triggers cannot feed back into the measurement. top is clamped to the
 // sticky offset so a scrolled-off panel cannot request an unbounded height.
-const QUICK_BAR_BOTTOM_GAP = 6
+const QUICK_BAR_BOTTOM_GAP = 8
 
 function updateQuickBarHeight() {
     const panel = document.getElementById("info")
