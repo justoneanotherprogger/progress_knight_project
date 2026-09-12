@@ -170,6 +170,13 @@ function loadGameData() {
             if (!isFinite(gameData.evil.mantissa))
                 gameData.evil = new Decimal(0)
 
+            // Per-second stats are stored as Decimal
+            for (const key of ["EvilPerSecond", "maxEvilPerSecond", "EssencePerSecond", "maxEssencePerSecond", "maxEssenceReached"]) {
+                gameData.stats[key] = toInfinityNumber(gameData.stats[key] ?? 0)
+                if (!isFinite(gameData.stats[key].mantissa))
+                    gameData.stats[key] = new Decimal(0)
+            }
+
             if (gameData.dark_matter == null || isNaN(gameData.dark_matter))
                 gameData.dark_matter = 0
 

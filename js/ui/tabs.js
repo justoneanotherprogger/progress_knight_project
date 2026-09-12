@@ -849,7 +849,7 @@ function updateRequiredRows(data, categoryType) {
                 const milestone = milestoneData[nextEntity.name]
                 if (milestone.baseData.description != null) {
                     effectElement.classList.remove("hiddenTask")
-                    effectValueElement.textContent = (gameData.stats.maxEssenceReached > milestone.expense) ? t(milestone.baseData.description) : t("unknown")
+                    effectValueElement.textContent = (gameData.stats.maxEssenceReached.gt(milestone.expense)) ? t(milestone.baseData.description) : t("unknown")
                 }
             }
         }

@@ -201,11 +201,11 @@ function rebirthReset(set_tab_to_jobs = true) {
     gameData.currentJob = gameData.taskData["Beggar"]
     gameData.currentProperty = gameData.itemData["Homeless"]
     gameData.currentMisc = []
-    gameData.stats.EssencePerSecond = 0
-    gameData.stats.maxEssencePerSecond = 0
+    gameData.stats.EssencePerSecond = new Decimal(0)
+    gameData.stats.maxEssencePerSecond = new Decimal(0)
     gameData.stats.maxEssencePerSecondRt = 0
-    gameData.stats.EvilPerSecond = 0
-    gameData.stats.maxEvilPerSecond = 0
+    gameData.stats.EvilPerSecond = new Decimal(0)
+    gameData.stats.maxEvilPerSecond = new Decimal(0)
     gameData.stats.maxEvilPerSecondRt = 0
     autoBuyEnabled = true
 

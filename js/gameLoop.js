@@ -38,22 +38,22 @@ function updateRequirements() {
 
 function updateStats() {
     if (gameData.requirements["Rebirth stats evil"].isCompleted()) {
-        gameData.stats.EvilPerSecond = getEvilGain().toNumber() / gameData.rebirthTwoTime
-        if (gameData.stats.EvilPerSecond > gameData.stats.maxEvilPerSecond) {
+        gameData.stats.EvilPerSecond = getEvilGain().div(gameData.rebirthTwoTime)
+        if (gameData.stats.EvilPerSecond.gt(gameData.stats.maxEvilPerSecond)) {
             gameData.stats.maxEvilPerSecond = gameData.stats.EvilPerSecond
             gameData.stats.maxEvilPerSecondRt = gameData.rebirthTwoTime
         }
     }
 
     if (gameData.requirements["Rebirth stats essence"].isCompleted()) {
-        gameData.stats.EssencePerSecond = getEssenceGain().toNumber() / gameData.rebirthThreeTime
-        if (gameData.stats.EssencePerSecond > gameData.stats.maxEssencePerSecond) {
+        gameData.stats.EssencePerSecond = getEssenceGain().div(gameData.rebirthThreeTime)
+        if (gameData.stats.EssencePerSecond.gt(gameData.stats.maxEssencePerSecond)) {
             gameData.stats.maxEssencePerSecond = gameData.stats.EssencePerSecond
             gameData.stats.maxEssencePerSecondRt = gameData.rebirthThreeTime
         }
     }
 
-    if (gameData.essence > gameData.stats.maxEssenceReached)
+    if (gameData.essence.gt(gameData.stats.maxEssenceReached))
         gameData.stats.maxEssenceReached = gameData.essence
 }
 
