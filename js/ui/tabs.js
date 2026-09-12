@@ -820,10 +820,12 @@ function updateRequiredRows(data, categoryType) {
 
             let finalText = ""
             let effectText = ""
-            if (data == gameData.taskData && categoryType != jobCategories) {
-                const task = gameData.taskData[nextEntity.name]
-                effectElement.classList.remove("hiddenTask")
-                effectValueElement.textContent = task.unlocked ? (task.baseData.description != null ? t(task.baseData.description) : t("reward_income")) : t("unknown")
+            if (data == gameData.taskData) {
+                if (categoryType != jobCategories) {
+                    const task = gameData.taskData[nextEntity.name]
+                    effectElement.classList.remove("hiddenTask")
+                    effectValueElement.textContent = task.unlocked ? (task.baseData.description != null ? t(task.baseData.description) : t("reward_income")) : t("unknown")
+                }
 
                 if (requirementObject instanceof EvilRequirement) {
                     evilElement.classList.remove("hiddenTask")                    
