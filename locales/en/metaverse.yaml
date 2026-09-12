@@ -22,6 +22,7 @@ current_cooldown: "Current cooldown: {0}"
 current_duration: "Current duration: {0}"
 current_gain: "Current gain: {0}"
 current_multiplier: "Current multiplier: x{0}"
+hypercubes_in: "{0} Hypercubes in {1}"
 
 # Metaverse Perks
 unspent_perk_points: "You have <b><span id=\"perkPointDisplay\" class=\"color-perk-points\"></span></b> unspent Metaverse perk points. Total points: <b><span id=\"totalPerkPointDisplay\" class=\"color-perk-points\"></span></b>."

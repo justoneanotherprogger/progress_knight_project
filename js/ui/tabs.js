@@ -260,8 +260,7 @@ function renderMetaverse() {
     for (var i = 0; i < 3; i++) {
         const elem = document.getElementById("timeTillNextHypercubePower" + (i + 1))
         const nextH = getNextPowerOfNumber(gameData.hypercubes * Math.pow(10, i))
-        elem.textContent =
-            format(nextH) + " Hypercubes in " + formatTime(getTimeTillNextHypercubePower(i))
+        elem.textContent = t("hypercubes_in", format(nextH), formatTime(getTimeTillNextHypercubePower(i)))
         if (i>0)
             elem.hidden = nextH > getHypercubeCap() || gameData.perks_points == 0 || gameData.hypercubes < 1e20 * Math.pow(10, i)
         else
