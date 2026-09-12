@@ -365,16 +365,10 @@ button:focus {
 
 .quick-bar {
     position: sticky;
-    top: 0;
-    height: 100vh;
+    top: 146px;
+    height: calc(100vh - 146px);
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-}
-
-.quick-bar-scroll {
-    flex: 1 1 auto;
-    min-height: 0;
     overflow-y: auto;
 }
 
