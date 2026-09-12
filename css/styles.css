@@ -403,7 +403,7 @@ button:focus {
     width: 65em;
     height: auto;
     float: right;
-    margin-bottom: 4em;
+    margin-bottom: 0.8em;
 }
 
 .plain-tab-column {
