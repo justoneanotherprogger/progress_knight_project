@@ -38,7 +38,7 @@ function updateRequirements() {
 
 function updateStats() {
     if (gameData.requirements["Rebirth stats evil"].isCompleted()) {
-        gameData.stats.EvilPerSecond = getEvilGain() / gameData.rebirthTwoTime
+        gameData.stats.EvilPerSecond = getEvilGain().toNumber() / gameData.rebirthTwoTime
         if (gameData.stats.EvilPerSecond > gameData.stats.maxEvilPerSecond) {
             gameData.stats.maxEvilPerSecond = gameData.stats.EvilPerSecond
             gameData.stats.maxEvilPerSecondRt = gameData.rebirthTwoTime

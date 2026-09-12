@@ -70,8 +70,8 @@ function getEvil() {
 function getEvilXpGain() {
     if (gameData.active_challenge == "legends_never_die" || gameData.active_challenge == "the_darkest_time") return 1
     if (gameData.active_challenge == "dance_with_the_devil") {
-        const evilEffect = (Math.pow(getEvil(), EVIL_EFFECT_EXPONENT) / EVIL_EFFECT_DIVISOR) - 1
-        return evilEffect < 0 ? 0 : evilEffect
+        const evilEffect = getEvil().pow(EVIL_EFFECT_EXPONENT).div(EVIL_EFFECT_DIVISOR).sub(1)
+        return evilEffect.lt(0) ? new Decimal(0) : evilEffect
     }
     return getEvil()
 }
@@ -132,9 +132,19 @@ function getEvilGain() {
     const theDevilInsideYou = gameData.requirements["The Devil inside you"].isCompleted() ? toInfinityNumber(THE_DEVIL_INSIDE_YOU_MULTIPLIER) : 1
     const stairWayToHell = getBindedItemEffect("Highway to hell")
     const evilBooster = (gameData.perks.evil_booster == 1) ? toInfinityNumber(EVIL_BOOSTER_MULTIPLIER) : 1
-    return evilControl.getEffect() * bloodMeditation.getEffect() * absoluteWish.getEffect()
-        * oblivionEmbodiment.getEffect() * yingYang.getEffect() * inferno * getChallengeBonus("legends_never_die")
-        * getDarkMatterSkillEvil() * theDevilInsideYou * stairWayToHell() * evilBooster * getGreed()
+    return toInfinityNumber(1)
+        .times(evilControl.getEffect())
+        .times(bloodMeditation.getEffect())
+        .times(absoluteWish.getEffect())
+        .times(oblivionEmbodiment.getEffect())
+        .times(yingYang.getEffect())
+        .times(inferno)
+        .times(getChallengeBonus("legends_never_die"))
+        .times(getDarkMatterSkillEvil())
+        .times(theDevilInsideYou)
+        .times(stairWayToHell())
+        .times(evilBooster)
+        .times(getGreed())
 }
 
 function getEssenceGain() {
@@ -277,14 +287,14 @@ function getGreed() {
 }
 
 function isNextDarkMagicSkillInReach() {
-    const totalEvil = gameData.evil + getEvilGain()
+    const totalEvil = gameData.evil.add(getEvilGain())
 
     for (const key in gameData.taskData) {
         const skill = gameData.taskData[key]
         if (skillCategories["Dark Magic"].includes(key)) {
             const requirement = gameData.requirements[key]
             if (!requirement.isCompleted()) {
-                if (totalEvil >= requirement.requirements[0].requirement) {
+                if (totalEvil.gte(requirement.requirements[0].requirement)) {
                     return true
                 }
             }

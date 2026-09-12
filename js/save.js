@@ -164,6 +164,12 @@ function loadGameData() {
             if (gameData.evil == null)
                 gameData.evil = 0
 
+            // Evil is stored as Decimal
+            gameData.evil = toInfinityNumber(gameData.evil)
+
+            if (!isFinite(gameData.evil.mantissa))
+                gameData.evil = new Decimal(0)
+
             if (gameData.dark_matter == null || isNaN(gameData.dark_matter))
                 gameData.dark_matter = 0
 

@@ -352,7 +352,7 @@ class EvilRequirement extends Requirement {
     }
 
     getCondition(isHero, requirement) {
-        return gameData.evil >= requirement.requirement
+        return gameData.evil.gte(requirement.requirement)
     }
 }
 

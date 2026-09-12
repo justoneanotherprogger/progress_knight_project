@@ -11,7 +11,7 @@ function rebirthOne() {
 
 function rebirthTwo() {
     gameData.rebirthTwoCount += 1
-    gameData.evil += getEvilGain()
+    gameData.evil = gameData.evil.add(getEvilGain())
 
     if (gameData.stats.fastest2 == null || gameData.rebirthTwoTime < gameData.stats.fastest2)
         gameData.stats.fastest2 = gameData.rebirthTwoTime
@@ -54,7 +54,7 @@ function rebirthThree() {
 function rebirthFour() {
     gameData.rebirthFourCount += 1
     gameData.essence = new Decimal(0)
-    gameData.evil = 0
+    gameData.evil = new Decimal(0)
     gameData.dark_matter = gameData.dark_matter.add(getDarkMatterGain())
 
     if (gameData.metaverse.challenge_altar == 0 && gameData.perks.save_challenges == 0)  {
@@ -85,7 +85,7 @@ function rebirthFive() {
     gameData.rebirthFiveCount += 1
     gameData.perks_points += getMetaversePerkPointsGain()
     gameData.essence = new Decimal(0)
-    gameData.evil = 0
+    gameData.evil = new Decimal(0)
     gameData.dark_matter = new Decimal(0)
     gameData.dark_orbs = new Decimal(0)
     gameData.dark_matter_shop.dark_orb_generator = 0
@@ -163,15 +163,15 @@ function applyMilestones() {
 
     if (canSimulate()) {
         if (gameData.requirements["Deal with the Devil"].isCompleted() && gameData.requirements["Rebirth note 3"].isCompleted()) {
-            if (gameData.evil == 0) gameData.evil = 1
-            if (gameData.evil < getEvilGain())
-                gameData.evil *= Math.pow(EVIL_GROWTH_EXPONENT_DEAL, 1)
+            if (gameData.evil.eq(0)) gameData.evil = new Decimal(1)
+            if (gameData.evil.lt(getEvilGain()))
+                gameData.evil = gameData.evil.times(EVIL_GROWTH_EXPONENT_DEAL)
         }
         if (gameData.requirements["Hell Portal"].isCompleted()) {
-            if (gameData.evil == 0) gameData.evil = 1
-            if (gameData.evil < getEvilGain()) {
+            if (gameData.evil.eq(0)) gameData.evil = new Decimal(1)
+            if (gameData.evil.lt(getEvilGain())) {
                 const exponent = gameData.requirements["Mind Control"].isCompleted() ? EVIL_GROWTH_EXPONENT_MIND_CONTROL : EVIL_GROWTH_EXPONENT_HELL
-                gameData.evil *= Math.pow(exponent, 1)
+                gameData.evil = gameData.evil.times(exponent)
             }
         }
         if (gameData.requirements["Galactic Emperor"].isCompleted()) {
@@ -186,7 +186,7 @@ function applyMilestones() {
 function rebirthReset(set_tab_to_jobs = true) {
     if (set_tab_to_jobs) {
         if (gameData.settings.selectedTab == Tab.METAVERSE && gameData.hypercubes > 0
-            || gameData.settings.selectedTab == Tab.CHALLENGES && gameData.evil > PERK_AUTO_DARK_SHOP_ORBS_THRESHOLD
+            || gameData.settings.selectedTab == Tab.CHALLENGES && gameData.evil.gt(PERK_AUTO_DARK_SHOP_ORBS_THRESHOLD)
             || gameData.settings.selectedTab == Tab.MILESTONES && gameData.essence > 0
             || gameData.settings.selectedTab == Tab.DARK_MATTER && gameData.dark_matter.gt(0)
             || gameData.settings.selectedTab == Tab.REBIRTH
@@ -240,8 +240,8 @@ function rebirthReset(set_tab_to_jobs = true) {
 
 function applyPerks() {
     if (gameData.perks.instant_evil == 1) {
-        if (gameData.evil < getEvilGain() * PERK_INSTANT_GAIN_MULTIPLIER)
-            gameData.evil = getEvilGain() * PERK_INSTANT_GAIN_MULTIPLIER
+        if (gameData.evil.lt(getEvilGain().times(PERK_INSTANT_GAIN_MULTIPLIER)))
+            gameData.evil = getEvilGain().times(PERK_INSTANT_GAIN_MULTIPLIER)
     }
     if (gameData.perks.instant_essence == 1) {
         if (gameData.essence.lt(getEssenceGain().times(PERK_INSTANT_GAIN_MULTIPLIER)))
