@@ -16,7 +16,7 @@ function renderSideBar() {
     document.getElementById("lifespanDisplay").textContent = formatWhole(daysToYears(getLifespan()))
     document.getElementById("realtimeDisplay").textContent = formatTime(gameData.realtime)
     document.getElementById("boostCooldownDisplay").textContent = getBoostCooldownString()            
-    updateButtonText("pauseButton", gameData.paused ? t("play") : t("pause"))
+    updateButtonHTML("pauseButton", "⏳ " + (gameData.paused ? t("play") : t("pause")))
     updateButtonText("rebirthBtn1", t("rebirth_1"))
     setRebirthButton("rebirthBtn2", t("rebirth_2"), "<span class=\"color-evil\">(+" + format(getEvilGain()) + " " + t("evil") + ")</span>")
     setRebirthButton("rebirthBtn3", t("rebirth_3"), "<span class=\"color-essence\">(+" + format(getEssenceGain()) + " " + t("essence") + ")</span>")
