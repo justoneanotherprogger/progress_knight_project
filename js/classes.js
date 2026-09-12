@@ -378,7 +378,7 @@ class DarkMatterRequirement extends Requirement {
     }
 
     getCondition(isHero, requirement) {
-        return gameData.dark_matter >= requirement.requirement
+        return gameData.dark_matter.gte(requirement.requirement)
     }
 }
 

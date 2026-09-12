@@ -167,6 +167,12 @@ function loadGameData() {
             if (gameData.dark_matter == null || isNaN(gameData.dark_matter))
                 gameData.dark_matter = 0
 
+            // Dark Matter is stored as Decimal
+            gameData.dark_matter = toInfinityNumber(gameData.dark_matter)
+
+            if (!isFinite(gameData.dark_matter.mantissa))
+                gameData.dark_matter = new Decimal(0)
+
             if (gameData.dark_orbs == null || isNaN(gameData.dark_orbs))
                 gameData.dark_orbs = 0
 

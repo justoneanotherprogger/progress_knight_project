@@ -143,7 +143,7 @@ function buyChallengeAltar() {
 
 
 function darkMatterMultGain() {
-    return (gameData.metaverse.dark_mater_gain_modifer == 0) ? 1 : Math.pow(10, gameData.metaverse.dark_mater_gain_modifer)
+    return (gameData.metaverse.dark_mater_gain_modifer == 0) ? 1 : new Decimal(10).pow(gameData.metaverse.dark_mater_gain_modifer)
 }
 
 function darkMatterMultCost() {

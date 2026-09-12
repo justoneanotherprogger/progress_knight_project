@@ -55,7 +55,7 @@ function rebirthFour() {
     gameData.rebirthFourCount += 1
     gameData.essence = new Decimal(0)
     gameData.evil = 0
-    gameData.dark_matter += getDarkMatterGain()
+    gameData.dark_matter = gameData.dark_matter.add(getDarkMatterGain())
 
     if (gameData.metaverse.challenge_altar == 0 && gameData.perks.save_challenges == 0)  {
         for (const challenge in gameData.challenges) {
@@ -86,7 +86,7 @@ function rebirthFive() {
     gameData.perks_points += getMetaversePerkPointsGain()
     gameData.essence = new Decimal(0)
     gameData.evil = 0
-    gameData.dark_matter = 0
+    gameData.dark_matter = new Decimal(0)
     gameData.dark_orbs = new Decimal(0)
     gameData.dark_matter_shop.dark_orb_generator = 0
     gameData.dark_matter_shop.a_miracle = false
@@ -188,7 +188,7 @@ function rebirthReset(set_tab_to_jobs = true) {
         if (gameData.settings.selectedTab == Tab.METAVERSE && gameData.hypercubes > 0
             || gameData.settings.selectedTab == Tab.CHALLENGES && gameData.evil > PERK_AUTO_DARK_SHOP_ORBS_THRESHOLD
             || gameData.settings.selectedTab == Tab.MILESTONES && gameData.essence > 0
-            || gameData.settings.selectedTab == Tab.DARK_MATTER && gameData.dark_matter > 0
+            || gameData.settings.selectedTab == Tab.DARK_MATTER && gameData.dark_matter.gt(0)
             || gameData.settings.selectedTab == Tab.REBIRTH
         ) {
             // do not switch tab
@@ -249,7 +249,7 @@ function applyPerks() {
         if (!isFinite(gameData.essence.mantissa)) gameData.essence = new Decimal(REBIRTH_THREE_ESSENCE_CAP)
     }
     if (gameData.perks.instant_dark_matter == 1) {
-        if (gameData.dark_matter < getDarkMatterGain() * PERK_INSTANT_GAIN_MULTIPLIER)
-            gameData.dark_matter = getDarkMatterGain() * PERK_INSTANT_GAIN_MULTIPLIER
+        if (gameData.dark_matter.lt(getDarkMatterGain().times(PERK_INSTANT_GAIN_MULTIPLIER)))
+            gameData.dark_matter = getDarkMatterGain().times(PERK_INSTANT_GAIN_MULTIPLIER)
     }
 }

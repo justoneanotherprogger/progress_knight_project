@@ -60,9 +60,9 @@ function updateStats() {
 function autoPerks() {
     if (gameData.perks.auto_boost == 1 && !gameData.boost_active && gameData.boost_cooldown <= 0)
         applyBoost()
-    if (gameData.perks.auto_dark_orb == 1 && gameData.dark_matter >= getDarkOrbGeneratorCost() * PERK_AUTO_SACRIFICE_COST_MULTIPLIER && !isDecimalInfinity(gameData.dark_orbs))
+    if (gameData.perks.auto_dark_orb == 1 && gameData.dark_matter.gte(getDarkOrbGeneratorCost().times(PERK_AUTO_SACRIFICE_COST_MULTIPLIER)) && !isDecimalInfinity(gameData.dark_orbs))
         buyDarkOrbGenerator()
-    if (gameData.perks.auto_dark_orb == 1 && gameData.dark_matter >= PERK_AUTO_DARK_ORB_MIRACLE_COST && gameData.dark_matter_shop.a_miracle == false)
+    if (gameData.perks.auto_dark_orb == 1 && gameData.dark_matter.gte(PERK_AUTO_DARK_ORB_MIRACLE_COST) && gameData.dark_matter_shop.a_miracle == false)
         buyAMiracle()
     if (gameData.perks.auto_dark_shop == 1 && gameData.dark_orbs >= PERK_AUTO_DARK_SHOP_ORBS_THRESHOLD) {
         buyADealWithTheChairman()

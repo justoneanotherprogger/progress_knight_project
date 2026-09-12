@@ -10,13 +10,13 @@ function isDecimalInfinity(value) {
 }
 
 function canBuyDarkOrbGenerator() {
-    return gameData.dark_matter >= getDarkOrbGeneratorCost() && !isDecimalInfinity(getDarkOrbGeneration())
+    return gameData.dark_matter.gte(getDarkOrbGeneratorCost()) && !isDecimalInfinity(getDarkOrbGeneration())
 }
 
 
 function buyDarkOrbGenerator() {
     if (canBuyDarkOrbGenerator()) {
-        gameData.dark_matter -= getDarkOrbGeneratorCost()
+        gameData.dark_matter = gameData.dark_matter.sub(getDarkOrbGeneratorCost())
         gameData.dark_matter_shop.dark_orb_generator += 1
     }
 }
@@ -121,21 +121,21 @@ function getAMiracleCost() {
 
 // Permanent unlocks
 function canBuyAMiracle() {
-    return getDarkMatter() >= getAMiracleCost()
+    return getDarkMatter().gte(getAMiracleCost())
 }
 
 function buyAMiracle() {
     if (canBuyAMiracle()) {
         gameData.dark_matter_shop.a_miracle = true
-        gameData.dark_matter -= getAMiracleCost()
+        gameData.dark_matter = gameData.dark_matter.sub(getAMiracleCost())
     }
 }
 
 
 // Skill tree
 function resetSkillTree() {
-    if (gameData.dark_matter < 1e11 && confirm("Are you sure that you want to reset your Dark Matter Abilities?")
-        || gameData.dark_matter >=1e11) {
+    if (gameData.dark_matter.lt(1e11) && confirm("Are you sure that you want to reset your Dark Matter Abilities?")
+        || gameData.dark_matter.gte(1e11)) {
         gameData.dark_matter_shop.speed_is_life = 0
         gameData.dark_matter_shop.your_greatest_debt = 0
         gameData.dark_matter_shop.essence_collector = 0
@@ -167,8 +167,8 @@ function buyMultiverseExplorer(number) {
 }
 
 function buyDarkMatterSkill(skill_name, cost, number) {
-    if (gameData.dark_matter >= cost) {
-        gameData.dark_matter -= cost
+    if (gameData.dark_matter.gte(cost)) {
+        gameData.dark_matter = gameData.dark_matter.sub(cost)
 
         if (gameData.dark_matter_shop[skill_name] == 0)
             gameData.dark_matter_shop[skill_name] = number
@@ -177,7 +177,7 @@ function buyDarkMatterSkill(skill_name, cost, number) {
         else if (gameData.dark_matter_shop[skill_name] == 2 && (number == 1 || number == 3))
             gameData.dark_matter_shop[skill_name] = 3
         else
-            gameData.dark_matter += cost
+            gameData.dark_matter = gameData.dark_matter.add(cost)
     }
 }
 

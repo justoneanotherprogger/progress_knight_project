@@ -173,8 +173,17 @@ function getDarkMatterGain() {
     const darkMatterMillionaire = gameData.requirements["Dark Matter Millionaire"].isCompleted() ? toInfinityNumber(DARK_MATTER_MILLIONAIRE_MULTIPLIER) : 1
     const Desintegration = gameData.itemData['Desintegration'].getEffect()
     const TheEndIsNear = getUnspentPerksDarkmatterGainBuff()
-    return 1 * darkRuler.getEffect() * darkMatterHarvester * darkMatterMining * darkMatterMillionaire * getChallengeBonus("the_darkest_time") * getDarkMatterSkillDarkMater() * darkMatterMultGain() *
-        (Desintegration == 0 ? 1 : Desintegration) * TheEndIsNear * getGreed()
+    return toInfinityNumber(1)
+        .times(darkRuler.getEffect())
+        .times(darkMatterHarvester)
+        .times(darkMatterMining)
+        .times(darkMatterMillionaire)
+        .times(getChallengeBonus("the_darkest_time"))
+        .times(getDarkMatterSkillDarkMater())
+        .times(darkMatterMultGain())
+        .times(Desintegration == 0 ? 1 : Desintegration)
+        .times(TheEndIsNear)
+        .times(getGreed())
 }
 
 function getDarkMatter() {
@@ -182,10 +191,10 @@ function getDarkMatter() {
 }
 
 function getDarkMatterXpGain() {
-    if (getDarkMatter() < 1)
+    if (getDarkMatter().lt(1))
         return 1
 
-    return getDarkMatter() + 1;
+    return getDarkMatter().add(1);
 }
 
 function getDarkOrbs() {

@@ -103,6 +103,6 @@ function renderSideBar() {
         renderCurrentChallengeRewardValue(true)
     }
 
-    if (getDarkMatter() == 0)
+    if (getDarkMatter().eq(0))
         gameData.requirements["Dark Matter info"].completed = false
 }
