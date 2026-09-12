@@ -158,22 +158,19 @@ function getEssenceGain() {
     const theNewGold = gameData.requirements["The new gold"].isCompleted() ? toInfinityNumber(THE_NEW_GOLD_MULTIPLIER) : toInfinityNumber(1)
     const lifeIsValueable = gameData.requirements["Life is valueable"].isCompleted() ? toInfinityNumber(gameData.dark_matter) : toInfinityNumber(1)
 
-    return softcap(
-        toInfinityNumber(essenceControl.getEffect())
-            .times(essenceCollector.getEffect())
-            .times(transcendentMaster.getEffect())
-            .times(faintHope.getEffect())
-            .times(rise.getEffect())
-            .times(getChallengeBonus("dance_with_the_devil"))
-            .times(getAGiftFromGodEssenceGain())
-            .times(darkMagician.getEffect())
-            .times(getDarkMatterSkillEssence())
-            .times(theNewGold)
-            .times(lifeIsValueable)
-            .times(essenceMultGain())
-            .times(getGreed()),
-        ESSENCE_SOFTCAP
-    )
+    return toInfinityNumber(essenceControl.getEffect())
+        .times(essenceCollector.getEffect())
+        .times(transcendentMaster.getEffect())
+        .times(faintHope.getEffect())
+        .times(rise.getEffect())
+        .times(getChallengeBonus("dance_with_the_devil"))
+        .times(getAGiftFromGodEssenceGain())
+        .times(darkMagician.getEffect())
+        .times(getDarkMatterSkillEssence())
+        .times(theNewGold)
+        .times(lifeIsValueable)
+        .times(essenceMultGain())
+        .times(getGreed())
 }
 
 function getDarkMatterGain() {
