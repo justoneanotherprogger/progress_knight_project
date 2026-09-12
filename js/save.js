@@ -152,6 +152,12 @@ function loadGameData() {
             if (gameData.essence == null)
                 gameData.essence = 0
 
+            // Essence is stored as Decimal
+            gameData.essence = toInfinityNumber(gameData.essence)
+
+            if (!isFinite(gameData.essence.mantissa))
+                gameData.essence = new Decimal(0)
+
             if (gameData.days == null)
                 gameData.days = DEFAULT_STARTING_AGE
 

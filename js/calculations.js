@@ -82,8 +82,8 @@ function getEssence() {
 
 function getEssenceXpGain() {
     if (gameData.active_challenge == "dance_with_the_devil" || gameData.active_challenge == "the_darkest_time") {
-        const essenceEffect = (Math.pow(getEssence(), ESSENCE_EFFECT_EXPONENT) / ESSENCE_EFFECT_DIVISOR) - 1
-        return essenceEffect <= ESSENCE_EFFECT_MIN_THRESHOLD ? 0 : essenceEffect
+        const essenceEffect = getEssence().pow(ESSENCE_EFFECT_EXPONENT).div(ESSENCE_EFFECT_DIVISOR).sub(1)
+        return essenceEffect.lte(ESSENCE_EFFECT_MIN_THRESHOLD) ? new Decimal(0) : essenceEffect
     }
     return getEssence()
 }
@@ -145,13 +145,22 @@ function getEssenceGain() {
     const rise = milestoneData["Rise of Great Heroes"]
     const darkMagician = gameData.taskData["Dark Magician"]
 
-    const theNewGold = gameData.requirements["The new gold"].isCompleted() ? toInfinityNumber(THE_NEW_GOLD_MULTIPLIER) : 1
-    const lifeIsValueable = gameData.requirements["Life is valueable"].isCompleted() ? gameData.dark_matter : 1
+    const theNewGold = gameData.requirements["The new gold"].isCompleted() ? toInfinityNumber(THE_NEW_GOLD_MULTIPLIER) : toInfinityNumber(1)
+    const lifeIsValueable = gameData.requirements["Life is valueable"].isCompleted() ? toInfinityNumber(gameData.dark_matter) : toInfinityNumber(1)
 
-    return essenceControl.getEffect() * essenceCollector.getEffect() * transcendentMaster.getEffect()
-        * faintHope.getEffect() * rise.getEffect() * getChallengeBonus("dance_with_the_devil")
-        * getAGiftFromGodEssenceGain() * darkMagician.getEffect() * getDarkMatterSkillEssence()
-        * theNewGold * toInfinityNumber(lifeIsValueable) *  essenceMultGain() * getGreed()
+    return toInfinityNumber(essenceControl.getEffect())
+        .times(essenceCollector.getEffect())
+        .times(transcendentMaster.getEffect())
+        .times(faintHope.getEffect())
+        .times(rise.getEffect())
+        .times(getChallengeBonus("dance_with_the_devil"))
+        .times(getAGiftFromGodEssenceGain())
+        .times(darkMagician.getEffect())
+        .times(getDarkMatterSkillEssence())
+        .times(theNewGold)
+        .times(lifeIsValueable)
+        .times(essenceMultGain())
+        .times(getGreed())
 }
 
 function getDarkMatterGain() {

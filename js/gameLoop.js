@@ -46,7 +46,7 @@ function updateStats() {
     }
 
     if (gameData.requirements["Rebirth stats essence"].isCompleted()) {
-        gameData.stats.EssencePerSecond = getEssenceGain() / gameData.rebirthThreeTime
+        gameData.stats.EssencePerSecond = getEssenceGain().toNumber() / gameData.rebirthThreeTime
         if (gameData.stats.EssencePerSecond > gameData.stats.maxEssencePerSecond) {
             gameData.stats.maxEssencePerSecond = gameData.stats.EssencePerSecond
             gameData.stats.maxEssencePerSecondRt = gameData.rebirthThreeTime

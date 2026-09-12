@@ -6,7 +6,7 @@
     days: 365 * 16,
     totalDays: 0,
     evil: 0,
-    essence: 0,
+essence: new Decimal(0),
     dark_matter: 0,
     dark_orbs: new Decimal(0),
     hypercubes: 0,

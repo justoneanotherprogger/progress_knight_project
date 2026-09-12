@@ -364,9 +364,9 @@ class EssenceRequirement extends Requirement {
 
     getCondition(isHero, requirement) {
         if (isHero && requirement.herequirement != null)
-            return gameData.essence >= requirement.herequirement
+            return gameData.essence.gte(requirement.herequirement)
         else
-            return gameData.essence >= requirement.requirement
+            return gameData.essence.gte(requirement.requirement)
 
     }
 }

@@ -23,7 +23,7 @@ function renderSideBar() {
     fitText(document.getElementById("rebirthBtn3"), 16)
     setRebirthButton("rebirthBtn4", t("rebirth_4"), "<span class=\"color-dark-matter\">(+" + format(getDarkMatterGain()) + " " + t("dark_matter") + ")</span>")
     fitText(document.getElementById("rebirthBtn4"), 16)
-    if (gameData.essence > 1e90)
+    if (gameData.essence.gt(1e90))
         setRebirthButton("rebirthBtn5", t("rebirth_5"), "<span class=\"color-perk-points\">(+" + formatTreshold(getMetaversePerkPointsGain()) + " " + t("perk_points") + ")</span>")
     else if (gameData.rebirthFiveCount > 0)
         setRebirthButton("rebirthBtn5", t("rebirth_5"), "<span class=\"color-hypercubes\">(" + format(getHypercubeCap(1)) + " " + t("hypercubes") + ")</span>")
@@ -64,7 +64,7 @@ function renderSideBar() {
     setTextAll("#perkPointsGainDisplay", formatTreshold(getMetaversePerkPointsGain()))
 
 
-    document.getElementById("rebirthButton5").hidden = getHypercubeCap() == Infinity && gameData.essence < 1e90
+    document.getElementById("rebirthButton5").hidden = getHypercubeCap() == Infinity && gameData.essence.lt(1e90)
 
     // Embrace evil indicator
     const embraceEvilButton = document.getElementById("rebirthButton2").querySelector(".button")

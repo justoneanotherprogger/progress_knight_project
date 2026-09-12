@@ -29,8 +29,8 @@ function rebirthTwo() {
 
 function rebirthThree() {
     gameData.rebirthThreeCount += 1
-    gameData.essence += getEssenceGain()
-    if (gameData.essence == Infinity) gameData.essence = REBIRTH_THREE_ESSENCE_CAP
+    gameData.essence = gameData.essence.add(getEssenceGain())
+    if (!isFinite(gameData.essence.mantissa)) gameData.essence = new Decimal(REBIRTH_THREE_ESSENCE_CAP)
     gameData.evil = evilTranGain()
 
 
@@ -53,7 +53,7 @@ function rebirthThree() {
 
 function rebirthFour() {
     gameData.rebirthFourCount += 1
-    gameData.essence = 0
+    gameData.essence = new Decimal(0)
     gameData.evil = 0
     gameData.dark_matter += getDarkMatterGain()
 
@@ -84,7 +84,7 @@ function rebirthFour() {
 function rebirthFive() {
     gameData.rebirthFiveCount += 1
     gameData.perks_points += getMetaversePerkPointsGain()
-    gameData.essence = 0
+    gameData.essence = new Decimal(0)
     gameData.evil = 0
     gameData.dark_matter = 0
     gameData.dark_orbs = new Decimal(0)
@@ -175,10 +175,10 @@ function applyMilestones() {
             }
         }
         if (gameData.requirements["Galactic Emperor"].isCompleted()) {
-            if (gameData.essence == 0) gameData.essence = 1
-            if (gameData.essence < getEssenceGain() * PERK_INSTANT_GAIN_MULTIPLIER)
-                gameData.essence *= Math.pow(ESSENCE_GROWTH_EXPONENT, 1)
-            if (gameData.essence == Infinity) gameData.essence = REBIRTH_THREE_ESSENCE_CAP
+            if (gameData.essence.eq(0)) gameData.essence = new Decimal(1)
+            if (gameData.essence.lt(getEssenceGain().times(PERK_INSTANT_GAIN_MULTIPLIER)))
+                gameData.essence = gameData.essence.times(ESSENCE_GROWTH_EXPONENT)
+            if (!isFinite(gameData.essence.mantissa)) gameData.essence = new Decimal(REBIRTH_THREE_ESSENCE_CAP)
         }
     }
 }
@@ -244,9 +244,9 @@ function applyPerks() {
             gameData.evil = getEvilGain() * PERK_INSTANT_GAIN_MULTIPLIER
     }
     if (gameData.perks.instant_essence == 1) {
-        if (gameData.essence < getEssenceGain() * PERK_INSTANT_GAIN_MULTIPLIER)
-            gameData.essence = getEssenceGain() * PERK_INSTANT_GAIN_MULTIPLIER
-        if (gameData.essence == Infinity) gameData.essence = REBIRTH_THREE_ESSENCE_CAP
+        if (gameData.essence.lt(getEssenceGain().times(PERK_INSTANT_GAIN_MULTIPLIER)))
+            gameData.essence = getEssenceGain().times(PERK_INSTANT_GAIN_MULTIPLIER)
+        if (!isFinite(gameData.essence.mantissa)) gameData.essence = new Decimal(REBIRTH_THREE_ESSENCE_CAP)
     }
     if (gameData.perks.instant_dark_matter == 1) {
         if (gameData.dark_matter < getDarkMatterGain() * PERK_INSTANT_GAIN_MULTIPLIER)
