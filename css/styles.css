@@ -365,8 +365,9 @@ button:focus {
 
 .quick-bar {
     position: sticky;
-    top: 146px;
-    height: calc(100vh - 146px);
+    top: 0;
+    height: 100vh;
+    padding-top: 146px;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
