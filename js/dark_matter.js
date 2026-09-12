@@ -100,7 +100,7 @@ function getTaaAndMagicXpGain() {
 function getAGiftFromGodEssenceGain() {
     if (gameData.active_challenge == "the_darkest_time") return 1
 
-    return Math.pow(2.1, gameData.dark_matter_shop.a_gift_from_god)
+    return new Decimal(2.1).pow(gameData.dark_matter_shop.a_gift_from_god)
 }
 
 function getLifeCoachIncomeGain() {
