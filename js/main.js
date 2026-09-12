@@ -116,6 +116,7 @@ function setTheme(index, reload=false) {
 function setEnableKeybinds(enableKeybinds) {
     gameData.settings.enableKeybinds = enableKeybinds
     selectElementInGroup("EnableKeybinds", enableKeybinds ? 0 : 1)
+    document.getElementById("keybindsList").classList.toggle("hidden", !enableKeybinds)
 }
 
 

@@ -63,6 +63,9 @@ function refreshSettingsButtons() {
         const el = document.getElementById(id)
         if (el) el.textContent = t(keyHints[id])
     }
+
+    const keybindsList = document.getElementById("keybindsList")
+    if (keybindsList) keybindsList.classList.toggle("hidden", !gameData.settings.enableKeybinds)
 }
 
 function updateUI() {
