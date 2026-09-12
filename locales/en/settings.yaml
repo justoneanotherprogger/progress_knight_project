@@ -14,7 +14,7 @@ links: Links
 language: Language
 
 # Settings options
-sticky_sidebar: Sticky sidebar
+sticky_sidebar: Sticky panels (top and side)
 currency_notation: Currency notation
 number_notation: Number notation
 layout: Layout

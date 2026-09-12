@@ -14,7 +14,7 @@ links: Ссылки
 language: Язык
 
 # Settings options
-sticky_sidebar: Закреплённая боковая панель
+sticky_sidebar: Закреплённые панели (верхняя и боковая)
 currency_notation: Обозначение валют
 number_notation: Обозначение чисел
 layout: Макет
