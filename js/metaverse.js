@@ -276,7 +276,7 @@ function collectPerkPoints(value) {
 function getBoostCooldownString() {
     return gameData.boost_active
         ? t("active") + ": " + formatTime(gameData.boost_timer)
-        : (gameData.boost_cooldown <= 0 ? "Ready!" : "Cooldown: " + formatTime(gameData.boost_cooldown))
+        : (gameData.boost_cooldown <= 0 ? t("boost_ready") : t("boost_cooldown", formatTime(gameData.boost_cooldown)))
 }
 
 function getTimeIsAFlatCircleXP() {

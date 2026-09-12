@@ -23,6 +23,8 @@ current_duration: 'Текущая длительность: {0}'
 current_gain: 'Текущее получение: {0}'
 current_multiplier: 'Текущий множитель: x{0}'
 hypercubes_in: '{0} гиперкубов через {1}'
+boost_ready: 'Готово!'
+boost_cooldown: 'Перезарядка: {0}'
 
 # Metaverse Perks
 unspent_perk_points: 'У вас есть <b><span id="perkPointDisplay" class="color-perk-points"></span></b> непотраченных очков даров Метавселенной. Всего очков: <b><span id="totalPerkPointDisplay" class="color-perk-points"></span></b>.'
