@@ -680,11 +680,11 @@ function renderHeaderRows(categories) {
     }
 }
 
-function createRequiredRow(categoryName) {
+function createRequiredRow(categoryName, categoryType) {
     const requiredRow = document.querySelector(".requiredRowTemplate").content.firstElementChild.cloneNode(true)
     const graySpans = requiredRow.querySelectorAll("span.w3-text-gray")
     graySpans[0].textContent = t("required")
-    if (graySpans.length > 1) graySpans[1].textContent = t("next_effect")
+    if (categoryType != jobCategories && graySpans.length > 1) graySpans[1].textContent = t("next_effect")
     requiredRow.classList.add("requiredRow")
     requiredRow.classList.add(removeSpaces(categoryName))
     requiredRow.id = "req_" + categoryName
@@ -751,7 +751,7 @@ function createAllRows(categoryType, tableId) {
             table.appendChild(row)
         })
 
-        const requiredRow = createRequiredRow(categoryName)
+        const requiredRow = createRequiredRow(categoryName, categoryType)
         table.append(requiredRow)
     }
 }
@@ -761,7 +761,7 @@ function updateRequiredRows(data, categoryType) {
     for (const requiredRow of requiredRows) {
         const graySpans = requiredRow.querySelectorAll("span.w3-text-gray")
         graySpans[0].textContent = t("required")
-        if (graySpans.length > 1) graySpans[1].textContent = t("next_effect")
+        if (categoryType != jobCategories && graySpans.length > 1) graySpans[1].textContent = t("next_effect")
         let nextEntity = null
         const category = categoryType[requiredRow.id.substring(4)]
         if (category == null) {continue}
@@ -820,7 +820,7 @@ function updateRequiredRows(data, categoryType) {
 
             let finalText = ""
             let effectText = ""
-            if (data == gameData.taskData) {
+            if (data == gameData.taskData && categoryType != jobCategories) {
                 const task = gameData.taskData[nextEntity.name]
                 effectElement.classList.remove("hiddenTask")
                 effectValueElement.textContent = task.unlocked ? (task.baseData.description != null ? t(task.baseData.description) : t("reward_income")) : t("unknown")
