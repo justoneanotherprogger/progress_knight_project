@@ -29,6 +29,7 @@ function renderSideBar() {
         setRebirthButton("rebirthBtn5", t("rebirth_5"), "<span class=\"color-hypercubes\">(" + format(getHypercubeCap(1)) + " " + t("hypercubes") + ")</span>")
     else
         setRebirthButton("rebirthBtn5", t("rebirth_5"), "")
+    fitText(document.getElementById("rebirthBtn5"), 16)
     document.getElementById("boostPanel").hidden = gameData.rebirthFiveCount == 0
     renderBoostButton("boostButton")
 
