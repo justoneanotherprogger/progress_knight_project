@@ -155,3 +155,11 @@ function updateResourceScale() {
         resourceScaleCache.scale = scale
     }
 }
+
+// Re-measure periodically even when panel height is stable: right after a
+// reload the first frame can capture a half-rendered state and freeze the
+// scale at ~0.5 with empty space left over.
+setInterval(() => {
+    resourceScaleCache.key = ""
+    updateResourceScale()
+}, 1000)
