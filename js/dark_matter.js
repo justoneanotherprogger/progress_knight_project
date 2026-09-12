@@ -88,7 +88,7 @@ function getDarkOrbGeneration() {
 
     const darkOrbiter = gameData.requirements["Dark Orbiter"].isCompleted() ? 1e10 : 1
 
-    return softcap(new Decimal(100).pow(gameData.dark_matter_shop.dark_orb_generator - 1).times(darkOrbiter), DARK_ORBS_SOFTCAP, 0.1)
+    return new Decimal(100).pow(gameData.dark_matter_shop.dark_orb_generator - 1).times(darkOrbiter)
 }
 
 function getTaaAndMagicXpGain() {
