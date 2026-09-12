@@ -652,7 +652,8 @@ function renderHeaderRows(categories) {
         else
             headerRow.getElementsByClassName("category")[0].textContent = t(categoryName)
         const maxLevelElement = headerRow.querySelector(".maxLevel")
-        gameData.rebirthOneCount > 0 ? maxLevelElement.classList.remove("hidden") : maxLevelElement.classList.add("hidden")
+        if (maxLevelElement)
+            maxLevelElement.classList.toggle("hidden", gameData.rebirthOneCount == 0)
     }
 }
 
