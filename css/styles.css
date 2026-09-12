@@ -367,9 +367,14 @@ button:focus {
     position: sticky;
     top: 0;
     height: 100vh;
-    padding-top: 146px;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+}
+
+.quick-bar-scroll {
+    flex: 1 1 auto;
+    min-height: 0;
     overflow-y: auto;
 }
 
