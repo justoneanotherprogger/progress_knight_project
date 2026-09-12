@@ -145,6 +145,10 @@ function loadGameData() {
             // Coins are stored as Decimal
             gameData.coins = toInfinityNumber(gameData.coins)
 
+            // A save can get poisoned with Infinity (e.g. by a pre-Decimal income overflow)
+            if (!isFinite(gameData.coins.mantissa))
+                gameData.coins = new Decimal(0)
+
             if (gameData.essence == null)
                 gameData.essence = 0
 

@@ -136,7 +136,11 @@ function autoBuy() {
 }
 
 function increaseCoins() {
-    gameData.coins = gameData.coins.plus(applySpeed(getIncome()))
+    const gain = applySpeed(getIncome())
+    if (!isFinite(gain.mantissa) || !isFinite(gameData.coins.mantissa))
+        return
+
+    gameData.coins = gameData.coins.plus(gain)
 }
 
 function increaseDays() {
