@@ -175,4 +175,5 @@ document.addEventListener('i18n:changed', () => {
     refreshSettingsButtons();
     refreshLangButtons();
     updateFontSizeIndicator();
+    renderChangelog();
 });

@@ -929,19 +929,12 @@ function renderChangelog() {
     const container = document.getElementById("changelog")
     if (!container) return
 
-    const langLabels = { en: t("lang_en"), ru: t("lang_ru") }
     let html = `<table style="width:100%; border-collapse:collapse;">`
-    html += `<tr><th style="text-align:left; width:50%; color:inherit;">${langLabels.en}</th><th style="text-align:left; color:inherit;">${langLabels.ru}</th></tr>`
     for (const entry of CHANGELOG) {
-        const items = entry["en"]
-        const itemsRu = entry["ru"] || []
-        const maxItems = Math.max(items.length, itemsRu.length)
-        html += `<tr><td colspan="2" style="text-align:center; font-weight:bold; padding-top:0.8em; padding-bottom:0.2em;">version ${entry["version"]} / ${entry["date"]}</td></tr>`
-        for (let i = 0; i < maxItems; i++) {
-            html += `<tr>`
-            html += `<td style="padding:0.15em 0.5em 0.15em 0; vertical-align:top;">${items[i] || ""}</td>`
-            html += `<td style="padding:0.15em 0 0.15em 0.5em; vertical-align:top;">${itemsRu[i] || ""}</td>`
-            html += `</tr>`
+        const items = entry[currentLang] || entry["en"]
+        html += `<tr><td style="text-align:center; font-weight:bold; padding-top:0.8em; padding-bottom:0.2em;">version ${entry["version"]} / ${entry["date"]}</td></tr>`
+        for (const item of items) {
+            html += `<tr><td style="padding:0.15em 0; vertical-align:top;">${item}</td></tr>`
         }
     }
     html += `</table>`
