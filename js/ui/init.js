@@ -105,6 +105,7 @@ function updateUI() {
 
     if (currentTab == Tab.MILESTONES) {
         updateRequiredRows(milestoneData, milestoneCategories)
+        renderHeaderRows(milestoneCategories)
         renderMilestones()
     }
 

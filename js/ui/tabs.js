@@ -223,8 +223,12 @@ function renderMilestones() {
         row.querySelector(".description").textContent = desc
 
         const milestoneName = row.querySelector(".name")
+        milestoneName.textContent = t(milestone.name)
         milestoneName.style.whiteSpace = "nowrap"
         fitText(milestoneName, 16)
+
+        const tooltip = row.querySelector(".tooltipText")
+        if (tooltip) tooltip.textContent = t("tt_" + milestone.name)
     }
 }
 
