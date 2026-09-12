@@ -163,6 +163,7 @@ function updateResourceScale() {
 // reload the first frame can capture a half-rendered state and freeze the
 // scale at ~0.5 with empty space left over.
 setInterval(() => {
+    updateQuickBarHeight()
     resourceScaleCache.key = ""
     updateResourceScale()
 }, 1000)
