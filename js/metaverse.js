@@ -143,7 +143,7 @@ function buyChallengeAltar() {
 
 
 function darkMatterMultGain() {
-    return (gameData.metaverse.dark_mater_gain_modifer == 0) ? 1 : Math.pow(10, gameData.metaverse.dark_mater_gain_modifer)
+    return (gameData.metaverse.dark_mater_gain_modifer == 0) ? 1 : new Decimal(10).pow(gameData.metaverse.dark_mater_gain_modifer)
 }
 
 function darkMatterMultCost() {
@@ -164,10 +164,10 @@ function buyDarkMaterMult() {
 // perks
 
 function getMetaversePerkPointsGain() {
-    if (gameData.essence >= 1e90)
+    if (gameData.essence.gte(1e90))
         return (gameData.perks.more_perk_points == 1 ? 10 : 1)
             * (gameData.perks.double_perk_points_gain == 1 ? 2 : 1)
-            * (Math.floor(Math.log10(gameData.essence)) - 89)
+            * (Math.floor(gameData.essence.log10()) - 89)
 
     return 0
 }
@@ -191,27 +191,8 @@ const perks_cost = {
     more_perk_points: 5000,
 }
 
-const perk_names = {
-    auto_dark_orb: "Auto buy dark orb generators",
-    auto_dark_shop: "Auto buy dark shop items",
-    auto_boost: "Auto boost",
-    instant_evil: "Instant evil",
-    hypercube_boost: "Hypercube boost",
-    instant_essence: "Instant essence",
-    save_challenges: "Save challenges",
-    instant_dark_matter: "Instant dark matter",
-    auto_sacrifice: "Auto sacrifice",
-    double_perk_points_gain: "2x perk points gain",
-    positive_dark_mater_skills: "Only positive dark matter abilities",
-    hyper_speed: "Hyper speed",
-    both_dark_mater_skills: "Pick both dark matter abilities",
-    keep_dark_mater_skills: "keep dark matter abilities",
-    evil_booster: "Evil booster",
-    more_perk_points: "10x perk points gain",
-}
-
 function getMetaversePerkName(perkName) {    
-    return perk_names[perkName]
+    return t("perk_" + perkName)
 }
 
 function getPerkCost(perkName) {
@@ -275,8 +256,8 @@ function collectPerkPoints(value) {
 
 function getBoostCooldownString() {
     return gameData.boost_active
-        ? "Active: " + formatTime(gameData.boost_timer)
-        : (gameData.boost_cooldown <= 0 ? "Ready!" : "Cooldown: " + formatTime(gameData.boost_cooldown))
+        ? t("active") + ": " + formatTime(gameData.boost_timer)
+        : (gameData.boost_cooldown <= 0 ? t("boost_ready") : t("boost_cooldown", formatTime(gameData.boost_cooldown)))
 }
 
 function getTimeIsAFlatCircleXP() {

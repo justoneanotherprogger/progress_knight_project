@@ -63,6 +63,9 @@ function refreshSettingsButtons() {
         const el = document.getElementById(id)
         if (el) el.textContent = t(keyHints[id])
     }
+
+    const keybindsList = document.getElementById("keybindsList")
+    if (keybindsList) keybindsList.classList.toggle("hidden", !gameData.settings.enableKeybinds)
 }
 
 function updateUI() {
@@ -96,6 +99,7 @@ function updateUI() {
 
     if (currentTab == Tab.SHOP || gameData.settings.layout == 0 && currentTab == Tab.JOBS) {
         updateRequiredRows(gameData.itemData, itemCategories)
+        renderHeaderRows(itemCategories)
         renderShop()
     }
 
@@ -104,6 +108,7 @@ function updateUI() {
 
     if (currentTab == Tab.MILESTONES) {
         updateRequiredRows(milestoneData, milestoneCategories)
+        renderHeaderRows(milestoneCategories)
         renderMilestones()
     }
 

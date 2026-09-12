@@ -66,14 +66,14 @@ function createMilestoneRequirements() {
 }
 
 function isNextMilestoneInReach() {
-    const totalEssence = gameData.essence + getEssenceGain()
+    const totalEssence = gameData.essence.add(getEssenceGain())
 
     for (const key in milestoneData) {
         const requirementObject = gameData.requirements[key]
 
         if (requirementObject instanceof EssenceRequirement) {
             if (!requirementObject.isCompleted()) {
-                if (totalEssence >= requirementObject.requirements[0].requirement)
+                if (totalEssence.gte(requirementObject.requirements[0].requirement))
                     return true
             }
         }

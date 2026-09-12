@@ -142,8 +142,21 @@ function loadGameData() {
             if (gameData.coins == null)
                 gameData.coins = 0
 
+            // Coins are stored as Decimal
+            gameData.coins = toInfinityNumber(gameData.coins)
+
+            // A save can get poisoned with Infinity (e.g. by a pre-Decimal income overflow)
+            if (!isFinite(gameData.coins.mantissa))
+                gameData.coins = new Decimal(0)
+
             if (gameData.essence == null)
                 gameData.essence = 0
+
+            // Essence is stored as Decimal
+            gameData.essence = toInfinityNumber(gameData.essence)
+
+            if (!isFinite(gameData.essence.mantissa))
+                gameData.essence = new Decimal(0)
 
             if (gameData.days == null)
                 gameData.days = DEFAULT_STARTING_AGE
@@ -151,11 +164,33 @@ function loadGameData() {
             if (gameData.evil == null)
                 gameData.evil = 0
 
+            // Evil is stored as Decimal
+            gameData.evil = toInfinityNumber(gameData.evil)
+
+            if (!isFinite(gameData.evil.mantissa))
+                gameData.evil = new Decimal(0)
+
+            // Per-second stats are stored as Decimal
+            for (const key of ["EvilPerSecond", "maxEvilPerSecond", "EssencePerSecond", "maxEssencePerSecond", "maxEssenceReached"]) {
+                gameData.stats[key] = toInfinityNumber(gameData.stats[key] ?? 0)
+                if (!isFinite(gameData.stats[key].mantissa))
+                    gameData.stats[key] = new Decimal(0)
+            }
+
             if (gameData.dark_matter == null || isNaN(gameData.dark_matter))
                 gameData.dark_matter = 0
 
-            if (gameData.dark_orbs == null || isNaN(gameData.dark_matter) || isNaN(gameData.dark_orbs))
+            // Dark Matter is stored as Decimal
+            gameData.dark_matter = toInfinityNumber(gameData.dark_matter)
+
+            if (!isFinite(gameData.dark_matter.mantissa))
+                gameData.dark_matter = new Decimal(0)
+
+            if (gameData.dark_orbs == null || isNaN(gameData.dark_orbs))
                 gameData.dark_orbs = 0
+
+            // Dark orbs are stored as Decimal
+            gameData.dark_orbs = toInfinityNumber(gameData.dark_orbs)
 
             if (gameData.hypercubes == null || isNaN(gameData.hypercubes))
                 gameData.hypercubes = 0

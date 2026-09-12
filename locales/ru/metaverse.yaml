@@ -22,12 +22,31 @@ current_cooldown: 'Текущая перезарядка: {0}'
 current_duration: 'Текущая длительность: {0}'
 current_gain: 'Текущее получение: {0}'
 current_multiplier: 'Текущий множитель: x{0}'
+hypercubes_in: '{0} гиперкубов через {1}'
+boost_ready: 'Готово!'
+boost_cooldown: 'Перезарядка: {0}'
 
 # Metaverse Perks
 unspent_perk_points: 'У вас есть <b><span id="perkPointDisplay" class="color-perk-points"></span></b> непотраченных очков даров Метавселенной. Всего очков: <b><span id="totalPerkPointDisplay" class="color-perk-points"></span></b>.'
 perks_info: Вы можете свободно активировать и деактивировать дары для имеющихся у вас очков.
 perks_dm_bonus: 'Бонус к получению Тёмной материи: x{0}.'
-mpp_short: ОПМ
+perk_auto_dark_orb: 'Автопокупка генераторов тёмных сфер'
+perk_auto_dark_shop: 'Автопокупка товаров тёмного магазина'
+perk_auto_boost: 'Автобуст'
+perk_instant_evil: 'Мгновенное зло'
+perk_hypercube_boost: 'Буст гиперкубов'
+perk_instant_essence: 'Мгновенная эссенция'
+perk_save_challenges: 'Сохранение испытаний'
+perk_instant_dark_matter: 'Мгновенная тёмная материя'
+perk_auto_sacrifice: 'Автопожертвование'
+perk_double_perk_points_gain: 'Удвоение получения очков даров'
+perk_positive_dark_mater_skills: 'Только положительные способности тёмной материи'
+perk_hyper_speed: 'Гиперскорость'
+perk_both_dark_mater_skills: 'Выбор обеих способностей тёмной материи'
+perk_keep_dark_mater_skills: 'Сохранение способностей тёмной материи'
+perk_evil_booster: 'Усилитель зла'
+perk_more_perk_points: 'x10 получение очков даров'
+mpp_short: ОДМ
 assign_perk_points: Распределить непотраченные очки
 collect_perk_points: Собрать все очки
 congratulations: Поздравляем!

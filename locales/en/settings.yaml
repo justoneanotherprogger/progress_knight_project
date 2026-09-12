@@ -7,11 +7,14 @@ export_save: Export save
 import_save_placeholder: Enter save here
 save_copied: Save copied to clipboard!
 hard_reset: Hard reset game
+admin_password_label: Admin password
+admin_speed_label: Speed
+admin_check_button: Check
 links: Links
 language: Language
 
 # Settings options
-sticky_sidebar: Sticky sidebar
+sticky_sidebar: Sticky panels (top and side)
 currency_notation: Currency notation
 number_notation: Number notation
 layout: Layout

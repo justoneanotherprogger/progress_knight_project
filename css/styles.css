@@ -132,8 +132,11 @@ td {
     position: absolute;
     top: 5%;
     left: 0.5em;
+    right: 0;
     bottom: 0%;
-    color: white
+    color: white;
+    display: flex;
+    align-items: center;
 }
 
 .progress-bar {
@@ -361,7 +364,30 @@ button:focus {
 }
 
 .quick-bar {
-    top: 125px;
+    position: sticky;
+    top: 146px;
+    height: calc(100vh - 146px);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+#resourceStats {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    --stats-scale: 1;
+}
+
+#resourceStats .text-caption {
+    font-size: calc(18px * var(--stats-scale));
+}
+
+#resourceStats .resource-desc {
+    font-size: calc(16px * var(--stats-scale));
 }
 
 .tabs-tab-column {
@@ -377,7 +403,7 @@ button:focus {
     width: 65em;
     height: auto;
     float: right;
-    margin-bottom: 4em;
+    margin-bottom: 0.8em;
 }
 
 .plain-tab-column {
@@ -438,6 +464,15 @@ button:focus {
     padding-bottom: 0.5em;
 }
 
+.rebirth-label {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.sidebarChallengeReward {
+    text-align: center;
+}
+
 .perk {
     background-color: #EA4C89;
     border-style: solid;
@@ -465,7 +500,12 @@ button:focus {
 }
 
 .perk:hover {
-    background-color: #F082AC;
+    background-color: #C2386F;
+}
+
+.perk .perkName {
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 #settings ul,

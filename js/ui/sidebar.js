@@ -5,7 +5,10 @@ function renderSideBar() {
     const quickTaskDisplayElement = document.getElementById("quickTaskDisplay")
 
     const progressBar = quickTaskDisplayElement.getElementsByClassName("job")[0]
-    progressBar.querySelector(".name").textContent = (task.isHero ? t("great") + " " : "") + t(task.name) + " " + t("lvl") + " " + formatLevel(task.level)
+    const currentJobName = progressBar.querySelector(".name")
+    currentJobName.style.whiteSpace = "nowrap"
+    currentJobName.textContent = (task.isHero ? t("great") + " " : "") + t(task.name) + " " + t("lvl") + " " + formatLevel(task.level)
+    fitText(currentJobName, 16)
     const progressFill = progressBar.getElementsByClassName("progressFill")[0]
     renderProgressBar(task, progressFill, progressBar)   
 
@@ -13,17 +16,20 @@ function renderSideBar() {
     document.getElementById("lifespanDisplay").textContent = formatWhole(daysToYears(getLifespan()))
     document.getElementById("realtimeDisplay").textContent = formatTime(gameData.realtime)
     document.getElementById("boostCooldownDisplay").textContent = getBoostCooldownString()            
-    updateButtonText("pauseButton", gameData.paused ? t("play") : t("pause"))
+    updateButtonHTML("pauseButton", "⏳ " + (gameData.paused ? t("play") : t("pause")))
     updateButtonText("rebirthBtn1", t("rebirth_1"))
-    updateButtonHTML("rebirthBtn2", t("rebirth_2") + " <span class=\"color-evil\">(+" + format(getEvilGain()) + " " + t("evil") + ")</span>")
-    updateButtonHTML("rebirthBtn3", t("rebirth_3") + " <span class=\"color-essence\">(+" + format(getEssenceGain()) + " " + t("essence") + ")</span>")
-    updateButtonHTML("rebirthBtn4", t("rebirth_4") + " <span class=\"color-dark-matter\">(+" + format(getDarkMatterGain()) + " " + t("dark_matter") + ")</span>")
-    if (gameData.essence > 1e90)
-        updateButtonHTML("rebirthBtn5", t("rebirth_5") + " <span class=\"color-perk-points\">(+" + formatTreshold(getMetaversePerkPointsGain()) + " " + t("perk_points") + ")</span>")
+    setRebirthButton("rebirthBtn2", t("rebirth_2"), "<span class=\"color-evil\">(+" + format(getEvilGain()) + " " + t("evil") + ")</span>")
+    setRebirthButton("rebirthBtn3", t("rebirth_3"), "<span class=\"color-essence\">(+" + format(getEssenceGain()) + " " + t("essence") + ")</span>")
+    fitText(document.getElementById("rebirthBtn3"), 16)
+    setRebirthButton("rebirthBtn4", t("rebirth_4"), "<span class=\"color-dark-matter\">(+" + format(getDarkMatterGain()) + " " + t("dark_matter") + ")</span>")
+    fitText(document.getElementById("rebirthBtn4"), 16)
+    if (gameData.essence.gt(1e90))
+        setRebirthButton("rebirthBtn5", t("rebirth_5"), "<span class=\"color-perk-points\">(+" + formatTreshold(getMetaversePerkPointsGain()) + " " + t("perk_points") + ")</span>")
     else if (gameData.rebirthFiveCount > 0)
-        updateButtonHTML("rebirthBtn5", t("rebirth_5") + " <span class=\"color-hypercubes\">(" + format(getHypercubeCap(1)) + " " + t("hypercubes") + ")</span>")
+        setRebirthButton("rebirthBtn5", t("rebirth_5"), "<span class=\"color-hypercubes\">(" + format(getHypercubeCap(1)) + " " + t("hypercubes") + ")</span>")
     else
-        updateButtonHTML("rebirthBtn5", t("rebirth_5"))
+        setRebirthButton("rebirthBtn5", t("rebirth_5"), "")
+    fitText(document.getElementById("rebirthBtn5"), 16)
     document.getElementById("boostPanel").hidden = gameData.rebirthFiveCount == 0
     renderBoostButton("boostButton")
 
@@ -59,7 +65,7 @@ function renderSideBar() {
     setTextAll("#perkPointsGainDisplay", formatTreshold(getMetaversePerkPointsGain()))
 
 
-    document.getElementById("rebirthButton5").hidden = getHypercubeCap() == Infinity && gameData.essence < 1e90
+    document.getElementById("rebirthButton5").hidden = getHypercubeCap() == Infinity && gameData.essence.lt(1e90)
 
     // Embrace evil indicator
     const embraceEvilButton = document.getElementById("rebirthButton2").querySelector(".button")
@@ -90,7 +96,7 @@ function renderSideBar() {
         document.getElementById("challengeTitle").hidden = true
         document.getElementById("info").classList.remove("challenge")
     } else {
-        document.getElementById("challengeName").textContent = getFormattedTitle(gameData.active_challenge)
+        document.getElementById("challengeName").textContent = getChallengeTranslatedName(gameData.active_challenge)
         document.getElementById("challengeTitle").hidden = false
         document.getElementById("info").classList.add("challenge")
         // challenge reward
@@ -98,6 +104,70 @@ function renderSideBar() {
         renderCurrentChallengeRewardValue(true)
     }
 
-    if (getDarkMatter() == 0)
+    if (getDarkMatter().eq(0))
         gameData.requirements["Dark Matter info"].completed = false
+
+    updateResourceScale()
 }
+
+// Keeps the quick bar's bottom edge above the window's bottom edge, leaving
+// room for both the browser-default body margin-bottom (8px) and the
+// .w3-margin offset (0.8em, styles.css).  After accounting for both, the
+// page height lands exactly on the window edge so no phantom scrollbar
+// appears.
+// sticky top can be 146px (pinned under the resources bar) or higher (page at top).
+// Recalculated on scroll/resize only — never per frame — so the layout it
+// triggers cannot feed back into the measurement. top is clamped to the
+// sticky offset so a scrolled-off panel cannot request an unbounded height.
+const BASE_EM = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16
+const QUICK_BAR_BOTTOM_GAP = 8 + Math.round(BASE_EM * 0.8)
+
+function updateQuickBarHeight() {
+    const panel = document.getElementById("info")
+    if (!panel) return
+
+    const top = Math.max(146, panel.getBoundingClientRect().top)
+    const desired = Math.max(0, window.innerHeight - top - QUICK_BAR_BOTTOM_GAP)
+    const current = parseFloat(panel.style.height)
+
+    if (isNaN(current) || Math.abs(current - desired) > 0.5)
+        panel.style.height = desired + "px"
+}
+
+window.addEventListener("resize", updateQuickBarHeight, { passive: true })
+window.addEventListener("scroll", updateQuickBarHeight, { passive: true })
+updateQuickBarHeight()
+
+const resourceScaleCache = { key: "", desired: 0, scale: 1 }
+
+// Scales #resourceStats so its content always fits the space flex gives it.
+function updateResourceScale() {
+    const stats = document.getElementById("resourceStats")
+    if (!stats) return
+
+    const panel = document.getElementById("info")
+    const visibleKey = panel.clientHeight + "|" + (document.getElementById("timeWarping").classList.contains("hidden") ? 0 : 1)
+
+    if (resourceScaleCache.key != visibleKey) {
+        stats.style.setProperty("--stats-scale", 1)
+        resourceScaleCache.desired = stats.scrollHeight
+        stats.style.setProperty("--stats-scale", resourceScaleCache.scale)
+        resourceScaleCache.key = visibleKey
+    }
+
+    const available = stats.clientHeight
+    const scale = available <= 0 ? 1 : Math.min(1, available / resourceScaleCache.desired)
+    if (scale != resourceScaleCache.scale) {
+        stats.style.setProperty("--stats-scale", scale)
+        resourceScaleCache.scale = scale
+    }
+}
+
+// Re-measure periodically even when panel height is stable: right after a
+// reload the first frame can capture a half-rendered state and freeze the
+// scale at ~0.5 with empty space left over.
+setInterval(() => {
+    updateQuickBarHeight()
+    resourceScaleCache.key = ""
+    updateResourceScale()
+}, 1000)

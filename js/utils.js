@@ -1,34 +1,49 @@
 function softcap(value, cap, power = 0.5) {
     if (value <= cap) return value
 
-    return Math.pow(value, power) * Math.pow(cap, 1 - power)
+    // Use Decimal for large numbers to avoid Infinity from Math.pow
+    const decValue = toInfinityNumber(value)
+    const decCap = toInfinityNumber(cap)
+    return decValue.pow(power).times(decCap.pow(1 - power))
 }
 
 function format(number, decimals = 1) {
+    // Convert to Decimal for large numbers
+    const decNumber = toInfinityNumber(number);
+
+    // Special case: if number is very large (>= 1e1000), use e1000 notation
+    if (decNumber.gte(new Decimal('1e1000'))) {
+        return formatInfinityNumber(number);
+    }
+
+    // Old formatting for smaller numbers - use JS Math for calculations
     const units = ["", "k", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "O", "N", "D", "Ud", "Dd", "Td", "Qad", "Qid", "Sxd", "Spd", "Od", "Nd", "V", "Uv", "Dv", "Tv",
     "Qav", "Qiv", "Sxv", "Spv", "Ov", "Nv", "Tr", "Ut", "Dt", "Tt"]
 
     // what tier? (determines SI symbol)
-    const tier = Math.log10(number) / 3 | 0;
-    if (tier <= 0) return math.floor(number, decimals).toFixed(decimals);
+    const log10 = decNumber.log10();
+    const tier = Math.floor(log10 / 3);
+
+    if (tier <= 0) {
+        return decNumber.toFixed(decimals);
+    }
 
     if ((gameData.settings.numberNotation == 0 || tier < 3) && (tier < units.length)) {
         const suffix = units[tier];
         const scale = Math.pow(10, tier * 3);
-        const scaled = number / scale;
-        return math.floor(scaled, decimals).toFixed(decimals) + suffix;
+        const scaled = decNumber / scale;
+        return scaled.toFixed(decimals) + suffix;
     } else {
         if (gameData.settings.numberNotation == 1) {
-            const exp = Math.log10(number) | 0;
-            const scale = Math.pow(10, exp);
-            const scaled = number / scale;
-            return math.floor(scaled, decimals).toFixed(decimals) + "e" + exp;
+            const exp = Math.floor(log10);
+            // Math.pow(10, exp) becomes Infinity past 1e308; keep scaling in Decimal
+            const scaled = decNumber.div(new Decimal(10).pow(exp));
+            return scaled.toFixed(decimals) + "e" + exp;
         }
         else {
-            const exp = Math.log10(number) / 3 | 0;
-            const scale = Math.pow(10, exp * 3);
-            const scaled = number / scale;
-            return math.floor(scaled, decimals).toFixed(decimals) + "e" + exp * 3;
+            const exp = Math.floor(log10 / 3);
+            const scaled = decNumber.div(new Decimal(10).pow(exp * 3));
+            return scaled.toFixed(decimals) + "e" + exp * 3;
         }
     }
 }
@@ -81,6 +96,8 @@ function formatCoins(coins, element) {
         c.textContent = "";
     }
 
+    const coinsDec = toInfinityNumber(coins)
+
     switch (gameData.settings.currencyNotation) {
         case 0:
         case 1:
@@ -92,18 +109,19 @@ function formatCoins(coins, element) {
                 const m = money2[i];
                 const prev = money2[i - 1];
                 const diff = prev ? prev.value / m.value : Infinity;
-                const amount = Math.floor(coins / m.value) % diff;
-                if ((amount > 0 || (coins < 1 && m.value == 1))) {
-                    element.children[coinsUsed].textContent = (m.prefix ?? "") + format(amount, amount < 1000 ? 0 : 2) + m.name
+                const scaled = coinsDec.div(m.value).floor()
+                const amount = diff === Infinity ? scaled : scaled.minus(toInfinityNumber(diff).times(scaled.div(diff).floor()))
+                if ((amount.gt(0) || (coinsDec.lt(1) && m.value == 1))) {
+                    element.children[coinsUsed].textContent = (m.prefix ?? "") + format(amount, amount.lt(1000) ? 0 : 2) + m.name
                     element.children[coinsUsed].style.color = m.color
                     element.children[coinsUsed].className = m.class ? m.class : ""
                     coinsUsed++
                 }
-                if (coinsUsed >= 2 || amount >= 100) break;
+                if (coinsUsed >= 2 || amount.gte(100)) break;
             }
             break;
         case 3:
-            element.children[0].textContent = "$" + format(coins / 100, 2)
+            element.children[0].textContent = "$" + format(coinsDec.div(100), 2)
             element.children[0].style.color = "#E5C100"
             element.children[0].className = ""
             break;
@@ -239,4 +257,61 @@ function getFormattedTitle(parameter) {
     title = title.charAt(0).toUpperCase() + title.slice(1)
 
     return title
+}
+
+const CHALLENGE_KEY_TO_NUMBER = {
+    an_unhappy_life: 1,
+    rich_and_the_poor: 2,
+    time_does_not_fly: 3,
+    dance_with_the_devil: 4,
+    legends_never_die: 5,
+    the_darkest_time: 6,
+}
+
+function getChallengeTranslatedName(challengeKey) {
+    const num = CHALLENGE_KEY_TO_NUMBER[challengeKey]
+    return num ? t("challenge_" + num + "_name") : challengeKey
+}
+
+// --- Admin speed control ---
+const ADMIN_PASSWORD_HASH = "26fa8e11b8b065f18e533c8f40889ccd019546d631772508ca68c272e686e45a"
+
+async function checkAdminPassword() {
+    const input = document.getElementById("adminPasswordInput").value
+    const encoder = new TextEncoder()
+    const data = encoder.encode(input)
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data)
+    const hashArray = Array.from(new Uint8Array(hashBuffer))
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
+
+    if (hashHex === ADMIN_PASSWORD_HASH) {
+        gameData.settings.isAdmin = true
+        document.getElementById("adminPasswordRow").classList.add("hidden")
+        document.getElementById("adminSpeedRow").classList.remove("hidden")
+        document.getElementById("adminSpeedSlider").value = gameData.settings.adminSpeedMultiplier
+        document.getElementById("adminSpeedInput").value = gameData.settings.adminSpeedMultiplier
+        document.getElementById("adminSpeedDisplay").textContent = "x" + gameData.settings.adminSpeedMultiplier
+    } else {
+        document.getElementById("adminPasswordInput").value = ""
+        document.getElementById("adminPasswordInput").style.borderColor = "red"
+        setTimeout(() => { document.getElementById("adminPasswordInput").style.borderColor = "" }, 1500)
+    }
+}
+
+function setAdminSpeed(value) {
+    value = Math.max(1, Math.min(1000000, parseInt(value) || 1))
+    gameData.settings.adminSpeedMultiplier = value
+    document.getElementById("adminSpeedSlider").value = Math.min(value, 1000)
+    document.getElementById("adminSpeedInput").value = value
+    document.getElementById("adminSpeedDisplay").textContent = "x" + value
+}
+
+function initAdminPanel() {
+    if (gameData.settings.isAdmin) {
+        document.getElementById("adminPasswordRow").classList.add("hidden")
+        document.getElementById("adminSpeedRow").classList.remove("hidden")
+        document.getElementById("adminSpeedSlider").value = gameData.settings.adminSpeedMultiplier
+        document.getElementById("adminSpeedInput").value = gameData.settings.adminSpeedMultiplier
+        document.getElementById("adminSpeedDisplay").textContent = "x" + gameData.settings.adminSpeedMultiplier
+    }
 }

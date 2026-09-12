@@ -16,7 +16,8 @@ function update(needUpdateUI = true) {
     }
     increaseCoins()
 
-    gameData.dark_orbs += applySpeed(getDarkOrbGeneration())
+    const orbGeneration = getDarkOrbGeneration()
+    gameData.dark_orbs = gameData.dark_orbs.add(orbGeneration.mul(getGameSpeed() / updateSpeed))
     gameData.hypercubes += applySpeed(getHypercubeGeneration())
     if (gameData.hypercubes > getHypercubeCap())
         gameData.hypercubes = getHypercubeCap()
@@ -37,31 +38,31 @@ function updateRequirements() {
 
 function updateStats() {
     if (gameData.requirements["Rebirth stats evil"].isCompleted()) {
-        gameData.stats.EvilPerSecond = getEvilGain() / gameData.rebirthTwoTime
-        if (gameData.stats.EvilPerSecond > gameData.stats.maxEvilPerSecond) {
+        gameData.stats.EvilPerSecond = getEvilGain().div(gameData.rebirthTwoTime)
+        if (gameData.stats.EvilPerSecond.gt(gameData.stats.maxEvilPerSecond)) {
             gameData.stats.maxEvilPerSecond = gameData.stats.EvilPerSecond
             gameData.stats.maxEvilPerSecondRt = gameData.rebirthTwoTime
         }
     }
 
     if (gameData.requirements["Rebirth stats essence"].isCompleted()) {
-        gameData.stats.EssencePerSecond = getEssenceGain() / gameData.rebirthThreeTime
-        if (gameData.stats.EssencePerSecond > gameData.stats.maxEssencePerSecond) {
+        gameData.stats.EssencePerSecond = getEssenceGain().div(gameData.rebirthThreeTime)
+        if (gameData.stats.EssencePerSecond.gt(gameData.stats.maxEssencePerSecond)) {
             gameData.stats.maxEssencePerSecond = gameData.stats.EssencePerSecond
             gameData.stats.maxEssencePerSecondRt = gameData.rebirthThreeTime
         }
     }
 
-    if (gameData.essence > gameData.stats.maxEssenceReached)
+    if (gameData.essence.gt(gameData.stats.maxEssenceReached))
         gameData.stats.maxEssenceReached = gameData.essence
 }
 
 function autoPerks() {
     if (gameData.perks.auto_boost == 1 && !gameData.boost_active && gameData.boost_cooldown <= 0)
         applyBoost()
-    if (gameData.perks.auto_dark_orb == 1 && gameData.dark_matter >= getDarkOrbGeneratorCost() * PERK_AUTO_SACRIFICE_COST_MULTIPLIER && gameData.dark_orbs != Infinity)
+    if (gameData.perks.auto_dark_orb == 1 && gameData.dark_matter.gte(getDarkOrbGeneratorCost().times(PERK_AUTO_SACRIFICE_COST_MULTIPLIER)) && !isDecimalInfinity(gameData.dark_orbs))
         buyDarkOrbGenerator()
-    if (gameData.perks.auto_dark_orb == 1 && gameData.dark_matter >= PERK_AUTO_DARK_ORB_MIRACLE_COST && gameData.dark_matter_shop.a_miracle == false)
+    if (gameData.perks.auto_dark_orb == 1 && gameData.dark_matter.gte(PERK_AUTO_DARK_ORB_MIRACLE_COST) && gameData.dark_matter_shop.a_miracle == false)
         buyAMiracle()
     if (gameData.perks.auto_dark_shop == 1 && gameData.dark_orbs >= PERK_AUTO_DARK_SHOP_ORBS_THRESHOLD) {
         buyADealWithTheChairman()
@@ -81,12 +82,12 @@ function autoPerks() {
 }
 
 function autoPromote() {
-    let maxIncome = 0;
+    let maxIncome = new Decimal(0);
     for (const key in gameData.taskData) {
         const task = gameData.taskData[key]
         if (task instanceof Job && gameData.requirements[key].isCompleted()) {
             const income = task.getIncome();
-            if (income > maxIncome) {
+            if (income.gt(maxIncome)) {
                 maxIncome = income
                 gameData.currentJob = task
             }
@@ -97,7 +98,7 @@ function autoPromote() {
 function autoBuy() {
     if (!autoBuyEnabled) return
 
-    let usedExpense = 0
+    let usedExpense = new Decimal(0)
     const income = getIncome()
 
     for (const key in gameData.itemData) {
@@ -106,7 +107,7 @@ function autoBuy() {
             const expense = item.getExpense()
 
             if (itemCategories['Properties'].indexOf(key) != -1) {
-                if (expense < income && expense >= usedExpense) {
+                if (expense.lt(income) && expense.gte(usedExpense)) {
                     gameData.currentProperty = item
                     usedExpense = expense
                 }
@@ -115,7 +116,7 @@ function autoBuy() {
     }
 
     for (const key in gameData.currentMisc) {
-        usedExpense += gameData.currentMisc[key].getExpense()
+        usedExpense = usedExpense.plus(gameData.currentMisc[key].getExpense())
     }
 
     for (const key in gameData.itemData) {
@@ -123,10 +124,10 @@ function autoBuy() {
             const item = gameData.itemData[key]
             const expense = item.getExpense()
             if (itemCategories['Misc'].indexOf(key) != -1) {
-                if (expense < income - usedExpense) {
+                if (expense.lt(income.minus(usedExpense))) {
                     if (gameData.currentMisc.indexOf(item) == -1) {
                         gameData.currentMisc.push(item)
-                        usedExpense += expense
+                        usedExpense = usedExpense.plus(expense)
                     }
                 }
             }
@@ -135,7 +136,12 @@ function autoBuy() {
 }
 
 function increaseCoins() {
-    gameData.coins += applySpeed(getIncome())
+    const gain = applySpeed(getIncome())
+    const gainIsFinite = gain instanceof Decimal ? isFinite(gain.mantissa) : isFinite(gain)
+    if (!gainIsFinite || !isFinite(gameData.coins.mantissa))
+        return
+
+    gameData.coins = gameData.coins.plus(gain)
 }
 
 function increaseDays() {
@@ -174,20 +180,20 @@ function increaseRealtime() {
 }
 
 function applyExpenses() {
-    if (gameData.coins == Infinity)
+    if (!isFinite(gameData.coins.mantissa))
         return
 
-    gameData.coins -= applySpeed(getExpense())
+    gameData.coins = gameData.coins.minus(applySpeed(getExpense()))
 
-    if (gameData.coins < 0) {
-        gameData.coins = 0
-        if (getIncome() < getExpense())
+    if (gameData.coins.lt(0)) {
+        gameData.coins = new Decimal(0)
+        if (getIncome().lt(getExpense()))
             goBankrupt()
     }
 }
 
 function goBankrupt() {
-    gameData.coins = 0
+    gameData.coins = new Decimal(0)
     gameData.currentProperty = gameData.itemData["Homeless"]
     gameData.currentMisc = []
     autoBuyEnabled = true

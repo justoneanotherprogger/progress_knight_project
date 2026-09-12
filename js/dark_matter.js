@@ -1,106 +1,112 @@
 // Costs Dark Matter
 function getDarkOrbGeneratorCost() {
-    return 1 + 3 * gameData.dark_matter_shop.dark_orb_generator
+    return new Decimal(2).pow(gameData.dark_matter_shop.dark_orb_generator)
+}
+
+function isDecimalInfinity(value) {
+    if (typeof value !== 'object')
+        return value === Infinity
+    return value.toString() === "Infinity"
 }
 
 function canBuyDarkOrbGenerator() {
-    return gameData.dark_matter >= getDarkOrbGeneratorCost() && getDarkOrbGeneration() != Infinity
+    return gameData.dark_matter.gte(getDarkOrbGeneratorCost()) && !isDecimalInfinity(getDarkOrbGeneration())
 }
 
 
 function buyDarkOrbGenerator() {
     if (canBuyDarkOrbGenerator()) {
-        gameData.dark_matter -= getDarkOrbGeneratorCost()
+        gameData.dark_matter = gameData.dark_matter.sub(getDarkOrbGeneratorCost())
         gameData.dark_matter_shop.dark_orb_generator += 1
     }
 }
 
 // Costs Dark Orbs
 function getADealWithTheChairmanCost() {
-    return Math.pow(1e3, gameData.dark_matter_shop.a_deal_with_the_chairman + 1)
+    return new Decimal(1e3).pow(gameData.dark_matter_shop.a_deal_with_the_chairman + 1)
 }
 
 function canBuyADealWithTheChairman() {
-    return gameData.dark_orbs >= getADealWithTheChairmanCost() && getADealWithTheChairmanCost() != Infinity
+    return gameData.dark_orbs.gte(getADealWithTheChairmanCost()) && !isDecimalInfinity(getADealWithTheChairmanCost())
 }
 
 function buyADealWithTheChairman() {
     if (canBuyADealWithTheChairman()) {
-        gameData.dark_orbs -= getADealWithTheChairmanCost()
+        gameData.dark_orbs = gameData.dark_orbs.sub(getADealWithTheChairmanCost())
         gameData.dark_matter_shop.a_deal_with_the_chairman += 1
     }
 }
 
 function getAGiftFromGodCost() {
-    return Math.pow(1e5, gameData.dark_matter_shop.a_gift_from_god + 1)
+    return new Decimal(1e5).pow(gameData.dark_matter_shop.a_gift_from_god + 1)
 }
 
 function canBuyAGiftFromGod() {
-    return gameData.dark_orbs >= getAGiftFromGodCost() && getAGiftFromGodCost() != Infinity
+    return gameData.dark_orbs.gte(getAGiftFromGodCost()) && !isDecimalInfinity(getAGiftFromGodCost())
 }
 
 function buyAGiftFromGod() {
     if (canBuyAGiftFromGod()) {
-        gameData.dark_orbs -= getAGiftFromGodCost()
+        gameData.dark_orbs = gameData.dark_orbs.sub(getAGiftFromGodCost())
         gameData.dark_matter_shop.a_gift_from_god += 1
     }
 }
 
 function getLifeCoachCost() {
-    return Math.pow(1e10, gameData.dark_matter_shop.life_coach + 1)
+    return new Decimal(1e10).pow(gameData.dark_matter_shop.life_coach + 1)
 }
 
 function canBuyLifeCoach() {
-    return gameData.dark_orbs >= getLifeCoachCost() && getLifeCoachCost() != Infinity 
+    return gameData.dark_orbs.gte(getLifeCoachCost()) && !isDecimalInfinity(getLifeCoachCost())
 }
 
 function buyLifeCoach() {
     if (canBuyLifeCoach()) {
-        gameData.dark_orbs -= getLifeCoachCost()
+        gameData.dark_orbs = gameData.dark_orbs.sub(getLifeCoachCost())
         gameData.dark_matter_shop.life_coach += 1
     }
 }
 
 function getGottaBeFastCost() {
-    return Math.pow(5e7, gameData.dark_matter_shop.gotta_be_fast + 1)
+    return new Decimal(5e7).pow(gameData.dark_matter_shop.gotta_be_fast + 1)
 }
 
 function canBuyGottaBeFast() {
-    return gameData.dark_orbs >= getGottaBeFastCost() && getGottaBeFastCost() != Infinity
+    return gameData.dark_orbs.gte(getGottaBeFastCost()) && !isDecimalInfinity(getGottaBeFastCost())
 }
 
 function buyGottaBeFast() {
     if (canBuyGottaBeFast()) {
-        gameData.dark_orbs -= getGottaBeFastCost()
+        gameData.dark_orbs = gameData.dark_orbs.sub(getGottaBeFastCost())
         gameData.dark_matter_shop.gotta_be_fast += 1
     }
 }
 
 // Rewards
 function getDarkOrbGeneration() {
-    if (gameData.dark_matter_shop.dark_orb_generator == 0) return 0
+    if (gameData.dark_matter_shop.dark_orb_generator == 0) return new Decimal(0)
 
     const darkOrbiter = gameData.requirements["Dark Orbiter"].isCompleted() ? 1e10 : 1
 
-    return Math.pow(100, gameData.dark_matter_shop.dark_orb_generator - 1) * darkOrbiter
+    return new Decimal(100).pow(gameData.dark_matter_shop.dark_orb_generator - 1).times(darkOrbiter)
 }
 
 function getTaaAndMagicXpGain() {
     if (gameData.active_challenge == "the_darkest_time") return 1
 
-    return Math.pow(4, gameData.dark_matter_shop.a_deal_with_the_chairman)
+    return new Decimal(4).pow(gameData.dark_matter_shop.a_deal_with_the_chairman)
 }
 
 function getAGiftFromGodEssenceGain() {
     if (gameData.active_challenge == "the_darkest_time") return 1
 
-    return Math.pow(2.1, gameData.dark_matter_shop.a_gift_from_god)
+    return new Decimal(2.1).pow(gameData.dark_matter_shop.a_gift_from_god)
 }
 
 function getLifeCoachIncomeGain() {
     if (gameData.active_challenge == "the_darkest_time") return 1
 
-    return Math.pow(14, gameData.dark_matter_shop.life_coach)
+    return new Decimal(14).pow(gameData.dark_matter_shop.life_coach)
 }
 
 function getGottaBeFastGain() {
@@ -115,21 +121,21 @@ function getAMiracleCost() {
 
 // Permanent unlocks
 function canBuyAMiracle() {
-    return getDarkMatter() >= getAMiracleCost()
+    return getDarkMatter().gte(getAMiracleCost())
 }
 
 function buyAMiracle() {
     if (canBuyAMiracle()) {
         gameData.dark_matter_shop.a_miracle = true
-        gameData.dark_matter -= getAMiracleCost()
+        gameData.dark_matter = gameData.dark_matter.sub(getAMiracleCost())
     }
 }
 
 
 // Skill tree
 function resetSkillTree() {
-    if (gameData.dark_matter < 1e11 && confirm("Are you sure that you want to reset your Dark Matter Abilities?")
-        || gameData.dark_matter >=1e11) {
+    if (gameData.dark_matter.lt(1e11) && confirm("Are you sure that you want to reset your Dark Matter Abilities?")
+        || gameData.dark_matter.gte(1e11)) {
         gameData.dark_matter_shop.speed_is_life = 0
         gameData.dark_matter_shop.your_greatest_debt = 0
         gameData.dark_matter_shop.essence_collector = 0
@@ -161,8 +167,8 @@ function buyMultiverseExplorer(number) {
 }
 
 function buyDarkMatterSkill(skill_name, cost, number) {
-    if (gameData.dark_matter >= cost) {
-        gameData.dark_matter -= cost
+    if (gameData.dark_matter.gte(cost)) {
+        gameData.dark_matter = gameData.dark_matter.sub(cost)
 
         if (gameData.dark_matter_shop[skill_name] == 0)
             gameData.dark_matter_shop[skill_name] = number
@@ -171,7 +177,7 @@ function buyDarkMatterSkill(skill_name, cost, number) {
         else if (gameData.dark_matter_shop[skill_name] == 2 && (number == 1 || number == 3))
             gameData.dark_matter_shop[skill_name] = 3
         else
-            gameData.dark_matter += cost
+            gameData.dark_matter = gameData.dark_matter.add(cost)
     }
 }
 

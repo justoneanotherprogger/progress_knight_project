@@ -122,10 +122,10 @@ function setSignDisplay() {
     const signDisplay = document.getElementById("signDisplay")
     if (!signDisplay) return
 
-    if (getNet() > -1 && getNet() < 1) {
+    if (getNet().gt(-1) && getNet().lt(1)) {
         signDisplay.textContent = ""
         signDisplay.style.color = "gray"
-    } else if (getIncome() > getExpense()) {
+    } else if (getIncome().gt(getExpense())) {
         signDisplay.textContent = "+"
         signDisplay.style.color = "green"
     } else {
@@ -244,8 +244,12 @@ function createPerks(perkLayoutName) {
 
 function createPerk(template, name) {
     const button = template[0].content.firstElementChild.cloneNode(true)
-    button.getElementsByClassName("perkName")[0].textContent = getMetaversePerkName(name)
+    const perkNameEl = button.getElementsByClassName("perkName")[0]
+    perkNameEl.textContent = getMetaversePerkName(name)
+    fitText(perkNameEl, 18)
+    button.getElementsByClassName("perkCostLabel")[0].textContent = t("cost")
     button.getElementsByClassName("perkCost")[0].textContent = getPerkCost(name)
+    button.getElementsByClassName("perkCurrency")[0].textContent = t("mpp_short")
     button.id = "id" + removeSpaces(removeStrangeCharacters(name))
     button.onclick = () => { buyPerk(name) }    
 
