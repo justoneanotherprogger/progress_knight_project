@@ -107,7 +107,16 @@ function renderSideBar() {
     if (getDarkMatter().eq(0))
         gameData.requirements["Dark Matter info"].completed = false
 
+    updateQuickBarHeight()
     updateResourceScale()
+}
+
+// Keeps the quick bar's bottom edge at the window's bottom edge:
+// sticky top can be 146px (pinned under the resources bar) or higher (page at top).
+function updateQuickBarHeight() {
+    const panel = document.getElementById("info")
+    const top = panel.getBoundingClientRect().top
+    panel.style.height = Math.max(0, window.innerHeight - top) + "px"
 }
 
 const resourceScaleCache = { key: "", desired: 0, scale: 1 }
