@@ -112,14 +112,15 @@ function renderSideBar() {
 
 // Keeps the quick bar's bottom edge above the window's bottom edge, leaving
 // room for both the browser-default body margin-bottom (8px) and the
-// .w3-margin offset (0.2em).  After accounting for both, the page height
-// lands exactly on the window edge so no phantom scrollbar appears.
+// .w3-margin offset (0.8em, styles.css).  After accounting for both, the
+// page height lands exactly on the window edge so no phantom scrollbar
+// appears.
 // sticky top can be 146px (pinned under the resources bar) or higher (page at top).
 // Recalculated on scroll/resize only — never per frame — so the layout it
 // triggers cannot feed back into the measurement. top is clamped to the
 // sticky offset so a scrolled-off panel cannot request an unbounded height.
 const BASE_EM = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16
-const QUICK_BAR_BOTTOM_GAP = 8 + Math.round(BASE_EM * 0.2)
+const QUICK_BAR_BOTTOM_GAP = 8 + Math.round(BASE_EM * 0.8)
 
 function updateQuickBarHeight() {
     const panel = document.getElementById("info")
