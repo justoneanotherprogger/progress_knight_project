@@ -364,7 +364,27 @@ button:focus {
 }
 
 .quick-bar {
+    position: sticky;
     top: 146px;
+    height: calc(100vh - 146px);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+#resourceStats {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+    --stats-scale: 1;
+}
+
+#resourceStats .text-caption {
+    font-size: calc(1.2em * var(--stats-scale));
+}
+
+#resourceStats .resource-desc {
+    font-size: calc(1em * var(--stats-scale));
 }
 
 .tabs-tab-column {

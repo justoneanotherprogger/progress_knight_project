@@ -106,4 +106,31 @@ function renderSideBar() {
 
     if (getDarkMatter().eq(0))
         gameData.requirements["Dark Matter info"].completed = false
+
+    updateResourceScale()
+}
+
+const resourceScaleCache = { key: "", desired: 0, scale: 1 }
+
+// Scales #resourceStats so its content always fits the space flex gives it.
+function updateResourceScale() {
+    const stats = document.getElementById("resourceStats")
+    if (!stats) return
+
+    const panel = document.getElementById("info")
+    const visibleKey = panel.clientHeight + "|" + (document.getElementById("timeWarping").classList.contains("hidden") ? 0 : 1)
+
+    if (resourceScaleCache.key != visibleKey) {
+        stats.style.setProperty("--stats-scale", 1)
+        resourceScaleCache.desired = stats.scrollHeight
+        stats.style.setProperty("--stats-scale", resourceScaleCache.scale)
+        resourceScaleCache.key = visibleKey
+    }
+
+    const available = stats.clientHeight
+    const scale = available <= 0 ? 1 : Math.min(1, available / resourceScaleCache.desired)
+    if (scale != resourceScaleCache.scale) {
+        stats.style.setProperty("--stats-scale", scale)
+        resourceScaleCache.scale = scale
+    }
 }
