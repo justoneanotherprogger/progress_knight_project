@@ -113,10 +113,18 @@ function renderSideBar() {
 
 // Keeps the quick bar's bottom edge at the window's bottom edge:
 // sticky top can be 146px (pinned under the resources bar) or higher (page at top).
+// Writes style only when the desired height actually changed, so the layout
+// recalculation it triggers cannot feed back into the next measurement.
 function updateQuickBarHeight() {
     const panel = document.getElementById("info")
+    if (!panel) return
+
     const top = panel.getBoundingClientRect().top
-    panel.style.height = Math.max(0, window.innerHeight - top) + "px"
+    const desired = Math.max(0, window.innerHeight - top)
+    const current = parseFloat(panel.style.height)
+
+    if (isNaN(current) || Math.abs(current - desired) > 1)
+        panel.style.height = desired + "px"
 }
 
 const resourceScaleCache = { key: "", desired: 0, scale: 1 }
