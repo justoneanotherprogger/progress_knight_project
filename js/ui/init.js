@@ -96,6 +96,7 @@ function updateUI() {
 
     if (currentTab == Tab.SHOP || gameData.settings.layout == 0 && currentTab == Tab.JOBS) {
         updateRequiredRows(gameData.itemData, itemCategories)
+        renderHeaderRows(itemCategories)
         renderShop()
     }
 

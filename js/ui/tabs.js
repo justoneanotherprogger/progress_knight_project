@@ -96,6 +96,9 @@ function renderShop() {
         const button = row.querySelector(".button")
         button.disabled = gameData.coins.lt(item.getExpense())
         const name = button.querySelector(".name")
+        name.textContent = t(item.name)
+        const tooltip = row.querySelector(".tooltipText")
+        if (tooltip) tooltip.textContent = t("tt_" + item.name)
 
         if (isHeroesUnlocked())
             name.classList.add("legendary")
@@ -744,6 +747,9 @@ function createAllRows(categoryType, tableId) {
 function updateRequiredRows(data, categoryType) {
     const requiredRows = document.getElementsByClassName("requiredRow")
     for (const requiredRow of requiredRows) {
+        const graySpans = requiredRow.querySelectorAll("span.w3-text-gray")
+        graySpans[0].textContent = t("required")
+        if (graySpans.length > 1) graySpans[1].textContent = t("next_effect")
         let nextEntity = null
         const category = categoryType[requiredRow.id.substring(4)]
         if (category == null) {continue}
