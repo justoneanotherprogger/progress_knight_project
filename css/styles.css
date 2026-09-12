@@ -383,11 +383,11 @@ button:focus {
 }
 
 #resourceStats .text-caption {
-    font-size: calc(1.2em * var(--stats-scale));
+    font-size: calc(18px * var(--stats-scale));
 }
 
 #resourceStats .resource-desc {
-    font-size: calc(1em * var(--stats-scale));
+    font-size: calc(16px * var(--stats-scale));
 }
 
 .tabs-tab-column {
