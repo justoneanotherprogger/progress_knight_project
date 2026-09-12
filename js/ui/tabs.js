@@ -375,11 +375,15 @@ function renderPerks() {
             const perk_cost = getPerkCost(key)
 
             if (total_mpp >= perk_cost) {
-                button.getElementsByClassName("perkName")[0].textContent = getMetaversePerkName(key)
+                const perkNameEl = button.getElementsByClassName("perkName")[0]
+                perkNameEl.textContent = getMetaversePerkName(key)
+                fitText(perkNameEl, 18)
                 button.classList.remove("perk-locked")
             }
             else {
-                button.getElementsByClassName("perkName")[0].textContent = "LOCKED"
+                const perkNameEl = button.getElementsByClassName("perkName")[0]
+                perkNameEl.textContent = t("locked")
+                fitText(perkNameEl, 18)
                 button.classList.add("perk-locked")
                 if (index % 2 == 1)
                     hide_next = true

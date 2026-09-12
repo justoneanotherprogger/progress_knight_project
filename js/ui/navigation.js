@@ -244,7 +244,9 @@ function createPerks(perkLayoutName) {
 
 function createPerk(template, name) {
     const button = template[0].content.firstElementChild.cloneNode(true)
-    button.getElementsByClassName("perkName")[0].textContent = getMetaversePerkName(name)
+    const perkNameEl = button.getElementsByClassName("perkName")[0]
+    perkNameEl.textContent = getMetaversePerkName(name)
+    fitText(perkNameEl, 18)
     button.getElementsByClassName("perkCostLabel")[0].textContent = t("cost")
     button.getElementsByClassName("perkCost")[0].textContent = getPerkCost(name)
     button.getElementsByClassName("perkCurrency")[0].textContent = t("mpp_short")

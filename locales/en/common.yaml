@@ -98,6 +98,7 @@ required: Required for next
 next_effect: Effect of next
 unknown: Unknown
 active: Active
+locked: Locked
 effect: Effect
 goal: Goal
 reward: Reward

@@ -98,6 +98,7 @@ required: Требуется для следующего
 next_effect: Эффект от следующего
 unknown: Неизвестно
 active: Активно
+locked: Заблокировано
 effect: Эффект
 goal: Цель
 reward: Награда

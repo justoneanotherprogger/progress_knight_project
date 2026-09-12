@@ -477,7 +477,12 @@ button:focus {
 }
 
 .perk:hover {
-    background-color: #F082AC;
+    background-color: #C2386F;
+}
+
+.perk .perkName {
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 #settings ul,
