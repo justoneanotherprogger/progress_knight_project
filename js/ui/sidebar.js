@@ -107,25 +107,29 @@ function renderSideBar() {
     if (getDarkMatter().eq(0))
         gameData.requirements["Dark Matter info"].completed = false
 
-    updateQuickBarHeight()
     updateResourceScale()
 }
 
 // Keeps the quick bar's bottom edge at the window's bottom edge:
 // sticky top can be 146px (pinned under the resources bar) or higher (page at top).
-// Writes style only when the desired height actually changed, so the layout
-// recalculation it triggers cannot feed back into the next measurement.
+// Recalculated on scroll/resize only — never per frame — so the layout it
+// triggers cannot feed back into the measurement. top is clamped to the
+// sticky offset so a scrolled-off panel cannot request an unbounded height.
 function updateQuickBarHeight() {
     const panel = document.getElementById("info")
     if (!panel) return
 
-    const top = panel.getBoundingClientRect().top
+    const top = Math.max(146, panel.getBoundingClientRect().top)
     const desired = Math.max(0, window.innerHeight - top)
     const current = parseFloat(panel.style.height)
 
-    if (isNaN(current) || Math.abs(current - desired) > 1)
+    if (isNaN(current) || Math.abs(current - desired) > 0.5)
         panel.style.height = desired + "px"
 }
+
+window.addEventListener("resize", updateQuickBarHeight, { passive: true })
+window.addEventListener("scroll", updateQuickBarHeight, { passive: true })
+updateQuickBarHeight()
 
 const resourceScaleCache = { key: "", desired: 0, scale: 1 }
 
