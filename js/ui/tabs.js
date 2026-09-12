@@ -646,6 +646,23 @@ function renderRequirements() {
     }
 }
 
+function updateHeaderColumns(headerRow, categoryType) {
+    if (categoryType == jobCategories || categoryType == skillCategories) {
+        const valueType = headerRow.querySelector(".valueType")
+        if (valueType) valueType.textContent = categoryType == jobCategories ? t("income_day") : t("effect")
+        const headers = headerRow.getElementsByTagName("th")
+        headers[1].textContent = t("level")
+        headers[3].textContent = t("xp_day")
+        headers[4].textContent = t("xp_left")
+        headers[5].textContent = t("max_level")
+    } else if (categoryType == itemCategories) {
+        const headers = headerRow.getElementsByTagName("th")
+        headers[1].textContent = t("active")
+        headers[2].textContent = t("effect")
+        headers[3].textContent = t("cost")
+    }
+}
+
 function renderHeaderRows(categories) {
     for (const categoryName in categories) {
         const className = removeSpaces(categoryName)
@@ -658,6 +675,8 @@ function renderHeaderRows(categories) {
         const maxLevelElement = headerRow.querySelector(".maxLevel")
         if (maxLevelElement)
             maxLevelElement.classList.toggle("hidden", gameData.rebirthOneCount == 0)
+
+        updateHeaderColumns(headerRow, categories)
     }
 }
 
@@ -683,19 +702,7 @@ function createHeaderRow(templates, categoryType, categoryName) {
     }
 
 
-    if (categoryType == jobCategories || categoryType == skillCategories) {
-        headerRow.getElementsByClassName("valueType")[0].textContent = categoryType == jobCategories ? t("income_day") : t("effect")
-        const headers = headerRow.getElementsByTagName("th")
-        headers[1].textContent = t("level")
-        headers[3].textContent = t("xp_day")
-        headers[4].textContent = t("xp_left")
-        headers[5].textContent = t("max_level")
-    } else if (categoryType == itemCategories) {
-        const headers = headerRow.getElementsByTagName("th")
-        headers[1].textContent = t("active")
-        headers[2].textContent = t("effect")
-        headers[3].textContent = t("cost")
-    }
+    updateHeaderColumns(headerRow, categoryType)
 
     headerRow.style.backgroundColor = headerRowColors[categoryName]
     headerRow.style.color = (gameData.settings.theme == 2) ? headerRowTextColors[categoryName] : "#ffffff"
