@@ -130,7 +130,7 @@ var autoBuyEnabled = true
 
 const updateSpeed = 20
 const baseLifespan = 365 * 65
-const baseGameSpeed = 10
+const baseGameSpeed = 30
 const heroIncomeMult = 2.5e18
 
 // --- Hero XP ---
