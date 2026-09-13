@@ -697,6 +697,8 @@ function createHeaderRow(templates, categoryType, categoryName) {
 
     if (categoryType == itemCategories) {
         categoryElement.getElementsByClassName("name")[0].textContent = t(categoryName)
+        const tooltip = categoryElement.querySelector(".tooltipText")
+        if (tooltip) tooltip.textContent = t("autobuy_tooltip")
     } else {
         categoryElement.textContent = t(categoryName)
     }
