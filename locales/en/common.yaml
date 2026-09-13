@@ -58,6 +58,7 @@ expense_day: Expense/day
 milestone_tier: Milestone Tier
 milestone: Milestone
 autobuy_tooltip: Click to activate auto-buy
+autobuy_toggle: Auto-buy
 all_xp: all XP
 or: OR
 

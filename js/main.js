@@ -16,8 +16,8 @@ function togglePause() {
     gameData.paused = !gameData.paused
 }
 
-function forceAutobuy() {
-    autoBuyEnabled = true
+function toggleAutoBuy() {
+    autoBuyEnabled = document.getElementById("autoBuyToggle").checked
 }
 
 function setCurrentProperty(propertyName) {

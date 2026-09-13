@@ -114,6 +114,10 @@ function renderShop() {
         row.querySelector(".effect").textContent = item.getEffectDescription()
         formatCoins(item.getExpense(), row.querySelector(".expense"))
     }
+
+    const autoBuyToggle = document.getElementById("autoBuyToggle")
+    if (autoBuyToggle && autoBuyToggle.checked != autoBuyEnabled)
+        autoBuyToggle.checked = autoBuyEnabled
 }
 
 function renderMilestones() {

@@ -34,11 +34,10 @@
 						</tr>
 					</template>
 					<template class="headerRowItemTemplate">
-						<tr class="item-header-row" onclick="forceAutobuy()">
+						<tr class="item-header-row">
 							<th class="category" style="width: 20em">
-								<button class="button-no-button tooltip" style="background-color:transparent;" onclick="forceAutobuy()">
+								<button class="button-no-button" style="background-color:transparent;">
 									<span class="name"></span>
-									<span class="tooltipText"></span>
 								</button>
 							</th>
 							<th></th>
@@ -119,6 +118,13 @@
 							</table>
 						</div>
 						<div id="itemPage" style="flex: 1; margin-left: 0.5em;">
+							<div class="autobuy-toggle-row">
+								<label class="toggle">
+									<input type="checkbox" id="autoBuyToggle" onchange="toggleAutoBuy()" />
+									<span class="slider"></span>
+									<span class="toggle-label" id="autobuy_toggle"></span>
+								</label>
+							</div>
 							<table id="itemTable" class="w3-table w3-bordered">
 							</table>
 						</div>

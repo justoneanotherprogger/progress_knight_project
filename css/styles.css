@@ -630,3 +630,56 @@ button:focus {
 .lang-btn {
     margin: 0.2em;
 }
+
+/* Autobuy toggle */
+.autobuy-toggle-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+
+.toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    cursor: pointer;
+    user-select: none;
+}
+
+.toggle input {
+    display: none;
+}
+
+.toggle .slider {
+    width: 3em;
+    height: 1.6em;
+    background-color: #bbb;
+    border-radius: 1.6em;
+    position: relative;
+    transition: background-color 0.2s;
+}
+
+.toggle .slider::before {
+    content: "";
+    position: absolute;
+    width: 1.2em;
+    height: 1.2em;
+    left: 0.2em;
+    top: 0.2em;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.2s;
+}
+
+.toggle input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+.toggle input:checked + .slider::before {
+    transform: translateX(1.4em);
+}
+
+.toggle .toggle-label {
+    font-size: small;
+}
