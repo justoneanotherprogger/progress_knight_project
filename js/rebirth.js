@@ -207,7 +207,6 @@ function rebirthReset(set_tab_to_jobs = true) {
     gameData.stats.EvilPerSecond = new Decimal(0)
     gameData.stats.maxEvilPerSecond = new Decimal(0)
     gameData.stats.maxEvilPerSecondRt = 0
-    autoBuyEnabled = true
 
     for (const taskName in gameData.taskData) {
         const task = gameData.taskData[taskName]

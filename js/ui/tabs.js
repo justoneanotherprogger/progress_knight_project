@@ -106,7 +106,7 @@ function renderShop() {
             name.classList.remove("legendary")
 
         const active = row.querySelector(".active")
-        const color = autoBuyEnabled
+        const color = gameData.autoBuyEnabled
             ? itemCategories["Properties"].includes(item.name) ? headerRowColors["Properties_Auto"] : headerRowColors["Misc_Auto"]
             : itemCategories["Properties"].includes(item.name) ? headerRowColors["Properties"] : headerRowColors["Misc"]
 
@@ -116,8 +116,8 @@ function renderShop() {
     }
 
     const autoBuyToggle = document.getElementById("autoBuyToggle")
-    if (autoBuyToggle && autoBuyToggle.checked != autoBuyEnabled)
-        autoBuyToggle.checked = autoBuyEnabled
+    if (autoBuyToggle && autoBuyToggle.checked != gameData.autoBuyEnabled)
+        autoBuyToggle.checked = gameData.autoBuyEnabled
 }
 
 function renderMilestones() {

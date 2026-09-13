@@ -17,20 +17,20 @@ function togglePause() {
 }
 
 function toggleAutoBuy() {
-    autoBuyEnabled = document.getElementById("autoBuyToggle").checked
+    gameData.autoBuyEnabled = document.getElementById("autoBuyToggle").checked
 }
 
 function setCurrentProperty(propertyName) {
     if (gameData.paused)
         return
-    autoBuyEnabled = false
+    gameData.autoBuyEnabled = false
     gameData.currentProperty = gameData.itemData[propertyName]
 }
 
 function setMisc(miscName) {
     if (gameData.paused)
         return
-    autoBuyEnabled = false
+    gameData.autoBuyEnabled = false
     const misc = gameData.itemData[miscName]
     if (gameData.currentMisc.includes(misc)) {
         for (i = 0; i < gameData.currentMisc.length; i++) {

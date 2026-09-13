@@ -48,6 +48,7 @@ dark_matter: new Decimal(0),
     currentJob: null,
     currentProperty: null,
     currentMisc: null,
+    autoBuyEnabled: true,
 
     settings: {
         stickySidebar: true,
@@ -125,8 +126,6 @@ dark_matter: new Decimal(0),
 }
 
 var tempData = {}
-
-var autoBuyEnabled = true
 
 const updateSpeed = 20
 const baseLifespan = 365 * 65

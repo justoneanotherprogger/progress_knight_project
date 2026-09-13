@@ -96,7 +96,7 @@ function autoPromote() {
 }
 
 function autoBuy() {
-    if (!autoBuyEnabled) return
+    if (!gameData.autoBuyEnabled) return
 
     let usedExpense = new Decimal(0)
     const income = getIncome()
@@ -196,7 +196,7 @@ function goBankrupt() {
     gameData.coins = new Decimal(0)
     gameData.currentProperty = gameData.itemData["Homeless"]
     gameData.currentMisc = []
-    autoBuyEnabled = true
+    gameData.autoBuyEnabled = true
 }
 
 function makeHero(task) {
