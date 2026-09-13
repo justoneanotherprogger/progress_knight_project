@@ -62,7 +62,8 @@ shortcut_g: g - Go to Metaverse
 shortcut_challenge: 1 - Enter / Exit Challenge 1, etc
 
 # Links
-links_based_on: 'Based on a <a href="https://symb1.github.io/progress_knight_2/" target="_blank">Progress Knight 2.0</a> mod · <a href="https://github.com/indomit/progress_knight_2" target="_blank">GitHub</a>'
+links_based_on: 'Based on <a href="https://indomit.github.io/progress_knight_2/" target="_blank">Progress Knight Quest</a>'
+links_based_on_2: 'Which is based on <a href="https://symb1.github.io/progress_knight_2/" target="_blank">Progress Knight 2.0</a>'
 links_original_game: 'Original game: <a href="https://ihtasham42.github.io/progress-knight/" target="_blank">Progress Knight</a>'
 links_discord: '<a href="https://discord.gg/fTRS4pHGka" target="_blank">Join the discord community! <img src="img/discord_icon.png" style="width:3em; height:3em;"></a>'
 links_github: '<a href="https://github.com/justoneanotherprogger/progress_knight_project" target="_blank">This mod''s page on GitHub</a>'
