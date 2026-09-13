@@ -196,7 +196,6 @@ function goBankrupt() {
     gameData.coins = new Decimal(0)
     gameData.currentProperty = gameData.itemData["Homeless"]
     gameData.currentMisc = []
-    gameData.autoBuyEnabled = true
 }
 
 function makeHero(task) {
