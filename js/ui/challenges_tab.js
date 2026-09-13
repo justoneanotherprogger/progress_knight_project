@@ -1,0 +1,90 @@
+// ui/challenges_tab.js — challenges tab rendering
+
+function renderChallenges() {
+    document.getElementById("activeChallengeName").textContent = getChallengeTranslatedName(gameData.active_challenge)
+
+    if (gameData.active_challenge == "") {
+        document.getElementById("exitChallengeDiv").hidden = true
+
+        for (let i = 1; i <= Object.keys(gameData.challenges).length; i++) {
+            const element = document.getElementById("challengeButton" + i)
+            if (element != null) {
+                element.textContent = t("enter_challenge")
+                element.classList.remove("hidden")
+            }
+
+        }
+    } else {
+        document.getElementById("exitChallengeDiv").hidden = false
+
+        for (let i = 1; i <= Object.keys(gameData.challenges).length; i++) {
+            const element = document.getElementById("challengeButton" + i)
+            if (element != null)
+                element.classList.add("hidden")
+        }
+
+        renderCurrentChallengeReward("currentChallengeReward")
+    }
+
+    //TODO (indomit)
+
+    document.getElementById("challengeGoal1").textContent = t("challenge_1_goal", format(getChallengeGoal("an_unhappy_life")))
+    document.getElementById("challengeGoal2").textContent = t("challenge_2_goal", format(getChallengeGoal("rich_and_the_poor")))
+    document.getElementById("challengeGoal3").textContent = t("challenge_3_goal", format(getChallengeGoal("time_does_not_fly")))
+    document.getElementById("challengeGoal4").textContent = t("challenge_4_goal", format(getChallengeGoal("dance_with_the_devil")))
+    document.getElementById("challengeGoal5").textContent = t("challenge_5_goal", getFormattedChallengeTaskGoal("Chairman", Math.floor(getChallengeGoal("legends_never_die"))))
+    document.getElementById("challengeGoal6").textContent = t("challenge_6_goal", getFormattedChallengeTaskGoal("Sigma Proioxis", Math.floor(100 * (getChallengeGoal("the_darkest_time") - 1))))
+
+    const challengeRewardIds = ["challenge_1_reward", "challenge_2_reward", "challenge_3_reward", "challenge_4_reward", "challenge_5_reward", "challenge_6_reward"]
+    for (let i = 0; i < 6; i++) {
+        const rewardElement = document.getElementById(challengeRewardIds[i])
+        if (rewardElement != null)
+            rewardElement.innerHTML = t("challenge_" + (i + 1) + "_reward", format(getChallengeBonus(i + 1)))
+    }
+
+    document.getElementById("challengeReward1").hidden = gameData.challenges.an_unhappy_life == 0
+    document.getElementById("challengeReward2").hidden = gameData.challenges.rich_and_the_poor == 0
+    document.getElementById("challengeReward3").hidden = gameData.challenges.time_does_not_fly == 0
+    document.getElementById("challengeReward4").hidden = gameData.challenges.dance_with_the_devil == 0
+    document.getElementById("challengeReward5").hidden = gameData.challenges.legends_never_die == 0
+    document.getElementById("challengeReward6").hidden = gameData.challenges.the_darkest_time == 0
+
+    renderCurrentChallengeRewardValue()
+
+    document.getElementById("challengeHappinessBuff").textContent = format(getChallengeBonus("an_unhappy_life"), 2)
+    document.getElementById("challengeIncomeBuff").textContent = format(getChallengeBonus("rich_and_the_poor"), 2)
+    document.getElementById("challengeTimewarpingBuff").textContent = format(getChallengeBonus("time_does_not_fly"), 2)
+    document.getElementById("challengeEssenceGainBuff").textContent = format(getChallengeBonus("dance_with_the_devil"), 2)
+    document.getElementById("challengeEvilGainBuff").textContent = format(getChallengeBonus("legends_never_die"), 2)
+    document.getElementById("challengeDarkMatterGainBuff").textContent = format(getChallengeBonus("the_darkest_time"), 2)
+
+    const lifespanDebuff = document.getElementById("challenge5MetaverseLifespanDebuff")
+    lifespanDebuff.hidden = gameData.rebirthFiveCount == 0
+    if (!lifespanDebuff.hidden)
+        lifespanDebuff.textContent = t("challenge_5_meta_debuff")
+}
+
+function renderCurrentChallengeReward(blockclass) {
+    const elements = document.getElementsByClassName(blockclass)
+    for (const elementReward of elements) {
+        if (elementReward.classList.contains(gameData.active_challenge)) {
+            elementReward.classList.remove("hidden")
+
+            if (getChallengeBonus(gameData.active_challenge, true).gt(getChallengeBonus(gameData.active_challenge)))
+                elementReward.classList.add("reward")
+            else
+                elementReward.classList.remove("reward")
+        }
+        else
+            elementReward.classList.add("hidden")
+    }
+}
+
+function renderCurrentChallengeRewardValue(side_bar = false) {
+
+    for (var i = 1; i <= Object.keys(gameData.challenges).length; i++) {
+        document.getElementById((side_bar ? "sidebarC" : "c") + "urrentChallengeBuff" + i).textContent = format(getChallengeBonus(i, true), 2)
+        if (side_bar)
+            document.getElementById("sidebarChallengeBuff" + i).textContent = format(getChallengeBonus(i), 2)
+    }    
+}
