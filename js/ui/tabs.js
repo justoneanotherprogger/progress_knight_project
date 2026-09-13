@@ -677,6 +677,10 @@ function renderHeaderRows(categories) {
             maxLevelElement.classList.toggle("hidden", gameData.rebirthOneCount == 0)
 
         updateHeaderColumns(headerRow, categories)
+
+        const categoryHeader = headerRow.getElementsByClassName("category")[0]
+        const headerTooltip = categoryHeader.querySelector(".tooltipText")
+        if (headerTooltip) headerTooltip.textContent = t("autobuy_tooltip")
     }
 }
 
