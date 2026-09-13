@@ -383,7 +383,7 @@ button:focus {
 }
 
 #resourceStats .text-caption {
-    font-size: calc(18px * var(--stats-scale));
+    font-size: calc(20px * var(--stats-scale));
 }
 
 #resourceStats .resource-desc {
