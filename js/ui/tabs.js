@@ -414,7 +414,7 @@ function updateRequiredRows(data, categoryType) {
             requiredRow.classList.add("hiddenTask")
         } else {
             requiredRow.classList.remove("hiddenTask")
-            const requirementObject = gameData.requirements[nextEntity.id]            
+            const requirementObject = gameData.requirements[nextEntity.id || nextEntity.name]            
             const requirements = requirementObject.requirements
 
             const coinElement = requiredRow.querySelector(".coins")
