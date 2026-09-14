@@ -50,13 +50,13 @@ function renderSkills() {
 
         if (!(task instanceof Skill)) continue
 
-        const row = getRowByName(task.name)
+        const row = getRowByName(task.id)
 
         task.querySelector(".level", row).textContent = formatLevel(task.level)
         task.querySelector(".xpGain", row).textContent = task.getXpGainFormatted()
         task.querySelector(".xpLeft", row).textContent = task.getXpLeftFormatted()
 
-        let tooltip = t("tt_" + key)
+        let tooltip = t(task.baseData.description != null ? task.baseData.description : "tt_" + key)
 
         if (!task.isHero && isHeroesUnlocked()) {
             tooltip += getHeroicRequiredTooltip(key)
@@ -312,8 +312,19 @@ function createHeaderRow(templates, categoryType, categoryName) {
 
 function createRow(templates, name, categoryName, categoryType) {
     const row = templates.row.content.firstElementChild.cloneNode(true)
-    row.getElementsByClassName("name")[0].textContent = t(name)
-    row.getElementsByClassName("tooltipText")[0].textContent = t("tt_" + name)
+
+    let displayName = name
+    let tooltipKey = "tt_" + name
+    if (categoryType == skillCategories) {
+        const entity = gameData.taskData[name]
+        if (entity) {
+            displayName = entity.name
+            tooltipKey = entity.baseData.description != null ? entity.baseData.description : "tt_" + name
+        }
+    }
+
+    row.getElementsByClassName("name")[0].textContent = t(displayName)
+    row.getElementsByClassName("tooltipText")[0].textContent = t(tooltipKey)
     row.id = "row" + removeSpaces(removeStrangeCharacters(name))
 
     if (categoryType == itemCategories) {
@@ -344,14 +355,26 @@ function createAllRows(categoryType, tableId) {
         table.appendChild(headerRow)
 
         const category = categoryType[categoryName]
-        category.forEach(function(name) {
-            const row = createRow(templates, name, categoryName, categoryType)
-            table.appendChild(row)
-        })
+        if (Array.isArray(category)) {
+            category.forEach(function(name) {
+                const row = createRow(templates, name, categoryName, categoryType)
+                table.appendChild(row)
+            })
+        } else {
+            for (const name in category) {
+                const row = createRow(templates, name, categoryName, categoryType)
+                table.appendChild(row)
+            }
+        }
 
         const requiredRow = createRequiredRow(categoryName, categoryType)
         table.append(requiredRow)
     }
+}
+
+function getTaskNameLocale(taskRef) {
+    const entity = gameData.taskData[taskRef]
+    return entity ? entity.name : taskRef
 }
 
 function updateRequiredRows(data, categoryType) {
@@ -363,9 +386,10 @@ function updateRequiredRows(data, categoryType) {
         let nextEntity = null
         const category = categoryType[requiredRow.id.substring(4)]
         if (category == null) {continue}
-        for (let i = 0; i < category.length; i++) {
-            const entityName = category[i]
-            if (i >= category.length - 1) break
+        const entries = Array.isArray(category) ? category : Object.keys(category)
+        for (let i = 0; i < entries.length; i++) {
+            const entityName = entries[i]
+            if (i >= entries.length - 1) break
 
             const requirements = gameData.requirements[entityName]
             if (requirements && i == 0) {
@@ -376,8 +400,8 @@ function updateRequiredRows(data, categoryType) {
             }
 
             const nextIndex = i + 1
-            if (nextIndex >= category.length) {break}
-            const nextEntityName = category[nextIndex]
+            if (nextIndex >= entries.length) {break}
+            const nextEntityName = entries[nextIndex]
             nextEntityRequirements = gameData.requirements[nextEntityName]
 
             if (!nextEntityRequirements.isCompleted()) {
@@ -390,7 +414,7 @@ function updateRequiredRows(data, categoryType) {
             requiredRow.classList.add("hiddenTask")
         } else {
             requiredRow.classList.remove("hiddenTask")
-            const requirementObject = gameData.requirements[nextEntity.name]            
+            const requirementObject = gameData.requirements[nextEntity.id]            
             const requirements = requirementObject.requirements
 
             const coinElement = requiredRow.querySelector(".coins")
@@ -420,7 +444,7 @@ function updateRequiredRows(data, categoryType) {
             let effectText = ""
             if (data == gameData.taskData) {
                 if (categoryType != jobCategories) {
-                    const task = gameData.taskData[nextEntity.name]
+                    const task = gameData.taskData[nextEntity.id]
                     effectElement.classList.remove("hiddenTask")
                     effectValueElement.textContent = task.unlocked ? (task.baseData.description != null ? t(task.baseData.description) : t("reward_income")) : t("unknown")
                 }
@@ -448,7 +472,7 @@ function updateRequiredRows(data, categoryType) {
                     for (const requirement of requirements) {
                         const task = gameData.taskData[requirement.task]
                         if (task.level >= requirement.requirement) continue
-                        finalText += " " + t(requirement.task) + " " + formatLevel(task.level) + "/" + formatLevel(requirement.requirement) + ","
+                        finalText += " " + t(getTaskNameLocale(requirement.task)) + " " + formatLevel(task.level) + "/" + formatLevel(requirement.requirement) + ","
                     }
                     finalText = finalText.substring(0, finalText.length - 1)
                     levelElement.textContent = finalText
@@ -490,7 +514,7 @@ function getHeroicRequiredTooltip(task) {
         var prevTask = gameData.taskData[prev]
         var prevlvl = (prevTask.isHero ? prevTask.level : 0)
         if (prevlvl < 20)
-            prevReq = t("great") + " " + t(prev) + " " + prevlvl + "/20<br>"
+            prevReq = t("great") + " " + t(getTaskNameLocale(prev)) + " " + prevlvl + "/20<br>"
     }
 
     if (requirementObject instanceof EvilRequirement) {
@@ -508,13 +532,13 @@ function getHeroicRequiredTooltip(task) {
             const reqvalue = (requirement.herequirement == null ? requirement.requirement : requirement.herequirement)
 
             if (task_check.isHero && task_check.level >= reqvalue) continue
-            if (prev != "" && task_check.name == prevTask.name) {
+            if (prev != "" && task_check.id == prevTask.id) {
                 if (reqvalue <= 20)
                     continue
                 else
-                    prevReq = " " + t("great") + " " + t(requirement.task) + " " + (task_check.isHero ? task_check.level : 0) + "/" + reqvalue + "<br>"
+                    prevReq = " " + t("great") + " " + t(getTaskNameLocale(requirement.task)) + " " + (task_check.isHero ? task_check.level : 0) + "/" + reqvalue + "<br>"
             } else {
-                reqlist += " " + t("great") + " " + t(requirement.task) + " " + (task_check.isHero ? task_check.level : 0) + "/" + reqvalue + "<br>"
+                reqlist += " " + t("great") + " " + t(getTaskNameLocale(requirement.task)) + " " + (task_check.isHero ? task_check.level : 0) + "/" + reqvalue + "<br>"
             }
         }
     }

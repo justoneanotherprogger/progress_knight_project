@@ -1,15 +1,92 @@
 // save.js — save/load/import/export functions
 
+// Legacy skill display names (pre-content-framework saves) → new content ids.
+// Needed once to carry player progress over when taskData keys switched from names to ids.
+const SKILL_LEGACY_IDS = {
+    "Concentration": "skill_concentration",
+    "Productivity": "skill_productivity",
+    "Bargaining": "skill_bargaining",
+    "Meditation": "skill_meditation",
+    "Strength": "skill_strength",
+    "Battle Tactics": "skill_battle_tactics",
+    "Muscle Memory": "skill_muscle_memory",
+    "Mana Control": "skill_mana_control",
+    "Life Essence": "skill_life_essence",
+    "Time Warping": "skill_time_warping",
+    "Astral Body": "skill_astral_body",
+    "Temporal Dimension": "skill_temporal_dimension",
+    "All Seeing Eye": "skill_all_seeing_eye",
+    "Brainwashing": "skill_brainwashing",
+    "Dark Influence": "skill_dark_influence",
+    "Evil Control": "skill_evil_control",
+    "Intimidation": "skill_intimidation",
+    "Demon Training": "skill_demon_training",
+    "Blood Meditation": "skill_blood_meditation",
+    "Demon's Wealth": "skill_demons_wealth",
+    "Dark Knowledge": "skill_dark_knowledge",
+    "Soul Drain": "skill_soul_drain",
+    "Void Influence": "skill_void_influence",
+    "Time Loop": "skill_time_loop",
+    "Evil Incarnate": "skill_evil_incarnate",
+    "Absolute Wish": "skill_absolute_wish",
+    "Void Amplification": "skill_void_amplification",
+    "Mind Release": "skill_mind_release",
+    "Ceaseless Abyss": "skill_ceaseless_abyss",
+    "Void Symbiosis": "skill_void_symbiosis",
+    "Void Embodiment": "skill_void_embodiment",
+    "Abyss Manipulation": "skill_abyss_manipulation",
+    "Cosmic Longevity": "skill_cosmic_longevity",
+    "Cosmic Recollection": "skill_cosmic_recollection",
+    "Essence Collector": "skill_essence_collector",
+    "Galactic Command": "skill_galactic_command",
+    "Yin Yang": "skill_yin_yang",
+    "Parallel Universe": "skill_parallel_universe",
+    "Higher Dimensions": "skill_higher_dimensions",
+    "Epiphany": "skill_epiphany",
+    "Dark Prince": "skill_dark_prince",
+    "Dark Ruler": "skill_dark_ruler",
+    "Immortal Ruler": "skill_immortal_ruler",
+    "Dark Magician": "skill_dark_magician",
+    "Universal Ruler": "skill_universal_ruler",
+    "Blinded By Darkness": "skill_blinded_by_darkness"
+}
+
+function migrateLegacySkills(gameDataSave) {
+    const taskData = gameDataSave.taskData
+    if (taskData == null) return
+
+    let migrated = false
+    for (const key in taskData) {
+        const id = SKILL_LEGACY_IDS[key]
+        if (id == null) continue
+        const task = taskData[key]
+        task.id = id
+        if (skillBaseData[id] != null)
+            task.name = skillBaseData[id].name
+        taskData[id] = task
+        delete taskData[key]
+        migrated = true
+    }
+    if (migrated)
+        console.log("Migrated legacy skill save keys to content ids")
+}
+
 function assignMethods() {
     for (const key in gameData.taskData) {
         let task = gameData.taskData[key]
         if (task.baseData.income) {
-            task.baseData = jobBaseData[task.name]
-            task = Object.assign(new Job(jobBaseData[task.name]), task)
-
+            const jobId = task.id || task.baseData.id || task.name
+            if (jobBaseData[jobId] == null) continue
+            task.id = jobId
+            task.baseData = jobBaseData[jobId]
+            task = Object.assign(new Job(jobBaseData[jobId]), task)
         } else {
-            task.baseData = skillBaseData[task.name]
-            task = Object.assign(new Skill(skillBaseData[task.name]), task)
+            const skillId = task.id || task.baseData.id || SKILL_LEGACY_IDS[task.name] || task.name
+            if (skillBaseData[skillId] == null) continue
+            task.id = skillId
+            task.name = skillBaseData[skillId].name
+            task.baseData = skillBaseData[skillId]
+            task = Object.assign(new Skill(skillBaseData[skillId]), task)
         }
 
         // There are two cases. The number is stored as a large number or in the scientific notation.
@@ -115,6 +192,8 @@ function loadGameData() {
         const gameDataSave = JSON.parse(localStorage.getItem("gameDataSave"))
 
         if (gameDataSave !== null) {
+            migrateLegacySkills(gameDataSave)
+
             // When the game contains completedTimes, add 1 Dark Matter and remove the instance.
             if ("completedTimes" in gameDataSave && gameDataSave["completedTimes"] > 0) {
                 delete gameDataSave["completedTimes"]

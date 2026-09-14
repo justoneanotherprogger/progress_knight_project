@@ -1,6 +1,7 @@
 class Task {
     constructor(baseData) {
         this.baseData = baseData
+        this.id = baseData.id
         this.name = baseData.name
         this.level = 0
         this.maxLevel = 0
@@ -57,7 +58,7 @@ class Task {
            return (10 / (this.maxLevel + 1))
         }
         else {
-            let effect = gameData.taskData['Cosmic Recollection'].getEffect();
+            let effect = gameData.taskData['skill_cosmic_recollection'].getEffect();
             effect = effect == 0 ? 1 : effect
             return (this.baseData.heroxp < 1000) ? 1 + this.maxLevel / 10 : 1 + this.maxLevel / effect
         }
@@ -195,15 +196,37 @@ class Skill extends Task {
     }
 
     getEffect() {
-        if (this.baseData.formula === "log") {
-            return 1 + this.baseData.effect * Math.log(this.level + 1)
+        const level = this.level
+        const hero = this.isHero
+        const value = this.baseData.effect.value
+        const formula = this.baseData.effect.formula
+
+        switch (formula) {
+            case "log":
+                return 1 + value * Math.log(level + 1)
+            case "expense_reduction": {
+                const base = hero ? EXPENSE_REDUCTION_LOG_BASE_HERO : EXPENSE_REDUCTION_LOG_BASE_NORMAL
+                const result = 1 - getBaseLog(base, level + 1) / EXPENSE_REDUCTION_DIVISOR
+                return Math.max(result, EXPENSE_REDUCTION_MIN)
+            }
+            case "time_warping": {
+                const base = hero ? TIME_WARPING_LOG_BASE_HERO : TIME_WARPING_LOG_BASE_NORMAL
+                return 1 + getBaseLog(base, level + 1)
+            }
+            case "life_essence": {
+                const base = hero ? LIFE_ESSENCE_LOG_BASE_HERO : LIFE_ESSENCE_LOG_BASE_NORMAL
+                return 1 + getBaseLog(base, level + 1)
+            }
+            case "cosmic_recollection":
+                return level * (hero ? COSMIC_RECOLLECTION_EFFECT_HERO : COSMIC_RECOLLECTION_EFFECT_NORMAL)
+            default: // standard
+                return 1 + value * (hero ? SKILL_HERO_LEVEL_MULTIPLIER * level + SKILL_HERO_FLAT_BONUS : level)
+                    * Math.pow(SKILL_LEVEL_EXPONENT_BASE, getBaseLog(10, level + 1))
         }
-        var effect = 1 + this.baseData.effect * (this.isHero ? SKILL_HERO_LEVEL_MULTIPLIER * this.level + SKILL_HERO_FLAT_BONUS : this.level) * Math.pow(SKILL_LEVEL_EXPONENT_BASE, getBaseLog(10, this.level + 1))
-        return effect
     }
 
     getEffectDescription() {
-        return "x" + format(this.getEffect(), 2) + " " + t(this.baseData.description)
+        return "x" + format(this.getEffect(), 2) + " " + t("effect_" + this.baseData.effect.type)
     }
 }
 

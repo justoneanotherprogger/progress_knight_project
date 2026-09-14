@@ -277,12 +277,6 @@ const HERO_MILESTONE_MULTIPLIERS = [
   { requirement: "Superb Heroes", multiplier: 1e3 },
 ]
 
-// --- Bargaining/Intimidation/Brainwashing/Abyss/Galactic custom effect tasks ---
-const EXPENSE_REDUCTION_TASKS = [
-  "Bargaining", "Intimidation", "Brainwashing",
-  "Abyss Manipulation", "Galactic Command"
-]
-
 const permanentUnlocks = ["Quick task display", "Rebirth tab", "Dark Matter", "Dark Matter Skills", "Dark Matter Skills2", "Metaverse", "Metaverse Perks", "Metaverse Perks Button", "Congratulations"]
 const metaverseUnlocks = ["Reduce Boost Cooldown", "Increase Boost Duration", "Increase Hypercube Gain", "Gain evil at new transcension",
     "Essence gain multiplier", "Challenges are not reset", "Dark Matter gain multiplier"]
@@ -396,7 +390,7 @@ const itemBaseData = {
 
 const requirementsBaseData = {
     // Categories
-    "Mage Collegium": new TaskRequirement([removeSpaces(".Mage Collegium")], [{ task: "Concentration", requirement: 200 }, { task: "Meditation", requirement: 200 }]),
+    "Mage Collegium": new TaskRequirement([removeSpaces(".Mage Collegium")], [{ task: "skill_concentration", requirement: 200 }, { task: "skill_meditation", requirement: 200 }]),
     "Galactic Council": new AgeRequirement([removeSpaces(".Galactic Council")], [{ requirement: 10000 }]),
     "The Void": new AgeRequirement([removeSpaces(".The Void")], [{ requirement: 1000 }]),
     "Void Manipulation": new AgeRequirement([removeSpaces(".Void Manipulation")], [{ requirement: 1000 }]),
@@ -426,7 +420,7 @@ const requirementsBaseData = {
     "Rebirth note 5 unlock": new AgeRequirement(["#rebirth_note_5_unlock"], [{ requirement: 10000 }]),
     "Rebirth note 5 info": new AgeRequirement(["#rebirth_note_5_info"], [{ requirement: 10000 }]),
     "Rebirth note 5 warning": new AgeRequirement(["#rebirth_note_5_warning"], [{ requirement: 10000 }]),
-    "Rebirth note 6": new TaskRequirement(["#rebirth_note_6"], [{ task: "Cosmic Recollection", requirement: 1 }]),
+    "Rebirth note 6": new TaskRequirement(["#rebirth_note_6"], [{ task: "skill_cosmic_recollection", requirement: 1 }]),
     "Rebirth note 7": new EssenceRequirement(["#rebirth_note_7"], [{ requirement: 5e10 }]),
     "Rebirth note 7 info": new EssenceRequirement(["#rebirth_note_7_info"], [{ requirement: 5e10 }]),
     "Rebirth note 8": new EssenceRequirement(["#rebirth_note_8"], [{ requirement: 1e60 }]),
@@ -436,12 +430,12 @@ const requirementsBaseData = {
 
     "Rebirth button 1": new AgeRequirement(["#rebirthButton1"], [{ requirement: 65 }]),
     "Rebirth button 2": new AgeRequirement(["#rebirthButton2"], [{ requirement: 200 }]),
-    "Rebirth button 3": new TaskRequirement(["#rebirthButton3"], [{ task: "Cosmic Recollection", requirement: 1 }]),
+    "Rebirth button 3": new TaskRequirement(["#rebirthButton3"], [{ task: "skill_cosmic_recollection", requirement: 1 }]),
     "Rebirth button 4": new EssenceRequirement(["#rebirthButton4"], [{ requirement: 5e10 }]),
     "Rebirth button 5": new EssenceRequirement(["#rebirthButton5"], [{ requirement: 1e60 }]),
 
     "Rebirth stats evil": new AgeRequirement(["#stats_evil_gain"], [{ requirement: 200 }]),
-    "Rebirth stats essence": new TaskRequirement(["#stats_essence_gain"], [{ task: "Cosmic Recollection", requirement: 1 }]),
+    "Rebirth stats essence": new TaskRequirement(["#stats_essence_gain"], [{ task: "skill_cosmic_recollection", requirement: 1 }]),
 
     // Sidebar items
     "Quick task display": new AgeRequirement(["#quickTaskDisplay"], [{ requirement: 20 }]),
@@ -455,114 +449,52 @@ const requirementsBaseData = {
     "Beggar": new TaskRequirement([getQuerySelector("Beggar")], []),
     "Farmer": new TaskRequirement([getQuerySelector("Farmer")], [{ task: "Beggar", requirement: 10 }]),
     "Fisherman": new TaskRequirement([getQuerySelector("Fisherman")], [{ task: "Farmer", requirement: 10 }]),
-    "Miner": new TaskRequirement([getQuerySelector("Miner")], [{ task: "Strength", requirement: 10 }, { task: "Fisherman", requirement: 10 }]),
-    "Blacksmith": new TaskRequirement([getQuerySelector("Blacksmith")], [{ task: "Strength", requirement: 30 }, { task: "Miner", requirement: 10 }]),
-    "Merchant": new TaskRequirement([getQuerySelector("Merchant")], [{ task: "Bargaining", requirement: 50 }, { task: "Blacksmith", requirement: 10 }]),
+    "Miner": new TaskRequirement([getQuerySelector("Miner")], [{ task: "skill_strength", requirement: 10 }, { task: "Fisherman", requirement: 10 }]),
+    "Blacksmith": new TaskRequirement([getQuerySelector("Blacksmith")], [{ task: "skill_strength", requirement: 30 }, { task: "Miner", requirement: 10 }]),
+    "Merchant": new TaskRequirement([getQuerySelector("Merchant")], [{ task: "skill_bargaining", requirement: 50 }, { task: "Blacksmith", requirement: 10 }]),
 
     // Military
-    "Squire": new TaskRequirement([getQuerySelector("Squire")], [{ task: "Strength", requirement: 5 }]),
-    "Footman": new TaskRequirement([getQuerySelector("Footman")], [{ task: "Strength", requirement: 20 }, { task: "Squire", requirement: 10 }]),
-    "Veteran footman": new TaskRequirement([getQuerySelector("Veteran footman")], [{ task: "Battle Tactics", requirement: 40 }, { task: "Footman", requirement: 10 }]),
-    "Centenary": new TaskRequirement([getQuerySelector("Centenary")], [{ task: "Strength", requirement: 100 }, { task: "Veteran footman", requirement: 10 }]),
-    "Knight": new TaskRequirement([getQuerySelector("Knight")], [{ task: "Battle Tactics", requirement: 150 }, { task: "Centenary", requirement: 10 }]),
-    "Veteran Knight": new TaskRequirement([getQuerySelector("Veteran Knight")], [{ task: "Strength", requirement: 300 }, { task: "Knight", requirement: 10 }]),
-    "Holy Knight": new TaskRequirement([getQuerySelector("Holy Knight")], [{ task: "Mana Control", requirement: 500 }, { task: "Veteran Knight", requirement: 10 }]),
-    "Lieutenant General": new TaskRequirement([getQuerySelector("Lieutenant General")], [{ task: "Mana Control", requirement: 1000 }, { task: "Battle Tactics", requirement: 1000 }, { task: "Holy Knight", requirement: 10 }]),
+    "Squire": new TaskRequirement([getQuerySelector("Squire")], [{ task: "skill_strength", requirement: 5 }]),
+    "Footman": new TaskRequirement([getQuerySelector("Footman")], [{ task: "skill_strength", requirement: 20 }, { task: "Squire", requirement: 10 }]),
+    "Veteran footman": new TaskRequirement([getQuerySelector("Veteran footman")], [{ task: "skill_battle_tactics", requirement: 40 }, { task: "Footman", requirement: 10 }]),
+    "Centenary": new TaskRequirement([getQuerySelector("Centenary")], [{ task: "skill_strength", requirement: 100 }, { task: "Veteran footman", requirement: 10 }]),
+    "Knight": new TaskRequirement([getQuerySelector("Knight")], [{ task: "skill_battle_tactics", requirement: 150 }, { task: "Centenary", requirement: 10 }]),
+    "Veteran Knight": new TaskRequirement([getQuerySelector("Veteran Knight")], [{ task: "skill_strength", requirement: 300 }, { task: "Knight", requirement: 10 }]),
+    "Holy Knight": new TaskRequirement([getQuerySelector("Holy Knight")], [{ task: "skill_mana_control", requirement: 500 }, { task: "Veteran Knight", requirement: 10 }]),
+    "Lieutenant General": new TaskRequirement([getQuerySelector("Lieutenant General")], [{ task: "skill_mana_control", requirement: 1000 }, { task: "skill_battle_tactics", requirement: 1000 }, { task: "Holy Knight", requirement: 10 }]),
 
     // Mage Collegium
-    "Student": new TaskRequirement([getQuerySelector("Student")], [{ task: "Concentration", requirement: 200 }, { task: "Meditation", requirement: 200 }]),
-    "Apprentice Mage": new TaskRequirement([getQuerySelector("Apprentice Mage")], [{ task: "Mana Control", requirement: 400 }, { task: "Student", requirement: 10 }]),
-    "Adept Mage": new TaskRequirement([getQuerySelector("Adept Mage")], [{ task: "Mana Control", requirement: 700 }, { task: "Apprentice Mage", requirement: 10 }]),
-    "Master Wizard": new TaskRequirement([getQuerySelector("Master Wizard")], [{ task: "Mana Control", requirement: 1000 }, { task: "Adept Mage", requirement: 10 }]),
-    "Archmage": new TaskRequirement([getQuerySelector("Archmage")], [{ task: "Mana Control", requirement: 1200 }, { task: "Master Wizard", requirement: 10 }]),
-    "Chronomancer": new TaskRequirement([getQuerySelector("Chronomancer")], [{ task: "Mana Control", requirement: 1500 }, { task: "Meditation", requirement: 1500 }, { task: "Archmage", requirement: 25 }]),
-    "Chairman": new TaskRequirement([getQuerySelector("Chairman")], [{ task: "Mana Control", requirement: 2000 }, { task: "Productivity", requirement: 2000 }, { task: "Chronomancer", requirement: 50 }]),
-    "Imperator": new TaskRequirement([getQuerySelector("Imperator")], [{ task: "All Seeing Eye", requirement: 3000, herequirement: 650 }, { task: "Concentration", requirement: 3000 }, { task: "Chairman", requirement: 666 }]),
+    "Student": new TaskRequirement([getQuerySelector("Student")], [{ task: "skill_concentration", requirement: 200 }, { task: "skill_meditation", requirement: 200 }]),
+    "Apprentice Mage": new TaskRequirement([getQuerySelector("Apprentice Mage")], [{ task: "skill_mana_control", requirement: 400 }, { task: "Student", requirement: 10 }]),
+    "Adept Mage": new TaskRequirement([getQuerySelector("Adept Mage")], [{ task: "skill_mana_control", requirement: 700 }, { task: "Apprentice Mage", requirement: 10 }]),
+    "Master Wizard": new TaskRequirement([getQuerySelector("Master Wizard")], [{ task: "skill_mana_control", requirement: 1000 }, { task: "Adept Mage", requirement: 10 }]),
+    "Archmage": new TaskRequirement([getQuerySelector("Archmage")], [{ task: "skill_mana_control", requirement: 1200 }, { task: "Master Wizard", requirement: 10 }]),
+    "Chronomancer": new TaskRequirement([getQuerySelector("Chronomancer")], [{ task: "skill_mana_control", requirement: 1500 }, { task: "skill_meditation", requirement: 1500 }, { task: "Archmage", requirement: 25 }]),
+    "Chairman": new TaskRequirement([getQuerySelector("Chairman")], [{ task: "skill_mana_control", requirement: 2000 }, { task: "skill_productivity", requirement: 2000 }, { task: "Chronomancer", requirement: 50 }]),
+    "Imperator": new TaskRequirement([getQuerySelector("Imperator")], [{ task: "skill_all_seeing_eye", requirement: 3000, herequirement: 650 }, { task: "skill_concentration", requirement: 3000 }, { task: "Chairman", requirement: 666 }]),
 
     // The Void
     "Corrupted": new AgeRequirement([getQuerySelector("Corrupted")], [{ requirement: 1000 }]),
     "Void Slave": new TaskRequirement([getQuerySelector("Void Slave")], [{ task: "Corrupted", requirement: 30 }]),
-    "Void Fiend": new TaskRequirement([getQuerySelector("Void Fiend")], [{ task: "Brainwashing", requirement: 3000 }, { task: "Void Slave", requirement: 200 }]),
-    "Abyss Anomaly": new TaskRequirement([getQuerySelector("Abyss Anomaly")], [{ task: "Mind Release", requirement: 3000, herequirement: 100 }, { task: "Void Fiend", requirement: 200, herequirement: 100 }]),
-    "Void Wraith": new TaskRequirement([getQuerySelector("Void Wraith")], [{ task: "Temporal Dimension", requirement: 3400 }, { task: "Abyss Anomaly", requirement: 300, herequirement: 180 }]),
-    "Void Reaver": new TaskRequirement([getQuerySelector("Void Reaver")], [{ task: "Void Amplification", requirement: 3400, herequirement: 180 }, { task: "Void Wraith", requirement: 250, herequirement: 125 }]),
-    "Void Lord": new TaskRequirement([getQuerySelector("Void Lord")], [{ task: "Void Symbiosis", requirement: 3800, herequirement: 200 }, { task: "Void Reaver", requirement: 150 }]),
-    "Abyss God": new TaskRequirement([getQuerySelector("Abyss God")], [{ task: "Void Embodiment", requirement: 4700, herequirement: 300 }, { task: "Void Lord", requirement: 750, herequirement: 125 }]),
+    "Void Fiend": new TaskRequirement([getQuerySelector("Void Fiend")], [{ task: "skill_brainwashing", requirement: 3000 }, { task: "Void Slave", requirement: 200 }]),
+    "Abyss Anomaly": new TaskRequirement([getQuerySelector("Abyss Anomaly")], [{ task: "skill_mind_release", requirement: 3000, herequirement: 100 }, { task: "Void Fiend", requirement: 200, herequirement: 100 }]),
+    "Void Wraith": new TaskRequirement([getQuerySelector("Void Wraith")], [{ task: "skill_temporal_dimension", requirement: 3400 }, { task: "Abyss Anomaly", requirement: 300, herequirement: 180 }]),
+    "Void Reaver": new TaskRequirement([getQuerySelector("Void Reaver")], [{ task: "skill_void_amplification", requirement: 3400, herequirement: 180 }, { task: "Void Wraith", requirement: 250, herequirement: 125 }]),
+    "Void Lord": new TaskRequirement([getQuerySelector("Void Lord")], [{ task: "skill_void_symbiosis", requirement: 3800, herequirement: 200 }, { task: "Void Reaver", requirement: 150 }]),
+    "Abyss God": new TaskRequirement([getQuerySelector("Abyss God")], [{ task: "skill_void_embodiment", requirement: 4700, herequirement: 300 }, { task: "Void Lord", requirement: 750, herequirement: 125 }]),
 
     // Galactic Council
     "Eternal Wanderer": new AgeRequirement([getQuerySelector("Eternal Wanderer")], [{ requirement: 10000 }]),
-    "Nova": new TaskRequirement([getQuerySelector("Nova")], [{ task: "Eternal Wanderer", requirement: 15 }, { task: "Cosmic Longevity", requirement: 4000, herequirement: 180 }]),
-    "Sigma Proioxis": new TaskRequirement([getQuerySelector("Sigma Proioxis")], [{ task: "Nova", requirement: 200 }, { task: "Cosmic Recollection", requirement: 4500, herequirement: 350 }]),
-    "Acallaris": new TaskRequirement([getQuerySelector("Acallaris")], [{ task: "Galactic Command", requirement: 5000, herequirement: 250 }, { task: "Sigma Proioxis", requirement: 1000, herequirement: 480 }]),
-    "One Above All": new TaskRequirement([getQuerySelector("One Above All")], [{ task: "Meditation", requirement: 6300 }, { task: "Acallaris", requirement: 1400, herequirement: 500 }]),
+    "Nova": new TaskRequirement([getQuerySelector("Nova")], [{ task: "Eternal Wanderer", requirement: 15 }, { task: "skill_cosmic_longevity", requirement: 4000, herequirement: 180 }]),
+    "Sigma Proioxis": new TaskRequirement([getQuerySelector("Sigma Proioxis")], [{ task: "Nova", requirement: 200 }, { task: "skill_cosmic_recollection", requirement: 4500, herequirement: 350 }]),
+    "Acallaris": new TaskRequirement([getQuerySelector("Acallaris")], [{ task: "skill_galactic_command", requirement: 5000, herequirement: 250 }, { task: "Sigma Proioxis", requirement: 1000, herequirement: 480 }]),
+    "One Above All": new TaskRequirement([getQuerySelector("One Above All")], [{ task: "skill_meditation", requirement: 6300 }, { task: "Acallaris", requirement: 1400, herequirement: 500 }]),
 
     // Metaverse Guards
     "Snow Crash": new EssenceRequirement([getQuerySelector("Snow Crash")], [{ requirement: 1e90, herequirement: 1e120 }]),
     "Player One": new TaskRequirement([getQuerySelector("Player One")], [{ task: "Snow Crash", requirement: 1000, herequirement: 160000 }]),
     "Lost in the dark": new TaskRequirement([getQuerySelector("Lost in the dark")], [{ task: "Player One", requirement: 2500, herequirement: 158000 }]),
     "Omega": new TaskRequirement([getQuerySelector("Omega")], [{ task: "Lost in the dark", requirement: 25000, herequirement: 185000 }]),
-
-    // Fundamentals
-    "Concentration": new TaskRequirement([getQuerySelector("Concentration")], []),
-    "Productivity": new TaskRequirement([getQuerySelector("Productivity")], [{ task: "Concentration", requirement: 5 }]),
-    "Bargaining": new TaskRequirement([getQuerySelector("Bargaining")], [{ task: "Concentration", requirement: 20 }]),
-    "Meditation": new TaskRequirement([getQuerySelector("Meditation")], [{ task: "Concentration", requirement: 30 }, { task: "Productivity", requirement: 20 }]),
-
-    // Combat
-    "Strength": new TaskRequirement([getQuerySelector("Strength")], []),
-    "Battle Tactics": new TaskRequirement([getQuerySelector("Battle Tactics")], [{ task: "Concentration", requirement: 20 }]),
-    "Muscle Memory": new TaskRequirement([getQuerySelector("Muscle Memory")], [{ task: "Concentration", requirement: 30 }, { task: "Strength", requirement: 30 }]),
-
-    // Magic
-    "Mana Control": new TaskRequirement([getQuerySelector("Mana Control")], [{ task: "Concentration", requirement: 200 }, { task: "Meditation", requirement: 200 }]),
-    "Life Essence": new TaskRequirement([getQuerySelector("Life Essence")], [{ task: "Apprentice Mage", requirement: 10 }]),
-    "Time Warping": new TaskRequirement([getQuerySelector("Time Warping")], [{ task: "Adept Mage", requirement: 10 }]),
-    "Astral Body": new TaskRequirement([getQuerySelector("Astral Body")], [{ task: "Archmage", requirement: 10 }]),
-    "Temporal Dimension": new TaskRequirement([getQuerySelector("Temporal Dimension")], [{ task: "Chronomancer", requirement: 25 }]),
-    "All Seeing Eye": new TaskRequirement([getQuerySelector("All Seeing Eye")], [{ task: "Mana Control", requirement: 2350 }, { task: "Chairman", requirement: 100 }]),
-    "Brainwashing": new TaskRequirement([getQuerySelector("Brainwashing")], [{ task: "Imperator", requirement: 100 }]),
-
-    // Dark Magic
-    "Dark Influence": new EvilRequirement([getQuerySelector("Dark Influence")], [{ requirement: 1 }]),
-    "Evil Control": new EvilRequirement([getQuerySelector("Evil Control")], [{ requirement: 1 }]),
-    "Intimidation": new EvilRequirement([getQuerySelector("Intimidation")], [{ requirement: 1 }]),
-    "Demon Training": new EvilRequirement([getQuerySelector("Demon Training")], [{ requirement: 20 }]),
-    "Blood Meditation": new EvilRequirement([getQuerySelector("Blood Meditation")], [{ requirement: 50 }]),
-    "Demon's Wealth": new EvilRequirement([getQuerySelector("Demon's Wealth")], [{ requirement: 500 }]),
-    "Dark Knowledge": new EvilRequirement([getQuerySelector("Dark Knowledge")], [{ requirement: 5000 }]),
-    "Soul Drain": new EvilRequirement([getQuerySelector("Soul Drain")], [{ requirement: 10000 }]),
-    "Void Influence": new EvilRequirement([getQuerySelector("Void Influence")], [{ requirement: 50000 }]),
-    "Time Loop": new EvilRequirement([getQuerySelector("Time Loop")], [{ requirement: 2500000 }]),
-    "Evil Incarnate": new EvilRequirement([getQuerySelector("Evil Incarnate")], [{ requirement: 1000000000 }]),
-
-    // Void Manipulation
-    "Absolute Wish": new TaskRequirement([getQuerySelector("Absolute Wish")], [{ task: "Void Slave", requirement: 25 }, { task: "Chairman", requirement: 300 }]),
-    "Void Amplification": new TaskRequirement([getQuerySelector("Void Amplification")], [{ task: "Void Slave", requirement: 100 }, { task: "Absolute Wish", requirement: 3000, herequirement: 1700 }]),
-    "Mind Release": new TaskRequirement([getQuerySelector("Mind Release")], [{ task: "Void Amplification", requirement: 3000, herequirement: 100 }]),
-    "Ceaseless Abyss": new TaskRequirement([getQuerySelector("Ceaseless Abyss")], [{ task: "Void Influence", requirement: 4000, herequirement: 1950 }, { task: "Abyss Anomaly", requirement: 50 }]),
-    "Void Symbiosis": new TaskRequirement([getQuerySelector("Void Symbiosis")], [{ task: "Ceaseless Abyss", requirement: 3500, herequirement: 220 }, { task: "Void Reaver", requirement: 50 }]),
-    "Void Embodiment": new TaskRequirement([getQuerySelector("Void Embodiment")], [{ task: "Dark Influence", requirement: 4600, herequirement: 3700 }, { task: "Void Lord", requirement: 50 }]),
-    "Abyss Manipulation": new TaskRequirement([getQuerySelector("Abyss Manipulation")], [{ task: "Abyss God", requirement: 350, herequirement: 200 }, { task: "Dark Influence", requirement: 6000, herequirement: 4100 }, { task: "Void Influence", requirement: 6000, herequirement: 2600 }]),
-
-    // Celestial Powers
-    "Cosmic Longevity": new TaskRequirement([getQuerySelector("Cosmic Longevity")], [{ task: "Eternal Wanderer", requirement: 1 }]),
-    "Cosmic Recollection": new TaskRequirement([getQuerySelector("Cosmic Recollection")], [{ task: "Nova", requirement: 50 }, { task: "Meditation", requirement: 4200 }, { task: "Mind Release", requirement: 900 }]),
-    "Essence Collector": new TaskRequirement([getQuerySelector("Essence Collector")], [{ task: "Sigma Proioxis", requirement: 500, herequirement: 360 }, { task: "Absolute Wish", requirement: 4900, herequirement: 2900 }, { task: "Dark Knowledge", requirement: 6300, herequirement: 3400 }]),
-    "Galactic Command": new TaskRequirement([getQuerySelector("Galactic Command")], [{ task: "Essence Collector", requirement: 5000, herequirement: 210 }, { task: "Bargaining", requirement: 5000 }]),
-
-    // Essence
-    "Yin Yang": new EssenceRequirement([getQuerySelector("Yin Yang")], [{ requirement: 1 }]),
-    "Parallel Universe": new EssenceRequirement([getQuerySelector("Parallel Universe")], [{ requirement: 1 }]),
-    "Higher Dimensions": new EssenceRequirement([getQuerySelector("Higher Dimensions")], [{ requirement: 10000 }]),
-    "Epiphany": new EssenceRequirement([getQuerySelector("Epiphany")], [{ requirement: 30000 }]),
-
-    // Darkness
-    "Dark Prince": new DarkMatterRequirement([getQuerySelector("Dark Prince")], [{ requirement: 3 }]),
-    "Dark Ruler": new DarkMatterRequirement([getQuerySelector("Dark Ruler")], [{ requirement: 10 }]),
-    "Immortal Ruler": new DarkMatterRequirement([getQuerySelector("Immortal Ruler")], [{ requirement: 25 }]),
-    "Dark Magician": new DarkMatterRequirement([getQuerySelector("Dark Magician")], [{ requirement: 100 }]),
-    "Universal Ruler": new DarkMatterRequirement([getQuerySelector("Universal Ruler")], [{ requirement: 1e3 }]),
-    "Blinded By Darkness": new DarkMatterRequirement([getQuerySelector("Blinded By Darkness")], [{ requirement: 1e4 }]),
 
     // Properties
     "Homeless": new CoinRequirement([getQuerySelector("Homeless")], [{ requirement: 0 }]),
@@ -665,17 +597,6 @@ const jobCategories = {
     "Metaverse Guards": ["Snow Crash", "Player One", "Lost in the dark", "Omega"]
 }
 
-const skillCategories = {
-    "Fundamentals": ["Concentration", "Productivity", "Bargaining", "Meditation"],
-    "Combat": ["Strength", "Battle Tactics", "Muscle Memory"],
-    "Magic": ["Mana Control", "Life Essence", "Time Warping", "Astral Body", "Temporal Dimension", "All Seeing Eye", "Brainwashing"],
-    "Dark Magic": ["Dark Influence", "Evil Control", "Intimidation", "Demon Training", "Blood Meditation", "Demon's Wealth", "Dark Knowledge", "Soul Drain", "Void Influence", "Time Loop", "Evil Incarnate"],
-    "Void Manipulation": ["Absolute Wish", "Void Amplification", "Mind Release", "Ceaseless Abyss", "Void Symbiosis", "Void Embodiment", "Abyss Manipulation"],
-    "Celestial Powers": ["Cosmic Longevity", "Cosmic Recollection", "Essence Collector", "Galactic Command"],
-    "Almightiness": ["Yin Yang", "Parallel Universe", "Higher Dimensions", "Epiphany"],
-    "Darkness": ["Dark Prince", "Dark Ruler", "Immortal Ruler", "Dark Magician", "Universal Ruler", "Blinded By Darkness"]
-}
-
 const itemCategories = {
     "Properties": ["Homeless", "Tent", "Wooden Hut", "Cottage", "House", "Large House", "Small Palace", "Grand Palace", "Town Ruler", "City Ruler", "Nation Ruler", "Pocket Dimension", "Void Realm", "Void Universe", "Astral Realm", "Galactic Throne", "Spaceship", "Planet", "Ringworld", "Stellar Neighborhood", "Galaxy", "Supercluster", "Galaxy Filament", "Observable Universe", "Multiverse", "Quantum World", "Boötes Void"],
     "Misc": ["Book", "Dumbbells", "Personal Squire", "Steel Longsword", "Butler", "Sapphire Charm", "Study Desk", "Library", "Observatory", "Mind's Eye", "Void Necklace", "Void Armor", "Void Blade", "Void Orb", "Void Dust", "Celestial Robe", "Universe Fragment", "Multiverse Fragment", "Stairway to heaven", "Highway to hell", "Tesseract", "Desintegration", "Custom Galaxy", "Hypersphere"]
@@ -743,7 +664,7 @@ function getPreviousTaskInCategory(task) {
 
     prev = ""
     for (const category in skillCategories) {
-        for (skill of skillCategories[category]) {
+        for (const skill of Object.keys(skillCategories[category])) {
             if (skill == task)
                 return prev
             prev = skill

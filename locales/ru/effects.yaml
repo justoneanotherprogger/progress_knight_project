@@ -1,0 +1,22 @@
+# Метки эффектов (типы эффектов навыков)
+effect_skill_xp: Опыт навыков
+effect_job_xp: Опыт работы
+effect_all_xp: Опыт всех задач
+effect_army_xp: Армейский опыт
+effect_army_income: Армейское жалование
+effect_strength_xp: Опыт силы
+effect_magic_xp: Опыт магии
+effect_void_xp: Опыт Бездны
+effect_collegium_xp: Опыт Коллегии
+effect_collegium_income: Доход Коллегии
+effect_galactic_xp: Опыт Галактического совета
+effect_job_income: Доход с работы
+effect_expense_reduction: Снижение расходов
+effect_happiness: Комфорт жизни
+effect_lifespan: Длительность жизни
+effect_gamespeed: Скорость игры
+effect_evil_gain: Получение зла
+effect_essence_gain: Получение эссенции
+effect_essence_evil_gain: Получение зла и эссенции
+effect_dark_matter_gain: Получение тёмной материи
+effect_max_level_multiplier: Множитель макс. уровня

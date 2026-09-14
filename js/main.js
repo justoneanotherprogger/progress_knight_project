@@ -45,15 +45,35 @@ function setMisc(miscName) {
 
 function createGameObjects(data, baseData) {
     for (const key in baseData)
-        createGameObject(data, baseData[key])
+        createGameObject(data, baseData[key], key)
 }
 
-function createGameObject(data, entity) {
-    if ("income" in entity) { data[entity.name] = new Job(entity) }
-    else if ("maxXp" in entity) { data[entity.name] = new Skill(entity) }
-    else if ("tier" in entity) { data[entity.name] = new Milestone(entity) }
-    else {data[entity.name] = new Item(entity)}
-    data[entity.name].id = "row " + entity.name
+function createGameObject(data, entity, id) {
+    if ("income" in entity) { data[id] = new Job({...entity, id}) }
+    else if ("maxXp" in entity) { data[id] = new Skill({...entity, id}) }
+    else if ("tier" in entity) { data[id] = new Milestone({...entity, id}) }
+    else { data[id] = new Item({...entity, id}) }
+}
+
+function createSkillRequirements() {
+    for (const key in skillBaseData) {
+        const skill = skillBaseData[key]
+        const req = skill.requirement
+        const selector = getQuerySelector(key)
+        let requirement
+        if (req.type === "task") {
+            requirement = new TaskRequirement([selector], req.tasks.map(t => ({
+                task: t.task, requirement: t.level, herequirement: t.hero
+            })))
+        } else if (req.type === "evil") {
+            requirement = new EvilRequirement([selector], [{ requirement: req.value }])
+        } else if (req.type === "essence") {
+            requirement = new EssenceRequirement([selector], [{ requirement: req.value }])
+        } else if (req.type === "darkMatter") {
+            requirement = new DarkMatterRequirement([selector], [{ requirement: req.value }])
+        }
+        gameData.requirements[key] = requirement
+    }
 }
 
 function setCurrency(index) {
@@ -135,6 +155,7 @@ gameData.currentMisc = []
 
 gameData.requirements = requirementsBaseData
 
+createSkillRequirements()
 createMilestoneRequirements()
 
 tempData["requirements"] = {}

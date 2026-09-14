@@ -40,7 +40,7 @@ function rebirthThree() {
     gameData.rebirthTwoTime = 0
     gameData.rebirthThreeTime = 0
 
-    const recallEffect = gameData.taskData["Cosmic Recollection"].getEffect();
+    const recallEffect = gameData.taskData["skill_cosmic_recollection"].getEffect();
 
     for (const taskName in gameData.taskData) {
         const task = gameData.taskData[taskName]
@@ -154,7 +154,7 @@ function applyMilestones() {
         (gameData.requirements["Almighty Eye"].isCompleted())){
         for (taskName in gameData.taskData) {
             const task = gameData.taskData[taskName]
-            const effect = gameData.taskData["Cosmic Recollection"].getEffect()
+            const effect = gameData.taskData["skill_cosmic_recollection"].getEffect()
             const maxlevel = Math.floor(task.level * (effect == 0 ? 1 : effect))
             if (maxlevel > task.maxLevel)
                 task.maxLevel = maxlevel

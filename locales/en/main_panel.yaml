@@ -58,52 +58,52 @@ Lost in the dark: Lost in the dark
 Omega: Omega
 
 # Skills
-Concentration: Concentration
-Productivity: Productivity
-Bargaining: Bargaining
-Meditation: Meditation
-Strength: Strength
-Battle Tactics: Battle Tactics
-Muscle Memory: Muscle Memory
-Mana Control: Mana Control
-Life Essence: Life Essence
-Time Warping: Time Warping
-Astral Body: Astral Body
-Temporal Dimension: Temporal Dimension
-All Seeing Eye: All Seeing Eye
-Brainwashing: Brainwashing
-Dark Influence: Dark Influence
-Evil Control: Evil Control
-Intimidation: Intimidation
-Demon Training: Demon Training
-Blood Meditation: Blood Meditation
-Demon's Wealth: Demon's Wealth
-Dark Knowledge: Dark Knowledge
-Soul Drain: Soul Drain
-Void Influence: Void Influence
-Time Loop: Time Loop
-Evil Incarnate: Evil Incarnate
-Absolute Wish: Absolute Wish
-Void Amplification: Void Amplification
-Mind Release: Mind Release
-Ceaseless Abyss: Ceaseless Abyss
-Void Symbiosis: Void Symbiosis
-Void Embodiment: Void Embodiment
-Abyss Manipulation: Abyss Manipulation
-Cosmic Longevity: Cosmic Longevity
-Cosmic Recollection: Cosmic Recollection
-Essence Collector: Essence Collector
-Galactic Command: Galactic Command
-Yin Yang: Yin Yang
-Parallel Universe: Parallel Universe
-Higher Dimensions: Higher Dimensions
-Epiphany: Epiphany
-Dark Prince: Dark Prince
-Dark Ruler: Dark Ruler
-Immortal Ruler: Immortal Ruler
-Dark Magician: Dark Magician
-Universal Ruler: Universal Ruler
-Blinded By Darkness: Blinded By Darkness
+skill_concentration_name: Concentration
+skill_productivity_name: Productivity
+skill_bargaining_name: Bargaining
+skill_meditation_name: Meditation
+skill_strength_name: Strength
+skill_battle_tactics_name: Battle Tactics
+skill_muscle_memory_name: Muscle Memory
+skill_mana_control_name: Mana Control
+skill_life_essence_name: Life Essence
+skill_time_warping_name: Time Warping
+skill_astral_body_name: Astral Body
+skill_temporal_dimension_name: Temporal Dimension
+skill_all_seeing_eye_name: All Seeing Eye
+skill_brainwashing_name: Brainwashing
+skill_dark_influence_name: Dark Influence
+skill_evil_control_name: Evil Control
+skill_intimidation_name: Intimidation
+skill_demon_training_name: Demon Training
+skill_blood_meditation_name: Blood Meditation
+skill_demons_wealth_name: Demon's Wealth
+skill_dark_knowledge_name: Dark Knowledge
+skill_soul_drain_name: Soul Drain
+skill_void_influence_name: Void Influence
+skill_time_loop_name: Time Loop
+skill_evil_incarnate_name: Evil Incarnate
+skill_absolute_wish_name: Absolute Wish
+skill_void_amplification_name: Void Amplification
+skill_mind_release_name: Mind Release
+skill_ceaseless_abyss_name: Ceaseless Abyss
+skill_void_symbiosis_name: Void Symbiosis
+skill_void_embodiment_name: Void Embodiment
+skill_abyss_manipulation_name: Abyss Manipulation
+skill_cosmic_longevity_name: Cosmic Longevity
+skill_cosmic_recollection_name: Cosmic Recollection
+skill_essence_collector_name: Essence Collector
+skill_galactic_command_name: Galactic Command
+skill_yin_yang_name: Yin Yang
+skill_parallel_universe_name: Parallel Universe
+skill_higher_dimensions_name: Higher Dimensions
+skill_epiphany_name: Epiphany
+skill_dark_prince_name: Dark Prince
+skill_dark_ruler_name: Dark Ruler
+skill_immortal_ruler_name: Immortal Ruler
+skill_dark_magician_name: Dark Magician
+skill_universal_ruler_name: Universal Ruler
+skill_blinded_by_darkness_name: Blinded By Darkness
 
 # Items
 Homeless: Homeless
