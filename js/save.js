@@ -60,7 +60,6 @@ function migrateLegacySkills(gameDataSave) {
         const id = SKILL_LEGACY_IDS[key]
         if (id == null) continue
         const task = taskData[key]
-        task.id = id
         if (skillBaseData[id] != null)
             task.name = skillBaseData[id].name
         taskData[id] = task
@@ -75,18 +74,14 @@ function assignMethods() {
     for (const key in gameData.taskData) {
         let task = gameData.taskData[key]
         if (task.baseData.income) {
-            const jobId = task.id || task.baseData.id || task.name
-            if (jobBaseData[jobId] == null) continue
-            task.id = jobId
-            task.baseData = jobBaseData[jobId]
-            task = Object.assign(new Job(jobBaseData[jobId]), task)
+            if (jobBaseData[key] == null) continue
+            task.baseData = jobBaseData[key]
+            task = Object.assign(new Job(jobBaseData[key]), task)
         } else {
-            const skillId = task.id || task.baseData.id || SKILL_LEGACY_IDS[task.name] || task.name
-            if (skillBaseData[skillId] == null) continue
-            task.id = skillId
-            task.name = skillBaseData[skillId].name
-            task.baseData = skillBaseData[skillId]
-            task = Object.assign(new Skill(skillBaseData[skillId]), task)
+            if (skillBaseData[key] == null) continue
+            task.name = skillBaseData[key].name
+            task.baseData = skillBaseData[key]
+            task = Object.assign(new Skill(skillBaseData[key]), task)
         }
 
         // There are two cases. The number is stored as a large number or in the scientific notation.

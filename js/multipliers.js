@@ -36,15 +36,15 @@ function addMultipliers() {
             pushEffectsByType("army_income", task.incomeMultipliers)
             pushEffectsByType("army_xp", task.xpMultipliers)
             task.xpMultipliers.push(getBindedItemEffect("Steel Longsword"))
-        } else if (task.id == "skill_strength") {
+        } else if (key == "skill_strength") {
             pushEffectsByType("strength_xp", task.xpMultipliers)
             task.xpMultipliers.push(getBindedItemEffect("Dumbbells"))
-        } else if (task instanceof Skill && task.id in skillCategories["Magic"]) {
+        } else if (task instanceof Skill && key in skillCategories["Magic"]) {
             pushEffectsByType("magic_xp", task.xpMultipliers)
             task.xpMultipliers.push(getBindedItemEffect("Sapphire Charm"))
             task.xpMultipliers.push(getBindedItemEffect("Observatory"))
             task.xpMultipliers.push(getTaaAndMagicXpGain)
-        } else if (task instanceof Skill && task.id in skillCategories["Void Manipulation"]) {
+        } else if (task instanceof Skill && key in skillCategories["Void Manipulation"]) {
             task.xpMultipliers.push(getBindedItemEffect("Void Necklace"))
             task.xpMultipliers.push(getBindedItemEffect("Void Orb"))
         } else if (jobCategories["Mage Collegium"].includes(task.name)) {
@@ -58,13 +58,13 @@ function addMultipliers() {
         } else if (jobCategories["Galactic Council"].includes(task.name)) {
             task.xpMultipliers.push(getBindedItemEffect("Celestial Robe"))
             pushEffectsByType("galactic_xp", task.xpMultipliers)
-        } else if (task instanceof Skill && task.id in skillCategories["Dark Magic"]) {
+        } else if (task instanceof Skill && key in skillCategories["Dark Magic"]) {
             task.xpMultipliers.push(getEvilXpGain)
-        } else if (task instanceof Skill && task.id in skillCategories["Almightiness"]) {
+        } else if (task instanceof Skill && key in skillCategories["Almightiness"]) {
             task.xpMultipliers.push(getEssenceXpGain)
-        } else if (task instanceof Skill && task.id in skillCategories["Fundamentals"]) {
+        } else if (task instanceof Skill && key in skillCategories["Fundamentals"]) {
             task.xpMultipliers.push(getBindedItemEffect("Mind's Eye"))
-        } else if (task instanceof Skill && task.id in skillCategories["Darkness"]) {
+        } else if (task instanceof Skill && key in skillCategories["Darkness"]) {
             task.xpMultipliers.push(getDarknessXpGain)
         }
     }

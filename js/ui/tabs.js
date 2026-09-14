@@ -50,7 +50,7 @@ function renderSkills() {
 
         if (!(task instanceof Skill)) continue
 
-        const row = getRowByName(task.id)
+        const row = getRowByName(key)
 
         task.querySelector(".level", row).textContent = formatLevel(task.level)
         task.querySelector(".xpGain", row).textContent = task.getXpGainFormatted()
@@ -414,7 +414,7 @@ function updateRequiredRows(data, categoryType) {
             requiredRow.classList.add("hiddenTask")
         } else {
             requiredRow.classList.remove("hiddenTask")
-            const requirementObject = gameData.requirements[nextEntity.id || nextEntity.name]            
+            const requirementObject = gameData.requirements[nextEntityName]            
             const requirements = requirementObject.requirements
 
             const coinElement = requiredRow.querySelector(".coins")
@@ -444,9 +444,8 @@ function updateRequiredRows(data, categoryType) {
             let effectText = ""
             if (data == gameData.taskData) {
                 if (categoryType != jobCategories) {
-                    const task = gameData.taskData[nextEntity.id]
                     effectElement.classList.remove("hiddenTask")
-                    effectValueElement.textContent = task.unlocked ? (task.baseData.description != null ? t(task.baseData.description) : t("reward_income")) : t("unknown")
+                    effectValueElement.textContent = nextEntity.unlocked ? (nextEntity.baseData.description != null ? t(nextEntity.baseData.description) : t("reward_income")) : t("unknown")
                 }
 
                 if (requirementObject instanceof EvilRequirement) {
@@ -482,19 +481,16 @@ function updateRequiredRows(data, categoryType) {
                 coinElement.classList.remove("hiddenTask")
                 formatCoins(requirements[0].requirement, coinElement)
 
-                const item = gameData.itemData[nextEntity.name]
-                
                 effectElement.classList.remove("hiddenTask")
-                effectValueElement.textContent = item.unlocked ? (item.baseData.description != null ? t(item.baseData.description) : t("reward_happiness")) : t("unknown")
+                effectValueElement.textContent = nextEntity.unlocked ? (nextEntity.baseData.description != null ? t(nextEntity.baseData.description) : t("reward_happiness")) : t("unknown")
             }
             else if (data == milestoneData) {
                 essenceElement.classList.remove("hiddenTask")
                 essenceElement.textContent = format(requirements[0].requirement) + " " + t("essence")
 
-                const milestone = milestoneData[nextEntity.name]
-                if (milestone.baseData.description != null) {
+                if (nextEntity.baseData.description != null) {
                     effectElement.classList.remove("hiddenTask")
-                    effectValueElement.textContent = (gameData.stats.maxEssenceReached.gt(milestone.expense)) ? t(milestone.baseData.description) : t("unknown")
+                    effectValueElement.textContent = (gameData.stats.maxEssenceReached.gt(nextEntity.expense)) ? t(nextEntity.baseData.description) : t("unknown")
                 }
             }
         }
@@ -532,7 +528,7 @@ function getHeroicRequiredTooltip(task) {
             const reqvalue = (requirement.herequirement == null ? requirement.requirement : requirement.herequirement)
 
             if (task_check.isHero && task_check.level >= reqvalue) continue
-            if (prev != "" && task_check.id == prevTask.id) {
+            if (prev != "" && requirement.task == prev) {
                 if (reqvalue <= 20)
                     continue
                 else

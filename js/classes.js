@@ -1,7 +1,6 @@
 class Task {
     constructor(baseData) {
         this.baseData = baseData
-        this.id = baseData.id
         this.name = baseData.name
         this.level = 0
         this.maxLevel = 0

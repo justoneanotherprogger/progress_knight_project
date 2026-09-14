@@ -49,10 +49,10 @@ function createGameObjects(data, baseData) {
 }
 
 function createGameObject(data, entity, id) {
-    if ("income" in entity) { data[id] = new Job({...entity, id}) }
-    else if ("maxXp" in entity) { data[id] = new Skill({...entity, id}) }
-    else if ("tier" in entity) { data[id] = new Milestone({...entity, id}) }
-    else { data[id] = new Item({...entity, id}) }
+    if ("income" in entity) { data[id] = new Job(entity) }
+    else if ("maxXp" in entity) { data[id] = new Skill(entity) }
+    else if ("tier" in entity) { data[id] = new Milestone(entity) }
+    else { data[id] = new Item(entity) }
 }
 
 function createSkillRequirements() {
