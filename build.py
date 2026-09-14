@@ -119,6 +119,11 @@ def generate_data_files():
             categories = data["skillCategories"]
             lines.append(f"const skillCategories = {categories};")
             lines.append(f"const skillBaseData = Object.assign({{}}, ...Object.values(skillCategories));")
+        elif json_file.stem == "milestones":
+            # Милистоуны: категории — источник истины, плоский словарь выводится для рантайма.
+            categories = data["milestoneCategories"]
+            lines.append(f"const milestoneCategories = {categories};")
+            lines.append(f"const milestoneBaseData = Object.assign({{}}, ...Object.values(milestoneCategories));")
         else:
             for key, value in data.items():
                 lines.append(f"const {key} = {value};")
@@ -143,6 +148,12 @@ def load_entity_names():
             for category, skills in data["skillCategories"].items():
                 categories.add(category)
                 content_skills |= set(skills.keys())
+            continue
+        if json_file.stem == "milestones" and "milestoneCategories" in data:
+            for category, milestones in data["milestoneCategories"].items():
+                categories.add(category)
+                for milestone in milestones.values():
+                    legacy.add(milestone["name"])
             continue
         for section in data.values():
             if not isinstance(section, dict):
