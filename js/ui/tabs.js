@@ -492,7 +492,7 @@ function updateRequiredRows(data, categoryType) {
 
                 if (nextEntity.baseData.description != null) {
                     effectElement.classList.remove("hiddenTask")
-                    effectValueElement.textContent = (gameData.stats.maxEssenceReached.gt(nextEntity.expense)) ? t(nextEntity.baseData.description) : t("unknown")
+                    effectValueElement.textContent = (gameData.stats.maxEssenceReached.gt(nextEntity.threshold)) ? t(nextEntity.baseData.description) : t("unknown")
                 }
             }
         }

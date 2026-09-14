@@ -160,7 +160,7 @@ class Milestone {
         this.baseData = baseData
         this.name = baseData.name
         this.tier = baseData.tier
-        this.expense = baseData.expense
+        this.threshold = baseData.threshold
         this.description = baseData.description
         this.unlocked = false
     }
