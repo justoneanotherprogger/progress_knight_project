@@ -8,7 +8,7 @@ function createMilestoneRequirements() {
     for (const key in milestoneBaseData) {
         const milestone = milestoneData[key]
         gameData.requirements[milestone.name] = new EssenceRequirement([getQuerySelector(milestone.name)],
-            [{ requirement: milestone.expense }])
+            [{ requirement: milestone.threshold }])
     }
 }
 

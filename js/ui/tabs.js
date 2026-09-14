@@ -124,7 +124,7 @@ function renderMilestones() {
     for (const key in milestoneData) {
         const milestone = milestoneData[key]
         const row = getRowByName(milestone.name)
-        row.querySelector(".essence").textContent = format(milestone.expense)
+        row.querySelector(".essence").textContent = format(milestone.threshold)
 
 
         let desc = t(milestone.description)
