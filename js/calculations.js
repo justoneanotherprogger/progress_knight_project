@@ -239,10 +239,11 @@ function getLifespan() {
     const higherDimensions = gameData.taskData["skill_higher_dimensions"]
     const abyss = gameData.taskData["skill_ceaseless_abyss"]
     const cosmicLongevity = gameData.taskData["skill_cosmic_longevity"]
+    const soulDrain = gameData.taskData["skill_soul_drain"]
     const speedSpeedSpeed = gameData.requirements["Speed speed speed"].isCompleted() ? SPEED_SPEED_SPEED_LIFESPAN : 1
     const lifeIsValueable = gameData.requirements["Life is valueable"].isCompleted() ? LIFE_IS_VALUABLE_MULTIPLIER : 1
     const lifespan = (baseLifespan + coinpile) * immortality.getEffect() * superImmortality.getEffect() * abyss.getEffect()
-        * cosmicLongevity.getEffect() * higherDimensions.getEffect() * lifeIsValueable * speedSpeedSpeed
+        * cosmicLongevity.getEffect() * soulDrain.getEffect() * higherDimensions.getEffect() * lifeIsValueable * speedSpeedSpeed
     if (gameData.active_challenge == "legends_never_die" || gameData.active_challenge == "the_darkest_time")
         return Math.pow(lifespan, LIFESPAN_CHALLENGE_EXPONENT) + LIFESPAN_CHALLENGE_FLAT
     if (gameData.rebirthFiveCount > 0) return Infinity
