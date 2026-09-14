@@ -195,6 +195,9 @@ class Skill extends Task {
     }
 
     getEffect() {
+        if (this.baseData.formula === "log") {
+            return 1 + this.baseData.effect * Math.log(this.level + 1)
+        }
         var effect = 1 + this.baseData.effect * (this.isHero ? SKILL_HERO_LEVEL_MULTIPLIER * this.level + SKILL_HERO_FLAT_BONUS : this.level) * Math.pow(SKILL_LEVEL_EXPONENT_BASE, getBaseLog(10, this.level + 1))
         return effect
     }

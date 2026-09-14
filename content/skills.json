@@ -24,6 +24,7 @@
     "Blood Meditation": { "name": "Blood Meditation", "maxXp": 100, "heroxp": 176, "effect": 0.01, "description": "Evil Gain" },
     "Demon's Wealth": { "name": "Demon's Wealth", "maxXp": 100, "heroxp": 178, "effect": 0.002, "description": "Job Pay" },
     "Dark Knowledge": { "name": "Dark Knowledge", "maxXp": 100, "heroxp": 180, "effect": 0.003, "description": "Job XP" },
+    "Soul Drain": { "name": "Soul Drain", "maxXp": 100, "heroxp": 190, "effect": 0.0543, "formula": "log", "description": "Longer lifespan" },
 
     "Void Influence": { "name": "Void Influence", "maxXp": 100, "heroxp": 206, "effect": 0.0028, "description": "All XP" },
     "Time Loop": { "name": "Time Loop", "maxXp": 100, "heroxp": 207, "effect": 0.001, "description": "Gamespeed" },
