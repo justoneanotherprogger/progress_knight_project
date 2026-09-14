@@ -384,6 +384,7 @@ function updateRequiredRows(data, categoryType) {
         graySpans[0].textContent = t("required")
         if (categoryType != jobCategories && graySpans.length > 1) graySpans[1].textContent = t("next_effect")
         let nextEntity = null
+        let nextEntityName = null
         const category = categoryType[requiredRow.id.substring(4)]
         if (category == null) {continue}
         const entries = Array.isArray(category) ? category : Object.keys(category)
@@ -394,6 +395,7 @@ function updateRequiredRows(data, categoryType) {
             const requirements = gameData.requirements[entityName]
             if (requirements && i == 0) {
                 if (!requirements.isCompleted()) {
+                    nextEntityName = entityName
                     nextEntity = data[entityName]
                     break
                 }
@@ -401,8 +403,8 @@ function updateRequiredRows(data, categoryType) {
 
             const nextIndex = i + 1
             if (nextIndex >= entries.length) {break}
-            const nextEntityName = entries[nextIndex]
-            nextEntityRequirements = gameData.requirements[nextEntityName]
+            nextEntityName = entries[nextIndex]
+            const nextEntityRequirements = gameData.requirements[nextEntityName]
 
             if (!nextEntityRequirements.isCompleted()) {
                 nextEntity = data[nextEntityName]
