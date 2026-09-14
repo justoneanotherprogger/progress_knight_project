@@ -447,7 +447,7 @@ function updateRequiredRows(data, categoryType) {
             if (data == gameData.taskData) {
                 if (categoryType != jobCategories) {
                     effectElement.classList.remove("hiddenTask")
-                    effectValueElement.textContent = nextEntity.unlocked ? nextEntity.getEffectDescription() : t("unknown")
+                    effectValueElement.textContent = nextEntity.unlocked ? t("effect_" + nextEntity.baseData.effect.type) : t("unknown")
                 }
 
                 if (requirementObject instanceof EvilRequirement) {
