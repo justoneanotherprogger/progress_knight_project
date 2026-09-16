@@ -32,8 +32,8 @@ function renderChallenges() {
     document.getElementById("challengeGoal2").textContent = t("challenge_2_goal", format(getChallengeGoal("rich_and_the_poor")))
     document.getElementById("challengeGoal3").textContent = t("challenge_3_goal", format(getChallengeGoal("time_does_not_fly")))
     document.getElementById("challengeGoal4").textContent = t("challenge_4_goal", format(getChallengeGoal("dance_with_the_devil")))
-    document.getElementById("challengeGoal5").textContent = t("challenge_5_goal", getFormattedChallengeTaskGoal("Chairman", Math.floor(getChallengeGoal("legends_never_die"))))
-    document.getElementById("challengeGoal6").textContent = t("challenge_6_goal", getFormattedChallengeTaskGoal("Sigma Proioxis", Math.floor(100 * (getChallengeGoal("the_darkest_time") - 1))))
+    document.getElementById("challengeGoal5").textContent = t("challenge_5_goal", getFormattedChallengeTaskGoal("job_chairman", Math.floor(getChallengeGoal("legends_never_die"))))
+    document.getElementById("challengeGoal6").textContent = t("challenge_6_goal", getFormattedChallengeTaskGoal("job_sigma_proioxis", Math.floor(100 * (getChallengeGoal("the_darkest_time") - 1))))
 
     const challengeRewardIds = ["challenge_1_reward", "challenge_2_reward", "challenge_3_reward", "challenge_4_reward", "challenge_5_reward", "challenge_6_reward"]
     for (let i = 0; i < 6; i++) {

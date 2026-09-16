@@ -270,7 +270,7 @@ function canSimulate() {
 }
 
 function isHeroesUnlocked() {
-    return gameData.requirements["New Beginning"].isCompleted() && (gameData.taskData["One Above All"].level >= HERO_LEVEL_UNLOCK_THRESHOLD || gameData.taskData["One Above All"].isHero)
+    return gameData.requirements["New Beginning"].isCompleted() && (gameData.taskData["job_one_above_all"].level >= HERO_LEVEL_UNLOCK_THRESHOLD || gameData.taskData["job_one_above_all"].isHero)
 }
 
 function getInspiration() {

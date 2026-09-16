@@ -161,7 +161,7 @@ createGameObjects(gameData.taskData, skillBaseData)
 createItemObjects()
 createGameObjects(milestoneData, milestoneBaseData)
 
-gameData.currentJob = gameData.taskData["Beggar"]
+gameData.currentJob = gameData.taskData["job_beggar"]
 gameData.currentProperty = gameData.itemData["item_homeless"]
 gameData.currentMisc = []
 
