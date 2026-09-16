@@ -1,23 +1,23 @@
 # Tooltips (tooltips_skills2.yaml) section auto-generated from EN source
-skill_absolute_wish_desc: The power to fulfill absolutely any and all wishes without any limitations.
-skill_void_amplification_desc: You surrender yourself to the Void, making it easier to take control of you.
-skill_mind_release_desc: In a trance like state, you feel the Void amplifying your thoughts, perception, memories, emotions and personality.
-tt_Mind's Eye: Lets you see memories, remember images, and even see new pictures and ideas.
-skill_ceaseless_abyss_desc: Never ending torture, you swore to serve the Void for the rest of your existence.
-skill_void_symbiosis_desc: A symbiotic relationship that helps you become one with the Void.
-skill_void_embodiment_desc: If thou gaze long into an abyss, the abyss will also gaze into thee.
-skill_abyss_manipulation_desc: Allows you to shape your own reality within the Void itself.
-skill_cosmic_longevity_desc: You have seen it all, from the very beginning to the very end.
-skill_cosmic_recollection_desc: Being able to exist in multiple parallel timelines and manipulating you parallel selves, influencing their lives as you see fit.
-skill_essence_collector_desc: Exploit the unlimited potential of multiverse energies and collect its resources.
-skill_galactic_command_desc: Absolute power corrupts absolutely.
-skill_yin_yang_desc: Born from chaos when the universe was first created, believed to exist in harmony, balancing evil and good.
-skill_parallel_universe_desc: Self-contained plane of existence, co-existing with one's own, helping you restore fragments of your forgotten power.
-skill_higher_dimensions_desc: By possessing the power to partially alter the laws of physics and transcending lower dimensional spaces, your existence becomes never-ending.
-skill_epiphany_desc: You become one with everything.
-skill_dark_prince_desc: You can increase your intelligence at an alarming rate due to your access to all libraries in the universe.
-skill_dark_ruler_desc: Ruling the universe allows you to collect more Dark Matter from your subordinates.
-skill_immortal_ruler_desc: 'You have only one goal: ruling this universe till infinity."'
-skill_dark_magician_desc: By performing forbidden magic on your subordinates, you can extract every last drop of Essence from them.
-skill_universal_ruler_desc: No one dares to challenge your rule when ruling with an iron fist.
-skill_blinded_by_darkness_desc: Blinded by darkness, you can no longer control yourself. You start to destroy everything in existance to calm yourself.
+skill_absolute_wish_tooltip: The power to fulfill absolutely any and all wishes without any limitations.
+skill_void_amplification_tooltip: You surrender yourself to the Void, making it easier to take control of you.
+skill_mind_release_tooltip: In a trance like state, you feel the Void amplifying your thoughts, perception, memories, emotions and personality.
+item_minds_eye_tooltip: Lets you see memories, remember images, and even see new pictures and ideas.
+skill_ceaseless_abyss_tooltip: Never ending torture, you swore to serve the Void for the rest of your existence.
+skill_void_symbiosis_tooltip: A symbiotic relationship that helps you become one with the Void.
+skill_void_embodiment_tooltip: If thou gaze long into an abyss, the abyss will also gaze into thee.
+skill_abyss_manipulation_tooltip: Allows you to shape your own reality within the Void itself.
+skill_cosmic_longevity_tooltip: You have seen it all, from the very beginning to the very end.
+skill_cosmic_recollection_tooltip: Being able to exist in multiple parallel timelines and manipulating you parallel selves, influencing their lives as you see fit.
+skill_essence_collector_tooltip: Exploit the unlimited potential of multiverse energies and collect its resources.
+skill_galactic_command_tooltip: Absolute power corrupts absolutely.
+skill_yin_yang_tooltip: Born from chaos when the universe was first created, believed to exist in harmony, balancing evil and good.
+skill_parallel_universe_tooltip: Self-contained plane of existence, co-existing with one's own, helping you restore fragments of your forgotten power.
+skill_higher_dimensions_tooltip: By possessing the power to partially alter the laws of physics and transcending lower dimensional spaces, your existence becomes never-ending.
+skill_epiphany_tooltip: You become one with everything.
+skill_dark_prince_tooltip: You can increase your intelligence at an alarming rate due to your access to all libraries in the universe.
+skill_dark_ruler_tooltip: Ruling the universe allows you to collect more Dark Matter from your subordinates.
+skill_immortal_ruler_tooltip: 'You have only one goal: ruling this universe till infinity."'
+skill_dark_magician_tooltip: By performing forbidden magic on your subordinates, you can extract every last drop of Essence from them.
+skill_universal_ruler_tooltip: No one dares to challenge your rule when ruling with an iron fist.
+skill_blinded_by_darkness_tooltip: Blinded by darkness, you can no longer control yourself. You start to destroy everything in existance to calm yourself.

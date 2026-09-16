@@ -1,25 +1,25 @@
 # Items: Misc
-Book: Книга
-Dumbbells: Гантели
-Personal Squire: Личный оруженосец
-Steel Longsword: Стальной меч
-Butler: Дворецкий
-Sapphire Charm: Сапфировый оберег
-Study Desk: Письменный стол
-Library: Библиотека
-Observatory: Обсерватория
-Mind's Eye: Око разума
-Void Necklace: Ожерелье Бездны
-Void Armor: Броня Бездны
-Void Blade: Клинок Бездны
-Void Orb: Сфера Бездны
-Void Dust: Пыль Бездны
-Celestial Robe: Небесная мантия
-Universe Fragment: Фрагмент вселенной
-Multiverse Fragment: Фрагмент мультивселенной
-Stairway to heaven: Лестница на небеса
-Highway to hell: Дорога в ад
-Tesseract: Тессеракт
-Desintegration: Распад
-Custom Galaxy: Собственная галактика
-Hypersphere: Гиперсфера
+item_book_name: Книга
+item_dumbbells_name: Гантели
+item_personal_squire_name: Личный оруженосец
+item_steel_longsword_name: Стальной меч
+item_butler_name: Дворецкий
+item_sapphire_charm_name: Сапфировый оберег
+item_study_desk_name: Письменный стол
+item_library_name: Библиотека
+item_observatory_name: Обсерватория
+item_minds_eye_name: Око разума
+item_void_necklace_name: Ожерелье Бездны
+item_void_armor_name: Броня Бездны
+item_void_blade_name: Клинок Бездны
+item_void_orb_name: Сфера Бездны
+item_void_dust_name: Пыль Бездны
+item_celestial_robe_name: Небесная мантия
+item_universe_fragment_name: Фрагмент вселенной
+item_multiverse_fragment_name: Фрагмент мультивселенной
+item_stairway_to_heaven_name: Лестница на небеса
+item_highway_to_hell_name: Дорога в ад
+item_tesseract_name: Тессеракт
+item_desintegration_name: Распад
+item_custom_galaxy_name: Собственная галактика
+item_hypersphere_name: Гиперсфера

@@ -1,27 +1,27 @@
 # Tooltips (tooltips_skills1.yaml) section auto-generated from EN source
-skill_concentration_desc: Improve your learning speed through practising intense concentration activities.
-skill_productivity_desc: Learn to procrastinate less at work and receive more job experience per day.
-skill_bargaining_desc: Study the tricks of the trade and persuasive skills to lower any type of expense.
-skill_meditation_desc: Fill your mind with peace and tranquility to tap into greater happiness from within.
-skill_strength_desc: Condition your body and strength through harsh training. Stronger individuals are paid more in the military.
-skill_battle_tactics_desc: Create and revise battle strategies, improving experience gained in the military.
-skill_muscle_memory_desc: Strengthen your neurons through habit and repetition, improving strength gains throughout the body.
-skill_mana_control_desc: Strengthen your mana channels throughout your body, aiding you in becoming a more powerful magical user.
-skill_life_essence_desc: Lengthen your lifespan through the means of magic. However, is this truly the immortality you have tried seeking for...?
-skill_time_warping_desc: Bend space and time through forbidden techniques, speeding up your learning processes.
-skill_astral_body_desc: Lengthen your lifespan drastically beyond comprehension by harnessing ethereal energy.
-skill_temporal_dimension_desc: Create your own pocket dimension where centuries go by in mere seconds.
-skill_all_seeing_eye_desc: As the highest rank of the Mage Collegium, all funds go directly to you.
-skill_brainwashing_desc: A technique designed to manipulate human thought and action against their desire.
-skill_dark_influence_desc: Encompass yourself with formidable power bestowed upon you by evil, allowing you to pick up and absorb any job or skill with ease.
-skill_evil_control_desc: Tame the raging and growing evil within you, improving evil gain in-between rebirths.
-skill_intimidation_desc: Learn to emit a devilish aura which strikes extreme fear into other merchants, forcing them to give you heavy discounts.
-skill_demon_training_desc: A mere human body is too feeble and weak to withstand evil. Train with forbidden methods to slowly manifest into a demon, capable of absorbing
+skill_concentration_tooltip: Improve your learning speed through practising intense concentration activities.
+skill_productivity_tooltip: Learn to procrastinate less at work and receive more job experience per day.
+skill_bargaining_tooltip: Study the tricks of the trade and persuasive skills to lower any type of expense.
+skill_meditation_tooltip: Fill your mind with peace and tranquility to tap into greater happiness from within.
+skill_strength_tooltip: Condition your body and strength through harsh training. Stronger individuals are paid more in the military.
+skill_battle_tactics_tooltip: Create and revise battle strategies, improving experience gained in the military.
+skill_muscle_memory_tooltip: Strengthen your neurons through habit and repetition, improving strength gains throughout the body.
+skill_mana_control_tooltip: Strengthen your mana channels throughout your body, aiding you in becoming a more powerful magical user.
+skill_life_essence_tooltip: Lengthen your lifespan through the means of magic. However, is this truly the immortality you have tried seeking for...?
+skill_time_warping_tooltip: Bend space and time through forbidden techniques, speeding up your learning processes.
+skill_astral_body_tooltip: Lengthen your lifespan drastically beyond comprehension by harnessing ethereal energy.
+skill_temporal_dimension_tooltip: Create your own pocket dimension where centuries go by in mere seconds.
+skill_all_seeing_eye_tooltip: As the highest rank of the Mage Collegium, all funds go directly to you.
+skill_brainwashing_tooltip: A technique designed to manipulate human thought and action against their desire.
+skill_dark_influence_tooltip: Encompass yourself with formidable power bestowed upon you by evil, allowing you to pick up and absorb any job or skill with ease.
+skill_evil_control_tooltip: Tame the raging and growing evil within you, improving evil gain in-between rebirths.
+skill_intimidation_tooltip: Learn to emit a devilish aura which strikes extreme fear into other merchants, forcing them to give you heavy discounts.
+skill_demon_training_tooltip: A mere human body is too feeble and weak to withstand evil. Train with forbidden methods to slowly manifest into a demon, capable of absorbing
   knowledge rapidly.
-skill_blood_meditation_desc: Grow and culture the evil within you through the sacrifice of other living beings, drastically increasing evil gain.
-skill_demons_wealth_desc: Through the means of dark magic, multiply the raw matter of the coins you receive from your job.
-skill_dark_knowledge_desc: Sealed for a very long time, you utilize these forbidden texts for your own personal gain.
-skill_soul_drain_desc: Drain the life force of those around you, extending your own lifespan at the cost of theirs.
-skill_void_influence_desc: Tapping into the powers of the Void while combining them with evil grants you an unlimited potential.
-skill_time_loop_desc: Mastery is achieved when 'telling time' becomes 'telling time what to do'.
-skill_evil_incarnate_desc: You have became the very thing you swore to destroy.
+skill_blood_meditation_tooltip: Grow and culture the evil within you through the sacrifice of other living beings, drastically increasing evil gain.
+skill_demons_wealth_tooltip: Through the means of dark magic, multiply the raw matter of the coins you receive from your job.
+skill_dark_knowledge_tooltip: Sealed for a very long time, you utilize these forbidden texts for your own personal gain.
+skill_soul_drain_tooltip: Drain the life force of those around you, extending your own lifespan at the cost of theirs.
+skill_void_influence_tooltip: Tapping into the powers of the Void while combining them with evil grants you an unlimited potential.
+skill_time_loop_tooltip: Mastery is achieved when 'telling time' becomes 'telling time what to do'.
+skill_evil_incarnate_tooltip: You have became the very thing you swore to destroy.

@@ -1,58 +1,58 @@
 # Categories
-Common work: Простолюдины
-Military: Армия
-Mage Collegium: Коллегия магов
-The Void: Бездна
-Galactic Council: Галактический совет
-Metaverse Guards: Стража Метавселенной
-Fundamentals: Основы
-Combat: Бой
-Magic: Магия
-Dark Magic: Тёмная магия
-Void Manipulation: Манипуляция Бездной
-Celestial Powers: Небесные силы
-Almightiness: Всемогущество
-Darkness: Тьма
-Properties: Недвижимость
-Misc: Разное
+category_common_work: Простолюдины
+category_military: Армия
+category_mage_collegium: Коллегия магов
+category_the_void: Бездна
+category_galactic_council: Галактический совет
+category_metaverse_guards: Стража Метавселенной
+category_fundamentals: Основы
+category_combat: Бой
+category_magic: Магия
+category_dark_magic: Тёмная магия
+category_void_manipulation: Манипуляция Бездной
+category_celestial_powers: Небесные силы
+category_almightiness: Всемогущество
+category_darkness: Тьма
+category_properties: Недвижимость
+category_misc: Разное
 
 # Jobs
-Beggar: Чернорабочий
-Farmer: Фермер
-Fisherman: Рыбак
-Miner: Шахтёр
-Blacksmith: Кузнец
-Merchant: Купец
-Squire: Оруженосец
-Footman: Пехотинец
-Veteran footman: Ветеран-пехотинец
-Centenary: Сотник
-Knight: Рыцарь
-Veteran Knight: Ветеран-рыцарь
-Holy Knight: Святой рыцарь
-Lieutenant General: Генерал-лейтенант
-Student: Студент
-Apprentice Mage: Ученик мага
-Adept Mage: Маг-адепт
-Master Wizard: Великий маг
-Archmage: Архимаг
-Chronomancer: Хрономант
-Chairman: Верховный магистр
-Imperator: Император
-Corrupted: Искажённый
-Void Slave: Раб Бездны
-Void Fiend: Демон Бездны
-Abyss Anomaly: Аномалия Бездны
-Void Wraith: Призрак Бездны
-Void Reaver: Рейдер Бездны
-Void Lord: Повелитель Бездны
-Abyss God: Бог Бездны
-Eternal Wanderer: Вечный скиталец
-Nova: Нова
-Sigma Proioxis: Сигма Проиоксис
-Acallaris: Акалларис
-One Above All: Всевышний
-Snow Crash: Лавина
-Player One: Игрок номер один
-Lost in the dark: Затерявшийся во тьме
-Omega: Омега
+job_beggar: Чернорабочий
+job_farmer: Фермер
+job_fisherman: Рыбак
+job_miner: Шахтёр
+job_blacksmith: Кузнец
+job_merchant: Купец
+job_squire: Оруженосец
+job_footman: Пехотинец
+job_veteran_footman: Ветеран-пехотинец
+job_centenary: Сотник
+job_knight: Рыцарь
+job_veteran_knight: Ветеран-рыцарь
+job_holy_knight: Святой рыцарь
+job_lieutenant_general: Генерал-лейтенант
+job_student: Студент
+job_apprentice_mage: Ученик мага
+job_adept_mage: Маг-адепт
+job_master_wizard: Великий маг
+job_archmage: Архимаг
+job_chronomancer: Хрономант
+job_chairman: Верховный магистр
+job_imperator: Император
+job_corrupted: Искажённый
+job_void_slave: Раб Бездны
+job_void_fiend: Демон Бездны
+job_abyss_anomaly: Аномалия Бездны
+job_void_wraith: Призрак Бездны
+job_void_reaver: Рейдер Бездны
+job_void_lord: Повелитель Бездны
+job_abyss_god: Бог Бездны
+job_eternal_wanderer: Вечный скиталец
+job_nova: Нова
+job_sigma_proioxis: Сигма Проиоксис
+job_acallaris: Акалларис
+job_one_above_all: Всевышний
+job_snow_crash: Лавина
+job_player_one: Игрок номер один
+job_lost_in_the_dark: Затерявшийся во тьме
+job_omega: Омега

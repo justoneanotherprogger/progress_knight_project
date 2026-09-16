@@ -11,7 +11,7 @@ function renderJobs() {
         task.querySelector(".xpGain", row).textContent = task.getXpGainFormatted()
         task.querySelector(".xpLeft", row).textContent = task.getXpLeftFormatted()
 
-        let tooltip = t("tt_" + key)
+        let tooltip = t(task.baseData.tooltip)
 
         if (!task.isHero && isHeroesUnlocked()) {
             tooltip += getHeroicRequiredTooltip(key)
@@ -56,7 +56,7 @@ function renderSkills() {
         task.querySelector(".xpGain", row).textContent = task.getXpGainFormatted()
         task.querySelector(".xpLeft", row).textContent = task.getXpLeftFormatted()
 
-        let tooltip = t(task.baseData.description != null ? task.baseData.description : "tt_" + key)
+        let tooltip = t(task.baseData.tooltip)
 
         if (!task.isHero && isHeroesUnlocked()) {
             tooltip += getHeroicRequiredTooltip(key)
@@ -92,13 +92,13 @@ function renderSkills() {
 function renderShop() {
     for (const key in gameData.itemData) {
         const item = gameData.itemData[key]
-        const row = getRowByName(item.name)
+        const row = getRowByName(key)
         const button = row.querySelector(".button")
         button.disabled = gameData.coins.lt(item.getExpense())
         const name = button.querySelector(".name")
         name.textContent = t(item.name)
         const tooltip = row.querySelector(".tooltipText")
-        if (tooltip) tooltip.textContent = t("tt_" + item.name)
+        if (tooltip) tooltip.textContent = t(item.baseData.tooltip)
 
         if (isHeroesUnlocked())
             name.classList.add("legendary")
@@ -106,9 +106,10 @@ function renderShop() {
             name.classList.remove("legendary")
 
         const active = row.querySelector(".active")
+        const isProperty = item.categoryId == "category_properties"
         const color = gameData.autoBuyEnabled
-            ? itemCategories["Properties"].includes(item.name) ? headerRowColors["Properties_Auto"] : headerRowColors["Misc_Auto"]
-            : itemCategories["Properties"].includes(item.name) ? headerRowColors["Properties"] : headerRowColors["Misc"]
+            ? isProperty ? headerRowColors["Properties_Auto"] : headerRowColors["Misc_Auto"]
+            : isProperty ? headerRowColors["Properties"] : headerRowColors["Misc"]
 
         active.style.backgroundColor = gameData.currentMisc.includes(item) || item == gameData.currentProperty ? color : "white"
         row.querySelector(".effect").textContent = item.getEffectDescription()
@@ -123,7 +124,7 @@ function renderShop() {
 function renderMilestones() {
     for (const key in milestoneData) {
         const milestone = milestoneData[key]
-        const row = getRowByName(milestone.name)
+        const row = getRowByName(key)
         row.querySelector(".essence").textContent = format(milestone.threshold)
 
 
@@ -315,11 +316,17 @@ function createRow(templates, name, categoryName, categoryType) {
 
     let displayName = name
     let tooltipKey = "tt_" + name
-    if (categoryType == skillCategories) {
+    if (categoryType == skillCategories || categoryType == jobCategories) {
         const entity = gameData.taskData[name]
         if (entity) {
             displayName = entity.name
-            tooltipKey = entity.baseData.description != null ? entity.baseData.description : "tt_" + name
+            tooltipKey = entity.baseData.tooltip
+        }
+    } else if (categoryType == itemCategories) {
+        const entity = gameData.itemData[name]
+        if (entity) {
+            displayName = entity.name
+            tooltipKey = entity.baseData.tooltip
         }
     }
 
@@ -328,7 +335,7 @@ function createRow(templates, name, categoryName, categoryType) {
     row.id = "row" + removeSpaces(removeStrangeCharacters(name))
 
     if (categoryType == itemCategories) {
-        row.getElementsByClassName("button")[0].onclick = categoryName == "Properties" ? () => { setCurrentProperty(name) } : () => { setMisc(name) }
+        row.getElementsByClassName("button")[0].onclick = categoryName == "category_properties" ? () => { setCurrentProperty(name) } : () => { setMisc(name) }
     }
 
     return row
@@ -361,7 +368,8 @@ function createAllRows(categoryType, tableId) {
                 table.appendChild(row)
             })
         } else {
-            for (const name in category) {
+            const entries = category.items != null ? category.items : category
+            for (const name in entries) {
                 const row = createRow(templates, name, categoryName, categoryType)
                 table.appendChild(row)
             }
@@ -387,7 +395,7 @@ function updateRequiredRows(data, categoryType) {
         let nextEntityName = null
         const category = categoryType[requiredRow.id.substring(4)]
         if (category == null) {continue}
-        const entries = Array.isArray(category) ? category : Object.keys(category)
+        const entries = Array.isArray(category) ? category : (category.items != null ? Object.keys(category.items) : Object.keys(category))
         for (let i = 0; i < entries.length; i++) {
             const entityName = entries[i]
             if (i >= entries.length - 1) break
@@ -447,7 +455,7 @@ function updateRequiredRows(data, categoryType) {
             if (data == gameData.taskData) {
                 if (categoryType != jobCategories) {
                     effectElement.classList.remove("hiddenTask")
-                    effectValueElement.textContent = nextEntity.unlocked ? t("effect_" + nextEntity.baseData.effect.type) : t("unknown")
+                    effectValueElement.textContent = nextEntity.unlocked ? t(labelKey(nextEntity.baseData.effect.target)) : t("unknown")
                 }
 
                 if (requirementObject instanceof EvilRequirement) {
@@ -484,7 +492,7 @@ function updateRequiredRows(data, categoryType) {
                 formatCoins(requirements[0].requirement, coinElement)
 
                 effectElement.classList.remove("hiddenTask")
-                effectValueElement.textContent = nextEntity.unlocked ? (nextEntity.baseData.description != null ? t(nextEntity.baseData.description) : t("reward_happiness")) : t("unknown")
+                effectValueElement.textContent = nextEntity.unlocked ? nextEntity.getEffectDescription() : t("unknown")
             }
             else if (data == milestoneData) {
                 essenceElement.classList.remove("hiddenTask")

@@ -1,61 +1,61 @@
 # Categories
-Common work: Commoners
-Military: Army
-Mage Collegium: Mage Collegium
-The Void: The Void
-Galactic Council: Galactic Council
-Metaverse Guards: Metaverse Guards
-Fundamentals: Fundamentals
-Combat: Combat
-Magic: Magic
-Dark Magic: Dark Magic
-Void Manipulation: Void Manipulation
-Celestial Powers: Celestial Powers
-Almightiness: Almightiness
-Darkness: Darkness
-Properties: Properties
-Misc: Misc
+category_common_work: Commoners
+category_military: Army
+category_mage_collegium: Mage Collegium
+category_the_void: The Void
+category_galactic_council: Galactic Council
+category_metaverse_guards: Metaverse Guards
+category_fundamentals: Fundamentals
+category_combat: Combat
+category_magic: Magic
+category_dark_magic: Dark Magic
+category_void_manipulation: Void Manipulation
+category_celestial_powers: Celestial Powers
+category_almightiness: Almightiness
+category_darkness: Darkness
+category_properties: Properties
+category_misc: Misc
 
 # Jobs
-Beggar: Laborer
-Farmer: Farmer
-Fisherman: Fisherman
-Miner: Miner
-Blacksmith: Blacksmith
-Merchant: Trader
-Squire: Squire
-Footman: Footman
-Veteran footman: Veteran footman
-Centenary: Centenary
-Knight: Knight
-Veteran Knight: Veteran Knight
-Holy Knight: Holy Knight
-Lieutenant General: Lieutenant General
-Student: Student
-Apprentice Mage: Apprentice Mage
-Adept Mage: Adept Mage
-Master Wizard: Master Wizard
-Archmage: Archmage
-Chronomancer: Chronomancer
-Chairman: Chairman
-Imperator: Imperator
-Corrupted: Corrupted
-Void Slave: Void Slave
-Void Fiend: Void Fiend
-Abyss Anomaly: Abyss Anomaly
-Void Wraith: Void Wraith
-Void Reaver: Void Reaver
-Void Lord: Void Lord
-Abyss God: Abyss God
-Eternal Wanderer: Eternal Wanderer
-Nova: Nova
-Sigma Proioxis: Sigma Proioxis
-Acallaris: Acallaris
-One Above All: One Above All
-Snow Crash: Snow Crash
-Player One: Player One
-Lost in the dark: Lost in the dark
-Omega: Omega
+job_beggar: Laborer
+job_farmer: Farmer
+job_fisherman: Fisherman
+job_miner: Miner
+job_blacksmith: Blacksmith
+job_merchant: Trader
+job_squire: Squire
+job_footman: Footman
+job_veteran_footman: Veteran footman
+job_centenary: Centenary
+job_knight: Knight
+job_veteran_knight: Veteran Knight
+job_holy_knight: Holy Knight
+job_lieutenant_general: Lieutenant General
+job_student: Student
+job_apprentice_mage: Apprentice Mage
+job_adept_mage: Adept Mage
+job_master_wizard: Master Wizard
+job_archmage: Archmage
+job_chronomancer: Chronomancer
+job_chairman: Chairman
+job_imperator: Imperator
+job_corrupted: Corrupted
+job_void_slave: Void Slave
+job_void_fiend: Void Fiend
+job_abyss_anomaly: Abyss Anomaly
+job_void_wraith: Void Wraith
+job_void_reaver: Void Reaver
+job_void_lord: Void Lord
+job_abyss_god: Abyss God
+job_eternal_wanderer: Eternal Wanderer
+job_nova: Nova
+job_sigma_proioxis: Sigma Proioxis
+job_acallaris: Acallaris
+job_one_above_all: One Above All
+job_snow_crash: Snow Crash
+job_player_one: Player One
+job_lost_in_the_dark: Lost in the dark
+job_omega: Omega
 
 # Skills
 skill_concentration_name: Concentration
@@ -106,57 +106,57 @@ skill_universal_ruler_name: Universal Ruler
 skill_blinded_by_darkness_name: Blinded By Darkness
 
 # Items
-Homeless: Homeless
-Tent: Tent
-Wooden Hut: Wooden Hut
-Cottage: Cottage
-House: House
-Large House: Large House
-Small Palace: Small Palace
-Grand Palace: Grand Palace
-Town Ruler: Town Ruler
-City Ruler: City Ruler
-Nation Ruler: Nation Ruler
-Pocket Dimension: Pocket Dimension
-Void Realm: Void Realm
-Void Universe: Void Universe
-Astral Realm: Astral Realm
-Galactic Throne: Galactic Throne
-Spaceship: Spaceship
-Planet: Planet
-Ringworld: Ringworld
-Stellar Neighborhood: Stellar Neighborhood
-Galaxy: Galaxy
-Supercluster: Supercluster
-Galaxy Filament: Galaxy Filament
-Observable Universe: Observable Universe
-Multiverse: Multiverse
-Quantum World: Quantum World
-Boötes Void: Boötes Void
-Book: Book
-Dumbbells: Dumbbells
-Personal Squire: Personal Squire
-Steel Longsword: Steel Longsword
-Butler: Butler
-Sapphire Charm: Sapphire Charm
-Study Desk: Study Desk
-Library: Library
-Observatory: Observatory
-Mind's Eye: Mind's Eye
-Void Necklace: Void Necklace
-Void Armor: Void Armor
-Void Blade: Void Blade
-Void Orb: Void Orb
-Void Dust: Void Dust
-Celestial Robe: Celestial Robe
-Universe Fragment: Universe Fragment
-Multiverse Fragment: Multiverse Fragment
-Stairway to heaven: Stairway to heaven
-Highway to hell: Highway to hell
-Tesseract: Tesseract
-Desintegration: Desintegration
-Custom Galaxy: Custom Galaxy
-Hypersphere: Hypersphere
+item_homeless_name: Homeless
+item_tent_name: Tent
+item_wooden_hut_name: Wooden Hut
+item_cottage_name: Cottage
+item_house_name: House
+item_large_house_name: Large House
+item_small_palace_name: Small Palace
+item_grand_palace_name: Grand Palace
+item_town_ruler_name: Town Ruler
+item_city_ruler_name: City Ruler
+item_nation_ruler_name: Nation Ruler
+item_pocket_dimension_name: Pocket Dimension
+item_void_realm_name: Void Realm
+item_void_universe_name: Void Universe
+item_astral_realm_name: Astral Realm
+item_galactic_throne_name: Galactic Throne
+item_spaceship_name: Spaceship
+item_planet_name: Planet
+item_ringworld_name: Ringworld
+item_stellar_neighborhood_name: Stellar Neighborhood
+item_galaxy_name: Galaxy
+item_supercluster_name: Supercluster
+item_galaxy_filament_name: Galaxy Filament
+item_observable_universe_name: Observable Universe
+item_multiverse_name: Multiverse
+item_quantum_world_name: Quantum World
+item_bootes_void_name: Boötes Void
+item_book_name: Book
+item_dumbbells_name: Dumbbells
+item_personal_squire_name: Personal Squire
+item_steel_longsword_name: Steel Longsword
+item_butler_name: Butler
+item_sapphire_charm_name: Sapphire Charm
+item_study_desk_name: Study Desk
+item_library_name: Library
+item_observatory_name: Observatory
+item_minds_eye_name: Mind's Eye
+item_void_necklace_name: Void Necklace
+item_void_armor_name: Void Armor
+item_void_blade_name: Void Blade
+item_void_orb_name: Void Orb
+item_void_dust_name: Void Dust
+item_celestial_robe_name: Celestial Robe
+item_universe_fragment_name: Universe Fragment
+item_multiverse_fragment_name: Multiverse Fragment
+item_stairway_to_heaven_name: Stairway to heaven
+item_highway_to_hell_name: Highway to hell
+item_tesseract_name: Tesseract
+item_desintegration_name: Desintegration
+item_custom_galaxy_name: Custom Galaxy
+item_hypersphere_name: Hypersphere
 
 # Milestone categories
 Essence Milestones: Essence Milestones

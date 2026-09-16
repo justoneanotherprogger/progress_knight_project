@@ -172,16 +172,29 @@ class Job extends Task {
     constructor(baseData) {
         super(baseData)
         this.incomeMultipliers = []
+        this.categoryId = this.findJobCategoryId()
     }
 
     getLevelMultiplier() {
         return 1 + Math.log10(this.level + 1)
     }
 
+    getCategoryHeroIncomeMult() {
+        const categoryId = this.categoryId || (this.categoryId = this.findJobCategoryId())
+        if (!categoryId) return 1
+        return jobCategories[categoryId].heroIncomeMult ?? 1
+    }
+
+    findJobCategoryId() {
+        for (const categoryId in jobCategories)
+            if (this.name in jobCategories[categoryId].items)
+                return categoryId
+        return null
+    }
+
     getIncome() {
         const income = toInfinityNumber(this.isHero ? heroIncomeMult
-            * (this.baseData.heroxp > 78 ? JOB_INCOME_HERO_THRESHOLD_78 : 1)
-            * (this.baseData.heroxp > 130 ? JOB_INCOME_HERO_THRESHOLD_130 : 1)
+            * this.getCategoryHeroIncomeMult()
             : 1)
             .times(applyMultipliers(this.baseData.income, this.incomeMultipliers))
             .times(getChallengeBonus("rich_and_the_poor"))
@@ -197,62 +210,96 @@ class Skill extends Task {
     getEffect() {
         const level = this.level
         const hero = this.isHero
-        const value = this.baseData.effect.value
-        const formula = this.baseData.effect.formula
+        const value = this.baseData.effect.base
+        const formula = this.baseData.effect.formula || {}
 
-        switch (formula) {
-            case "log":
-                return 1 + value * Math.log(level + 1)
-            case "expense_reduction": {
-                const base = hero ? EXPENSE_REDUCTION_LOG_BASE_HERO : EXPENSE_REDUCTION_LOG_BASE_NORMAL
-                const result = 1 - getBaseLog(base, level + 1) / EXPENSE_REDUCTION_DIVISOR
-                return Math.max(result, EXPENSE_REDUCTION_MIN)
+        switch (formula.kind) {
+            case "log": {
+                const logBase = hero && formula.logHeroBase !== undefined
+                    ? formula.logHeroBase
+                    : (formula.logBase || Math.E)
+                const result = 1 + value * Math.log(level + 1) / Math.log(logBase)
+                return formula.floor !== undefined ? Math.max(result, formula.floor) : result
             }
-            case "time_warping": {
-                const base = hero ? TIME_WARPING_LOG_BASE_HERO : TIME_WARPING_LOG_BASE_NORMAL
-                return 1 + getBaseLog(base, level + 1)
-            }
-            case "life_essence": {
-                const base = hero ? LIFE_ESSENCE_LOG_BASE_HERO : LIFE_ESSENCE_LOG_BASE_NORMAL
-                return 1 + getBaseLog(base, level + 1)
-            }
-            case "cosmic_recollection":
-                return level * (hero ? COSMIC_RECOLLECTION_EFFECT_HERO : COSMIC_RECOLLECTION_EFFECT_NORMAL)
-            default: // standard
-                return 1 + value * (hero ? SKILL_HERO_LEVEL_MULTIPLIER * level + SKILL_HERO_FLAT_BONUS : level)
-                    * Math.pow(SKILL_LEVEL_EXPONENT_BASE, getBaseLog(10, level + 1))
+            case "linear":
+                return level * value * (hero && formula.heroScale !== undefined ? formula.heroScale : 1)
+            default: // power
+                const levelEff = hero ? SKILL_HERO_LEVEL_MULTIPLIER * level + SKILL_HERO_FLAT_BONUS : level
+                return 1 + value * levelEff * Math.pow(SKILL_LEVEL_EXPONENT_BASE, getBaseLog(10, level + 1))
         }
     }
 
     getEffectDescription() {
-        return "x" + format(this.getEffect(), 2) + " " + t("effect_" + this.baseData.effect.type)
+        return "x" + format(this.getEffect(), 2) + " " + t(labelKey(this.baseData.effect.target))
     }
+}
+
+function getItemEffectDescriptionKey(target) {
+    if (!target) return "Life Comfort"
+    switch (target.type) {
+        case "happiness": return "Life Comfort"
+        case "evil_gain": return "Evil Gain"
+        case "hypercube_gain": return "Hypercube Gain"
+        case "dark_matter_gain": return "Dark Matter Gain"
+        case "xp": {
+            const scope = target.scope || {}
+            if (scope.task) {
+                const taskMap = { skill_strength: "Strength XP" }
+                return taskMap[scope.task] || "Skill XP"
+            }
+            if (scope.kind === "job") {
+                if (scope.category) {
+                    const jobCatMap = {
+                        category_military: "Army XP",
+                        category_the_void: "The Void XP",
+                        category_galactic_council: "Galactic Council XP"
+                    }
+                    return jobCatMap[scope.category] || "Job XP"
+                }
+                return "Job XP"
+            }
+            if (scope.kind === "skill") {
+                if (scope.category) {
+                    const skillCatMap = {
+                        category_magic: "Magic XP",
+                        category_fundamentals: "Fundamentals XP",
+                        category_void_manipulation: "Void Manipulation XP"
+                    }
+                    return skillCatMap[scope.category] || "Skill XP"
+                }
+                return "Skill XP"
+            }
+            return "Skill XP"
+        }
+    }
+    return "Skill XP"
 }
 
 class Item {
     constructor(baseData) {
         this.baseData = baseData
         this.name = baseData.name
+        this.id = null
+        this.categoryId = null
         this.expenseMultipliers = []
         this.isHero = false
         this.unlocked = false
     }
 
     getEffect() {
-        let effect = this.baseData.effect
+        let effect = this.baseData.effect.base
 
         if (this.isHero) {
-            if (itemCategories["Misc"].includes(this.name))
-            {
+            if (this.categoryId === "category_misc") {
                 if (gameData.currentMisc.includes(this)) {
-                    effect *= this.baseData.heroeffect                    
+                    effect *= this.baseData.effect.heroeffect
                     this.unlocked = true
                 }
             }
 
-            if (itemCategories["Properties"].includes(this.name)) {
+            if (this.categoryId === "category_properties") {
                 if (gameData.currentProperty == this) {
-                    effect = this.baseData.heroeffect
+                    effect = this.baseData.effect.heroeffect
                     this.unlocked = true
                 }
                 else
@@ -269,31 +316,29 @@ class Item {
     }
 
     getEffectDescription() {
-        let description = this.baseData.description
-        let effect = this.baseData.effect
+        let effect = this.baseData.effect.base
 
         if (this.isHero) {
-            if (itemCategories["Misc"].includes(this.name)) {
-                effect *= this.baseData.heroeffect
+            if (this.categoryId === "category_misc") {
+                effect *= this.baseData.effect.heroeffect
             }
 
-            if (itemCategories["Properties"].includes(this.name)) {
-                description = "happiness"
-                effect = this.baseData.heroeffect
+            if (this.categoryId === "category_properties") {
+                effect = this.baseData.effect.heroeffect
             }
         }
-        else {
-            if (itemCategories["Properties"].includes(this.name)) description = "happiness"
-        }
 
-        return "x" + format(effect) + " " + t(description)
+        const descKey = this.categoryId === "category_properties"
+            ? "happiness"
+            : getItemEffectDescriptionKey(this.baseData.effect.target)
+        return "x" + format(effect) + " " + t(descKey)
     }
 
     getExpense(heroic) {
         if (heroic === undefined)
             heroic = this.isHero
-        return toInfinityNumber(heroic ? JOB_INCOME_HERO_BASE_MULTIPLIER * Math.pow(10, this.baseData.heromult) * heroIncomeMult : 1)
-            .times(applyMultipliers(this.baseData.expense, this.expenseMultipliers))
+        return toInfinityNumber(heroic ? JOB_INCOME_HERO_BASE_MULTIPLIER * Math.pow(10, this.baseData.expense.heroExp) * heroIncomeMult : 1)
+            .times(applyMultipliers(this.baseData.expense.base, this.expenseMultipliers))
     }
 }
 

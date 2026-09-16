@@ -11,60 +11,50 @@ function addMultipliers() {
         task.xpMultipliers.push(getHappiness)
         task.xpMultipliers.push(getInspiration)
         task.xpMultipliers.push(getDarkMatterXpGain)
-        pushEffectsByType("all_xp", task.xpMultipliers)
+        pushTargetEffects(key, task, task.xpMultipliers, "xp")
         task.xpMultipliers.push(getDarkMatterSkillXP)
         task.xpMultipliers.push(getTimeIsAFlatCircleXP)
 
         if (task instanceof Job) {
             task.incomeMultipliers.push(task.getLevelMultiplier.bind(task))
-            pushEffectsByType("job_income", task.incomeMultipliers)
+            pushTargetEffects(key, task, task.incomeMultipliers, "income")
             task.incomeMultipliers.push(getLifeCoachIncomeGain)
             task.incomeMultipliers.push(getGreed)
-            pushEffectsByType("job_xp", task.xpMultipliers)
-            task.xpMultipliers.push(getBindedItemEffect("Personal Squire"))
+            task.xpMultipliers.push(getBindedItemEffect("item_personal_squire"))
         } else if (task instanceof Skill) {
-            pushEffectsByType("skill_xp", task.xpMultipliers)
-            task.xpMultipliers.push(getBindedItemEffect("Book"))
-            task.xpMultipliers.push(getBindedItemEffect("Study Desk"))
-            task.xpMultipliers.push(getBindedItemEffect("Library"))
-            task.xpMultipliers.push(getBindedItemEffect("Void Blade"))
-            task.xpMultipliers.push(getBindedItemEffect("Universe Fragment"))
-            task.xpMultipliers.push(getBindedItemEffect("Custom Galaxy"))
+            task.xpMultipliers.push(getBindedItemEffect("item_book"))
+            task.xpMultipliers.push(getBindedItemEffect("item_study_desk"))
+            task.xpMultipliers.push(getBindedItemEffect("item_library"))
+            task.xpMultipliers.push(getBindedItemEffect("item_void_blade"))
+            task.xpMultipliers.push(getBindedItemEffect("item_universe_fragment"))
+            task.xpMultipliers.push(getBindedItemEffect("item_custom_galaxy"))
         }
 
-        if (jobCategories["Military"].includes(task.name)) {
-            pushEffectsByType("army_income", task.incomeMultipliers)
-            pushEffectsByType("army_xp", task.xpMultipliers)
-            task.xpMultipliers.push(getBindedItemEffect("Steel Longsword"))
+        if (task.name in jobCategories["category_military"].items) {
+            task.xpMultipliers.push(getBindedItemEffect("item_steel_longsword"))
         } else if (key == "skill_strength") {
-            pushEffectsByType("strength_xp", task.xpMultipliers)
-            task.xpMultipliers.push(getBindedItemEffect("Dumbbells"))
-        } else if (task instanceof Skill && key in skillCategories["Magic"]) {
-            pushEffectsByType("magic_xp", task.xpMultipliers)
-            task.xpMultipliers.push(getBindedItemEffect("Sapphire Charm"))
-            task.xpMultipliers.push(getBindedItemEffect("Observatory"))
+            task.xpMultipliers.push(getBindedItemEffect("item_dumbbells"))
+        } else if (task instanceof Skill && key in skillCategories["category_magic"].items) {
+            task.xpMultipliers.push(getBindedItemEffect("item_sapphire_charm"))
+            task.xpMultipliers.push(getBindedItemEffect("item_observatory"))
             task.xpMultipliers.push(getTaaAndMagicXpGain)
-        } else if (task instanceof Skill && key in skillCategories["Void Manipulation"]) {
-            task.xpMultipliers.push(getBindedItemEffect("Void Necklace"))
-            task.xpMultipliers.push(getBindedItemEffect("Void Orb"))
-        } else if (jobCategories["Mage Collegium"].includes(task.name)) {
-            pushEffectsByType("collegium_xp", task.xpMultipliers)
+        } else if (task instanceof Skill && key in skillCategories["category_void_manipulation"].items) {
+            task.xpMultipliers.push(getBindedItemEffect("item_void_necklace"))
+            task.xpMultipliers.push(getBindedItemEffect("item_void_orb"))
+        } else if (task.name in jobCategories["category_mage_collegium"].items) {
             task.xpMultipliers.push(getTaaAndMagicXpGain)
-            pushEffectsByType("collegium_income", task.incomeMultipliers)
-        } else if (jobCategories["The Void"].includes(task.name)) {
-            pushEffectsByType("void_xp", task.xpMultipliers)
-            task.xpMultipliers.push(getBindedItemEffect("Void Armor"))
-            task.xpMultipliers.push(getBindedItemEffect("Void Dust"))
-        } else if (jobCategories["Galactic Council"].includes(task.name)) {
-            task.xpMultipliers.push(getBindedItemEffect("Celestial Robe"))
-            pushEffectsByType("galactic_xp", task.xpMultipliers)
-        } else if (task instanceof Skill && key in skillCategories["Dark Magic"]) {
+        } else if (task.name in jobCategories["category_the_void"].items) {
+            task.xpMultipliers.push(getBindedItemEffect("item_void_armor"))
+            task.xpMultipliers.push(getBindedItemEffect("item_void_dust"))
+        } else if (task.name in jobCategories["category_galactic_council"].items) {
+            task.xpMultipliers.push(getBindedItemEffect("item_celestial_robe"))
+        } else if (task instanceof Skill && key in skillCategories["category_dark_magic"].items) {
             task.xpMultipliers.push(getEvilXpGain)
-        } else if (task instanceof Skill && key in skillCategories["Almightiness"]) {
+        } else if (task instanceof Skill && key in skillCategories["category_almightiness"].items) {
             task.xpMultipliers.push(getEssenceXpGain)
-        } else if (task instanceof Skill && key in skillCategories["Fundamentals"]) {
-            task.xpMultipliers.push(getBindedItemEffect("Mind's Eye"))
-        } else if (task instanceof Skill && key in skillCategories["Darkness"]) {
+        } else if (task instanceof Skill && key in skillCategories["category_fundamentals"].items) {
+            task.xpMultipliers.push(getBindedItemEffect("item_minds_eye"))
+        } else if (task instanceof Skill && key in skillCategories["category_darkness"].items) {
             task.xpMultipliers.push(getDarknessXpGain)
         }
     }
@@ -72,7 +62,7 @@ function addMultipliers() {
     for (const itemName in gameData.itemData) {
         const item = gameData.itemData[itemName]
         item.expenseMultipliers = []
-        pushEffectsByType("expense_reduction", item.expenseMultipliers)
+        pushTargetEffects(itemName, null, item.expenseMultipliers, "expense_reduction")
     }
 }
 

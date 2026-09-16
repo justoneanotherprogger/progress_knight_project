@@ -1,28 +1,28 @@
 # Items: Properties
-Homeless: Бездомный
-Tent: Палатка
-Wooden Hut: Деревянная хижина
-Cottage: Домик
-House: Дом
-Large House: Большой дом
-Small Palace: Небольшой дворец
-Grand Palace: Великий дворец
-Town Ruler: Хозяин города
-City Ruler: Властелин города
-Nation Ruler: Владыка нации
-Pocket Dimension: Карманное измерение
-Void Realm: Царство Бездны
-Void Universe: Вселенная Бездны
-Astral Realm: Астральное царство
-Galactic Throne: Галактический трон
-Spaceship: Космический корабль
-Planet: Планета
-Ringworld: Мир-кольцо
-Stellar Neighborhood: Звёздная вотчина
-Galaxy: Галактика
-Supercluster: Сверхскопление
-Galaxy Filament: Галактическая нить
-Observable Universe: Наблюдаемая вселенная
-Multiverse: Мультивселенная
-Quantum World: Квантовый мир
-Boötes Void: Пустота Волопаса
+item_homeless_name: Бездомный
+item_tent_name: Палатка
+item_wooden_hut_name: Деревянная хижина
+item_cottage_name: Домик
+item_house_name: Дом
+item_large_house_name: Большой дом
+item_small_palace_name: Небольшой дворец
+item_grand_palace_name: Великий дворец
+item_town_ruler_name: Хозяин города
+item_city_ruler_name: Властелин города
+item_nation_ruler_name: Владыка нации
+item_pocket_dimension_name: Карманное измерение
+item_void_realm_name: Царство Бездны
+item_void_universe_name: Вселенная Бездны
+item_astral_realm_name: Астральное царство
+item_galactic_throne_name: Галактический трон
+item_spaceship_name: Космический корабль
+item_planet_name: Планета
+item_ringworld_name: Мир-кольцо
+item_stellar_neighborhood_name: Звёздная вотчина
+item_galaxy_name: Галактика
+item_supercluster_name: Сверхскопление
+item_galaxy_filament_name: Галактическая нить
+item_observable_universe_name: Наблюдаемая вселенная
+item_multiverse_name: Мультивселенная
+item_quantum_world_name: Квантовый мир
+item_bootes_void_name: Пустота Волопаса

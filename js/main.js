@@ -55,6 +55,18 @@ function createGameObject(data, entity, id) {
     else { data[id] = new Item(entity) }
 }
 
+function createItemObjects() {
+    for (const categoryId in itemCategories) {
+        const items = itemCategories[categoryId].items
+        for (const key in items) {
+            const item = new Item(items[key])
+            item.id = key
+            item.categoryId = categoryId
+            gameData.itemData[key] = item
+        }
+    }
+}
+
 function createSkillRequirements() {
     for (const key in skillBaseData) {
         const skill = skillBaseData[key]
@@ -146,11 +158,11 @@ function setEnableKeybinds(enableKeybinds) {
 
 createGameObjects(gameData.taskData, jobBaseData)
 createGameObjects(gameData.taskData, skillBaseData)
-createGameObjects(gameData.itemData, itemBaseData)
+createItemObjects()
 createGameObjects(milestoneData, milestoneBaseData)
 
 gameData.currentJob = gameData.taskData["Beggar"]
-gameData.currentProperty = gameData.itemData["Homeless"]
+gameData.currentProperty = gameData.itemData["item_homeless"]
 gameData.currentMisc = []
 
 gameData.requirements = requirementsBaseData
