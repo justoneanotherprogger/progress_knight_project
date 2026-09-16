@@ -67,24 +67,24 @@ function addMultipliers() {
 }
 
 function setCustomEffects() {
-    const transcendentMaster = milestoneData["Transcendent Master"]
+    const transcendentMaster = milestoneData["milestone_transcendent_master"]
     transcendentMaster.getEffect = function () {
-        return gameData.requirements["Transcendent Master"].isCompleted() ? TRANSCENDENT_MASTER_EFFECT : 1
+        return gameData.requirements["milestone_transcendent_master"].isCompleted() ? TRANSCENDENT_MASTER_EFFECT : 1
     }
 
-    const faintHope = milestoneData["Faint Hope"]
+    const faintHope = milestoneData["milestone_faint_hope"]
     faintHope.getEffect = function () {
         var mult = 1
-        if (gameData.requirements["A New Hope"].isCompleted()) {
+        if (gameData.requirements["milestone_a_new_hope"].isCompleted()) {
             mult = softcap(FAINT_HOPE_INFINITY, FAINT_HOPE_A_NEW_HOPE_SOFTCAP, FAINT_HOPE_A_NEW_HOPE_DECAY)
         }
-        else if (gameData.requirements["Speed speed speed"].isCompleted()) {
-            mult = FAINT_HOPE_SPEED_COEFFICIENT * Math.exp(FAINT_HOPE_SPEED_EXPONENT * (gameData.requirements["Strong Hope"].isCompleted() ? gameData.rebirthFiveTime
+        else if (gameData.requirements["milestone_speed_speed_speed"].isCompleted()) {
+            mult = FAINT_HOPE_SPEED_COEFFICIENT * Math.exp(FAINT_HOPE_SPEED_EXPONENT * (gameData.requirements["milestone_strong_hope"].isCompleted() ? gameData.rebirthFiveTime
                 : gameData.rebirthThreeTime)) * (Math.log(getUnpausedGameSpeed()) / Math.log(2))
             if (mult == Infinity) mult = FAINT_HOPE_INFINITY
             mult = softcap(mult, FAINT_HOPE_SPEED_SOFTCAP, FAINT_HOPE_A_NEW_HOPE_DECAY)
         }
-        else if (gameData.requirements["Faint Hope"].isCompleted()) {
+        else if (gameData.requirements["milestone_faint_hope"].isCompleted()) {
             let kickin = FAINT_HOPE_KICKIN_BASE - FAINT_HOPE_KICKIN_LOG_COEFFICIENT * Math.log(gameData.rebirthThreeTime)
             if (kickin < FAINT_HOPE_KICKIN_MIN) kickin = FAINT_HOPE_KICKIN_MIN
             mult = 1 + (gameData.rebirthThreeTime / (FAINT_HOPE_REBIRTH_DIVISOR * kickin)) * (Math.log(getUnpausedGameSpeed()) / Math.log(2))
@@ -93,10 +93,10 @@ function setCustomEffects() {
         return mult
     }
 
-    const riseOfGreatHeroes = milestoneData["Rise of Great Heroes"]
+    const riseOfGreatHeroes = milestoneData["milestone_rise_of_great_heroes"]
     riseOfGreatHeroes.getEffect = function () {
         var mult = 1
-        if (gameData.requirements["Rise of Great Heroes"].isCompleted()) {
+        if (gameData.requirements["milestone_rise_of_great_heroes"].isCompleted()) {
             var countHeroes = 0
             for (const taskName in gameData.taskData) {
                 if (gameData.taskData[taskName].isHero)

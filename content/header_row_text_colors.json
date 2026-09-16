@@ -19,10 +19,10 @@
     "Misc": "purple",
     "category_properties": "purple",
     "category_misc": "purple",
-    "Essence Milestones": "purple",
-    "Heroic Milestones": "purple",
-    "Dark Milestones": "purple",
-    "Metaverse Milestones": "purple",
-    "category_metaverse_guards": "purple"
+    "category_metaverse_guards": "purple",
+    "category_essence_milestones": "purple",
+    "category_heroic_milestones": "purple",
+    "category_dark_milestones": "purple",
+    "category_metaverse_milestones": "purple"
   }
 }

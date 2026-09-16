@@ -82,7 +82,7 @@ function renderSideBar() {
         transcendButton.classList.remove("button-transcend")
 
     // Hide the rebirthOneButton from the sidebar when you have `Almighty Eye` unlocked.
-    document.getElementById("rebirthButton1").hidden = gameData.requirements["Almighty Eye"].isCompleted()
+    document.getElementById("rebirthButton1").hidden = gameData.requirements["milestone_almighty_eye"].isCompleted()
 
     // Change sidebar when paused
     if (gameData.paused) {

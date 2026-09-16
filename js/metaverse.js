@@ -264,13 +264,13 @@ function getTimeIsAFlatCircleXP() {
     if (gameData.active_challenge == "the_darkest_time")
         return 1
 
-    return gameData.requirements["Time is a flat circle"].isCompleted() ? 1e50 : 1
+    return gameData.requirements["milestone_time_is_a_flat_circle"].isCompleted() ? 1e50 : 1
 }
 
 function getUnspentPerksDarkmatterGainBuff() {
     const effect = softcap(gameData.perks_points * 0.0027 + 2, 75, 0.01)
 
-    return gameData.requirements["The End is near"].isCompleted() ? Math.pow(10, effect): 1
+    return gameData.requirements["milestone_the_end_is_near"].isCompleted() ? Math.pow(10, effect): 1
 }
 
 function getHypercubeCap(next = 0) {

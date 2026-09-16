@@ -86,7 +86,7 @@ function buyGottaBeFast() {
 function getDarkOrbGeneration() {
     if (gameData.dark_matter_shop.dark_orb_generator == 0) return new Decimal(0)
 
-    const darkOrbiter = gameData.requirements["Dark Orbiter"].isCompleted() ? 1e10 : 1
+    const darkOrbiter = gameData.requirements["milestone_dark_orbiter"].isCompleted() ? 1e10 : 1
 
     return new Decimal(100).pow(gameData.dark_matter_shop.dark_orb_generator - 1).times(darkOrbiter)
 }

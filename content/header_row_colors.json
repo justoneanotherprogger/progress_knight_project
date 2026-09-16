@@ -19,10 +19,10 @@
     "Misc": "#b56576",
     "category_properties": "#219ebc",
     "category_misc": "#b56576",
-    "Essence Milestones": "#0066ff",
-    "Heroic Milestones": "#ff6600",
-    "Dark Milestones": "#873160",
-    "Metaverse Milestones": "#09a0e6",
-    "category_metaverse_guards": "rgb(9, 160, 230)"
+    "category_metaverse_guards": "rgb(9, 160, 230)",
+    "category_essence_milestones": "#0066ff",
+    "category_heroic_milestones": "#ff6600",
+    "category_dark_milestones": "#873160",
+    "category_metaverse_milestones": "#09a0e6"
   }
 }

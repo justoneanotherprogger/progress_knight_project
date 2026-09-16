@@ -143,7 +143,7 @@ function renderMilestones() {
         fitText(milestoneName, 16)
 
         const tooltip = row.querySelector(".tooltipText")
-        if (tooltip) tooltip.textContent = t("tt_" + milestone.name)
+        if (tooltip) tooltip.textContent = t(milestone.tooltip)
     }
 }
 
@@ -324,6 +324,12 @@ function createRow(templates, name, categoryName, categoryType) {
         }
     } else if (categoryType == itemCategories) {
         const entity = gameData.itemData[name]
+        if (entity) {
+            displayName = entity.name
+            tooltipKey = entity.baseData.tooltip
+        }
+    } else if (categoryType == milestoneCategories) {
+        const entity = milestoneData[name]
         if (entity) {
             displayName = entity.name
             tooltipKey = entity.baseData.tooltip

@@ -162,6 +162,7 @@ class Milestone {
         this.tier = baseData.tier
         this.threshold = baseData.threshold
         this.description = baseData.description
+        this.tooltip = baseData.tooltip
         this.unlocked = false
     }
 

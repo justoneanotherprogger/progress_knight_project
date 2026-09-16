@@ -40,25 +40,10 @@
       "selectors": [".category_darkness"],
       "requirements": [{"requirement": 1}]
     },
-    "Heroic Milestones": {
-      "type": "essence",
-      "selectors": [".HeroicMilestones"],
-      "requirements": [{"requirement": 400000}]
-    },
-    "Dark Milestones": {
-      "type": "essence",
-      "selectors": [".DarkMilestones"],
-      "requirements": [{"requirement": 5e10}]
-    },
-    "Metaverse Milestones": {
-      "type": "essence",
-      "selectors": [".MetaverseMilestones"],
-      "requirements": [{"requirement": 1e60}]
-    },
     "category_metaverse_guards": {
       "type": "essence",
       "selectors": [".category_metaverse_guards"],
-      "requirements": [{"requirement": 1e90}]
+      "requirements": [{"requirement": 1e+90}]
     },
     "Rebirth tab": {
       "type": "age",
@@ -148,32 +133,32 @@
     "Rebirth note 7": {
       "type": "essence",
       "selectors": ["#rebirth_note_7"],
-      "requirements": [{"requirement": 5e10}]
+      "requirements": [{"requirement": 50000000000.0}]
     },
     "Rebirth note 7 info": {
       "type": "essence",
       "selectors": ["#rebirth_note_7_info"],
-      "requirements": [{"requirement": 5e10}]
+      "requirements": [{"requirement": 50000000000.0}]
     },
     "Rebirth note 8": {
       "type": "essence",
       "selectors": ["#rebirth_note_8"],
-      "requirements": [{"requirement": 1e60}]
+      "requirements": [{"requirement": 1e+60}]
     },
     "Rebirth note 8 info": {
       "type": "essence",
       "selectors": ["#rebirth_note_8_info"],
-      "requirements": [{"requirement": 1e60}]
+      "requirements": [{"requirement": 1e+60}]
     },
     "Hypercube cap text": {
       "type": "essence",
       "selectors": ["#hypercube_cap_text"],
-      "requirements": [{"requirement": 1e60}]
+      "requirements": [{"requirement": 1e+60}]
     },
     "Perk points gain text": {
       "type": "essence",
       "selectors": ["#perk_points_gain_text"],
-      "requirements": [{"requirement": 1e60}]
+      "requirements": [{"requirement": 1e+60}]
     },
     "Rebirth button 1": {
       "type": "age",
@@ -193,12 +178,12 @@
     "Rebirth button 4": {
       "type": "essence",
       "selectors": ["#rebirthButton4"],
-      "requirements": [{"requirement": 5e10}]
+      "requirements": [{"requirement": 50000000000.0}]
     },
     "Rebirth button 5": {
       "type": "essence",
       "selectors": ["#rebirthButton5"],
-      "requirements": [{"requirement": 1e60}]
+      "requirements": [{"requirement": 1e+60}]
     },
     "Rebirth stats evil": {
       "type": "age",
@@ -418,7 +403,7 @@
     "job_snow_crash": {
       "type": "essence",
       "selectors": ["#rowjob_snow_crash"],
-      "requirements": [{"requirement": 1e90, "herequirement": 1e120}]
+      "requirements": [{"requirement": 1e+90, "herequirement": 1e+120}]
     },
     "job_player_one": {
       "type": "task",
@@ -533,42 +518,42 @@
     "item_stellar_neighborhood": {
       "type": "coins",
       "selectors": ["#rowitem_stellar_neighborhood"],
-      "requirements": [{"requirement": 1e65}]
+      "requirements": [{"requirement": 1e+65}]
     },
     "item_galaxy": {
       "type": "coins",
       "selectors": ["#rowitem_galaxy"],
-      "requirements": [{"requirement": 1e72}]
+      "requirements": [{"requirement": 1e+72}]
     },
     "item_supercluster": {
       "type": "coins",
       "selectors": ["#rowitem_supercluster"],
-      "requirements": [{"requirement": 1e80}]
+      "requirements": [{"requirement": 1e+80}]
     },
     "item_galaxy_filament": {
       "type": "coins",
       "selectors": ["#rowitem_galaxy_filament"],
-      "requirements": [{"requirement": 1e90}]
+      "requirements": [{"requirement": 1e+90}]
     },
     "item_observable_universe": {
       "type": "coins",
       "selectors": ["#rowitem_observable_universe"],
-      "requirements": [{"requirement": 1e102}]
+      "requirements": [{"requirement": 1e+102}]
     },
     "item_multiverse": {
       "type": "coins",
       "selectors": ["#rowitem_multiverse"],
-      "requirements": [{"requirement": 1e116}]
+      "requirements": [{"requirement": 1e+116}]
     },
     "item_quantum_world": {
       "type": "coins",
       "selectors": ["#rowitem_quantum_world"],
-      "requirements": [{"requirement": 1e124}]
+      "requirements": [{"requirement": 1e+124}]
     },
     "item_bootes_void": {
       "type": "coins",
       "selectors": ["#rowitem_bootes_void"],
-      "requirements": [{"requirement": 1e152}]
+      "requirements": [{"requirement": 1e+152}]
     },
     "item_book": {
       "type": "coins",
@@ -673,22 +658,22 @@
     "item_tesseract": {
       "type": "coins",
       "selectors": ["#rowitem_tesseract"],
-      "requirements": [{"requirement": 1e112}]
+      "requirements": [{"requirement": 1e+112}]
     },
     "item_desintegration": {
       "type": "coins",
       "selectors": ["#rowitem_desintegration"],
-      "requirements": [{"requirement": 1e122}]
+      "requirements": [{"requirement": 1e+122}]
     },
     "item_custom_galaxy": {
       "type": "coins",
       "selectors": ["#rowitem_custom_galaxy"],
-      "requirements": [{"requirement": 1e134}]
+      "requirements": [{"requirement": 1e+134}]
     },
     "item_hypersphere": {
       "type": "coins",
       "selectors": ["#rowitem_hypersphere"],
-      "requirements": [{"requirement": 1e160}]
+      "requirements": [{"requirement": 1e+160}]
     },
     "Milestones": {
       "type": "essence",
@@ -703,12 +688,12 @@
     "Dark Matter Skills": {
       "type": "essence",
       "selectors": ["#skillTreeTabTabButton"],
-      "requirements": [{"requirement": 1e20}]
+      "requirements": [{"requirement": 1e+20}]
     },
     "Dark Matter Skills2": {
       "type": "essence",
       "selectors": ["#skillTreePage"],
-      "requirements": [{"requirement": 1e20}]
+      "requirements": [{"requirement": 1e+20}]
     },
     "Challenges": {
       "type": "evil",
@@ -733,17 +718,17 @@
     "Challenge_dance_with_the_devil": {
       "type": "essence",
       "selectors": ["#danceWithTheDevilChallenge"],
-      "requirements": [{"requirement": 1e6}]
+      "requirements": [{"requirement": 1000000.0}]
     },
     "Challenge_legends_never_die": {
       "type": "essence",
       "selectors": ["#legendsNeverDieChallenge"],
-      "requirements": [{"requirement": 2.5e7}]
+      "requirements": [{"requirement": 25000000.0}]
     },
     "Challenge_the_darkest_time": {
       "type": "essence",
       "selectors": ["#theDarkestTimeChallenge"],
-      "requirements": [{"requirement": 1e47}]
+      "requirements": [{"requirement": 1e+47}]
     },
     "Metaverse": {
       "type": "metaverse",
@@ -778,12 +763,12 @@
     "Challenges are not reset": {
       "type": "hypercube",
       "selectors": ["#ChallengeAltar"],
-      "requirements": [{"requirement": 1e15}]
+      "requirements": [{"requirement": 1000000000000000.0}]
     },
     "Dark Matter gain multiplier": {
       "type": "hypercube",
       "selectors": ["#DarkMaterAltar"],
-      "requirements": [{"requirement": 1e17}]
+      "requirements": [{"requirement": 1e+17}]
     },
     "Metaverse Perks": {
       "type": "perkpoint",
@@ -794,6 +779,21 @@
       "type": "perkpoint",
       "selectors": ["#metaverseTab2TabButton"],
       "requirements": [{"requirement": 1}]
+    },
+    "category_heroic_milestones": {
+      "type": "essence",
+      "selectors": [".category_heroic_milestones"],
+      "requirements": [{"requirement": 400000}]
+    },
+    "category_dark_milestones": {
+      "type": "essence",
+      "selectors": [".category_dark_milestones"],
+      "requirements": [{"requirement": 50000000000.0}]
+    },
+    "category_metaverse_milestones": {
+      "type": "essence",
+      "selectors": [".category_metaverse_milestones"],
+      "requirements": [{"requirement": 1e+60}]
     }
   }
 }

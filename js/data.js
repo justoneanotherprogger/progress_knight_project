@@ -244,18 +244,18 @@ const JOB_INCOME_HERO_BASE_MULTIPLIER = 4
 
 // --- Hero milestone XP multipliers (data for getHeroXpGainMultipliers) ---
 const HERO_MILESTONE_MULTIPLIERS = [
-  { requirement: "Rise of Great Heroes", multiplier: 10000 },
-  { requirement: "Lazy Heroes", multiplier: 1e12 },
-  { requirement: "Dirty Heroes", multiplier: 1e15 },
-  { requirement: "Angry Heroes", multiplier: 1e15 },
-  { requirement: "Tired Heroes", multiplier: 1e15 },
-  { requirement: "Scared Heroes", multiplier: 1e15 },
-  { requirement: "Good Heroes", multiplier: 1e15 },
-  { requirement: "Funny Heroes", multiplier: 1e25 },
-  { requirement: "Beautiful Heroes", multiplier: 1e50 },
-  { requirement: "Awesome Heroes", multiplier: 1e10 },
-  { requirement: "Furious Heroes", multiplier: 1e12, jobExtra: 1000000 },
-  { requirement: "Superb Heroes", multiplier: 1e3 },
+  { requirement: "milestone_rise_of_great_heroes", multiplier: 10000 },
+  { requirement: "milestone_lazy_heroes", multiplier: 1e12 },
+  { requirement: "milestone_dirty_heroes", multiplier: 1e15 },
+  { requirement: "milestone_angry_heroes", multiplier: 1e15 },
+  { requirement: "milestone_tired_heroes", multiplier: 1e15 },
+  { requirement: "milestone_scared_heroes", multiplier: 1e15 },
+  { requirement: "milestone_good_heroes", multiplier: 1e15 },
+  { requirement: "milestone_funny_heroes", multiplier: 1e25 },
+  { requirement: "milestone_beautiful_heroes", multiplier: 1e50 },
+  { requirement: "milestone_awesome_heroes", multiplier: 1e10 },
+  { requirement: "milestone_furious_heroes", multiplier: 1e12, jobExtra: 1000000 },
+  { requirement: "milestone_superb_heroes", multiplier: 1e3 },
 ]
 
 
