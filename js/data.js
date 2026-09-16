@@ -258,9 +258,7 @@ const HERO_MILESTONE_MULTIPLIERS = [
   { requirement: "Superb Heroes", multiplier: 1e3 },
 ]
 
-const permanentUnlocks = ["Quick task display", "Rebirth tab", "Dark Matter", "Dark Matter Skills", "Dark Matter Skills2", "Metaverse", "Metaverse Perks", "Metaverse Perks Button", "Congratulations"]
-const metaverseUnlocks = ["Reduce Boost Cooldown", "Increase Boost Duration", "Increase Hypercube Gain", "Gain evil at new transcension",
-    "Essence gain multiplier", "Challenges are not reset", "Dark Matter gain multiplier"]
+
 
 const requirementsBaseData = {
     // Categories
