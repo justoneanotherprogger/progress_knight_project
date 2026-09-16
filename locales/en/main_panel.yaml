@@ -1,4 +1,3 @@
-# Categories
 category_common_work: Commoners
 category_military: Army
 category_mage_collegium: Mage Collegium
@@ -15,8 +14,6 @@ category_almightiness: Almightiness
 category_darkness: Darkness
 category_properties: Properties
 category_misc: Misc
-
-# Jobs
 job_beggar: Laborer
 job_farmer: Farmer
 job_fisherman: Fisherman
@@ -56,8 +53,6 @@ job_snow_crash: Snow Crash
 job_player_one: Player One
 job_lost_in_the_dark: Lost in the dark
 job_omega: Omega
-
-# Skills
 skill_concentration_name: Concentration
 skill_productivity_name: Productivity
 skill_bargaining_name: Bargaining
@@ -104,8 +99,6 @@ skill_immortal_ruler_name: Immortal Ruler
 skill_dark_magician_name: Dark Magician
 skill_universal_ruler_name: Universal Ruler
 skill_blinded_by_darkness_name: Blinded By Darkness
-
-# Items
 item_homeless_name: Homeless
 item_tent_name: Tent
 item_wooden_hut_name: Wooden Hut
@@ -157,54 +150,49 @@ item_tesseract_name: Tesseract
 item_desintegration_name: Desintegration
 item_custom_galaxy_name: Custom Galaxy
 item_hypersphere_name: Hypersphere
-
-# Milestone categories
-Essence Milestones: Essence Milestones
-Heroic Milestones: Heroic Milestones
-Dark Milestones: Dark Milestones
-Metaverse Milestones: Metaverse Milestones
-
-# Milestones
-Magic Eye: Magic Eye
-Almighty Eye: Almighty Eye
-Deal with the Devil: Deal with the Devil
-Transcendent Master: Transcendent Master
-Eternal Time: Eternal Time
-Hell Portal: Hell Portal
-Inferno: Inferno
-God's Blessings: God's Blessings
-Faint Hope: Faint Hope
-New Beginning: New Beginning
-Rise of Great Heroes: Rise of Great Heroes
-Lazy Heroes: Lazy Heroes
-Dirty Heroes: Dirty Heroes
-Angry Heroes: Angry Heroes
-Tired Heroes: Tired Heroes
-Scared Heroes: Scared Heroes
-Good Heroes: Good Heroes
-Funny Heroes: Funny Heroes
-Beautiful Heroes: Beautiful Heroes
-Awesome Heroes: Awesome Heroes
-Furious Heroes: Furious Heroes
-Superb Heroes: Superb Heroes
-A new beginning: A new beginning
-Mind Control: Mind Control
-Galactic Emperor: Galactic Emperor
-Dark Matter Harvester: Dark Matter Harvester
-A Dark Era: A Dark Era
-Dark Orbiter: Dark Orbiter
-Dark Matter Mining: Dark Matter Mining
-The new gold: The new gold
-The Devil inside you: The Devil inside you
-Strange Magic: Strange Magic
-Speed speed speed: Speed speed speed
-Life is valueable: Life is valueable
-Dark Matter Millionaire: Dark Matter Millionaire
-The new Dark Matter: The new Dark Matter
-Strong Hope: Strong Hope
-Ruler of the Metaverse: Ruler of the Metaverse
-A New Hope: A New Hope
-Time is a flat circle: Time is a flat circle
-The End is near: The End is near
-The End: The End
-
+category_essence_milestones: Essence Milestones
+category_heroic_milestones: Heroic Milestones
+category_dark_milestones: Dark Milestones
+category_metaverse_milestones: Metaverse Milestones
+milestone_magic_eye_name: Magic Eye
+milestone_almighty_eye_name: Almighty Eye
+milestone_deal_with_the_devil_name: Deal with the Devil
+milestone_transcendent_master_name: Transcendent Master
+milestone_eternal_time_name: Eternal Time
+milestone_hell_portal_name: Hell Portal
+milestone_inferno_name: Inferno
+milestone_god_s_blessings_name: God's Blessings
+milestone_faint_hope_name: Faint Hope
+milestone_new_beginning_name: New Beginning
+milestone_rise_of_great_heroes_name: Rise of Great Heroes
+milestone_lazy_heroes_name: Lazy Heroes
+milestone_dirty_heroes_name: Dirty Heroes
+milestone_angry_heroes_name: Angry Heroes
+milestone_tired_heroes_name: Tired Heroes
+milestone_scared_heroes_name: Scared Heroes
+milestone_good_heroes_name: Good Heroes
+milestone_funny_heroes_name: Funny Heroes
+milestone_beautiful_heroes_name: Beautiful Heroes
+milestone_awesome_heroes_name: Awesome Heroes
+milestone_furious_heroes_name: Furious Heroes
+milestone_superb_heroes_name: Superb Heroes
+milestone_a_new_beginning_name: A new beginning
+milestone_mind_control_name: Mind Control
+milestone_galactic_emperor_name: Galactic Emperor
+milestone_dark_matter_harvester_name: Dark Matter Harvester
+milestone_a_dark_era_name: A Dark Era
+milestone_dark_orbiter_name: Dark Orbiter
+milestone_dark_matter_mining_name: Dark Matter Mining
+milestone_the_new_gold_name: The new gold
+milestone_the_devil_inside_you_name: The Devil inside you
+milestone_strange_magic_name: Strange Magic
+milestone_speed_speed_speed_name: Speed speed speed
+milestone_life_is_valueable_name: Life is valueable
+milestone_dark_matter_millionaire_name: Dark Matter Millionaire
+milestone_the_new_dark_matter_name: The new Dark Matter
+milestone_strong_hope_name: Strong Hope
+milestone_ruler_of_the_metaverse_name: Ruler of the Metaverse
+milestone_a_new_hope_name: A New Hope
+milestone_time_is_a_flat_circle_name: Time is a flat circle
+milestone_the_end_is_near_name: The End is near
+milestone_the_end_name: The End
