@@ -260,33 +260,6 @@ const HERO_MILESTONE_MULTIPLIERS = [
 
 
 
-const headerRowTextColors = {
-    "category_common_work": "darkblue",
-    "category_military": "purple",
-    "category_mage_collegium": "magenta",
-    "category_the_void": "white",
-    "category_galactic_council": "purple",
-    "category_fundamentals": "purple",
-    "category_combat": "pink",
-    "category_magic": "purple",
-    "category_dark_magic": "pink",
-    "category_almightiness": "purple",
-    "category_darkness": "gold",
-    "category_void_manipulation": "white",
-    "category_celestial_powers": "purple",
-    "Properties_Auto": "purple",
-    "Misc_Auto": "purple",
-    "Properties": "purple",
-    "Misc": "purple",
-    "category_properties": "purple",
-    "category_misc": "purple",
-    "Essence Milestones": "purple",
-    "Heroic Milestones": "purple",
-    "Dark Milestones": "purple",
-    "Metaverse Milestones": "purple",
-    "category_metaverse_guards": "purple",
-}
-
 function getPreviousTaskInCategory(task) {
     var prev = ""
     for (const category in jobCategories) {
