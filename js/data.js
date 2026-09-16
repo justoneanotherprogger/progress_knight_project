@@ -462,33 +462,6 @@ const requirementsBaseData = {
     "Congratulations": new EssenceRequirement(["#Congratulations"], [{ requirement: 1e300 }]),
 }
 
-const headerRowColors = {
-    "category_common_work": "#55a630",
-    "category_military": "#e63946",
-    "category_mage_collegium": "#C71585",
-    "category_the_void": "#762B91",
-    "category_galactic_council": "#D5C010",
-    "category_fundamentals": "#55a630",
-    "category_combat": "#e63946",
-    "category_magic": "#C71585",
-    "category_dark_magic": "#73000f",
-    "category_almightiness": "#18d2d9",
-    "category_darkness": "#8c6a0b",
-    "category_void_manipulation": "#762B91",
-    "category_celestial_powers": "#D5C010",
-    "Properties_Auto": "#21cc5e",
-    "Misc_Auto": "#f54546",
-    "Properties": "#219ebc",
-    "Misc": "#b56576",
-    "category_properties": "#219ebc",
-    "category_misc": "#b56576",
-    "Essence Milestones": "#0066ff",
-    "Heroic Milestones": "#ff6600",
-    "Dark Milestones": "#873160",
-    "Metaverse Milestones": "#09a0e6",
-    "category_metaverse_guards": "rgb(9, 160, 230)"
-}
-
 const headerRowTextColors = {
     "category_common_work": "darkblue",
     "category_military": "purple",
