@@ -61,7 +61,7 @@ function rebirthFour() {
         for (const challenge in gameData.challenges) {
             gameData.challenges[challenge] = 0
         }
-        gameData.requirements["Challenges"].completed = false
+        gameData.requirements["req_challenges_tab_button"].completed = false
     }
 
     if (gameData.stats.fastest4 == null || gameData.rebirthFourTime < gameData.stats.fastest4)
@@ -109,12 +109,12 @@ function rebirthFive() {
         for (const challenge in gameData.challenges) {
             gameData.challenges[challenge] = 0
         }
-        gameData.requirements["Challenges"].completed = false
+        gameData.requirements["req_challenges_tab_button"].completed = false
     }
 
-    gameData.requirements["Dark Matter"].completed = false
-    gameData.requirements["Dark Matter Skills"].completed = false
-    gameData.requirements["Dark Matter Skills2"].completed = false
+    gameData.requirements["req_dark_matter_tab_button"].completed = false
+    gameData.requirements["req_skill_tree_tab_tab_button"].completed = false
+    gameData.requirements["req_skill_tree_page"].completed = false
 
 
     if (gameData.stats.fastest5 == null || gameData.rebirthFiveTime < gameData.stats.fastest5)
@@ -150,7 +150,7 @@ function rebirthFive() {
 }
 
 function applyMilestones() {
-    if (((gameData.requirements["milestone_magic_eye"].isCompleted()) && (gameData.requirements["Rebirth note 2"].isCompleted())) ||
+    if (((gameData.requirements["milestone_magic_eye"].isCompleted()) && (gameData.requirements["req_rebirth_note_2"].isCompleted())) ||
         (gameData.requirements["milestone_almighty_eye"].isCompleted())){
         for (taskName in gameData.taskData) {
             const task = gameData.taskData[taskName]
@@ -162,7 +162,7 @@ function applyMilestones() {
     }
 
     if (canSimulate()) {
-        if (gameData.requirements["milestone_deal_with_the_devil"].isCompleted() && gameData.requirements["Rebirth note 3"].isCompleted()) {
+        if (gameData.requirements["milestone_deal_with_the_devil"].isCompleted() && gameData.requirements["req_rebirth_note_3"].isCompleted()) {
             if (gameData.evil.eq(0)) gameData.evil = new Decimal(1)
             if (gameData.evil.lt(getEvilGain()))
                 gameData.evil = gameData.evil.times(EVIL_GROWTH_EXPONENT_DEAL)

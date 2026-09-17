@@ -37,7 +37,7 @@ function updateRequirements() {
 }
 
 function updateStats() {
-    if (gameData.requirements["Rebirth stats evil"].isCompleted()) {
+    if (gameData.requirements["req_stats_evil_gain"].isCompleted()) {
         gameData.stats.EvilPerSecond = getEvilGain().div(gameData.rebirthTwoTime)
         if (gameData.stats.EvilPerSecond.gt(gameData.stats.maxEvilPerSecond)) {
             gameData.stats.maxEvilPerSecond = gameData.stats.EvilPerSecond
@@ -45,7 +45,7 @@ function updateStats() {
         }
     }
 
-    if (gameData.requirements["Rebirth stats essence"].isCompleted()) {
+    if (gameData.requirements["req_stats_essence_gain"].isCompleted()) {
         gameData.stats.EssencePerSecond = getEssenceGain().div(gameData.rebirthThreeTime)
         if (gameData.stats.EssencePerSecond.gt(gameData.stats.maxEssencePerSecond)) {
             gameData.stats.maxEssencePerSecond = gameData.stats.EssencePerSecond

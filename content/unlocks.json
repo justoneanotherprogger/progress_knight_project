@@ -1,4 +1,21 @@
 {
-  "permanentUnlocks": ["Quick task display", "Rebirth tab", "Dark Matter", "Dark Matter Skills", "Dark Matter Skills2", "Metaverse", "Metaverse Perks", "Metaverse Perks Button", "Congratulations"],
-  "metaverseUnlocks": ["Reduce Boost Cooldown", "Increase Boost Duration", "Increase Hypercube Gain", "Gain evil at new transcension", "Essence gain multiplier", "Challenges are not reset", "Dark Matter gain multiplier"]
+  "permanentUnlocks": [
+    "req_quick_task_display",
+    "req_rebirth_tab_button",
+    "req_dark_matter_tab_button",
+    "req_skill_tree_tab_tab_button",
+    "req_skill_tree_page",
+    "req_metaverse_tab_button",
+    "req_metaverse_page2",
+    "req_metaverse_tab2_tab_button"
+  ],
+  "metaverseUnlocks": [
+    "req_reduce_boost_cooldown_altar",
+    "req_increase_boost_duration_altar",
+    "req_increase_hypercube_gain_altar",
+    "req_evil_altar",
+    "req_essence_altar",
+    "req_challenge_altar",
+    "req_dark_mater_altar"
+  ]
 }

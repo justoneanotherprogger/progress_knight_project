@@ -45,182 +45,182 @@
       "selectors": [".category_metaverse_guards"],
       "requirements": [{"requirement": 1e+90}]
     },
-    "Rebirth tab": {
+    "req_rebirth_tab_button": {
       "type": "age",
       "selectors": ["#rebirthTabButton"],
       "requirements": [{"requirement": 25}]
     },
-    "Rebirth note 0": {
+    "req_rebirth_note_0": {
       "type": "age",
       "selectors": ["#rebirth_note_0"],
       "requirements": [{"requirement": 25}]
     },
-    "Rebirth note 1": {
+    "req_rebirth_note_1": {
       "type": "age",
       "selectors": ["#rebirth_note_1"],
       "requirements": [{"requirement": 45}]
     },
-    "Rebirth note 2": {
+    "req_rebirth_note_2": {
       "type": "age",
       "selectors": ["#rebirth_note_2"],
       "requirements": [{"requirement": 65}]
     },
-    "Rebirth note 2 info": {
+    "req_rebirth_note_2_info": {
       "type": "age",
       "selectors": ["#rebirth_note_2_info"],
       "requirements": [{"requirement": 65}]
     },
-    "Rebirth note 2 hint": {
+    "req_rebirth_note_2_hint": {
       "type": "age",
       "selectors": ["#rebirth_note_2_hint"],
       "requirements": [{"requirement": 65}]
     },
-    "Rebirth note 3": {
+    "req_rebirth_note_3": {
       "type": "age",
       "selectors": ["#rebirth_note_3"],
       "requirements": [{"requirement": 200}]
     },
-    "Rebirth note 3 hint": {
+    "req_rebirth_note_3_hint": {
       "type": "age",
       "selectors": ["#rebirth_note_3_hint"],
       "requirements": [{"requirement": 200}]
     },
-    "Rebirth note 3 info": {
+    "req_rebirth_note_3_info": {
       "type": "age",
       "selectors": ["#rebirth_note_3_info"],
       "requirements": [{"requirement": 200}]
     },
-    "Rebirth note 4": {
+    "req_rebirth_note_4": {
       "type": "age",
       "selectors": ["#rebirth_note_4"],
       "requirements": [{"requirement": 1000}]
     },
-    "Rebirth note 4 hint": {
+    "req_rebirth_note_4_hint": {
       "type": "age",
       "selectors": ["#rebirth_note_4_hint"],
       "requirements": [{"requirement": 1000}]
     },
-    "Rebirth note 4 unlock": {
+    "req_rebirth_note_4_unlock": {
       "type": "age",
       "selectors": ["#rebirth_note_4_unlock"],
       "requirements": [{"requirement": 1000}]
     },
-    "Rebirth note 5": {
+    "req_rebirth_note_5": {
       "type": "age",
       "selectors": ["#rebirth_note_5"],
       "requirements": [{"requirement": 10000}]
     },
-    "Rebirth note 5 unlock": {
+    "req_rebirth_note_5_unlock": {
       "type": "age",
       "selectors": ["#rebirth_note_5_unlock"],
       "requirements": [{"requirement": 10000}]
     },
-    "Rebirth note 5 info": {
+    "req_rebirth_note_5_info": {
       "type": "age",
       "selectors": ["#rebirth_note_5_info"],
       "requirements": [{"requirement": 10000}]
     },
-    "Rebirth note 5 warning": {
+    "req_rebirth_note_5_warning": {
       "type": "age",
       "selectors": ["#rebirth_note_5_warning"],
       "requirements": [{"requirement": 10000}]
     },
-    "Rebirth note 6": {
+    "req_rebirth_note_6": {
       "type": "task",
       "selectors": ["#rebirth_note_6"],
       "requirements": [{"task": "skill_cosmic_recollection", "requirement": 1}]
     },
-    "Rebirth note 7": {
+    "req_rebirth_note_7": {
       "type": "essence",
       "selectors": ["#rebirth_note_7"],
       "requirements": [{"requirement": 50000000000.0}]
     },
-    "Rebirth note 7 info": {
+    "req_rebirth_note_7_info": {
       "type": "essence",
       "selectors": ["#rebirth_note_7_info"],
       "requirements": [{"requirement": 50000000000.0}]
     },
-    "Rebirth note 8": {
+    "req_rebirth_note_8": {
       "type": "essence",
       "selectors": ["#rebirth_note_8"],
       "requirements": [{"requirement": 1e+60}]
     },
-    "Rebirth note 8 info": {
+    "req_rebirth_note_8_info": {
       "type": "essence",
       "selectors": ["#rebirth_note_8_info"],
       "requirements": [{"requirement": 1e+60}]
     },
-    "Hypercube cap text": {
+    "req_hypercube_cap_text": {
       "type": "essence",
       "selectors": ["#hypercube_cap_text"],
       "requirements": [{"requirement": 1e+60}]
     },
-    "Perk points gain text": {
+    "req_perk_points_gain_text": {
       "type": "essence",
       "selectors": ["#perk_points_gain_text"],
       "requirements": [{"requirement": 1e+60}]
     },
-    "Rebirth button 1": {
+    "req_rebirth_button1": {
       "type": "age",
       "selectors": ["#rebirthButton1"],
       "requirements": [{"requirement": 65}]
     },
-    "Rebirth button 2": {
+    "req_rebirth_button2": {
       "type": "age",
       "selectors": ["#rebirthButton2"],
       "requirements": [{"requirement": 200}]
     },
-    "Rebirth button 3": {
+    "req_rebirth_button3": {
       "type": "task",
       "selectors": ["#rebirthButton3"],
       "requirements": [{"task": "skill_cosmic_recollection", "requirement": 1}]
     },
-    "Rebirth button 4": {
+    "req_rebirth_button4": {
       "type": "essence",
       "selectors": ["#rebirthButton4"],
       "requirements": [{"requirement": 50000000000.0}]
     },
-    "Rebirth button 5": {
+    "req_rebirth_button5": {
       "type": "essence",
       "selectors": ["#rebirthButton5"],
       "requirements": [{"requirement": 1e+60}]
     },
-    "Rebirth stats evil": {
+    "req_stats_evil_gain": {
       "type": "age",
       "selectors": ["#stats_evil_gain"],
       "requirements": [{"requirement": 200}]
     },
-    "Rebirth stats essence": {
+    "req_stats_essence_gain": {
       "type": "task",
       "selectors": ["#stats_essence_gain"],
       "requirements": [{"task": "skill_cosmic_recollection", "requirement": 1}]
     },
-    "Quick task display": {
+    "req_quick_task_display": {
       "type": "age",
       "selectors": ["#quickTaskDisplay"],
       "requirements": [{"requirement": 20}]
     },
-    "Evil info": {
+    "req_evil_info": {
       "type": "evil",
       "selectors": ["#evilInfo"],
       "requirements": [{"requirement": 1}]
     },
-    "Essence info": {
+    "req_essence_info": {
       "type": "essence",
       "selectors": ["#essenceInfo"],
       "requirements": [{"requirement": 1}]
     },
-    "Dark Matter info": {
+    "req_dark_matter_info": {
       "type": "darkMatter",
       "selectors": ["#darkMatterInfo"],
       "requirements": [{"requirement": 1}]
     },
-    "Dark Orbs info": {
+    "req_dark_orbs_info": {
       "type": "darkOrb",
       "selectors": ["#darkOrbsInfo"],
       "requirements": [{"requirement": 1}]
     },
-    "Hypercubes info": {
+    "req_hypercubes_info": {
       "type": "hypercube",
       "selectors": ["#hypercubesInfo"],
       "requirements": [{"requirement": 1}]
@@ -675,107 +675,107 @@
       "selectors": ["#rowitem_hypersphere"],
       "requirements": [{"requirement": 1e+160}]
     },
-    "Milestones": {
+    "req_milestones_tab_button": {
       "type": "essence",
       "selectors": ["#milestonesTabButton"],
       "requirements": [{"requirement": 1}]
     },
-    "Dark Matter": {
+    "req_dark_matter_tab_button": {
       "type": "darkMatter",
       "selectors": ["#darkMatterTabButton"],
       "requirements": [{"requirement": 1}]
     },
-    "Dark Matter Skills": {
+    "req_skill_tree_tab_tab_button": {
       "type": "essence",
       "selectors": ["#skillTreeTabTabButton"],
       "requirements": [{"requirement": 1e+20}]
     },
-    "Dark Matter Skills2": {
+    "req_skill_tree_page": {
       "type": "essence",
       "selectors": ["#skillTreePage"],
       "requirements": [{"requirement": 1e+20}]
     },
-    "Challenges": {
+    "req_challenges_tab_button": {
       "type": "evil",
       "selectors": ["#challengesTabButton"],
       "requirements": [{"requirement": 10000}]
     },
-    "Challenge_an_unhappy_life": {
+    "req_challenge_an_unhappy_life": {
       "type": "evil",
       "selectors": ["#anUnhappyLifeChallenge"],
       "requirements": [{"requirement": 10000}]
     },
-    "Challenge_rich_and_the_poor": {
+    "req_challenge_rich_and_the_poor": {
       "type": "evil",
       "selectors": ["#theRichAndThePoorChallenge"],
       "requirements": [{"requirement": 1000000}]
     },
-    "Challenge_time_does_not_fly": {
+    "req_challenge_time_does_not_fly": {
       "type": "essence",
       "selectors": ["#timeDoesNotFlyChallenge"],
       "requirements": [{"requirement": 10000}]
     },
-    "Challenge_dance_with_the_devil": {
+    "req_challenge_dance_with_the_devil": {
       "type": "essence",
       "selectors": ["#danceWithTheDevilChallenge"],
       "requirements": [{"requirement": 1000000.0}]
     },
-    "Challenge_legends_never_die": {
+    "req_challenge_legends_never_die": {
       "type": "essence",
       "selectors": ["#legendsNeverDieChallenge"],
       "requirements": [{"requirement": 25000000.0}]
     },
-    "Challenge_the_darkest_time": {
+    "req_challenge_the_darkest_time": {
       "type": "essence",
       "selectors": ["#theDarkestTimeChallenge"],
       "requirements": [{"requirement": 1e+47}]
     },
-    "Metaverse": {
+    "req_metaverse_tab_button": {
       "type": "metaverse",
       "selectors": ["#metaverseTabButton"],
       "requirements": [{"requirement": 1}]
     },
-    "Increase Hypercube Gain": {
+    "req_increase_hypercube_gain_altar": {
       "type": "hypercube",
       "selectors": ["#IncreaseHypercubeGainAltar"],
       "requirements": [{"requirement": 1}]
     },
-    "Reduce Boost Cooldown": {
+    "req_reduce_boost_cooldown_altar": {
       "type": "hypercube",
       "selectors": ["#ReduceBoostCooldownAltar"],
       "requirements": [{"requirement": 500}]
     },
-    "Increase Boost Duration": {
+    "req_increase_boost_duration_altar": {
       "type": "hypercube",
       "selectors": ["#IncreaseBoostDurationAltar"],
       "requirements": [{"requirement": 2500}]
     },
-    "Gain evil at new transcension": {
+    "req_evil_altar": {
       "type": "hypercube",
       "selectors": ["#EvilAltar"],
       "requirements": [{"requirement": 50000000}]
     },
-    "Essence gain multiplier": {
+    "req_essence_altar": {
       "type": "hypercube",
       "selectors": ["#EssenceAltar"],
       "requirements": [{"requirement": 500000000}]
     },
-    "Challenges are not reset": {
+    "req_challenge_altar": {
       "type": "hypercube",
       "selectors": ["#ChallengeAltar"],
       "requirements": [{"requirement": 1000000000000000.0}]
     },
-    "Dark Matter gain multiplier": {
+    "req_dark_mater_altar": {
       "type": "hypercube",
       "selectors": ["#DarkMaterAltar"],
       "requirements": [{"requirement": 1e+17}]
     },
-    "Metaverse Perks": {
+    "req_metaverse_page2": {
       "type": "perkpoint",
       "selectors": ["#metaversePage2"],
       "requirements": [{"requirement": 1}]
     },
-    "Metaverse Perks Button": {
+    "req_metaverse_tab2_tab_button": {
       "type": "perkpoint",
       "selectors": ["#metaverseTab2TabButton"],
       "requirements": [{"requirement": 1}]

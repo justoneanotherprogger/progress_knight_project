@@ -105,7 +105,7 @@ function renderSideBar() {
     }
 
     if (getDarkMatter().eq(0))
-        gameData.requirements["Dark Matter info"].completed = false
+        gameData.requirements["req_dark_matter_info"].completed = false
 
     updateResourceScale()
 }
