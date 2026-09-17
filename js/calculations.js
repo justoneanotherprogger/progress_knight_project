@@ -47,8 +47,6 @@ function getHeroXpGainMultipliers(job) {
             continue
         if (gameData.requirements[id].isCompleted()) {
             baseMult *= toInfinityNumber(baseData.effect)
-            if (baseData.jobExtra != null && job instanceof Job)
-                baseMult *= toInfinityNumber(baseData.jobExtra)
         }
     }
     return baseMult
