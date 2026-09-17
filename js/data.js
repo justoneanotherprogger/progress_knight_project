@@ -188,7 +188,7 @@ const GREED_ADULT_AGE = 20 * 365
 // --- Dark Matter XP ---
 const STRANGE_MAGIC_MULTIPLIER = 1e50
 
-const TRANSCENDENT_MASTER_EFFECT = 1.5
+const TRANSCENDENT_MASTER_EFFECT = 10
 
 // --- Faint Hope ---
 const FAINT_HOPE_INFINITY = 1e308
