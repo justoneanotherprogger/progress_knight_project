@@ -204,8 +204,8 @@ const FAINT_HOPE_SOFTCAP = 1000
 const FAINT_HOPE_SPEED_SOFTCAP = 10000000
 
 // --- Rise of Great Heroes ---
-const RISE_HEROES_NUMERATOR = 6
-const RISE_HEROES_DENOMINATOR = 74
+const RISE_HEROES_NUMERATOR = 3
+const RISE_HEROES_DENOMINATOR = 7
 
 // --- Milestone / passive growth ---
 const EVIL_GROWTH_EXPONENT_DEAL = 1.001
