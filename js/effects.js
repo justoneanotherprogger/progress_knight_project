@@ -27,6 +27,8 @@ function pushTargetEffects(key, task, list, container) {
 const EFFECT_LABEL_KEYS = {
     "all": "effect_all_xp",
     "skill": "effect_skill_xp",
+    "skill:category:category_fundamentals": "effect_fundamentals_xp",
+    "skill:category:category_void_manipulation": "effect_void_manipulation_xp",
     "job": "effect_job_xp",
     "task:skill_strength": "effect_strength_xp",
     "skill:category:category_magic": "effect_magic_xp",

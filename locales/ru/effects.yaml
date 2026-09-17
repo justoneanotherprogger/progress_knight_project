@@ -16,6 +16,9 @@ effect_happiness: Комфорт жизни
 effect_lifespan: Длительность жизни
 effect_gamespeed: Скорость игры
 effect_evil_gain: Получение зла
+effect_hypercube_gain: Прирост гиперкубов
+effect_fundamentals_xp: Опыт основ
+effect_void_manipulation_xp: Опыт манипул. Бездной
 effect_essence_gain: Получение эссенции
 effect_essence_evil_gain: Получение зла и эссенции
 effect_dark_matter_gain: Получение тёмной материи

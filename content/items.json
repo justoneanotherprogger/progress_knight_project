@@ -482,7 +482,7 @@
               "type": "xp",
               "scope": {
                 "kind": "job",
-                "category": "Military"
+                "category": "category_military"
               }
             }
           },
@@ -628,7 +628,7 @@
               "type": "xp",
               "scope": {
                 "kind": "job",
-                "category": "The Void"
+                "category": "category_the_void"
               }
             }
           },
@@ -684,7 +684,7 @@
               "type": "xp",
               "scope": {
                 "kind": "job",
-                "category": "The Void"
+                "category": "category_the_void"
               }
             }
           },
@@ -703,7 +703,7 @@
               "type": "xp",
               "scope": {
                 "kind": "job",
-                "category": "Galactic Council"
+                "category": "category_galactic_council"
               }
             }
           },

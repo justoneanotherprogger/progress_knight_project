@@ -16,6 +16,9 @@ effect_happiness: Life Comfort
 effect_lifespan: Longer Lifespan
 effect_gamespeed: Gamespeed
 effect_evil_gain: Evil Gain
+effect_hypercube_gain: Hypercube Gain
+effect_fundamentals_xp: Fundamentals XP
+effect_void_manipulation_xp: Void Manipulation XP
 effect_essence_gain: Essence Gain
 effect_essence_evil_gain: Essence + Evil Gain
 effect_dark_matter_gain: Dark Matter Gain

@@ -236,44 +236,21 @@ class Skill extends Task {
 }
 
 function getItemEffectDescriptionKey(target) {
-    if (!target) return "Life Comfort"
+    if (!target) return "effect_happiness"
     switch (target.type) {
-        case "happiness": return "Life Comfort"
-        case "evil_gain": return "Evil Gain"
-        case "hypercube_gain": return "Hypercube Gain"
-        case "dark_matter_gain": return "Dark Matter Gain"
+        case "happiness": return "effect_happiness"
+        case "evil_gain": return "effect_evil_gain"
+        case "hypercube_gain": return "effect_hypercube_gain"
+        case "dark_matter_gain": return "effect_dark_matter_gain"
         case "xp": {
             const scope = target.scope || {}
-            if (scope.task) {
-                const taskMap = { skill_strength: "Strength XP" }
-                return taskMap[scope.task] || "Skill XP"
-            }
-            if (scope.kind === "job") {
-                if (scope.category) {
-                    const jobCatMap = {
-                        category_military: "Army XP",
-                        category_the_void: "The Void XP",
-                        category_galactic_council: "Galactic Council XP"
-                    }
-                    return jobCatMap[scope.category] || "Job XP"
-                }
-                return "Job XP"
-            }
-            if (scope.kind === "skill") {
-                if (scope.category) {
-                    const skillCatMap = {
-                        category_magic: "Magic XP",
-                        category_fundamentals: "Fundamentals XP",
-                        category_void_manipulation: "Void Manipulation XP"
-                    }
-                    return skillCatMap[scope.category] || "Skill XP"
-                }
-                return "Skill XP"
-            }
-            return "Skill XP"
+            if (scope.task) return labelKey({ kind: "task", task: scope.task })
+            if (scope.kind) return labelKey({ kind: scope.kind, category: scope.category })
+                || (scope.kind === "job" ? "effect_job_xp" : "effect_skill_xp")
+            return "effect_skill_xp"
         }
     }
-    return "Skill XP"
+    return "effect_skill_xp"
 }
 
 class Item {
