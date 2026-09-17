@@ -242,21 +242,7 @@ const SKILL_LEVEL_EXPONENT_BASE = 1.01
 // --- Job income hero ---
 const JOB_INCOME_HERO_BASE_MULTIPLIER = 4
 
-// --- Hero milestone XP multipliers (data for getHeroXpGainMultipliers) ---
-const HERO_MILESTONE_MULTIPLIERS = [
-  { requirement: "milestone_rise_of_great_heroes", multiplier: 10000 },
-  { requirement: "milestone_lazy_heroes", multiplier: 1e12 },
-  { requirement: "milestone_dirty_heroes", multiplier: 1e15 },
-  { requirement: "milestone_angry_heroes", multiplier: 1e15 },
-  { requirement: "milestone_tired_heroes", multiplier: 1e15 },
-  { requirement: "milestone_scared_heroes", multiplier: 1e15 },
-  { requirement: "milestone_good_heroes", multiplier: 1e15 },
-  { requirement: "milestone_funny_heroes", multiplier: 1e25 },
-  { requirement: "milestone_beautiful_heroes", multiplier: 1e50 },
-  { requirement: "milestone_awesome_heroes", multiplier: 1e10 },
-  { requirement: "milestone_furious_heroes", multiplier: 1e12, jobExtra: 1000000 },
-  { requirement: "milestone_superb_heroes", multiplier: 1e3 },
-]
+
 
 
 

@@ -41,10 +41,14 @@ function formatInfinityNumber(num) {
 
 function getHeroXpGainMultipliers(job) {
     let baseMult = job instanceof Job ? HERO_XP_BASE_JOB : 1
-    for (const { requirement, multiplier, jobExtra } of HERO_MILESTONE_MULTIPLIERS) {
-        if (gameData.requirements[requirement].isCompleted()) {
-            baseMult *= toInfinityNumber(multiplier)
-            if (jobExtra && job instanceof Job) baseMult *= toInfinityNumber(jobExtra)
+    for (const id in milestoneData) {
+        const baseData = milestoneData[id].baseData
+        if (baseData.effect == null)
+            continue
+        if (gameData.requirements[id].isCompleted()) {
+            baseMult *= toInfinityNumber(baseData.effect)
+            if (baseData.jobExtra != null && job instanceof Job)
+                baseMult *= toInfinityNumber(baseData.jobExtra)
         }
     }
     return baseMult
