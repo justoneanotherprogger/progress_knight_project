@@ -57,7 +57,6 @@ income_day: Доход/день
 expense_day: Расход/день
 milestone_tier: Уровень Вехи
 milestone: Веха
-autobuy_tooltip: Нажмите, чтобы включить авто-покупку
 autobuy_toggle: Авто-покупка
 all_xp: весь опыт
 or: ИЛИ
@@ -98,6 +97,7 @@ unlock_hypercubes: Разблокировать гиперкубы
 required: Требуется для следующего
 next_effect: Эффект от следующего
 unknown: Неизвестно
+infinity: Бесконечность
 active: Активно
 locked: Заблокировано
 effect: Эффект

@@ -57,7 +57,6 @@ income_day: Income/day
 expense_day: Expense/day
 milestone_tier: Milestone Tier
 milestone: Milestone
-autobuy_tooltip: Click to activate auto-buy
 autobuy_toggle: Auto-buy
 all_xp: all XP
 or: OR
@@ -98,6 +97,7 @@ unlock_hypercubes: Unlock Hypercubes
 required: Required for next
 next_effect: Effect of next
 unknown: Unknown
+infinity: Infinity
 active: Active
 locked: Locked
 effect: Effect

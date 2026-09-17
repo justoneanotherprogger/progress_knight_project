@@ -14,6 +14,12 @@ function formatInfinityNumber(num) {
   // Handle Infinity/NaN
   if (!isFinite(b.mantissa)) return str;
 
+  // break_infinity clamps exponents >= 9e15: toString() yields "Infinity" while
+  // mantissa stays finite, so the guard above misses it. Render a word, not e9000000000000000.
+  if (str === 'Infinity' || str === '-Infinity') {
+    return str.startsWith('-') ? '-' + t('infinity') : t('infinity');
+  }
+
   // For numbers >= 1e1000, show only e1000 notation without mantissa
   if (b.gte(new Decimal('1e1000'))) {
     var exponent = b.exponent.toString();
