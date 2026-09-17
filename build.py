@@ -183,7 +183,7 @@ def validate(html: str, locales: dict, errors=None):
         errors = []
     js_src = ""
     for f in sorted(JS_DIR.glob("*.js")):
-        if f.name in ("translations.js", "math.js", "HackTimer.js"):
+        if f.name in ("translations.js", "HackTimer.js"):
             continue
         js_src += f.read_text(encoding="utf-8")
 
