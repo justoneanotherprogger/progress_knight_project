@@ -72,6 +72,15 @@ function setCustomEffects() {
         return gameData.requirements["milestone_transcendent_master"].isCompleted() ? TRANSCENDENT_MASTER_EFFECT : 1
     }
 
+    const darkMatterMining = milestoneData["milestone_dark_matter_mining"]
+    darkMatterMining.getEffect = function () {
+        if (!gameData.requirements["milestone_dark_matter_mining"].isCompleted())
+            return toInfinityNumber(1)
+        return toInfinityNumber(DARK_MATTER_MINING_MULTIPLIER)
+            .times(Decimal.max(getDarkMatter(), 1).pow(0.1))
+            .times(Decimal.max(gameData.essence, 1).pow(0.05))
+    }
+
     const faintHope = milestoneData["milestone_faint_hope"]
     faintHope.getEffect = function () {
         var mult = 1
