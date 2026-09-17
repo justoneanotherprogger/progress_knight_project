@@ -2,6 +2,7 @@
   "milestoneCategories": {
     "category_essence_milestones": {
       "name": "category_essence_milestones",
+      "headerColor": "#0066ff",
       "items": {
         "milestone_magic_eye": {
           "name": "milestone_magic_eye_name",
@@ -70,6 +71,7 @@
     },
     "category_heroic_milestones": {
       "name": "category_heroic_milestones",
+      "headerColor": "#ff6600",
       "items": {
         "milestone_new_beginning": {
           "name": "milestone_new_beginning_name",
@@ -184,6 +186,7 @@
     },
     "category_dark_milestones": {
       "name": "category_dark_milestones",
+      "headerColor": "#873160",
       "items": {
         "milestone_mind_control": {
           "name": "milestone_mind_control_name",
@@ -280,6 +283,7 @@
     },
     "category_metaverse_milestones": {
       "name": "category_metaverse_milestones",
+      "headerColor": "#09a0e6",
       "items": {
         "milestone_strong_hope": {
           "name": "milestone_strong_hope_name",

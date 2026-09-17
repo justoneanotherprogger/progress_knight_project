@@ -2,6 +2,7 @@
   "itemCategories": {
     "category_properties": {
       "name": "category_properties",
+      "headerColor": "#219ebc",
       "items": {
         "item_homeless": {
           "name": "item_homeless_name",
@@ -412,6 +413,7 @@
     },
     "category_misc": {
       "name": "category_misc",
+      "headerColor": "#b56576",
       "items": {
         "item_book": {
           "name": "item_book_name",

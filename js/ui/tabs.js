@@ -106,10 +106,7 @@ function renderShop() {
             name.classList.remove("legendary")
 
         const active = row.querySelector(".active")
-        const isProperty = item.categoryId == "category_properties"
-        const color = gameData.autoBuyEnabled
-            ? isProperty ? headerRowColors["Properties_Auto"] : headerRowColors["Misc_Auto"]
-            : isProperty ? headerRowColors["Properties"] : headerRowColors["Misc"]
+        const color = itemCategories[item.categoryId].headerColor
 
         active.style.backgroundColor = gameData.currentMisc.includes(item) || item == gameData.currentProperty ? color : "white"
         row.querySelector(".effect").textContent = item.getEffectDescription()
@@ -270,10 +267,6 @@ function renderHeaderRows(categories) {
             maxLevelElement.classList.toggle("hidden", gameData.rebirthOneCount == 0)
 
         updateHeaderColumns(headerRow, categories)
-
-        const categoryHeader = headerRow.getElementsByClassName("category")[0]
-        const headerTooltip = categoryHeader.querySelector(".tooltipText")
-        if (headerTooltip) headerTooltip.textContent = t("autobuy_tooltip")
     }
 }
 
@@ -294,8 +287,6 @@ function createHeaderRow(templates, categoryType, categoryName) {
 
     if (categoryType == itemCategories) {
         categoryElement.getElementsByClassName("name")[0].textContent = t(categoryName)
-        const tooltip = categoryElement.querySelector(".tooltipText")
-        if (tooltip) tooltip.textContent = t("autobuy_tooltip")
     } else {
         categoryElement.textContent = t(categoryName)
     }
@@ -303,8 +294,8 @@ function createHeaderRow(templates, categoryType, categoryName) {
 
     updateHeaderColumns(headerRow, categoryType)
 
-    headerRow.style.backgroundColor = headerRowColors[categoryName]
-    headerRow.style.color = (gameData.settings.theme == 2) ? headerRowTextColors[categoryName] : "#ffffff"
+    headerRow.style.backgroundColor = categoryType[categoryName].headerColor
+    headerRow.style.color = "#ffffff"
     headerRow.classList.add(removeSpaces(categoryName))
     headerRow.classList.add("headerRow")
 

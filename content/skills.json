@@ -2,6 +2,7 @@
   "skillCategories": {
     "category_fundamentals": {
       "name": "category_fundamentals",
+      "headerColor": "#55a630",
       "items": {
         "skill_concentration": {
           "name": "skill_concentration_name",
@@ -110,6 +111,7 @@
     },
     "category_combat": {
       "name": "category_combat",
+      "headerColor": "#e63946",
       "items": {
         "skill_strength": {
           "name": "skill_strength_name",
@@ -192,6 +194,7 @@
     },
     "category_magic": {
       "name": "category_magic",
+      "headerColor": "#C71585",
       "items": {
         "skill_mana_control": {
           "name": "skill_mana_control_name",
@@ -393,6 +396,7 @@
     },
     "category_dark_magic": {
       "name": "category_dark_magic",
+      "headerColor": "#73000f",
       "items": {
         "skill_dark_influence": {
           "name": "skill_dark_influence_name",
@@ -625,6 +629,7 @@
     },
     "category_void_manipulation": {
       "name": "category_void_manipulation",
+      "headerColor": "#762B91",
       "items": {
         "skill_absolute_wish": {
           "name": "skill_absolute_wish_name",
@@ -849,6 +854,7 @@
     },
     "category_celestial_powers": {
       "name": "category_celestial_powers",
+      "headerColor": "#D5C010",
       "items": {
         "skill_cosmic_longevity": {
           "name": "skill_cosmic_longevity_name",
@@ -985,6 +991,7 @@
     },
     "category_almightiness": {
       "name": "category_almightiness",
+      "headerColor": "#18d2d9",
       "items": {
         "skill_yin_yang": {
           "name": "skill_yin_yang_name",
@@ -1073,6 +1080,7 @@
     },
     "category_darkness": {
       "name": "category_darkness",
+      "headerColor": "#8c6a0b",
       "items": {
         "skill_dark_prince": {
           "name": "skill_dark_prince_name",

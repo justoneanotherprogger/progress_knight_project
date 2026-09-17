@@ -2,6 +2,7 @@
   "jobCategories": {
     "category_common_work": {
       "name": "category_common_work",
+      "headerColor": "#55a630",
       "items": {
         "job_beggar": {
           "name": "job_beggar",
@@ -49,6 +50,7 @@
     },
     "category_military": {
       "name": "category_military",
+      "headerColor": "#e63946",
       "items": {
         "job_squire": {
           "name": "job_squire",
@@ -110,6 +112,7 @@
     },
     "category_mage_collegium": {
       "name": "category_mage_collegium",
+      "headerColor": "#C71585",
       "heroIncomeMult": 1e6,
       "items": {
         "job_student": {
@@ -172,6 +175,7 @@
     },
     "category_the_void": {
       "name": "category_the_void",
+      "headerColor": "#762B91",
       "heroIncomeMult": 1e11,
       "items": {
         "job_corrupted": {
@@ -234,6 +238,7 @@
     },
     "category_galactic_council": {
       "name": "category_galactic_council",
+      "headerColor": "#D5C010",
       "heroIncomeMult": 1e11,
       "items": {
         "job_eternal_wanderer": {
@@ -275,6 +280,7 @@
     },
     "category_metaverse_guards": {
       "name": "category_metaverse_guards",
+      "headerColor": "rgb(9, 160, 230)",
       "heroIncomeMult": 1e11,
       "items": {
         "job_snow_crash": {
