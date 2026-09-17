@@ -88,7 +88,7 @@ function buyHypercubeGain() {
 }
 
 function evilTranGain() {
-    return (gameData.metaverse.evil_tran_gain == 0) ? 0 : 250000 * Math.pow(10, gameData.metaverse.evil_tran_gain)
+    return (gameData.metaverse.evil_tran_gain == 0) ? new Decimal(0) : new Decimal(250000 * Math.pow(10, gameData.metaverse.evil_tran_gain))
 }
 
 function evilTranCost() {
