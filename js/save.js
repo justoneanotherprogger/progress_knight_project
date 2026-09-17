@@ -1,156 +1,5 @@
 // save.js — save/load/import/export functions
 
-// Legacy skill display names (pre-content-framework saves) → new content ids.
-// Needed once to carry player progress over when taskData keys switched from names to ids.
-const SKILL_LEGACY_IDS = {
-    "Concentration": "skill_concentration",
-    "Productivity": "skill_productivity",
-    "Bargaining": "skill_bargaining",
-    "Meditation": "skill_meditation",
-    "Strength": "skill_strength",
-    "Battle Tactics": "skill_battle_tactics",
-    "Muscle Memory": "skill_muscle_memory",
-    "Mana Control": "skill_mana_control",
-    "Life Essence": "skill_life_essence",
-    "Time Warping": "skill_time_warping",
-    "Astral Body": "skill_astral_body",
-    "Temporal Dimension": "skill_temporal_dimension",
-    "All Seeing Eye": "skill_all_seeing_eye",
-    "Brainwashing": "skill_brainwashing",
-    "Dark Influence": "skill_dark_influence",
-    "Evil Control": "skill_evil_control",
-    "Intimidation": "skill_intimidation",
-    "Demon Training": "skill_demon_training",
-    "Blood Meditation": "skill_blood_meditation",
-    "Demon's Wealth": "skill_demons_wealth",
-    "Dark Knowledge": "skill_dark_knowledge",
-    "Soul Drain": "skill_soul_drain",
-    "Void Influence": "skill_void_influence",
-    "Time Loop": "skill_time_loop",
-    "Evil Incarnate": "skill_evil_incarnate",
-    "Absolute Wish": "skill_absolute_wish",
-    "Void Amplification": "skill_void_amplification",
-    "Mind Release": "skill_mind_release",
-    "Ceaseless Abyss": "skill_ceaseless_abyss",
-    "Void Symbiosis": "skill_void_symbiosis",
-    "Void Embodiment": "skill_void_embodiment",
-    "Abyss Manipulation": "skill_abyss_manipulation",
-    "Cosmic Longevity": "skill_cosmic_longevity",
-    "Cosmic Recollection": "skill_cosmic_recollection",
-    "Essence Collector": "skill_essence_collector",
-    "Galactic Command": "skill_galactic_command",
-    "Yin Yang": "skill_yin_yang",
-    "Parallel Universe": "skill_parallel_universe",
-    "Higher Dimensions": "skill_higher_dimensions",
-    "Epiphany": "skill_epiphany",
-    "Dark Prince": "skill_dark_prince",
-    "Dark Ruler": "skill_dark_ruler",
-    "Immortal Ruler": "skill_immortal_ruler",
-    "Dark Magician": "skill_dark_magician",
-    "Universal Ruler": "skill_universal_ruler",
-    "Blinded By Darkness": "skill_blinded_by_darkness"
-}
-
-function migrateLegacySkills(gameDataSave) {
-    const taskData = gameDataSave.taskData
-    if (taskData == null) return
-
-    let migrated = false
-    for (const key in taskData) {
-        const id = SKILL_LEGACY_IDS[key]
-        if (id == null) continue
-        const task = taskData[key]
-        if (skillBaseData[id] != null)
-            task.name = skillBaseData[id].name
-        taskData[id] = task
-        delete taskData[key]
-        migrated = true
-    }
-    if (migrated)
-        console.log("Migrated legacy skill save keys to content ids")
-}
-
-// Legacy item display names (pre-content-framework saves) → new content ids.
-// Same as skills: once the itemData keys switched from names to ids.
-const ITEM_LEGACY_IDS = {
-    "Homeless": "item_homeless", "Tent": "item_tent",
-    "Wooden Hut": "item_wooden_hut", "Cottage": "item_cottage", "House": "item_house",
-    "Large House": "item_large_house", "Small Palace": "item_small_palace", "Grand Palace": "item_grand_palace",
-    "Town Ruler": "item_town_ruler", "City Ruler": "item_city_ruler", "Nation Ruler": "item_nation_ruler",
-    "Pocket Dimension": "item_pocket_dimension", "Void Realm": "item_void_realm", "Void Universe": "item_void_universe",
-    "Astral Realm": "item_astral_realm", "Galactic Throne": "item_galactic_throne", "Spaceship": "item_spaceship",
-    "Planet": "item_planet", "Ringworld": "item_ringworld", "Stellar Neighborhood": "item_stellar_neighborhood",
-    "Galaxy": "item_galaxy", "Supercluster": "item_supercluster", "Galaxy Filament": "item_galaxy_filament",
-    "Observable Universe": "item_observable_universe", "Multiverse": "item_multiverse", "Quantum World": "item_quantum_world",
-    "Boötes Void": "item_bootes_void",
-    "Book": "item_book", "Dumbbells": "item_dumbbells", "Personal Squire": "item_personal_squire",
-    "Steel Longsword": "item_steel_longsword", "Butler": "item_butler", "Sapphire Charm": "item_sapphire_charm",
-    "Study Desk": "item_study_desk", "Library": "item_library", "Observatory": "item_observatory",
-    "Mind's Eye": "item_minds_eye", "Void Necklace": "item_void_necklace", "Void Armor": "item_void_armor",
-    "Void Blade": "item_void_blade", "Void Orb": "item_void_orb", "Void Dust": "item_void_dust",
-    "Celestial Robe": "item_celestial_robe", "Universe Fragment": "item_universe_fragment",
-    "Multiverse Fragment": "item_multiverse_fragment", "Stairway to heaven": "item_stairway_to_heaven",
-    "Highway to hell": "item_highway_to_hell", "Tesseract": "item_tesseract", "Desintegration": "item_desintegration",
-    "Custom Galaxy": "item_custom_galaxy", "Hypersphere": "item_hypersphere"
-}
-
-function migrateLegacyItems(gameDataSave) {
-    const itemData = gameDataSave.itemData
-    if (itemData == null) return
-
-    let migrated = false
-    for (const key in itemData) {
-        const id = ITEM_LEGACY_IDS[key]
-        if (id == null) continue
-        const item = itemData[key]
-        item.name = itemBaseData[id].name
-        itemData[id] = item
-        delete itemData[key]
-        migrated = true
-    }
-    if (migrated)
-        console.log("Migrated legacy item save keys to content ids")
-}
-
-// Legacy job display names (pre-content-framework saves) → new content ids.
-// Same as skills/items: once the jobData keys switched from names to ids.
-const JOB_LEGACY_IDS = {
-    "Beggar": "job_beggar", "Farmer": "job_farmer", "Fisherman": "job_fisherman",
-    "Miner": "job_miner", "Blacksmith": "job_blacksmith", "Merchant": "job_merchant",
-    "Squire": "job_squire", "Footman": "job_footman", "Veteran footman": "job_veteran_footman",
-    "Centenary": "job_centenary", "Knight": "job_knight", "Veteran Knight": "job_veteran_knight",
-    "Holy Knight": "job_holy_knight", "Lieutenant General": "job_lieutenant_general",
-    "Student": "job_student", "Apprentice Mage": "job_apprentice_mage", "Adept Mage": "job_adept_mage",
-    "Master Wizard": "job_master_wizard", "Archmage": "job_archmage", "Chronomancer": "job_chronomancer",
-    "Chairman": "job_chairman", "Imperator": "job_imperator",
-    "Corrupted": "job_corrupted", "Void Slave": "job_void_slave", "Void Fiend": "job_void_fiend",
-    "Abyss Anomaly": "job_abyss_anomaly", "Void Wraith": "job_void_wraith", "Void Reaver": "job_void_reaver",
-    "Void Lord": "job_void_lord", "Abyss God": "job_abyss_god",
-    "Eternal Wanderer": "job_eternal_wanderer", "Nova": "job_nova", "Sigma Proioxis": "job_sigma_proioxis",
-    "Acallaris": "job_acallaris", "One Above All": "job_one_above_all",
-    "Snow Crash": "job_snow_crash", "Player One": "job_player_one",
-    "Lost in the dark": "job_lost_in_the_dark", "Omega": "job_omega"
-}
-
-function migrateLegacyJobs(gameDataSave) {
-    const taskData = gameDataSave.taskData
-    if (taskData == null) return
-
-    let migrated = false
-    for (const key in taskData) {
-        const id = JOB_LEGACY_IDS[key]
-        if (id == null) continue
-        const task = taskData[key]
-        if (jobBaseData[id] != null)
-            task.name = jobBaseData[id].name
-        taskData[id] = task
-        delete taskData[key]
-        migrated = true
-    }
-    if (migrated)
-        console.log("Migrated legacy job save keys to content ids")
-}
-
 function assignMethods() {
     for (const key in gameData.taskData) {
         let task = gameData.taskData[key]
@@ -217,16 +66,16 @@ function assignMethods() {
         gameData.requirements[key] = requirement
     }
 
-    gameData.currentJob = gameData.taskData[JOB_LEGACY_IDS[gameData.currentJob.name] || gameData.currentJob.name]
+    // Saves predating the content framework key taskData/itemData by display name, so
+    // unresolved references fall back to the new-game defaults instead of breaking load.
+    gameData.currentJob = gameData.taskData[gameData.currentJob?.name] ?? gameData.taskData["job_beggar"]
 
-    let propertyId = gameData.currentProperty.id
-    if (propertyId == null) propertyId = ITEM_LEGACY_IDS[gameData.currentProperty.name] || gameData.currentProperty.name
-    gameData.currentProperty = gameData.itemData[propertyId]
+    const propertyId = gameData.currentProperty?.id ?? gameData.currentProperty?.name
+    gameData.currentProperty = gameData.itemData[propertyId] ?? gameData.itemData["item_homeless"]
 
     const newArray = []
     for (const misc of gameData.currentMisc) {
-        let miscId = misc.id
-        if (miscId == null) miscId = ITEM_LEGACY_IDS[misc.name] || misc.name
+        const miscId = misc.id ?? misc.name
         const restored = gameData.itemData[miscId]
         if (restored != null) newArray.push(restored)
     }
@@ -280,10 +129,6 @@ function loadGameData() {
         const gameDataSave = JSON.parse(localStorage.getItem("gameDataSave"))
 
         if (gameDataSave !== null) {
-            migrateLegacySkills(gameDataSave)
-            migrateLegacyItems(gameDataSave)
-            migrateLegacyJobs(gameDataSave)
-
             // When the game contains completedTimes, add 1 Dark Matter and remove the instance.
             if ("completedTimes" in gameDataSave && gameDataSave["completedTimes"] > 0) {
                 delete gameDataSave["completedTimes"]
