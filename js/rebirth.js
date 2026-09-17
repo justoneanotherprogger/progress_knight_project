@@ -53,9 +53,9 @@ function rebirthThree() {
 
 function rebirthFour() {
     gameData.rebirthFourCount += 1
+    gameData.dark_matter = gameData.dark_matter.add(getDarkMatterGain())
     gameData.essence = new Decimal(0)
     gameData.evil = new Decimal(0)
-    gameData.dark_matter = gameData.dark_matter.add(getDarkMatterGain())
 
     if (gameData.metaverse.challenge_altar == 0 && gameData.perks.save_challenges == 0)  {
         for (const challenge in gameData.challenges) {
