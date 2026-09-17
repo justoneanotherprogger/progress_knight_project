@@ -1,6 +1,6 @@
 // Costs Dark Matter
 function getDarkOrbGeneratorCost() {
-    return new Decimal(2).pow(gameData.dark_matter_shop.dark_orb_generator)
+    return new Decimal(1.8).pow(gameData.dark_matter_shop.dark_orb_generator)
 }
 
 function isDecimalInfinity(value) {
