@@ -53,15 +53,15 @@ function rebirthThree() {
 
 function rebirthFour() {
     gameData.rebirthFourCount += 1
+    gameData.dark_matter = gameData.dark_matter.add(getDarkMatterGain())
     gameData.essence = new Decimal(0)
     gameData.evil = new Decimal(0)
-    gameData.dark_matter = gameData.dark_matter.add(getDarkMatterGain())
 
     if (gameData.metaverse.challenge_altar == 0 && gameData.perks.save_challenges == 0)  {
         for (const challenge in gameData.challenges) {
             gameData.challenges[challenge] = 0
         }
-        gameData.requirements["Challenges"].completed = false
+        gameData.requirements["req_challenges_tab_button"].completed = false
     }
 
     if (gameData.stats.fastest4 == null || gameData.rebirthFourTime < gameData.stats.fastest4)
@@ -109,12 +109,12 @@ function rebirthFive() {
         for (const challenge in gameData.challenges) {
             gameData.challenges[challenge] = 0
         }
-        gameData.requirements["Challenges"].completed = false
+        gameData.requirements["req_challenges_tab_button"].completed = false
     }
 
-    gameData.requirements["Dark Matter"].completed = false
-    gameData.requirements["Dark Matter Skills"].completed = false
-    gameData.requirements["Dark Matter Skills2"].completed = false
+    gameData.requirements["req_dark_matter_tab_button"].completed = false
+    gameData.requirements["req_skill_tree_tab_tab_button"].completed = false
+    gameData.requirements["req_skill_tree_page"].completed = false
 
 
     if (gameData.stats.fastest5 == null || gameData.rebirthFiveTime < gameData.stats.fastest5)
@@ -132,7 +132,6 @@ function rebirthFive() {
     gameData.hypercubes = 0
     gameData.metaverse.boost_cooldown_modifier = 1
     gameData.metaverse.boost_timer_modifier = 1
-    gameData.metaverse.boost_warp_modifier = METAVERSE_BOOST_WARP_DEFAULT
     gameData.metaverse.hypercube_gain_modifier = 1
     gameData.metaverse.evil_tran_gain = 0
     gameData.metaverse.essence_gain_modifier = 0
@@ -150,8 +149,8 @@ function rebirthFive() {
 }
 
 function applyMilestones() {
-    if (((gameData.requirements["Magic Eye"].isCompleted()) && (gameData.requirements["Rebirth note 2"].isCompleted())) ||
-        (gameData.requirements["Almighty Eye"].isCompleted())){
+    if (((gameData.requirements["milestone_magic_eye"].isCompleted()) && (gameData.requirements["req_rebirth_note_2"].isCompleted())) ||
+        (gameData.requirements["milestone_almighty_eye"].isCompleted())){
         for (taskName in gameData.taskData) {
             const task = gameData.taskData[taskName]
             const effect = gameData.taskData["skill_cosmic_recollection"].getEffect()
@@ -162,19 +161,19 @@ function applyMilestones() {
     }
 
     if (canSimulate()) {
-        if (gameData.requirements["Deal with the Devil"].isCompleted() && gameData.requirements["Rebirth note 3"].isCompleted()) {
+        if (gameData.requirements["milestone_deal_with_the_devil"].isCompleted() && gameData.requirements["req_rebirth_note_3"].isCompleted()) {
             if (gameData.evil.eq(0)) gameData.evil = new Decimal(1)
             if (gameData.evil.lt(getEvilGain()))
                 gameData.evil = gameData.evil.times(EVIL_GROWTH_EXPONENT_DEAL)
         }
-        if (gameData.requirements["Hell Portal"].isCompleted()) {
+        if (gameData.requirements["milestone_hell_portal"].isCompleted()) {
             if (gameData.evil.eq(0)) gameData.evil = new Decimal(1)
             if (gameData.evil.lt(getEvilGain())) {
-                const exponent = gameData.requirements["Mind Control"].isCompleted() ? EVIL_GROWTH_EXPONENT_MIND_CONTROL : EVIL_GROWTH_EXPONENT_HELL
+                const exponent = gameData.requirements["milestone_mind_control"].isCompleted() ? EVIL_GROWTH_EXPONENT_MIND_CONTROL : EVIL_GROWTH_EXPONENT_HELL
                 gameData.evil = gameData.evil.times(exponent)
             }
         }
-        if (gameData.requirements["Galactic Emperor"].isCompleted()) {
+        if (gameData.requirements["milestone_galactic_emperor"].isCompleted()) {
             if (gameData.essence.eq(0)) gameData.essence = new Decimal(1)
             if (gameData.essence.lt(getEssenceGain().times(PERK_INSTANT_GAIN_MULTIPLIER)))
                 gameData.essence = gameData.essence.times(ESSENCE_GROWTH_EXPONENT)
@@ -198,8 +197,8 @@ function rebirthReset(set_tab_to_jobs = true) {
     gameData.coins = new Decimal(0)
     gameData.days = DEFAULT_STARTING_AGE
     gameData.realtime = 0
-    gameData.currentJob = gameData.taskData["Beggar"]
-    gameData.currentProperty = gameData.itemData["Homeless"]
+    gameData.currentJob = gameData.taskData["job_beggar"]
+    gameData.currentProperty = gameData.itemData["item_homeless"]
     gameData.currentMisc = []
     gameData.stats.EssencePerSecond = new Decimal(0)
     gameData.stats.maxEssencePerSecond = new Decimal(0)
@@ -231,7 +230,7 @@ function rebirthReset(set_tab_to_jobs = true) {
 
     // Keep milestones which were bought in the Dark Matter shop
     if (gameData.dark_matter_shop.a_miracle) {
-        gameData.requirements["Magic Eye"].completed = true
+        gameData.requirements["milestone_magic_eye"].completed = true
         if (gameData.rebirthOneCount == 0)
             gameData.rebirthOneCount = 1
     }

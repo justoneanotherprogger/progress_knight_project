@@ -11,60 +11,50 @@ function addMultipliers() {
         task.xpMultipliers.push(getHappiness)
         task.xpMultipliers.push(getInspiration)
         task.xpMultipliers.push(getDarkMatterXpGain)
-        pushEffectsByType("all_xp", task.xpMultipliers)
+        pushTargetEffects(key, task, task.xpMultipliers, "xp")
         task.xpMultipliers.push(getDarkMatterSkillXP)
         task.xpMultipliers.push(getTimeIsAFlatCircleXP)
 
         if (task instanceof Job) {
             task.incomeMultipliers.push(task.getLevelMultiplier.bind(task))
-            pushEffectsByType("job_income", task.incomeMultipliers)
+            pushTargetEffects(key, task, task.incomeMultipliers, "income")
             task.incomeMultipliers.push(getLifeCoachIncomeGain)
             task.incomeMultipliers.push(getGreed)
-            pushEffectsByType("job_xp", task.xpMultipliers)
-            task.xpMultipliers.push(getBindedItemEffect("Personal Squire"))
+            task.xpMultipliers.push(getBindedItemEffect("item_personal_squire"))
         } else if (task instanceof Skill) {
-            pushEffectsByType("skill_xp", task.xpMultipliers)
-            task.xpMultipliers.push(getBindedItemEffect("Book"))
-            task.xpMultipliers.push(getBindedItemEffect("Study Desk"))
-            task.xpMultipliers.push(getBindedItemEffect("Library"))
-            task.xpMultipliers.push(getBindedItemEffect("Void Blade"))
-            task.xpMultipliers.push(getBindedItemEffect("Universe Fragment"))
-            task.xpMultipliers.push(getBindedItemEffect("Custom Galaxy"))
+            task.xpMultipliers.push(getBindedItemEffect("item_book"))
+            task.xpMultipliers.push(getBindedItemEffect("item_study_desk"))
+            task.xpMultipliers.push(getBindedItemEffect("item_library"))
+            task.xpMultipliers.push(getBindedItemEffect("item_void_blade"))
+            task.xpMultipliers.push(getBindedItemEffect("item_universe_fragment"))
+            task.xpMultipliers.push(getBindedItemEffect("item_custom_galaxy"))
         }
 
-        if (jobCategories["Military"].includes(task.name)) {
-            pushEffectsByType("army_income", task.incomeMultipliers)
-            pushEffectsByType("army_xp", task.xpMultipliers)
-            task.xpMultipliers.push(getBindedItemEffect("Steel Longsword"))
+        if (task.name in jobCategories["category_military"].items) {
+            task.xpMultipliers.push(getBindedItemEffect("item_steel_longsword"))
         } else if (key == "skill_strength") {
-            pushEffectsByType("strength_xp", task.xpMultipliers)
-            task.xpMultipliers.push(getBindedItemEffect("Dumbbells"))
-        } else if (task instanceof Skill && key in skillCategories["Magic"]) {
-            pushEffectsByType("magic_xp", task.xpMultipliers)
-            task.xpMultipliers.push(getBindedItemEffect("Sapphire Charm"))
-            task.xpMultipliers.push(getBindedItemEffect("Observatory"))
+            task.xpMultipliers.push(getBindedItemEffect("item_dumbbells"))
+        } else if (task instanceof Skill && key in skillCategories["category_magic"].items) {
+            task.xpMultipliers.push(getBindedItemEffect("item_sapphire_charm"))
+            task.xpMultipliers.push(getBindedItemEffect("item_observatory"))
             task.xpMultipliers.push(getTaaAndMagicXpGain)
-        } else if (task instanceof Skill && key in skillCategories["Void Manipulation"]) {
-            task.xpMultipliers.push(getBindedItemEffect("Void Necklace"))
-            task.xpMultipliers.push(getBindedItemEffect("Void Orb"))
-        } else if (jobCategories["Mage Collegium"].includes(task.name)) {
-            pushEffectsByType("collegium_xp", task.xpMultipliers)
+        } else if (task instanceof Skill && key in skillCategories["category_void_manipulation"].items) {
+            task.xpMultipliers.push(getBindedItemEffect("item_void_necklace"))
+            task.xpMultipliers.push(getBindedItemEffect("item_void_orb"))
+        } else if (task.name in jobCategories["category_mage_collegium"].items) {
             task.xpMultipliers.push(getTaaAndMagicXpGain)
-            pushEffectsByType("collegium_income", task.incomeMultipliers)
-        } else if (jobCategories["The Void"].includes(task.name)) {
-            pushEffectsByType("void_xp", task.xpMultipliers)
-            task.xpMultipliers.push(getBindedItemEffect("Void Armor"))
-            task.xpMultipliers.push(getBindedItemEffect("Void Dust"))
-        } else if (jobCategories["Galactic Council"].includes(task.name)) {
-            task.xpMultipliers.push(getBindedItemEffect("Celestial Robe"))
-            pushEffectsByType("galactic_xp", task.xpMultipliers)
-        } else if (task instanceof Skill && key in skillCategories["Dark Magic"]) {
+        } else if (task.name in jobCategories["category_the_void"].items) {
+            task.xpMultipliers.push(getBindedItemEffect("item_void_armor"))
+            task.xpMultipliers.push(getBindedItemEffect("item_void_dust"))
+        } else if (task.name in jobCategories["category_galactic_council"].items) {
+            task.xpMultipliers.push(getBindedItemEffect("item_celestial_robe"))
+        } else if (task instanceof Skill && key in skillCategories["category_dark_magic"].items) {
             task.xpMultipliers.push(getEvilXpGain)
-        } else if (task instanceof Skill && key in skillCategories["Almightiness"]) {
+        } else if (task instanceof Skill && key in skillCategories["category_almightiness"].items) {
             task.xpMultipliers.push(getEssenceXpGain)
-        } else if (task instanceof Skill && key in skillCategories["Fundamentals"]) {
-            task.xpMultipliers.push(getBindedItemEffect("Mind's Eye"))
-        } else if (task instanceof Skill && key in skillCategories["Darkness"]) {
+        } else if (task instanceof Skill && key in skillCategories["category_fundamentals"].items) {
+            task.xpMultipliers.push(getBindedItemEffect("item_minds_eye"))
+        } else if (task instanceof Skill && key in skillCategories["category_darkness"].items) {
             task.xpMultipliers.push(getDarknessXpGain)
         }
     }
@@ -72,29 +62,38 @@ function addMultipliers() {
     for (const itemName in gameData.itemData) {
         const item = gameData.itemData[itemName]
         item.expenseMultipliers = []
-        pushEffectsByType("expense_reduction", item.expenseMultipliers)
+        pushTargetEffects(itemName, null, item.expenseMultipliers, "expense_reduction")
     }
 }
 
 function setCustomEffects() {
-    const transcendentMaster = milestoneData["Transcendent Master"]
+    const transcendentMaster = milestoneData["milestone_transcendent_master"]
     transcendentMaster.getEffect = function () {
-        return gameData.requirements["Transcendent Master"].isCompleted() ? TRANSCENDENT_MASTER_EFFECT : 1
+        return gameData.requirements["milestone_transcendent_master"].isCompleted() ? TRANSCENDENT_MASTER_EFFECT : 1
     }
 
-    const faintHope = milestoneData["Faint Hope"]
+    const darkMatterMining = milestoneData["milestone_dark_matter_mining"]
+    darkMatterMining.getEffect = function () {
+        if (!gameData.requirements["milestone_dark_matter_mining"].isCompleted())
+            return toInfinityNumber(1)
+        return toInfinityNumber(DARK_MATTER_MINING_MULTIPLIER)
+            .times(Decimal.max(getDarkMatter(), 1).pow(0.1))
+            .times(Decimal.max(gameData.essence, 1).pow(0.05))
+    }
+
+    const faintHope = milestoneData["milestone_faint_hope"]
     faintHope.getEffect = function () {
         var mult = 1
-        if (gameData.requirements["A New Hope"].isCompleted()) {
+        if (gameData.requirements["milestone_a_new_hope"].isCompleted()) {
             mult = softcap(FAINT_HOPE_INFINITY, FAINT_HOPE_A_NEW_HOPE_SOFTCAP, FAINT_HOPE_A_NEW_HOPE_DECAY)
         }
-        else if (gameData.requirements["Speed speed speed"].isCompleted()) {
-            mult = FAINT_HOPE_SPEED_COEFFICIENT * Math.exp(FAINT_HOPE_SPEED_EXPONENT * (gameData.requirements["Strong Hope"].isCompleted() ? gameData.rebirthFiveTime
+        else if (gameData.requirements["milestone_speed_speed_speed"].isCompleted()) {
+            mult = FAINT_HOPE_SPEED_COEFFICIENT * Math.exp(FAINT_HOPE_SPEED_EXPONENT * (gameData.requirements["milestone_strong_hope"].isCompleted() ? gameData.rebirthFiveTime
                 : gameData.rebirthThreeTime)) * (Math.log(getUnpausedGameSpeed()) / Math.log(2))
             if (mult == Infinity) mult = FAINT_HOPE_INFINITY
             mult = softcap(mult, FAINT_HOPE_SPEED_SOFTCAP, FAINT_HOPE_A_NEW_HOPE_DECAY)
         }
-        else if (gameData.requirements["Faint Hope"].isCompleted()) {
+        else if (gameData.requirements["milestone_faint_hope"].isCompleted()) {
             let kickin = FAINT_HOPE_KICKIN_BASE - FAINT_HOPE_KICKIN_LOG_COEFFICIENT * Math.log(gameData.rebirthThreeTime)
             if (kickin < FAINT_HOPE_KICKIN_MIN) kickin = FAINT_HOPE_KICKIN_MIN
             mult = 1 + (gameData.rebirthThreeTime / (FAINT_HOPE_REBIRTH_DIVISOR * kickin)) * (Math.log(getUnpausedGameSpeed()) / Math.log(2))
@@ -103,10 +102,10 @@ function setCustomEffects() {
         return mult
     }
 
-    const riseOfGreatHeroes = milestoneData["Rise of Great Heroes"]
+    const riseOfGreatHeroes = milestoneData["milestone_rise_of_great_heroes"]
     riseOfGreatHeroes.getEffect = function () {
         var mult = 1
-        if (gameData.requirements["Rise of Great Heroes"].isCompleted()) {
+        if (gameData.requirements["milestone_rise_of_great_heroes"].isCompleted()) {
             var countHeroes = 0
             for (const taskName in gameData.taskData) {
                 if (gameData.taskData[taskName].isHero)

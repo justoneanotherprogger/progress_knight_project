@@ -1,0 +1,396 @@
+# Categories
+category_common_work: Простолюдины
+category_military: Армия
+category_mage_collegium: Коллегия магов
+category_the_void: Бездна
+category_galactic_council: Галактический совет
+category_metaverse_guards: Стража Метавселенной
+category_fundamentals: Основы
+category_combat: Бой
+category_magic: Магия
+category_dark_magic: Тёмная магия
+category_void_manipulation: Манипуляция Бездной
+category_celestial_powers: Небесные силы
+category_almightiness: Всемогущество
+category_darkness: Тьма
+category_properties: Недвижимость
+category_misc: Разное
+
+# Jobs
+job_beggar: Чернорабочий
+job_farmer: Фермер
+job_fisherman: Рыбак
+job_miner: Шахтёр
+job_blacksmith: Кузнец
+job_merchant: Купец
+job_squire: Оруженосец
+job_footman: Пехотинец
+job_veteran_footman: Ветеран-пехотинец
+job_centenary: Сотник
+job_knight: Рыцарь
+job_veteran_knight: Ветеран-рыцарь
+job_holy_knight: Святой рыцарь
+job_lieutenant_general: Генерал-лейтенант
+job_student: Студент
+job_apprentice_mage: Ученик мага
+job_adept_mage: Маг-адепт
+job_master_wizard: Великий маг
+job_archmage: Архимаг
+job_chronomancer: Хрономант
+job_chairman: Верховный магистр
+job_imperator: Император
+job_corrupted: Искажённый
+job_void_slave: Раб Бездны
+job_void_fiend: Демон Бездны
+job_abyss_anomaly: Аномалия Бездны
+job_void_wraith: Призрак Бездны
+job_void_reaver: Рейдер Бездны
+job_void_lord: Повелитель Бездны
+job_abyss_god: Бог Бездны
+job_eternal_wanderer: Вечный скиталец
+job_nova: Нова
+job_sigma_proioxis: Сигма Проиоксис
+job_acallaris: Акалларис
+job_one_above_all: Всевышний
+job_snow_crash: Лавина
+job_player_one: Игрок номер один
+job_lost_in_the_dark: Затерявшийся во тьме
+job_omega: Омега
+
+category_essence_milestones: Вехи эссенции
+category_heroic_milestones: Героические вехи
+category_dark_milestones: Тёмные вехи
+category_metaverse_milestones: Вехи Метавселенной
+milestone_magic_eye_name: Магический глаз
+milestone_almighty_eye_name: Всемогущий глаз
+milestone_deal_with_the_devil_name: Сделка с Дьяволом
+milestone_transcendent_master_name: Трансцендентный мастер
+milestone_eternal_time_name: Вечное время
+milestone_hell_portal_name: Врата Ада
+milestone_inferno_name: Инферно
+milestone_god_s_blessings_name: Божьи благословения
+milestone_faint_hope_name: Слабая надежда
+milestone_new_beginning_name: Новое начало
+milestone_rise_of_great_heroes_name: Восход великих героев
+milestone_lazy_heroes_name: Ленивые герои
+milestone_dirty_heroes_name: Грязные герои
+milestone_angry_heroes_name: Злые герои
+milestone_tired_heroes_name: Уставшие герои
+milestone_scared_heroes_name: Испуганные герои
+milestone_good_heroes_name: Добрые герои
+milestone_funny_heroes_name: Забавные герои
+milestone_beautiful_heroes_name: Прекрасные герои
+milestone_awesome_heroes_name: Потрясающие герои
+milestone_furious_heroes_name: Яростные герои
+milestone_superb_heroes_name: Блестящие герои
+milestone_a_new_beginning_name: Новая эра
+milestone_mind_control_name: Контроль разума
+milestone_galactic_emperor_name: Галактический император
+milestone_dark_matter_harvester_name: Сборщик тёмной материи
+milestone_a_dark_era_name: Тёмная эпоха
+milestone_dark_orbiter_name: Тёмный спутник
+milestone_dark_matter_mining_name: Добыча тёмной материи
+milestone_the_new_gold_name: Новое золото
+milestone_the_devil_inside_you_name: Дьявол внутри вас
+milestone_strange_magic_name: Странная магия
+milestone_speed_speed_speed_name: Скорость скорость скорость
+milestone_life_is_valueable_name: Жизнь бесценна
+milestone_dark_matter_millionaire_name: Миллионер тёмной материи
+milestone_the_new_dark_matter_name: Новая тёмная материя
+milestone_strong_hope_name: Сильная надежда
+milestone_ruler_of_the_metaverse_name: Правитель Метавселенной
+milestone_a_new_hope_name: Новая надежда
+milestone_time_is_a_flat_circle_name: Время — плоский круг
+milestone_the_end_is_near_name: Конец близок
+milestone_the_end_name: Конец
+
+# Skills
+skill_concentration_name: Концентрация
+skill_productivity_name: Производительность
+skill_bargaining_name: Торговля
+skill_meditation_name: Медитация
+skill_strength_name: Сила
+skill_battle_tactics_name: Боевая тактика
+skill_muscle_memory_name: Мышечная память
+skill_mana_control_name: Контроль маны
+skill_life_essence_name: Сущность жизни
+skill_time_warping_name: Искажение времени
+skill_astral_body_name: Астральное тело
+skill_temporal_dimension_name: Временное измерение
+skill_all_seeing_eye_name: Всевидящее око
+skill_brainwashing_name: Подчинение воли
+skill_dark_influence_name: Тёмное влияние
+skill_evil_control_name: Контроль зла
+skill_intimidation_name: Запугивание
+skill_demon_training_name: Пробуждение демона
+skill_blood_meditation_name: Кровавая медитация
+skill_demons_wealth_name: Демоническое богатство
+skill_dark_knowledge_name: Тёмные знания
+skill_soul_drain_name: Вытягивание душ
+skill_void_influence_name: Влияние Бездны
+skill_time_loop_name: Временная петля
+skill_evil_incarnate_name: Воплощение зла
+skill_absolute_wish_name: Абсолютное желание
+skill_void_amplification_name: Усиление Бездной
+skill_mind_release_name: Освобождение разума
+skill_ceaseless_abyss_name: Извечная Бездна
+skill_void_symbiosis_name: Симбиоз с Бездной
+skill_void_embodiment_name: Воплощение Бездны
+skill_abyss_manipulation_name: Управление Бездной
+skill_cosmic_longevity_name: Космическое долголетие
+skill_cosmic_recollection_name: Эхо былых жизней
+skill_essence_collector_name: Собиратель эссенции
+skill_galactic_command_name: Галактическое командование
+skill_yin_yang_name: Инь и ян
+skill_parallel_universe_name: Параллельная вселенная
+skill_higher_dimensions_name: Высшие измерения
+skill_epiphany_name: Прозрение
+skill_dark_prince_name: Тёмный принц
+skill_dark_ruler_name: Тёмный правитель
+skill_immortal_ruler_name: Бессмертный правитель
+skill_dark_magician_name: Тёмный маг
+skill_universal_ruler_name: Вселенский правитель
+skill_blinded_by_darkness_name: Ослеплённый тьмой
+
+# Items: Properties
+item_homeless_name: Бездомный
+item_tent_name: Палатка
+item_wooden_hut_name: Деревянная хижина
+item_cottage_name: Домик
+item_house_name: Дом
+item_large_house_name: Большой дом
+item_small_palace_name: Небольшой дворец
+item_grand_palace_name: Великий дворец
+item_town_ruler_name: Хозяин города
+item_city_ruler_name: Властелин города
+item_nation_ruler_name: Владыка нации
+item_pocket_dimension_name: Карманное измерение
+item_void_realm_name: Царство Бездны
+item_void_universe_name: Вселенная Бездны
+item_astral_realm_name: Астральное царство
+item_galactic_throne_name: Галактический трон
+item_spaceship_name: Космический корабль
+item_planet_name: Планета
+item_ringworld_name: Мир-кольцо
+item_stellar_neighborhood_name: Звёздная вотчина
+item_galaxy_name: Галактика
+item_supercluster_name: Сверхскопление
+item_galaxy_filament_name: Галактическая нить
+item_observable_universe_name: Наблюдаемая вселенная
+item_multiverse_name: Мультивселенная
+item_quantum_world_name: Квантовый мир
+item_bootes_void_name: Пустота Волопаса
+
+# Items: Misc
+item_book_name: Книга
+item_dumbbells_name: Гантели
+item_personal_squire_name: Личный оруженосец
+item_steel_longsword_name: Стальной меч
+item_butler_name: Дворецкий
+item_sapphire_charm_name: Сапфировый оберег
+item_study_desk_name: Письменный стол
+item_library_name: Библиотека
+item_observatory_name: Обсерватория
+item_minds_eye_name: Око разума
+item_void_necklace_name: Ожерелье Бездны
+item_void_armor_name: Броня Бездны
+item_void_blade_name: Клинок Бездны
+item_void_orb_name: Сфера Бездны
+item_void_dust_name: Пыль Бездны
+item_celestial_robe_name: Небесная мантия
+item_universe_fragment_name: Фрагмент вселенной
+item_multiverse_fragment_name: Фрагмент мультивселенной
+item_stairway_to_heaven_name: Лестница на небеса
+item_highway_to_hell_name: Дорога в ад
+item_tesseract_name: Тессеракт
+item_desintegration_name: Распад
+item_custom_galaxy_name: Собственная галактика
+item_hypersphere_name: Гиперсфера
+
+# Milestone descriptions
+milestone_magic_eye_desc: Автоматически получает максимальные уровни в 65 лет
+milestone_almighty_eye_desc: Автоматически получает максимальные уровни
+milestone_deal_with_the_devil_desc: Пассивно получает немного зла
+milestone_transcendent_master_desc: Прирост эссенции
+milestone_eternal_time_desc: x10 Искажение времени
+milestone_hell_portal_desc: Пассивно получает много зла
+milestone_inferno_desc: x5 прирост зла
+milestone_god_s_blessings_desc: x10M удобство жизни
+milestone_faint_hope_desc: Прирост эссенции (растёт с реальным временем)
+milestone_new_beginning_desc: Открываются Великие работы, навыки и предметы
+milestone_rise_of_great_heroes_desc: Прирост эссенции + x10000 опыта Великих
+milestone_lazy_heroes_desc: Опыт Великих
+milestone_dirty_heroes_desc: Опыт Великих
+milestone_angry_heroes_desc: Опыт Великих
+milestone_tired_heroes_desc: Опыт Великих
+milestone_scared_heroes_desc: Опыт Великих
+milestone_good_heroes_desc: Опыт Великих
+milestone_funny_heroes_desc: Опыт Великих
+milestone_beautiful_heroes_desc: Опыт Великих
+milestone_awesome_heroes_desc: Опыт Великих
+milestone_furious_heroes_desc: Опыт Великих
+milestone_superb_heroes_desc: Опыт Великих
+milestone_a_new_beginning_desc: Открывает Тёмную материю
+milestone_mind_control_desc: Делает Врата Ада ещё сильнее
+milestone_galactic_emperor_desc: Пассивно получает немного эссенции
+milestone_dark_matter_harvester_desc: Умножает прирост Тёмной материи на 10x
+milestone_a_dark_era_desc: Открывает способности Тёмной материи
+milestone_dark_orbiter_desc: Умножает прирост Тёмных сфер на 1e10x
+milestone_dark_matter_mining_desc: Прирост Тёмной материи (растёт от Тёмной материи и эссенции)
+milestone_the_new_gold_desc: Умножает прирост эссенции на 1000x
+milestone_the_devil_inside_you_desc: Умножает прирост зла на 1e15x
+milestone_strange_magic_desc: Умножает прирост опыта Тьмы на 1e50x
+milestone_speed_speed_speed_desc: Умножает искажение времени и продолжительность жизни
+  на 1000x. Сильно усиливает Слабую надежду
+milestone_life_is_valueable_desc: Умножает продолжительность жизни на 1e5x. Открывает
+  новое испытание. Тёмная материя усиливает прирост эссенции.
+milestone_dark_matter_millionaire_desc: Умножает прирост Тёмной материи на 500x
+milestone_the_new_dark_matter_desc: Открывает Метавселенную
+milestone_strong_hope_desc: Слабая надежда не сбрасывается при трансцендировании или
+  сворачивании
+milestone_ruler_of_the_metaverse_desc: Открывает дары Метавселенной и категорию работ
+  Стражей Метавселенной
+milestone_a_new_hope_desc: Слабая надежда всегда на максимуме
+milestone_time_is_a_flat_circle_desc: Умножает искажение времени на 1000x и весь опыт
+  на 1e50x
+milestone_the_end_is_near_desc: Непотраченные дары Мультивселенной усиливают Тёмную
+  материю
+milestone_the_end_desc: Поздравляем! Вы прошли игру!
+
+challenge_goal: 'Цель: достичь {0} {1} для увеличения награды'
+
+challenge_goal_plain: 'Цель: достичь {0} для увеличения награды'
+
+challenge_reward: 'Награда: Умножает {0} на'
+
+challenge_1_name: 1. Несчастная жизнь
+
+challenge_1_desc: Снижает удобства жизни на ^{0}
+
+challenge_2_name: 2. Богатые и бедные
+
+challenge_2_desc: Снижает доход на ^{0}
+
+challenge_3_name: 3. Время не летит
+
+challenge_3_desc: Снижает искажение времени на ^{0}
+
+challenge_4_name: 4. Танец с дьяволом
+
+challenge_4_desc: Сильно снижает эффект опыта Тёмной магии и Всемогущества, максимальный уровень снижает получение опыта, а удобства жизни снижены на ^{0}
+
+challenge_5_name: 5. Легенды не умирают
+
+challenge_5_desc: Снижает продолжительность жизни на ^{0}, искажение времени на ^{1}, удобства жизни не работают, а эффект опыта Тёмной магии всегда 1x.
+
+challenge_5_meta_debuff: Усиление бесконечной продолжительности жизни из Метавселенной отключено.
+
+challenge_6_name: 6. Самое тёмное время
+
+challenge_6_desc: Все предыдущие испытания вместе. Предметы Тёмной материи отключены. Первые 4 способности Тёмной материи накладывают лишь проклятия и не дают положительных эффектов. Доход равен 0.
+
+a_miracle: Чудо
+
+a_miracle_desc: 'Сохраняет <b>Магический глаз</b> при сворачивании вселенной и любых более ранних сбросах.'
+
+a_deal_with_chairman: Сделка с Председателем
+
+a_deal_with_chairman_desc: 'Награда: Умножает получение опыта <span style="color: rgb(199, 21, 133);">Коллегии и Магии</span> на x{0}'
+
+a_gift_from_god: Дар от Бога
+
+a_gift_from_god_desc: 'Награда: Умножает получение <span class="color-essence">Эссенции</span> на x{0}'
+
+gotta_be_fast: Нужно быть быстрым
+
+gotta_be_fast_desc: 'Награда: Умножает <span class="color-time-warping">Искажение времени</span> на x{0}'
+
+life_coach: Коуч по жизни
+
+life_coach_desc: 'Награда: Умножает <span class="color-income">Доход</span> на x{0}'
+
+dark_orb_generator: Генератор тёмных сфер
+
+dark_orb_generator_desc: 'Генерирует {0} <span class="color-dark-orbs">Тёмную сферу</span> в день'
+
+speed_is_life: Скорость — это жизнь
+
+speed_is_life_1: 'Умножает <span class="color-time-warping">Искажение времени</span> на <b>3x</b>'
+
+speed_is_life_1_neg: ', но делит получение <span class="color-evil">Зла</span> на <b>2x</b>'
+
+speed_is_life_2: 'Умножает <span class="color-time-warping">Искажение времени</span> на <b>7x</b>'
+
+speed_is_life_2_neg: ', но делит получение <span class="color-essence">Эссенции</span> на <b>2x</b>'
+
+your_greatest_debt: Ваш величайший долг
+
+your_greatest_debt_1: 'Умножает получение <span style="color:rgb(255, 204, 102)">всего опыта</span> на <b>500x</b>'
+
+your_greatest_debt_1_neg: ', но делит <span class="color-income">Доход</span> на <b>10x</b>'
+
+your_greatest_debt_2: 'Умножает получение <span class="color-evil">Зла</span> на <b>100x</b>'
+
+your_greatest_debt_2_neg: ', но делит <span class="color-income">Доход</span> на <b>2x</b>'
+
+essence_collector: Коллекционер эссенции
+
+essence_collector_1: 'Умножает получение <span class="color-essence">Эссенции</span> на <b>500x</b>'
+
+essence_collector_1_neg: ', но делит получение <span class="color-evil">Зла</span> на <b>2x</b>'
+
+essence_collector_2: 'Умножает получение <span class="color-essence">Эссенции</span> на <b>1000x</b>'
+
+essence_collector_2_neg: ', но делит <span class="color-income">Доход</span> на <b>25x</b>'
+
+explosion_of_the_universe: Взрыв вселенной
+
+explosion_of_the_universe_1: 'Умножает получение <span style="color:rgb(255, 204, 102)">всего опыта</span> на <b>1e100x</b>'
+
+explosion_of_the_universe_1_neg: ', но делит получение <span class="color-essence">Эссенции</span> на <b>2x</b>'
+
+explosion_of_the_universe_2: 'Умножает получение <span style="color:rgb(255, 204, 102)">всего опыта</span> на <b>1e150x</b>'
+
+explosion_of_the_universe_2_neg: ', но делит <span class="color-income">Доход</span> на <b>1e5x</b>'
+
+multiverse_explorer: Исследователь мультивселенной
+
+multiverse_explorer_1: 'Умножает получение <span class="color-essence">Эссенции</span> на <b>5000x</b>'
+
+multiverse_explorer_1_neg: ', но делит <span class="color-time-warping">Искажение времени</span> на <b>1000x</b>'
+
+multiverse_explorer_2: 'Умножает получение <span class="color-essence">Эссенции</span> на <b>10000x</b>'
+
+multiverse_explorer_2_neg: ', но делит получение <span class="color-dark-matter">Тёмной материи</span> на <b>100x</b>'
+
+perk_auto_dark_orb: 'Автопокупка генераторов тёмных сфер'
+
+perk_auto_dark_shop: 'Автопокупка товаров тёмного магазина'
+
+perk_auto_boost: 'Автобуст'
+
+perk_instant_evil: 'Мгновенное зло'
+
+perk_hypercube_boost: 'Буст гиперкубов'
+
+perk_instant_essence: 'Мгновенная эссенция'
+
+perk_save_challenges: 'Сохранение испытаний'
+
+perk_instant_dark_matter: 'Мгновенная тёмная материя'
+
+perk_auto_sacrifice: 'Автопожертвование'
+
+perk_double_perk_points_gain: 'Удвоение получения очков даров'
+
+perk_positive_dark_mater_skills: 'Только положительные способности тёмной материи'
+
+perk_hyper_speed: 'Гиперскорость'
+
+perk_both_dark_mater_skills: 'Выбор обеих способностей тёмной материи'
+
+perk_keep_dark_mater_skills: 'Сохранение способностей тёмной материи'
+
+perk_evil_booster: 'Усилитель зла'
+
+perk_more_perk_points: 'x10 получение очков даров'

@@ -15,7 +15,10 @@ function renderSideBar() {
     document.getElementById("ageDisplay").textContent = formatAge(gameData.days)
     document.getElementById("lifespanDisplay").textContent = formatWhole(daysToYears(getLifespan()))
     document.getElementById("realtimeDisplay").textContent = formatTime(gameData.realtime)
-    document.getElementById("boostCooldownDisplay").textContent = getBoostCooldownString()            
+    const boostCooldownDisplay = document.getElementById("boostCooldownDisplay")
+    boostCooldownDisplay.style.whiteSpace = "nowrap"
+    boostCooldownDisplay.textContent = getBoostCooldownString()
+    fitText(boostCooldownDisplay, 16)
     updateButtonHTML("pauseButton", "⏳ " + (gameData.paused ? t("play") : t("pause")))
     updateButtonText("rebirthBtn1", t("rebirth_1"))
     setRebirthButton("rebirthBtn2", t("rebirth_2"), "<span class=\"color-evil\">(+" + format(getEvilGain()) + " " + t("evil") + ")</span>")
@@ -30,6 +33,8 @@ function renderSideBar() {
     else
         setRebirthButton("rebirthBtn5", t("rebirth_5"), "")
     fitText(document.getElementById("rebirthBtn5"), 16)
+    const boostPanel = document.getElementById("boostPanel")
+    boostPanel.style.whiteSpace = "nowrap"
     document.getElementById("boostPanel").hidden = gameData.rebirthFiveCount == 0
     renderBoostButton("boostButton")
 
@@ -82,7 +87,7 @@ function renderSideBar() {
         transcendButton.classList.remove("button-transcend")
 
     // Hide the rebirthOneButton from the sidebar when you have `Almighty Eye` unlocked.
-    document.getElementById("rebirthButton1").hidden = gameData.requirements["Almighty Eye"].isCompleted()
+    document.getElementById("rebirthButton1").hidden = gameData.requirements["milestone_almighty_eye"].isCompleted()
 
     // Change sidebar when paused
     if (gameData.paused) {
@@ -105,7 +110,7 @@ function renderSideBar() {
     }
 
     if (getDarkMatter().eq(0))
-        gameData.requirements["Dark Matter info"].completed = false
+        gameData.requirements["req_dark_matter_info"].completed = false
 
     updateResourceScale()
 }

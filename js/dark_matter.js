@@ -1,6 +1,6 @@
 // Costs Dark Matter
 function getDarkOrbGeneratorCost() {
-    return new Decimal(2).pow(gameData.dark_matter_shop.dark_orb_generator)
+    return new Decimal(1.2).pow(gameData.dark_matter_shop.dark_orb_generator)
 }
 
 function isDecimalInfinity(value) {
@@ -86,7 +86,7 @@ function buyGottaBeFast() {
 function getDarkOrbGeneration() {
     if (gameData.dark_matter_shop.dark_orb_generator == 0) return new Decimal(0)
 
-    const darkOrbiter = gameData.requirements["Dark Orbiter"].isCompleted() ? 1e10 : 1
+    const darkOrbiter = gameData.requirements["milestone_dark_orbiter"].isCompleted() ? 1e10 : 1
 
     return new Decimal(100).pow(gameData.dark_matter_shop.dark_orb_generator - 1).times(darkOrbiter)
 }

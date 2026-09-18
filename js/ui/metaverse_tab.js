@@ -111,7 +111,7 @@ function renderPerks() {
     document.getElementById("totalPerkPointDisplay").textContent = formatTreshold(getTotalPerkPoints())
     // Info
 
-    if (gameData.requirements["The End is near"].isCompleted()) {
+    if (gameData.requirements["milestone_the_end_is_near"].isCompleted()) {
         document.getElementById("mppInfo").hidden = true
         document.getElementById("mppInfo2").hidden = false
         document.getElementById("mppDMBuff").innerHTML = t("perks_dm_bonus", format(getUnspentPerksDarkmatterGainBuff()))

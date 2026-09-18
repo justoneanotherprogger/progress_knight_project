@@ -37,7 +37,7 @@ function updateRequirements() {
 }
 
 function updateStats() {
-    if (gameData.requirements["Rebirth stats evil"].isCompleted()) {
+    if (gameData.requirements["req_stats_evil_gain"].isCompleted()) {
         gameData.stats.EvilPerSecond = getEvilGain().div(gameData.rebirthTwoTime)
         if (gameData.stats.EvilPerSecond.gt(gameData.stats.maxEvilPerSecond)) {
             gameData.stats.maxEvilPerSecond = gameData.stats.EvilPerSecond
@@ -45,7 +45,7 @@ function updateStats() {
         }
     }
 
-    if (gameData.requirements["Rebirth stats essence"].isCompleted()) {
+    if (gameData.requirements["req_stats_essence_gain"].isCompleted()) {
         gameData.stats.EssencePerSecond = getEssenceGain().div(gameData.rebirthThreeTime)
         if (gameData.stats.EssencePerSecond.gt(gameData.stats.maxEssencePerSecond)) {
             gameData.stats.maxEssencePerSecond = gameData.stats.EssencePerSecond
@@ -106,7 +106,7 @@ function autoBuy() {
             const item = gameData.itemData[key]
             const expense = item.getExpense()
 
-            if (itemCategories['Properties'].indexOf(key) != -1) {
+            if (item.categoryId == "category_properties") {
                 if (expense.lt(income) && expense.gte(usedExpense)) {
                     gameData.currentProperty = item
                     usedExpense = expense
@@ -123,7 +123,7 @@ function autoBuy() {
         if (gameData.requirements[key].isCompleted()) {
             const item = gameData.itemData[key]
             const expense = item.getExpense()
-            if (itemCategories['Misc'].indexOf(key) != -1) {
+            if (item.categoryId == "category_misc") {
                 if (expense.lt(income.minus(usedExpense))) {
                     if (gameData.currentMisc.indexOf(item) == -1) {
                         gameData.currentMisc.push(item)
@@ -194,7 +194,7 @@ function applyExpenses() {
 
 function goBankrupt() {
     gameData.coins = new Decimal(0)
-    gameData.currentProperty = gameData.itemData["Homeless"]
+    gameData.currentProperty = gameData.itemData["item_homeless"]
     gameData.currentMisc = []
 }
 
@@ -247,7 +247,7 @@ function makeHeroes() {
         if (item.isHero)
             continue
         item.isHero = true
-        gameData.currentProperty = gameData.itemData["Homeless"]
+        gameData.currentProperty = gameData.itemData["item_homeless"]
         gameData.currentMisc = []
     }
 }

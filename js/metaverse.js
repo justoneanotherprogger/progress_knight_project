@@ -1,10 +1,10 @@
 function getHypercubeGeneration() {
     if (gameData.rebirthFiveCount == 0) return 0   
 
-    let tesseractEffect = gameData.itemData["Tesseract"].getEffect()
-    let hypersphereEffect = gameData.itemData["Hypersphere"].getEffect()
+    let tesseractEffect = gameData.itemData["item_tesseract"].getEffect()
+    let hypersphereEffect = gameData.itemData["item_hypersphere"].getEffect()
 
-    return 0.03 * hypersphereEffect * tesseractEffect * gameData.metaverse.hypercube_gain_modifier * (gameData.perks.hypercube_boost == 1 ? 10 : 1)
+    return 0.03 * hypersphereEffect * tesseractEffect * (gameData.metaverse.hypercube_gain_modifier == 0 ? 1 : gameData.metaverse.hypercube_gain_modifier) * (gameData.perks.hypercube_boost == 1 ? 10 : 1)
         * (gameData.perks.hyper_speed == 1 ? 1000 : 1)
 }
 
@@ -17,15 +17,11 @@ function getTimeTillNextHypercubePower(add_power = 0) {
 }
 
 function getBoostTimeSeconds() {
-    let defaultTime = 60.0 * gameData.metaverse.boost_timer_modifier
-
-    return defaultTime
+    return (gameData.metaverse.boost_timer_modifier == 0) ? 60.0 : 60.0 * gameData.metaverse.boost_timer_modifier
 }
 
 function getBoostCooldownSeconds() {
-    let defaultTime = 60.0 * 10.0 / gameData.metaverse.boost_cooldown_modifier
-
-    return defaultTime
+    return (gameData.metaverse.boost_cooldown_modifier == 0) ? 60.0 * 10.0 : 60.0 * 10.0 / gameData.metaverse.boost_cooldown_modifier
 }
 
 function canApplyBoost() {
@@ -88,7 +84,7 @@ function buyHypercubeGain() {
 }
 
 function evilTranGain() {
-    return (gameData.metaverse.evil_tran_gain == 0) ? 0 : 250000 * Math.pow(10, gameData.metaverse.evil_tran_gain)
+    return (gameData.metaverse.evil_tran_gain == 0) ? new Decimal(0) : new Decimal(250000 * Math.pow(10, gameData.metaverse.evil_tran_gain))
 }
 
 function evilTranCost() {
@@ -264,13 +260,13 @@ function getTimeIsAFlatCircleXP() {
     if (gameData.active_challenge == "the_darkest_time")
         return 1
 
-    return gameData.requirements["Time is a flat circle"].isCompleted() ? 1e50 : 1
+    return gameData.requirements["milestone_time_is_a_flat_circle"].isCompleted() ? 1e50 : 1
 }
 
 function getUnspentPerksDarkmatterGainBuff() {
     const effect = softcap(gameData.perks_points * 0.0027 + 2, 75, 0.01)
 
-    return gameData.requirements["The End is near"].isCompleted() ? Math.pow(10, effect): 1
+    return gameData.requirements["milestone_the_end_is_near"].isCompleted() ? Math.pow(10, effect): 1
 }
 
 function getHypercubeCap(next = 0) {
