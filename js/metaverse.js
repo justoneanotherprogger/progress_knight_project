@@ -4,7 +4,7 @@ function getHypercubeGeneration() {
     let tesseractEffect = gameData.itemData["item_tesseract"].getEffect()
     let hypersphereEffect = gameData.itemData["item_hypersphere"].getEffect()
 
-    return 0.03 * hypersphereEffect * tesseractEffect * gameData.metaverse.hypercube_gain_modifier * (gameData.perks.hypercube_boost == 1 ? 10 : 1)
+    return 0.03 * hypersphereEffect * tesseractEffect * (gameData.metaverse.hypercube_gain_modifier == 0 ? 1 : gameData.metaverse.hypercube_gain_modifier) * (gameData.perks.hypercube_boost == 1 ? 10 : 1)
         * (gameData.perks.hyper_speed == 1 ? 1000 : 1)
 }
 
@@ -17,15 +17,11 @@ function getTimeTillNextHypercubePower(add_power = 0) {
 }
 
 function getBoostTimeSeconds() {
-    let defaultTime = 60.0 * gameData.metaverse.boost_timer_modifier
-
-    return defaultTime
+    return (gameData.metaverse.boost_timer_modifier == 0) ? 60.0 : 60.0 * gameData.metaverse.boost_timer_modifier
 }
 
 function getBoostCooldownSeconds() {
-    let defaultTime = 60.0 * 10.0 / gameData.metaverse.boost_cooldown_modifier
-
-    return defaultTime
+    return (gameData.metaverse.boost_cooldown_modifier == 0) ? 60.0 * 10.0 : 60.0 * 10.0 / gameData.metaverse.boost_cooldown_modifier
 }
 
 function canApplyBoost() {

@@ -224,7 +224,7 @@ function getGameSpeed() {
 }
 
 function getUnpausedGameSpeed() {
-    const boostWarping = gameData.boost_active ? gameData.metaverse.boost_warp_modifier : 1
+    const boostWarping = gameData.boost_active ? METAVERSE_BOOST_WARP_DEFAULT : 1
     const timeWarping = gameData.taskData["skill_time_warping"]
     const temporalDimension = gameData.taskData["skill_temporal_dimension"]
     const timeLoop = gameData.taskData["skill_time_loop"]

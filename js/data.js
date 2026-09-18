@@ -106,7 +106,6 @@ dark_matter: new Decimal(0),
     metaverse: {
         boost_cooldown_modifier: 1,
         boost_timer_modifier: 1,
-        boost_warp_modifier: 100,
         hypercube_gain_modifier: 1,
         evil_tran_gain: 0,
         essence_gain_modifier: 0,

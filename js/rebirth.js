@@ -132,7 +132,6 @@ function rebirthFive() {
     gameData.hypercubes = 0
     gameData.metaverse.boost_cooldown_modifier = 1
     gameData.metaverse.boost_timer_modifier = 1
-    gameData.metaverse.boost_warp_modifier = METAVERSE_BOOST_WARP_DEFAULT
     gameData.metaverse.hypercube_gain_modifier = 1
     gameData.metaverse.evil_tran_gain = 0
     gameData.metaverse.essence_gain_modifier = 0
