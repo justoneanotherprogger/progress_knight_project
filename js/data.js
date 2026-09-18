@@ -32,7 +32,6 @@ dark_matter: new Decimal(0),
 
 
     paused: false,
-    timeWarpingEnabled: true,
 
     rebirthOneCount: 0,
     rebirthOneTime: 0,
@@ -69,7 +68,6 @@ dark_matter: new Decimal(0),
         fastest3: null,
         fastest4: null,
         fastest5: null,
-        fastestGame: null,
         EvilPerSecond: new Decimal(0),
         maxEvilPerSecond: new Decimal(0),
         maxEvilPerSecondRt: 0,

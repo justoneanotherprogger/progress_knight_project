@@ -15,20 +15,6 @@ class Task {
         this.elementsCache = {}
     }
 
-    toJSON() {
-        return {
-            baseData: this.baseData,
-            name: this.name,
-            level: this.level,
-            maxLevel: this.maxLevel,
-            xp: this.xp,
-            xpBigInt: bigIntToExponential(this.xpBigInt),
-            isHero: this.isHero,
-            isFinished: this.isFinished,
-            unlocked: this.unlocked
-        }
-    }
-
     getMaxXp() {
         const maxXp = (this.isHero ? Math.pow(10, this.baseData.heroxp) : 1) * this.baseData.maxXp * (this.level + 1) * Math.pow(this.isHero ? 1.08 : 1.01, this.level)
 

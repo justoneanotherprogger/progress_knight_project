@@ -1,111 +1,291 @@
 // save.js — save/load/import/export functions
 
-function assignMethods() {
-    for (const key in gameData.taskData) {
-        let task = gameData.taskData[key]
-        if (task.baseData.income) {
-            if (jobBaseData[key] == null) continue
-            task.baseData = jobBaseData[key]
-            task = Object.assign(new Job(jobBaseData[key]), task)
-        } else {
-            if (skillBaseData[key] == null) continue
-            task.name = skillBaseData[key].name
-            task.baseData = skillBaseData[key]
-            task = Object.assign(new Skill(skillBaseData[key]), task)
-        }
+// --- DTO-формат сейва ---
+// Все числа хранятся строками, нулевые/дефолтные значения не пишутся.
+// Ключи taskData/itemData/requirements и мета-прогресса берутся из контента
+// (gameData после инициализации), из сейва применяются только значения.
 
-        // There are two cases. The number is stored as a large number or in the scientific notation.
-        if (typeof task.xpBigInt === "string" && task.xpBigInt.includes("e"))
-            task.xpBigInt = BigInt(exponentialToRawNumberString(task.xpBigInt))
-        else
-            task.xpBigInt = BigInt(task.xpBigInt)
+// Ресурсы, хранящиеся как Decimal
+const DECIMAL_FIELDS = ["coins", "evil", "essence", "dark_matter", "dark_orbs"]
 
-        gameData.taskData[key] = task
-    }
+// Ресурсы и таймеры, хранящиеся числами
+const NUMBER_FIELDS = [
+    "days", "hypercubes", "perks_points",
+    "rebirthOneCount", "rebirthOneTime", "rebirthTwoCount", "rebirthTwoTime",
+    "rebirthThreeCount", "rebirthThreeTime", "rebirthFourCount", "rebirthFourTime",
+    "rebirthFiveCount", "rebirthFiveTime",
+    "realtime", "realtimeRun", "boost_cooldown", "boost_timer",
+]
 
-    for (const key in gameData.itemData) {
-        let item = gameData.itemData[key]
-        const baseData = itemBaseData[key]
-        if (baseData == null) continue
-        item.baseData = baseData
-        item.name = baseData.name
-        item.id = key
-        item.categoryId = getItemCategoryId(key)
-        item = Object.assign(new Item(baseData), item)
-        gameData.itemData[key] = item
-    }
+// Булевы флаги состояния
+const BOOLEAN_FIELDS = ["paused", "boost_active", "autoBuyEnabled"]
 
-    for (const key in gameData.requirements) {
-        let requirement = gameData.requirements[key]
-        if (requirement.type == "task") {
-            requirement = Object.assign(new TaskRequirement(requirement.querySelectors, requirement.requirements), requirement)
-        } else if (requirement.type == "coins") {
-            requirement = Object.assign(new CoinRequirement(requirement.querySelectors, requirement.requirements), requirement)
-        } else if (requirement.type == "age") {
-            requirement = Object.assign(new AgeRequirement(requirement.querySelectors, requirement.requirements), requirement)
-        } else if (requirement.type == "evil") {
-            requirement = Object.assign(new EvilRequirement(requirement.querySelectors, requirement.requirements), requirement)
-        } else if (requirement.type == "essence") {
-            requirement = Object.assign(new EssenceRequirement(requirement.querySelectors, requirement.requirements), requirement)
-        } else if (requirement.type == "darkMatter") {
-            requirement = Object.assign(new DarkMatterRequirement(requirement.querySelectors, requirement.requirements), requirement)
-        } else if (requirement.type == "darkOrb") {
-            requirement = Object.assign(new DarkOrbsRequirement(requirement.querySelectors, requirement.requirements), requirement)
-        } else if (requirement.type == "metaverse") {
-            requirement = Object.assign(new MetaverseRequirement(requirement.querySelectors, requirement.requirements), requirement)
-        } else if (requirement.type == "hypercube") {
-            requirement = Object.assign(new HypercubeRequirement(requirement.querySelectors, requirement.requirements), requirement)
-        } else if (requirement.type == "perkpoint") {
-            requirement = Object.assign(new PerkPointRequirement(requirement.querySelectors, requirement.requirements), requirement)
-        }
-        
+// stats, пересчитываемые каждый тик в updateStats — не сериализуются
+const TRANSIENT_STATS = ["EvilPerSecond", "EssencePerSecond"]
 
-        const tempRequirement = tempData["requirements"][key]
-        requirement.elements = tempRequirement.elements
-        requirement.requirements = tempRequirement.requirements
-        gameData.requirements[key] = requirement
-    }
+// stats, хранящиеся как Decimal
+const DECIMAL_STATS = ["maxEvilPerSecond", "maxEssencePerSecond", "maxEssenceReached"]
 
-    // Saves predating the content framework key taskData/itemData by display name, so
-    // unresolved references fall back to the new-game defaults instead of breaking load.
-    gameData.currentJob = gameData.taskData[gameData.currentJob?.name] ?? gameData.taskData["job_beggar"]
-
-    const propertyId = gameData.currentProperty?.id ?? gameData.currentProperty?.name
-    gameData.currentProperty = gameData.itemData[propertyId] ?? gameData.itemData["item_homeless"]
-
-    const newArray = []
-    for (const misc of gameData.currentMisc) {
-        const miscId = misc.id ?? misc.name
-        const restored = gameData.itemData[miscId]
-        if (restored != null) newArray.push(restored)
-    }
-    gameData.currentMisc = newArray
+function isDefaultValue(value) {
+    if (value === null || value === undefined) return true
+    if (typeof value === "bigint") return value === 0n
+    if (value instanceof Decimal) return value.eq(new Decimal(0))
+    if (typeof value === "number") return value === 0
+    if (typeof value === "boolean") return value === false
+    if (typeof value === "string") return value === ""
+    if (Array.isArray(value)) return value.length === 0
+    return false
 }
 
-function replaceSaveDict(dict, saveDict) {
-    for (const key in dict) {
-        if (!(key in saveDict)) {
-            saveDict[key] = dict[key]
-        } else if (dict == gameData.requirements) {
-            if (saveDict[key].type != tempData["requirements"][key].type) {
-                saveDict[key] = tempData["requirements"][key]
-            }
-            else {
-                saveDict[key].querySelectors = tempData["requirements"][key].querySelectors
-            }
+function decimalToString(value) {
+    if (value instanceof Decimal) return value.toString()
+    return String(value)
+}
 
-        }
+// Преобразует значение к типу образца (механическое правило: строка из сейва → нужный тип)
+function coerceValue(value, template) {
+    if (typeof template === "boolean") return value === true || value === 1 || value === "1"
+    if (typeof template === "number") return Number(value)
+    if (typeof template === "string") return String(value)
+    return value
+}
+
+// Decimal из значения сейва. У break_infinity mantissa конечна даже у Infinity
+// (бесконечность живёт в layer), так что ветка лечит только NaN, как и старый код.
+function parseDecimal(value) {
+    const decimal = toInfinityNumber(value)
+    if (!isFinite(decimal.mantissa)) return new Decimal(0)
+    return decimal
+}
+
+// BigInt из сейва: поддерживает экспоненциальную запись ("1.5e250") и обычные числа
+function parseBigInt(value) {
+    if (typeof value === "bigint") return value
+    if (typeof value === "string" && value.includes("e"))
+        return BigInt(exponentialToRawNumberString(value))
+    if (typeof value === "number") return BigInt(Math.floor(value))
+    return BigInt(String(value ?? 0))
+}
+
+// --- Сериализация ---
+
+// Значение мета-прогресса: boolean → 1, число/Decimal → строка, null если дефолт
+function scalarToString(value) {
+    if (typeof value === "boolean") return value ? 1 : null
+    if (isDefaultValue(value)) return null
+    return decimalToString(value)
+}
+
+function serializeMap(map) {
+    const dto = {}
+    for (const key in map) {
+        const value = scalarToString(map[key])
+        if (value !== null) dto[key] = value
     }
+    return dto
+}
 
-    for (const key in saveDict) {
-        if (!(key in dict)) {
-            delete saveDict[key]
+function serializeTask(task) {
+    const dto = {}
+    if (!isDefaultValue(task.level)) dto.level = String(task.level)
+    if (!isDefaultValue(task.maxLevel)) dto.maxLevel = String(task.maxLevel)
+    if (!isDefaultValue(task.xp)) dto.xp = decimalToString(task.xp)
+    if (!isDefaultValue(task.xpBigInt)) dto.xpBigInt = bigIntToExponential(task.xpBigInt)
+    if (task.isFinished) dto.isFinished = 1
+    if (task.unlocked) dto.unlocked = 1
+    return dto
+}
+
+function serialize(gameData) {
+    const dto = {}
+
+    // Ресурсы
+    for (const key of DECIMAL_FIELDS)
+        if (!isDefaultValue(gameData[key])) dto[key] = decimalToString(gameData[key])
+    for (const key of NUMBER_FIELDS)
+        if (!isDefaultValue(gameData[key])) dto[key] = decimalToString(gameData[key])
+
+    // Мета-прогресс — ключи пишем всегда, даже пустыми
+    dto.perks = serializeMap(gameData.perks)
+    dto.dark_matter_shop = serializeMap(gameData.dark_matter_shop)
+    dto.metaverse = serializeMap(gameData.metaverse)
+    if (!isDefaultValue(gameData.active_challenge)) dto.active_challenge = gameData.active_challenge
+    dto.challenges = serializeMap(gameData.challenges)
+
+    // Таймеры/состояние
+    for (const key of BOOLEAN_FIELDS)
+        if (gameData[key]) dto[key] = 1
+
+    // Выбор игрока — только id
+    dto.currentJob = findTaskId(gameData, gameData.currentJob)
+    dto.currentProperty = gameData.currentProperty?.id ?? null
+    dto.currentMisc = gameData.currentMisc.map(item => item?.id).filter(id => id != null)
+
+    // Прогресс — без baseData, без isHero
+    dto.taskData = {}
+    for (const key in gameData.taskData)
+        dto.taskData[key] = serializeTask(gameData.taskData[key])
+
+    // Разблокировки — только completed
+    dto.itemData = {}
+    for (const key in gameData.itemData)
+        dto.itemData[key] = gameData.itemData[key].unlocked ? { unlocked: 1 } : {}
+
+    dto.requirements = {}
+    for (const key in gameData.requirements)
+        dto.requirements[key] = gameData.requirements[key].completed ? { completed: 1 } : {}
+
+    // Настройки и статистика
+    dto.settings = serializeSettings(gameData.settings)
+    dto.stats = serializeStats(gameData.stats)
+
+    return dto
+}
+
+function serializeSettings(settings) {
+    const dto = {}
+    for (const key in settings) {
+        const value = settings[key]
+        if (value instanceof Date) { dto[key] = value.toISOString(); continue }
+        if (isDefaultValue(value)) continue
+        if (typeof value === "boolean") { dto[key] = 1; continue }
+        dto[key] = decimalToString(value)
+    }
+    return dto
+}
+
+function serializeStats(stats) {
+    const dto = {}
+    for (const key in stats) {
+        if (TRANSIENT_STATS.includes(key)) continue
+        const value = stats[key]
+        if (key === "startDate") {
+            dto[key] = value instanceof Date ? value.toISOString() : String(value)
+            continue
         }
+        if (isDefaultValue(value)) continue
+        if (typeof value === "boolean") { dto[key] = 1; continue }
+        dto[key] = decimalToString(value)
+    }
+    return dto
+}
+
+// Ключ задачи в контенте по самому объекту
+function findTaskId(gameData, task) {
+    for (const key in gameData.taskData)
+        if (gameData.taskData[key] === task) return key
+    return null
+}
+
+// --- Десериализация ---
+
+function deserialize(dto, gameData) {
+    if (dto == null) return gameData
+
+    // Ресурсы: отсутствующий ключ = 0
+    for (const key of DECIMAL_FIELDS)
+        gameData[key] = parseDecimal(dto[key])
+    for (const key of NUMBER_FIELDS)
+        gameData[key] = Number(dto[key] ?? 0)
+    for (const key of BOOLEAN_FIELDS)
+        gameData[key] = dto[key] ? true : false
+    gameData.active_challenge = dto.active_challenge ?? ""
+
+    // Мета-прогресс: ключи из контента, отсутствующие = 0/false
+    applyMap(gameData.perks, dto.perks)
+    applyMap(gameData.dark_matter_shop, dto.dark_matter_shop)
+    applyMap(gameData.metaverse, dto.metaverse)
+
+    // Значения испытаний — Decimal-строки
+    applyChallenges(gameData.challenges, dto.challenges)
+
+    // Выбор игрока — id разрешаются по контенту
+    gameData.currentJob = gameData.taskData[dto.currentJob] ?? gameData.taskData["job_beggar"]
+    gameData.currentProperty = gameData.itemData[dto.currentProperty] ?? gameData.itemData["item_homeless"]
+    gameData.currentMisc = (Array.isArray(dto.currentMisc) ? dto.currentMisc : [])
+        .map(id => gameData.itemData[id])
+        .filter(item => item != null)
+
+    // Прогресс — ключи из контента
+    const taskData = dto.taskData ?? {}
+    for (const key in gameData.taskData)
+        applyTask(gameData.taskData[key], taskData[key])
+
+    const itemData = dto.itemData ?? {}
+    for (const key in gameData.itemData)
+        gameData.itemData[key].unlocked = itemData[key]?.unlocked ? true : false
+
+    const requirements = dto.requirements ?? {}
+    for (const key in gameData.requirements)
+        gameData.requirements[key].completed = requirements[key]?.completed ? true : false
+
+    applySettings(gameData.settings, dto.settings)
+    applyStats(gameData.stats, dto.stats)
+
+    return gameData
+}
+
+function applyMap(target, source) {
+    source = source ?? {}
+    for (const key in target) {
+        if (!(key in source)) {
+            target[key] = typeof target[key] === "boolean" ? false : 0
+            continue
+        }
+        target[key] = coerceValue(source[key], target[key])
     }
 }
+
+function applyChallenges(challenges, source) {
+    source = source ?? {}
+    for (const key in challenges)
+        challenges[key] = key in source ? String(source[key]) : 0
+}
+
+function applyTask(task, saved) {
+    saved = saved ?? {}
+    task.level = Number(saved.level ?? 0)
+    task.maxLevel = Number(saved.maxLevel ?? 0)
+    task.xp = parseDecimal(saved.xp)
+    task.xpBigInt = parseBigInt(saved.xpBigInt)
+    task.isFinished = saved.isFinished ? true : false
+    task.unlocked = saved.unlocked ? true : false
+}
+
+function applySettings(settings, source) {
+    // Нет блока в сейве — остаётся дефолт целиком
+    if (source == null) return
+    for (const key in settings) {
+        if (!(key in source)) continue  // недостающее добирается из дефолта
+        settings[key] = coerceValue(source[key], settings[key])
+    }
+}
+
+function applyStats(stats, source) {
+    if (source == null) source = {}
+    for (const key in stats) {
+        if (TRANSIENT_STATS.includes(key)) continue  // пересчитываются каждый тик
+        if (!(key in source)) {
+            if (key === "startDate") stats[key] = new Date().toISOString()
+            else if (DECIMAL_STATS.includes(key)) stats[key] = new Decimal(0)
+            else if (typeof stats[key] === "boolean") stats[key] = false
+            else stats[key] = 0
+            continue
+        }
+        if (key === "startDate") {
+            stats[key] = source[key] instanceof Date ? source[key].toISOString() : String(source[key])
+            continue
+        }
+        stats[key] = DECIMAL_STATS.includes(key)
+            ? parseDecimal(source[key])
+            : coerceValue(source[key], stats[key])
+    }
+}
+
+// --- Save / load ---
 
 function saveGameData() {
-    localStorage.setItem("gameDataSave", JSON.stringify(gameData))
+    localStorage.setItem("gameDataSave", JSON.stringify(serialize(gameData)))
 }
 
 function peekSettingFromSave(setting) {
@@ -116,7 +296,7 @@ function peekSettingFromSave(setting) {
         const gameDataSave = JSON.parse(save)
         if (gameDataSave.settings == undefined || gameDataSave.settings[setting] == undefined)
             return gameData.settings[setting]
-        return gameDataSave.settings[setting]
+        return coerceValue(gameDataSave.settings[setting], gameData.settings[setting])
     } catch (error) {
         console.error(error)
         console.log(localStorage.getItem("gameDataSave"))
@@ -126,122 +306,16 @@ function peekSettingFromSave(setting) {
 
 function loadGameData() {
     try {
-        const gameDataSave = JSON.parse(localStorage.getItem("gameDataSave"))
+        const dto = JSON.parse(localStorage.getItem("gameDataSave"))
 
-        if (gameDataSave !== null) {
-            // When the game contains completedTimes, add 1 Dark Matter and remove the instance.
-            if ("completedTimes" in gameDataSave && gameDataSave["completedTimes"] > 0) {
-                delete gameDataSave["completedTimes"]
-                gameDataSave.dark_matter += 1
-                console.log("Gave 1 free Dark Matter")
-            }
-
-            // remove milestoneData from gameData
-            if ("milestoneData" in gameDataSave) {
-                delete gameDataSave["milestoneData"]                
-            }
-
-            replaceSaveDict(gameData, gameDataSave)
-            replaceSaveDict(gameData.requirements, gameDataSave.requirements)
-            replaceSaveDict(gameData.taskData, gameDataSave.taskData)
-            replaceSaveDict(gameData.itemData, gameDataSave.itemData)
-            replaceSaveDict(gameData.settings, gameDataSave.settings)
-            replaceSaveDict(gameData.stats, gameDataSave.stats)
-            replaceSaveDict(gameData.challenges, gameDataSave.challenges)
-            replaceSaveDict(gameData.dark_matter_shop, gameDataSave.dark_matter_shop)
-            replaceSaveDict(gameData.metaverse, gameDataSave.metaverse)
-            replaceSaveDict(gameData.perks, gameDataSave.perks)
-            gameData = gameDataSave
-
-            if (gameData.coins == null)
-                gameData.coins = 0
-
-            // Coins are stored as Decimal
-            gameData.coins = toInfinityNumber(gameData.coins)
-
-            // A save can get poisoned with Infinity (e.g. by a pre-Decimal income overflow)
-            if (!isFinite(gameData.coins.mantissa))
-                gameData.coins = new Decimal(0)
-
-            if (gameData.essence == null)
-                gameData.essence = 0
-
-            // Essence is stored as Decimal
-            gameData.essence = toInfinityNumber(gameData.essence)
-
-            if (!isFinite(gameData.essence.mantissa))
-                gameData.essence = new Decimal(0)
-
-            if (gameData.days == null)
-                gameData.days = DEFAULT_STARTING_AGE
-
-            if (gameData.evil == null)
-                gameData.evil = 0
-
-            // Evil is stored as Decimal
-            gameData.evil = toInfinityNumber(gameData.evil)
-
-            if (!isFinite(gameData.evil.mantissa))
-                gameData.evil = new Decimal(0)
-
-            // Per-second stats are stored as Decimal
-            for (const key of ["EvilPerSecond", "maxEvilPerSecond", "EssencePerSecond", "maxEssencePerSecond", "maxEssenceReached"]) {
-                gameData.stats[key] = toInfinityNumber(gameData.stats[key] ?? 0)
-                if (!isFinite(gameData.stats[key].mantissa))
-                    gameData.stats[key] = new Decimal(0)
-            }
-
-            if (gameData.dark_matter == null || isNaN(gameData.dark_matter))
-                gameData.dark_matter = 0
-
-            // Dark Matter is stored as Decimal
-            gameData.dark_matter = toInfinityNumber(gameData.dark_matter)
-
-            if (!isFinite(gameData.dark_matter.mantissa))
-                gameData.dark_matter = new Decimal(0)
-
-            if (gameData.dark_orbs == null || isNaN(gameData.dark_orbs))
-                gameData.dark_orbs = 0
-
-            // Dark orbs are stored as Decimal
-            gameData.dark_orbs = toInfinityNumber(gameData.dark_orbs)
-
-            if (gameData.hypercubes == null || isNaN(gameData.hypercubes))
-                gameData.hypercubes = 0
-
-            if (gameData.perks_points == null || isNaN(gameData.perks_points))
-                gameData.perks_points = 0
-
-            if (gameData.settings.theme == null) {
-                gameData.settings.theme = 1
-            }
-
-            if (gameData.rebirthOneTime == null || gameData.rebirthOneTime === 0) {
-                gameData.rebirthOneTime = gameData.realtime
-            }
-
-            if (gameData.rebirthTwoTime == null || gameData.rebirthTwoTime === 0) {
-                gameData.rebirthTwoTime = gameData.realtime
-            }
-
-            if (gameData.rebirthThreeTime == null || gameData.rebirthThreeTime === 0) {
-                gameData.rebirthThreeTime = gameData.realtime
-            }
-
-            if (gameData.rebirthFourTime == null || gameData.rebirthFourTime === 0) {
-                gameData.rebirthFourTime = gameData.realtime
-            }
-
-            // Remove invalid active misc items
-            gameData.currentMisc = gameData.currentMisc.filter((element) => element instanceof Item)
+        if (dto !== null) {
+            deserialize(dto, gameData)
         }
     } catch (error) {
         console.error(error)
         console.log(localStorage.getItem("gameDataSave"))
         alert("It looks like you tried to load a corrupted save... If this issue persists, feel free to contact the developers!")
     }
-
-    assignMethods()
 }
 
 function resetGameData() {
@@ -263,10 +337,11 @@ function importGameData() {
             alert("It looks like you tried to load an empty save... Paste save data into the box, then click \"Import Save\" again.")
             return
         }
-        const data = JSON.parse(window.atob(importExportBox.value))
+        const saveString = window.atob(importExportBox.value)
+        // Валидируем, что это JSON, и пишем DTO как есть — применять его будет loadGameData после перезагрузки
+        JSON.parse(saveString)
         clearInterval(gameloop)
-        gameData = data
-        saveGameData()
+        localStorage.setItem("gameDataSave", saveString)
         location.reload()
     } catch (error) {
         alert("It looks like you tried to load a corrupted save... If this issue persists, feel free to contact the developers!")
@@ -275,7 +350,7 @@ function importGameData() {
 
 function exportGameData() {
     const importExportBox = document.getElementById("importExportBox")
-    const saveString = window.btoa(JSON.stringify(gameData))
+    const saveString = window.btoa(JSON.stringify(serialize(gameData)))
     importExportBox.value = saveString
     copyTextToClipboard(saveString)
     setTimeout(() => {
