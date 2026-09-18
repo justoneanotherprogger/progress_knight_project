@@ -75,6 +75,11 @@ reward_essence: Essence
 reward_evil: Evil
 reward_dark_matter: Dark Matter
 
+# Stat names in "multiplies X gain" form
+gain_essence: Essence gain
+gain_evil: Evil gain
+gain_dark_matter: Dark Matter gain
+
 # Resource descriptions (sidebar)
 happiness_desc: Affects all XP gain
 inspiration_desc: Affects all XP gain

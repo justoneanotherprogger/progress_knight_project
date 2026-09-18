@@ -75,6 +75,11 @@ reward_essence: Эссенция
 reward_evil: Зло
 reward_dark_matter: Тёмная материя
 
+# Названия характеристик в форме «умножает получение X»
+gain_essence: получение Эссенции
+gain_evil: получение Зла
+gain_dark_matter: получение Тёмной материи
+
 # Resource descriptions (sidebar)
 happiness_desc: Влияет на получение всего опыта
 inspiration_desc: Влияет на получение всего опыта
