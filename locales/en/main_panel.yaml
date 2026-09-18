@@ -196,3 +196,51 @@ milestone_a_new_hope_name: A New Hope
 milestone_time_is_a_flat_circle_name: Time is a flat circle
 milestone_the_end_is_near_name: The End is near
 milestone_the_end_name: The End
+
+# Milestone descriptions
+milestone_magic_eye_desc: Automatically gain max levels at age 65
+milestone_almighty_eye_desc: Automatically gain max levels
+milestone_deal_with_the_devil_desc: Passively gain a small amount of Evil
+milestone_transcendent_master_desc: Essence gain
+milestone_eternal_time_desc: x10 Time Warping
+milestone_hell_portal_desc: Passively gain a huge amount of Evil
+milestone_inferno_desc: x5 Evil gain
+milestone_god_s_blessings_desc: x10M Happiness
+milestone_faint_hope_desc: Essence gain (grows with real time)
+milestone_new_beginning_desc: Heroic jobs, skills and items are unlocked
+milestone_rise_of_great_heroes_desc: Essence gain + x10000 Great XP
+milestone_lazy_heroes_desc: Great XP
+milestone_dirty_heroes_desc: Great XP
+milestone_angry_heroes_desc: Great XP
+milestone_tired_heroes_desc: Great XP
+milestone_scared_heroes_desc: Great XP
+milestone_good_heroes_desc: Great XP
+milestone_funny_heroes_desc: Great XP
+milestone_beautiful_heroes_desc: Great XP
+milestone_awesome_heroes_desc: Great XP
+milestone_furious_heroes_desc: Great XP
+milestone_superb_heroes_desc: Great XP
+milestone_a_new_beginning_desc: Unlocks Dark Matter
+milestone_mind_control_desc: Makes Hell Portal even stronger
+milestone_galactic_emperor_desc: Passively gain a small amount of Essence
+milestone_dark_matter_harvester_desc: Multiply Dark Matter gain by 10x
+milestone_a_dark_era_desc: Unlocks Dark Matter Abilities
+milestone_dark_orbiter_desc: Multiply Dark Orb gain by 1e10x
+milestone_dark_matter_mining_desc: Dark Matter gain (grows with Dark Matter and Essence)
+milestone_the_new_gold_desc: Multiply Essence gain by 1000x
+milestone_the_devil_inside_you_desc: Multiply Evil gain by 1e15x
+milestone_strange_magic_desc: Multiply Darkness xp gain by 1e50x
+milestone_speed_speed_speed_desc: Multiply Time Warping and Lifespan by 1000x. Heavily
+  boosts Faint Hope
+milestone_life_is_valueable_desc: Multiply your lifespan by 1e5x. New challenge unlocked.
+  Dark Matter boosts essence gain.
+milestone_dark_matter_millionaire_desc: Multiply Dark Matter gain by 500x
+milestone_the_new_dark_matter_desc: Unlocks Metaverse
+milestone_strong_hope_desc: Faint Hope does not reset on transcend or collapse
+milestone_ruler_of_the_metaverse_desc: Unlocks Metaverse Perks, Metaverse Guards Job
+  Category
+milestone_a_new_hope_desc: Faint Hope always at maximum
+milestone_time_is_a_flat_circle_desc: Multiply Time Warping by 1000x, Multiply all
+  xp gain by 1e50x
+milestone_the_end_is_near_desc: Unspent Multiverse Perk Points buffs Dark Matter
+milestone_the_end_desc: Congratulations! You have beaten the game!

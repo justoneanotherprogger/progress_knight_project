@@ -123,3 +123,124 @@ lvl: ур.
 essence_lower: эссенции
 challenge_title: В испытании
 
+# Rebirth / Amulet tab
+rebirth_note_0: На своём 25-м дне рождения вы натыкаетесь на странный амулет. Он вряд ли дорого стоит на рынке — ведь сделан из дешёвой меди. Однако вы чувствуете странное желание сохранить амулет, поэтому кладёте его в карман.
+rebirth_note_1: На вашем 45-м дне рождения вы чувствуете, как амулет неудержимо дрожит в кармане. Вы достаёте его, и постоянная дрожь внезапно прекращается. К вашему удивлению, вы замечаете странную гравировку в центре амулета.
+rebirth_note_2: На вашем 65-м дне рождения вы снова сталкиваетесь с необъяснимой дрожью амулета. Но на этот раз из центра появляется живой глаз. Хотя вы ужасно напуганы, вы понимаете, что вам осталось жить немного, и решаете прикоснуться к глазу.
+rebirth_note_2_info: 'Прикоснувшись к глазу, вы переродитесь и начнёте жизнь заново, потеряв все уровни и монеты. Однако вы получите <b>множители опыта</b> для героев и навыков: <b>1 + максимальный уровень героя или навыка / 10.</b> Это означает, что вы будете учиться намного быстрее.'
+rebirth_note_2_hint: 'Что-то подсказывает, что амулет может эволюционировать после проживания <b>2 целых веков</b>...'
+rebirth_note_3: 'Ваша интуиция была права. Когда вам исполняется 200 лет, вы слышите зловещий гул от амулета. Из его поверхности появляется рот и начинает хохотать, произнося: "Так вы зашли так далеко... Готовы ли вы принять <span class="color-evil">зло</span>?"'
+rebirth_note_3_hint: 'Амулет может трансформироваться ещё дальше после проживания <b>тысячелетия</b>.'
+rebirth_note_3_info: 'Если вы решите принять <span class="color-evil">зло</span>, все ваши уровни, монеты и даже максимальные уровни будут сброшены. Вы переродитесь с чистого листа. Однако вы разблокируете новую линию навыков и получите <b><span class="color-evil"><span id="evilGainDisplay"></span> зла</span></b>, что сильно повлияет на ваши будущие жизни.'
+rebirth_note_4: 'Тысяча лет прошла, и вы всё ещё живы... каким-то образом. Вы чувствуете, как амулет снова дрожит, и к вашему удивлению, из него появляются маленькие щупальца с глазами. Когда вы собираетесь бросить амулет, вы слышите пугающий визг, за которым следуют шёпот в вашей голове... <b>"Вы должны принять Бездну..."</b>'
+rebirth_note_4_hint: 'Амулет достигнет своей финальной формы после <b>десяти тысячелетий</b>!'
+rebirth_note_4_unlock: 'Вы разблокировали категорию классов <b>"Бездна"</b> вместе с навыками <b>"Манипуляция Бездной"</b>.'
+rebirth_note_5: 'Десять тысячелетий прошли... большинство из них проведено на службе у Бездны, но в вас всё ещё есть проблеск человечности. Внезапно ваш амулет начинает светить вдали, освещая тьму вокруг яркостью тысячи солнц. С последним остатком свободной воли вы бежите к амулету и прикасаетесь к нему... <b>"Теперь вы часть чего-то большего, чем вы сами..."</b>'
+rebirth_note_5_unlock: 'Вы разблокировали категорию классов <b>"Галактический Совет"</b> вместе с навыками <b>"Небесные силы"</b>.'
+rebirth_note_5_info: 'Если вы решите <b>трансцендировать</b>, вы переродитесь снова, потеряв все монеты, <b><span class="color-evil">зло</span></b> и текущие уровни. Однако ваши максимальные уровни не будут стёрты, а вместо этого умножены на эффект от навыка <b>"Эхо былых жизней"</b>, и вы получите <b><span class="color-essence"><span id="essenceGainDisplay"></span> эссенции</span></b> вместе с новыми навыками, которые помогут вам в вашем путешествии.'
+rebirth_note_5_warning: 'Трансцендирование появится только если у вас разблокирован навык <b>"Эхо былых жизней"</b>!'
+rebirth_note_6: 'Вы начали осваивать "Эхо былых жизней", открыв путь к трансцендированию.'
+rebirth_note_7: Вы становитесь слишком могущественным. Конец вселенной может быть близок...
+rebirth_note_7_info: 'Если вы решите <b>свернуть вселенную</b>, все ваши уровни, монеты, максимальные уровни, <span class="color-evil">зло</span> и <b><span class="color-essence">эссенция</span></b> будут сброшены. Вы переродитесь с чистого листа в новой вселенной, без памяти о вехах и испытаниях прошлых жизней. Взамен вы разблокируете третью линию навыков и получите <b><span class="color-dark-matter"><span id="darkMatterGainDisplay"></span> тёмной материи</span></b>, что значительно усилит вас в путешествии по мультивселенной.'
+rebirth_note_8: Вы открыли Метавселенную!
+rebirth_note_8_info: Когда вы перейдёте в Метавселенную, вы потеряете всё, что заработали ранее. Вы начнёте с нуля, но со временем станете намного сильнее.
+hypercube_cap_text: 'Ваш лимит <span class="color-hypercubes">гиперкубов</span> будет увеличен до <span class="color-hypercubes"><span id="hypercubeCapDisplay"></span></span>.'
+perk_points_gain_text: 'Вы получите <span class="color-perk-points"><span id="perkPointsGainDisplay"></span> очков даров Метавселенной</span>.'
+
+# Settings
+stats_tab_header: Статистика
+settings_tab_header: Настройки
+changelog_tab_header: История изменений
+import_save: Импорт сохранения
+export_save: Экспорт сохранения
+import_save_placeholder: Вставьте сохранение сюда
+save_copied: Сохранение скопировано в буфер обмена!
+hard_reset: Полный сброс игры
+admin_password_label: Пароль админа
+admin_speed_label: Скорость
+admin_check_button: Проверить
+links: Ссылки
+language: Язык
+
+# Settings options
+sticky_sidebar: Закреплённые панели (верхняя и боковая)
+currency_notation: Обозначение валют
+number_notation: Обозначение чисел
+layout: Макет
+font_size: Размер шрифта
+color_scheme: Цветовая схема
+dangerous_keybinds: Опасные горячие клавиши
+
+# Currency options
+currency_medieval: Средневековое
+currency_extended: Расширенное
+currency_british: Британское £sd
+currency_modern: Современное $
+
+# Notation options
+notation_standard: Стандартное
+notation_scientific: Научное
+notation_engineering: Инженерное
+
+# Layout options
+layout_standard: Стандартный
+layout_wide: Ш И Р О К И Й
+
+# Font size
+font_smaller: Меньше
+font_larger: Больше
+
+# Theme options
+theme_light: Светлая
+theme_dark: Тёмная
+theme_colorblind: Для дальтоников
+
+# Keybinds
+enabled: Включены
+disabled: Отключены
+
+# Shortcuts
+shortcuts: Горячие клавиши
+shortcut_arrows: Стрелки - Навигация по меню
+shortcut_space: Пробел - Пауза
+shortcut_q: q - Прикоснуться к глазу
+shortcut_e: e - Принять зло
+shortcut_t: t - Трансцендировать
+shortcut_u: u - Свернуть вселенную
+shortcut_g: g - Перейти в Метавселенную
+shortcut_challenge: 1 - Войти / Выйти из Испытания 1 и т.д.
+
+# Links
+links_based_on: 'Основано на <a href="https://indomit.github.io/progress_knight_2/" target="_blank">Progress Knight Quest</a>'
+links_based_on_2: 'Которая основана на <a href="https://symb1.github.io/progress_knight_2/" target="_blank">Progress Knight 2.0</a>'
+links_original_game: 'Оригинальная игра: <a href="https://ihtasham42.github.io/progress-knight/" target="_blank">Progress Knight</a>'
+links_discord: '<a href="https://discord.gg/fTRS4pHGka" target="_blank">Присоединиться к сообществу Discord!</a>'
+links_github: '<a href="https://github.com/justoneanotherprogger/progress_knight_project" target="_blank">Страница этой модификации на GitHub</a>'
+
+# Stats
+stats_start_date: 'Вы начали играть в игру <span id="startDateDisplay"></span>, <span id="playedDaysDisplay"></span> дней назад.'
+stats_played_real_time: 'Вы играли <span id="playedRealTimeDisplay"></span> (реальное время).'
+stats_played_game_time: 'Ваше существование охватывает <span id="playedGameTimeDisplay"></span> дней (игровое время).'
+stats_rebirth1_count: 'Вы прикасались к глазу <span id="rebirthOneCountDisplay"></span> раз.'
+stats_rebirth1_time: 'Вы провели <span id="rebirthOneTimeDisplay"></span> в этой жизни.'
+stats_rebirth1_fastest: 'Ваше самое быстрое прикосновение: <span id="rebirthOneFastestDisplay"></span>.'
+stats_rebirth2_count: 'Вы принимали зло <span id="rebirthTwoCountDisplay"></span> раз.'
+stats_rebirth2_time: 'Вы провели <span id="rebirthTwoTimeDisplay"></span> в этом принятии.'
+stats_rebirth2_fastest: 'Ваше самое быстрое принятие: <span id="rebirthTwoFastestDisplay"></span>.'
+stats_evil_gain: 'Вы получаете <span id="evilPerSecondDisplay"></span> зла/с. Максимум <span id="maxEvilPerSecondDisplay"></span> зла/с был при <span id="maxEvilPerSecondRtDisplay"></span>.'
+stats_rebirth3_count: 'Вы трансцендировали <span id="rebirthThreeCountDisplay"></span> раз.'
+stats_rebirth3_time: 'Вы провели <span id="rebirthThreeTimeDisplay"></span> в этой трансценденции.'
+stats_rebirth3_fastest: 'Ваша самая быстрая трансценденция: <span id="rebirthThreeFastestDisplay"></span>.'
+stats_essence_gain: 'Вы получаете <span id="essencePerSecondDisplay"></span> эссенции/с. Максимум <span id="maxEssencePerSecondDisplay"></span> эссенции/с был при <span id="maxEssencePerSecondRtDisplay"></span>.'
+stats_rebirth4_count: 'Вы сворачивали вселенную <span id="rebirthFourCountDisplay"></span> раз.'
+stats_rebirth4_time: 'Вы провели <span id="rebirthFourTimeDisplay"></span> в этом свёртывании.'
+stats_rebirth4_fastest: 'Ваше самое быстрое свёртывание: <span id="rebirthFourFastestDisplay"></span>.'
+stats_rebirth5_count: 'Вы путешествовали в Метавселенную <span id="rebirthFiveCountDisplay"></span> раз.'
+stats_rebirth5_time: 'Вы провели <span id="rebirthFiveTimeDisplay"></span> в этой Метавселенной.'
+stats_rebirth5_fastest: 'Ваше самое быстрое путешествие в Метавселенную: <span id="rebirthFiveFastestDisplay"></span>.'
+stats_challenge_1: 'Награда за Испытание 1: Умножает удобства жизни на x<span id="challengeHappinessBuffDisplay"></span>.'
+stats_challenge_2: 'Награда за Испытание 2: Умножает доход на x<span id="challengeIncomeBuffDisplay"></span>.'
+stats_challenge_3: 'Награда за Испытание 3: Умножает искажение времени на x<span id="challengeTimewarpingBuffDisplay"></span>.'
+stats_challenge_4: 'Награда за Испытание 4: Умножает получение эссенции на x<span id="challengeEssenceGainBuffDisplay"></span>.'
+stats_challenge_5: 'Награда за Испытание 5: Умножает получение зла на x<span id="challengeEvilGainBuffDisplay"></span>.'
+stats_challenge_6: 'Награда за Испытание 6: Умножает получение Тёмной материи на x<span id="challengeDarkMaterGainBuffDisplay"></span>.'
