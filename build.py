@@ -165,6 +165,7 @@ def load_entity_names():
                 for entity_id, entity in category["items"].items():
                     entity_meta.setdefault(stem, {})[entity_id] = {
                         "name": entity.get("name"),
+                        "desc": entity.get("description"),
                         "tooltip": entity.get("tooltip"),
                     }
             else:
@@ -212,24 +213,15 @@ def validate(html: str, locales: dict, errors=None):
         if missing_tt:
             errors.append(f"[{lang}] Missing tt_ keys: {missing_tt}")
         for stem, entity_ids in content.items():
-            if stem in ("items", "skills", "jobs"):
-                meta = entity_meta.get(stem, {})
-                for entity_id in sorted(entity_ids):
-                    m = meta.get(entity_id, {})
-                    name_key = m.get("name")
-                    tooltip_key = m.get("tooltip")
-                    if name_key and name_key not in keys:
-                        errors.append(f"[{lang}] Missing {name_key} translation")
-                    if tooltip_key and tooltip_key not in keys:
-                        errors.append(f"[{lang}] Missing {tooltip_key} translation")
-            elif stem == "milestones" and stem in unified_stems:
-                for milestone_id in sorted(entity_ids):
-                    if (milestone_id + "_name") not in keys:
-                        errors.append(f"[{lang}] Missing {milestone_id}_name translation")
-                    if (milestone_id + "_desc") not in keys:
-                        errors.append(f"[{lang}] Missing {milestone_id}_desc translation")
-                    if ("tt_" + milestone_id + "_name") not in keys:
-                        errors.append(f"[{lang}] Missing tt_{milestone_id}_name translation")
+            if stem not in unified_stems:
+                continue
+            meta = entity_meta.get(stem, {})
+            for entity_id in sorted(entity_ids):
+                m = meta.get(entity_id, {})
+                for field in ("name", "desc", "tooltip"):
+                    key = m.get(field)
+                    if key and key not in keys:
+                        errors.append(f"[{lang}] Missing {key} translation")
 
     if errors:
         print("\n=== BUILD VALIDATION FAILED ===", file=sys.stderr)

@@ -1,25 +1,25 @@
 # Tooltips: Essence + Heroic Milestones
-tt_milestone_magic_eye_name: The Eye in your Amulet starts to glow.
-tt_milestone_almighty_eye_name: The Eye in your Amulet shines like a star.
-tt_milestone_deal_with_the_devil_name: You made a deal with the Devil.
-tt_milestone_transcendent_master_name: You've mastered Transcendence.
-tt_milestone_eternal_time_name: Does time matter now?
-tt_milestone_hell_portal_name: You've opened a portal to Hell.
-tt_milestone_inferno_name: You are at the last level of Hell. What is next?
-tt_milestone_faint_hope_name: Maybe there is hope?
-tt_milestone_a_new_beginning_name: Unlocks the ability to reset for Dark Matter
-tt_milestone_new_beginning_name: Try to upgrade One Above All to level 2000
-tt_milestone_rise_of_great_heroes_name: Every active Great job or skill (a slot with
+milestone_magic_eye_tooltip: The Eye in your Amulet starts to glow.
+milestone_almighty_eye_tooltip: The Eye in your Amulet shines like a star.
+milestone_deal_with_the_devil_tooltip: You made a deal with the Devil.
+milestone_transcendent_master_tooltip: You've mastered Transcendence.
+milestone_eternal_time_tooltip: Does time matter now?
+milestone_hell_portal_tooltip: You've opened a portal to Hell.
+milestone_inferno_tooltip: You are at the last level of Hell. What is next?
+milestone_faint_hope_tooltip: Maybe there is hope?
+milestone_a_new_beginning_tooltip: Unlocks the ability to reset for Dark Matter
+milestone_new_beginning_tooltip: Try to upgrade One Above All to level 2000
+milestone_rise_of_great_heroes_tooltip: Every active Great job or skill (a slot with
   the "Great" status) will increase Essence gain a bit.
-tt_milestone_lazy_heroes_name: Total Great XP multiplier is 5e20
-tt_milestone_dirty_heroes_name: Total Great XP multiplier is 5e35
-tt_milestone_angry_heroes_name: Total Great XP multiplier is 5e50
-tt_milestone_tired_heroes_name: Total Great XP multiplier is 5e65
-tt_milestone_scared_heroes_name: Total Great XP multiplier is 5e80
-tt_milestone_good_heroes_name: Total Great XP multiplier is 5e95
-tt_milestone_funny_heroes_name: Total Great XP multiplier is 5e120
-tt_milestone_beautiful_heroes_name: Total Great XP multiplier is 5e170
-tt_milestone_awesome_heroes_name: Total Great XP multiplier is 5e180
-tt_milestone_furious_heroes_name: Total Great XP multiplier is 5e198
-tt_milestone_superb_heroes_name: Total Great XP multiplier is 5e201
-tt_milestone_god_s_blessings_name: May God bless you!
+milestone_lazy_heroes_tooltip: Total Great XP multiplier is 5e20
+milestone_dirty_heroes_tooltip: Total Great XP multiplier is 5e35
+milestone_angry_heroes_tooltip: Total Great XP multiplier is 5e50
+milestone_tired_heroes_tooltip: Total Great XP multiplier is 5e65
+milestone_scared_heroes_tooltip: Total Great XP multiplier is 5e80
+milestone_good_heroes_tooltip: Total Great XP multiplier is 5e95
+milestone_funny_heroes_tooltip: Total Great XP multiplier is 5e120
+milestone_beautiful_heroes_tooltip: Total Great XP multiplier is 5e170
+milestone_awesome_heroes_tooltip: Total Great XP multiplier is 5e180
+milestone_furious_heroes_tooltip: Total Great XP multiplier is 5e198
+milestone_superb_heroes_tooltip: Total Great XP multiplier is 5e201
+milestone_god_s_blessings_tooltip: May God bless you!
