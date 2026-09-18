@@ -33,6 +33,8 @@ function renderSideBar() {
     else
         setRebirthButton("rebirthBtn5", t("rebirth_5"), "")
     fitText(document.getElementById("rebirthBtn5"), 16)
+    const boostPanel = document.getElementById("boostPanel")
+    boostPanel.style.whiteSpace = "nowrap"
     document.getElementById("boostPanel").hidden = gameData.rebirthFiveCount == 0
     renderBoostButton("boostButton")
 

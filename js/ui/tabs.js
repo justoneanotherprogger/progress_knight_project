@@ -129,9 +129,6 @@ function renderMilestones() {
         if (milestone.getEffect != null)
             desc = "x" + format(milestone.getEffect(), 1) + " " + desc
 
-        if (milestone.baseData.effect != null)
-            desc = "x" + format(milestone.baseData.effect, 0) + " " + desc
-
         row.querySelector(".description").textContent = desc
 
         const milestoneName = row.querySelector(".name")
