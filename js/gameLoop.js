@@ -202,7 +202,7 @@ function makeHero(task) {
     if ((task instanceof Job || task instanceof Skill) && !task.isHero) {
         task.level = 0
         task.maxLevel = 0
-        task.xp = 0
+        task.xp = new Decimal(0)
         task.isHero = true
     }
 }

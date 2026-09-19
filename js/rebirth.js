@@ -211,10 +211,8 @@ function rebirthReset(set_tab_to_jobs = true) {
         const task = gameData.taskData[taskName]
         if (task.level > task.maxLevel) task.maxLevel = task.level
         task.level = 0
-        task.xp = 0
-        task.xpBigInt = BigInt(0)
+        task.xp = new Decimal(0)
         task.isHero = false
-        task.isFinished =false
     }
 
     for (const itemName in gameData.itemData) {

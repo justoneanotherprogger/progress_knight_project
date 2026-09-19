@@ -206,36 +206,6 @@ function removeStrangeCharacters(string) {
     return string.replace(/'/g, "")
 }
 
-function bigIntToExponential(value) {
-    if(typeof value !== 'bigint') throw new Error("Argument must be a bigint, but a " + (typeof value) + " was supplied.");
-
-    const isNegative = value < 0;
-    if (isNegative) value = -value; // Using the absolute value for the digits.
-
-    const str = value.toString();
-
-    const exp = str.length - 1;
-    if (exp == 0) return (isNegative ? "-" : '') + str + "e0";
-
-    const mantissaDigits = str.replace(/(0+)$/, ''); // Remove any mathematically insignificant zeroes.
-
-    // Use the single first digit for the integral part of the mantissa
-    const mantissa = mantissaDigits.charAt(0);
-
-    return (isNegative ? "-" : '') + mantissa + "e" + exp.toString();
-}
-
-function exponentialToRawNumberString(value) {
-    if (value == "" || value.length == 0)
-        return "0"
-
-    const split = value.split("e")
-    const first = split[0]
-    const exponent = Number(split[1])
-
-    return first + [...Array(exponent)].map(() => "0").join("")
-}
-
 function getChallengeTaskGoalProgress(taskName) {
     if (!Object.keys(gameData.taskData).includes(taskName))
         return 0

@@ -132,6 +132,10 @@ const heroIncomeMult = 2.5e18
 // --- Hero XP ---
 const HERO_XP_BASE_JOB = 50000
 
+// --- Task XP cost ---
+const TASK_XP_GROWTH = 1.01
+const TASK_HERO_XP_GROWTH = 1.08
+
 // --- Lifespan ---
 const COINPILE_LOG_BASE = 10
 const COINPILE_MULTIPLIER = 20

@@ -58,15 +58,6 @@ function parseDecimal(value) {
     return decimal
 }
 
-// BigInt из сейва: поддерживает экспоненциальную запись ("1.5e250") и обычные числа
-function parseBigInt(value) {
-    if (typeof value === "bigint") return value
-    if (typeof value === "string" && value.includes("e"))
-        return BigInt(exponentialToRawNumberString(value))
-    if (typeof value === "number") return BigInt(Math.floor(value))
-    return BigInt(String(value ?? 0))
-}
-
 // --- Сериализация ---
 
 // Значение мета-прогресса: boolean → 1, число/Decimal → строка, null если дефолт
@@ -90,8 +81,6 @@ function serializeTask(task) {
     if (!isDefaultValue(task.level)) dto.level = String(task.level)
     if (!isDefaultValue(task.maxLevel)) dto.maxLevel = String(task.maxLevel)
     if (!isDefaultValue(task.xp)) dto.xp = decimalToString(task.xp)
-    if (!isDefaultValue(task.xpBigInt)) dto.xpBigInt = bigIntToExponential(task.xpBigInt)
-    if (task.isFinished) dto.isFinished = 1
     if (task.unlocked) dto.unlocked = 1
     return dto
 }
@@ -247,8 +236,6 @@ function applyTask(task, saved) {
     task.level = Number(saved.level ?? 0)
     task.maxLevel = Number(saved.maxLevel ?? 0)
     task.xp = parseDecimal(saved.xp)
-    task.xpBigInt = parseBigInt(saved.xpBigInt)
-    task.isFinished = saved.isFinished ? true : false
     task.unlocked = saved.unlocked ? true : false
 }
 

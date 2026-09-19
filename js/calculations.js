@@ -124,10 +124,56 @@ function applyUnpausedSpeed(value) {
     return value * getUnpausedGameSpeed() / updateSpeed
 }
 
-function applySpeedOnBigInt(value) {
-    if (value == 0n)
-        return 0n
-    return value * BigInt(Math.floor(getGameSpeed())) / BigInt(Math.floor(updateSpeed))
+function getTaskBaseXp(task) {
+    if (task.isHero)
+        return new Decimal(10).pow(task.baseData.heroxp).times(task.baseData.maxXp)
+    return toInfinityNumber(task.baseData.maxXp)
+}
+
+function getTaskGrowth(task) {
+    return task.isHero ? TASK_HERO_XP_GROWTH : TASK_XP_GROWTH
+}
+
+// Стоимость перехода с level на level+1. Растёт геометрически,
+// поэтому для больших уровней нужен Decimal, а не Number.
+function getTaskMaxXp(task, level) {
+    return getTaskBaseXp(task).times(level + 1).times(new Decimal(getTaskGrowth(task)).pow(level))
+}
+
+// Суммарная стоимость k уровней, начиная с level.
+// Σ (level+1+i)·r^(level+i) раскладывается в сумму двух геометрических прогрессий:
+// (level+1)·Σr^i + Σi·r^i, что даёт замкнутую формулу вместо O(k) цикла.
+function getTaskXpRange(task, level, k) {
+    if (k <= 0) return new Decimal(0)
+    const r = new Decimal(getTaskGrowth(task))
+    const rm1 = r.sub(1)
+    const rk = r.pow(k)
+    const geom = rk.sub(1).div(rm1)
+    const arith = rk.times(k).times(rm1).sub(r.times(rk.sub(1))).div(rm1.times(rm1))
+    return getTaskBaseXp(task).times(r.pow(level)).times(new Decimal(level + 1).times(geom).plus(arith))
+}
+
+// Сколько уровней покрывает накопленный xp — максимальное k, для которого
+// сумма стоимости k уровней не превосходит xp. Монотонность по k позволяет
+// искать уровни галопом и бинарным поиском: O(log k) вызовов формулы суммы.
+// Потолок нужен для Infinity-значений xp (множители gain могут дать Infinity):
+// тогда сумма никогда не превзойдёт xp, и галоп ушёл бы в бесконечный цикл.
+const MAX_LEVELS_PER_TICK = 1e9
+
+function getTaskLevelsToClimb(task, level, xp) {
+    let lo = 0
+    let hi = 1
+    while (hi < MAX_LEVELS_PER_TICK && getTaskXpRange(task, level, hi).lte(xp)) {
+        lo = hi
+        hi *= 2
+    }
+    if (hi > MAX_LEVELS_PER_TICK) hi = MAX_LEVELS_PER_TICK
+    while (lo + 1 < hi) {
+        const mid = Math.floor((lo + hi) / 2)
+        if (getTaskXpRange(task, level, mid).lte(xp)) lo = mid
+        else hi = mid
+    }
+    return lo
 }
 
 function getEvilGain() {

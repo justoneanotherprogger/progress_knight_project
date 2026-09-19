@@ -4,10 +4,8 @@ class Task {
         this.name = baseData.name
         this.level = 0
         this.maxLevel = 0
-        this.xp = 0
-        this.xpBigInt = BigInt(0)
+        this.xp = new Decimal(0)
         this.isHero = false
-        this.isFinished = false
         this.unlocked = false
 
         this.xpMultipliers = []
@@ -16,26 +14,11 @@ class Task {
     }
 
     getMaxXp() {
-        const maxXp = (this.isHero ? Math.pow(10, this.baseData.heroxp) : 1) * this.baseData.maxXp * (this.level + 1) * Math.pow(this.isHero ? 1.08 : 1.01, this.level)
-
-        if (isNaN(maxXp) || maxXp == Infinity || maxXp > 1e305) {
-            this.isFinished = true
-        }
-
-        return maxXp
-    }
-
-    getMaxBigIntXp() {
-        const maxXp = this.getMaxXp() == Infinity ? BigInt(1e305) : BigInt(Math.floor(this.getMaxXp()));
-
-        if (maxXp < 1e305)
-            return maxXp
-
-        return maxXp * 2n ** (BigInt(this.level) / 120n) * (2n ** (BigInt(this.baseData.heroxp) / 9n))
+        return getTaskMaxXp(this, this.level)
     }
 
     getXpLeft() {
-        return this.getMaxXp() - this.xp
+        return this.getMaxXp().minus(this.xp)
     }
 
     getMaxLevelMultiplier() {
@@ -50,81 +33,26 @@ class Task {
     }
 
     getXpGain() {
-        return (this.isHero ? getHeroXpGainMultipliers(this) : 1) * applyMultipliers(10, this.xpMultipliers).toNumber()
-    }
-
-    getXpGainBigInt() {
-        let baseValue = this.isHero ? getHeroXpGainMultipliers(this) : 1
-        let xpGain = BigInt(Math.floor(Number(baseValue)))
-
-        this.xpMultipliers.forEach(multiplier => {
-            let val = Number(multiplier())
-            if (!isFinite(val)) val = 1
-            xpGain *= BigInt(Math.ceil(val))
-        })
-
-        return xpGain
+        return applyMultipliers(10, this.xpMultipliers)
+            .times(toInfinityNumber(this.isHero ? getHeroXpGainMultipliers(this) : 1))
     }
 
     getXpGainFormatted() {
-        if (this.isFinished)
-            return bigIntToExponential(this.getXpGainBigInt())
         return format(this.getXpGain())
     }
 
     getXpLeftFormatted() {
-        if (this.isFinished)
-            return bigIntToExponential(this.getMaxBigIntXp() - this.xpBigInt)
         return format(this.getXpLeft())
     }
 
     increaseXp() {
-        if (this.isFinished) {
-            this.xpBigInt += applySpeedOnBigInt(this.getXpGainBigInt())
+        this.xp = this.xp.plus(applySpeed(this.getXpGain()))
 
-            if (this.xpBigInt >= this.getMaxBigIntXp()) {
-                let excess = this.xpBigInt - this.getMaxBigIntXp()
-
-                let iterations = 0
-                while (excess >= 0n) {
-                    iterations += 1
-
-                    // This amount is way lower because calculations with a BigInt are really expensive.
-                    // Probably want to look into more optimizations.
-                    if (iterations > 300)
-                        excess = -1n
-
-                    this.level += 1
-                    this.unlocked = true
-                    excess -= this.getMaxBigIntXp()
-                }
-                this.xpBigInt = this.getMaxBigIntXp() + excess
-            }
-        } else {
-            this.xp += applySpeed(this.getXpGain())
-
-            if (this.xp > 1e275 || isNaN(this.xp) || this.xp == Infinity || this.getXpGain() == Infinity
-                || this.getMaxXp() == Infinity || this.getXpLeft() == Infinity) {
-                this.isFinished = true
-                return
-            }
-
-            if (this.xp >= this.getMaxXp()) {
-                let excess = this.xp - this.getMaxXp()
-
-                let iterations = 0
-                while (excess >= 0) {
-                    iterations += 1
-
-                    if (iterations > 2500)
-                        excess = -1
-
-                    this.level += 1
-                    this.unlocked = true
-                    excess -= this.getMaxXp()
-                }
-                this.xp = this.getMaxXp() + excess
-            }
+        if (this.xp.gte(this.getMaxXp())) {
+            const levels = getTaskLevelsToClimb(this, this.level, this.xp)
+            this.xp = this.xp.minus(getTaskXpRange(this, this.level, levels))
+            this.level += levels
+            this.unlocked = true
         }
     }
 

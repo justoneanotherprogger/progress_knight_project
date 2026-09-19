@@ -48,20 +48,18 @@ function fitText(element, maxFontSize) {
 }
 
 function renderProgressBar(task, progressFill, progressBar){
-    if (task.isFinished) {
-        let width = 0
-        if (task.level > 10000) {
-            width = task.level % 100
-        }
-        else {
-            width = 100n * task.xpBigInt / task.getMaxBigIntXp()
-            if (width > 100n)
-                width = 100n
-        }        
-        progressFill.style.width = width + "%"
+    let width
+    if (task.level > 10000) {
+        // На таких уровнях реальный прогресс по xp незаметен глазу,
+        // поэтому полосу водит по level — как визуальный пульс.
+        width = task.level % 100
     }
-    else
-        progressFill.style.width = task.xp / task.getMaxXp() * 100 + "%"
+    else {
+        width = task.xp.div(task.getMaxXp()).times(100).toNumber()
+    }
+    if (width > 100)
+        width = 100
+    progressFill.style.width = width + "%"
 
     if (task.isHero) {
         progressFill.classList.add("progress-fill-hero")
