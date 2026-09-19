@@ -139,6 +139,15 @@ td {
     align-items: center;
 }
 
+/* Первая колонка таблиц задач не держит ширину: полоска у неё width: 100%,
+   а имя и тултип — position: absolute. При авто-лайауте место под них
+   разбирают соседние колонки, и длина полосок плывёт от панели к панели.
+   min-width фиксирует сетку, не трогая поведение остальных колонок. */
+#jobTable tr > :first-child,
+#skillTable tr > :first-child {
+    min-width: 20em;
+}
+
 .progress-bar {
     margin-top: 0.05em;
     position: relative;
