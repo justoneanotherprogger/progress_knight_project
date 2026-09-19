@@ -110,8 +110,8 @@ goal: Цель
 reward: Награда
 level: Уровень
 xp_day: Опыт/дн.
-xp_left: До след. ур.
-max_level: Макс. ур.
+xp_left: До уровня
+max_level: Макс.
 value_type: Тип значения
 cost: Стоимость
 buy: Купить
