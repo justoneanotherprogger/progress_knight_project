@@ -17,12 +17,13 @@ function significantDecimals(scaled) {
 
 // Усечение вместо округления: отображаемое число никогда не превышает
 // реальное — 9997 опыта читаются как «9.99k», а не округлённое «10.0k».
+// Хвостовые нули сохраняются — фиксированная длина строки не дрожит
+// при быстром росте значения.
 function formatMantissa(scaled) {
     const decimals = significantDecimals(scaled)
     const factor = Math.pow(10, decimals)
     const truncated = Math.floor(scaled * factor) / factor
-    // Хвостовые нули не несут информации: «2.00k» -> «2k».
-    return String(parseFloat(truncated.toFixed(decimals)))
+    return truncated.toFixed(decimals)
 }
 
 function format(number, decimals = 1) {
