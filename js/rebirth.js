@@ -60,7 +60,6 @@ function rebirthFour() {
         for (const challenge in gameData.challenges) {
             gameData.challenges[challenge] = 0
         }
-        gameData.requirements["req_challenges_tab_button"].completed = false
     }
 
     if (gameData.stats.fastest4 == null || gameData.rebirthFourTime < gameData.stats.fastest4)
@@ -108,7 +107,6 @@ function rebirthFive() {
         for (const challenge in gameData.challenges) {
             gameData.challenges[challenge] = 0
         }
-        gameData.requirements["req_challenges_tab_button"].completed = false
     }
 
     // Метавселенский сброс: тёмная материя обнулилась, требования по ней
