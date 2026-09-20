@@ -85,7 +85,9 @@ function renderSkills() {
         valueElement.querySelector(".income").style.display = false
         valueElement.querySelector(".effect").style.display = true
 
-        valueElement.querySelector(".effect").textContent = task.getEffectDescription()
+        const effectElement = valueElement.querySelector(".effect")
+        effectElement.textContent = task.getEffectDescription()
+        fitText(effectElement, 16)
     }
 }
 
