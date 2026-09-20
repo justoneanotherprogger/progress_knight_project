@@ -109,9 +109,6 @@ function renderSideBar() {
         renderCurrentChallengeRewardValue(true)
     }
 
-    if (getDarkMatter().eq(0))
-        gameData.requirements["req_dark_matter_info"].completed = false
-
     updateResourceScale()
 }
 

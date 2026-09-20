@@ -340,7 +340,11 @@ class DarkMatterRequirement extends Requirement {
     }
 
     getCondition(isHero, requirement) {
-        return gameData.dark_matter.gte(requirement.requirement)
+        // strict: «есть любая материя» — она дробная, и порог 1 прячет топбар
+        // и категорию при значениях вроде 0.3 сразу после ребёрна.
+        return requirement.strict
+            ? gameData.dark_matter.gt(requirement.requirement)
+            : gameData.dark_matter.gte(requirement.requirement)
     }
 }
 

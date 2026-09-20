@@ -38,7 +38,7 @@
     "category_darkness": {
       "type": "darkMatter",
       "selectors": [".category_darkness"],
-      "requirements": [{"requirement": 1}]
+      "requirements": [{"requirement": 0, "strict": true}]
     },
     "category_metaverse_guards": {
       "type": "essence",
@@ -213,7 +213,7 @@
     "req_dark_matter_info": {
       "type": "darkMatter",
       "selectors": ["#darkMatterInfo"],
-      "requirements": [{"requirement": 1}]
+      "requirements": [{"requirement": 0, "strict": true}]
     },
     "req_dark_orbs_info": {
       "type": "darkOrb",
@@ -683,7 +683,7 @@
     "req_dark_matter_tab_button": {
       "type": "darkMatter",
       "selectors": ["#darkMatterTabButton"],
-      "requirements": [{"requirement": 1}]
+      "requirements": [{"requirement": 0, "strict": true}]
     },
     "req_skill_tree_tab_tab_button": {
       "type": "essence",
