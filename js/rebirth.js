@@ -111,6 +111,12 @@ function rebirthFive() {
         gameData.requirements["req_challenges_tab_button"].completed = false
     }
 
+    // Метавселенский сброс: тёмная материя обнулилась, требования по ней
+    // открываются заново.
+    for (const key of metaverseResetUnlocks) {
+        gameData.requirements[key].completed = false
+    }
+
     gameData.requirements["req_dark_matter_tab_button"].completed = false
     gameData.requirements["req_skill_tree_tab_tab_button"].completed = false
     gameData.requirements["req_skill_tree_page"].completed = false
@@ -221,7 +227,9 @@ function rebirthReset(set_tab_to_jobs = true) {
 
     for (const key in gameData.requirements) {
         const requirement = gameData.requirements[key]
-        if (requirement.completed && (permanentUnlocks.includes(key) || metaverseUnlocks.includes(key))) continue
+        // Тёмная материя обнуляется только на ребёрне-5, поэтому её требования
+        // кэшируются до метавселенского сброса, а не до любого.
+        if (requirement.completed && (permanentUnlocks.includes(key) || metaverseUnlocks.includes(key) || metaverseResetUnlocks.includes(key))) continue
         requirement.completed = false
     }
 

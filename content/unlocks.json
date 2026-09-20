@@ -18,6 +18,14 @@
     "req_challenge_altar",
     "req_dark_mater_altar"
   ],
+  "metaverseResetUnlocks": [
+    "skill_dark_prince",
+    "skill_dark_ruler",
+    "skill_immortal_ruler",
+    "skill_dark_magician",
+    "skill_universal_ruler",
+    "skill_blinded_by_darkness"
+  ],
   "shopPermanentUnlocks": {
     "a_miracle": "milestone_magic_eye"
   }
