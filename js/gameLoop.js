@@ -224,6 +224,12 @@ function makeHeroes() {
         const req = gameData.requirements[taskname]
         let isNewHero = true
 
+        // Геройская версия не открывается раньше обычной: кэш isCompleted()
+        // фиксирует обычное открытие на уровне забега, поэтому требование не
+        // может быть снято обнулением уровня при героизации предка.
+        if (!req.isCompleted())
+            continue
+
         if (req instanceof TaskRequirement) {
             if (!req.isCompletedActual(true))
                 continue

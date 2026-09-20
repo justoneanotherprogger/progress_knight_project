@@ -249,15 +249,15 @@ class Requirement {
         })
     }
 
-    // У большинства требований условие может стать ложным: монеты тратятся,
-    // эссенция обнуляется на старших перерождениях, возраст сбрасывается.
-    // Кэшировать выполненность можно только для перманентных разблокировок
-    // и того, что куплено вручную (completed=true выставляет, например,
-    // чудо из магазина тёмной материи).
+    // Выполненность фиксируется на уровне забега: условие могло стать ложным
+    // к середине забега (предок-герой обнулил уровень, эссенция потрачена),
+    // но открытое должно оставаться открытым. rebirthReset() сносит completed
+    // для неперманентных, permanentUnlocks/metaverseUnlocks и купленное в
+    // магазине тёмной материи живут вечно.
     isCompleted() {
         if (this.completed) return true
         const completed = this.isCompletedActual()
-        if (this.permanent && completed) this.completed = true
+        if (completed) this.completed = true
         return completed
     }
 
@@ -280,8 +280,6 @@ class TaskRequirement extends Requirement {
     getCondition(isHero, requirement) {
         if (isHero && requirement.herequirement != null)
             return gameData.taskData[requirement.task].level >= requirement.herequirement
-        else if (gameData.taskData[requirement.task].isHero && requirement.isHero)
-            return true
         else
             return gameData.taskData[requirement.task].level >= requirement.requirement
     }
