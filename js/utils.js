@@ -7,6 +7,24 @@ function softcap(value, cap, power = 0.5) {
     return decValue.pow(power).times(decCap.pow(1 - power))
 }
 
+// Знаки после точки для мантиссы из [1, 1000): до трёх значащих цифр —
+// 9.99k, 99.9k, 999k.
+function significantDecimals(scaled) {
+    if (scaled >= 100) return 0
+    if (scaled >= 10) return 1
+    return 2
+}
+
+// Усечение вместо округления: отображаемое число никогда не превышает
+// реальное — 9997 опыта читаются как «9.99k», а не округлённое «10.0k».
+function formatMantissa(scaled) {
+    const decimals = significantDecimals(scaled)
+    const factor = Math.pow(10, decimals)
+    const truncated = Math.floor(scaled * factor) / factor
+    // Хвостовые нули не несут информации: «2.00k» -> «2k».
+    return String(parseFloat(truncated.toFixed(decimals)))
+}
+
 function format(number, decimals = 1) {
     // Convert to Decimal for large numbers
     const decNumber = toInfinityNumber(number);
@@ -24,6 +42,8 @@ function format(number, decimals = 1) {
     const log10 = decNumber.log10();
     const tier = Math.floor(log10 / 3);
 
+    // Малые числа показываем с той точностью, которую просит вызывающий код —
+    // на старте игры важны и копейки.
     if (tier <= 0) {
         return decNumber.toFixed(decimals);
     }
@@ -31,19 +51,18 @@ function format(number, decimals = 1) {
     if ((gameData.settings.numberNotation == 0 || tier < 3) && (tier < units.length)) {
         const suffix = units[tier];
         const scale = Math.pow(10, tier * 3);
-        const scaled = decNumber / scale;
-        return scaled.toFixed(decimals) + suffix;
+        return formatMantissa(decNumber / scale) + suffix;
     } else {
         if (gameData.settings.numberNotation == 1) {
             const exp = Math.floor(log10);
             // Math.pow(10, exp) becomes Infinity past 1e308; keep scaling in Decimal
-            const scaled = decNumber.div(new Decimal(10).pow(exp));
-            return scaled.toFixed(decimals) + "e" + exp;
+            const scaled = decNumber.div(new Decimal(10).pow(exp)).toNumber();
+            return formatMantissa(scaled) + "e" + exp;
         }
         else {
             const exp = Math.floor(log10 / 3);
-            const scaled = decNumber.div(new Decimal(10).pow(exp * 3));
-            return scaled.toFixed(decimals) + "e" + exp * 3;
+            const scaled = decNumber.div(new Decimal(10).pow(exp * 3)).toNumber();
+            return formatMantissa(scaled) + "e" + exp * 3;
         }
     }
 }
