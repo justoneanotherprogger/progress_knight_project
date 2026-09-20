@@ -115,7 +115,6 @@ function rebirthFive() {
         gameData.requirements[key].completed = false
     }
 
-    gameData.requirements["req_dark_matter_tab_button"].completed = false
     gameData.requirements["req_skill_tree_tab_tab_button"].completed = false
     gameData.requirements["req_skill_tree_page"].completed = false
 
