@@ -214,8 +214,8 @@ function deserialize(dto, gameData) {
         for (const perk in shopPermanentUnlocks)
             if (shopPermanentUnlocks[perk] === key && gameData.dark_matter_shop[perk]) keep = true
         // Тёмная материя переживает ребёрны 1–4 и обнуляется только на 5-м:
-        // её требования живут до метавселенского сброса.
-        if (metaverseResetUnlocks.includes(key)) keep = true
+        // её требованиям доверяем сохранённое состояние, как перманентным.
+        if (requirements[key]?.completed && metaverseResetUnlocks.includes(key)) keep = true
         requirement.completed = !!keep
     }
 
