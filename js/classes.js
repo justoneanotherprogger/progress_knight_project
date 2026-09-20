@@ -137,7 +137,7 @@ class Skill extends Task {
                 return formula.floor !== undefined ? Math.max(result, formula.floor) : result
             }
             case "linear":
-                return level * value * (hero && formula.heroScale !== undefined ? formula.heroScale : 1)
+                return 1 + level * value * (hero && formula.heroScale !== undefined ? formula.heroScale : 1)
             default: // power
                 const levelEff = hero ? SKILL_HERO_LEVEL_MULTIPLIER * level + SKILL_HERO_FLAT_BONUS : level
                 return 1 + value * levelEff * Math.pow(SKILL_LEVEL_EXPONENT_BASE, getBaseLog(10, level + 1))
