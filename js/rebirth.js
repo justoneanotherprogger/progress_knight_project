@@ -227,9 +227,11 @@ function rebirthReset(set_tab_to_jobs = true) {
     }
 
     // Keep milestones which were bought in the Dark Matter shop
-    if (gameData.dark_matter_shop.a_miracle) {
-        gameData.requirements["milestone_magic_eye"].completed = true
-        if (gameData.rebirthOneCount == 0)
+    for (const perk in shopPermanentUnlocks) {
+        if (!gameData.dark_matter_shop[perk]) continue
+        const requirementKey = shopPermanentUnlocks[perk]
+        gameData.requirements[requirementKey].completed = true
+        if (requirementKey === "milestone_magic_eye" && gameData.rebirthOneCount == 0)
             gameData.rebirthOneCount = 1
     }
 }

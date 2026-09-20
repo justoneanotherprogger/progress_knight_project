@@ -42,6 +42,10 @@ function buildRequirementsFromSpec(specs) {
         break
     }
   }
+  // Перманентные разблокировки — единственные, чью выполненность можно кэшировать.
+  for (const key in result) {
+    result[key].permanent = permanentUnlocks.includes(key) || metaverseUnlocks.includes(key)
+  }
   return result
 }
 

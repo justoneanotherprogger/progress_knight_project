@@ -17,5 +17,8 @@
     "req_essence_altar",
     "req_challenge_altar",
     "req_dark_mater_altar"
-  ]
+  ],
+  "shopPermanentUnlocks": {
+    "a_miracle": "milestone_magic_eye"
+  }
 }

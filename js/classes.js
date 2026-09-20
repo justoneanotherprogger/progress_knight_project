@@ -240,6 +240,7 @@ class Requirement {
         this.elements = []
         this.requirements = requirements
         this.completed = false
+        this.permanent = false
     }
 
     queryElements() {
@@ -248,15 +249,16 @@ class Requirement {
         })
     }
 
+    // У большинства требований условие может стать ложным: монеты тратятся,
+    // эссенция обнуляется на старших перерождениях, возраст сбрасывается.
+    // Кэшировать выполненность можно только для перманентных разблокировок
+    // и того, что куплено вручную (completed=true выставляет, например,
+    // чудо из магазина тёмной материи).
     isCompleted() {
         if (this.completed) return true
-        for (const requirement of this.requirements) {
-            if (!this.getCondition(false, requirement)) {
-                return false
-            }
-        }
-        this.completed = true
-        return true
+        const completed = this.isCompletedActual()
+        if (this.permanent && completed) this.completed = true
+        return completed
     }
 
     isCompletedActual(isHero = false) {

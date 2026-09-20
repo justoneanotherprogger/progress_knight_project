@@ -205,8 +205,16 @@ function deserialize(dto, gameData) {
         gameData.itemData[key].unlocked = itemData[key]?.unlocked ? true : false
 
     const requirements = dto.requirements ?? {}
-    for (const key in gameData.requirements)
-        gameData.requirements[key].completed = requirements[key]?.completed ? true : false
+    for (const key in gameData.requirements) {
+        const requirement = gameData.requirements[key]
+        // Сохранённой выполненности доверяем только перманентным и купленным
+        // требованиям: у остальных условие могло стать ложным к моменту загрузки
+        // (возраст сбросился, эссенция обнулилась), их перевычислят при обращении.
+        let keep = requirements[key]?.completed && requirement.permanent
+        for (const perk in shopPermanentUnlocks)
+            if (shopPermanentUnlocks[perk] === key && gameData.dark_matter_shop[perk]) keep = true
+        requirement.completed = !!keep
+    }
 
     applySettings(gameData.settings, dto.settings)
     applyStats(gameData.stats, dto.stats)
