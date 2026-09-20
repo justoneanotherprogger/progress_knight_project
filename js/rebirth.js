@@ -40,14 +40,13 @@ function rebirthThree() {
     gameData.rebirthTwoTime = 0
     gameData.rebirthThreeTime = 0
 
-    const recallEffect = gameData.taskData["skill_cosmic_recollection"].getEffect();
+    rebirthReset()
 
     for (const taskName in gameData.taskData) {
         const task = gameData.taskData[taskName]
-        task.maxLevel = Math.floor(recallEffect * task.level);
+        task.maxLevel = 0
     }
 
-    rebirthReset()
     gameData.active_challenge = ""
 }
 
