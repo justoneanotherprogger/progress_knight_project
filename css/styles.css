@@ -158,6 +158,17 @@ td {
     table-layout: fixed;
 }
 
+#jobTable td.level, #jobTable th.level,
+#jobTable td.xpGain, #jobTable th.xpGain,
+#jobTable td.xpLeft, #jobTable th.xpLeft,
+#jobTable td.maxLevel, #jobTable th.maxLevel,
+#skillTable td.level, #skillTable th.level,
+#skillTable td.xpGain, #skillTable th.xpGain,
+#skillTable td.xpLeft, #skillTable th.xpLeft,
+#skillTable td.maxLevel, #skillTable th.maxLevel {
+    text-align: center;
+}
+
 .progress-bar {
     margin-top: 0.05em;
     position: relative;
