@@ -189,7 +189,11 @@ const GREED_ADULT_AGE = 20 * 365
 // --- Dark Matter XP ---
 const STRANGE_MAGIC_MULTIPLIER = 1e50
 
-const TRANSCENDENT_MASTER_EFFECT = 10
+// --- Transcendent Master ---
+// effect = 1 + base * (log10(essence))^exponent
+// x1.5 на пороге 5e4, x10 к 1e20 — подгонка по двум точкам
+const TRANSCENDENT_MASTER_BASE = 0.0225
+const TRANSCENDENT_MASTER_EXPONENT = 2
 
 // --- Faint Hope ---
 const FAINT_HOPE_INFINITY = 1e308

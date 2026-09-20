@@ -69,7 +69,11 @@ function addMultipliers() {
 function setCustomEffects() {
     const transcendentMaster = milestoneData["milestone_transcendent_master"]
     transcendentMaster.getEffect = function () {
-        return gameData.requirements["milestone_transcendent_master"].isCompleted() ? TRANSCENDENT_MASTER_EFFECT : 1
+        if (!gameData.requirements["milestone_transcendent_master"].isCompleted())
+            return toInfinityNumber(1)
+        // Decimal.log10 возвращает number, поэтому степень — через Math.pow
+        const logEssence = Decimal.log10(Decimal.max(gameData.essence, 1))
+        return toInfinityNumber(1 + TRANSCENDENT_MASTER_BASE * Math.pow(logEssence, TRANSCENDENT_MASTER_EXPONENT))
     }
 
     const darkMatterMining = milestoneData["milestone_dark_matter_mining"]
