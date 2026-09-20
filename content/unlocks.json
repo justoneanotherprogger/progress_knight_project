@@ -19,6 +19,7 @@
     "req_dark_mater_altar"
   ],
   "metaverseResetUnlocks": [
+    "category_darkness",
     "skill_dark_prince",
     "skill_dark_ruler",
     "skill_immortal_ruler",
