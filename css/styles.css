@@ -145,7 +145,7 @@ td {
    min-width фиксирует сетку, не трогая поведение остальных колонок. */
 #jobTable tr > :first-child,
 #skillTable tr > :first-child {
-    min-width: 20em;
+    min-width: 18em;
 }
 
 /* fixed держит колонки по ширинам из шапки (20em имя, 18em эффект).
