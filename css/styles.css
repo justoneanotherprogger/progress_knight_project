@@ -148,6 +148,13 @@ td {
     min-width: 20em;
 }
 
+/* fixed держит колонки по ширинам из шапки (20em имя, 18em эффект).
+   На авто-лайауте nowrap-эффект растягивает ячейку, fitText видит
+   «всё влезло» и не сжимает кегль — таблица вылезает за контейнер. */
+#skillTable {
+    table-layout: fixed;
+}
+
 .progress-bar {
     margin-top: 0.05em;
     position: relative;
