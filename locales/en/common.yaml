@@ -123,7 +123,7 @@ version: Version 0.1.0
 lang_en: English
 lang_ru: Русский
 tab_abilities: Abilities
-great: Great
+great: "★★★"
 lvl: lvl
 essence_lower: essence
 challenge_title: In challenge
