@@ -28,7 +28,7 @@
     "category_dark_magic": {
       "type": "evil",
       "selectors": [".category_dark_magic"],
-      "requirements": [{"requirement": 1}]
+      "requirements": [{"requirement": 0, "strict": true}]
     },
     "category_almightiness": {
       "type": "essence",
@@ -203,7 +203,7 @@
     "req_evil_info": {
       "type": "evil",
       "selectors": ["#evilInfo"],
-      "requirements": [{"requirement": 1}]
+      "requirements": [{"requirement": 0, "strict": true}]
     },
     "req_essence_info": {
       "type": "essence",

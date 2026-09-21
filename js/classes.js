@@ -314,7 +314,10 @@ class EvilRequirement extends Requirement {
     }
 
     getCondition(isHero, requirement) {
-        return gameData.evil.gte(requirement.requirement)
+        // strict: «есть любое зло» — оно дробное, как материя (см. DarkMatterRequirement)
+        return requirement.strict
+            ? gameData.evil.gt(requirement.requirement)
+            : gameData.evil.gte(requirement.requirement)
     }
 }
 
