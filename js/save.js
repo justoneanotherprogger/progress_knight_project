@@ -81,6 +81,7 @@ function serializeTask(task) {
     if (!isDefaultValue(task.level)) dto.level = String(task.level)
     if (!isDefaultValue(task.maxLevel)) dto.maxLevel = String(task.maxLevel)
     if (!isDefaultValue(task.xp)) dto.xp = decimalToString(task.xp)
+    if (task.isHero) dto.isHero = 1
     if (task.unlocked) dto.unlocked = 1
     return dto
 }
@@ -110,15 +111,20 @@ function serialize(gameData) {
     dto.currentProperty = gameData.currentProperty?.id ?? null
     dto.currentMisc = gameData.currentMisc.map(item => item?.id).filter(id => id != null)
 
-    // Прогресс — без baseData, без isHero
+    // Прогресс — без baseData
     dto.taskData = {}
     for (const key in gameData.taskData)
         dto.taskData[key] = serializeTask(gameData.taskData[key])
 
-    // Разблокировки — только completed
+    // Разблокировки — только unlocked и isHero
     dto.itemData = {}
-    for (const key in gameData.itemData)
-        dto.itemData[key] = gameData.itemData[key].unlocked ? { unlocked: 1 } : {}
+    for (const key in gameData.itemData) {
+        const item = gameData.itemData[key]
+        const itemDto = {}
+        if (item.unlocked) itemDto.unlocked = 1
+        if (item.isHero) itemDto.isHero = 1
+        dto.itemData[key] = itemDto
+    }
 
     dto.requirements = {}
     for (const key in gameData.requirements)
@@ -201,8 +207,11 @@ function deserialize(dto, gameData) {
         applyTask(gameData.taskData[key], taskData[key])
 
     const itemData = dto.itemData ?? {}
-    for (const key in gameData.itemData)
-        gameData.itemData[key].unlocked = itemData[key]?.unlocked ? true : false
+    for (const key in gameData.itemData) {
+        const savedItem = itemData[key]
+        gameData.itemData[key].unlocked = savedItem?.unlocked ? true : false
+        gameData.itemData[key].isHero = savedItem?.isHero ? true : false
+    }
 
     const requirements = dto.requirements ?? {}
     for (const key in gameData.requirements) {
@@ -247,6 +256,7 @@ function applyTask(task, saved) {
     task.level = Number(saved.level ?? 0)
     task.maxLevel = Number(saved.maxLevel ?? 0)
     task.xp = parseDecimal(saved.xp)
+    task.isHero = saved.isHero ? true : false
     task.unlocked = saved.unlocked ? true : false
 }
 
