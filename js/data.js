@@ -172,9 +172,9 @@ const EVIL_BOOSTER_MULTIPLIER = 1e50
 const THE_NEW_GOLD_MULTIPLIER = 1000
 
 // --- Dark Matter Gain ---
-// Степень подобрана так, чтобы при 1e40 тёмных сфер множитель доходил до ×10 (×2 к базе)
+// Рост от тёмных сфер: ×5 при нуле, ×10 к 1e30, ×12.6 к 1e40
 const DARK_MATTER_HARVESTER_BASE = 5
-const DARK_MATTER_HARVESTER_EXPONENT = 0.0075
+const DARK_MATTER_HARVESTER_EXPONENT = 0.01
 const DARK_MATTER_MINING_MULTIPLIER = 3
 const DARK_MATTER_MILLIONAIRE_MULTIPLIER = 500
 
