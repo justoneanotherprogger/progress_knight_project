@@ -56,6 +56,9 @@ function addMultipliers() {
             task.xpMultipliers.push(getBindedItemEffect("item_minds_eye"))
         } else if (task instanceof Skill && key in skillCategories["category_darkness"].items) {
             task.xpMultipliers.push(getDarknessXpGain)
+            // Квадрат множителя опыта тёмной материи для навыков Тьмы —
+            // повторное добавление того же множителя, см. getDarkMatterXpGain.
+            task.xpMultipliers.push(getDarkMatterXpGain)
         }
     }
 
