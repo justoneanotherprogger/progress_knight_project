@@ -32,18 +32,23 @@ function setRebirthButton(id, label, gainHTML) {
     }
 }
 
-function fitText(element, maxFontSize) {
-    const cacheKey = element.textContent + "|" + element.clientWidth
+// size — число (макс. размер в px) либо функция k → CSS-строка, для
+// элементов под масштабированием контейнера (calc от --stats-scale).
+function fitText(element, size) {
+    const toCss = typeof size === "function" ? size : k => k * size + "px"
+    // computed font-size в ключе — иначе элемент под calc-масштабом не
+    // переизмерится, когда --stats-scale сменится, а клиентская ширина та же.
+    const cacheKey = element.textContent + "|" + element.clientWidth + "|" + getComputedStyle(element).fontSize
     if (element.dataset.fitText == cacheKey) return
 
-    let size = maxFontSize
-    element.style.fontSize = size + "px"
+    let k = 1
+    element.style.fontSize = toCss(k)
     const originalHeight = element.offsetHeight
-    while (element.scrollWidth > element.clientWidth && size > 6) {
-        size--
-        element.style.fontSize = size + "px"
+    while (element.scrollWidth > element.clientWidth && k > 0.3) {
+        k -= 0.05
+        element.style.fontSize = toCss(k)
     }
-    element.style.minHeight = (size < maxFontSize ? originalHeight : "") + "px"
+    element.style.minHeight = (k < 1 ? originalHeight : "") + "px"
     element.dataset.fitText = cacheKey
 }
 

@@ -416,6 +416,7 @@ button:focus {
 #resourceStats .text-caption {
     font-size: calc(20px * var(--stats-scale));
     padding-top: calc(0.2em * var(--stats-scale));
+    white-space: nowrap;
 }
 
 #resourceStats .resource-desc {

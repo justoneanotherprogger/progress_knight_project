@@ -113,6 +113,10 @@ function renderSideBar() {
     }
 
     updateResourceScale()
+    document.querySelectorAll("#resourceStats .text-caption").forEach(el => {
+        el.style.whiteSpace = "nowrap"
+        fitText(el, k => `calc(20px * var(--stats-scale) * ${k})`)
+    })
 }
 
 // Keeps the quick bar's bottom edge above the window's bottom edge, leaving
