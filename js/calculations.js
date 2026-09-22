@@ -253,7 +253,7 @@ function getDarkMatter() {
 
 function getDarkMatterXpGain() {
     if (getDarkMatter().lt(1))
-        return 1
+        return toInfinityNumber(1)
 
     return getDarkMatter().add(1);
 }
