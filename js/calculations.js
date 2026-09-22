@@ -258,6 +258,14 @@ function getDarkMatterXpGain() {
     return getDarkMatter().add(1);
 }
 
+// Героические навыки Тьмы получают множитель материи третьим слоем (куб
+// вместо квадрата). isHero — живое поле задачи, читается на каждом тике,
+// поэтому куб откатывается до квадрата при перерождении и возвращается
+// при новой героизации.
+function getHeroicDarkMatterXpGain(task) {
+    return task.isHero ? getDarkMatterXpGain() : 1
+}
+
 function getDarkOrbs() {
     return gameData.dark_orbs
 }
