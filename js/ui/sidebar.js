@@ -15,6 +15,9 @@ function renderSideBar() {
     document.getElementById("ageDisplay").textContent = formatAge(gameData.days)
     document.getElementById("lifespanDisplay").textContent = formatWhole(daysToYears(getLifespan()))
     document.getElementById("realtimeDisplay").textContent = formatTime(gameData.realtime)
+    const lifespanRow = document.getElementById("lifespanRow")
+    lifespanRow.style.whiteSpace = "nowrap"
+    fitText(lifespanRow, 16)
     const boostCooldownDisplay = document.getElementById("boostCooldownDisplay")
     boostCooldownDisplay.style.whiteSpace = "nowrap"
     boostCooldownDisplay.textContent = getBoostCooldownString()
