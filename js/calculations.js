@@ -259,11 +259,11 @@ function getDarkMatterXpGain() {
 }
 
 // Героические навыки Тьмы получают множитель материи отдельным слоем —
-// квадратом бонуса, поверх общего для навыков Тьмы. isHero — живое поле
+// кубом бонуса, поверх общего для навыков Тьмы. isHero — живое поле
 // задачи, читается на каждом тике, поэтому слой откатывается при
 // перерождении и возвращается при новой героизации.
 function getHeroicDarkMatterXpGain(task) {
-    return task.isHero ? getDarkMatterXpGain().pow(2) : 1
+    return task.isHero ? getDarkMatterXpGain().pow(3) : 1
 }
 
 function getDarkOrbs() {
