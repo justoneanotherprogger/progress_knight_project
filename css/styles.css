@@ -421,10 +421,6 @@ button:focus {
     font-size: calc(16px * var(--stats-scale));
 }
 
-#resourceStats .sidebar-element {
-    margin-bottom: calc(0.8em * var(--stats-scale));
-}
-
 .tabs-tab-column {
     padding-left: 1rem;
     padding-right: 1rem;
