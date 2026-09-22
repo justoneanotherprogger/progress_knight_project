@@ -89,6 +89,15 @@ function setCustomEffects() {
             .times(Decimal.max(gameData.essence, 1).pow(0.05))
     }
 
+    const darkMatterHarvester = milestoneData["milestone_dark_matter_harvester"]
+    darkMatterHarvester.getEffect = function () {
+        if (!gameData.requirements["milestone_dark_matter_harvester"].isCompleted())
+            return toInfinityNumber(1)
+        // max(orbs, 1): при 0 сфер множитель не падает ниже базы
+        return toInfinityNumber(DARK_MATTER_HARVESTER_BASE)
+            .times(Decimal.max(gameData.dark_orbs, 1).pow(DARK_MATTER_HARVESTER_EXPONENT))
+    }
+
     const faintHope = milestoneData["milestone_faint_hope"]
     faintHope.getEffect = function () {
         var mult = 1

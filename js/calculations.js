@@ -229,7 +229,7 @@ function getEssenceGain() {
 
 function getDarkMatterGain() {
     const darkRuler = gameData.taskData["skill_dark_ruler"]
-    const darkMatterHarvester = gameData.requirements["milestone_dark_matter_harvester"].isCompleted() ? toInfinityNumber(DARK_MATTER_HARVESTER_MULTIPLIER) : 1
+    const darkMatterHarvester = milestoneData["milestone_dark_matter_harvester"].getEffect()
     const darkMatterMining = milestoneData["milestone_dark_matter_mining"].getEffect()
     const darkMatterMillionaire = gameData.requirements["milestone_dark_matter_millionaire"].isCompleted() ? toInfinityNumber(DARK_MATTER_MILLIONAIRE_MULTIPLIER) : 1
     const Desintegration = gameData.itemData["item_desintegration"].getEffect()
