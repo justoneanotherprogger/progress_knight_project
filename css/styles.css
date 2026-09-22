@@ -338,10 +338,6 @@ button:focus {
     opacity: 0.8;
 }
 
-.sidebar-element {
-    margin-bottom: 0.8em;
-}
-
 .topbar-element {
     font-size: small;
     max-width: 15rem;
