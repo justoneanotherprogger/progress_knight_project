@@ -213,19 +213,12 @@ function deserialize(dto, gameData) {
         gameData.itemData[key].isHero = savedItem?.isHero ? true : false
     }
 
+    // Кэш выполненности доверяем сейву целиком: он сносится только при
+    // перерождении (rebirthReset), а в забеге открытое остаётся открытым,
+    // даже если условие стало ложным — предок-герой обнулил уровень и т.п.
     const requirements = dto.requirements ?? {}
     for (const key in gameData.requirements) {
-        const requirement = gameData.requirements[key]
-        // Сохранённой выполненности доверяем только перманентным и купленным
-        // требованиям: у остальных условие могло стать ложным к моменту загрузки
-        // (возраст сбросился, эссенция обнулилась), их перевычислят при обращении.
-        let keep = requirements[key]?.completed && requirement.permanent
-        for (const perk in shopPermanentUnlocks)
-            if (shopPermanentUnlocks[perk] === key && gameData.dark_matter_shop[perk]) keep = true
-        // Тёмная материя переживает ребёрны 1–4 и обнуляется только на 5-м:
-        // её требованиям доверяем сохранённое состояние, как перманентным.
-        if (requirements[key]?.completed && metaverseResetUnlocks.includes(key)) keep = true
-        requirement.completed = !!keep
+        gameData.requirements[key].completed = !!(requirements[key]?.completed)
     }
 
     applySettings(gameData.settings, dto.settings)
