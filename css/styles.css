@@ -414,10 +414,15 @@ button:focus {
 
 #resourceStats .text-caption {
     font-size: calc(20px * var(--stats-scale));
+    padding-top: calc(0.2em * var(--stats-scale));
 }
 
 #resourceStats .resource-desc {
     font-size: calc(16px * var(--stats-scale));
+}
+
+#resourceStats .sidebar-element {
+    margin-bottom: calc(0.8em * var(--stats-scale));
 }
 
 .tabs-tab-column {
