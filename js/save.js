@@ -144,7 +144,8 @@ function serializeSettings(settings) {
     for (const key in settings) {
         const value = settings[key]
         if (value instanceof Date) { dto[key] = value.toISOString(); continue }
-        if (isDefaultValue(value)) continue
+        // 0 — это валидная светлая тема (и не только), пропуск ломал выбор игрока
+        if (value === null || value === undefined || value === false) continue
         if (typeof value === "boolean") { dto[key] = 1; continue }
         dto[key] = decimalToString(value)
     }
