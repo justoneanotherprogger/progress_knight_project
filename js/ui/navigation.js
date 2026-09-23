@@ -179,7 +179,7 @@ function setTab(selectedTab) {
     tabElement.style.display = "flex"
 
     const tabButtons = document.getElementsByClassName("tabButton")
-    for (tabButton of tabButtons) {
+    for (const tabButton of tabButtons) {
         tabButton.classList.remove("w3-blue-gray")
     }
     element.classList.add("w3-blue-gray")

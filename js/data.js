@@ -257,7 +257,7 @@ const JOB_INCOME_HERO_BASE_MULTIPLIER = 4
 function getPreviousTaskInCategory(task) {
     var prev = ""
     for (const category in jobCategories) {
-        for (job of Object.keys(jobCategories[category].items)) {
+        for (const job of Object.keys(jobCategories[category].items)) {
             if (job == task)
                 return prev
             prev = job

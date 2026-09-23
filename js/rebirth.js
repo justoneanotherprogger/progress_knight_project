@@ -153,7 +153,7 @@ function rebirthFive() {
 function applyMilestones() {
     if (((gameData.requirements["milestone_magic_eye"].isCompleted()) && (gameData.requirements["req_rebirth_note_2"].isCompleted())) ||
         (gameData.requirements["milestone_almighty_eye"].isCompleted())){
-        for (taskName in gameData.taskData) {
+        for (const taskName in gameData.taskData) {
             const task = gameData.taskData[taskName]
             const effect = gameData.taskData["skill_cosmic_recollection"].getEffect()
             const maxlevel = Math.floor(task.level * (effect == 0 ? 1 : effect))

@@ -33,7 +33,7 @@ function setMisc(miscName) {
     gameData.autoBuyEnabled = false
     const misc = gameData.itemData[miscName]
     if (gameData.currentMisc.includes(misc)) {
-        for (i = 0; i < gameData.currentMisc.length; i++) {
+        for (let i = 0; i < gameData.currentMisc.length; i++) {
             if (gameData.currentMisc[i] == misc) {
                 gameData.currentMisc.splice(i, 1)
             }
@@ -111,7 +111,7 @@ function getIncome() {
 
 function getExpense() {
     var expense = toInfinityNumber(gameData.currentProperty.getExpense())
-    for (misc of gameData.currentMisc) {
+    for (const misc of gameData.currentMisc) {
         expense = expense.plus(misc.getExpense())
     }
     return expense
