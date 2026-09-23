@@ -18,7 +18,7 @@ function initializeUI() {
     setCurrency(peekSettingFromSave("currencyNotation"))
     setStickySidebar(peekSettingFromSave("stickySidebar"))
 
-    setTheme(peekSettingFromSave("theme"))
+    setTheme(validateTheme(peekSettingFromSave("theme")))
     selectElementInGroup("EnableKeybinds", peekSettingFromSave("enableKeybinds") ? 0 : 1)
 
     for (const key in gameData.requirements) {

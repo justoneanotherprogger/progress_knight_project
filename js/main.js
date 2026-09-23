@@ -117,20 +117,23 @@ function getExpense() {
     return expense
 }
 
+function validateTheme(index) {
+    // Незнакомые значения (в т.ч. theme=2 из выпиленной colorblind-темы)
+    // дают светлый дефолт — валидация на входе, а не в setTheme
+    return index === 1 ? 1 : 0
+}
+
 function setTheme(index, reload=false) {
     const body = document.getElementById("body")
 
     body.classList.remove("dark")
 
-    // В старых сейвах может лежать theme=2 — выпиленная colorblind-тема.
-    // Она была надстройкой над тёмным фоном, поэтому остаёмся на нём.
-    const theme = index === 0 ? 0 : 1
-    if (theme == 1) {
+    if (index == 1) {
         body.classList.add("dark")
     }
 
-    gameData.settings.theme = theme
-    selectElementInGroup("Theme", theme)
+    gameData.settings.theme = index
+    selectElementInGroup("Theme", index)
 
     if (reload) {
         saveGameData()
