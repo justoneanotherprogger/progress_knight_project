@@ -47,6 +47,8 @@ function coerceValue(value, template) {
     if (typeof template === "boolean") return value === true || value === 1 || value === "1"
     if (typeof template === "number") return Number(value)
     if (typeof template === "string") return String(value)
+    // null-шаблон (fastest* в stats): сейв пишет числа строками
+    if (template === null) return Number(value)
     return value
 }
 
@@ -270,7 +272,8 @@ function applyStats(stats, source) {
             if (key === "startDate") stats[key] = new Date().toISOString()
             else if (DECIMAL_STATS.includes(key)) stats[key] = new Decimal(0)
             else if (typeof stats[key] === "boolean") stats[key] = false
-            else stats[key] = 0
+            // null-шаблон (fastest*) остаётся null: ноль ломал фиксацию рекордов
+            else if (stats[key] !== null) stats[key] = 0
             continue
         }
         if (key === "startDate") {
