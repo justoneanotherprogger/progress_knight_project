@@ -182,9 +182,7 @@ function getEvilGain() {
     const absoluteWish = gameData.taskData ["skill_absolute_wish"]
     const oblivionEmbodiment = gameData.taskData ["skill_void_embodiment"]
     const yingYang = gameData.taskData["skill_yin_yang"]
-    const inferno = gameData.requirements["milestone_inferno"].isCompleted()
-        ? gameData.essence.add(1).pow(INFERNO_ESSENCE_EXPONENT)
-        : toInfinityNumber(1)
+    const inferno = milestoneData["milestone_inferno"].getEffect()
     const theDevilInsideYou = gameData.requirements["milestone_the_devil_inside_you"].isCompleted() ? toInfinityNumber(THE_DEVIL_INSIDE_YOU_MULTIPLIER) : 1
     const stairWayToHell = getBindedItemEffect("item_highway_to_hell")
     const evilBooster = (gameData.perks.evil_booster == 1) ? toInfinityNumber(EVIL_BOOSTER_MULTIPLIER) : 1

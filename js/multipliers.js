@@ -71,6 +71,13 @@ function addMultipliers() {
 }
 
 function setCustomEffects() {
+    const inferno = milestoneData["milestone_inferno"]
+    inferno.getEffect = function () {
+        if (!gameData.requirements["milestone_inferno"].isCompleted())
+            return toInfinityNumber(1)
+        return gameData.essence.add(1).pow(INFERNO_ESSENCE_EXPONENT)
+    }
+
     const transcendentMaster = milestoneData["milestone_transcendent_master"]
     transcendentMaster.getEffect = function () {
         if (!gameData.requirements["milestone_transcendent_master"].isCompleted())
