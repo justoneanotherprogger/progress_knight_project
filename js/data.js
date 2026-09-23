@@ -166,7 +166,8 @@ const ESSENCE_EFFECT_EXPONENT = 0.35
 const ESSENCE_EFFECT_MIN_THRESHOLD = 0.01
 
 // --- Evil Gain multipliers ---
-const INFERNO_MULTIPLIER = 5
+// Инферно: (1 + essence)^exp — ×3.3 на пороге 170k, ×5 к ~1e7, дальше ползёт
+const INFERNO_ESSENCE_EXPONENT = 0.1
 const THE_DEVIL_INSIDE_YOU_MULTIPLIER = 1e15
 const EVIL_BOOSTER_MULTIPLIER = 1e50
 const THE_NEW_GOLD_MULTIPLIER = 1000
