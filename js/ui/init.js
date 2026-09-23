@@ -35,7 +35,7 @@ function refreshSettingsButtons() {
         CurrencyNotation: ["currency_medieval", "currency_extended", "currency_british", "currency_modern"],
         Notation: ["notation_standard", "notation_scientific", "notation_engineering"],
         Layout: ["layout_standard", "layout_wide"],
-        Theme: ["theme_light", "theme_dark", "theme_colorblind"],
+        Theme: ["theme_light", "theme_dark"],
         EnableKeybinds: ["enabled", "disabled"]
     }
     for (const cls in legends) {

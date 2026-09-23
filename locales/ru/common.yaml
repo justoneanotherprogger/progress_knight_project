@@ -198,7 +198,6 @@ font_larger: Больше
 # Theme options
 theme_light: Светлая
 theme_dark: Тёмная
-theme_colorblind: Для дальтоников
 
 # Keybinds
 enabled: Включены

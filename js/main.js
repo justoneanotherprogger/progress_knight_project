@@ -121,23 +121,16 @@ function setTheme(index, reload=false) {
     const body = document.getElementById("body")
 
     body.classList.remove("dark")
-    body.classList.remove("colorblind")
 
-
-    if (index == 0) {
-        // lignt
-    }
-    else if (index == 1) {
-        // dark
+    // В старых сейвах может лежать theme=2 — выпиленная colorblind-тема.
+    // Она была надстройкой над тёмным фоном, поэтому остаёмся на нём.
+    const theme = index === 0 ? 0 : 1
+    if (theme == 1) {
         body.classList.add("dark")
     }
-    else if (index == 2){
-        // colorblind Tritanopia
-        body.classList.add("colorblind")
-    }
 
-    gameData.settings.theme = index
-    selectElementInGroup("Theme", index)
+    gameData.settings.theme = theme
+    selectElementInGroup("Theme", theme)
 
     if (reload) {
         saveGameData()

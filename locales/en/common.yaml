@@ -198,7 +198,6 @@ font_larger: Larger
 # Theme options
 theme_light: Light
 theme_dark: Dark
-theme_colorblind: Color Blind Friendly
 
 # Keybinds
 enabled: Enabled
