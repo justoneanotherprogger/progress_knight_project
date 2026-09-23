@@ -217,17 +217,17 @@
                     "threshold": 1e+20,
                     "tier": 27
                 },
-                "milestone_dark_orbiter": {
-                    "name": "milestone_dark_orbiter_name",
-                    "description": "milestone_dark_orbiter_desc",
-                    "tooltip": "milestone_dark_orbiter_tooltip",
-                    "threshold": 1e+22,
-                    "tier": 28
-                },
                 "milestone_dark_matter_mining": {
                     "name": "milestone_dark_matter_mining_name",
                     "description": "milestone_dark_matter_mining_desc",
                     "tooltip": "milestone_dark_matter_mining_tooltip",
+                    "threshold": 1e+22,
+                    "tier": 28
+                },
+                "milestone_dark_orbiter": {
+                    "name": "milestone_dark_orbiter_name",
+                    "description": "milestone_dark_orbiter_desc",
+                    "tooltip": "milestone_dark_orbiter_tooltip",
                     "threshold": 1e+25,
                     "tier": 29
                 },
