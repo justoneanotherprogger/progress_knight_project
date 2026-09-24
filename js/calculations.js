@@ -176,7 +176,23 @@ function getTaskLevelsToClimb(task, level, xp) {
     return lo
 }
 
+// Три gain-цепочки нужны и update(), и рендеру (сайдбар, индикаторы ребёрна,
+// applyPerks), а состоянием становятся только в конце тика — до этого
+// читают промежуточные значения. Мемо считается один раз за тик: update()
+// сбрасывает его в начале, все остальные вызовы до следующего тика читают
+// результат. Сталость — максимум один тик (50 мс), для плавных величин
+// незаметна.
+const gainMemo = { evil: null, essence: null, dark_matter: null }
+
+function resetGainMemo() {
+    gainMemo.evil = null
+    gainMemo.essence = null
+    gainMemo.dark_matter = null
+}
+
 function getEvilGain() {
+    if (gainMemo.evil != null) return gainMemo.evil
+
     const evilControl = gameData.taskData["skill_evil_control"]
     const bloodMeditation = gameData.taskData["skill_blood_meditation"]
     const absoluteWish = gameData.taskData ["skill_absolute_wish"]
@@ -186,7 +202,7 @@ function getEvilGain() {
     const theDevilInsideYou = gameData.requirements["milestone_the_devil_inside_you"].isCompleted() ? toInfinityNumber(THE_DEVIL_INSIDE_YOU_MULTIPLIER) : 1
     const stairWayToHell = getBindedItemEffect("item_highway_to_hell")
     const evilBooster = (gameData.perks.evil_booster == 1) ? toInfinityNumber(EVIL_BOOSTER_MULTIPLIER) : 1
-    return toInfinityNumber(1)
+    gainMemo.evil = toInfinityNumber(1)
         .times(evilControl.getEffect())
         .times(bloodMeditation.getEffect())
         .times(absoluteWish.getEffect())
@@ -199,9 +215,13 @@ function getEvilGain() {
         .times(stairWayToHell())
         .times(evilBooster)
         .times(getGreed())
+
+    return gainMemo.evil
 }
 
 function getEssenceGain() {
+    if (gainMemo.essence != null) return gainMemo.essence
+
     const essenceControl = gameData.taskData["skill_yin_yang"]
     const essenceCollector = gameData.taskData["skill_essence_collector"]
     const transcendentMaster = milestoneData["milestone_transcendent_master"]
@@ -212,7 +232,7 @@ function getEssenceGain() {
     const theNewGold = gameData.requirements["milestone_the_new_gold"].isCompleted() ? toInfinityNumber(THE_NEW_GOLD_MULTIPLIER) : toInfinityNumber(1)
     const lifeIsValueable = milestoneData["milestone_life_is_valueable"].getEffect()
 
-    return toInfinityNumber(essenceControl.getEffect())
+    gainMemo.essence = toInfinityNumber(essenceControl.getEffect())
         .times(essenceCollector.getEffect())
         .times(transcendentMaster.getEffect())
         .times(faintHope.getEffect())
@@ -225,16 +245,20 @@ function getEssenceGain() {
         .times(lifeIsValueable)
         .times(essenceMultGain())
         .times(getGreed())
+
+    return gainMemo.essence
 }
 
 function getDarkMatterGain() {
+    if (gainMemo.dark_matter != null) return gainMemo.dark_matter
+
     const darkRuler = gameData.taskData["skill_dark_ruler"]
     const darkMatterHarvester = milestoneData["milestone_dark_matter_harvester"].getEffect()
     const darkMatterMining = milestoneData["milestone_dark_matter_mining"].getEffect()
     const darkMatterMillionaire = gameData.requirements["milestone_dark_matter_millionaire"].isCompleted() ? toInfinityNumber(DARK_MATTER_MILLIONAIRE_MULTIPLIER) : 1
     const Desintegration = gameData.itemData["item_desintegration"].getEffect()
     const TheEndIsNear = getUnspentPerksDarkmatterGainBuff()
-    return toInfinityNumber(1)
+    gainMemo.dark_matter = toInfinityNumber(1)
         .times(darkRuler.getEffect())
         .times(darkMatterHarvester)
         .times(darkMatterMining)
@@ -245,6 +269,8 @@ function getDarkMatterGain() {
         .times(Desintegration == 0 ? 1 : Desintegration)
         .times(TheEndIsNear)
         .times(getGreed())
+
+    return gainMemo.dark_matter
 }
 
 function getDarkMatter() {

@@ -1,6 +1,7 @@
 // gameLoop.js — game loop, auto functions, game state
 
 function update() {
+    resetGainMemo()
     makeHeroes()
     increaseRealtime()
     increaseDays()
