@@ -226,12 +226,13 @@ function renderSettings() {
 function renderRequirements() {
     for (const key in gameData.requirements) {
         const requirement = gameData.requirements[key]
+        const visible = requirement.isCompleted()
         for (const element of requirement.elements) {
-            if (requirement.isCompleted()) {
-                element.classList.remove("hidden")
-            } else {
-                element.classList.add("hidden")
-            }
+            // Класс пишется только при реальной смене: за весь забег
+            // требование закрывается максимум один раз, а отрисовка
+            // гоняется каждый кадр.
+            if (element.classList.contains("hidden") == visible)
+                element.classList.toggle("hidden", !visible)
         }
     }
 }
