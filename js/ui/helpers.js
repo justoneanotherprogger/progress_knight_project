@@ -45,11 +45,19 @@ function fitText(element, size) {
     const cacheKey = element.textContent + "|" + element.clientWidth + "|" + getComputedStyle(element).fontSize
     if (element.dataset.fitText == cacheKey) return
 
-    let k = 1
-    element.style.fontSize = toCss(k)
+    // Ширина текста линейна относительно font-size, поэтому достаточно
+    // одного замера при полном размере: k = clientWidth / scrollWidth.
+    // Цикл shrink давал до десятка forced layout на элемент (запись стиля
+    // + чтение scrollWidth на каждой итерации).
+    element.style.fontSize = toCss(1)
+    const fullWidth = element.scrollWidth
     const originalHeight = element.offsetHeight
-    while (element.scrollWidth > element.clientWidth && k > 0.3) {
-        k -= 0.05
+    let k = Math.max(0.3, Math.min(1, element.clientWidth / fullWidth))
+    element.style.fontSize = toCss(k)
+    // Погрешность округления пикселей может оставить текст на 1px шире:
+    // добиваем посадки парой шагов вместо десятка итераций на каждый элемент.
+    for (let guard = 0; element.scrollWidth > element.clientWidth && k > 0.3 && guard < 4; guard++) {
+        k = Math.max(0.3, k - 0.05)
         element.style.fontSize = toCss(k)
     }
     element.style.minHeight = (k < 1 ? originalHeight : "") + "px"
