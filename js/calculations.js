@@ -210,7 +210,7 @@ function getEssenceGain() {
     const darkMagician = gameData.taskData["skill_dark_magician"]
 
     const theNewGold = gameData.requirements["milestone_the_new_gold"].isCompleted() ? toInfinityNumber(THE_NEW_GOLD_MULTIPLIER) : toInfinityNumber(1)
-    const lifeIsValueable = gameData.requirements["milestone_life_is_valueable"].isCompleted() ? toInfinityNumber(gameData.dark_matter) : toInfinityNumber(1)
+    const lifeIsValueable = milestoneData["milestone_life_is_valueable"].getEffect()
 
     return toInfinityNumber(essenceControl.getEffect())
         .times(essenceCollector.getEffect())

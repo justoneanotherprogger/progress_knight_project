@@ -126,6 +126,13 @@ function setCustomEffects() {
         return mult
     }
 
+    const lifeIsValueable = milestoneData["milestone_life_is_valueable"]
+    lifeIsValueable.getEffect = function () {
+        if (!gameData.requirements["milestone_life_is_valueable"].isCompleted())
+            return toInfinityNumber(1)
+        return toInfinityNumber(gameData.dark_matter)
+    }
+
     const riseOfGreatHeroes = milestoneData["milestone_rise_of_great_heroes"]
     riseOfGreatHeroes.getEffect = function () {
         var mult = 1
