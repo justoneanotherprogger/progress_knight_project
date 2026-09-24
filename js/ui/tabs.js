@@ -120,27 +120,46 @@ function renderShop() {
         autoBuyToggle.checked = gameData.autoBuyEnabled
 }
 
+// Строки вех статичны: порог и перевод большую часть времени не меняются,
+// а getRowByName + querySelector — по три поиска по дереву на строку.
+// Закэшированные элементы и последний записанный текст живут на самой вехе.
 function renderMilestones() {
     for (const key in milestoneData) {
         const milestone = milestoneData[key]
-        const row = getRowByName(key)
-        row.querySelector(".essence").textContent = format(milestone.threshold)
+        if (milestone._row == null) {
+            const row = getRowByName(key)
+            milestone._row = {
+                essence: row.querySelector(".essence"),
+                description: row.querySelector(".description"),
+                name: row.querySelector(".name"),
+                tooltip: row.querySelector(".tooltipText"),
+            }
+        }
+        const els = milestone._row
 
+        const essenceText = format(milestone.threshold)
+        if (els.essence.textContent != essenceText)
+            els.essence.textContent = essenceText
 
         let desc = t(milestone.description)
         const effect = milestone.getEffect != null ? milestone.getEffect() : milestone.baseData.effect
         if (effect != null)
             desc = "x" + format(effect, 1) + " " + desc
 
-        row.querySelector(".description").textContent = desc
+        if (els.description.textContent != desc)
+            els.description.textContent = desc
 
-        const milestoneName = row.querySelector(".name")
-        milestoneName.textContent = t(milestone.name)
-        milestoneName.style.whiteSpace = "nowrap"
-        fitText(milestoneName, 16)
+        const nameText = t(milestone.name)
+        if (els.name.textContent != nameText)
+            els.name.textContent = nameText
+        els.name.style.whiteSpace = "nowrap"
+        fitText(els.name, 16)
 
-        const tooltip = row.querySelector(".tooltipText")
-        if (tooltip) tooltip.textContent = t(milestone.tooltip)
+        if (els.tooltip) {
+            const tooltipText = t(milestone.tooltip)
+            if (els.tooltip.textContent != tooltipText)
+                els.tooltip.textContent = tooltipText
+        }
     }
 }
 
