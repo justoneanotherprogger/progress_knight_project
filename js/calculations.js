@@ -313,16 +313,8 @@ function getLifespan() {
 }
 
 function isAlive() {
-    const condition = gameData.days < getLifespan() || getLifespan() == Infinity
-    const deathText = document.getElementById("deathText")
-    if (!condition) {
-        gameData.days = getLifespan()
-        deathText.classList.remove("hidden")
-    }
-    else {
-        deathText.classList.add("hidden")
-    }
-    return condition && !tempData.hasError
+    const lifespan = getLifespan()
+    return (gameData.days < lifespan || lifespan == Infinity) && !tempData.hasError
 }
 
 

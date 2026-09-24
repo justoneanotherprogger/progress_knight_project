@@ -1,6 +1,6 @@
 // gameLoop.js — game loop, auto functions, game state
 
-function update(needUpdateUI = true) {
+function update() {
     makeHeroes()
     increaseRealtime()
     increaseDays()
@@ -25,10 +25,7 @@ function update(needUpdateUI = true) {
     applyMilestones()
     applyPerks()
     updateStats()
-    if (needUpdateUI && !document.hidden)
-        updateUI()
-    else
-        updateRequirements()
+    updateRequirements()
 }
 
 function updateRequirements() {
@@ -147,6 +144,9 @@ function increaseCoins() {
 function increaseDays() {
     gameData.days += applySpeed(1)
     gameData.totalDays += applySpeed(1)
+    const lifespan = getLifespan()
+    if (lifespan != Infinity && gameData.days > lifespan)
+        gameData.days = lifespan
 }
 
 function increaseRealtime() {

@@ -190,14 +190,30 @@ setTabMetaverse("metaverseTab1")
 
 let ticking = false;
 
-var gameloop = setInterval(function() {
-    if (ticking) return;
-    ticking = true;
-    update();
+var gameloop, renderloop, saveloop
 
-    ticking = false;
-}, 1000 / updateSpeed)
-var saveloop = setInterval(saveGameData, 3000)
+// Расчёты гоняются на updateSpeed (20 Гц) — игровая логика должна быть плавной.
+// Рендер на renderSpeed (10 Гц) отдельным интервалом: глаз не различает разницу,
+// а полный кадр стоит ~9 мс. Когда вкладка скрыта — рендер пропускается
+// целиком, расчёты при этом продолжаются.
+function startLoops() {
+    gameloop = setInterval(function() {
+        if (ticking) return;
+        ticking = true;
+        update();
+
+        ticking = false;
+    }, 1000 / updateSpeed)
+
+    renderloop = setInterval(function() {
+        if (!document.hidden)
+            updateUI()
+    }, 1000 / renderSpeed)
+
+    saveloop = setInterval(saveGameData, 3000)
+}
+
+startLoops()
 
 // Re-apply translations when language changes
 document.addEventListener('i18n:changed', () => {

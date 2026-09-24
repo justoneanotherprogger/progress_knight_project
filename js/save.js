@@ -326,9 +326,9 @@ function loadGameData() {
 function resetGameData() {
     clearInterval(saveloop)
     clearInterval(gameloop)
+    clearInterval(renderloop)
     if (!confirm('Are you sure you want to reset the game?')) {
-        gameloop = setInterval(update, 1000 / updateSpeed)
-        saveloop = setInterval(saveGameData, 3000)
+        startLoops()
         return
     }
     localStorage.clear()

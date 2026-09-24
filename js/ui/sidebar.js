@@ -18,6 +18,9 @@ function renderSideBar() {
     const lifespanRow = document.getElementById("lifespanRow")
     lifespanRow.style.whiteSpace = "nowrap"
     fitText(lifespanRow, 16)
+
+    // Смерть — рендер, а не расчёт: isAlive() чистая и в DOM не ходит.
+    document.getElementById("deathText").classList.toggle("hidden", isAlive())
     const boostCooldownDisplay = document.getElementById("boostCooldownDisplay")
     boostCooldownDisplay.style.whiteSpace = "nowrap"
     boostCooldownDisplay.textContent = getBoostCooldownString()
@@ -73,7 +76,12 @@ function renderSideBar() {
     setTextAll("#perkPointsGainDisplay", formatTreshold(getMetaversePerkPointsGain()))
 
 
-    document.getElementById("rebirthButton5").hidden = getHypercubeCap() == Infinity && gameData.essence.lt(1e90)
+    // Записываем hidden только при реальной смене: обёртка может схлопнуться
+    // между mousedown и mouseup и съесть клик по кнопке ребёрна.
+    const rebirthButton5 = document.getElementById("rebirthButton5")
+    const rebirth5Hidden = getHypercubeCap() == Infinity && gameData.essence.lt(1e90)
+    if (rebirthButton5.hidden != rebirth5Hidden)
+        rebirthButton5.hidden = rebirth5Hidden
 
     // Embrace evil indicator
     const embraceEvilButton = document.getElementById("rebirthButton2").querySelector(".button")

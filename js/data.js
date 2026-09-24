@@ -125,6 +125,7 @@ dark_matter: new Decimal(0),
 var tempData = {}
 
 const updateSpeed = 20
+const renderSpeed = 10
 const baseLifespan = 365 * 65
 const baseGameSpeed = 30
 const heroIncomeMult = 2.5e18
