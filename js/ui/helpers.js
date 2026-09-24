@@ -66,7 +66,6 @@ function fitText(element, size) {
     // + чтение scrollWidth на каждой итерации).
     element.style.fontSize = toCss(1)
     const fullWidth = element.scrollWidth
-    const originalHeight = element.offsetHeight
     let k = Math.max(0.3, Math.min(1, element.clientWidth / fullWidth))
     element.style.fontSize = toCss(k)
     // Погрешность округления пикселей может оставить текст на 1px шире:
@@ -75,7 +74,6 @@ function fitText(element, size) {
         k = Math.max(0.3, k - 0.05)
         element.style.fontSize = toCss(k)
     }
-    element.style.minHeight = (k < 1 ? originalHeight : "") + "px"
     element.dataset.fitText = cacheKey
     element.dataset.fitTextText = text
 }
