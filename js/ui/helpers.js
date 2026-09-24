@@ -38,21 +38,26 @@ function setRebirthButton(id, label, gainClass, gainText) {
 
 // size — число (макс. размер в px) либо функция k → CSS-строка, для
 // элементов под масштабированием контейнера (calc от --stats-scale).
+
+// Посадка текста может слететь только при смене текста или геометрии
+// контейнера. Текст проверяем каждый кадр (чтение textContent дёшево),
+// а геометрию — не чаще FIT_TEXT_INTERVAL: имена задач статичны, а
+// clientWidth/getComputedStyle форсят layout, и на ~100 элементах за кадр
+// проверка кэша стоила четверть кадра. При смене шрифта, --stats-scale или
+// ресайзе посадка поправится в течение интервала.
+const FIT_TEXT_INTERVAL = 1000
+
 function fitText(element, size) {
     const toCss = typeof size === "function" ? size : k => k * size + "px"
-    // Дешёвая проверка до любого layout-чтения: текст не менялся и элемент
-    // уже усаживался — посадка не слетела, верифицируем только геометрию.
-    // clientWidth/getComputedStyle форсят layout, а fitText зовётся на ~100
-    // элементах за кадр; имена статичны, и каждый вызов ради проверки кэша
-    // пересчитывал layout.
     const text = element.textContent
-    const width = element.clientWidth
-    if (text === element.dataset.fitTextText && width === element.dataset.fitTextWidth)
+    if (text === element.dataset.fitTextText
+        && performance.now() - (element._fitTextAt || 0) < FIT_TEXT_INTERVAL)
         return
+    element._fitTextAt = performance.now()
 
     // computed font-size в ключе — иначе элемент под calc-масштабом не
     // переизмерится, когда --stats-scale сменится, а клиентская ширина та же.
-    const cacheKey = text + "|" + width + "|" + getComputedStyle(element).fontSize
+    const cacheKey = text + "|" + element.clientWidth + "|" + getComputedStyle(element).fontSize
     if (element.dataset.fitText == cacheKey) return
 
     // Ширина текста линейна относительно font-size, поэтому достаточно
@@ -73,7 +78,6 @@ function fitText(element, size) {
     element.style.minHeight = (k < 1 ? originalHeight : "") + "px"
     element.dataset.fitText = cacheKey
     element.dataset.fitTextText = text
-    element.dataset.fitTextWidth = width
 }
 
 function renderProgressBar(task, progressFill, progressBar){
