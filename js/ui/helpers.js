@@ -21,15 +21,19 @@ function updateButtonHTML(id, html) {
     }
 }
 
-function setRebirthButton(id, label, gainHTML) {
+// innerHTML здесь нельзя: значение gain меняется каждый кадр, и пересоздание
+// узла под курсором между mousedown и mouseup съедает клик. Цвет живёт на
+// самом span, перезаписывается только текст.
+function setRebirthButton(id, label, gainClass, gainText) {
     const button = document.getElementById(id)
     const labelEl = button.querySelector(".rebirth-label")
     const gainEl = button.querySelector(".rebirth-gain")
     if (labelEl.textContent != label) labelEl.textContent = label
-    if (gainEl.dataset.html != gainHTML) {
-        gainEl.innerHTML = gainHTML
-        gainEl.dataset.html = gainHTML
+    if (gainEl.dataset.gainClass != gainClass) {
+        gainEl.className = "rebirth-gain " + gainClass
+        gainEl.dataset.gainClass = gainClass
     }
+    if (gainEl.textContent != gainText) gainEl.textContent = gainText
 }
 
 // size — число (макс. размер в px) либо функция k → CSS-строка, для
