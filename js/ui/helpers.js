@@ -40,9 +40,19 @@ function setRebirthButton(id, label, gainClass, gainText) {
 // элементов под масштабированием контейнера (calc от --stats-scale).
 function fitText(element, size) {
     const toCss = typeof size === "function" ? size : k => k * size + "px"
+    // Дешёвая проверка до любого layout-чтения: текст не менялся и элемент
+    // уже усаживался — посадка не слетела, верифицируем только геометрию.
+    // clientWidth/getComputedStyle форсят layout, а fitText зовётся на ~100
+    // элементах за кадр; имена статичны, и каждый вызов ради проверки кэша
+    // пересчитывал layout.
+    const text = element.textContent
+    const width = element.clientWidth
+    if (text === element.dataset.fitTextText && width === element.dataset.fitTextWidth)
+        return
+
     // computed font-size в ключе — иначе элемент под calc-масштабом не
     // переизмерится, когда --stats-scale сменится, а клиентская ширина та же.
-    const cacheKey = element.textContent + "|" + element.clientWidth + "|" + getComputedStyle(element).fontSize
+    const cacheKey = text + "|" + width + "|" + getComputedStyle(element).fontSize
     if (element.dataset.fitText == cacheKey) return
 
     // Ширина текста линейна относительно font-size, поэтому достаточно
@@ -62,6 +72,8 @@ function fitText(element, size) {
     }
     element.style.minHeight = (k < 1 ? originalHeight : "") + "px"
     element.dataset.fitText = cacheKey
+    element.dataset.fitTextText = text
+    element.dataset.fitTextWidth = width
 }
 
 function renderProgressBar(task, progressFill, progressBar){
