@@ -502,6 +502,16 @@ button:focus {
     overflow: hidden;
 }
 
+/* Gain-текст на кнопках ребёрна меняется каждый кадр, fitText постоянно
+   пересчитывает посадку — высота кнопки пляшет. Кнопка всегда двухстрочная:
+   даже когда gain-текст пуст, метка остаётся на своём месте. */
+#rebirthBtn2,
+#rebirthBtn3,
+#rebirthBtn4,
+#rebirthBtn5 {
+    height: 3.4em;
+}
+
 .sidebarChallengeReward {
     text-align: center;
 }
