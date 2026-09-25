@@ -504,12 +504,13 @@ button:focus {
 
 /* Gain-текст на кнопках ребёрна меняется каждый кадр, fitText постоянно
    пересчитывает посадку и переписывает font-size инлайном — высота в em
-   плыла вместе с k. Пиксели от font-size не зависят. */
+   плыла вместе с k. min-height, а не height: при максимальном масштабе
+   шрифта (setFontSize до xxx-large) текст помещается, а не обрезается. */
 #rebirthBtn2,
 #rebirthBtn3,
 #rebirthBtn4,
 #rebirthBtn5 {
-    height: 56px;
+    min-height: 28px;
 }
 
 .sidebarChallengeReward {
