@@ -94,6 +94,18 @@ function fitText(element, size) {
     element.dataset.fitTextText = text
 }
 
+// Тултипы открываются по :hover, но «влезает ли снизу» CSS не решает.
+// Меряем один раз за наведение и поднимаем на разницу с нижним краем окна.
+// visibility:hidden элемент из вёрстки не убирает — прямоугольник настоящий,
+// поэтому замер не ждёт показа. Сдвиг перезаписывается каждым новым
+// наведением, так что сбрасывать его на уходе курсора не нужно.
+document.addEventListener("mouseover", e => {
+    const tip = e.target.closest(".tooltipText")
+    if (!tip) return
+    const overflow = tip.getBoundingClientRect().bottom - window.innerHeight
+    tip.style.transform = overflow > 0 ? "translateY(" + -overflow + "px)" : ""
+})
+
 function renderProgressBar(task, progressFill, progressBar){
     let width
     if (task.level > 10000) {
