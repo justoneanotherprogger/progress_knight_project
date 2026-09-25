@@ -1,0 +1,249 @@
+# Tooltips (tooltips_core.yaml) section auto-generated from EN source
+job_beggar_tooltip: You break your back day and night for a couple of copper coins. Calloused hands, dust on your shoulders — and every evening feels like it might be your last.
+job_farmer_tooltip: You plow the fields and grow the crops. The pay is modest, but the work is honest.
+job_fisherman_tooltip: You haul various fish and sell them for a handful of coins. A calm, but poorly paid job.
+job_miner_tooltip: You descend into dark tunnels where a cave-in lurks at every step, mining ore you'll sell for a pittance.
+job_blacksmith_tooltip: You smelt ore and forge weapons for the military. A respectable trade that pays decently, even for a commoner.
+job_merchant_tooltip: You travel from town to town, selling your wares at a markup. The pay is decent, and there is far less toil and grime.
+job_squire_tooltip: You carry your knight's shield and sword, dreaming of one day wielding one of your own. The pay is meager, but the experience is invaluable.
+job_footman_tooltip: Put down your life to battle with enemy soldiers. A courageous, respectable job but you are still worthless in the grand scheme of things.
+job_veteran_footman_tooltip: More experienced and useful than the average footman, take out the enemy forces in battle with your might. The pay is not that bad.
+job_centenary_tooltip: By proving your skills with a bow, you were appointed to lead a small group of archers to ambush your enemies from a distance.
+job_knight_tooltip: Slash and pierce through enemy soldiers with ease, while covered in steel from head to toe. A decently paying and very respectable job.
+job_veteran_knight_tooltip: Utilising your unmatched combat ability, slaugher enemies effortlessly. Most footmen in the military would never be able to acquire such a well
+  paying job like this.
+job_holy_knight_tooltip: Obliterate squadrons of enemy soldiers in one go with extraordinary proficiency, while wielding a magically imbued blade. Such a feared unit on the
+  battlefield is paid extremely well.
+job_lieutenant_general_tooltip: Feared by nations, obliterate entire armies in a blink of an eye. Roughly every century, only one holy knight is worthy of receiving such an
+  esteemed title.
+
+# Tooltips (tooltips_skills1.yaml) section auto-generated from EN source
+skill_concentration_tooltip: Improve your learning speed through practising intense concentration activities.
+skill_productivity_tooltip: Learn to procrastinate less at work and receive more job experience per day.
+skill_bargaining_tooltip: Study the tricks of the trade and persuasive skills to lower any type of expense.
+skill_meditation_tooltip: Fill your mind with peace and tranquility to tap into greater happiness from within.
+skill_strength_tooltip: Condition your body and strength through harsh training. Stronger individuals are paid more in the military.
+skill_battle_tactics_tooltip: Create and revise battle strategies, improving experience gained in the military.
+skill_muscle_memory_tooltip: Strengthen your neurons through habit and repetition, improving strength gains throughout the body.
+skill_mana_control_tooltip: Strengthen your mana channels throughout your body, aiding you in becoming a more powerful magical user.
+skill_life_essence_tooltip: Lengthen your lifespan through the means of magic. However, is this truly the immortality you have tried seeking for...?
+skill_time_warping_tooltip: Bend space and time through forbidden techniques, speeding up your learning processes.
+skill_astral_body_tooltip: Lengthen your lifespan drastically beyond comprehension by harnessing ethereal energy.
+skill_temporal_dimension_tooltip: Create your own pocket dimension where centuries go by in mere seconds.
+skill_all_seeing_eye_tooltip: As the highest rank of the Mage Collegium, all funds go directly to you.
+skill_brainwashing_tooltip: A technique designed to manipulate human thought and action against their desire.
+skill_dark_influence_tooltip: Encompass yourself with formidable power bestowed upon you by evil, allowing you to pick up and absorb any job or skill with ease.
+skill_evil_control_tooltip: Tame the raging and growing evil within you, improving evil gain in-between rebirths.
+skill_intimidation_tooltip: Learn to emit a devilish aura which strikes extreme fear into other merchants, forcing them to give you heavy discounts.
+skill_demon_training_tooltip: A mere human body is too feeble and weak to withstand evil. Train with forbidden methods to slowly manifest into a demon, capable of absorbing
+  knowledge rapidly.
+skill_blood_meditation_tooltip: Grow and culture the evil within you through the sacrifice of other living beings, drastically increasing evil gain.
+skill_demons_wealth_tooltip: Through the means of dark magic, multiply the raw matter of the coins you receive from your job.
+skill_dark_knowledge_tooltip: Sealed for a very long time, you utilize these forbidden texts for your own personal gain.
+skill_soul_drain_tooltip: Drain the life force of those around you, extending your own lifespan at the cost of theirs.
+skill_void_influence_tooltip: Tapping into the powers of the Void while combining them with evil grants you an unlimited potential.
+skill_time_loop_tooltip: Mastery is achieved when 'telling time' becomes 'telling time what to do'.
+skill_evil_incarnate_tooltip: You have became the very thing you swore to destroy.
+
+# Tooltips (tooltips_skills2.yaml) section auto-generated from EN source
+skill_absolute_wish_tooltip: The power to fulfill absolutely any and all wishes without any limitations.
+skill_void_amplification_tooltip: You surrender yourself to the Void, making it easier to take control of you.
+skill_mind_release_tooltip: In a trance like state, you feel the Void amplifying your thoughts, perception, memories, emotions and personality.
+item_minds_eye_tooltip: Lets you see memories, remember images, and even see new pictures and ideas.
+skill_ceaseless_abyss_tooltip: Never ending torture, you swore to serve the Void for the rest of your existence.
+skill_void_symbiosis_tooltip: A symbiotic relationship that helps you become one with the Void.
+skill_void_embodiment_tooltip: If thou gaze long into an abyss, the abyss will also gaze into thee.
+skill_abyss_manipulation_tooltip: Allows you to shape your own reality within the Void itself.
+skill_cosmic_longevity_tooltip: You have seen it all, from the very beginning to the very end.
+skill_cosmic_recollection_tooltip: Being able to exist in multiple parallel timelines and manipulating you parallel selves, influencing their lives as you see fit.
+skill_essence_collector_tooltip: Exploit the unlimited potential of multiverse energies and collect its resources.
+skill_galactic_command_tooltip: Absolute power corrupts absolutely.
+skill_yin_yang_tooltip: Born from chaos when the universe was first created, believed to exist in harmony, balancing evil and good.
+skill_parallel_universe_tooltip: Self-contained plane of existence, co-existing with one's own, helping you restore fragments of your forgotten power.
+skill_higher_dimensions_tooltip: By possessing the power to partially alter the laws of physics and transcending lower dimensional spaces, your existence becomes never-ending.
+skill_epiphany_tooltip: You become one with everything.
+skill_dark_prince_tooltip: You can increase your intelligence at an alarming rate due to your access to all libraries in the universe.
+skill_dark_ruler_tooltip: Ruling the universe allows you to collect more Dark Matter from your subordinates.
+skill_immortal_ruler_tooltip: 'You have only one goal: ruling this universe till infinity."'
+skill_dark_magician_tooltip: By performing forbidden magic on your subordinates, you can extract every last drop of Essence from them.
+skill_universal_ruler_tooltip: No one dares to challenge your rule when ruling with an iron fist.
+skill_blinded_by_darkness_tooltip: Blinded by darkness, you can no longer control yourself. You start to destroy everything in existance to calm yourself.
+
+# Tooltips (tooltips_arcane.yaml) section auto-generated from EN source
+job_student_tooltip: Study the theory of mana and practice basic spells. There is minor pay to cover living costs; however, this is a necessary stage in becoming a mage.
+job_apprentice_mage_tooltip: Under the supervision of a skilled mage, perform basic spells against enemies in battle. Generous pay will be provided to cover living costs.
+job_adept_mage_tooltip: Turn the tides of battle through casting intermediate spells and mentor other apprentices. The pay for this particular job is extremely high.
+job_master_wizard_tooltip: Utilise advanced spells to ravage and destroy entire legions of enemy soldiers. Only a small percentage of mages deserve to attain this role and
+  are rewarded with an insanely high pay.
+job_archmage_tooltip: Blessed with unparalleled talent, perform unbelievable feats with magic at will. It is said that an archmage has enough destructive power to wipe an
+  empire off the map.
+job_chronomancer_tooltip: Specialize in harnessing temporal energies that alter the flow of time with supernatural divinations and otherwordly expertise.
+job_chairman_tooltip: Spend your days administrating the Mage Collegium and investigate the concepts of true immortality. The chairman receives ludicrous amounts of pay
+  daily.
+job_imperator_tooltip: You wield an unlimited power, making you unstoppable. By ruling with an iron fist, everyone in the Arcane Association has to obey your commands.
+job_corrupted_tooltip: Corrupted by Void, you are slowly turning into a slave with no free will, just to serve the Void for the rest of eternity... Can you resist it, or will
+  it consume you forever?
+job_void_slave_tooltip: Each day, you are succumbing to the Void more and more. Can you hold onto your humanity for a bit longer, or will you let the Void devour you?
+job_void_fiend_tooltip: You become an inquisitive yet putrid creature that siphons life from everything around you.
+job_abyss_anomaly_tooltip: Screaming into existence, you become a manifestation of the unknowable nothingness that lies beyond.
+job_void_wraith_tooltip: Damned soul... a shadow of your former self, lingering between realms and consumed by void... Can you ever find peace?
+job_void_reaver_tooltip: There are few who may tread the paths between worlds, these powers grant you an ability to generate fields of void energy that devour all living things.
+job_void_lord_tooltip: You gazed into the dark heart of the Void long enough to become one of the most powerful and feared beings. All lesser void creatures are at your command.
+job_abyss_god_tooltip: Creator of the Void, a vast canvas of blackness and nothingness, in which the concept of its existence defies all logic. Nothing will escape you.
+
+# Tooltips (tooltips_galactic.yaml) section auto-generated from EN source
+job_eternal_wanderer_tooltip: With the powers bestowed upon you by an unknown entity, you wander around, visiting places revered and feared in search of answers.
+job_nova_tooltip: Extremely powerful being with tremedous telekinetic powers and the ability to rearrange the molecular structure of matter and energy, even up to cosmic scale.
+job_sigma_proioxis_tooltip: A nigh-omnipotent cosmological entity, with vast matter and energy manipulation abilities that help you push the boundaries of the Universe itself.
+job_acallaris_tooltip: Primordial being that predate the universe, involved with the creation of life and powerful beyond mortal comprehension, existing as myths to the oldest
+  species in the universe.
+job_one_above_all_tooltip: Creator of everything.
+job_snow_crash_tooltip: Snow Crash, 1992
+job_player_one_tooltip: Ready Player One, 2011
+job_lost_in_the_dark_tooltip: They both knew they would only go forward when next to each other. They vowed that they would always be together, earn a lot of money and move
+  to a better place where they would be very happy.
+job_omega_tooltip: ω
+
+# Tooltips (tooltips_properties.yaml) section auto-generated from EN source
+item_homeless_tooltip: Sleep on the uncomfortable, filthy streets while almost freezing to death every night. It cannot get any worse than this.
+item_tent_tooltip: A thin sheet of tattered cloth held up by a couple of feeble, wooden sticks. Horrible living conditions but at least you have a roof over your head.
+item_wooden_hut_tooltip: Shabby logs and dirty hay glued together with horse manure. Much more sturdy than a tent, however, the stench isn't very pleasant.
+item_cottage_tooltip: Structured with a timber frame and a thatched roof. Provides decent living conditions for a fair price.
+item_house_tooltip: A building formed from stone bricks and sturdy timber, which contains a few rooms. Although quite expensive, it is a comfortable abode.
+item_large_house_tooltip: Much larger than a regular house, which boasts even more rooms and multiple floors. The building is quite spacious but comes with a hefty price tag.
+item_small_palace_tooltip: A very rich and meticulously built structure rimmed with fine metals such as silver. Extremely high expenses to maintain for a lavish lifestyle.
+item_grand_palace_tooltip: A grand residence completely composed of gold and silver. Provides the utmost luxurious and comfortable living conditions possible for a ludicrous
+  price.
+item_town_ruler_tooltip: You rule your very own community in your small town, owning multiple establishments.
+item_city_ruler_tooltip: As the highest ranking official, you manage and oversee everything that happens. While your pay is astronomical, so are your expenses.
+item_nation_ruler_tooltip: You reign the whole nation. While your riches may be corrupted, everything you see belongs to you.
+item_pocket_dimension_tooltip: A Dimension just for you that can be summoned at will. What happens there stays there.
+item_void_realm_tooltip: Unknown how or when the Void realm came into existence, containing elements which don’t exist outside of its dimensional plane are now all to your
+  disposal
+item_void_universe_tooltip: Predating our own universe, the Void has an unlimited amount of space for your belongings, if you are willing to submit to it.
+item_astral_realm_tooltip: Beneath personality and ego lays the source of our deep character, our personhood. Here are the psychic senses, our deep mind and emotions, symbols
+  and inner reality.
+item_galactic_throne_tooltip: You sit on your throne, overseeing the existence itself.
+item_spaceship_tooltip: Your own personal cosmic house, able to travel anywhere in the universe at 99.99% of the speed of light.
+item_planet_tooltip: A planet with the sole purpose of housing you and your family.
+item_ringworld_tooltip: A construct with the mass of Jupiter and a surface area millions of times that of Earth, capable of housing trillions of humans and other animals including
+  alien species. The expenses are literally astronomical due to the maintenance involved in keeping the structure stable and the inside area habitable, but the massive
+  living space is worth it.
+item_stellar_neighborhood_tooltip: A fully colonized network of stars and star systems spanning dozens of light years is ready for you to explore and call home.
+item_galaxy_tooltip: You rule your very own galaxy the size of the Milky Way, with billions of planets organized into thousands of different states all under your control.
+  While your power is astronomical, so are your responsibilities.
+item_supercluster_tooltip: A cluster of galactic groups spanning hundreds of millions of light years across and containing thousands of galaxies is under your control.
+item_galaxy_filament_tooltip: One of the largest known structures of the universe, containing dozens of superclusters and millions of galaxies.
+item_observable_universe_tooltip: You did it! You finally rule the entire universe...or do you?
+item_multiverse_tooltip: Universe is too small for you?!
+item_quantum_world_tooltip: You try to find at least some place that is still beyond your control, but all in vain.
+item_bootes_void_tooltip: The Great Nothing
+
+# Tooltips (tooltips_misc.yaml) section auto-generated from EN source
+item_book_tooltip: A place to write down all your thoughts and discoveries, allowing you to learn a lot more quickly.
+item_dumbbells_tooltip: Heavy tools used in strenuous exercise to toughen up and accumulate strength even faster than before.
+item_personal_squire_tooltip: Assists you in completing day to day activities, giving you more time to be productive at work.
+item_steel_longsword_tooltip: A fine blade used to slay enemies even quicker in combat and therefore gain more experience.
+item_butler_tooltip: Keeps your household clean at all times and also prepares three delicious meals per day, leaving you in a happier, stress-free mood.
+item_sapphire_charm_tooltip: Embedded with a rare sapphire, this charm activates more mana channels within your body, providing a much easier time learning magic.
+item_study_desk_tooltip: A dedicated area which provides many fine stationary and equipment designed for furthering your progress in research.
+item_library_tooltip: Stores a collection of books, each containing vast amounts of information from basic life skills to complex magic spells.
+item_observatory_tooltip: Used for observing terrestrial, marine and celestial events.
+item_void_necklace_tooltip: Helps you shape and manipulate void matter, even transmute and rebuild it into anything of your choosing.
+item_void_armor_tooltip: Generates an innate armor as a part of your body, which is resistant to attacks, harm or pain.
+item_void_blade_tooltip: Forged from void dust and dark matter, this blade can slash through dimensional barriers. It's a weapon of choice for every Void Reaver.
+item_void_orb_tooltip: When the orb touches non void entities, it instantly disintegrates them by harnessing its power from Void realm.
+item_void_dust_tooltip: Purest version of void created material; a teaspoon of it is as heavy as a small planet.
+item_celestial_robe_tooltip: The most powerful and essential equipment of any Celestial. Acts as a source of infinite power.
+item_universe_fragment_tooltip: From the time the universe was born. Can create more small universes.
+item_multiverse_fragment_tooltip: Came into existance long before our universe was created, this strange looking object with no shape radiates unlimited energy.
+item_stairway_to_heaven_tooltip: A staircase to the all mighty themselves.
+item_highway_to_hell_tooltip: The devil invites you to his palace of terror.
+item_tesseract_tooltip: This object is from a higher dimensional world.
+item_desintegration_tooltip: Why do you need it?
+item_custom_galaxy_tooltip: You know about the pocket dimension, right?
+item_hypersphere_tooltip: You gain the limitless pow... ah, you're already omnipotent...
+
+# Tooltips: Essence + Heroic Milestones
+milestone_magic_eye_tooltip: The Eye in your Amulet starts to glow.
+milestone_almighty_eye_tooltip: The Eye in your Amulet shines like a star.
+milestone_deal_with_the_devil_tooltip: You made a deal with the Devil.
+milestone_transcendent_master_tooltip: You've mastered Transcendence.
+milestone_eternal_time_tooltip: Does time matter now?
+milestone_hell_portal_tooltip: You've opened a portal to Hell.
+milestone_inferno_tooltip: You are at the last level of Hell. What is next?
+milestone_faint_hope_tooltip: Maybe there is hope?
+milestone_a_new_beginning_tooltip: Unlocks the ability to reset for Dark Matter
+milestone_new_beginning_tooltip: Try to upgrade One Above All to level 2000
+milestone_rise_of_great_heroes_tooltip: Great jobs and skills are slots with the ★★★
+  mark. Every active Great job or skill will increase Essence gain a bit.
+milestone_lazy_heroes_tooltip: Total Great XP multiplier is 5e20
+milestone_dirty_heroes_tooltip: Total Great XP multiplier is 5e35
+milestone_angry_heroes_tooltip: Total Great XP multiplier is 5e50
+milestone_tired_heroes_tooltip: Total Great XP multiplier is 5e65
+milestone_scared_heroes_tooltip: Total Great XP multiplier is 5e80
+milestone_good_heroes_tooltip: Total Great XP multiplier is 5e95
+milestone_funny_heroes_tooltip: Total Great XP multiplier is 5e120
+milestone_beautiful_heroes_tooltip: Total Great XP multiplier is 5e170
+milestone_awesome_heroes_tooltip: Total Great XP multiplier is 5e180
+milestone_furious_heroes_tooltip: Total Great XP multiplier is 5e198
+milestone_superb_heroes_tooltip: Total Great XP multiplier is 5e201
+milestone_god_s_blessings_tooltip: May God bless you!
+
+milestone_mind_control_tooltip: Control the Devil by making him give you even more
+  Evil per second
+milestone_galactic_emperor_tooltip: Commander of the Galactic Council grants you the
+  privilege to automatically collect Essence from the nearby planets
+milestone_dark_matter_harvester_tooltip: Harvest the universe to extract even more
+  Dark Matter from it.
+milestone_a_dark_era_tooltip: Start a new era of Dark Matter.
+milestone_dark_orbiter_tooltip: Using some wizardry you can improve your Dark Orb
+  generators massively.
+milestone_dark_matter_mining_tooltip: Mine a huge amount of Dark Matter from each
+  planet you visit.
+milestone_the_new_gold_tooltip: Essence might become the new gold due to mass adoption.
+milestone_the_devil_inside_you_tooltip: Shady deals with the Devil grant you a huge
+  Evil bonus.
+milestone_strange_magic_tooltip: A strange wizard offers you a few secret spells which
+  might be useful.
+milestone_life_is_valueable_tooltip: Time is limited... Even as the ruler of the universe.
+milestone_speed_speed_speed_tooltip: You can affect the speed of the universe with
+  your gigantic amount of Dark Matter.
+milestone_dark_matter_millionaire_tooltip: This secret spell will help you reach your
+  quest to become the first Dark Matter millionaire.
+milestone_the_new_dark_matter_tooltip: Your amulet tears space and time through all
+  multiverses. Welcome to Metaverse.
+milestone_strong_hope_tooltip: Another Faint Hope buff?!
+milestone_ruler_of_the_metaverse_tooltip: Now you are thinking with portals
+milestone_a_new_hope_tooltip: No more of this Faint Hope nonsense!!!
+milestone_time_is_a_flat_circle_tooltip: This is a world where nothing is solved.
+  Someone once told me, time is a flat circle. Everything we’ve ever done or will
+  do, we’re gonna do over and over and over again.
+milestone_the_end_is_near_tooltip: We don't try to live forever
+milestone_the_end_tooltip: There is always an end
+
+# Effect labels (skill effect types)
+effect_skill_xp: Skill XP
+effect_job_xp: Job XP
+effect_all_xp: All XP
+effect_army_xp: Army XP
+effect_army_income: Army Pay
+effect_strength_xp: Strength XP
+effect_magic_xp: Magic XP
+effect_void_xp: The Void XP
+effect_collegium_xp: Collegium XP
+effect_collegium_income: Collegium Pay
+effect_galactic_xp: Galactic Council XP
+effect_job_income: Job Pay
+effect_expense_reduction: Reduced Expenses
+effect_happiness: Life Comfort
+effect_lifespan: Longer Lifespan
+effect_gamespeed: Gamespeed
+effect_evil_gain: Evil Gain
+effect_hypercube_gain: Hypercube Gain
+effect_fundamentals_xp: Fundamentals XP
+effect_void_manipulation_xp: Void Manipulation XP
+effect_essence_gain: Essence Gain
+effect_essence_evil_gain: Essence + Evil Gain
+effect_dark_matter_gain: Dark Matter Gain
+effect_max_level_multiplier: Max Lvl Multiplier

@@ -28,18 +28,26 @@ function renderChallenges() {
 
     //TODO (indomit)
 
-    document.getElementById("challengeGoal1").textContent = t("challenge_1_goal", format(getChallengeGoal("an_unhappy_life")))
-    document.getElementById("challengeGoal2").textContent = t("challenge_2_goal", format(getChallengeGoal("rich_and_the_poor")))
-    document.getElementById("challengeGoal3").textContent = t("challenge_3_goal", format(getChallengeGoal("time_does_not_fly")))
-    document.getElementById("challengeGoal4").textContent = t("challenge_4_goal", format(getChallengeGoal("dance_with_the_devil")))
-    document.getElementById("challengeGoal5").textContent = t("challenge_5_goal", getFormattedChallengeTaskGoal("Chairman", Math.floor(getChallengeGoal("legends_never_die"))))
-    document.getElementById("challengeGoal6").textContent = t("challenge_6_goal", getFormattedChallengeTaskGoal("Sigma Proioxis", Math.floor(100 * (getChallengeGoal("the_darkest_time") - 1))))
+    document.getElementById("challengeGoal1").textContent = t("challenge_goal", format(getChallengeGoal("an_unhappy_life")), t("reward_happiness"))
+    document.getElementById("challengeGoal2").textContent = t("challenge_goal", format(getChallengeGoal("rich_and_the_poor")), t("reward_income"))
+    document.getElementById("challengeGoal3").textContent = t("challenge_goal", "x" + format(getChallengeGoal("time_does_not_fly")), t("reward_time_warping"))
+    document.getElementById("challengeGoal4").textContent = t("challenge_goal", format(getChallengeGoal("dance_with_the_devil")), t("gain_evil"))
+    document.getElementById("challengeGoal5").textContent = t("challenge_goal_plain", getFormattedChallengeTaskGoal("job_chairman", Math.floor(getChallengeGoal("legends_never_die"))))
+    document.getElementById("challengeGoal6").textContent = t("challenge_goal_plain", getFormattedChallengeTaskGoal("job_sigma_proioxis", Math.floor(100 * (getChallengeGoal("the_darkest_time") - 1))))
+
+    // Показатели эффектов берутся из констант, чтобы текст не рассинхронизировался с механикой
+    document.getElementById("challenge_1_desc").textContent = t("challenge_1_desc", CHALLENGE_UNHAPPY_HAPPINESS_EXPONENT)
+    document.getElementById("challenge_2_desc").textContent = t("challenge_2_desc", CHALLENGE_RICH_INCOME_EXPONENT)
+    document.getElementById("challenge_3_desc").textContent = t("challenge_3_desc", CHALLENGE_TIME_WARP_EXPONENT)
+    document.getElementById("challenge_4_desc").textContent = t("challenge_4_desc", CHALLENGE_DANCE_HAPPINESS_EXPONENT)
+    document.getElementById("challenge_5_desc").textContent = t("challenge_5_desc", LIFESPAN_CHALLENGE_EXPONENT, CHALLENGE_LEGENDS_WARP_EXPONENT)
 
     const challengeRewardIds = ["challenge_1_reward", "challenge_2_reward", "challenge_3_reward", "challenge_4_reward", "challenge_5_reward", "challenge_6_reward"]
+    const challengeRewardStatKeys = ["reward_happiness", "reward_income", "reward_time_warping", "gain_essence", "gain_evil", "gain_dark_matter"]
     for (let i = 0; i < 6; i++) {
         const rewardElement = document.getElementById(challengeRewardIds[i])
         if (rewardElement != null)
-            rewardElement.innerHTML = t("challenge_" + (i + 1) + "_reward", format(getChallengeBonus(i + 1)))
+            rewardElement.innerHTML = t("challenge_reward", t(challengeRewardStatKeys[i]))
     }
 
     document.getElementById("challengeReward1").hidden = gameData.challenges.an_unhappy_life == 0

@@ -1,63 +1,58 @@
-# Categories
-Common work: Commoners
-Military: Army
-Mage Collegium: Mage Collegium
-The Void: The Void
-Galactic Council: Galactic Council
-Metaverse Guards: Metaverse Guards
-Fundamentals: Fundamentals
-Combat: Combat
-Magic: Magic
-Dark Magic: Dark Magic
-Void Manipulation: Void Manipulation
-Celestial Powers: Celestial Powers
-Almightiness: Almightiness
-Darkness: Darkness
-Properties: Properties
-Misc: Misc
-
-# Jobs
-Beggar: Laborer
-Farmer: Farmer
-Fisherman: Fisherman
-Miner: Miner
-Blacksmith: Blacksmith
-Merchant: Trader
-Squire: Squire
-Footman: Footman
-Veteran footman: Veteran footman
-Centenary: Centenary
-Knight: Knight
-Veteran Knight: Veteran Knight
-Holy Knight: Holy Knight
-Lieutenant General: Lieutenant General
-Student: Student
-Apprentice Mage: Apprentice Mage
-Adept Mage: Adept Mage
-Master Wizard: Master Wizard
-Archmage: Archmage
-Chronomancer: Chronomancer
-Chairman: Chairman
-Imperator: Imperator
-Corrupted: Corrupted
-Void Slave: Void Slave
-Void Fiend: Void Fiend
-Abyss Anomaly: Abyss Anomaly
-Void Wraith: Void Wraith
-Void Reaver: Void Reaver
-Void Lord: Void Lord
-Abyss God: Abyss God
-Eternal Wanderer: Eternal Wanderer
-Nova: Nova
-Sigma Proioxis: Sigma Proioxis
-Acallaris: Acallaris
-One Above All: One Above All
-Snow Crash: Snow Crash
-Player One: Player One
-Lost in the dark: Lost in the dark
-Omega: Omega
-
-# Skills
+category_common_work: Commoners
+category_military: Army
+category_mage_collegium: Mage Collegium
+category_the_void: The Void
+category_galactic_council: Galactic Council
+category_metaverse_guards: Metaverse Guards
+category_fundamentals: Fundamentals
+category_combat: Combat
+category_magic: Magic
+category_dark_magic: Dark Magic
+category_void_manipulation: Void Manipulation
+category_celestial_powers: Celestial Powers
+category_almightiness: Almightiness
+category_darkness: Darkness
+category_properties: Properties
+category_misc: Misc
+job_beggar: Laborer
+job_farmer: Farmer
+job_fisherman: Fisherman
+job_miner: Miner
+job_blacksmith: Blacksmith
+job_merchant: Trader
+job_squire: Squire
+job_footman: Footman
+job_veteran_footman: Veteran footman
+job_centenary: Centenary
+job_knight: Knight
+job_veteran_knight: Veteran Knight
+job_holy_knight: Holy Knight
+job_lieutenant_general: Lieutenant General
+job_student: Student
+job_apprentice_mage: Apprentice Mage
+job_adept_mage: Adept Mage
+job_master_wizard: Master Wizard
+job_archmage: Archmage
+job_chronomancer: Chronomancer
+job_chairman: Chairman
+job_imperator: Imperator
+job_corrupted: Corrupted
+job_void_slave: Void Slave
+job_void_fiend: Void Fiend
+job_abyss_anomaly: Abyss Anomaly
+job_void_wraith: Void Wraith
+job_void_reaver: Void Reaver
+job_void_lord: Void Lord
+job_abyss_god: Abyss God
+job_eternal_wanderer: Eternal Wanderer
+job_nova: Nova
+job_sigma_proioxis: Sigma Proioxis
+job_acallaris: Acallaris
+job_one_above_all: One Above All
+job_snow_crash: Snow Crash
+job_player_one: Player One
+job_lost_in_the_dark: Lost in the dark
+job_omega: Omega
 skill_concentration_name: Concentration
 skill_productivity_name: Productivity
 skill_bargaining_name: Bargaining
@@ -104,107 +99,286 @@ skill_immortal_ruler_name: Immortal Ruler
 skill_dark_magician_name: Dark Magician
 skill_universal_ruler_name: Universal Ruler
 skill_blinded_by_darkness_name: Blinded By Darkness
+item_homeless_name: Homeless
+item_tent_name: Tent
+item_wooden_hut_name: Wooden Hut
+item_cottage_name: Cottage
+item_house_name: House
+item_large_house_name: Large House
+item_small_palace_name: Small Palace
+item_grand_palace_name: Grand Palace
+item_town_ruler_name: Town Ruler
+item_city_ruler_name: City Ruler
+item_nation_ruler_name: Nation Ruler
+item_pocket_dimension_name: Pocket Dimension
+item_void_realm_name: Void Realm
+item_void_universe_name: Void Universe
+item_astral_realm_name: Astral Realm
+item_galactic_throne_name: Galactic Throne
+item_spaceship_name: Spaceship
+item_planet_name: Planet
+item_ringworld_name: Ringworld
+item_stellar_neighborhood_name: Stellar Neighborhood
+item_galaxy_name: Galaxy
+item_supercluster_name: Supercluster
+item_galaxy_filament_name: Galaxy Filament
+item_observable_universe_name: Observable Universe
+item_multiverse_name: Multiverse
+item_quantum_world_name: Quantum World
+item_bootes_void_name: Boötes Void
+item_book_name: Book
+item_dumbbells_name: Dumbbells
+item_personal_squire_name: Personal Squire
+item_steel_longsword_name: Steel Longsword
+item_butler_name: Butler
+item_sapphire_charm_name: Sapphire Charm
+item_study_desk_name: Study Desk
+item_library_name: Library
+item_observatory_name: Observatory
+item_minds_eye_name: Mind's Eye
+item_void_necklace_name: Void Necklace
+item_void_armor_name: Void Armor
+item_void_blade_name: Void Blade
+item_void_orb_name: Void Orb
+item_void_dust_name: Void Dust
+item_celestial_robe_name: Celestial Robe
+item_universe_fragment_name: Universe Fragment
+item_multiverse_fragment_name: Multiverse Fragment
+item_stairway_to_heaven_name: Stairway to heaven
+item_highway_to_hell_name: Highway to hell
+item_tesseract_name: Tesseract
+item_desintegration_name: Desintegration
+item_custom_galaxy_name: Custom Galaxy
+item_hypersphere_name: Hypersphere
+category_essence_milestones: Essence Milestones
+category_heroic_milestones: Heroic Milestones
+category_dark_milestones: Dark Milestones
+category_metaverse_milestones: Metaverse Milestones
+milestone_magic_eye_name: Magic Eye
+milestone_almighty_eye_name: Almighty Eye
+milestone_deal_with_the_devil_name: Deal with the Devil
+milestone_transcendent_master_name: Transcendent Master
+milestone_eternal_time_name: Eternal Time
+milestone_hell_portal_name: Hell Portal
+milestone_inferno_name: Inferno
+milestone_god_s_blessings_name: God's Blessings
+milestone_faint_hope_name: Faint Hope
+milestone_new_beginning_name: New Beginning
+milestone_rise_of_great_heroes_name: Rise of Great Heroes
+milestone_lazy_heroes_name: Lazy Heroes
+milestone_dirty_heroes_name: Dirty Heroes
+milestone_angry_heroes_name: Angry Heroes
+milestone_tired_heroes_name: Tired Heroes
+milestone_scared_heroes_name: Scared Heroes
+milestone_good_heroes_name: Good Heroes
+milestone_funny_heroes_name: Funny Heroes
+milestone_beautiful_heroes_name: Beautiful Heroes
+milestone_awesome_heroes_name: Awesome Heroes
+milestone_furious_heroes_name: Furious Heroes
+milestone_superb_heroes_name: Superb Heroes
+milestone_a_new_beginning_name: A new beginning
+milestone_mind_control_name: Mind Control
+milestone_galactic_emperor_name: Galactic Emperor
+milestone_dark_matter_harvester_name: Dark Matter Harvester
+milestone_a_dark_era_name: A Dark Era
+milestone_dark_orbiter_name: Dark Orbiter
+milestone_dark_matter_mining_name: Dark Matter Mining
+milestone_the_new_gold_name: The new gold
+milestone_the_devil_inside_you_name: The Devil inside you
+milestone_strange_magic_name: Strange Magic
+milestone_speed_speed_speed_name: Speed speed speed
+milestone_life_is_valueable_name: Life is valueable
+milestone_dark_matter_millionaire_name: Dark Matter Millionaire
+milestone_the_new_dark_matter_name: The new Dark Matter
+milestone_strong_hope_name: Strong Hope
+milestone_ruler_of_the_metaverse_name: Ruler of the Metaverse
+milestone_a_new_hope_name: A New Hope
+milestone_time_is_a_flat_circle_name: Time is a flat circle
+milestone_the_end_is_near_name: The End is near
+milestone_the_end_name: The End
 
-# Items
-Homeless: Homeless
-Tent: Tent
-Wooden Hut: Wooden Hut
-Cottage: Cottage
-House: House
-Large House: Large House
-Small Palace: Small Palace
-Grand Palace: Grand Palace
-Town Ruler: Town Ruler
-City Ruler: City Ruler
-Nation Ruler: Nation Ruler
-Pocket Dimension: Pocket Dimension
-Void Realm: Void Realm
-Void Universe: Void Universe
-Astral Realm: Astral Realm
-Galactic Throne: Galactic Throne
-Spaceship: Spaceship
-Planet: Planet
-Ringworld: Ringworld
-Stellar Neighborhood: Stellar Neighborhood
-Galaxy: Galaxy
-Supercluster: Supercluster
-Galaxy Filament: Galaxy Filament
-Observable Universe: Observable Universe
-Multiverse: Multiverse
-Quantum World: Quantum World
-Boötes Void: Boötes Void
-Book: Book
-Dumbbells: Dumbbells
-Personal Squire: Personal Squire
-Steel Longsword: Steel Longsword
-Butler: Butler
-Sapphire Charm: Sapphire Charm
-Study Desk: Study Desk
-Library: Library
-Observatory: Observatory
-Mind's Eye: Mind's Eye
-Void Necklace: Void Necklace
-Void Armor: Void Armor
-Void Blade: Void Blade
-Void Orb: Void Orb
-Void Dust: Void Dust
-Celestial Robe: Celestial Robe
-Universe Fragment: Universe Fragment
-Multiverse Fragment: Multiverse Fragment
-Stairway to heaven: Stairway to heaven
-Highway to hell: Highway to hell
-Tesseract: Tesseract
-Desintegration: Desintegration
-Custom Galaxy: Custom Galaxy
-Hypersphere: Hypersphere
+# Milestone descriptions
+milestone_magic_eye_desc: Automatically gain max levels at age 65
+milestone_almighty_eye_desc: Automatically gain max levels
+milestone_deal_with_the_devil_desc: Passively gain a small amount of Evil
+milestone_transcendent_master_desc: Essence gain (grows with Essence)
+milestone_eternal_time_desc: Time Warping
+milestone_hell_portal_desc: Passively gain a huge amount of Evil
+milestone_inferno_desc: Evil gain (grows with Essence)
+milestone_god_s_blessings_desc: Happiness
+milestone_faint_hope_desc: Essence gain (grows with real time)
+milestone_new_beginning_desc: Heroic jobs, skills and items are unlocked
+milestone_rise_of_great_heroes_desc: Essence gain (grows with number of Greats) + Great XP
+milestone_lazy_heroes_desc: Great XP
+milestone_dirty_heroes_desc: Great XP
+milestone_angry_heroes_desc: Great XP
+milestone_tired_heroes_desc: Great XP
+milestone_scared_heroes_desc: Great XP
+milestone_good_heroes_desc: Great XP
+milestone_funny_heroes_desc: Great XP
+milestone_beautiful_heroes_desc: Great XP
+milestone_awesome_heroes_desc: Great XP
+milestone_furious_heroes_desc: Great XP
+milestone_superb_heroes_desc: Great XP
+milestone_a_new_beginning_desc: Unlocks Dark Matter
+milestone_mind_control_desc: Makes Hell Portal even stronger
+milestone_galactic_emperor_desc: Passively gain a small amount of Essence
+milestone_dark_matter_harvester_desc: Dark Matter gain (grows with Dark Orbs)
+milestone_a_dark_era_desc: Unlocks Dark Matter Abilities
+milestone_dark_orbiter_desc: Dark Orb gain
+milestone_dark_matter_mining_desc: Dark Matter gain (grows with Dark Matter and Essence)
+milestone_the_new_gold_desc: Essence gain
+milestone_the_devil_inside_you_desc: Evil gain
+milestone_strange_magic_desc: Darkness xp gain
+milestone_speed_speed_speed_desc: Multiply Time Warping and Lifespan by 1000x. Heavily
+  boosts Faint Hope
+milestone_life_is_valueable_desc: Essence gain (grows with Dark Matter). Multiply your
+  lifespan by 1e5x. New challenge unlocked.
+milestone_dark_matter_millionaire_desc: Dark Matter gain
+milestone_the_new_dark_matter_desc: Unlocks Metaverse
+milestone_strong_hope_desc: Faint Hope does not reset on transcend or collapse
+milestone_ruler_of_the_metaverse_desc: Unlocks Metaverse Perks, Metaverse Guards Job
+  Category
+milestone_a_new_hope_desc: Faint Hope always at maximum
+milestone_time_is_a_flat_circle_desc: Multiply Time Warping by 1000x, Multiply all
+  xp gain by 1e50x
+milestone_the_end_is_near_desc: Unspent Multiverse Perk Points buffs Dark Matter
+milestone_the_end_desc: Congratulations! You have beaten the game!
 
-# Milestone categories
-Essence Milestones: Essence Milestones
-Heroic Milestones: Heroic Milestones
-Dark Milestones: Dark Milestones
-Metaverse Milestones: Metaverse Milestones
+challenge_goal: "Goal: Reach {0} {1} to increase reward"
 
-# Milestones
-Magic Eye: Magic Eye
-Almighty Eye: Almighty Eye
-Deal with the Devil: Deal with the Devil
-Transcendent Master: Transcendent Master
-Eternal Time: Eternal Time
-Hell Portal: Hell Portal
-Inferno: Inferno
-God's Blessings: God's Blessings
-Faint Hope: Faint Hope
-New Beginning: New Beginning
-Rise of Great Heroes: Rise of Great Heroes
-Lazy Heroes: Lazy Heroes
-Dirty Heroes: Dirty Heroes
-Angry Heroes: Angry Heroes
-Tired Heroes: Tired Heroes
-Scared Heroes: Scared Heroes
-Good Heroes: Good Heroes
-Funny Heroes: Funny Heroes
-Beautiful Heroes: Beautiful Heroes
-Awesome Heroes: Awesome Heroes
-Furious Heroes: Furious Heroes
-Superb Heroes: Superb Heroes
-A new beginning: A new beginning
-Mind Control: Mind Control
-Galactic Emperor: Galactic Emperor
-Dark Matter Harvester: Dark Matter Harvester
-A Dark Era: A Dark Era
-Dark Orbiter: Dark Orbiter
-Dark Matter Mining: Dark Matter Mining
-The new gold: The new gold
-The Devil inside you: The Devil inside you
-Strange Magic: Strange Magic
-Speed speed speed: Speed speed speed
-Life is valueable: Life is valueable
-Dark Matter Millionaire: Dark Matter Millionaire
-The new Dark Matter: The new Dark Matter
-Strong Hope: Strong Hope
-Ruler of the Metaverse: Ruler of the Metaverse
-A New Hope: A New Hope
-Time is a flat circle: Time is a flat circle
-The End is near: The End is near
-The End: The End
+challenge_goal_plain: "Goal: Reach {0} to increase reward"
 
+challenge_reward: "Reward: Multiplies {0} by"
+
+challenge_1_name: 1. An unhappy life
+
+challenge_1_desc: Reduces life comfort by ^{0}
+
+challenge_2_name: 2. The rich and the poor
+
+challenge_2_desc: Reduces income by ^{0}
+
+challenge_3_name: 3. Time does not fly
+
+challenge_3_desc: Reduces time warping by ^{0}
+
+challenge_4_name: 4. Dance with the devil
+
+challenge_4_desc: Reduces Dark Magic and Almightiness XP effect enormously, max level reduces XP gain and life comfort is reduced by ^{0}
+
+challenge_5_name: 5. Legends never die
+
+challenge_5_desc: Reduces your lifespan by ^{0}, time warping by ^{1}, life comfort does nothing and Dark Magic XP effect is always 1x.
+
+challenge_5_meta_debuff: The infinite lifespan buff from Metaverse is disabled.
+
+challenge_6_name: 6. The darkest time
+
+challenge_6_desc: All previous challenges combined. Dark Matter items are disabled. First 4 Dark Matter abilities grant all debuffs and no positive effects. Income is 0.
+
+a_miracle: A miracle
+
+a_miracle_desc: "Keep <b>Magic Eye</b> when performing a Dark Matter or lower reset"
+
+a_deal_with_chairman: A deal with the Chairman
+
+a_deal_with_chairman_desc: 'Reward: Multiply <span style="color: rgb(199, 21, 133);">Collegium & Magic</span> XP gain by x{0}'
+
+a_gift_from_god: A gift from God
+
+a_gift_from_god_desc: 'Reward: Multiply <span class="color-essence">Essence</span> gain by x{0}'
+
+gotta_be_fast: Gotta be fast
+
+gotta_be_fast_desc: 'Reward: Multiply <span class="color-time-warping">Time Warping</span> by x{0}'
+
+life_coach: Life coach
+
+life_coach_desc: 'Reward: Multiply <span class="color-income">Income</span> by x{0}'
+
+dark_orb_generator: Dark Orb Generator
+
+dark_orb_generator_desc: 'Generates {0} <span class="color-dark-orbs">Dark Orb</span> per day'
+
+speed_is_life: Speed is life
+
+speed_is_life_1: 'Multiply <span class="color-time-warping">Time Warping</span> by <b>3x</b>'
+
+speed_is_life_1_neg: ', but divide <span class="color-evil">Evil</span> gain by <b>2x</b>'
+
+speed_is_life_2: 'Multiply <span class="color-time-warping">Time Warping</span> by <b>7x</b>'
+
+speed_is_life_2_neg: ', but divide <span class="color-essence">Essence</span> gain by <b>2x</b>'
+
+your_greatest_debt: Your greatest debt
+
+your_greatest_debt_1: 'Multiply <span style="color:rgb(255, 204, 102)">all XP</span> gain by <b>500x</b>'
+
+your_greatest_debt_1_neg: ', but divide <span class="color-income">Income</span> by <b>10x</b>'
+
+your_greatest_debt_2: 'Multiply <span class="color-evil">Evil gain</span> by <b>100x</b>'
+
+your_greatest_debt_2_neg: ', but divide <span class="color-income">Income</span> by <b>2x</b>'
+
+essence_collector: Essence collector
+
+essence_collector_1: "Multiply <span class=\"color-essence\">Essence</span> gain by <b>500x</b>"
+
+essence_collector_1_neg: ', but divide <span class="color-evil">Evil</span> gain by <b>2x</b>'
+
+essence_collector_2: "Multiply <span class=\"color-essence\">Essence</span> gain by <b>1000x</b>"
+
+essence_collector_2_neg: ', but divide <span class="color-income">Income</span> by <b>25x</b>'
+
+explosion_of_the_universe: Explosion of the universe
+
+explosion_of_the_universe_1: "Multiply <span style=\"color:rgb(255, 204, 102)\">all XP</span> gain by <b>1e100x</b>"
+
+explosion_of_the_universe_1_neg: ', but divide <span class="color-essence">Essence</span> gain by <b>2x</b>'
+
+explosion_of_the_universe_2: "Multiply <span style=\"color:rgb(255, 204, 102)\">all XP</span> gain by <b>1e150x</b>"
+
+explosion_of_the_universe_2_neg: ', but divide <span class="color-income">Income</span> by <b>1e5x</b>'
+
+multiverse_explorer: Multiverse explorer
+
+multiverse_explorer_1: "Multiply <span class=\"color-essence\">Essence</span> gain by <b>5000x</b>"
+
+multiverse_explorer_1_neg: ', but divide <span class="color-time-warping">Time Warping</span> by <b>1000x</b>'
+
+multiverse_explorer_2: "Multiply <span class=\"color-essence\">Essence</span> gain by <b>10000x</b>"
+
+multiverse_explorer_2_neg: ', but divide <span class="color-dark-matter">Dark Matter</span> gain by <b>100x</b>'
+
+perk_auto_dark_orb: "Auto buy dark orb generators"
+
+perk_auto_dark_shop: "Auto buy dark shop items"
+
+perk_auto_boost: "Auto boost"
+
+perk_instant_evil: "Instant evil"
+
+perk_hypercube_boost: "Hypercube boost"
+
+perk_instant_essence: "Instant essence"
+
+perk_save_challenges: "Save challenges"
+
+perk_instant_dark_matter: "Instant dark matter"
+
+perk_auto_sacrifice: "Auto sacrifice"
+
+perk_double_perk_points_gain: "2x perk points gain"
+
+perk_positive_dark_mater_skills: "Only positive dark matter abilities"
+
+perk_hyper_speed: "Hyper speed"
+
+perk_both_dark_mater_skills: "Pick both dark matter abilities"
+
+perk_keep_dark_mater_skills: "Keep dark matter abilities"
+
+perk_evil_booster: "Evil booster"
+
+perk_more_perk_points: "10x perk points gain"

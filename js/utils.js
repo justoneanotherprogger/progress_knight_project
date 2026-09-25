@@ -7,6 +7,25 @@ function softcap(value, cap, power = 0.5) {
     return decValue.pow(power).times(decCap.pow(1 - power))
 }
 
+// Знаки после точки для мантиссы из [1, 1000): до трёх значащих цифр —
+// 9.99k, 99.9k, 999k.
+function significantDecimals(scaled) {
+    if (scaled >= 100) return 0
+    if (scaled >= 10) return 1
+    return 2
+}
+
+// Усечение вместо округления: отображаемое число никогда не превышает
+// реальное — 9997 опыта читаются как «9.99k», а не округлённое «10.0k».
+// Хвостовые нули сохраняются — фиксированная длина строки не дрожит
+// при быстром росте значения.
+function formatMantissa(scaled) {
+    const decimals = significantDecimals(scaled)
+    const factor = Math.pow(10, decimals)
+    const truncated = Math.floor(scaled * factor) / factor
+    return truncated.toFixed(decimals)
+}
+
 function format(number, decimals = 1) {
     // Convert to Decimal for large numbers
     const decNumber = toInfinityNumber(number);
@@ -24,6 +43,8 @@ function format(number, decimals = 1) {
     const log10 = decNumber.log10();
     const tier = Math.floor(log10 / 3);
 
+    // Малые числа показываем с той точностью, которую просит вызывающий код —
+    // на старте игры важны и копейки.
     if (tier <= 0) {
         return decNumber.toFixed(decimals);
     }
@@ -31,19 +52,18 @@ function format(number, decimals = 1) {
     if ((gameData.settings.numberNotation == 0 || tier < 3) && (tier < units.length)) {
         const suffix = units[tier];
         const scale = Math.pow(10, tier * 3);
-        const scaled = decNumber / scale;
-        return scaled.toFixed(decimals) + suffix;
+        return formatMantissa(decNumber / scale) + suffix;
     } else {
         if (gameData.settings.numberNotation == 1) {
             const exp = Math.floor(log10);
             // Math.pow(10, exp) becomes Infinity past 1e308; keep scaling in Decimal
-            const scaled = decNumber.div(new Decimal(10).pow(exp));
-            return scaled.toFixed(decimals) + "e" + exp;
+            const scaled = decNumber.div(new Decimal(10).pow(exp)).toNumber();
+            return formatMantissa(scaled) + "e" + exp;
         }
         else {
             const exp = Math.floor(log10 / 3);
-            const scaled = decNumber.div(new Decimal(10).pow(exp * 3));
-            return scaled.toFixed(decimals) + "e" + exp * 3;
+            const scaled = decNumber.div(new Decimal(10).pow(exp * 3)).toNumber();
+            return formatMantissa(scaled) + "e" + exp * 3;
         }
     }
 }
@@ -206,36 +226,6 @@ function removeStrangeCharacters(string) {
     return string.replace(/'/g, "")
 }
 
-function bigIntToExponential(value) {
-    if(typeof value !== 'bigint') throw new Error("Argument must be a bigint, but a " + (typeof value) + " was supplied.");
-
-    const isNegative = value < 0;
-    if (isNegative) value = -value; // Using the absolute value for the digits.
-
-    const str = value.toString();
-
-    const exp = str.length - 1;
-    if (exp == 0) return (isNegative ? "-" : '') + str + "e0";
-
-    const mantissaDigits = str.replace(/(0+)$/, ''); // Remove any mathematically insignificant zeroes.
-
-    // Use the single first digit for the integral part of the mantissa
-    const mantissa = mantissaDigits.charAt(0);
-
-    return (isNegative ? "-" : '') + mantissa + "e" + exp.toString();
-}
-
-function exponentialToRawNumberString(value) {
-    if (value == "" || value.length == 0)
-        return "0"
-
-    const split = value.split("e")
-    const first = split[0]
-    const exponent = Number(split[1])
-
-    return first + [...Array(exponent)].map(() => "0").join("")
-}
-
 function getChallengeTaskGoalProgress(taskName) {
     if (!Object.keys(gameData.taskData).includes(taskName))
         return 0
@@ -250,13 +240,6 @@ function getFormattedChallengeTaskGoal(taskName, level) {
         return t(taskName) + " " + t("lvl") + " " + formatLevel(level)
     else
         return t("great") + " " + t(taskName) + " " + t("lvl") + " " + formatLevel(Math.ceil(level / 1000))
-}
-
-function getFormattedTitle(parameter) {    
-    let title = parameter.replaceAll("_", " ")
-    title = title.charAt(0).toUpperCase() + title.slice(1)
-
-    return title
 }
 
 const CHALLENGE_KEY_TO_NUMBER = {

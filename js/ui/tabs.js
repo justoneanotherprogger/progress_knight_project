@@ -1,118 +1,153 @@
 // ui/tabs.js — tab content rendering: jobs, skills, shop, challenges, milestones, metaverse, dark matter, settings, rows, perks
 
+// Элементы строки статичны: DOM не пересоздаётся, а getRowByName +
+// querySelector — по три поиска на строку каждый кадр на ~295 строк.
+function taskRow(task, rowKey) {
+    if (task._row == null) {
+        const row = getRowByName(rowKey)
+        const progressBar = task.querySelector(".progressBar", row)
+        const valueElement = task.querySelector(".value", row)
+        task._row = {
+            level: task.querySelector(".level", row),
+            xpGain: task.querySelector(".xpGain", row),
+            xpLeft: task.querySelector(".xpLeft", row),
+            tooltip: task.querySelector(".tooltipText", row),
+            maxLevel: task.querySelector(".maxLevel", row),
+            name: progressBar.querySelector(".name"),
+            progressBar,
+            progressFill: task.querySelector(".progressFill", row),
+            valueElement,
+            income: valueElement.querySelector(".income"),
+            effect: valueElement.querySelector(".effect"),
+        }
+    }
+    return task._row
+}
+
+function renderJobRow(task, rowKey) {
+    const els = taskRow(task, rowKey)
+
+    const levelText = formatLevel(task.level)
+    if (els.level.textContent != levelText) els.level.textContent = levelText
+
+    const xpGainText = task.getXpGainFormatted()
+    if (els.xpGain.textContent != xpGainText) els.xpGain.textContent = xpGainText
+
+    const xpLeftText = task.getXpLeftFormatted()
+    if (els.xpLeft.textContent != xpLeftText) els.xpLeft.textContent = xpLeftText
+
+    const tooltipText = rowTooltip(task, rowKey)
+    setHTML(els.tooltip, tooltipText)
+
+    const maxLevelText = formatLevel(task.maxLevel)
+    if (els.maxLevel.textContent != maxLevelText) els.maxLevel.textContent = maxLevelText
+    els.maxLevel.classList.toggle("hidden", gameData.rebirthOneCount == 0)
+
+    const nameText = (task.isHero ? t("great") + " " : "") + t(task.name)
+    if (els.name.textContent != nameText) els.name.textContent = nameText
+    els.name.style.whiteSpace = "nowrap"
+    fitText(els.name, 16)
+    renderProgressBar(task, els.progressFill, els.progressBar)
+
+    els.income.style.display = true
+    els.effect.style.display = false
+
+    formatCoins(task.getIncome(), els.income)
+}
+
+function rowTooltip(task, rowKey) {
+    let tooltip = t(task.baseData.tooltip)
+    if (!task.isHero && isHeroesUnlocked())
+        tooltip += getHeroicRequiredTooltip(rowKey)
+    return tooltip
+}
+
 function renderJobs() {
     for (const key in gameData.taskData) {
         const task = gameData.taskData[key]
         if (!(task instanceof Job)) continue
-
-        const row = getRowByName(task.name)
-
-        task.querySelector(".level", row).textContent = formatLevel(task.level)
-        task.querySelector(".xpGain", row).textContent = task.getXpGainFormatted()
-        task.querySelector(".xpLeft", row).textContent = task.getXpLeftFormatted()
-
-        let tooltip = t("tt_" + key)
-
-        if (!task.isHero && isHeroesUnlocked()) {
-            tooltip += getHeroicRequiredTooltip(key)
-        }
-
-        const tooltipElement = task.querySelector(".tooltipText", row)
-        if (tooltipElement.innerHTML != tooltip)
-            tooltipElement.innerHTML = tooltip
-
-        const maxLevel = row.getElementsByClassName("maxLevel")[0]
-        maxLevel.textContent = formatLevel(task.maxLevel)
-        gameData.rebirthOneCount > 0 ? maxLevel.classList.remove("hidden") : maxLevel.classList.add("hidden")
-
-        const progressBar = task.querySelector(".progressBar", row)
-        const nameEl = progressBar.querySelector(".name")
-        const nameText = (task.isHero ? t("great") + " " : "") + t(task.name)
-        if (nameEl.textContent != nameText) {
-            nameEl.textContent = nameText
-        }
-        nameEl.style.whiteSpace = "nowrap"
-        fitText(nameEl, 16)
-        const progressFill = task.querySelector(".progressFill", row)
-        renderProgressBar(task, progressFill, progressBar)
-
-        const valueElement = task.querySelector(".value", row)
-        valueElement.querySelector(".income").style.display = true
-        valueElement.querySelector(".effect").style.display = false
-
-        formatCoins(task.getIncome(), valueElement.querySelector(".income"))
+        renderJobRow(task, key)
     }
+}
+
+function renderSkillRow(task, rowKey) {
+    const els = taskRow(task, rowKey)
+
+    const levelText = formatLevel(task.level)
+    if (els.level.textContent != levelText) els.level.textContent = levelText
+
+    const xpGainText = task.getXpGainFormatted()
+    if (els.xpGain.textContent != xpGainText) els.xpGain.textContent = xpGainText
+
+    const xpLeftText = task.getXpLeftFormatted()
+    if (els.xpLeft.textContent != xpLeftText) els.xpLeft.textContent = xpLeftText
+
+    const tooltipText = rowTooltip(task, rowKey)
+    setHTML(els.tooltip, tooltipText)
+
+    const maxLevelText = formatLevel(task.maxLevel)
+    if (els.maxLevel.textContent != maxLevelText) els.maxLevel.textContent = maxLevelText
+    els.maxLevel.classList.toggle("hidden", gameData.rebirthOneCount == 0)
+
+    const nameText = (task.isHero ? t("great") + " " : "") + t(task.name)
+    if (els.name.textContent != nameText) els.name.textContent = nameText
+    els.name.style.whiteSpace = "nowrap"
+    fitText(els.name, 16)
+    renderProgressBar(task, els.progressFill, els.progressBar)
+
+    els.income.style.display = false
+    els.effect.style.display = true
+
+    const effectText = task.getEffectDescription()
+    if (els.effect.textContent != effectText) els.effect.textContent = effectText
+    fitText(els.effect, 16)
 }
 
 function renderSkills() {
     for (const key in gameData.taskData) {
         const task = gameData.taskData[key]
-
         if (!(task instanceof Skill)) continue
-
-        const row = getRowByName(key)
-
-        task.querySelector(".level", row).textContent = formatLevel(task.level)
-        task.querySelector(".xpGain", row).textContent = task.getXpGainFormatted()
-        task.querySelector(".xpLeft", row).textContent = task.getXpLeftFormatted()
-
-        let tooltip = t(task.baseData.description != null ? task.baseData.description : "tt_" + key)
-
-        if (!task.isHero && isHeroesUnlocked()) {
-            tooltip += getHeroicRequiredTooltip(key)
-        }
-
-        const tooltipElement = task.querySelector(".tooltipText", row)
-        if (tooltipElement.innerHTML != tooltip)
-            tooltipElement.innerHTML = tooltip
-
-        const maxLevel = task.querySelector(".maxLevel", row)
-        maxLevel.textContent = formatLevel(task.maxLevel)
-        gameData.rebirthOneCount > 0 ? maxLevel.classList.remove("hidden") : maxLevel.classList.add("hidden")
-
-        const progressBar = task.querySelector(".progressBar", row)
-        const nameEl = progressBar.querySelector(".name")
-        const nameText = (task.isHero ? t("great") + " " : "") + t(task.name)
-        if (nameEl.textContent != nameText) {
-            nameEl.textContent = nameText
-        }
-        nameEl.style.whiteSpace = "nowrap"
-        fitText(nameEl, 16)
-        const progressFill = task.querySelector(".progressFill", row)
-        renderProgressBar(task, progressFill, progressBar)
-
-        const valueElement = task.querySelector(".value", row)
-        valueElement.querySelector(".income").style.display = false
-        valueElement.querySelector(".effect").style.display = true
-
-        valueElement.querySelector(".effect").textContent = task.getEffectDescription()
+        renderSkillRow(task, key)
     }
 }
 
 function renderShop() {
     for (const key in gameData.itemData) {
         const item = gameData.itemData[key]
-        const row = getRowByName(item.name)
-        const button = row.querySelector(".button")
-        button.disabled = gameData.coins.lt(item.getExpense())
-        const name = button.querySelector(".name")
-        name.textContent = t(item.name)
-        const tooltip = row.querySelector(".tooltipText")
-        if (tooltip) tooltip.textContent = t("tt_" + item.name)
+        if (item._row == null) {
+            const row = getRowByName(key)
+            const button = row.querySelector(".button")
+            item._row = {
+                button,
+                name: button.querySelector(".name"),
+                tooltip: row.querySelector(".tooltipText"),
+                active: row.querySelector(".active"),
+                effect: row.querySelector(".effect"),
+                expense: row.querySelector(".expense"),
+            }
+        }
+        const els = item._row
 
-        if (isHeroesUnlocked())
-            name.classList.add("legendary")
-        else
-            name.classList.remove("legendary")
+        els.button.disabled = gameData.coins.lt(item.getExpense())
 
-        const active = row.querySelector(".active")
-        const color = gameData.autoBuyEnabled
-            ? itemCategories["Properties"].includes(item.name) ? headerRowColors["Properties_Auto"] : headerRowColors["Misc_Auto"]
-            : itemCategories["Properties"].includes(item.name) ? headerRowColors["Properties"] : headerRowColors["Misc"]
+        const nameText = t(item.name)
+        if (els.name.textContent != nameText) els.name.textContent = nameText
 
-        active.style.backgroundColor = gameData.currentMisc.includes(item) || item == gameData.currentProperty ? color : "white"
-        row.querySelector(".effect").textContent = item.getEffectDescription()
-        formatCoins(item.getExpense(), row.querySelector(".expense"))
+        if (els.tooltip) {
+            const tooltipText = t(item.baseData.tooltip)
+            if (els.tooltip.textContent != tooltipText) els.tooltip.textContent = tooltipText
+        }
+
+        els.name.classList.toggle("legendary", isHeroesUnlocked())
+
+        const color = itemCategories[item.categoryId].headerColor
+        const bgColor = gameData.currentMisc.includes(item) || item == gameData.currentProperty ? color : "white"
+        if (els.active.style.backgroundColor != bgColor)
+            els.active.style.backgroundColor = bgColor
+
+        const effectText = item.getEffectDescription()
+        if (els.effect.textContent != effectText) els.effect.textContent = effectText
+        formatCoins(item.getExpense(), els.expense)
     }
 
     const autoBuyToggle = document.getElementById("autoBuyToggle")
@@ -120,29 +155,46 @@ function renderShop() {
         autoBuyToggle.checked = gameData.autoBuyEnabled
 }
 
+// Строки вех статичны: порог и перевод большую часть времени не меняются,
+// а getRowByName + querySelector — по три поиска по дереву на строку.
+// Закэшированные элементы и последний записанный текст живут на самой вехе.
 function renderMilestones() {
     for (const key in milestoneData) {
         const milestone = milestoneData[key]
-        const row = getRowByName(milestone.name)
-        row.querySelector(".essence").textContent = format(milestone.threshold)
+        if (milestone._row == null) {
+            const row = getRowByName(key)
+            milestone._row = {
+                essence: row.querySelector(".essence"),
+                description: row.querySelector(".description"),
+                name: row.querySelector(".name"),
+                tooltip: row.querySelector(".tooltipText"),
+            }
+        }
+        const els = milestone._row
 
+        const essenceText = format(milestone.threshold)
+        if (els.essence.textContent != essenceText)
+            els.essence.textContent = essenceText
 
         let desc = t(milestone.description)
-        if (milestone.getEffect != null)
-            desc = "x" + format(milestone.getEffect(), 1) + " " + desc
+        const effect = milestone.getEffect()
+        if (effect != null)
+            desc = "x" + format(effect, 1) + " " + desc
 
-        if (milestone.baseData.effect != null)
-            desc = "x" + format(milestone.baseData.effect, 0) + " " + desc
+        if (els.description.textContent != desc)
+            els.description.textContent = desc
 
-        row.querySelector(".description").textContent = desc
+        const nameText = t(milestone.name)
+        if (els.name.textContent != nameText)
+            els.name.textContent = nameText
+        els.name.style.whiteSpace = "nowrap"
+        fitText(els.name, 16)
 
-        const milestoneName = row.querySelector(".name")
-        milestoneName.textContent = t(milestone.name)
-        milestoneName.style.whiteSpace = "nowrap"
-        fitText(milestoneName, 16)
-
-        const tooltip = row.querySelector(".tooltipText")
-        if (tooltip) tooltip.textContent = t("tt_" + milestone.name)
+        if (els.tooltip) {
+            const tooltipText = t(milestone.tooltip)
+            if (els.tooltip.textContent != tooltipText)
+                els.tooltip.textContent = tooltipText
+        }
     }
 }
 
@@ -228,12 +280,13 @@ function renderSettings() {
 function renderRequirements() {
     for (const key in gameData.requirements) {
         const requirement = gameData.requirements[key]
+        const visible = requirement.isCompleted()
         for (const element of requirement.elements) {
-            if (requirement.isCompleted()) {
-                element.classList.remove("hidden")
-            } else {
-                element.classList.add("hidden")
-            }
+            // Класс пишется только при реальной смене: за весь забег
+            // требование закрывается максимум один раз, а отрисовка
+            // гоняется каждый кадр.
+            if (element.classList.contains("hidden") == visible)
+                element.classList.toggle("hidden", !visible)
         }
     }
 }
@@ -269,10 +322,6 @@ function renderHeaderRows(categories) {
             maxLevelElement.classList.toggle("hidden", gameData.rebirthOneCount == 0)
 
         updateHeaderColumns(headerRow, categories)
-
-        const categoryHeader = headerRow.getElementsByClassName("category")[0]
-        const headerTooltip = categoryHeader.querySelector(".tooltipText")
-        if (headerTooltip) headerTooltip.textContent = t("autobuy_tooltip")
     }
 }
 
@@ -293,8 +342,6 @@ function createHeaderRow(templates, categoryType, categoryName) {
 
     if (categoryType == itemCategories) {
         categoryElement.getElementsByClassName("name")[0].textContent = t(categoryName)
-        const tooltip = categoryElement.querySelector(".tooltipText")
-        if (tooltip) tooltip.textContent = t("autobuy_tooltip")
     } else {
         categoryElement.textContent = t(categoryName)
     }
@@ -302,8 +349,8 @@ function createHeaderRow(templates, categoryType, categoryName) {
 
     updateHeaderColumns(headerRow, categoryType)
 
-    headerRow.style.backgroundColor = headerRowColors[categoryName]
-    headerRow.style.color = (gameData.settings.theme == 2) ? headerRowTextColors[categoryName] : "#ffffff"
+    headerRow.style.backgroundColor = categoryType[categoryName].headerColor
+    headerRow.style.color = "#ffffff"
     headerRow.classList.add(removeSpaces(categoryName))
     headerRow.classList.add("headerRow")
 
@@ -315,11 +362,23 @@ function createRow(templates, name, categoryName, categoryType) {
 
     let displayName = name
     let tooltipKey = "tt_" + name
-    if (categoryType == skillCategories) {
+    if (categoryType == skillCategories || categoryType == jobCategories) {
         const entity = gameData.taskData[name]
         if (entity) {
             displayName = entity.name
-            tooltipKey = entity.baseData.description != null ? entity.baseData.description : "tt_" + name
+            tooltipKey = entity.baseData.tooltip
+        }
+    } else if (categoryType == itemCategories) {
+        const entity = gameData.itemData[name]
+        if (entity) {
+            displayName = entity.name
+            tooltipKey = entity.baseData.tooltip
+        }
+    } else if (categoryType == milestoneCategories) {
+        const entity = milestoneData[name]
+        if (entity) {
+            displayName = entity.name
+            tooltipKey = entity.baseData.tooltip
         }
     }
 
@@ -328,7 +387,7 @@ function createRow(templates, name, categoryName, categoryType) {
     row.id = "row" + removeSpaces(removeStrangeCharacters(name))
 
     if (categoryType == itemCategories) {
-        row.getElementsByClassName("button")[0].onclick = categoryName == "Properties" ? () => { setCurrentProperty(name) } : () => { setMisc(name) }
+        row.getElementsByClassName("button")[0].onclick = categoryName == "category_properties" ? () => { setCurrentProperty(name) } : () => { setMisc(name) }
     }
 
     return row
@@ -361,7 +420,8 @@ function createAllRows(categoryType, tableId) {
                 table.appendChild(row)
             })
         } else {
-            for (const name in category) {
+            const entries = category.items != null ? category.items : category
+            for (const name in entries) {
                 const row = createRow(templates, name, categoryName, categoryType)
                 table.appendChild(row)
             }
@@ -387,7 +447,7 @@ function updateRequiredRows(data, categoryType) {
         let nextEntityName = null
         const category = categoryType[requiredRow.id.substring(4)]
         if (category == null) {continue}
-        const entries = Array.isArray(category) ? category : Object.keys(category)
+        const entries = Array.isArray(category) ? category : (category.items != null ? Object.keys(category.items) : Object.keys(category))
         for (let i = 0; i < entries.length; i++) {
             const entityName = entries[i]
             if (i >= entries.length - 1) break
@@ -447,7 +507,7 @@ function updateRequiredRows(data, categoryType) {
             if (data == gameData.taskData) {
                 if (categoryType != jobCategories) {
                     effectElement.classList.remove("hiddenTask")
-                    effectValueElement.textContent = nextEntity.unlocked ? t("effect_" + nextEntity.baseData.effect.type) : t("unknown")
+                    effectValueElement.textContent = nextEntity.unlocked ? t(labelKey(nextEntity.baseData.effect.target)) : t("unknown")
                 }
 
                 if (requirementObject instanceof EvilRequirement) {
@@ -484,7 +544,7 @@ function updateRequiredRows(data, categoryType) {
                 formatCoins(requirements[0].requirement, coinElement)
 
                 effectElement.classList.remove("hiddenTask")
-                effectValueElement.textContent = nextEntity.unlocked ? (nextEntity.baseData.description != null ? t(nextEntity.baseData.description) : t("reward_happiness")) : t("unknown")
+                effectValueElement.textContent = nextEntity.unlocked ? nextEntity.getEffectDescription() : t("unknown")
             }
             else if (data == milestoneData) {
                 essenceElement.classList.remove("hiddenTask")

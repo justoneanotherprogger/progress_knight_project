@@ -1,11 +1,10 @@
 // main.js — entry point
 
+// Ошибка в коде — не сообщение игроку, а сигнал «игра сломалась»: останавливаем
+// симуляцию, чтобы время не тикало по битому состоянию. Диагностика — в консоли
+// браузера, через onerror, штатно.
 onerror = () => {
-    document.getElementById("errorInfo").hidden = false
-    tempData.hasError = true
-    setTimeout(() => {
-        document.getElementById("errorInfo").hidden = true
-    }, ERROR_DISPLAY_TIMEOUT)
+    gameData.hasError = true
 }
 
 document.querySelector("#changelogTabTabButton").addEventListener('click', async function () {
@@ -33,7 +32,7 @@ function setMisc(miscName) {
     gameData.autoBuyEnabled = false
     const misc = gameData.itemData[miscName]
     if (gameData.currentMisc.includes(misc)) {
-        for (i = 0; i < gameData.currentMisc.length; i++) {
+        for (let i = 0; i < gameData.currentMisc.length; i++) {
             if (gameData.currentMisc[i] == misc) {
                 gameData.currentMisc.splice(i, 1)
             }
@@ -53,6 +52,19 @@ function createGameObject(data, entity, id) {
     else if ("maxXp" in entity) { data[id] = new Skill(entity) }
     else if ("tier" in entity) { data[id] = new Milestone(entity) }
     else { data[id] = new Item(entity) }
+    data[id].id = id
+}
+
+function createItemObjects() {
+    for (const categoryId in itemCategories) {
+        const items = itemCategories[categoryId].items
+        for (const key in items) {
+            const item = new Item(items[key])
+            item.id = key
+            item.categoryId = categoryId
+            gameData.itemData[key] = item
+        }
+    }
 }
 
 function createSkillRequirements() {
@@ -99,29 +111,25 @@ function getIncome() {
 
 function getExpense() {
     var expense = toInfinityNumber(gameData.currentProperty.getExpense())
-    for (misc of gameData.currentMisc) {
+    for (const misc of gameData.currentMisc) {
         expense = expense.plus(misc.getExpense())
     }
     return expense
+}
+
+function validateTheme(index) {
+    // Незнакомые значения (в т.ч. theme=2 из выпиленной colorblind-темы)
+    // дают светлый дефолт — валидация на входе, а не в setTheme
+    return index === 1 ? 1 : 0
 }
 
 function setTheme(index, reload=false) {
     const body = document.getElementById("body")
 
     body.classList.remove("dark")
-    body.classList.remove("colorblind")
 
-
-    if (index == 0) {
-        // lignt
-    }
-    else if (index == 1) {
-        // dark
+    if (index == 1) {
         body.classList.add("dark")
-    }
-    else if (index == 2){
-        // colorblind Tritanopia
-        body.classList.add("colorblind")
     }
 
     gameData.settings.theme = index
@@ -146,23 +154,17 @@ function setEnableKeybinds(enableKeybinds) {
 
 createGameObjects(gameData.taskData, jobBaseData)
 createGameObjects(gameData.taskData, skillBaseData)
-createGameObjects(gameData.itemData, itemBaseData)
+createItemObjects()
 createGameObjects(milestoneData, milestoneBaseData)
 
-gameData.currentJob = gameData.taskData["Beggar"]
-gameData.currentProperty = gameData.itemData["Homeless"]
+gameData.currentJob = gameData.taskData["job_beggar"]
+gameData.currentProperty = gameData.itemData["item_homeless"]
 gameData.currentMisc = []
 
 gameData.requirements = requirementsBaseData
 
 createSkillRequirements()
 createMilestoneRequirements()
-
-tempData["requirements"] = {}
-for (const key in gameData.requirements) {
-    const requirement = gameData.requirements[key]
-    tempData["requirements"][key] = requirement
-}
 
 loadGameData()
 
@@ -182,14 +184,30 @@ setTabMetaverse("metaverseTab1")
 
 let ticking = false;
 
-var gameloop = setInterval(function() {
-    if (ticking) return;
-    ticking = true;
-    update();
+var gameloop, renderloop, saveloop
 
-    ticking = false;
-}, 1000 / updateSpeed)
-var saveloop = setInterval(saveGameData, 3000)
+// Расчёты гоняются на updateSpeed (20 Гц) — игровая логика должна быть плавной.
+// Рендер на renderSpeed (10 Гц) отдельным интервалом: глаз не различает разницу,
+// а полный кадр стоит ~9 мс. Когда вкладка скрыта — рендер пропускается
+// целиком, расчёты при этом продолжаются.
+function startLoops() {
+    gameloop = setInterval(function() {
+        if (ticking) return;
+        ticking = true;
+        update();
+
+        ticking = false;
+    }, 1000 / updateSpeed)
+
+    renderloop = setInterval(function() {
+        if (!document.hidden)
+            updateUI()
+    }, 1000 / renderSpeed)
+
+    saveloop = setInterval(saveGameData, 3000)
+}
+
+startLoops()
 
 // Re-apply translations when language changes
 document.addEventListener('i18n:changed', () => {

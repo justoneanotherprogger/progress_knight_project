@@ -10,24 +10,19 @@
 						<div class="sidebarChallengeReward the_darkest_time hidden"><span class="color-dark-matter" id="reward_dark_matter"></span> x<span id="sidebarCurrentChallengeBuff6"></span> / x<span id="sidebarChallengeBuff6"></span></div>
 					</div>
 				</div>
-				<div class="text-caption" id="errorInfo" hidden="hidden">
-					<div id="errorText"></div>
-					<br>
-				</div>
 				<div id="deathText" class="hidden">
 					<div class="text-caption" style="color: red" id="death_title"></div>
 					<div class="sidebar-element" style="color: gray; font-size: 12px" id="death_desc"></div>
 				</div>
 				<div class="text-caption"><span style="padding-right: 0.3em">🎂</span><span id="ageDisplay">Age 14 Day 0</span></div>
 				<div class="sidebar-element" style="color: gray">
-					<span id="lifespan"></span>: <span id="lifespanDisplay">70</span>&nbsp;<span id="years"></span>
-					<br><span id="real_time"></span>: <span id="realtimeDisplay">00:00:00</span>
-					<div id="fps"></div>
+					<div id="lifespanRow"><span id="lifespan"></span>: <span id="lifespanDisplay">70</span>&nbsp;<span id="years"></span></div>
+					<div id="realtimeRow"><span id="real_time"></span>: <span id="realtimeDisplay">00:00:00</span></div>
 				</div>
 				<button id="pauseButton" class="w3-button button sidebar-element" onClick="togglePause()" data-i18n="pause"></button>
-				<div id="boostPanel" class="sidebar-element" style="color: gray">
+				<div id="boostPanel" class="sidebar-element" style="color: gray; margin-top: 0.8em; display: flex; align-items: center; justify-content: space-between; gap: 0.5em">
 					<button id="boostButton" class="perk perk-boost" onClick="applyBoost()"></button>
-					<span style="padding-left:0.4em" id="boostCooldownDisplay">00:00</span>
+					<span style="display: inline-block; max-width: calc(100% - 0.4em); overflow: hidden" id="boostCooldownDisplay">00:00</span>
 				</div>
 				<div id="quickTaskDisplay" class="hidden">
 					<div class="small-margin inline job progress-bar progressBar">
@@ -38,24 +33,24 @@
 
 				<div id="resourceStats">
 					<div>
-						<div class="text-caption" style="padding-top: 0.2em"><span style="padding-right: 0.3em">🏠</span><span class="color-happiness" id="happiness"></span>: <span id="happinessDisplay"></span></div>
+						<div class="text-caption"><span style="padding-right: 0.3em">🏠</span><span class="color-happiness" id="happiness"></span>: <span id="happinessDisplay"></span></div>
 						<div style="color: gray" class="sidebar-element resource-desc" id="happiness_desc"></div>
 					</div>
 
 					<div>
-						<div class="text-caption" style="padding-top: 0.2em"><span style="padding-right: 0.3em">✨</span><span style="color: rgb(207, 21, 15)" id="inspiration"></span>: <span id="inspirationDisplay"></span></div>
+						<div class="text-caption"><span style="padding-right: 0.3em">✨</span><span style="color: rgb(207, 21, 15)" id="inspiration"></span>: <span id="inspirationDisplay"></span></div>
 						<div style="color: gray" class="resource-desc" id="inspiration_desc"></div>
 						<div style="color: rgb(168, 111, 111)" class="sidebar-element resource-desc" id="inspiration_decay"></div>
 					</div>
 
 					<div>
-						<div class="text-caption" style="padding-top: 0.2em"><span style="padding-right: 0.3em">🤑</span><span style="color: rgb(92, 207, 15)" id="greed"></span>: <span id="greedDisplay"></span></div>
+						<div class="text-caption"><span style="padding-right: 0.3em">🤑</span><span style="color: rgb(92, 207, 15)" id="greed"></span>: <span id="greedDisplay"></span></div>
 						<div style="color: gray" class="resource-desc" id="greed_desc"></div>
 						<div style="color: rgb(168, 111, 111)" class="sidebar-element resource-desc" id="greed_rise"></div>
 					</div>
 
 					<div id="timeWarping">
-						<div class="text-caption" style="padding-top: 0.2em"><span style="padding-right: 0.3em">⏩</span><span class="color-time-warping" id="time_warping"></span>: <span id="timeWarpingDisplay"></span></div>
+						<div class="text-caption"><span style="padding-right: 0.3em">⏩</span><span class="color-time-warping" id="time_warping"></span>: <span id="timeWarpingDisplay"></span></div>
 						<div style="color: gray" class="sidebar-element resource-desc" id="time_warping_desc"></div>
 					</div>
 				</div>

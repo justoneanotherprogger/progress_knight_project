@@ -1,66 +1,1211 @@
 {
   "skillCategories": {
-    "Fundamentals": {
-      "skill_concentration": { "name": "skill_concentration_name", "description": "skill_concentration_desc", "maxXp": 100, "heroxp": 36, "effect": { "type": "skill_xp", "value": 0.01 }, "requirement": { "type": "task", "tasks": [] } },
-      "skill_productivity": { "name": "skill_productivity_name", "description": "skill_productivity_desc", "maxXp": 100, "heroxp": 37, "effect": { "type": "job_xp", "value": 0.01 }, "requirement": { "type": "task", "tasks": [{ "task": "skill_concentration", "level": 5 }] } },
-      "skill_bargaining": { "name": "skill_bargaining_name", "description": "skill_bargaining_desc", "maxXp": 100, "heroxp": 38, "effect": { "type": "expense_reduction", "value": -0.01, "formula": "expense_reduction" }, "requirement": { "type": "task", "tasks": [{ "task": "skill_concentration", "level": 20 }] } },
-      "skill_meditation": { "name": "skill_meditation_name", "description": "skill_meditation_desc", "maxXp": 100, "heroxp": 39, "effect": { "type": "happiness", "value": 0.01 }, "requirement": { "type": "task", "tasks": [{ "task": "skill_concentration", "level": 30 }, { "task": "skill_productivity", "level": 20 }] } }
+    "category_fundamentals": {
+      "name": "category_fundamentals",
+      "headerColor": "#55a630",
+      "items": {
+        "skill_concentration": {
+          "name": "skill_concentration_name",
+          "maxXp": 100,
+          "heroxp": 36,
+          "effect": {
+            "type": "xp",
+            "target": {
+              "kind": "skill"
+            },
+            "base": 0.01,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": []
+          },
+          "tooltip": "skill_concentration_tooltip"
+        },
+        "skill_productivity": {
+          "name": "skill_productivity_name",
+          "maxXp": 100,
+          "heroxp": 37,
+          "effect": {
+            "type": "xp",
+            "target": {
+              "kind": "job"
+            },
+            "base": 0.01,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "skill_concentration",
+                "level": 5
+              }
+            ]
+          },
+          "tooltip": "skill_productivity_tooltip"
+        },
+        "skill_bargaining": {
+          "name": "skill_bargaining_name",
+          "maxXp": 100,
+          "heroxp": 38,
+          "effect": {
+            "type": "expense_reduction",
+            "target": {
+              "kind": "item"
+            },
+            "base": -0.1,
+            "formula": {
+              "kind": "log",
+              "logBase": 7,
+              "logHeroBase": 3,
+              "floor": 0.1
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "skill_concentration",
+                "level": 20
+              }
+            ]
+          },
+          "tooltip": "skill_bargaining_tooltip"
+        },
+        "skill_meditation": {
+          "name": "skill_meditation_name",
+          "maxXp": 100,
+          "heroxp": 39,
+          "effect": {
+            "type": "multiply",
+            "target": {
+              "kind": "resource",
+              "id": "happiness"
+            },
+            "base": 0.01,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "skill_concentration",
+                "level": 30
+              },
+              {
+                "task": "skill_productivity",
+                "level": 20
+              }
+            ]
+          },
+          "tooltip": "skill_meditation_tooltip"
+        }
+      }
     },
-    "Combat": {
-      "skill_strength": { "name": "skill_strength_name", "description": "skill_strength_desc", "maxXp": 100, "heroxp": 40, "effect": { "type": "army_income", "value": 0.01 }, "requirement": { "type": "task", "tasks": [] } },
-      "skill_battle_tactics": { "name": "skill_battle_tactics_name", "description": "skill_battle_tactics_desc", "maxXp": 100, "heroxp": 41, "effect": { "type": "army_xp", "value": 0.01 }, "requirement": { "type": "task", "tasks": [{ "task": "skill_concentration", "level": 20 }] } },
-      "skill_muscle_memory": { "name": "skill_muscle_memory_name", "description": "skill_muscle_memory_desc", "maxXp": 100, "heroxp": 42, "effect": { "type": "strength_xp", "value": 0.01 }, "requirement": { "type": "task", "tasks": [{ "task": "skill_concentration", "level": 30 }, { "task": "skill_strength", "level": 30 }] } }
+    "category_combat": {
+      "name": "category_combat",
+      "headerColor": "#e63946",
+      "items": {
+        "skill_strength": {
+          "name": "skill_strength_name",
+          "maxXp": 100,
+          "heroxp": 40,
+          "effect": {
+            "type": "income",
+            "target": {
+              "kind": "job",
+              "category": "category_military"
+            },
+            "base": 0.01,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": []
+          },
+          "tooltip": "skill_strength_tooltip"
+        },
+        "skill_battle_tactics": {
+          "name": "skill_battle_tactics_name",
+          "maxXp": 100,
+          "heroxp": 41,
+          "effect": {
+            "type": "xp",
+            "target": {
+              "kind": "job",
+              "category": "category_military"
+            },
+            "base": 0.01,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "skill_concentration",
+                "level": 20
+              }
+            ]
+          },
+          "tooltip": "skill_battle_tactics_tooltip"
+        },
+        "skill_muscle_memory": {
+          "name": "skill_muscle_memory_name",
+          "maxXp": 100,
+          "heroxp": 42,
+          "effect": {
+            "type": "xp",
+            "target": {
+              "kind": "task",
+              "task": "skill_strength"
+            },
+            "base": 0.01,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "skill_concentration",
+                "level": 30
+              },
+              {
+                "task": "skill_strength",
+                "level": 30
+              }
+            ]
+          },
+          "tooltip": "skill_muscle_memory_tooltip"
+        }
+      }
     },
-    "Magic": {
-      "skill_mana_control": { "name": "skill_mana_control_name", "description": "skill_mana_control_desc", "maxXp": 100, "heroxp": 46, "effect": { "type": "collegium_xp", "value": 0.01 }, "requirement": { "type": "task", "tasks": [{ "task": "skill_concentration", "level": 200 }, { "task": "skill_meditation", "level": 200 }] } },
-      "skill_life_essence": { "name": "skill_life_essence_name", "description": "skill_life_essence_desc", "maxXp": 100, "heroxp": 82, "effect": { "type": "lifespan", "value": 0.01, "formula": "life_essence" }, "requirement": { "type": "task", "tasks": [{ "task": "Apprentice Mage", "level": 10 }] } },
-      "skill_time_warping": { "name": "skill_time_warping_name", "description": "skill_time_warping_desc", "maxXp": 100, "heroxp": 82, "effect": { "type": "gamespeed", "value": 0.01, "formula": "time_warping" }, "requirement": { "type": "task", "tasks": [{ "task": "Adept Mage", "level": 10 }] } },
-      "skill_astral_body": { "name": "skill_astral_body_name", "description": "skill_astral_body_desc", "maxXp": 100, "heroxp": 100, "effect": { "type": "lifespan", "value": 0.001 }, "requirement": { "type": "task", "tasks": [{ "task": "Archmage", "level": 10 }] } },
-      "skill_temporal_dimension": { "name": "skill_temporal_dimension_name", "description": "skill_temporal_dimension_desc", "maxXp": 100, "heroxp": 115, "effect": { "type": "gamespeed", "value": 0.006 }, "requirement": { "type": "task", "tasks": [{ "task": "Chronomancer", "level": 25 }] } },
-      "skill_all_seeing_eye": { "name": "skill_all_seeing_eye_name", "description": "skill_all_seeing_eye_desc", "maxXp": 100, "heroxp": 120, "effect": { "type": "collegium_income", "value": 0.0027 }, "requirement": { "type": "task", "tasks": [{ "task": "skill_mana_control", "level": 2350 }, { "task": "Chairman", "level": 100 }] } },
-      "skill_brainwashing": { "name": "skill_brainwashing_name", "description": "skill_brainwashing_desc", "maxXp": 100, "heroxp": 145, "effect": { "type": "expense_reduction", "value": -0.01, "formula": "expense_reduction" }, "requirement": { "type": "task", "tasks": [{ "task": "Imperator", "level": 100 }] } }
+    "category_magic": {
+      "name": "category_magic",
+      "headerColor": "#C71585",
+      "items": {
+        "skill_mana_control": {
+          "name": "skill_mana_control_name",
+          "maxXp": 100,
+          "heroxp": 46,
+          "effect": {
+            "type": "xp",
+            "target": {
+              "kind": "job",
+              "category": "category_mage_collegium"
+            },
+            "base": 0.01,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "skill_concentration",
+                "level": 200
+              },
+              {
+                "task": "skill_meditation",
+                "level": 200
+              }
+            ]
+          },
+          "tooltip": "skill_mana_control_tooltip"
+        },
+        "skill_life_essence": {
+          "name": "skill_life_essence_name",
+          "maxXp": 100,
+          "heroxp": 82,
+          "effect": {
+            "type": "multiply",
+            "target": {
+              "kind": "resource",
+              "id": "lifespan"
+            },
+            "base": 1,
+            "formula": {
+              "kind": "log",
+              "logBase": 30,
+              "logHeroBase": 1.01
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "job_apprentice_mage",
+                "level": 10
+              }
+            ]
+          },
+          "tooltip": "skill_life_essence_tooltip"
+        },
+        "skill_time_warping": {
+          "name": "skill_time_warping_name",
+          "maxXp": 100,
+          "heroxp": 82,
+          "effect": {
+            "type": "multiply",
+            "target": {
+              "kind": "resource",
+              "id": "gamespeed"
+            },
+            "base": 1,
+            "formula": {
+              "kind": "log",
+              "logBase": 10,
+              "logHeroBase": 1.005
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "job_adept_mage",
+                "level": 10
+              }
+            ]
+          },
+          "tooltip": "skill_time_warping_tooltip"
+        },
+        "skill_astral_body": {
+          "name": "skill_astral_body_name",
+          "maxXp": 100,
+          "heroxp": 100,
+          "effect": {
+            "type": "multiply",
+            "target": {
+              "kind": "resource",
+              "id": "lifespan"
+            },
+            "base": 0.001,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "job_archmage",
+                "level": 10
+              }
+            ]
+          },
+          "tooltip": "skill_astral_body_tooltip"
+        },
+        "skill_temporal_dimension": {
+          "name": "skill_temporal_dimension_name",
+          "maxXp": 100,
+          "heroxp": 115,
+          "effect": {
+            "type": "multiply",
+            "target": {
+              "kind": "resource",
+              "id": "gamespeed"
+            },
+            "base": 0.006,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "job_chronomancer",
+                "level": 25
+              }
+            ]
+          },
+          "tooltip": "skill_temporal_dimension_tooltip"
+        },
+        "skill_all_seeing_eye": {
+          "name": "skill_all_seeing_eye_name",
+          "maxXp": 100,
+          "heroxp": 120,
+          "effect": {
+            "type": "income",
+            "target": {
+              "kind": "job",
+              "category": "category_mage_collegium"
+            },
+            "base": 0.0027,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "skill_mana_control",
+                "level": 2350
+              },
+              {
+                "task": "job_chairman",
+                "level": 100
+              }
+            ]
+          },
+          "tooltip": "skill_all_seeing_eye_tooltip"
+        },
+        "skill_brainwashing": {
+          "name": "skill_brainwashing_name",
+          "maxXp": 100,
+          "heroxp": 145,
+          "effect": {
+            "type": "expense_reduction",
+            "target": {
+              "kind": "item"
+            },
+            "base": -0.1,
+            "formula": {
+              "kind": "log",
+              "logBase": 7,
+              "logHeroBase": 3,
+              "floor": 0.1
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "job_imperator",
+                "level": 100
+              }
+            ]
+          },
+          "tooltip": "skill_brainwashing_tooltip"
+        }
+      }
     },
-    "Dark Magic": {
-      "skill_dark_influence": { "name": "skill_dark_influence_name", "description": "skill_dark_influence_desc", "maxXp": 100, "heroxp": 155, "effect": { "type": "all_xp", "value": 0.01 }, "requirement": { "type": "evil", "value": 1 } },
-      "skill_evil_control": { "name": "skill_evil_control_name", "description": "skill_evil_control_desc", "maxXp": 100, "heroxp": 156, "effect": { "type": "evil_gain", "value": 0.01 }, "requirement": { "type": "evil", "value": 1 } },
-      "skill_intimidation": { "name": "skill_intimidation_name", "description": "skill_intimidation_desc", "maxXp": 100, "heroxp": 157, "effect": { "type": "expense_reduction", "value": -0.01, "formula": "expense_reduction" }, "requirement": { "type": "evil", "value": 1 } },
-      "skill_demon_training": { "name": "skill_demon_training_name", "description": "skill_demon_training_desc", "maxXp": 100, "heroxp": 174, "effect": { "type": "all_xp", "value": 0.01 }, "requirement": { "type": "evil", "value": 20 } },
-      "skill_blood_meditation": { "name": "skill_blood_meditation_name", "description": "skill_blood_meditation_desc", "maxXp": 100, "heroxp": 176, "effect": { "type": "evil_gain", "value": 0.01 }, "requirement": { "type": "evil", "value": 50 } },
-      "skill_demons_wealth": { "name": "skill_demons_wealth_name", "description": "skill_demons_wealth_desc", "maxXp": 100, "heroxp": 178, "effect": { "type": "job_income", "value": 0.002 }, "requirement": { "type": "evil", "value": 500 } },
-      "skill_dark_knowledge": { "name": "skill_dark_knowledge_name", "description": "skill_dark_knowledge_desc", "maxXp": 100, "heroxp": 180, "effect": { "type": "job_xp", "value": 0.003 }, "requirement": { "type": "evil", "value": 5000 } },
-      "skill_soul_drain": { "name": "skill_soul_drain_name", "description": "skill_soul_drain_desc", "maxXp": 100, "heroxp": 190, "effect": { "type": "lifespan", "value": 0.1, "formula": "log" }, "requirement": { "type": "evil", "value": 10000 } },
-      "skill_void_influence": { "name": "skill_void_influence_name", "description": "skill_void_influence_desc", "maxXp": 100, "heroxp": 206, "effect": { "type": "all_xp", "value": 0.0028 }, "requirement": { "type": "evil", "value": 50000 } },
-      "skill_time_loop": { "name": "skill_time_loop_name", "description": "skill_time_loop_desc", "maxXp": 100, "heroxp": 207, "effect": { "type": "gamespeed", "value": 0.001 }, "requirement": { "type": "evil", "value": 2500000 } },
-      "skill_evil_incarnate": { "name": "skill_evil_incarnate_name", "description": "skill_evil_incarnate_desc", "maxXp": 100, "heroxp": 208, "effect": { "type": "skill_xp", "value": 0.01 }, "requirement": { "type": "evil", "value": 1000000000 } }
+    "category_dark_magic": {
+      "name": "category_dark_magic",
+      "headerColor": "#73000f",
+      "items": {
+        "skill_dark_influence": {
+          "name": "skill_dark_influence_name",
+          "maxXp": 100,
+          "heroxp": 155,
+          "effect": {
+            "type": "xp",
+            "target": {
+              "kind": "all"
+            },
+            "base": 0.01,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "evil",
+            "value": 1
+          },
+          "tooltip": "skill_dark_influence_tooltip"
+        },
+        "skill_evil_control": {
+          "name": "skill_evil_control_name",
+          "maxXp": 100,
+          "heroxp": 156,
+          "effect": {
+            "type": "multiply",
+            "target": {
+              "kind": "resource",
+              "id": "evil_gain"
+            },
+            "base": 0.01,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "evil",
+            "value": 1
+          },
+          "tooltip": "skill_evil_control_tooltip"
+        },
+        "skill_intimidation": {
+          "name": "skill_intimidation_name",
+          "maxXp": 100,
+          "heroxp": 157,
+          "effect": {
+            "type": "expense_reduction",
+            "target": {
+              "kind": "item"
+            },
+            "base": -0.1,
+            "formula": {
+              "kind": "log",
+              "logBase": 7,
+              "logHeroBase": 3,
+              "floor": 0.1
+            }
+          },
+          "requirement": {
+            "type": "evil",
+            "value": 1
+          },
+          "tooltip": "skill_intimidation_tooltip"
+        },
+        "skill_demon_training": {
+          "name": "skill_demon_training_name",
+          "maxXp": 100,
+          "heroxp": 174,
+          "effect": {
+            "type": "xp",
+            "target": {
+              "kind": "all"
+            },
+            "base": 0.01,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "evil",
+            "value": 20
+          },
+          "tooltip": "skill_demon_training_tooltip"
+        },
+        "skill_blood_meditation": {
+          "name": "skill_blood_meditation_name",
+          "maxXp": 100,
+          "heroxp": 176,
+          "effect": {
+            "type": "multiply",
+            "target": {
+              "kind": "resource",
+              "id": "evil_gain"
+            },
+            "base": 0.01,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "evil",
+            "value": 50
+          },
+          "tooltip": "skill_blood_meditation_tooltip"
+        },
+        "skill_demons_wealth": {
+          "name": "skill_demons_wealth_name",
+          "maxXp": 100,
+          "heroxp": 178,
+          "effect": {
+            "type": "income",
+            "target": {
+              "kind": "job"
+            },
+            "base": 0.002,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "evil",
+            "value": 500
+          },
+          "tooltip": "skill_demons_wealth_tooltip"
+        },
+        "skill_dark_knowledge": {
+          "name": "skill_dark_knowledge_name",
+          "maxXp": 100,
+          "heroxp": 180,
+          "effect": {
+            "type": "xp",
+            "target": {
+              "kind": "job"
+            },
+            "base": 0.003,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "evil",
+            "value": 5000
+          },
+          "tooltip": "skill_dark_knowledge_tooltip"
+        },
+        "skill_soul_drain": {
+          "name": "skill_soul_drain_name",
+          "maxXp": 100,
+          "heroxp": 190,
+          "effect": {
+            "type": "multiply",
+            "target": {
+              "kind": "resource",
+              "id": "lifespan"
+            },
+            "base": 0.1,
+            "formula": {
+              "kind": "log"
+            }
+          },
+          "requirement": {
+            "type": "evil",
+            "value": 10000
+          },
+          "tooltip": "skill_soul_drain_tooltip"
+        },
+        "skill_void_influence": {
+          "name": "skill_void_influence_name",
+          "maxXp": 100,
+          "heroxp": 206,
+          "effect": {
+            "type": "xp",
+            "target": {
+              "kind": "all"
+            },
+            "base": 0.0028,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "evil",
+            "value": 50000
+          },
+          "tooltip": "skill_void_influence_tooltip"
+        },
+        "skill_time_loop": {
+          "name": "skill_time_loop_name",
+          "maxXp": 100,
+          "heroxp": 207,
+          "effect": {
+            "type": "multiply",
+            "target": {
+              "kind": "resource",
+              "id": "gamespeed"
+            },
+            "base": 0.001,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "evil",
+            "value": 2500000
+          },
+          "tooltip": "skill_time_loop_tooltip"
+        },
+        "skill_evil_incarnate": {
+          "name": "skill_evil_incarnate_name",
+          "maxXp": 100,
+          "heroxp": 208,
+          "effect": {
+            "type": "xp",
+            "target": {
+              "kind": "skill"
+            },
+            "base": 0.01,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "evil",
+            "value": 1000000000
+          },
+          "tooltip": "skill_evil_incarnate_tooltip"
+        }
+      }
     },
-    "Void Manipulation": {
-      "skill_absolute_wish": { "name": "skill_absolute_wish_name", "description": "skill_absolute_wish_desc", "maxXp": 100, "heroxp": 198, "effect": { "type": "evil_gain", "value": 0.005 }, "requirement": { "type": "task", "tasks": [{ "task": "Void Slave", "level": 25 }, { "task": "Chairman", "level": 300 }] } },
-      "skill_void_amplification": { "name": "skill_void_amplification_name", "description": "skill_void_amplification_desc", "maxXp": 100, "heroxp": 251, "effect": { "type": "void_xp", "value": 0.01 }, "requirement": { "type": "task", "tasks": [{ "task": "Void Slave", "level": 100 }, { "task": "skill_absolute_wish", "level": 3000, "hero": 1700 }] } },
-      "skill_mind_release": { "name": "skill_mind_release_name", "description": "skill_mind_release_desc", "maxXp": 100, "heroxp": 251, "effect": { "type": "happiness", "value": 0.0006 }, "requirement": { "type": "task", "tasks": [{ "task": "skill_void_amplification", "level": 3000, "hero": 100 }] } },
-      "skill_ceaseless_abyss": { "name": "skill_ceaseless_abyss_name", "description": "skill_ceaseless_abyss_desc", "maxXp": 100, "heroxp": 251, "effect": { "type": "lifespan", "value": 0.000585 }, "requirement": { "type": "task", "tasks": [{ "task": "skill_void_influence", "level": 4000, "hero": 1950 }, { "task": "Abyss Anomaly", "level": 50 }] } },
-      "skill_void_symbiosis": { "name": "skill_void_symbiosis_name", "description": "skill_void_symbiosis_desc", "maxXp": 100, "heroxp": 253, "effect": { "type": "skill_xp", "value": 0.0015 }, "requirement": { "type": "task", "tasks": [{ "task": "skill_ceaseless_abyss", "level": 3500, "hero": 220 }, { "task": "Void Reaver", "level": 50 }] } },
-      "skill_void_embodiment": { "name": "skill_void_embodiment_name", "description": "skill_void_embodiment_desc", "maxXp": 100, "heroxp": 258, "effect": { "type": "evil_gain", "value": 0.0025 }, "requirement": { "type": "task", "tasks": [{ "task": "skill_dark_influence", "level": 4600, "hero": 3700 }, { "task": "Void Lord", "level": 50 }] } },
-      "skill_abyss_manipulation": { "name": "skill_abyss_manipulation_name", "description": "skill_abyss_manipulation_desc", "maxXp": 100, "heroxp": 266, "effect": { "type": "expense_reduction", "value": -0.01, "formula": "expense_reduction" }, "requirement": { "type": "task", "tasks": [{ "task": "Abyss God", "level": 350, "hero": 200 }, { "task": "skill_dark_influence", "level": 6000, "hero": 4100 }, { "task": "skill_void_influence", "level": 6000, "hero": 2600 }] } }
+    "category_void_manipulation": {
+      "name": "category_void_manipulation",
+      "headerColor": "#762B91",
+      "items": {
+        "skill_absolute_wish": {
+          "name": "skill_absolute_wish_name",
+          "maxXp": 100,
+          "heroxp": 198,
+          "effect": {
+            "type": "multiply",
+            "target": {
+              "kind": "resource",
+              "id": "evil_gain"
+            },
+            "base": 0.005,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "job_void_slave",
+                "level": 25
+              },
+              {
+                "task": "job_chairman",
+                "level": 300
+              }
+            ]
+          },
+          "tooltip": "skill_absolute_wish_tooltip"
+        },
+        "skill_void_amplification": {
+          "name": "skill_void_amplification_name",
+          "maxXp": 100,
+          "heroxp": 251,
+          "effect": {
+            "type": "xp",
+            "target": {
+              "kind": "job",
+              "category": "category_the_void"
+            },
+            "base": 0.01,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "job_void_slave",
+                "level": 100
+              },
+              {
+                "task": "skill_absolute_wish",
+                "level": 3000,
+                "hero": 1700
+              }
+            ]
+          },
+          "tooltip": "skill_void_amplification_tooltip"
+        },
+        "skill_mind_release": {
+          "name": "skill_mind_release_name",
+          "maxXp": 100,
+          "heroxp": 251,
+          "effect": {
+            "type": "multiply",
+            "target": {
+              "kind": "resource",
+              "id": "happiness"
+            },
+            "base": 0.0006,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "skill_void_amplification",
+                "level": 3000,
+                "hero": 100
+              }
+            ]
+          },
+          "tooltip": "skill_mind_release_tooltip"
+        },
+        "skill_ceaseless_abyss": {
+          "name": "skill_ceaseless_abyss_name",
+          "maxXp": 100,
+          "heroxp": 251,
+          "effect": {
+            "type": "multiply",
+            "target": {
+              "kind": "resource",
+              "id": "lifespan"
+            },
+            "base": 0.000585,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "skill_void_influence",
+                "level": 4000,
+                "hero": 1950
+              },
+              {
+                "task": "job_abyss_anomaly",
+                "level": 50
+              }
+            ]
+          },
+          "tooltip": "skill_ceaseless_abyss_tooltip"
+        },
+        "skill_void_symbiosis": {
+          "name": "skill_void_symbiosis_name",
+          "maxXp": 100,
+          "heroxp": 253,
+          "effect": {
+            "type": "xp",
+            "target": {
+              "kind": "skill"
+            },
+            "base": 0.0015,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "skill_ceaseless_abyss",
+                "level": 3500,
+                "hero": 220
+              },
+              {
+                "task": "job_void_reaver",
+                "level": 50
+              }
+            ]
+          },
+          "tooltip": "skill_void_symbiosis_tooltip"
+        },
+        "skill_void_embodiment": {
+          "name": "skill_void_embodiment_name",
+          "maxXp": 100,
+          "heroxp": 258,
+          "effect": {
+            "type": "multiply",
+            "target": {
+              "kind": "resource",
+              "id": "evil_gain"
+            },
+            "base": 0.0025,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "skill_dark_influence",
+                "level": 4600,
+                "hero": 3700
+              },
+              {
+                "task": "job_void_lord",
+                "level": 50
+              }
+            ]
+          },
+          "tooltip": "skill_void_embodiment_tooltip"
+        },
+        "skill_abyss_manipulation": {
+          "name": "skill_abyss_manipulation_name",
+          "maxXp": 100,
+          "heroxp": 266,
+          "effect": {
+            "type": "expense_reduction",
+            "target": {
+              "kind": "item"
+            },
+            "base": -0.1,
+            "formula": {
+              "kind": "log",
+              "logBase": 7,
+              "logHeroBase": 3,
+              "floor": 0.1
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "job_abyss_god",
+                "level": 350,
+                "hero": 200
+              },
+              {
+                "task": "skill_dark_influence",
+                "level": 6000,
+                "hero": 4100
+              },
+              {
+                "task": "skill_void_influence",
+                "level": 6000,
+                "hero": 2600
+              }
+            ]
+          },
+          "tooltip": "skill_abyss_manipulation_tooltip"
+        }
+      }
     },
-    "Celestial Powers": {
-      "skill_cosmic_longevity": { "name": "skill_cosmic_longevity_name", "description": "skill_cosmic_longevity_desc", "maxXp": 100, "heroxp": 266, "effect": { "type": "lifespan", "value": 0.0015 }, "requirement": { "type": "task", "tasks": [{ "task": "Eternal Wanderer", "level": 1 }] } },
-      "skill_cosmic_recollection": { "name": "skill_cosmic_recollection_name", "description": "skill_cosmic_recollection_desc", "maxXp": 100, "heroxp": 272, "effect": { "type": "max_level_multiplier", "value": 0.00065, "formula": "cosmic_recollection" }, "requirement": { "type": "task", "tasks": [{ "task": "Nova", "level": 50 }, { "task": "skill_meditation", "level": 4200 }, { "task": "skill_mind_release", "level": 900 }] } },
-      "skill_essence_collector": { "name": "skill_essence_collector_name", "description": "skill_essence_collector_desc", "maxXp": 100, "heroxp": 288, "effect": { "type": "essence_gain", "value": 0.01 }, "requirement": { "type": "task", "tasks": [{ "task": "Sigma Proioxis", "level": 500, "hero": 360 }, { "task": "skill_absolute_wish", "level": 4900, "hero": 2900 }, { "task": "skill_dark_knowledge", "level": 6300, "hero": 3400 }] } },
-      "skill_galactic_command": { "name": "skill_galactic_command_name", "description": "skill_galactic_command_desc", "maxXp": 100, "heroxp": 290, "effect": { "type": "expense_reduction", "value": -0.01, "formula": "expense_reduction" }, "requirement": { "type": "task", "tasks": [{ "task": "skill_essence_collector", "level": 5000, "hero": 210 }, { "task": "skill_bargaining", "level": 5000 }] } }
+    "category_celestial_powers": {
+      "name": "category_celestial_powers",
+      "headerColor": "#D5C010",
+      "items": {
+        "skill_cosmic_longevity": {
+          "name": "skill_cosmic_longevity_name",
+          "maxXp": 100,
+          "heroxp": 266,
+          "effect": {
+            "type": "multiply",
+            "target": {
+              "kind": "resource",
+              "id": "lifespan"
+            },
+            "base": 0.0015,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "job_eternal_wanderer",
+                "level": 1
+              }
+            ]
+          },
+          "tooltip": "skill_cosmic_longevity_tooltip"
+        },
+        "skill_cosmic_recollection": {
+          "name": "skill_cosmic_recollection_name",
+          "maxXp": 100,
+          "heroxp": 272,
+          "effect": {
+            "type": "multiply",
+            "target": {
+              "kind": "resource",
+              "id": "max_level"
+            },
+            "base": 0.00065,
+            "formula": {
+              "kind": "linear",
+              "heroScale": 100
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "job_nova",
+                "level": 50
+              },
+              {
+                "task": "skill_meditation",
+                "level": 4200
+              },
+              {
+                "task": "skill_mind_release",
+                "level": 900
+              }
+            ]
+          },
+          "tooltip": "skill_cosmic_recollection_tooltip"
+        },
+        "skill_essence_collector": {
+          "name": "skill_essence_collector_name",
+          "maxXp": 100,
+          "heroxp": 288,
+          "effect": {
+            "type": "multiply",
+            "target": {
+              "kind": "resource",
+              "id": "essence_gain"
+            },
+            "base": 0.01,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "job_sigma_proioxis",
+                "level": 500,
+                "hero": 360
+              },
+              {
+                "task": "skill_absolute_wish",
+                "level": 4900,
+                "hero": 2900
+              },
+              {
+                "task": "skill_dark_knowledge",
+                "level": 6300,
+                "hero": 3400
+              }
+            ]
+          },
+          "tooltip": "skill_essence_collector_tooltip"
+        },
+        "skill_galactic_command": {
+          "name": "skill_galactic_command_name",
+          "maxXp": 100,
+          "heroxp": 290,
+          "effect": {
+            "type": "expense_reduction",
+            "target": {
+              "kind": "item"
+            },
+            "base": -0.1,
+            "formula": {
+              "kind": "log",
+              "logBase": 7,
+              "logHeroBase": 3,
+              "floor": 0.1
+            }
+          },
+          "requirement": {
+            "type": "task",
+            "tasks": [
+              {
+                "task": "skill_essence_collector",
+                "level": 5000,
+                "hero": 210
+              },
+              {
+                "task": "skill_bargaining",
+                "level": 5000
+              }
+            ]
+          },
+          "tooltip": "skill_galactic_command_tooltip"
+        }
+      }
     },
-    "Almightiness": {
-      "skill_yin_yang": { "name": "skill_yin_yang_name", "description": "skill_yin_yang_desc", "maxXp": 100, "heroxp": 290, "effect": { "type": "essence_evil_gain", "value": 0.02 }, "requirement": { "type": "essence", "value": 1 } },
-      "skill_parallel_universe": { "name": "skill_parallel_universe_name", "description": "skill_parallel_universe_desc", "maxXp": 100, "heroxp": 300, "effect": { "type": "all_xp", "value": 0.02 }, "requirement": { "type": "essence", "value": 1 } },
-      "skill_higher_dimensions": { "name": "skill_higher_dimensions_name", "description": "skill_higher_dimensions_desc", "maxXp": 100, "heroxp": 300, "effect": { "type": "lifespan", "value": 0.001 }, "requirement": { "type": "essence", "value": 10000 } },
-      "skill_epiphany": { "name": "skill_epiphany_name", "description": "skill_epiphany_desc", "maxXp": 100, "heroxp": 280, "effect": { "type": "galactic_xp", "value": 0.012 }, "requirement": { "type": "essence", "value": 30000 } }
+    "category_almightiness": {
+      "name": "category_almightiness",
+      "headerColor": "#18d2d9",
+      "items": {
+        "skill_yin_yang": {
+          "name": "skill_yin_yang_name",
+          "maxXp": 100,
+          "heroxp": 290,
+          "effect": {
+            "type": "multiply",
+            "target": {
+              "kind": "resource",
+              "id": "essence_evil_gain"
+            },
+            "base": 0.02,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "essence",
+            "value": 1
+          },
+          "tooltip": "skill_yin_yang_tooltip"
+        },
+        "skill_parallel_universe": {
+          "name": "skill_parallel_universe_name",
+          "maxXp": 100,
+          "heroxp": 300,
+          "effect": {
+            "type": "xp",
+            "target": {
+              "kind": "all"
+            },
+            "base": 0.02,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "essence",
+            "value": 1
+          },
+          "tooltip": "skill_parallel_universe_tooltip"
+        },
+        "skill_higher_dimensions": {
+          "name": "skill_higher_dimensions_name",
+          "maxXp": 100,
+          "heroxp": 300,
+          "effect": {
+            "type": "multiply",
+            "target": {
+              "kind": "resource",
+              "id": "lifespan"
+            },
+            "base": 0.001,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "essence",
+            "value": 10000
+          },
+          "tooltip": "skill_higher_dimensions_tooltip"
+        },
+        "skill_epiphany": {
+          "name": "skill_epiphany_name",
+          "maxXp": 100,
+          "heroxp": 280,
+          "effect": {
+            "type": "xp",
+            "target": {
+              "kind": "job",
+              "category": "category_galactic_council"
+            },
+            "base": 0.012,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "essence",
+            "value": 30000
+          },
+          "tooltip": "skill_epiphany_tooltip"
+        }
+      }
     },
-    "Darkness": {
-      "skill_dark_prince": { "name": "skill_dark_prince_name", "description": "skill_dark_prince_desc", "maxXp": 100, "heroxp": 350, "effect": { "type": "skill_xp", "value": 0.01 }, "requirement": { "type": "darkMatter", "value": 3 } },
-      "skill_dark_ruler": { "name": "skill_dark_ruler_name", "description": "skill_dark_ruler_desc", "maxXp": 100, "heroxp": 375, "effect": { "type": "dark_matter_gain", "value": 0.0000015 }, "requirement": { "type": "darkMatter", "value": 10 } },
-      "skill_immortal_ruler": { "name": "skill_immortal_ruler_name", "description": "skill_immortal_ruler_desc", "maxXp": 100, "heroxp": 425, "effect": { "type": "all_xp", "value": 0.01 }, "requirement": { "type": "darkMatter", "value": 25 } },
-      "skill_dark_magician": { "name": "skill_dark_magician_name", "description": "skill_dark_magician_desc", "maxXp": 100, "heroxp": 475, "effect": { "type": "essence_gain", "value": 0.0000025 }, "requirement": { "type": "darkMatter", "value": 100 } },
-      "skill_universal_ruler": { "name": "skill_universal_ruler_name", "description": "skill_universal_ruler_desc", "maxXp": 100, "heroxp": 500, "effect": { "type": "magic_xp", "value": 1 }, "requirement": { "type": "darkMatter", "value": 1000 } },
-      "skill_blinded_by_darkness": { "name": "skill_blinded_by_darkness_name", "description": "skill_blinded_by_darkness_desc", "maxXp": 100, "heroxp": 550, "effect": { "type": "all_xp", "value": 1 }, "requirement": { "type": "darkMatter", "value": 10000 } }
+    "category_darkness": {
+      "name": "category_darkness",
+      "headerColor": "#8c6a0b",
+      "items": {
+        "skill_dark_prince": {
+          "name": "skill_dark_prince_name",
+          "maxXp": 100,
+          "heroxp": 350,
+          "effect": {
+            "type": "xp",
+            "target": {
+              "kind": "skill"
+            },
+            "base": 0.01,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "darkMatter",
+            "value": 3
+          },
+          "tooltip": "skill_dark_prince_tooltip"
+        },
+        "skill_dark_ruler": {
+          "name": "skill_dark_ruler_name",
+          "maxXp": 100,
+          "heroxp": 375,
+          "effect": {
+            "type": "multiply",
+            "target": {
+              "kind": "resource",
+              "id": "dark_matter_gain"
+            },
+            "base": 1.5e-06,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "darkMatter",
+            "value": 10
+          },
+          "tooltip": "skill_dark_ruler_tooltip"
+        },
+        "skill_immortal_ruler": {
+          "name": "skill_immortal_ruler_name",
+          "maxXp": 100,
+          "heroxp": 425,
+          "effect": {
+            "type": "xp",
+            "target": {
+              "kind": "all"
+            },
+            "base": 0.01,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "darkMatter",
+            "value": 25
+          },
+          "tooltip": "skill_immortal_ruler_tooltip"
+        },
+        "skill_dark_magician": {
+          "name": "skill_dark_magician_name",
+          "maxXp": 100,
+          "heroxp": 475,
+          "effect": {
+            "type": "multiply",
+            "target": {
+              "kind": "resource",
+              "id": "essence_gain"
+            },
+            "base": 2.5e-06,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "darkMatter",
+            "value": 100
+          },
+          "tooltip": "skill_dark_magician_tooltip"
+        },
+        "skill_universal_ruler": {
+          "name": "skill_universal_ruler_name",
+          "maxXp": 100,
+          "heroxp": 500,
+          "effect": {
+            "type": "xp",
+            "target": {
+              "kind": "skill",
+              "category": "category_magic"
+            },
+            "base": 1,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "darkMatter",
+            "value": 1000
+          },
+          "tooltip": "skill_universal_ruler_tooltip"
+        },
+        "skill_blinded_by_darkness": {
+          "name": "skill_blinded_by_darkness_name",
+          "maxXp": 100,
+          "heroxp": 550,
+          "effect": {
+            "type": "xp",
+            "target": {
+              "kind": "all"
+            },
+            "base": 1,
+            "formula": {
+              "kind": "power"
+            }
+          },
+          "requirement": {
+            "type": "darkMatter",
+            "value": 10000
+          },
+          "tooltip": "skill_blinded_by_darkness_tooltip"
+        }
+      }
     }
   }
 }

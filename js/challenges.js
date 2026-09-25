@@ -51,10 +51,10 @@ function setChallengeProgress() {
         updateChallengeProgress("dance_with_the_devil", getEvilGain().sub(10).max(0))
     }
     if (gameData.active_challenge == "legends_never_die") {
-        updateChallengeProgress("legends_never_die", getChallengeTaskGoalProgress("Chairman"))
+        updateChallengeProgress("legends_never_die", getChallengeTaskGoalProgress("job_chairman"))
     }
     if (gameData.active_challenge == "the_darkest_time") {
-        updateChallengeProgress("the_darkest_time", getChallengeTaskGoalProgress("Sigma Proioxis") / 100.0)
+        updateChallengeProgress("the_darkest_time", getChallengeTaskGoalProgress("job_sigma_proioxis") / 100.0)
     }
 }
 
@@ -64,8 +64,8 @@ function getChallengeBonus(challenge_name, current = false) {
     const val2 = current ? getIncome() : toInfinityNumber(gameData.challenges.rich_and_the_poor)
     const val3 = current ? getUnpausedGameSpeed() / baseGameSpeed : toInfinityNumber(gameData.challenges.time_does_not_fly)
     const val4 = current ? getEvilGain().sub(10).max(0) : toInfinityNumber(gameData.challenges.dance_with_the_devil)
-    const val5 = current ? getChallengeTaskGoalProgress("Chairman") : toInfinityNumber(gameData.challenges.legends_never_die)
-    const val6 = current ? getChallengeTaskGoalProgress("Sigma Proioxis") / 100.0 : toInfinityNumber(gameData.challenges.the_darkest_time)
+    const val5 = current ? getChallengeTaskGoalProgress("job_chairman") : toInfinityNumber(gameData.challenges.legends_never_die)
+    const val6 = current ? getChallengeTaskGoalProgress("job_sigma_proioxis") / 100.0 : toInfinityNumber(gameData.challenges.the_darkest_time)
 
     if (challenge_name == "an_unhappy_life" || challenge_name == 1) {
         return softcap(toChallengeDecimal(val1, 0).add(1).pow(0.31), 500, 0.45)

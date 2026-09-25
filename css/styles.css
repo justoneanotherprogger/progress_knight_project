@@ -139,6 +139,36 @@ td {
     align-items: center;
 }
 
+/* Первая колонка таблиц задач не держит ширину: полоска у неё width: 100%,
+   а имя и тултип — position: absolute. При авто-лайауте место под них
+   разбирают соседние колонки, и длина полосок плывёт от панели к панели.
+   min-width фиксирует сетку, не трогая поведение остальных колонок. */
+#jobTable tr > :first-child,
+#skillTable tr > :first-child {
+    min-width: 18em;
+}
+
+/* fixed держит колонки по ширинам из шапки (20em имя, 18em эффект).
+   На авто-лайауте nowrap-эффект растягивает ячейку, fitText видит
+   «всё влезло» и не сжимает кегль — таблица вылезает за контейнер.
+   Заодно обе таблицы (работы и навыки) получают одну сетку —
+   подписи шапки не скачут при переключении вкладок. */
+#jobTable,
+#skillTable {
+    table-layout: fixed;
+}
+
+#jobTable td.level, #jobTable th.level,
+#jobTable td.xpGain, #jobTable th.xpGain,
+#jobTable td.xpLeft, #jobTable th.xpLeft,
+#jobTable td.maxLevel, #jobTable th.maxLevel,
+#skillTable td.level, #skillTable th.level,
+#skillTable td.xpGain, #skillTable th.xpGain,
+#skillTable td.xpLeft, #skillTable th.xpLeft,
+#skillTable td.maxLevel, #skillTable th.maxLevel {
+    text-align: center;
+}
+
 .progress-bar {
     margin-top: 0.05em;
     position: relative;
@@ -286,6 +316,22 @@ button:focus {
     opacity: 0.8;
 }
 
+/* Тултипы, которые заполняются по событию (а не наведением), до заполнения
+   не должны показывать пустую плашку. */
+.tooltip .tooltipText:empty {
+    display: none;
+}
+
+/* Подтверждение экспорта: под кнопкой, а не справа — там поле ввода, и текст
+   перекрывал бы его. Шрифт обычный: .text-caption даёт larger, а подпись
+   к кнопке на большом шрифте много места занимает зря. */
+#exportTooltip {
+    top: 100%;
+    left: 0;
+    width: 18em;
+    font-size: small;
+}
+
 .tooltip-pointer .tooltipText-pointer {
     visibility: hidden;
     width: 20em;
@@ -306,10 +352,6 @@ button:focus {
 .tooltip-pointer:hover .tooltipText-pointer {
     visibility: visible;
     opacity: 0.8;
-}
-
-.sidebar-element {
-    margin-bottom: 0.8em;
 }
 
 .topbar-element {
@@ -372,6 +414,11 @@ button:focus {
     overflow-y: auto;
 }
 
+#quickTaskDisplay,
+#pauseButton {
+    margin-top: 0.8em;
+}
+
 #resourceStats {
     flex: 1 1 auto;
     min-height: 0;
@@ -384,6 +431,8 @@ button:focus {
 
 #resourceStats .text-caption {
     font-size: calc(20px * var(--stats-scale));
+    padding-top: calc(0.2em * var(--stats-scale));
+    white-space: nowrap;
 }
 
 #resourceStats .resource-desc {
@@ -467,6 +516,17 @@ button:focus {
 .rebirth-label {
     white-space: nowrap;
     overflow: hidden;
+}
+
+/* Gain-текст на кнопках ребёрна меняется каждый кадр, fitText постоянно
+   пересчитывает посадку и переписывает font-size инлайном — высота в em
+   плыла вместе с k. min-height, а не height: при максимальном масштабе
+   шрифта (setFontSize до xxx-large) текст помещается, а не обрезается. */
+#rebirthBtn2,
+#rebirthBtn3,
+#rebirthBtn4,
+#rebirthBtn5 {
+    min-height: 40px;
 }
 
 .sidebarChallengeReward {

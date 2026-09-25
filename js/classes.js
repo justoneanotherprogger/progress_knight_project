@@ -4,10 +4,8 @@ class Task {
         this.name = baseData.name
         this.level = 0
         this.maxLevel = 0
-        this.xp = 0
-        this.xpBigInt = BigInt(0)
+        this.xp = new Decimal(0)
         this.isHero = false
-        this.isFinished = false
         this.unlocked = false
 
         this.xpMultipliers = []
@@ -15,41 +13,12 @@ class Task {
         this.elementsCache = {}
     }
 
-    toJSON() {
-        return {
-            baseData: this.baseData,
-            name: this.name,
-            level: this.level,
-            maxLevel: this.maxLevel,
-            xp: this.xp,
-            xpBigInt: bigIntToExponential(this.xpBigInt),
-            isHero: this.isHero,
-            isFinished: this.isFinished,
-            unlocked: this.unlocked
-        }
-    }
-
     getMaxXp() {
-        const maxXp = (this.isHero ? Math.pow(10, this.baseData.heroxp) : 1) * this.baseData.maxXp * (this.level + 1) * Math.pow(this.isHero ? 1.08 : 1.01, this.level)
-
-        if (isNaN(maxXp) || maxXp == Infinity || maxXp > 1e305) {
-            this.isFinished = true
-        }
-
-        return maxXp
-    }
-
-    getMaxBigIntXp() {
-        const maxXp = this.getMaxXp() == Infinity ? BigInt(1e305) : BigInt(Math.floor(this.getMaxXp()));
-
-        if (maxXp < 1e305)
-            return maxXp
-
-        return maxXp * 2n ** (BigInt(this.level) / 120n) * (2n ** (BigInt(this.baseData.heroxp) / 9n))
+        return getTaskMaxXp(this, this.level)
     }
 
     getXpLeft() {
-        return this.getMaxXp() - this.xp
+        return this.getMaxXp().minus(this.xp)
     }
 
     getMaxLevelMultiplier() {
@@ -64,81 +33,26 @@ class Task {
     }
 
     getXpGain() {
-        return (this.isHero ? getHeroXpGainMultipliers(this) : 1) * applyMultipliers(10, this.xpMultipliers).toNumber()
-    }
-
-    getXpGainBigInt() {
-        let baseValue = this.isHero ? getHeroXpGainMultipliers(this) : 1
-        let xpGain = BigInt(Math.floor(Number(baseValue)))
-
-        this.xpMultipliers.forEach(multiplier => {
-            let val = Number(multiplier())
-            if (!isFinite(val)) val = 1
-            xpGain *= BigInt(Math.ceil(val))
-        })
-
-        return xpGain
+        return applyMultipliers(10, this.xpMultipliers)
+            .times(toInfinityNumber(this.isHero ? getHeroXpGainMultipliers(this) : 1))
     }
 
     getXpGainFormatted() {
-        if (this.isFinished)
-            return bigIntToExponential(this.getXpGainBigInt())
         return format(this.getXpGain())
     }
 
     getXpLeftFormatted() {
-        if (this.isFinished)
-            return bigIntToExponential(this.getMaxBigIntXp() - this.xpBigInt)
         return format(this.getXpLeft())
     }
 
     increaseXp() {
-        if (this.isFinished) {
-            this.xpBigInt += applySpeedOnBigInt(this.getXpGainBigInt())
+        this.xp = this.xp.plus(applySpeed(this.getXpGain()))
 
-            if (this.xpBigInt >= this.getMaxBigIntXp()) {
-                let excess = this.xpBigInt - this.getMaxBigIntXp()
-
-                let iterations = 0
-                while (excess >= 0n) {
-                    iterations += 1
-
-                    // This amount is way lower because calculations with a BigInt are really expensive.
-                    // Probably want to look into more optimizations.
-                    if (iterations > 300)
-                        excess = -1n
-
-                    this.level += 1
-                    this.unlocked = true
-                    excess -= this.getMaxBigIntXp()
-                }
-                this.xpBigInt = this.getMaxBigIntXp() + excess
-            }
-        } else {
-            this.xp += applySpeed(this.getXpGain())
-
-            if (this.xp > 1e275 || isNaN(this.xp) || this.xp == Infinity || this.getXpGain() == Infinity
-                || this.getMaxXp() == Infinity || this.getXpLeft() == Infinity) {
-                this.isFinished = true
-                return
-            }
-
-            if (this.xp >= this.getMaxXp()) {
-                let excess = this.xp - this.getMaxXp()
-
-                let iterations = 0
-                while (excess >= 0) {
-                    iterations += 1
-
-                    if (iterations > 2500)
-                        excess = -1
-
-                    this.level += 1
-                    this.unlocked = true
-                    excess -= this.getMaxXp()
-                }
-                this.xp = this.getMaxXp() + excess
-            }
+        if (this.xp.gte(this.getMaxXp())) {
+            const levels = getTaskLevelsToClimb(this, this.level, this.xp)
+            this.xp = this.xp.minus(getTaskXpRange(this, this.level, levels))
+            this.level += levels
+            this.unlocked = true
         }
     }
 
@@ -159,10 +73,21 @@ class Milestone {
     constructor(baseData) {
         this.baseData = baseData
         this.name = baseData.name
+        this.id = null
         this.tier = baseData.tier
         this.threshold = baseData.threshold
         this.description = baseData.description
+        this.tooltip = baseData.tooltip
         this.unlocked = false
+    }
+
+    // Кастомные формулы (setCustomEffects) подменяют этот метод,
+    // плоские эффекты считаются из baseData.effect.base.
+    getEffect() {
+        const effect = this.baseData.effect
+        if (effect == null) return null
+        if (!gameData.requirements[this.id].isCompleted()) return toInfinityNumber(1)
+        return toInfinityNumber(effect.base)
     }
 
     getTier() { return this.tier }
@@ -172,16 +97,29 @@ class Job extends Task {
     constructor(baseData) {
         super(baseData)
         this.incomeMultipliers = []
+        this.categoryId = this.findJobCategoryId()
     }
 
     getLevelMultiplier() {
         return 1 + Math.log10(this.level + 1)
     }
 
+    getCategoryHeroIncomeMult() {
+        const categoryId = this.categoryId || (this.categoryId = this.findJobCategoryId())
+        if (!categoryId) return 1
+        return jobCategories[categoryId].heroIncomeMult ?? 1
+    }
+
+    findJobCategoryId() {
+        for (const categoryId in jobCategories)
+            if (this.name in jobCategories[categoryId].items)
+                return categoryId
+        return null
+    }
+
     getIncome() {
         const income = toInfinityNumber(this.isHero ? heroIncomeMult
-            * (this.baseData.heroxp > 78 ? JOB_INCOME_HERO_THRESHOLD_78 : 1)
-            * (this.baseData.heroxp > 130 ? JOB_INCOME_HERO_THRESHOLD_130 : 1)
+            * this.getCategoryHeroIncomeMult()
             : 1)
             .times(applyMultipliers(this.baseData.income, this.incomeMultipliers))
             .times(getChallengeBonus("rich_and_the_poor"))
@@ -197,62 +135,73 @@ class Skill extends Task {
     getEffect() {
         const level = this.level
         const hero = this.isHero
-        const value = this.baseData.effect.value
-        const formula = this.baseData.effect.formula
+        const value = this.baseData.effect.base
+        const formula = this.baseData.effect.formula || {}
 
-        switch (formula) {
-            case "log":
-                return 1 + value * Math.log(level + 1)
-            case "expense_reduction": {
-                const base = hero ? EXPENSE_REDUCTION_LOG_BASE_HERO : EXPENSE_REDUCTION_LOG_BASE_NORMAL
-                const result = 1 - getBaseLog(base, level + 1) / EXPENSE_REDUCTION_DIVISOR
-                return Math.max(result, EXPENSE_REDUCTION_MIN)
+        switch (formula.kind) {
+            case "log": {
+                const logBase = hero && formula.logHeroBase !== undefined
+                    ? formula.logHeroBase
+                    : (formula.logBase || Math.E)
+                const result = 1 + value * Math.log(level + 1) / Math.log(logBase)
+                return formula.floor !== undefined ? Math.max(result, formula.floor) : result
             }
-            case "time_warping": {
-                const base = hero ? TIME_WARPING_LOG_BASE_HERO : TIME_WARPING_LOG_BASE_NORMAL
-                return 1 + getBaseLog(base, level + 1)
-            }
-            case "life_essence": {
-                const base = hero ? LIFE_ESSENCE_LOG_BASE_HERO : LIFE_ESSENCE_LOG_BASE_NORMAL
-                return 1 + getBaseLog(base, level + 1)
-            }
-            case "cosmic_recollection":
-                return level * (hero ? COSMIC_RECOLLECTION_EFFECT_HERO : COSMIC_RECOLLECTION_EFFECT_NORMAL)
-            default: // standard
-                return 1 + value * (hero ? SKILL_HERO_LEVEL_MULTIPLIER * level + SKILL_HERO_FLAT_BONUS : level)
-                    * Math.pow(SKILL_LEVEL_EXPONENT_BASE, getBaseLog(10, level + 1))
+            case "linear":
+                return 1 + level * value * (hero && formula.heroScale !== undefined ? formula.heroScale : 1)
+            default: // power
+                const levelEff = hero ? SKILL_HERO_LEVEL_MULTIPLIER * level + SKILL_HERO_FLAT_BONUS : level
+                return 1 + value * levelEff * Math.pow(SKILL_LEVEL_EXPONENT_BASE, getBaseLog(10, level + 1))
         }
     }
 
     getEffectDescription() {
-        return "x" + format(this.getEffect(), 2) + " " + t("effect_" + this.baseData.effect.type)
+        return "x" + format(this.getEffect(), 2) + " " + t(labelKey(this.baseData.effect.target))
     }
+}
+
+function getItemEffectDescriptionKey(target) {
+    if (!target) return "effect_happiness"
+    switch (target.type) {
+        case "happiness": return "effect_happiness"
+        case "evil_gain": return "effect_evil_gain"
+        case "hypercube_gain": return "effect_hypercube_gain"
+        case "dark_matter_gain": return "effect_dark_matter_gain"
+        case "xp": {
+            const scope = target.scope || {}
+            if (scope.task) return labelKey({ kind: "task", task: scope.task })
+            if (scope.kind) return labelKey({ kind: scope.kind, category: scope.category })
+                || (scope.kind === "job" ? "effect_job_xp" : "effect_skill_xp")
+            return "effect_skill_xp"
+        }
+    }
+    return "effect_skill_xp"
 }
 
 class Item {
     constructor(baseData) {
         this.baseData = baseData
         this.name = baseData.name
+        this.id = null
+        this.categoryId = null
         this.expenseMultipliers = []
         this.isHero = false
         this.unlocked = false
     }
 
     getEffect() {
-        let effect = this.baseData.effect
+        let effect = this.baseData.effect.base
 
         if (this.isHero) {
-            if (itemCategories["Misc"].includes(this.name))
-            {
+            if (this.categoryId === "category_misc") {
                 if (gameData.currentMisc.includes(this)) {
-                    effect *= this.baseData.heroeffect                    
+                    effect *= this.baseData.effect.heroeffect
                     this.unlocked = true
                 }
             }
 
-            if (itemCategories["Properties"].includes(this.name)) {
+            if (this.categoryId === "category_properties") {
                 if (gameData.currentProperty == this) {
-                    effect = this.baseData.heroeffect
+                    effect = this.baseData.effect.heroeffect
                     this.unlocked = true
                 }
                 else
@@ -269,31 +218,29 @@ class Item {
     }
 
     getEffectDescription() {
-        let description = this.baseData.description
-        let effect = this.baseData.effect
+        let effect = this.baseData.effect.base
 
         if (this.isHero) {
-            if (itemCategories["Misc"].includes(this.name)) {
-                effect *= this.baseData.heroeffect
+            if (this.categoryId === "category_misc") {
+                effect *= this.baseData.effect.heroeffect
             }
 
-            if (itemCategories["Properties"].includes(this.name)) {
-                description = "happiness"
-                effect = this.baseData.heroeffect
+            if (this.categoryId === "category_properties") {
+                effect = this.baseData.effect.heroeffect
             }
         }
-        else {
-            if (itemCategories["Properties"].includes(this.name)) description = "happiness"
-        }
 
-        return "x" + format(effect) + " " + t(description)
+        const descKey = this.categoryId === "category_properties"
+            ? "happiness"
+            : getItemEffectDescriptionKey(this.baseData.effect.target)
+        return "x" + format(effect) + " " + t(descKey)
     }
 
     getExpense(heroic) {
         if (heroic === undefined)
             heroic = this.isHero
-        return toInfinityNumber(heroic ? JOB_INCOME_HERO_BASE_MULTIPLIER * Math.pow(10, this.baseData.heromult) * heroIncomeMult : 1)
-            .times(applyMultipliers(this.baseData.expense, this.expenseMultipliers))
+        return toInfinityNumber(heroic ? JOB_INCOME_HERO_BASE_MULTIPLIER * Math.pow(10, this.baseData.expense.heroExp) * heroIncomeMult : 1)
+            .times(applyMultipliers(this.baseData.expense.base, this.expenseMultipliers))
     }
 }
 
@@ -303,6 +250,7 @@ class Requirement {
         this.elements = []
         this.requirements = requirements
         this.completed = false
+        this.permanent = false
     }
 
     queryElements() {
@@ -311,15 +259,16 @@ class Requirement {
         })
     }
 
+    // Выполненность фиксируется на уровне забега: условие могло стать ложным
+    // к середине забега (предок-герой обнулил уровень, эссенция потрачена),
+    // но открытое должно оставаться открытым. rebirthReset() сносит completed
+    // для неперманентных, permanentUnlocks/metaverseUnlocks и купленное в
+    // магазине тёмной материи живут вечно.
     isCompleted() {
         if (this.completed) return true
-        for (const requirement of this.requirements) {
-            if (!this.getCondition(false, requirement)) {
-                return false
-            }
-        }
-        this.completed = true
-        return true
+        const completed = this.isCompletedActual()
+        if (completed) this.completed = true
+        return completed
     }
 
     isCompletedActual(isHero = false) {
@@ -341,8 +290,6 @@ class TaskRequirement extends Requirement {
     getCondition(isHero, requirement) {
         if (isHero && requirement.herequirement != null)
             return gameData.taskData[requirement.task].level >= requirement.herequirement
-        else if (gameData.taskData[requirement.task].isHero && requirement.isHero)
-            return true
         else
             return gameData.taskData[requirement.task].level >= requirement.requirement
     }
@@ -377,7 +324,10 @@ class EvilRequirement extends Requirement {
     }
 
     getCondition(isHero, requirement) {
-        return gameData.evil.gte(requirement.requirement)
+        // strict: «есть любое зло» — оно дробное, как материя (см. DarkMatterRequirement)
+        return requirement.strict
+            ? gameData.evil.gt(requirement.requirement)
+            : gameData.evil.gte(requirement.requirement)
     }
 }
 
@@ -403,7 +353,11 @@ class DarkMatterRequirement extends Requirement {
     }
 
     getCondition(isHero, requirement) {
-        return gameData.dark_matter.gte(requirement.requirement)
+        // strict: «есть любая материя» — она дробная, и порог 1 прячет топбар
+        // и категорию при значениях вроде 0.3 сразу после ребёрна.
+        return requirement.strict
+            ? gameData.dark_matter.gt(requirement.requirement)
+            : gameData.dark_matter.gte(requirement.requirement)
     }
 }
 

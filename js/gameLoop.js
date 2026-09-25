@@ -1,6 +1,7 @@
 // gameLoop.js — game loop, auto functions, game state
 
-function update(needUpdateUI = true) {
+function update() {
+    resetGainMemo()
     makeHeroes()
     increaseRealtime()
     increaseDays()
@@ -25,10 +26,7 @@ function update(needUpdateUI = true) {
     applyMilestones()
     applyPerks()
     updateStats()
-    if (needUpdateUI && !document.hidden)
-        updateUI()
-    else
-        updateRequirements()
+    updateRequirements()
 }
 
 function updateRequirements() {
@@ -37,7 +35,7 @@ function updateRequirements() {
 }
 
 function updateStats() {
-    if (gameData.requirements["Rebirth stats evil"].isCompleted()) {
+    if (gameData.requirements["req_stats_evil_gain"].isCompleted()) {
         gameData.stats.EvilPerSecond = getEvilGain().div(gameData.rebirthTwoTime)
         if (gameData.stats.EvilPerSecond.gt(gameData.stats.maxEvilPerSecond)) {
             gameData.stats.maxEvilPerSecond = gameData.stats.EvilPerSecond
@@ -45,7 +43,7 @@ function updateStats() {
         }
     }
 
-    if (gameData.requirements["Rebirth stats essence"].isCompleted()) {
+    if (gameData.requirements["req_stats_essence_gain"].isCompleted()) {
         gameData.stats.EssencePerSecond = getEssenceGain().div(gameData.rebirthThreeTime)
         if (gameData.stats.EssencePerSecond.gt(gameData.stats.maxEssencePerSecond)) {
             gameData.stats.maxEssencePerSecond = gameData.stats.EssencePerSecond
@@ -106,7 +104,7 @@ function autoBuy() {
             const item = gameData.itemData[key]
             const expense = item.getExpense()
 
-            if (itemCategories['Properties'].indexOf(key) != -1) {
+            if (item.categoryId == "category_properties") {
                 if (expense.lt(income) && expense.gte(usedExpense)) {
                     gameData.currentProperty = item
                     usedExpense = expense
@@ -123,7 +121,7 @@ function autoBuy() {
         if (gameData.requirements[key].isCompleted()) {
             const item = gameData.itemData[key]
             const expense = item.getExpense()
-            if (itemCategories['Misc'].indexOf(key) != -1) {
+            if (item.categoryId == "category_misc") {
                 if (expense.lt(income.minus(usedExpense))) {
                     if (gameData.currentMisc.indexOf(item) == -1) {
                         gameData.currentMisc.push(item)
@@ -147,6 +145,9 @@ function increaseCoins() {
 function increaseDays() {
     gameData.days += applySpeed(1)
     gameData.totalDays += applySpeed(1)
+    const lifespan = getLifespan()
+    if (lifespan != Infinity && gameData.days > lifespan)
+        gameData.days = lifespan
 }
 
 function increaseRealtime() {
@@ -194,7 +195,7 @@ function applyExpenses() {
 
 function goBankrupt() {
     gameData.coins = new Decimal(0)
-    gameData.currentProperty = gameData.itemData["Homeless"]
+    gameData.currentProperty = gameData.itemData["item_homeless"]
     gameData.currentMisc = []
 }
 
@@ -202,7 +203,7 @@ function makeHero(task) {
     if ((task instanceof Job || task instanceof Skill) && !task.isHero) {
         task.level = 0
         task.maxLevel = 0
-        task.xp = 0
+        task.xp = new Decimal(0)
         task.isHero = true
     }
 }
@@ -223,6 +224,12 @@ function makeHeroes() {
 
         const req = gameData.requirements[taskname]
         let isNewHero = true
+
+        // Геройская версия не открывается раньше обычной: кэш isCompleted()
+        // фиксирует обычное открытие на уровне забега, поэтому требование не
+        // может быть снято обнулением уровня при героизации предка.
+        if (!req.isCompleted())
+            continue
 
         if (req instanceof TaskRequirement) {
             if (!req.isCompletedActual(true))
@@ -247,7 +254,7 @@ function makeHeroes() {
         if (item.isHero)
             continue
         item.isHero = true
-        gameData.currentProperty = gameData.itemData["Homeless"]
+        gameData.currentProperty = gameData.itemData["item_homeless"]
         gameData.currentMisc = []
     }
 }

@@ -1,63 +1,87 @@
 // ui/sidebar.js — sidebar rendering
 
+// Элементы сайдбара статичны: DOM не пересоздаётся ни при ребёрне, ни при
+// загрузке сейва, поэтому getElementById кэшируется один раз.
+const elCache = {}
+function el(id) {
+    return elCache[id] ??= document.getElementById(id)
+}
+
+// Текст пишется только при смене: безусловный textContent каждый кадр
+// форсит перерасчёт layout, даже когда строка не изменилась.
+function setText(id, text) {
+    const e = el(id)
+    if (e.textContent != text) e.textContent = text
+}
+
 function renderSideBar() {
     const task = gameData.currentJob
-    const quickTaskDisplayElement = document.getElementById("quickTaskDisplay")
 
-    const progressBar = quickTaskDisplayElement.getElementsByClassName("job")[0]
+    const progressBar = el("quickTaskDisplay").getElementsByClassName("job")[0]
     const currentJobName = progressBar.querySelector(".name")
     currentJobName.style.whiteSpace = "nowrap"
     currentJobName.textContent = (task.isHero ? t("great") + " " : "") + t(task.name) + " " + t("lvl") + " " + formatLevel(task.level)
     fitText(currentJobName, 16)
     const progressFill = progressBar.getElementsByClassName("progressFill")[0]
-    renderProgressBar(task, progressFill, progressBar)   
+    renderProgressBar(task, progressFill, progressBar)
 
-    document.getElementById("ageDisplay").textContent = formatAge(gameData.days)
-    document.getElementById("lifespanDisplay").textContent = formatWhole(daysToYears(getLifespan()))
-    document.getElementById("realtimeDisplay").textContent = formatTime(gameData.realtime)
-    document.getElementById("boostCooldownDisplay").textContent = getBoostCooldownString()            
+    setText("ageDisplay", formatAge(gameData.days))
+    setText("lifespanDisplay", formatWhole(daysToYears(getLifespan())))
+    setText("realtimeDisplay", formatTime(gameData.realtime))
+    const lifespanRow = el("lifespanRow")
+    lifespanRow.style.whiteSpace = "nowrap"
+    fitText(lifespanRow, 16)
+
+    // Смерть — рендер, а не расчёт: isAlive() чистая и в DOM не ходит.
+    el("deathText").classList.toggle("hidden", isAlive())
+    const boostCooldownDisplay = el("boostCooldownDisplay")
+    boostCooldownDisplay.style.whiteSpace = "nowrap"
+    boostCooldownDisplay.textContent = getBoostCooldownString()
+    fitText(boostCooldownDisplay, 16)
     updateButtonHTML("pauseButton", "⏳ " + (gameData.paused ? t("play") : t("pause")))
     updateButtonText("rebirthBtn1", t("rebirth_1"))
-    setRebirthButton("rebirthBtn2", t("rebirth_2"), "<span class=\"color-evil\">(+" + format(getEvilGain()) + " " + t("evil") + ")</span>")
-    setRebirthButton("rebirthBtn3", t("rebirth_3"), "<span class=\"color-essence\">(+" + format(getEssenceGain()) + " " + t("essence") + ")</span>")
-    fitText(document.getElementById("rebirthBtn3"), 16)
-    setRebirthButton("rebirthBtn4", t("rebirth_4"), "<span class=\"color-dark-matter\">(+" + format(getDarkMatterGain()) + " " + t("dark_matter") + ")</span>")
-    fitText(document.getElementById("rebirthBtn4"), 16)
+    setRebirthButton("rebirthBtn2", t("rebirth_2"), "color-evil", "(+" + format(getEvilGain()) + " " + t("evil") + ")")
+    setRebirthButton("rebirthBtn3", t("rebirth_3"), "color-essence", "(+" + format(getEssenceGain()) + " " + t("essence") + ")")
+    fitText(el("rebirthBtn3"), 16)
+    setRebirthButton("rebirthBtn4", t("rebirth_4"), "color-dark-matter", "(+" + format(getDarkMatterGain()) + " " + t("dark_matter") + ")")
+    fitText(el("rebirthBtn4"), 16)
     if (gameData.essence.gt(1e90))
-        setRebirthButton("rebirthBtn5", t("rebirth_5"), "<span class=\"color-perk-points\">(+" + formatTreshold(getMetaversePerkPointsGain()) + " " + t("perk_points") + ")</span>")
+        setRebirthButton("rebirthBtn5", t("rebirth_5"), "color-perk-points", "(+" + formatTreshold(getMetaversePerkPointsGain()) + " " + t("perk_points") + ")")
     else if (gameData.rebirthFiveCount > 0)
-        setRebirthButton("rebirthBtn5", t("rebirth_5"), "<span class=\"color-hypercubes\">(" + format(getHypercubeCap(1)) + " " + t("hypercubes") + ")</span>")
+        setRebirthButton("rebirthBtn5", t("rebirth_5"), "color-hypercubes", "(" + format(getHypercubeCap(1)) + " " + t("hypercubes") + ")")
     else
-        setRebirthButton("rebirthBtn5", t("rebirth_5"), "")
-    fitText(document.getElementById("rebirthBtn5"), 16)
-    document.getElementById("boostPanel").hidden = gameData.rebirthFiveCount == 0
+        setRebirthButton("rebirthBtn5", t("rebirth_5"), "", "")
+    fitText(el("rebirthBtn5"), 16)
+    const boostPanel = el("boostPanel")
+    boostPanel.style.whiteSpace = "nowrap"
+    boostPanel.hidden = gameData.rebirthFiveCount == 0
     renderBoostButton("boostButton")
 
-    formatCoins(gameData.coins, document.getElementById("coinDisplay"))
+    formatCoins(gameData.coins, el("coinDisplay"))
     setSignDisplay()
-    formatCoins(getNet(), document.getElementById("netDisplay"))
-    formatCoins(getIncome(), document.getElementById("incomeDisplay"))
-    formatCoins(getExpense(), document.getElementById("expenseDisplay"))
+    formatCoins(getNet(), el("netDisplay"))
+    formatCoins(getIncome(), el("incomeDisplay"))
+    formatCoins(getExpense(), el("expenseDisplay"))
 
-    document.getElementById("happinessDisplay").textContent = format(getHappiness())
-    document.getElementById("inspirationDisplay").textContent = format(getInspiration())
-    document.getElementById("greedDisplay").textContent = format(getGreed())
+    setText("happinessDisplay", format(getHappiness()))
+    setText("inspirationDisplay", format(getInspiration()))
+    setText("greedDisplay", format(getGreed()))
 
-    document.getElementById("evilDisplay").textContent = format(gameData.evil)
+    setText("evilDisplay", format(gameData.evil))
     setTextAll("#evilGainDisplay", format(getEvilGain()))
 
-    document.getElementById("essenceDisplay").textContent = format(gameData.essence)
+    setText("essenceDisplay", format(gameData.essence))
     setTextAll("#essenceGainDisplay", format(getEssenceGain()))
 
-    document.getElementById("darkMatterDisplay").textContent = format(gameData.dark_matter)
+    setText("darkMatterDisplay", format(gameData.dark_matter))
     setTextAll("#darkMatterGainDisplay", format(getDarkMatterGain()))
 
-    document.getElementById("darkOrbsDisplay").textContent = formatTreshold(gameData.dark_orbs)
+    setText("darkOrbsDisplay", formatTreshold(gameData.dark_orbs))
 
-    document.getElementById("timeWarping").hidden = (getUnpausedGameSpeed() / baseGameSpeed) <= 1
-    document.getElementById("timeWarpingDisplay").textContent = "x" + format(getUnpausedGameSpeed() / baseGameSpeed, 2)
+    el("timeWarping").hidden = (getUnpausedGameSpeed() / baseGameSpeed) <= 1
+    setText("timeWarpingDisplay", "x" + format(getUnpausedGameSpeed() / baseGameSpeed, 2))
 
-    document.getElementById("hypercubesDisplay").textContent = formatTreshold(gameData.hypercubes)
+    setText("hypercubesDisplay", formatTreshold(gameData.hypercubes))
 
 
     setTextAll("#hypercubeCapDisplay", format(getHypercubeCap(1)))
@@ -65,49 +89,51 @@ function renderSideBar() {
     setTextAll("#perkPointsGainDisplay", formatTreshold(getMetaversePerkPointsGain()))
 
 
-    document.getElementById("rebirthButton5").hidden = getHypercubeCap() == Infinity && gameData.essence.lt(1e90)
+    // Записываем hidden только при реальной смене: обёртка может схлопнуться
+    // между mousedown и mouseup и съесть клик по кнопке ребёрна.
+    const rebirthButton5 = el("rebirthButton5")
+    const rebirth5Hidden = getHypercubeCap() == Infinity && gameData.essence.lt(1e90)
+    if (rebirthButton5.hidden != rebirth5Hidden)
+        rebirthButton5.hidden = rebirth5Hidden
 
     // Embrace evil indicator
-    const embraceEvilButton = document.getElementById("rebirthButton2").querySelector(".button")
+    const embraceEvilButton = el("rebirthButton2").querySelector(".button")
     if (isNextDarkMagicSkillInReach())
         embraceEvilButton.classList.add("button-evil")
     else
         embraceEvilButton.classList.remove("button-evil")
 
     // Transcend for Next Milestone indicator
-    const transcendButton = document.getElementById("rebirthButton3").querySelector(".button")
+    const transcendButton = el("rebirthButton3").querySelector(".button")
     if (isNextMilestoneInReach())
         transcendButton.classList.add("button-transcend")
     else
         transcendButton.classList.remove("button-transcend")
 
     // Hide the rebirthOneButton from the sidebar when you have `Almighty Eye` unlocked.
-    document.getElementById("rebirthButton1").hidden = gameData.requirements["Almighty Eye"].isCompleted()
+    el("rebirthButton1").hidden = gameData.requirements["milestone_almighty_eye"].isCompleted()
 
     // Change sidebar when paused
-    if (gameData.paused) {
-        document.getElementById("info").classList.add("game-paused")
-    } else {
-        document.getElementById("info").classList.remove("game-paused")
-    }
+    el("info").classList.toggle("game-paused", gameData.paused)
 
     // Challenges
     if (gameData.active_challenge == "") {
-        document.getElementById("challengeTitle").hidden = true
-        document.getElementById("info").classList.remove("challenge")
+        el("challengeTitle").hidden = true
+        el("info").classList.remove("challenge")
     } else {
-        document.getElementById("challengeName").textContent = getChallengeTranslatedName(gameData.active_challenge)
-        document.getElementById("challengeTitle").hidden = false
-        document.getElementById("info").classList.add("challenge")
+        setText("challengeName", getChallengeTranslatedName(gameData.active_challenge))
+        el("challengeTitle").hidden = false
+        el("info").classList.add("challenge")
         // challenge reward
         renderCurrentChallengeReward("sidebarChallengeReward")
         renderCurrentChallengeRewardValue(true)
     }
 
-    if (getDarkMatter().eq(0))
-        gameData.requirements["Dark Matter info"].completed = false
-
     updateResourceScale()
+    document.querySelectorAll("#resourceStats .text-caption").forEach(e => {
+        e.style.whiteSpace = "nowrap"
+        fitText(e, k => `calc(20px * var(--stats-scale) * ${k})`)
+    })
 }
 
 // Keeps the quick bar's bottom edge above the window's bottom edge, leaving
@@ -139,14 +165,26 @@ window.addEventListener("scroll", updateQuickBarHeight, { passive: true })
 updateQuickBarHeight()
 
 const resourceScaleCache = { key: "", desired: 0, scale: 1 }
+const RESOURCE_SCALE_INTERVAL = 300
 
 // Scales #resourceStats so its content always fits the space flex gives it.
 function updateResourceScale() {
     const stats = document.getElementById("resourceStats")
     if (!stats) return
 
+    // clientHeight/scrollHeight — forced layout, а панель стабильна почти
+    // всё время. Гейтим по времени, а не по ключу: при ресайзе ширина панели
+    // меняется каждый кадр, и проверка ключа дала бы переобмер в полсекунды —
+    // панель заметно дёргалась бы, пока не устаканилась.
+    const now = performance.now()
+    if (now - (resourceScaleCache.at || 0) < RESOURCE_SCALE_INTERVAL)
+        return
+    resourceScaleCache.at = now
+
     const panel = document.getElementById("info")
-    const visibleKey = panel.clientHeight + "|" + (document.getElementById("timeWarping").classList.contains("hidden") ? 0 : 1)
+    // Св-ство hidden, а не класс: строка выше прячет через .hidden, а класс
+    // hidden тут не появляется — ключ не менялся бы и переобмер не срабатывал.
+    const visibleKey = panel.clientHeight + "|" + (document.getElementById("timeWarping").hidden ? 0 : 1)
 
     if (resourceScaleCache.key != visibleKey) {
         stats.style.setProperty("--stats-scale", 1)

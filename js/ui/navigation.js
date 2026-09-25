@@ -167,9 +167,6 @@ function setTab(selectedTab) {
 
     gameData.settings.selectedTab = selectedTab
 
-    // Update the UI when switching tabs to prevent flikering.
-    updateUI()
-
     const element = document.getElementById(selectedTab + "TabButton")
 
     const tabs = Array.prototype.slice.call(document.getElementsByClassName("tab"))
@@ -178,8 +175,13 @@ function setTab(selectedTab) {
     })
     tabElement.style.display = "flex"
 
+    // Рендер после показа: до этого вкладка display:none и fitText измеряет
+    // clientWidth = 0, кладя текст в минимальный масштаб. Переключение
+    // обычное — моргнуть не успевает, зато посадка текста сразу корректна.
+    updateUI()
+
     const tabButtons = document.getElementsByClassName("tabButton")
-    for (tabButton of tabButtons) {
+    for (const tabButton of tabButtons) {
         tabButton.classList.remove("w3-blue-gray")
     }
     element.classList.add("w3-blue-gray")
@@ -283,18 +285,18 @@ function changeTab(direction){
 }
 
 function toggleChallenge(challengeName) {
-    if (!gameData.requirements["Challenges"].isCompleted())
+    if (!gameData.requirements["req_challenges_tab_button"].isCompleted())
         return
 
     if (gameData.active_challenge == "") {
-        if (gameData.requirements["Challenge_" + challengeName].isCompleted())
+        if (gameData.requirements["req_challenge_" + challengeName].isCompleted())
             enterChallenge(challengeName)
     }
     else if (gameData.active_challenge == challengeName)
         exitChallenge()
     else {
         exitChallenge()
-        if (gameData.requirements["Challenge_" + challengeName].isCompleted())
+        if (gameData.requirements["req_challenge_" + challengeName].isCompleted())
             enterChallenge(challengeName)
     }
 }
@@ -315,27 +317,27 @@ window.addEventListener('keydown', function (e) {
             return
 
         if (e.key == "q") {
-            if (gameData.requirements["Rebirth button 1"].isCompleted())
+            if (gameData.requirements["req_rebirth_button1"].isCompleted())
                 rebirthOne()
         }
 
         if (e.key == "e") {
-            if (gameData.requirements["Rebirth button 2"].isCompleted())
+            if (gameData.requirements["req_rebirth_button2"].isCompleted())
                 rebirthTwo()
         }
 
         if (e.key == "t") {
-            if (gameData.requirements["Rebirth button 3"].isCompleted())
+            if (gameData.requirements["req_rebirth_button3"].isCompleted())
                 rebirthThree()
         }
 
         if (e.key == "u") {
-            if (gameData.requirements["Rebirth button 4"].isCompleted())
+            if (gameData.requirements["req_rebirth_button4"].isCompleted())
                 rebirthFour()
         }
 
         if (e.key == "g") {
-            if (gameData.requirements["Rebirth button 5"].isCompleted())
+            if (gameData.requirements["req_rebirth_button5"].isCompleted())
                 rebirthFive()
         }
 

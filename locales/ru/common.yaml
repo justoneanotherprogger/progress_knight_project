@@ -57,7 +57,6 @@ income_day: Доход/день
 expense_day: Расход/день
 milestone_tier: Уровень Вехи
 milestone: Веха
-autobuy_tooltip: Нажмите, чтобы включить авто-покупку
 autobuy_toggle: Авто-покупка
 all_xp: весь опыт
 or: ИЛИ
@@ -75,6 +74,11 @@ reward_time_warping: Искажение времени
 reward_essence: Эссенция
 reward_evil: Зло
 reward_dark_matter: Тёмная материя
+
+# Названия характеристик в форме «умножает получение X»
+gain_essence: получение Эссенции
+gain_evil: получение Зла
+gain_dark_matter: получение Тёмной материи
 
 # Resource descriptions (sidebar)
 happiness_desc: Влияет на получение всего опыта
@@ -98,6 +102,7 @@ unlock_hypercubes: Разблокировать гиперкубы
 required: Требуется для следующего
 next_effect: Эффект от следующего
 unknown: Неизвестно
+infinity: Бесконечность
 active: Активно
 locked: Заблокировано
 effect: Эффект
@@ -105,8 +110,8 @@ goal: Цель
 reward: Награда
 level: Уровень
 xp_day: Опыт/дн.
-xp_left: До след. ур.
-max_level: Макс. ур.
+xp_left: До уровня
+max_level: Макс.
 value_type: Тип значения
 cost: Стоимость
 buy: Купить
@@ -118,70 +123,236 @@ version: Версия 0.1.0
 lang_en: English
 lang_ru: Русский
 tab_abilities: Способности
-great: Великий
+great: "★★★"
 lvl: ур.
 essence_lower: эссенции
 challenge_title: В испытании
 
-# Effect descriptions (from data.js)
-"All XP": Весь опыт
-"Dark Matter Gain": Прирост ТМ
-"Essence + Evil Gain": Эссенция и зло
-"Essence Gain": Прирост эссенции
-"Evil Gain": Прирост зла
-"Fundamentals XP": Опыт основ
-"Galactic Council XP": Опыт Гал. совета
-"Gamespeed": Скорость игры
-"Job Pay": Оплата работы
-"Job XP": Опыт работы
-"Hypercube Gain": Прирост гиперкубов
-"Increased Life Comfort": Рост удобств
-"Life Comfort": Удобства жизни
-"Longer Lifespan": Продление жизни
-"Longer lifespan": Продление жизни
-"Magic XP": Опыт магии
-"Max Lvl Multiplier": Множ. макс. ур.
-"Army Pay": Армейская плата
-"Army XP": Армейский опыт
-"Reduced Expenses": Сниж. расходы
-"Skill XP": Опыт навыков
-"Strength XP": Опыт силы
-"Collegium Pay": Плата Коллегии
-"Collegium XP": Опыт Коллегии
-"The Void XP": Опыт Бездны
-"Void Manipulation XP": Опыт манипул. Бездной
+# Rebirth / Amulet tab
+rebirth_note_0: На своём 25-м дне рождения вы натыкаетесь на странный амулет. Он вряд ли дорого стоит на рынке — ведь сделан из дешёвой меди. Однако вы чувствуете странное желание сохранить амулет, поэтому кладёте его в карман.
+rebirth_note_1: На вашем 45-м дне рождения вы чувствуете, как амулет неудержимо дрожит в кармане. Вы достаёте его, и постоянная дрожь внезапно прекращается. К вашему удивлению, вы замечаете странную гравировку в центре амулета.
+rebirth_note_2: На вашем 65-м дне рождения вы снова сталкиваетесь с необъяснимой дрожью амулета. Но на этот раз из центра появляется живой глаз. Хотя вы ужасно напуганы, вы понимаете, что вам осталось жить немного, и решаете прикоснуться к глазу.
+rebirth_note_2_info: 'Прикоснувшись к глазу, вы переродитесь и начнёте жизнь заново, потеряв все уровни и монеты. Однако вы получите <b>множители опыта</b> для героев и навыков: <b>1 + максимальный уровень героя или навыка / 10.</b> Это означает, что вы будете учиться намного быстрее.'
+rebirth_note_2_hint: 'Что-то подсказывает, что амулет может эволюционировать после проживания <b>2 целых веков</b>...'
+rebirth_note_3: 'Ваша интуиция была права. Когда вам исполняется 200 лет, вы слышите зловещий гул от амулета. Из его поверхности появляется рот и начинает хохотать, произнося: "Так вы зашли так далеко... Готовы ли вы принять <span class="color-evil">зло</span>?"'
+rebirth_note_3_hint: 'Амулет может трансформироваться ещё дальше после проживания <b>тысячелетия</b>.'
+rebirth_note_3_info: 'Если вы решите принять <span class="color-evil">зло</span>, все ваши уровни, монеты и даже максимальные уровни будут сброшены. Вы переродитесь с чистого листа. Однако вы разблокируете новую линию навыков и получите <b><span class="color-evil"><span id="evilGainDisplay"></span> зла</span></b>, что сильно повлияет на ваши будущие жизни.'
+rebirth_note_4: 'Тысяча лет прошла, и вы всё ещё живы... каким-то образом. Вы чувствуете, как амулет снова дрожит, и к вашему удивлению, из него появляются маленькие щупальца с глазами. Когда вы собираетесь бросить амулет, вы слышите пугающий визг, за которым следуют шёпот в вашей голове... <b>"Вы должны принять Бездну..."</b>'
+rebirth_note_4_hint: 'Амулет достигнет своей финальной формы после <b>десяти тысячелетий</b>!'
+rebirth_note_4_unlock: 'Вы разблокировали категорию классов <b>"Бездна"</b> вместе с навыками <b>"Манипуляция Бездной"</b>.'
+rebirth_note_5: 'Десять тысячелетий прошли... большинство из них проведено на службе у Бездны, но в вас всё ещё есть проблеск человечности. Внезапно ваш амулет начинает светить вдали, освещая тьму вокруг яркостью тысячи солнц. С последним остатком свободной воли вы бежите к амулету и прикасаетесь к нему... <b>"Теперь вы часть чего-то большего, чем вы сами..."</b>'
+rebirth_note_5_unlock: 'Вы разблокировали категорию классов <b>"Галактический Совет"</b> вместе с навыками <b>"Небесные силы"</b>.'
+rebirth_note_5_info: 'Если вы решите <b>трансцендировать</b>, вы переродитесь снова, потеряв все монеты, <b><span class="color-evil">зло</span></b>, текущие и максимальные уровни. Однако вы получите <b><span class="color-essence"><span id="essenceGainDisplay"></span> эссенции</span></b> вместе с новыми навыками, которые помогут вам в вашем путешествии.'
+rebirth_note_5_warning: 'Трансцендирование появится только если у вас разблокирован навык <b>"Эхо былых жизней"</b>!'
+rebirth_note_6: 'Вы начали осваивать "Эхо былых жизней", открыв путь к трансцендированию.'
+rebirth_note_7: Вы становитесь слишком могущественным. Конец вселенной может быть близок...
+rebirth_note_7_info: 'Если вы решите <b>свернуть вселенную</b>, все ваши уровни, монеты, максимальные уровни, <span class="color-evil">зло</span> и <b><span class="color-essence">эссенция</span></b> будут сброшены. Вы переродитесь с чистого листа в новой вселенной, без памяти о вехах и испытаниях прошлых жизней. Взамен вы разблокируете третью линию навыков и получите <b><span class="color-dark-matter"><span id="darkMatterGainDisplay"></span> тёмной материи</span></b>, что значительно усилит вас в путешествии по мультивселенной.'
+rebirth_note_8: Вы открыли Метавселенную!
+rebirth_note_8_info: Когда вы перейдёте в Метавселенную, вы потеряете всё, что заработали ранее. Вы начнёте с нуля, но со временем станете намного сильнее.
+hypercube_cap_text: 'Ваш лимит <span class="color-hypercubes">гиперкубов</span> будет увеличен до <span class="color-hypercubes"><span id="hypercubeCapDisplay"></span></span>.'
+perk_points_gain_text: 'Вы получите <span class="color-perk-points"><span id="perkPointsGainDisplay"></span> очков даров Метавселенной</span>.'
 
-"Automatically gain max levels at age 65": Автоматически получает максимальные уровни в 65 лет
-"Automatically gain max levels": Автоматически получает максимальные уровни
-"Passively gain a small amount of Evil": Пассивно получает немного зла
-"Essence gain": Прирост эссенции
-"x2 Time Warping": x2 Искажение времени
-"Passively gain a huge amount of Evil": Пассивно получает много зла
-"x5 Evil gain": x5 прирост зла
-"x10M Happiness": x10M удобство жизни
-"Essence gain (increases over time, influenced by time warping)": Прирост эссенции (растёт с реальным временем)
-"Heroic jobs, skills and items are unlocked": Открываются Великие работы, навыки и предметы
-"Essence gain + x10000 Hero XP": Прирост эссенции + x10000 опыта Великих
-"Hero XP": Опыт Великих
-"Unlocks Dark Matter": Открывает Тёмную материю
-"Makes Hell Portal even stronger": Делает Врата Ада ещё сильнее
-"Passively gain a small amount of Essence": Пассивно получает немного эссенции
-"Multiply Dark Matter gain by 10x": Умножает прирост Тёмной материи на 10x
-"Unlocks Dark Matter Abilities": Открывает способности Тёмной материи
-"Multiply Dark Orb gain by 1e10x": Умножает прирост Тёмных сфер на 1e10x
-"Multiply Dark Matter gain by 3x": Умножает прирост Тёмной материи на 3x
-"Multiply Essence gain by 1000x": Умножает прирост эссенции на 1000x
-"Multiply Evil gain by 1e15x": Умножает прирост зла на 1e15x
-"Multiply Darkness xp gain by 1e50x": Умножает прирост опыта Тьмы на 1e50x
-"Multiply Time Warping and Lifespan by 1000x. Heavily boosts Faint Hope": Умножает искажение времени и продолжительность жизни на 1000x. Сильно усиливает Слабую надежду
-"Multiply your lifespan by 1e5x. New challenge unlocked. Dark Matter boosts essence gain.": Умножает продолжительность жизни на 1e5x. Открывает новое испытание. Тёмная материя усиливает прирост эссенции.
-"Multiply Dark Matter gain by 500x": Умножает прирост Тёмной материи на 500x
-"Unlocks Metaverse": Открывает Метавселенную
-"Faint Hope does not reset on transcend or collapse": Слабая надежда не сбрасывается при трансцендировании или сворачивании
-"Unlocks Metaverse Perks, Metaverse Guards Job Category": Открывает дары Метавселенной и категорию работ Стражей Метавселенной
-"Faint Hope always at maximum": Слабая надежда всегда на максимуме
-"Multiply Time Warping by 1000x, Multiply all xp gain by 1e50x": Умножает искажение времени на 1000x и весь опыт на 1e50x
-"Unspent Multiverse Perk Points buffs Dark Matter": Непотраченные дары Мультивселенной усиливают Тёмную материю
-"Congratulations! You have beaten the game!": Поздравляем! Вы прошли игру!
-"Great XP": Опыт Великих
-"Essence gain + x10000 Great XP": Прирост эссенции + x10000 опыта Великих
+# Settings
+stats_tab_header: Статистика
+settings_tab_header: Настройки
+changelog_tab_header: История изменений
+import_save: Импорт сохранения
+export_save: Экспорт сохранения
+import_save_placeholder: Вставьте сохранение сюда
+save_copied: Сохранение скопировано в буфер обмена!
+hard_reset: Полный сброс игры
+admin_password_label: Пароль админа
+admin_speed_label: Скорость
+admin_check_button: Проверить
+links: Ссылки
+language: Язык
+
+# Settings options
+sticky_sidebar: Закреплённые панели (верхняя и боковая)
+currency_notation: Обозначение валют
+number_notation: Обозначение чисел
+layout: Макет
+font_size: Размер шрифта
+color_scheme: Цветовая схема
+dangerous_keybinds: Опасные горячие клавиши
+
+# Currency options
+currency_medieval: Средневековое
+currency_extended: Расширенное
+currency_british: Британское £sd
+currency_modern: Современное $
+
+# Notation options
+notation_standard: Стандартное
+notation_scientific: Научное
+notation_engineering: Инженерное
+
+# Layout options
+layout_standard: Стандартный
+layout_wide: Ш И Р О К И Й
+
+# Font size
+font_smaller: Меньше
+font_larger: Больше
+
+# Theme options
+theme_light: Светлая
+theme_dark: Тёмная
+
+# Keybinds
+enabled: Включены
+disabled: Отключены
+
+# Shortcuts
+shortcuts: Горячие клавиши
+shortcut_arrows: Стрелки - Навигация по меню
+shortcut_space: Пробел - Пауза
+shortcut_q: q - Прикоснуться к глазу
+shortcut_e: e - Принять зло
+shortcut_t: t - Трансцендировать
+shortcut_u: u - Свернуть вселенную
+shortcut_g: g - Перейти в Метавселенную
+shortcut_challenge: 1 - Войти / Выйти из Испытания 1 и т.д.
+
+# Links
+links_based_on: 'Основано на <a href="https://indomit.github.io/progress_knight_2/" target="_blank">Progress Knight Quest</a>'
+links_based_on_2: 'Которая основана на <a href="https://symb1.github.io/progress_knight_2/" target="_blank">Progress Knight 2.0</a>'
+links_original_game: 'Оригинальная игра: <a href="https://ihtasham42.github.io/progress-knight/" target="_blank">Progress Knight</a>'
+links_discord: '<a href="https://discord.gg/fTRS4pHGka" target="_blank">Присоединиться к сообществу Discord!</a>'
+links_github: '<a href="https://github.com/justoneanotherprogger/progress_knight_project" target="_blank">Страница этой модификации на GitHub</a>'
+
+# Stats
+stats_start_date: 'Вы начали играть в игру <span id="startDateDisplay"></span>, <span id="playedDaysDisplay"></span> дней назад.'
+stats_played_real_time: 'Вы играли <span id="playedRealTimeDisplay"></span> (реальное время).'
+stats_played_game_time: 'Ваше существование охватывает <span id="playedGameTimeDisplay"></span> дней (игровое время).'
+stats_rebirth1_count: 'Вы прикасались к глазу <span id="rebirthOneCountDisplay"></span> раз.'
+stats_rebirth1_time: 'Вы провели <span id="rebirthOneTimeDisplay"></span> в этой жизни.'
+stats_rebirth1_fastest: 'Ваше самое быстрое прикосновение: <span id="rebirthOneFastestDisplay"></span>.'
+stats_rebirth2_count: 'Вы принимали зло <span id="rebirthTwoCountDisplay"></span> раз.'
+stats_rebirth2_time: 'Вы провели <span id="rebirthTwoTimeDisplay"></span> в этом принятии.'
+stats_rebirth2_fastest: 'Ваше самое быстрое принятие: <span id="rebirthTwoFastestDisplay"></span>.'
+stats_evil_gain: 'Вы получаете <span id="evilPerSecondDisplay"></span> зла/с. Максимум <span id="maxEvilPerSecondDisplay"></span> зла/с был при <span id="maxEvilPerSecondRtDisplay"></span>.'
+stats_rebirth3_count: 'Вы трансцендировали <span id="rebirthThreeCountDisplay"></span> раз.'
+stats_rebirth3_time: 'Вы провели <span id="rebirthThreeTimeDisplay"></span> в этой трансценденции.'
+stats_rebirth3_fastest: 'Ваша самая быстрая трансценденция: <span id="rebirthThreeFastestDisplay"></span>.'
+stats_essence_gain: 'Вы получаете <span id="essencePerSecondDisplay"></span> эссенции/с. Максимум <span id="maxEssencePerSecondDisplay"></span> эссенции/с был при <span id="maxEssencePerSecondRtDisplay"></span>.'
+stats_rebirth4_count: 'Вы сворачивали вселенную <span id="rebirthFourCountDisplay"></span> раз.'
+stats_rebirth4_time: 'Вы провели <span id="rebirthFourTimeDisplay"></span> в этом свёртывании.'
+stats_rebirth4_fastest: 'Ваше самое быстрое свёртывание: <span id="rebirthFourFastestDisplay"></span>.'
+stats_rebirth5_count: 'Вы путешествовали в Метавселенную <span id="rebirthFiveCountDisplay"></span> раз.'
+stats_rebirth5_time: 'Вы провели <span id="rebirthFiveTimeDisplay"></span> в этой Метавселенной.'
+stats_rebirth5_fastest: 'Ваше самое быстрое путешествие в Метавселенную: <span id="rebirthFiveFastestDisplay"></span>.'
+stats_challenge_1: 'Награда за Испытание 1: Умножает удобства жизни на x<span id="challengeHappinessBuffDisplay"></span>.'
+stats_challenge_2: 'Награда за Испытание 2: Умножает доход на x<span id="challengeIncomeBuffDisplay"></span>.'
+stats_challenge_3: 'Награда за Испытание 3: Умножает искажение времени на x<span id="challengeTimewarpingBuffDisplay"></span>.'
+stats_challenge_4: 'Награда за Испытание 4: Умножает получение эссенции на x<span id="challengeEssenceGainBuffDisplay"></span>.'
+stats_challenge_5: 'Награда за Испытание 5: Умножает получение зла на x<span id="challengeEvilGainBuffDisplay"></span>.'
+stats_challenge_6: 'Награда за Испытание 6: Умножает получение Тёмной материи на x<span id="challengeDarkMaterGainBuffDisplay"></span>.'
+
+starting_challenge: 'Начало испытания <b>сбросит</b> ваши монеты, уровни и максимальные уровни.'
+
+challenge_advance: Чем дальше вы продвинетесь в испытании, тем выше награда.
+
+challenge_rewards_active: Награды за испытания всегда активны, даже во время испытаний.
+
+exit_challenge: Выйти из испытания
+
+current_challenge: 'Текущее испытание:'
+
+enter_challenge: Начать испытание
+
+challengeTitleLabel: Испытание
+
+# Challenge names and descriptions
+
+current_reward_happiness: 'Текущая награда: Умножает Удобства жизни на'
+
+current_reward_income: 'Текущая награда: Умножает Доход на'
+
+current_reward_timewarping: 'Текущая награда: Умножает Искажение времени на'
+
+current_reward_essence: 'Текущая награда: Умножает получение Эссенции на'
+
+current_reward_evil: 'Текущая награда: Умножает получение Зла на'
+
+current_reward_dark_matter: 'Текущая награда: Умножает получение Тёмной материи на'
+
+dark_matter_shop: Тёмная материя
+
+dark_orbs_shop: Тёмные сферы
+
+dm_tab_shop: Магазин
+
+dm_tab_abilities: Способности
+
+abilities_warning: 'Вы можете выбрать только 1 улучшение в каждой категории; выбирайте мудро. Вы можете сбросить способности, но <b>НЕ</b> получите обратно свою <span class="color-dark-matter">Тёмную материю</span>!'
+
+# Dark Matter Abilities
+
+altar: Алтарь
+
+perks: Дары
+
+welcome_metaverse: '<b>Добро пожаловать в Метавселенную!</b>'
+
+lifespan_infinite: Продолжительность жизни теперь бесконечна.
+
+metaverse_hypercube_hint: Чем больше у вас гиперкубов, тем больше возможностей для жертвоприношений откроется.
+
+sacrifice: Жертвовать
+
+metaverse_perks: Дары Метавселенной
+
+current_hypercubes_cap: 'Текущий лимит гиперкубов:'
+
+total_hypercube_bonus: 'Общий бонус к получению гиперкубов:'
+
+# Metaverse Altars
+
+altar_hypercube_gain: Увеличить получение гиперкубов
+
+altar_boost_cooldown: Уменьшить перезарядку ускорения
+
+altar_boost_duration: Увеличить длительность ускорения
+
+altar_evil_gain: Получение зла при новом трансцендировании
+
+altar_essence_mult: Множитель получения эссенции
+
+altar_challenge_keep: Испытания не сбрасываются при свёртывании
+
+altar_dark_matter_mult: Множитель получения Тёмной материи
+
+current_gain_per_s: 'Текущее получение: {0} / с'
+
+current_cooldown: 'Текущая перезарядка: {0}'
+
+current_duration: 'Текущая длительность: {0}'
+
+current_gain: 'Текущее получение: {0}'
+
+current_multiplier: 'Текущий множитель: x{0}'
+
+hypercubes_in: '{0} гиперкубов через {1}'
+
+boost_ready: 'Готово!'
+
+boost_cooldown: 'Перезарядка: {0}'
+
+# Metaverse Perks
+
+unspent_perk_points: 'У вас есть <b><span id="perkPointDisplay" class="color-perk-points"></span></b> непотраченных очков даров Метавселенной. Всего очков: <b><span id="totalPerkPointDisplay" class="color-perk-points"></span></b>.'
+
+perks_info: Вы можете свободно активировать и деактивировать дары для имеющихся у вас очков.
+
+perks_dm_bonus: 'Бонус к получению Тёмной материи: x{0}.'
+
+mpp_short: ОДМ
+
+assign_perk_points: Распределить непотраченные очки
+
+collect_perk_points: Собрать все очки
+
+congratulations: Поздравляем!
+
+beaten_the_game: Вы прошли игру!

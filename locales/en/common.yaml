@@ -57,7 +57,6 @@ income_day: Income/day
 expense_day: Expense/day
 milestone_tier: Milestone Tier
 milestone: Milestone
-autobuy_tooltip: Click to activate auto-buy
 autobuy_toggle: Auto-buy
 all_xp: all XP
 or: OR
@@ -75,6 +74,11 @@ reward_time_warping: Time Warping
 reward_essence: Essence
 reward_evil: Evil
 reward_dark_matter: Dark Matter
+
+# Stat names in "multiplies X gain" form
+gain_essence: Essence gain
+gain_evil: Evil gain
+gain_dark_matter: Dark Matter gain
 
 # Resource descriptions (sidebar)
 happiness_desc: Affects all XP gain
@@ -98,6 +102,7 @@ unlock_hypercubes: Unlock Hypercubes
 required: Required for next
 next_effect: Effect of next
 unknown: Unknown
+infinity: Infinity
 active: Active
 locked: Locked
 effect: Effect
@@ -118,70 +123,236 @@ version: Version 0.1.0
 lang_en: English
 lang_ru: Русский
 tab_abilities: Abilities
-great: Great
+great: "★★★"
 lvl: lvl
 essence_lower: essence
 challenge_title: In challenge
 
-# Effect descriptions (from data.js)
-"All XP": All XP
-"Dark Matter Gain": Dark Matter Gain
-"Essence + Evil Gain": Essence + Evil Gain
-"Essence Gain": Essence Gain
-"Evil Gain": Evil Gain
-"Fundamentals XP": Fundamentals XP
-"Galactic Council XP": Galactic Council XP
-"Gamespeed": Gamespeed
-"Job Pay": Job Pay
-"Job XP": Job XP
-"Hypercube Gain": Hypercube Gain
-"Increased Life Comfort": Increased Life Comfort
-"Life Comfort": Life Comfort
-"Longer Lifespan": Longer Lifespan
-"Longer lifespan": Longer lifespan
-"Magic XP": Magic XP
-"Max Lvl Multiplier": Max Lvl Multiplier
-"Army Pay": Army Pay
-"Army XP": Army XP
-"Reduced Expenses": Reduced Expenses
-"Skill XP": Skill XP
-"Strength XP": Strength XP
-"Collegium Pay": Collegium Pay
-"Collegium XP": Collegium XP
-"The Void XP": The Void XP
-"Void Manipulation XP": Void Manipulation XP
+# Rebirth / Amulet tab
+rebirth_note_0: You stumble across a strange looking amulet on your 25th birthday. It does not look like it has any worth on the market given that it is made from cheap-looking copper. However, you feel a weird urge to keep the amulet, so you slip it into your pocket for safekeeping.
+rebirth_note_1: On your 45th birthday, you feel the amulet shiver uncontrollably in your pocket. You take it out and the constant shivering suddenly stops. More to your bizarre surprise, you notice a strange etching on the centre of the amulet.
+rebirth_note_2: On your 65th birthday, you once again encounter the strange, unexplained shivering from your amulet. But this time, a living eyeball emerges from the centre. Although terribly frightened, you realise you do not have many years to live left anyway so you consider touching the eye to see what happens.
+rebirth_note_2_info: "By touching the eyeball, you will be reborn and have to restart life again, losing all your levels and coins. However, you will gain <b>xp multipliers</b> for your heroes and skills equivalent to: <b>1 + the max level of the hero or skill / 10.</b> This means you will learn everything again much more quickly than you did in your previous life."
+rebirth_note_2_hint: "Something tells you that the amulet might evolve after living for <b>2 whole centuries</b>..."
+rebirth_note_3: "Your gut instinct was right. The moment you hit the grand age of 200, you hear an ominous hum coming from the amulet. A mouth emerges from its surface and begins to cackle, and proceeds to say: \"So you have made it this far... Are you ready to embrace <span class=\"color-evil\">evil</span>?\""
+rebirth_note_3_hint: "The amulet might transform even further after living for a <b>millennium</b>."
+rebirth_note_3_info: "If you decide to embrace <span class=\"color-evil\">evil</span>, all of your levels, coins and even max levels will be reset. You will be reborn as a fresh slate. However, you will unlock a new line of skills and gain <b><span class=\"color-evil\"><span id=\"evilGainDisplay\"></span> evil</span></b>, which will heavily impact your future lives."
+rebirth_note_4: "A thousand years have come and gone and yet, you still remain alive... somehow. You feel your amulet shivering again and to your surprise, you see small tendrils full of eyeballs emergin from it. As you are about to drop the amulet, you hear frightening screech followed by whispers in your head... <b>\"You have to embrace the Void...\"</b>"
+rebirth_note_4_hint: "The amulet will reach its final form after <b>ten millennia</b>!"
+rebirth_note_4_unlock: "You have unlocked <b>\"The Void\"</b> class category along with <b>\"Void Manipulation\"</b> skills."
+rebirth_note_5: "Ten millenia have passed... most of them spent serving the Void, yet there is still a glimpse of humanity inside of you. All of the sudden your amulet starts to glow in the distance, illuminating darkness around you with the brightness of a thousand suns. With the very last remnant of your free will, you run to your amulet and touch it... <b>\"You are now part of something bigger than yourself...\"</b>"
+rebirth_note_5_unlock: "You have unlocked <b>\"Galactic Council\"</b> class category along with <b>\"Celestial Powers\"</b> skills."
+rebirth_note_5_info: "If you decide to <b>transcend</b>, you will be reborn once again, losing all your coins, <b><span class=\"color-evil\">evil</span></b>, current and max levels. However, you will gain <b><span class=\"color-essence\"><span id=\"essenceGainDisplay\"></span> essence</span></b>, along with new skills that will boost you even further in your journey."
+rebirth_note_5_warning: "Transcend will only appear if you have the <b>Cosmic Recollection</b> skill unlocked!"
+rebirth_note_6: 'You began mastering Cosmic Recollection, opening the path to transcension.'
+rebirth_note_7: You are starting to become way too powerful. The end of the universe may be near...
+rebirth_note_7_info: "If you decide to <b>collapse the universe</b>, all of your levels, coins, max levels, <span class=\"color-evil\">evil</span>, and <b><span class=\"color-essence\">essence</span></b> will be reset. You will be reborn as a fresh slate in a new universe, with no memory of milestones and challenges from any of your past selves. In exchange, you will unlock a third new line of skills and gain <b><span class=\"color-dark-matter\"><span id=\"darkMatterGainDisplay\"></span> Dark Matter</span></b>, which will boost you much further in your journey across the multiverse."
+rebirth_note_8: You have discovered the Metaverse!
+rebirth_note_8_info: When you go to the Metaverse, you will lose everything that you have earned before. You will start from scratch, but over time you will become far superior.
+hypercube_cap_text: "Your <span class=\"color-hypercubes\">hypercubes</span> cap will be increased to <span class=\"color-hypercubes\"><span id=\"hypercubeCapDisplay\"></span></span>."
+perk_points_gain_text: "You will gain <span class=\"color-perk-points\"><span id=\"perkPointsGainDisplay\"></span> Metaverse perk points</span>."
 
-"Automatically gain max levels at age 65": Automatically gain max levels at age 65
-"Automatically gain max levels": Automatically gain max levels
-"Passively gain a small amount of Evil": Passively gain a small amount of Evil
-"Essence gain": Essence gain
-"x2 Time Warping": x2 Time Warping
-"Passively gain a huge amount of Evil": Passively gain a huge amount of Evil
-"x5 Evil gain": x5 Evil gain
-"x10M Happiness": x10M Happiness
-"Essence gain (increases over time, influenced by time warping)": Essence gain (grows with real time)
-"Heroic jobs, skills and items are unlocked": Heroic jobs, skills and items are unlocked
-"Essence gain + x10000 Hero XP": Essence gain + x10000 Hero XP
-"Hero XP": Hero XP
-"Unlocks Dark Matter": Unlocks Dark Matter
-"Makes Hell Portal even stronger": Makes Hell Portal even stronger
-"Passively gain a small amount of Essence": Passively gain a small amount of Essence
-"Multiply Dark Matter gain by 10x": Multiply Dark Matter gain by 10x
-"Unlocks Dark Matter Abilities": Unlocks Dark Matter Abilities
-"Multiply Dark Orb gain by 1e10x": Multiply Dark Orb gain by 1e10x
-"Multiply Dark Matter gain by 3x": Multiply Dark Matter gain by 3x
-"Multiply Essence gain by 1000x": Multiply Essence gain by 1000x
-"Multiply Evil gain by 1e15x": Multiply Evil gain by 1e15x
-"Multiply Darkness xp gain by 1e50x": Multiply Darkness xp gain by 1e50x
-"Multiply Time Warping and Lifespan by 1000x. Heavily boosts Faint Hope": Multiply Time Warping and Lifespan by 1000x. Heavily boosts Faint Hope
-"Multiply your lifespan by 1e5x. New challenge unlocked. Dark Matter boosts essence gain.": Multiply your lifespan by 1e5x. New challenge unlocked. Dark Matter boosts essence gain.
-"Multiply Dark Matter gain by 500x": Multiply Dark Matter gain by 500x
-"Unlocks Metaverse": Unlocks Metaverse
-"Faint Hope does not reset on transcend or collapse": Faint Hope does not reset on transcend or collapse
-"Unlocks Metaverse Perks, Metaverse Guards Job Category": Unlocks Metaverse Perks, Metaverse Guards Job Category
-"Faint Hope always at maximum": Faint Hope always at maximum
-"Multiply Time Warping by 1000x, Multiply all xp gain by 1e50x": Multiply Time Warping by 1000x, Multiply all xp gain by 1e50x
-"Unspent Multiverse Perk Points buffs Dark Matter": Unspent Multiverse Perk Points buffs Dark Matter
-"Congratulations! You have beaten the game!": Congratulations! You have beaten the game!
-"Great XP": Great XP
-"Essence gain + x10000 Great XP": Essence gain + x10000 Great XP
+# Settings
+stats_tab_header: Statistics
+settings_tab_header: Settings
+changelog_tab_header: Changelog
+import_save: Import save
+export_save: Export save
+import_save_placeholder: Enter save here
+save_copied: Save copied to clipboard!
+hard_reset: Hard reset game
+admin_password_label: Admin password
+admin_speed_label: Speed
+admin_check_button: Check
+links: Links
+language: Language
+
+# Settings options
+sticky_sidebar: Sticky panels (top and side)
+currency_notation: Currency notation
+number_notation: Number notation
+layout: Layout
+font_size: Font size
+color_scheme: Color scheme
+dangerous_keybinds: Dangerous Keybinds
+
+# Currency options
+currency_medieval: Medieval
+currency_extended: Extended
+currency_british: British £sd
+currency_modern: Modern $
+
+# Notation options
+notation_standard: Standard
+notation_scientific: Scientific
+notation_engineering: Engineering
+
+# Layout options
+layout_standard: Standard
+layout_wide: W I D E
+
+# Font size
+font_smaller: Smaller
+font_larger: Larger
+
+# Theme options
+theme_light: Light
+theme_dark: Dark
+
+# Keybinds
+enabled: Enabled
+disabled: Disabled
+
+# Shortcuts
+shortcuts: Shortcuts
+shortcut_arrows: Arrow Keys - Menu navigation
+shortcut_space: Spacebar - Pause
+shortcut_q: q - Touch the eye
+shortcut_e: e - Embrace evil
+shortcut_t: t - Transcend
+shortcut_u: u - Collapse the universe
+shortcut_g: g - Go to Metaverse
+shortcut_challenge: 1 - Enter / Exit Challenge 1, etc
+
+# Links
+links_based_on: 'Based on <a href="https://indomit.github.io/progress_knight_2/" target="_blank">Progress Knight Quest</a>'
+links_based_on_2: 'Which is based on <a href="https://symb1.github.io/progress_knight_2/" target="_blank">Progress Knight 2.0</a>'
+links_original_game: 'Original game: <a href="https://ihtasham42.github.io/progress-knight/" target="_blank">Progress Knight</a>'
+links_discord: '<a href="https://discord.gg/fTRS4pHGka" target="_blank">Join the discord community!</a>'
+links_github: '<a href="https://github.com/justoneanotherprogger/progress_knight_project" target="_blank">This mod''s page on GitHub</a>'
+
+# Stats
+stats_start_date: "You started playing the game on <span id=\"startDateDisplay\"></span>, <span id=\"playedDaysDisplay\"></span> days ago."
+stats_played_real_time: "You have played for <span id=\"playedRealTimeDisplay\"></span> (real time)."
+stats_played_game_time: "Your existance has spanned <span id=\"playedGameTimeDisplay\"></span> days (game time)."
+stats_rebirth1_count: "You have touched the eye <span id=\"rebirthOneCountDisplay\"></span> times."
+stats_rebirth1_time: "You have spent <span id=\"rebirthOneTimeDisplay\"></span> in this life."
+stats_rebirth1_fastest: "Your fastest touch is in <span id=\"rebirthOneFastestDisplay\"></span>."
+stats_rebirth2_count: "You have embraced evil <span id=\"rebirthTwoCountDisplay\"></span> times."
+stats_rebirth2_time: "You have spent <span id=\"rebirthTwoTimeDisplay\"></span> in this embrace."
+stats_rebirth2_fastest: "Your fastest embrace is in <span id=\"rebirthTwoFastestDisplay\"></span>."
+stats_evil_gain: "You gain <span id=\"evilPerSecondDisplay\"></span> evil/s. Maximum <span id=\"maxEvilPerSecondDisplay\"></span> evil/s was at <span id=\"maxEvilPerSecondRtDisplay\"></span>."
+stats_rebirth3_count: "You have transcended <span id=\"rebirthThreeCountDisplay\"></span> times."
+stats_rebirth3_time: "You have spent <span id=\"rebirthThreeTimeDisplay\"></span> in this transcension."
+stats_rebirth3_fastest: "Your fastest transcension is in <span id=\"rebirthThreeFastestDisplay\"></span>."
+stats_essence_gain: "You gain <span id=\"essencePerSecondDisplay\"></span> essence/s. Maximum <span id=\"maxEssencePerSecondDisplay\"></span> essence/s was at <span id=\"maxEssencePerSecondRtDisplay\"></span>."
+stats_rebirth4_count: "You have collapsed the universe <span id=\"rebirthFourCountDisplay\"></span> times."
+stats_rebirth4_time: "You have spent <span id=\"rebirthFourTimeDisplay\"></span> in this collapse."
+stats_rebirth4_fastest: "Your fastest collapse is in <span id=\"rebirthFourFastestDisplay\"></span>."
+stats_rebirth5_count: "You traveled to the Metaverse <span id=\"rebirthFiveCountDisplay\"></span> times."
+stats_rebirth5_time: "You have spent <span id=\"rebirthFiveTimeDisplay\"></span> in this Metaverse."
+stats_rebirth5_fastest: "Your fastest Metaverse is in <span id=\"rebirthFiveFastestDisplay\"></span>."
+stats_challenge_1: 'Challenge 1 Reward: Multiplies life comfort by x<span id="challengeHappinessBuffDisplay"></span>.'
+stats_challenge_2: 'Challenge 2 Reward: Multiplies income by x<span id="challengeIncomeBuffDisplay"></span>.'
+stats_challenge_3: 'Challenge 3 Reward: Multiplies time warping by x<span id="challengeTimewarpingBuffDisplay"></span>.'
+stats_challenge_4: "Challenge 4 Reward: Multiplies essence gain by x<span id=\"challengeEssenceGainBuffDisplay\"></span>."
+stats_challenge_5: "Challenge 5 Reward: Multiplies evil gain by x<span id=\"challengeEvilGainBuffDisplay\"></span>."
+stats_challenge_6: "Challenge 6 Reward: Multiplies Dark Matter gain by x<span id=\"challengeDarkMaterGainBuffDisplay\"></span>."
+
+starting_challenge: "Starting a challenge will <b>reset</b> your coins, levels and max levels."
+
+challenge_advance: The more you advance in the challenge, the higher the reward.
+
+challenge_rewards_active: Challenge rewards are always active, even in challenges.
+
+exit_challenge: Exit challenge
+
+current_challenge: "Current challenge:"
+
+enter_challenge: Enter challenge
+
+challengeTitleLabel: Challenge
+
+# Challenge names and descriptions
+
+current_reward_happiness: "Current reward: Multiplies Life Comfort by"
+
+current_reward_income: "Current reward: Multiplies Income by"
+
+current_reward_timewarping: "Current reward: Multiplies Time Warping by"
+
+current_reward_essence: "Current reward: Multiplies Essence gain by"
+
+current_reward_evil: "Current reward: Multiplies Evil gain by"
+
+current_reward_dark_matter: "Current reward: Multiplies Dark Matter gain by"
+
+dark_matter_shop: Dark Matter
+
+dark_orbs_shop: Dark Orbs
+
+dm_tab_shop: Shop
+
+dm_tab_abilities: Abilities
+
+abilities_warning: 'You can only choose 1 upgrade in each category; pick wisely. You can reset the abilities, but you will <b>NOT</b> get your <span class="color-dark-matter">Dark Matter</span> back!'
+
+# Dark Matter Abilities
+
+altar: Altar
+
+perks: Perks
+
+welcome_metaverse: "<b>Welcome to Metaverse!</b>"
+
+lifespan_infinite: Lifespan is now infinite.
+
+metaverse_hypercube_hint: The more hypercubes you have, the more sacrifice opportunities will open up.
+
+sacrifice: Sacrifice
+
+metaverse_perks: Metaverse Perks
+
+current_hypercubes_cap: "Current hypercubes cap:"
+
+total_hypercube_bonus: "Total hypercube gain bonus:"
+
+# Metaverse Altars
+
+altar_hypercube_gain: Increase Hypercube Gain
+
+altar_boost_cooldown: Reduce Boost Cooldown
+
+altar_boost_duration: Increase Boost Duration
+
+altar_evil_gain: Gain evil at new transcension
+
+altar_essence_mult: Essence gain multiplier
+
+altar_challenge_keep: Challenges are not reset on collapse
+
+altar_dark_matter_mult: Dark Matter gain multiplier
+
+current_gain_per_s: "Current gain: {0} / s"
+
+current_cooldown: "Current cooldown: {0}"
+
+current_duration: "Current duration: {0}"
+
+current_gain: "Current gain: {0}"
+
+current_multiplier: "Current multiplier: x{0}"
+
+hypercubes_in: "{0} Hypercubes in {1}"
+
+boost_ready: "Ready!"
+
+boost_cooldown: "Cooldown: {0}"
+
+# Metaverse Perks
+
+unspent_perk_points: "You have <b><span id=\"perkPointDisplay\" class=\"color-perk-points\"></span></b> unspent Metaverse perk points. Total points: <b><span id=\"totalPerkPointDisplay\" class=\"color-perk-points\"></span></b>."
+
+perks_info: You can freely activate and deactivate perks for the points you have.
+
+perks_dm_bonus: "Bonus to Dark Matter gain is x{0}."
+
+mpp_short: MPP
+
+assign_perk_points: Assign unspent perk points
+
+collect_perk_points: Collect all perk points
+
+congratulations: Congratulations!
+
+beaten_the_game: You have beaten the game!

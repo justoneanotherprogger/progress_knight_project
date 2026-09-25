@@ -1,8 +1,7 @@
 {
   "limit": 1000,
   "extensions": ["js", "html", "css", "yaml", "yml", "py"],
-  "exclude_dirs": [".git", ".letta", "node_modules"],
+  "exclude_dirs": [".git", ".letta", "node_modules", "vendor"],
   "baseline": {
-    "js/math.js": 3
   }
 }

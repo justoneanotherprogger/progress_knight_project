@@ -14,6 +14,12 @@ function formatInfinityNumber(num) {
   // Handle Infinity/NaN
   if (!isFinite(b.mantissa)) return str;
 
+  // break_infinity clamps exponents >= 9e15: toString() yields "Infinity" while
+  // mantissa stays finite, so the guard above misses it. Render a word, not e9000000000000000.
+  if (str === 'Infinity' || str === '-Infinity') {
+    return str.startsWith('-') ? '-' + t('infinity') : t('infinity');
+  }
+
   // For numbers >= 1e1000, show only e1000 notation without mantissa
   if (b.gte(new Decimal('1e1000'))) {
     var exponent = b.exponent.toString();
@@ -35,27 +41,26 @@ function formatInfinityNumber(num) {
 
 function getHeroXpGainMultipliers(job) {
     let baseMult = job instanceof Job ? HERO_XP_BASE_JOB : 1
-    for (const { requirement, multiplier, jobExtra } of HERO_MILESTONE_MULTIPLIERS) {
-        if (gameData.requirements[requirement].isCompleted()) {
-            baseMult *= toInfinityNumber(multiplier)
-            if (jobExtra && job instanceof Job) baseMult *= toInfinityNumber(jobExtra)
+    for (const id in milestoneData) {
+        const effect = milestoneData[id].baseData.effect
+        // target hero — единственный канал hero-xp. Иначе множители вех
+        // с любым effect залили бы hero-xp ненужными бонусами.
+        if (effect == null || effect.target?.kind !== "hero") continue
+        if (gameData.requirements[id].isCompleted()) {
+            baseMult *= effect.base
         }
     }
     return baseMult
 }
 
-function getDarknessXpGain() {
-    return gameData.requirements["Strange Magic"].isCompleted() ? toInfinityNumber(STRANGE_MAGIC_MULTIPLIER) : 1
-}
-
 function getHappiness() {
     if (gameData.active_challenge == "legends_never_die" || gameData.active_challenge == "the_darkest_time") return 1
     const meditationEffect = getBindedTaskEffect("skill_meditation")
-    const butlerEffect = getBindedItemEffect("Butler")
+    const butlerEffect = getBindedItemEffect("item_butler")
     const mindreleaseEffect = getBindedTaskEffect("skill_mind_release")
-    const multiverseFragment = getBindedItemEffect("Multiverse Fragment")
-    const godsBlessings = gameData.requirements["God's Blessings"].isCompleted() ? toInfinityNumber(GODS_BLESSINGS_MULTIPLIER) : 1
-    const stairWayToHeaven = getBindedItemEffect("Stairway to heaven")
+    const multiverseFragment = getBindedItemEffect("item_multiverse_fragment")
+    const godsBlessings = milestoneData["milestone_god_s_blessings"].getEffect()
+    const stairWayToHeaven = getBindedItemEffect("item_stairway_to_heaven")
     const happiness = godsBlessings * meditationEffect() * butlerEffect() * mindreleaseEffect()
         * multiverseFragment() * gameData.currentProperty.getEffect() * getChallengeBonus("an_unhappy_life") * stairWayToHeaven()
     if (gameData.active_challenge == "dance_with_the_devil") return toInfinityNumber(Math.pow(happiness, CHALLENGE_DANCE_HAPPINESS_EXPONENT))
@@ -116,23 +121,85 @@ function applyUnpausedSpeed(value) {
     return value * getUnpausedGameSpeed() / updateSpeed
 }
 
-function applySpeedOnBigInt(value) {
-    if (value == 0n)
-        return 0n
-    return value * BigInt(Math.floor(getGameSpeed())) / BigInt(Math.floor(updateSpeed))
+function getTaskBaseXp(task) {
+    if (task.isHero)
+        return new Decimal(10).pow(task.baseData.heroxp).times(task.baseData.maxXp)
+    return toInfinityNumber(task.baseData.maxXp)
+}
+
+function getTaskGrowth(task) {
+    return task.isHero ? TASK_HERO_XP_GROWTH : TASK_XP_GROWTH
+}
+
+// Стоимость перехода с level на level+1. Растёт геометрически,
+// поэтому для больших уровней нужен Decimal, а не Number.
+function getTaskMaxXp(task, level) {
+    return getTaskBaseXp(task).times(level + 1).times(new Decimal(getTaskGrowth(task)).pow(level))
+}
+
+// Суммарная стоимость k уровней, начиная с level.
+// Σ (level+1+i)·r^(level+i) раскладывается в сумму двух геометрических прогрессий:
+// (level+1)·Σr^i + Σi·r^i, что даёт замкнутую формулу вместо O(k) цикла.
+function getTaskXpRange(task, level, k) {
+    if (k <= 0) return new Decimal(0)
+    const r = new Decimal(getTaskGrowth(task))
+    const rm1 = r.sub(1)
+    const rk = r.pow(k)
+    const geom = rk.sub(1).div(rm1)
+    const arith = rk.times(k).times(rm1).sub(r.times(rk.sub(1))).div(rm1.times(rm1))
+    return getTaskBaseXp(task).times(r.pow(level)).times(new Decimal(level + 1).times(geom).plus(arith))
+}
+
+// Сколько уровней покрывает накопленный xp — максимальное k, для которого
+// сумма стоимости k уровней не превосходит xp. Монотонность по k позволяет
+// искать уровни галопом и бинарным поиском: O(log k) вызовов формулы суммы.
+// Потолок нужен для Infinity-значений xp (множители gain могут дать Infinity):
+// тогда сумма никогда не превзойдёт xp, и галоп ушёл бы в бесконечный цикл.
+const MAX_LEVELS_PER_TICK = 1e9
+
+function getTaskLevelsToClimb(task, level, xp) {
+    let lo = 0
+    let hi = 1
+    while (hi < MAX_LEVELS_PER_TICK && getTaskXpRange(task, level, hi).lte(xp)) {
+        lo = hi
+        hi *= 2
+    }
+    if (hi > MAX_LEVELS_PER_TICK) hi = MAX_LEVELS_PER_TICK
+    while (lo + 1 < hi) {
+        const mid = Math.floor((lo + hi) / 2)
+        if (getTaskXpRange(task, level, mid).lte(xp)) lo = mid
+        else hi = mid
+    }
+    return lo
+}
+
+// Три gain-цепочки нужны и update(), и рендеру (сайдбар, индикаторы ребёрна,
+// applyPerks), а состоянием становятся только в конце тика — до этого
+// читают промежуточные значения. Мемо считается один раз за тик: update()
+// сбрасывает его в начале, все остальные вызовы до следующего тика читают
+// результат. Сталость — максимум один тик (50 мс), для плавных величин
+// незаметна.
+const gainMemo = { evil: null, essence: null, dark_matter: null }
+
+function resetGainMemo() {
+    gainMemo.evil = null
+    gainMemo.essence = null
+    gainMemo.dark_matter = null
 }
 
 function getEvilGain() {
+    if (gainMemo.evil != null) return gainMemo.evil
+
     const evilControl = gameData.taskData["skill_evil_control"]
     const bloodMeditation = gameData.taskData["skill_blood_meditation"]
     const absoluteWish = gameData.taskData ["skill_absolute_wish"]
     const oblivionEmbodiment = gameData.taskData ["skill_void_embodiment"]
     const yingYang = gameData.taskData["skill_yin_yang"]
-    const inferno = gameData.requirements["Inferno"].isCompleted() ? toInfinityNumber(INFERNO_MULTIPLIER) : 1
-    const theDevilInsideYou = gameData.requirements["The Devil inside you"].isCompleted() ? toInfinityNumber(THE_DEVIL_INSIDE_YOU_MULTIPLIER) : 1
-    const stairWayToHell = getBindedItemEffect("Highway to hell")
+    const inferno = milestoneData["milestone_inferno"].getEffect()
+    const theDevilInsideYou = milestoneData["milestone_the_devil_inside_you"].getEffect()
+    const stairWayToHell = getBindedItemEffect("item_highway_to_hell")
     const evilBooster = (gameData.perks.evil_booster == 1) ? toInfinityNumber(EVIL_BOOSTER_MULTIPLIER) : 1
-    return toInfinityNumber(1)
+    gainMemo.evil = toInfinityNumber(1)
         .times(evilControl.getEffect())
         .times(bloodMeditation.getEffect())
         .times(absoluteWish.getEffect())
@@ -145,20 +212,24 @@ function getEvilGain() {
         .times(stairWayToHell())
         .times(evilBooster)
         .times(getGreed())
+
+    return gainMemo.evil
 }
 
 function getEssenceGain() {
+    if (gainMemo.essence != null) return gainMemo.essence
+
     const essenceControl = gameData.taskData["skill_yin_yang"]
     const essenceCollector = gameData.taskData["skill_essence_collector"]
-    const transcendentMaster = milestoneData["Transcendent Master"]
-    const faintHope = milestoneData["Faint Hope"]
-    const rise = milestoneData["Rise of Great Heroes"]
+    const transcendentMaster = milestoneData["milestone_transcendent_master"]
+    const faintHope = milestoneData["milestone_faint_hope"]
+    const rise = milestoneData["milestone_rise_of_great_heroes"]
     const darkMagician = gameData.taskData["skill_dark_magician"]
 
-    const theNewGold = gameData.requirements["The new gold"].isCompleted() ? toInfinityNumber(THE_NEW_GOLD_MULTIPLIER) : toInfinityNumber(1)
-    const lifeIsValueable = gameData.requirements["Life is valueable"].isCompleted() ? toInfinityNumber(gameData.dark_matter) : toInfinityNumber(1)
+    const theNewGold = milestoneData["milestone_the_new_gold"].getEffect()
+    const lifeIsValueable = milestoneData["milestone_life_is_valueable"].getEffect()
 
-    return toInfinityNumber(essenceControl.getEffect())
+    gainMemo.essence = toInfinityNumber(essenceControl.getEffect())
         .times(essenceCollector.getEffect())
         .times(transcendentMaster.getEffect())
         .times(faintHope.getEffect())
@@ -171,16 +242,20 @@ function getEssenceGain() {
         .times(lifeIsValueable)
         .times(essenceMultGain())
         .times(getGreed())
+
+    return gainMemo.essence
 }
 
 function getDarkMatterGain() {
+    if (gainMemo.dark_matter != null) return gainMemo.dark_matter
+
     const darkRuler = gameData.taskData["skill_dark_ruler"]
-    const darkMatterHarvester = gameData.requirements["Dark Matter Harvester"].isCompleted() ? toInfinityNumber(DARK_MATTER_HARVESTER_MULTIPLIER) : 1
-    const darkMatterMining = gameData.requirements["Dark Matter Mining"].isCompleted() ? toInfinityNumber(DARK_MATTER_MINING_MULTIPLIER) : 1
-    const darkMatterMillionaire = gameData.requirements["Dark Matter Millionaire"].isCompleted() ? toInfinityNumber(DARK_MATTER_MILLIONAIRE_MULTIPLIER) : 1
-    const Desintegration = gameData.itemData['Desintegration'].getEffect()
+    const darkMatterHarvester = milestoneData["milestone_dark_matter_harvester"].getEffect()
+    const darkMatterMining = milestoneData["milestone_dark_matter_mining"].getEffect()
+    const darkMatterMillionaire = milestoneData["milestone_dark_matter_millionaire"].getEffect()
+    const Desintegration = gameData.itemData["item_desintegration"].getEffect()
     const TheEndIsNear = getUnspentPerksDarkmatterGainBuff()
-    return toInfinityNumber(1)
+    gainMemo.dark_matter = toInfinityNumber(1)
         .times(darkRuler.getEffect())
         .times(darkMatterHarvester)
         .times(darkMatterMining)
@@ -191,6 +266,8 @@ function getDarkMatterGain() {
         .times(Desintegration == 0 ? 1 : Desintegration)
         .times(TheEndIsNear)
         .times(getGreed())
+
+    return gainMemo.dark_matter
 }
 
 function getDarkMatter() {
@@ -199,9 +276,17 @@ function getDarkMatter() {
 
 function getDarkMatterXpGain() {
     if (getDarkMatter().lt(1))
-        return 1
+        return toInfinityNumber(1)
 
     return getDarkMatter().add(1);
+}
+
+// Героические навыки Тьмы получают множитель материи отдельным слоем —
+// кубом бонуса, поверх общего для навыков Тьмы. isHero — живое поле
+// задачи, читается на каждом тике, поэтому слой откатывается при
+// перерождении и возвращается при новой героизации.
+function getHeroicDarkMatterXpGain(task) {
+    return task.isHero ? getDarkMatterXpGain().pow(3) : 1
 }
 
 function getDarkOrbs() {
@@ -216,13 +301,13 @@ function getGameSpeed() {
 }
 
 function getUnpausedGameSpeed() {
-    const boostWarping = gameData.boost_active ? gameData.metaverse.boost_warp_modifier : 1
+    const boostWarping = gameData.boost_active ? METAVERSE_BOOST_WARP_DEFAULT : 1
     const timeWarping = gameData.taskData["skill_time_warping"]
     const temporalDimension = gameData.taskData["skill_temporal_dimension"]
     const timeLoop = gameData.taskData["skill_time_loop"]
-    const warpDrive = (gameData.requirements["Eternal Time"].isCompleted()) ? WARP_DRIVE_MULTIPLIER : 1
-    const speedSpeedSpeed = gameData.requirements["Speed speed speed"].isCompleted() ? SPEED_SPEED_SPEED_MULTIPLIER : 1
-    const timeIsAFlatCircle = gameData.requirements["Time is a flat circle"].isCompleted() ? TIME_IS_A_FLAT_CIRCLE_MULTIPLIER : 1
+    const warpDrive = milestoneData["milestone_eternal_time"].getEffect()
+    const speedSpeedSpeed = gameData.requirements["milestone_speed_speed_speed"].isCompleted() ? SPEED_SPEED_SPEED_MULTIPLIER : 1
+    const timeIsAFlatCircle = gameData.requirements["milestone_time_is_a_flat_circle"].isCompleted() ? TIME_IS_A_FLAT_CIRCLE_MULTIPLIER : 1
     const timeWarpingSpeed = boostWarping * timeWarping.getEffect() * temporalDimension.getEffect() * timeLoop.getEffect() * warpDrive * speedSpeedSpeed * timeIsAFlatCircle
     const gameSpeed = baseGameSpeed * timeWarpingSpeed * getChallengeBonus("time_does_not_fly") * getGottaBeFastGain() * getDarkMatterSkillTimeWarping() * gameData.settings.adminSpeedMultiplier
     if (gameData.active_challenge == "time_does_not_fly" || gameData.active_challenge == "the_darkest_time")
@@ -240,8 +325,8 @@ function getLifespan() {
     const abyss = gameData.taskData["skill_ceaseless_abyss"]
     const cosmicLongevity = gameData.taskData["skill_cosmic_longevity"]
     const soulDrain = gameData.taskData["skill_soul_drain"]
-    const speedSpeedSpeed = gameData.requirements["Speed speed speed"].isCompleted() ? SPEED_SPEED_SPEED_LIFESPAN : 1
-    const lifeIsValueable = gameData.requirements["Life is valueable"].isCompleted() ? LIFE_IS_VALUABLE_MULTIPLIER : 1
+    const speedSpeedSpeed = gameData.requirements["milestone_speed_speed_speed"].isCompleted() ? SPEED_SPEED_SPEED_LIFESPAN : 1
+    const lifeIsValueable = gameData.requirements["milestone_life_is_valueable"].isCompleted() ? LIFE_IS_VALUABLE_MULTIPLIER : 1
     const lifespan = (baseLifespan + coinpile) * immortality.getEffect() * superImmortality.getEffect() * abyss.getEffect()
         * cosmicLongevity.getEffect() * soulDrain.getEffect() * higherDimensions.getEffect() * lifeIsValueable * speedSpeedSpeed
     if (gameData.active_challenge == "legends_never_die" || gameData.active_challenge == "the_darkest_time")
@@ -251,26 +336,19 @@ function getLifespan() {
 }
 
 function isAlive() {
-    const condition = gameData.days < getLifespan() || getLifespan() == Infinity
-    const deathText = document.getElementById("deathText")
-    if (!condition) {
-        gameData.days = getLifespan()
-        deathText.classList.remove("hidden")
-    }
-    else {
-        deathText.classList.add("hidden")
-    }
-    return condition && !tempData.hasError
+    const lifespan = getLifespan()
+    return gameData.days < lifespan || lifespan == Infinity
 }
 
 
 
 function canSimulate() {
-    return !gameData.paused && isAlive()
+    // Сломанная игра не тикает: hasError — не смерть, поэтому в isAlive его нет.
+    return !gameData.paused && !gameData.hasError && isAlive()
 }
 
 function isHeroesUnlocked() {
-    return gameData.requirements["New Beginning"].isCompleted() && (gameData.taskData["One Above All"].level >= HERO_LEVEL_UNLOCK_THRESHOLD || gameData.taskData["One Above All"].isHero)
+    return gameData.requirements["milestone_new_beginning"].isCompleted() && (gameData.taskData["job_one_above_all"].level >= HERO_LEVEL_UNLOCK_THRESHOLD || gameData.taskData["job_one_above_all"].isHero)
 }
 
 function getInspiration() {
@@ -289,7 +367,7 @@ function isNextDarkMagicSkillInReach() {
 
     for (const key in gameData.taskData) {
         const skill = gameData.taskData[key]
-        if (key in skillCategories["Dark Magic"]) {
+        if (key in skillCategories["category_dark_magic"].items) {
             const requirement = gameData.requirements[key]
             if (!requirement.isCompleted()) {
                 if (totalEvil.gte(requirement.requirements[0].requirement)) {
