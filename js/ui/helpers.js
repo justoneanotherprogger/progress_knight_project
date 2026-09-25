@@ -102,7 +102,9 @@ function fitText(element, size) {
 // поэтому замер не ждёт показа. Сдвиг перезаписывается каждым новым
 // наведением, так что сбрасывать его на уходе курсора не нужно.
 document.addEventListener("mouseover", e => {
-    const tip = e.target.closest(".tooltipText")
+    const owner = e.target.closest(".tooltip")
+    if (!owner) return
+    const tip = owner.querySelector(".tooltipText")
     if (!tip) return
     const clip = tip.closest(".column")
     const limit = clip
