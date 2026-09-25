@@ -60,6 +60,11 @@ function fitText(element, size) {
     const cacheKey = text + "|" + element.clientWidth + "|" + getComputedStyle(element).fontSize
     if (element.dataset.fitText == cacheKey) return
 
+    // Скрытый элемент (display:none) не измеряется: clientWidth = 0 даёт
+    // минимальный масштаб, а кэш потом держит испорченную посадку до
+    // следующей смены текста. Поправится, когда вкладку покажут.
+    if (element.clientWidth === 0) return
+
     // Ширина текста линейна относительно font-size, поэтому достаточно
     // одного замера при полном размере: k = clientWidth / scrollWidth.
     // Цикл shrink давал до десятка forced layout на элемент (запись стиля

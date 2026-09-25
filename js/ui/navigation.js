@@ -167,9 +167,6 @@ function setTab(selectedTab) {
 
     gameData.settings.selectedTab = selectedTab
 
-    // Update the UI when switching tabs to prevent flikering.
-    updateUI()
-
     const element = document.getElementById(selectedTab + "TabButton")
 
     const tabs = Array.prototype.slice.call(document.getElementsByClassName("tab"))
@@ -177,6 +174,11 @@ function setTab(selectedTab) {
         tab.style.display = "none"
     })
     tabElement.style.display = "flex"
+
+    // Рендер после показа: до этого вкладка display:none и fitText измеряет
+    // clientWidth = 0, кладя текст в минимальный масштаб. Переключение
+    // обычное — моргнуть не успевает, зато посадка текста сразу корректна.
+    updateUI()
 
     const tabButtons = document.getElementsByClassName("tabButton")
     for (const tabButton of tabButtons) {
