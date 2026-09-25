@@ -21,6 +21,17 @@ function updateButtonHTML(id, html) {
     }
 }
 
+// Сравнивать innerHTML с источником бесполезно: браузер нормализует
+// разметку (style="color: red" → "color: red;"), и строки не сходятся
+// никогда — тултип с разметкой переписывался бы каждый кадр. Поэтому
+// помним, что сами записали.
+function setHTML(element, html) {
+    if (element.dataset.html != html) {
+        element.innerHTML = html
+        element.dataset.html = html
+    }
+}
+
 // innerHTML здесь нельзя: значение gain меняется каждый кадр, и пересоздание
 // узла под курсором между mousedown и mouseup съедает клик. Цвет живёт на
 // самом span, перезаписывается только текст.

@@ -37,7 +37,7 @@ function renderJobRow(task, rowKey) {
     if (els.xpLeft.textContent != xpLeftText) els.xpLeft.textContent = xpLeftText
 
     const tooltipText = rowTooltip(task, rowKey)
-    if (els.tooltip.innerHTML != tooltipText) els.tooltip.innerHTML = tooltipText
+    setHTML(els.tooltip, tooltipText)
 
     const maxLevelText = formatLevel(task.maxLevel)
     if (els.maxLevel.textContent != maxLevelText) els.maxLevel.textContent = maxLevelText
@@ -83,7 +83,7 @@ function renderSkillRow(task, rowKey) {
     if (els.xpLeft.textContent != xpLeftText) els.xpLeft.textContent = xpLeftText
 
     const tooltipText = rowTooltip(task, rowKey)
-    if (els.tooltip.innerHTML != tooltipText) els.tooltip.innerHTML = tooltipText
+    setHTML(els.tooltip, tooltipText)
 
     const maxLevelText = formatLevel(task.maxLevel)
     if (els.maxLevel.textContent != maxLevelText) els.maxLevel.textContent = maxLevelText
