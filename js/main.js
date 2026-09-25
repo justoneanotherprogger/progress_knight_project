@@ -61,6 +61,7 @@ function createItemObjects() {
         const items = itemCategories[categoryId].items
         for (const key in items) {
             const item = new Item(items[key])
+            item.id = key
             item.categoryId = categoryId
             gameData.itemData[key] = item
         }
