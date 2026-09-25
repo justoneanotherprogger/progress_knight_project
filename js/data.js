@@ -279,10 +279,3 @@ function getBindedItemEffect(itemName) {
     const item = gameData.itemData[itemName]
     return item.getEffect.bind(item)
 }
-
-function getItemCategoryId(itemId) {
-    for (const categoryId in itemCategories)
-        if (itemCategories[categoryId].items[itemId] != null)
-            return categoryId
-    return null
-}
