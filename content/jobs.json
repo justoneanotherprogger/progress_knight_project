@@ -1,317 +1,317 @@
 {
-  "jobCategories": {
-    "category_common_work": {
-      "name": "category_common_work",
-      "headerColor": "#55a630",
-      "items": {
-        "job_beggar": {
-          "name": "job_beggar",
-          "maxXp": 50,
-          "income": 5,
-          "heroxp": 36,
-          "tooltip": "job_beggar_tooltip"
-        },
-        "job_farmer": {
-          "name": "job_farmer",
-          "maxXp": 100,
-          "income": 9,
-          "heroxp": 37,
-          "tooltip": "job_farmer_tooltip"
-        },
-        "job_fisherman": {
-          "name": "job_fisherman",
-          "maxXp": 200,
-          "income": 15,
-          "heroxp": 38,
-          "tooltip": "job_fisherman_tooltip"
-        },
-        "job_miner": {
-          "name": "job_miner",
-          "maxXp": 400,
-          "income": 40,
-          "heroxp": 39,
-          "tooltip": "job_miner_tooltip"
-        },
-        "job_blacksmith": {
-          "name": "job_blacksmith",
-          "maxXp": 800,
-          "income": 80,
-          "heroxp": 40,
-          "tooltip": "job_blacksmith_tooltip"
-        },
-        "job_merchant": {
-          "name": "job_merchant",
-          "maxXp": 1600,
-          "income": 150,
-          "heroxp": 41,
-          "tooltip": "job_merchant_tooltip"
-        }
-      }
-    },
-    "category_military": {
-      "name": "category_military",
-      "headerColor": "#e63946",
-      "items": {
-        "job_squire": {
-          "name": "job_squire",
-          "maxXp": 42,
-          "income": 5,
-          "heroxp": 51,
-          "tooltip": "job_squire_tooltip"
-        },
-        "job_footman": {
-          "name": "job_footman",
-          "maxXp": 1000,
-          "income": 50,
-          "heroxp": 52,
-          "tooltip": "job_footman_tooltip"
-        },
-        "job_veteran_footman": {
-          "name": "job_veteran_footman",
-          "maxXp": 10000,
-          "income": 120,
-          "heroxp": 53,
-          "tooltip": "job_veteran_footman_tooltip"
-        },
-        "job_centenary": {
-          "name": "job_centenary",
-          "maxXp": 100000,
-          "income": 300,
-          "heroxp": 54,
-          "tooltip": "job_centenary_tooltip"
-        },
-        "job_knight": {
-          "name": "job_knight",
-          "maxXp": 1000000,
-          "income": 1000,
-          "heroxp": 63,
-          "tooltip": "job_knight_tooltip"
-        },
-        "job_veteran_knight": {
-          "name": "job_veteran_knight",
-          "maxXp": 7500000,
-          "income": 3000,
-          "heroxp": 63,
-          "tooltip": "job_veteran_knight_tooltip"
-        },
-        "job_holy_knight": {
-          "name": "job_holy_knight",
-          "maxXp": 40000000,
-          "income": 5000,
-          "heroxp": 64,
-          "tooltip": "job_holy_knight_tooltip"
-        },
-        "job_lieutenant_general": {
-          "name": "job_lieutenant_general",
-          "maxXp": 150000000,
-          "income": 50000,
-          "heroxp": 77,
-          "tooltip": "job_lieutenant_general_tooltip"
-        }
-      }
-    },
-    "category_mage_collegium": {
-      "name": "category_mage_collegium",
-      "headerColor": "#C71585",
-      "heroIncomeMult": 1000000.0,
-      "items": {
-        "job_student": {
-          "name": "job_student",
-          "maxXp": 100000,
-          "income": 100,
-          "heroxp": 79,
-          "tooltip": "job_student_tooltip"
-        },
-        "job_apprentice_mage": {
-          "name": "job_apprentice_mage",
-          "maxXp": 1000000,
-          "income": 1000,
-          "heroxp": 82,
-          "tooltip": "job_apprentice_mage_tooltip"
-        },
-        "job_adept_mage": {
-          "name": "job_adept_mage",
-          "maxXp": 10000000,
-          "income": 9500,
-          "heroxp": 82,
-          "tooltip": "job_adept_mage_tooltip"
-        },
-        "job_master_wizard": {
-          "name": "job_master_wizard",
-          "maxXp": 100000000,
-          "income": 70000,
-          "heroxp": 95,
-          "tooltip": "job_master_wizard_tooltip"
-        },
-        "job_archmage": {
-          "name": "job_archmage",
-          "maxXp": 10000000000,
-          "income": 350000,
-          "heroxp": 95,
-          "tooltip": "job_archmage_tooltip"
-        },
-        "job_chronomancer": {
-          "name": "job_chronomancer",
-          "maxXp": 2000000000000,
-          "income": 1000000,
-          "heroxp": 95,
-          "tooltip": "job_chronomancer_tooltip"
-        },
-        "job_chairman": {
-          "name": "job_chairman",
-          "maxXp": 20000000000000,
-          "income": 10000000,
-          "heroxp": 106,
-          "tooltip": "job_chairman_tooltip"
-        },
-        "job_imperator": {
-          "name": "job_imperator",
-          "maxXp": 9000000000000000,
-          "income": 60000000,
-          "heroxp": 129,
-          "tooltip": "job_imperator_tooltip"
-        }
-      }
-    },
-    "category_the_void": {
-      "name": "category_the_void",
-      "headerColor": "#762B91",
-      "heroIncomeMult": 100000000000.0,
-      "items": {
-        "job_corrupted": {
-          "name": "job_corrupted",
-          "maxXp": 100000000000000,
-          "income": 25000000,
-          "heroxp": 131,
-          "tooltip": "job_corrupted_tooltip"
-        },
-        "job_void_slave": {
-          "name": "job_void_slave",
-          "maxXp": 650000000000000,
-          "income": 200000000,
-          "heroxp": 134,
-          "tooltip": "job_void_slave_tooltip"
-        },
-        "job_void_fiend": {
-          "name": "job_void_fiend",
-          "maxXp": 18000000000000000,
-          "income": 600000000,
-          "heroxp": 237,
-          "tooltip": "job_void_fiend_tooltip"
-        },
-        "job_abyss_anomaly": {
-          "name": "job_abyss_anomaly",
-          "maxXp": 18000000000000000,
-          "income": 1200000000,
-          "heroxp": 237,
-          "tooltip": "job_abyss_anomaly_tooltip"
-        },
-        "job_void_wraith": {
-          "name": "job_void_wraith",
-          "maxXp": 180000000000000000,
-          "income": 5000000000,
-          "heroxp": 238,
-          "tooltip": "job_void_wraith_tooltip"
-        },
-        "job_void_reaver": {
-          "name": "job_void_reaver",
-          "maxXp": 2600000000000000000,
-          "income": 25000000000,
-          "heroxp": 238,
-          "tooltip": "job_void_reaver_tooltip"
-        },
-        "job_void_lord": {
-          "name": "job_void_lord",
-          "maxXp": 28000000000000000000,
-          "income": 100000000000,
-          "heroxp": 238,
-          "tooltip": "job_void_lord_tooltip"
-        },
-        "job_abyss_god": {
-          "name": "job_abyss_god",
-          "maxXp": 400000000000000000000,
-          "income": 1000000000000,
-          "heroxp": 250,
-          "tooltip": "job_abyss_god_tooltip"
-        }
-      }
-    },
-    "category_galactic_council": {
-      "name": "category_galactic_council",
-      "headerColor": "#D5C010",
-      "heroIncomeMult": 100000000000.0,
-      "items": {
-        "job_eternal_wanderer": {
-          "name": "job_eternal_wanderer",
-          "maxXp": 55000000000000000000,
-          "income": 1000000000000,
-          "heroxp": 250,
-          "tooltip": "job_eternal_wanderer_tooltip"
-        },
-        "job_nova": {
-          "name": "job_nova",
-          "maxXp": 51000000000000000000,
-          "income": 3000000000000,
-          "heroxp": 250,
-          "tooltip": "job_nova_tooltip"
-        },
-        "job_sigma_proioxis": {
-          "name": "job_sigma_proioxis",
-          "maxXp": 500000000000000000000,
-          "income": 21500000000000,
-          "heroxp": 260,
-          "tooltip": "job_sigma_proioxis_tooltip"
-        },
-        "job_acallaris": {
-          "name": "job_acallaris",
-          "maxXp": 5e+22,
-          "income": 215000000000000,
-          "heroxp": 263,
-          "tooltip": "job_acallaris_tooltip"
-        },
-        "job_one_above_all": {
-          "name": "job_one_above_all",
-          "maxXp": 5e+27,
-          "income": 25000000000000000,
-          "heroxp": 265,
-          "tooltip": "job_one_above_all_tooltip"
-        }
-      }
-    },
-    "category_metaverse_guards": {
-      "name": "category_metaverse_guards",
-      "headerColor": "rgb(9, 160, 230)",
-      "heroIncomeMult": 100000000000.0,
-      "items": {
-        "job_snow_crash": {
-          "name": "job_snow_crash",
-          "maxXp": "1e400",
-          "income": 2.5e+52,
-          "heroxp": 1015,
-          "tooltip": "job_snow_crash_tooltip"
-        },
-        "job_player_one": {
-          "name": "job_player_one",
-          "maxXp": "1e450",
-          "income": 2.5e+54,
-          "heroxp": 1200,
-          "tooltip": "job_player_one_tooltip"
-        },
-        "job_lost_in_the_dark": {
-          "name": "job_lost_in_the_dark",
-          "maxXp": "1e500",
-          "income": 2.5e+58,
-          "heroxp": 1358,
-          "tooltip": "job_lost_in_the_dark_tooltip"
-        },
-        "job_omega": {
-          "name": "job_omega",
-          "maxXp": "1e550",
-          "income": 2.5e+62,
-          "heroxp": 3120,
-          "tooltip": "job_omega_tooltip"
-        }
-      }
-    }
-  }
+	"jobCategories": {
+		"category_common_work": {
+			"name": "category_common_work",
+			"headerColor": "#55a630",
+			"items": {
+				"job_beggar": {
+					"name": "job_beggar",
+					"maxXp": 50,
+					"income": 5,
+					"heroxp": 36,
+					"tooltip": "job_beggar_tooltip"
+				},
+				"job_farmer": {
+					"name": "job_farmer",
+					"maxXp": 100,
+					"income": 9,
+					"heroxp": 37,
+					"tooltip": "job_farmer_tooltip"
+				},
+				"job_fisherman": {
+					"name": "job_fisherman",
+					"maxXp": 200,
+					"income": 15,
+					"heroxp": 38,
+					"tooltip": "job_fisherman_tooltip"
+				},
+				"job_miner": {
+					"name": "job_miner",
+					"maxXp": 400,
+					"income": 40,
+					"heroxp": 39,
+					"tooltip": "job_miner_tooltip"
+				},
+				"job_blacksmith": {
+					"name": "job_blacksmith",
+					"maxXp": 800,
+					"income": 80,
+					"heroxp": 40,
+					"tooltip": "job_blacksmith_tooltip"
+				},
+				"job_merchant": {
+					"name": "job_merchant",
+					"maxXp": 1600,
+					"income": 150,
+					"heroxp": 41,
+					"tooltip": "job_merchant_tooltip"
+				}
+			}
+		},
+		"category_military": {
+			"name": "category_military",
+			"headerColor": "#e63946",
+			"items": {
+				"job_squire": {
+					"name": "job_squire",
+					"maxXp": 42,
+					"income": 5,
+					"heroxp": 51,
+					"tooltip": "job_squire_tooltip"
+				},
+				"job_footman": {
+					"name": "job_footman",
+					"maxXp": 1000,
+					"income": 50,
+					"heroxp": 52,
+					"tooltip": "job_footman_tooltip"
+				},
+				"job_veteran_footman": {
+					"name": "job_veteran_footman",
+					"maxXp": 10000,
+					"income": 120,
+					"heroxp": 53,
+					"tooltip": "job_veteran_footman_tooltip"
+				},
+				"job_centenary": {
+					"name": "job_centenary",
+					"maxXp": 100000,
+					"income": 300,
+					"heroxp": 54,
+					"tooltip": "job_centenary_tooltip"
+				},
+				"job_knight": {
+					"name": "job_knight",
+					"maxXp": 1000000,
+					"income": 1000,
+					"heroxp": 63,
+					"tooltip": "job_knight_tooltip"
+				},
+				"job_veteran_knight": {
+					"name": "job_veteran_knight",
+					"maxXp": 7500000,
+					"income": 3000,
+					"heroxp": 63,
+					"tooltip": "job_veteran_knight_tooltip"
+				},
+				"job_holy_knight": {
+					"name": "job_holy_knight",
+					"maxXp": 40000000,
+					"income": 5000,
+					"heroxp": 64,
+					"tooltip": "job_holy_knight_tooltip"
+				},
+				"job_lieutenant_general": {
+					"name": "job_lieutenant_general",
+					"maxXp": 150000000,
+					"income": 50000,
+					"heroxp": 77,
+					"tooltip": "job_lieutenant_general_tooltip"
+				}
+			}
+		},
+		"category_mage_collegium": {
+			"name": "category_mage_collegium",
+			"headerColor": "#C71585",
+			"heroIncomeMult": 1000000.0,
+			"items": {
+				"job_student": {
+					"name": "job_student",
+					"maxXp": 100000,
+					"income": 100,
+					"heroxp": 79,
+					"tooltip": "job_student_tooltip"
+				},
+				"job_apprentice_mage": {
+					"name": "job_apprentice_mage",
+					"maxXp": 1000000,
+					"income": 1000,
+					"heroxp": 82,
+					"tooltip": "job_apprentice_mage_tooltip"
+				},
+				"job_adept_mage": {
+					"name": "job_adept_mage",
+					"maxXp": 10000000,
+					"income": 9500,
+					"heroxp": 82,
+					"tooltip": "job_adept_mage_tooltip"
+				},
+				"job_master_wizard": {
+					"name": "job_master_wizard",
+					"maxXp": 100000000,
+					"income": 70000,
+					"heroxp": 95,
+					"tooltip": "job_master_wizard_tooltip"
+				},
+				"job_archmage": {
+					"name": "job_archmage",
+					"maxXp": 10000000000,
+					"income": 350000,
+					"heroxp": 95,
+					"tooltip": "job_archmage_tooltip"
+				},
+				"job_chronomancer": {
+					"name": "job_chronomancer",
+					"maxXp": 2000000000000,
+					"income": 1000000,
+					"heroxp": 95,
+					"tooltip": "job_chronomancer_tooltip"
+				},
+				"job_chairman": {
+					"name": "job_chairman",
+					"maxXp": 20000000000000,
+					"income": 10000000,
+					"heroxp": 106,
+					"tooltip": "job_chairman_tooltip"
+				},
+				"job_imperator": {
+					"name": "job_imperator",
+					"maxXp": 9000000000000000,
+					"income": 60000000,
+					"heroxp": 129,
+					"tooltip": "job_imperator_tooltip"
+				}
+			}
+		},
+		"category_the_void": {
+			"name": "category_the_void",
+			"headerColor": "#762B91",
+			"heroIncomeMult": 100000000000.0,
+			"items": {
+				"job_corrupted": {
+					"name": "job_corrupted",
+					"maxXp": 100000000000000,
+					"income": 25000000,
+					"heroxp": 131,
+					"tooltip": "job_corrupted_tooltip"
+				},
+				"job_void_slave": {
+					"name": "job_void_slave",
+					"maxXp": 650000000000000,
+					"income": 200000000,
+					"heroxp": 134,
+					"tooltip": "job_void_slave_tooltip"
+				},
+				"job_void_fiend": {
+					"name": "job_void_fiend",
+					"maxXp": 18000000000000000,
+					"income": 600000000,
+					"heroxp": 237,
+					"tooltip": "job_void_fiend_tooltip"
+				},
+				"job_abyss_anomaly": {
+					"name": "job_abyss_anomaly",
+					"maxXp": 18000000000000000,
+					"income": 1200000000,
+					"heroxp": 237,
+					"tooltip": "job_abyss_anomaly_tooltip"
+				},
+				"job_void_wraith": {
+					"name": "job_void_wraith",
+					"maxXp": 180000000000000000,
+					"income": 5000000000,
+					"heroxp": 238,
+					"tooltip": "job_void_wraith_tooltip"
+				},
+				"job_void_reaver": {
+					"name": "job_void_reaver",
+					"maxXp": 2600000000000000000,
+					"income": 25000000000,
+					"heroxp": 238,
+					"tooltip": "job_void_reaver_tooltip"
+				},
+				"job_void_lord": {
+					"name": "job_void_lord",
+					"maxXp": 28000000000000000000,
+					"income": 100000000000,
+					"heroxp": 238,
+					"tooltip": "job_void_lord_tooltip"
+				},
+				"job_abyss_god": {
+					"name": "job_abyss_god",
+					"maxXp": 400000000000000000000,
+					"income": 1000000000000,
+					"heroxp": 250,
+					"tooltip": "job_abyss_god_tooltip"
+				}
+			}
+		},
+		"category_galactic_council": {
+			"name": "category_galactic_council",
+			"headerColor": "#D5C010",
+			"heroIncomeMult": 100000000000.0,
+			"items": {
+				"job_eternal_wanderer": {
+					"name": "job_eternal_wanderer",
+					"maxXp": 55000000000000000000,
+					"income": 1000000000000,
+					"heroxp": 250,
+					"tooltip": "job_eternal_wanderer_tooltip"
+				},
+				"job_nova": {
+					"name": "job_nova",
+					"maxXp": 51000000000000000000,
+					"income": 3000000000000,
+					"heroxp": 250,
+					"tooltip": "job_nova_tooltip"
+				},
+				"job_sigma_proioxis": {
+					"name": "job_sigma_proioxis",
+					"maxXp": 500000000000000000000,
+					"income": 21500000000000,
+					"heroxp": 260,
+					"tooltip": "job_sigma_proioxis_tooltip"
+				},
+				"job_acallaris": {
+					"name": "job_acallaris",
+					"maxXp": 5e22,
+					"income": 215000000000000,
+					"heroxp": 263,
+					"tooltip": "job_acallaris_tooltip"
+				},
+				"job_one_above_all": {
+					"name": "job_one_above_all",
+					"maxXp": 5e27,
+					"income": 25000000000000000,
+					"heroxp": 265,
+					"tooltip": "job_one_above_all_tooltip"
+				}
+			}
+		},
+		"category_metaverse_guards": {
+			"name": "category_metaverse_guards",
+			"headerColor": "rgb(9, 160, 230)",
+			"heroIncomeMult": 100000000000.0,
+			"items": {
+				"job_snow_crash": {
+					"name": "job_snow_crash",
+					"maxXp": "1e400",
+					"income": 2.5e52,
+					"heroxp": 1015,
+					"tooltip": "job_snow_crash_tooltip"
+				},
+				"job_player_one": {
+					"name": "job_player_one",
+					"maxXp": "1e450",
+					"income": 2.5e54,
+					"heroxp": 1200,
+					"tooltip": "job_player_one_tooltip"
+				},
+				"job_lost_in_the_dark": {
+					"name": "job_lost_in_the_dark",
+					"maxXp": "1e500",
+					"income": 2.5e58,
+					"heroxp": 1358,
+					"tooltip": "job_lost_in_the_dark_tooltip"
+				},
+				"job_omega": {
+					"name": "job_omega",
+					"maxXp": "1e550",
+					"income": 2.5e62,
+					"heroxp": 3120,
+					"tooltip": "job_omega_tooltip"
+				}
+			}
+		}
+	}
 }

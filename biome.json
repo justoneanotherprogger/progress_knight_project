@@ -6,7 +6,13 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"includes": ["**/*.js", "!**/node_modules", "!**/vendor"]
+		"includes": [
+			"**/*.js",
+			"**/*.css",
+			"**/*.json",
+			"!**/node_modules",
+			"!**/vendor"
+		]
 	},
 	"linter": {
 		"rules": {

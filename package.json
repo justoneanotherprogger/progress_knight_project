@@ -1,12 +1,12 @@
 {
-  "dependencies": {
-    "break_infinity.js": "^2.2.0"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^2.5.14"
-  },
-  "scripts": {
-    "lint": "biome check",
-    "fix": "biome check --write"
-  }
+	"dependencies": {
+		"break_infinity.js": "^2.2.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.5.14"
+	},
+	"scripts": {
+		"lint": "biome check",
+		"fix": "biome check --write"
+	}
 }
