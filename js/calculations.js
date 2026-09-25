@@ -337,13 +337,14 @@ function getLifespan() {
 
 function isAlive() {
     const lifespan = getLifespan()
-    return (gameData.days < lifespan || lifespan == Infinity) && !tempData.hasError
+    return gameData.days < lifespan || lifespan == Infinity
 }
 
 
 
 function canSimulate() {
-    return !gameData.paused && isAlive()
+    // Сломанная игра не тикает: hasError — не смерть, поэтому в isAlive его нет.
+    return !gameData.paused && !gameData.hasError && isAlive()
 }
 
 function isHeroesUnlocked() {

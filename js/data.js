@@ -49,6 +49,10 @@ dark_matter: new Decimal(0),
     currentMisc: null,
     autoBuyEnabled: true,
 
+    // Ошибка в коде останавливает симуляцию, но не выглядит смертью игрока:
+    // время встаёт на битом состоянии, отсюда и без перезагрузки не уйти.
+    hasError: false,
+
     settings: {
         stickySidebar: true,
         theme: 1,
@@ -121,8 +125,6 @@ dark_matter: new Decimal(0),
     boost_timer: 0.0,
     boost_active: false,
 }
-
-var tempData = {}
 
 const updateSpeed = 20
 const renderSpeed = 20
@@ -235,7 +237,6 @@ const METAVERSE_BOOST_WARP_DEFAULT = 100
 
 // --- Save ---
 const EXPORT_TOOLTIP_TIMEOUT = 15 * 1000
-const ERROR_DISPLAY_TIMEOUT = 30 * 1000
 
 // --- Skill effect ---
 const SKILL_HERO_LEVEL_MULTIPLIER = 1000

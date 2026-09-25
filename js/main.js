@@ -1,11 +1,10 @@
 // main.js — entry point
 
+// Ошибка в коде — не сообщение игроку, а сигнал «игра сломалась»: останавливаем
+// симуляцию, чтобы время не тикало по битому состоянию. Диагностика — в консоли
+// браузера, через onerror, штатно.
 onerror = () => {
-    document.getElementById("errorInfo").hidden = false
-    tempData.hasError = true
-    setTimeout(() => {
-        document.getElementById("errorInfo").hidden = true
-    }, ERROR_DISPLAY_TIMEOUT)
+    gameData.hasError = true
 }
 
 document.querySelector("#changelogTabTabButton").addEventListener('click', async function () {
@@ -166,12 +165,6 @@ gameData.requirements = requirementsBaseData
 
 createSkillRequirements()
 createMilestoneRequirements()
-
-tempData["requirements"] = {}
-for (const key in gameData.requirements) {
-    const requirement = gameData.requirements[key]
-    tempData["requirements"][key] = requirement
-}
 
 loadGameData()
 
