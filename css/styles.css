@@ -322,6 +322,16 @@ button:focus {
     display: none;
 }
 
+/* Подтверждение экспорта: под кнопкой, а не справа — там поле ввода, и текст
+   перекрывал бы его. Шрифт обычный: .text-caption даёт larger, а подпись
+   к кнопке на большом шрифте много места занимает зря. */
+#exportTooltip {
+    top: 100%;
+    left: 0;
+    width: 18em;
+    font-size: small;
+}
+
 .tooltip-pointer .tooltipText-pointer {
     visibility: hidden;
     width: 20em;
