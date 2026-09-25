@@ -242,13 +242,6 @@ function getFormattedChallengeTaskGoal(taskName, level) {
         return t("great") + " " + t(taskName) + " " + t("lvl") + " " + formatLevel(Math.ceil(level / 1000))
 }
 
-function getFormattedTitle(parameter) {    
-    let title = parameter.replaceAll("_", " ")
-    title = title.charAt(0).toUpperCase() + title.slice(1)
-
-    return title
-}
-
 const CHALLENGE_KEY_TO_NUMBER = {
     an_unhappy_life: 1,
     rich_and_the_poor: 2,
