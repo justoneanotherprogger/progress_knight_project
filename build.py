@@ -7,7 +7,11 @@ from jinja2 import Environment, FileSystemLoader
 
 BASE_DIR = Path(__file__).parent
 LOCALES_DIR = BASE_DIR / "locales"
-OUTPUT_FILE = BASE_DIR / "js" / "translations.js"
+# Generated data lives under dist/ so build output, gitignore and the size
+# ratchet share one list instead of a per-file list that rots.
+DIST_DIR = BASE_DIR / "dist"
+DIST_JS_DIR = DIST_DIR / "js"
+OUTPUT_FILE = DIST_JS_DIR / "translations.js"
 TEMPLATES_DIR = BASE_DIR / "templates"
 OUTPUT_HTML = BASE_DIR / "index.html"
 CONTENT_DIR = BASE_DIR / "content"
@@ -92,6 +96,7 @@ function applyTranslations() {{
 document.addEventListener('DOMContentLoaded', applyTranslations);
 """
 
+    DIST_JS_DIR.mkdir(parents=True, exist_ok=True)
     OUTPUT_FILE.write_text(js_content, encoding="utf-8")
     print(f"Generated {OUTPUT_FILE} with languages: {', '.join(locales.keys())}")
     return locales
@@ -107,7 +112,8 @@ def generate_html():
 
 
 def generate_data_files():
-    """Generate js/*_data.js from content/*.json. Top-level keys become consts."""
+    """Generate dist/js/*_data.js from content/*.json. Top-level keys become consts."""
+    DIST_JS_DIR.mkdir(parents=True, exist_ok=True)
     for json_file in sorted(CONTENT_DIR.glob("*.json")):
         with open(json_file, "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -129,7 +135,7 @@ def generate_data_files():
         else:
             for key, value in data.items():
                 lines.append(f"const {key} = {json.dumps(value, ensure_ascii=False)};")
-        out = JS_DIR / (json_file.stem + "_data.js")
+        out = DIST_JS_DIR / (json_file.stem + "_data.js")
         out.write_text("\n".join(lines) + "\n", encoding="utf-8")
         print(f"Generated {out}")
 

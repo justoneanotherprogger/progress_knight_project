@@ -8,15 +8,20 @@
 
 Пайплайн сборки (`build.py`, Jinja2):
 
-- `locales/<lang>/*.yaml` → `js/translations.js`
+- `locales/<lang>/*.yaml` и `content/*.json` → `dist/js/translations.js` и `dist/js/*_data.js`
 - `templates/*.html` и `templates/partials/*` → корневой `index.html`
 
-Оба артефакта — генераты: в git не хранятся (`.gitignore`), деплой-пайплайн собирает их сам. Локальная проверка после изменения YAML или шаблонов — `python build.py`. Балансные правки — в исходниках (`js/*.js`, `locales/`, `templates/`), не в генератах.
+Все три артефакта — генераты: в git не хранятся (`.gitignore`), деплой-пайплайн
+собирает их сам. Сгенерированные файлы лежат в `dist/`, кроме `index.html` — его
+нельзя вынести, деплой отдаёт его как `/`. Локальная проверка после изменения JSON
+или шаблонов — `python build.py`. Балансные правки — в исходниках (`js/*.js`,
+`locales/`, `content/`, `templates/`), не в генератах.
 
 ## Структура
 
-- `js/` — игровой код; `math.js` — вендорский бандл mathjs, не редактируется
-- `templates/`, `locales/` — источники интерфейса и текстов
+- `js/` — игровой код; `vendor/` — вендорские бандлы (mathjs, break_infinity, HackTimer), не редактируются
+- `dist/` — сгенерированные `*_data.js` и `translations.js`, редактировать нельзя
+- `templates/`, `locales/`, `content/` — источники интерфейса, текстов и баланса
 - `build.py` — генерация переводов и HTML из источников
 - `scripts/` — служебные скрипты проверок
 
