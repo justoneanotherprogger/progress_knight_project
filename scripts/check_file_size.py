@@ -18,6 +18,7 @@ no code changes.
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -39,8 +40,21 @@ def count_lines(path: Path) -> int:
 def collect_files(extensions: list[str], exclude_dirs: list[str]) -> list[Path]:
     exts = {f".{e.lstrip('.')}" for e in extensions}
     excluded = set(exclude_dirs)
+    # Ask git which files it would actually track, instead of walking the disk.
+    # Generated artifacts (translations.js, *_data.js, index.html) are in
+    # .gitignore and never enter the repo — their size is build.py's business,
+    # and a ratchet that measures them blocks commits on files nobody can fix.
+    out = subprocess.run(
+        ["git", "-C", str(REPO_ROOT), "ls-files", "-z",
+         "--cached", "--others", "--exclude-standard"],
+        capture_output=True,
+        check=True,
+    ).stdout
     found: list[Path] = []
-    for path in REPO_ROOT.rglob("*"):
+    for raw in out.split(b"\0"):
+        if not raw:
+            continue
+        path = REPO_ROOT / raw.decode("utf-8", "replace")
         if not path.is_file() or path.suffix.lower() not in exts:
             continue
         if any(part in excluded for part in path.relative_to(REPO_ROOT).parts):
