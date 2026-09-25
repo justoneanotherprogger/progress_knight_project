@@ -212,13 +212,13 @@ milestone_magic_eye_desc: Автоматически получает макси
 milestone_almighty_eye_desc: Автоматически получает максимальные уровни
 milestone_deal_with_the_devil_desc: Пассивно получает немного зла
 milestone_transcendent_master_desc: Прирост эссенции (растёт от эссенции)
-milestone_eternal_time_desc: x10 Искажение времени
+milestone_eternal_time_desc: Искажение времени
 milestone_hell_portal_desc: Пассивно получает много зла
 milestone_inferno_desc: Прирост зла (растёт от эссенции)
-milestone_god_s_blessings_desc: x10M удобство жизни
+milestone_god_s_blessings_desc: Удобство жизни
 milestone_faint_hope_desc: Прирост эссенции (растёт с реальным временем)
 milestone_new_beginning_desc: Открываются Великие работы, навыки и предметы
-milestone_rise_of_great_heroes_desc: Прирост эссенции + x10000 опыта Великих
+milestone_rise_of_great_heroes_desc: Прирост эссенции (растёт от числа Великих) + опыт Великих
 milestone_lazy_heroes_desc: Опыт Великих
 milestone_dirty_heroes_desc: Опыт Великих
 milestone_angry_heroes_desc: Опыт Великих
@@ -235,16 +235,16 @@ milestone_mind_control_desc: Делает Врата Ада ещё сильне�
 milestone_galactic_emperor_desc: Пассивно получает немного эссенции
 milestone_dark_matter_harvester_desc: Прирост Тёмной материи (растёт от Тёмных сфер)
 milestone_a_dark_era_desc: Открывает способности Тёмной материи
-milestone_dark_orbiter_desc: Умножает прирост Тёмных сфер на 1e10x
+milestone_dark_orbiter_desc: Прирост Тёмных сфер
 milestone_dark_matter_mining_desc: Прирост Тёмной материи (растёт от Тёмной материи и эссенции)
-milestone_the_new_gold_desc: Умножает прирост эссенции на 1000x
-milestone_the_devil_inside_you_desc: Умножает прирост зла на 1e15x
-milestone_strange_magic_desc: Умножает прирост опыта Тьмы на 1e50x
+milestone_the_new_gold_desc: Прирост эссенции
+milestone_the_devil_inside_you_desc: Прирост зла
+milestone_strange_magic_desc: Прирост опыта Тьмы
 milestone_speed_speed_speed_desc: Умножает искажение времени и продолжительность жизни
   на 1000x. Сильно усиливает Слабую надежду
 milestone_life_is_valueable_desc: Прирост эссенции (растёт от Тёмной материи). Умножает
   продолжительность жизни на 1e5x. Открывает новое испытание.
-milestone_dark_matter_millionaire_desc: Умножает прирост Тёмной материи на 500x
+milestone_dark_matter_millionaire_desc: Прирост Тёмной материи
 milestone_the_new_dark_matter_desc: Открывает Метавселенную
 milestone_strong_hope_desc: Слабая надежда не сбрасывается при трансцендировании или
   сворачивании
