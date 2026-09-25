@@ -1,5 +1,18 @@
 /* w3 overrides */
 
+table {
+	white-space: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-style: normal;
+	text-align: start;
+	font-variant: normal;
+}
+
+td {
+	vertical-align: middle;
+}
+
 .info-box {
 	border-left: 3px solid #4a90d9;
 	background: rgba(74, 144, 217, 0.1);
@@ -99,19 +112,6 @@ body {
 #info #inspiration_decay,
 #info #greed_rise {
 	text-align: center;
-}
-
-table {
-	white-space: normal;
-	line-height: normal;
-	font-weight: normal;
-	font-style: normal;
-	text-align: start;
-	font-variant: normal;
-}
-
-td {
-	vertical-align: middle;
 }
 
 .legendary {
