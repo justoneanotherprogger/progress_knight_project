@@ -42,18 +42,15 @@ function formatInfinityNumber(num) {
 function getHeroXpGainMultipliers(job) {
     let baseMult = job instanceof Job ? HERO_XP_BASE_JOB : 1
     for (const id in milestoneData) {
-        const baseData = milestoneData[id].baseData
-        if (baseData.effect == null)
-            continue
+        const effect = milestoneData[id].baseData.effect
+        // target hero — единственный канал hero-xp. Иначе множители вех
+        // с любым effect залили бы hero-xp ненужными бонусами.
+        if (effect == null || effect.target?.kind !== "hero") continue
         if (gameData.requirements[id].isCompleted()) {
-            baseMult *= toInfinityNumber(baseData.effect)
+            baseMult *= effect.base
         }
     }
     return baseMult
-}
-
-function getDarknessXpGain() {
-    return gameData.requirements["milestone_strange_magic"].isCompleted() ? toInfinityNumber(STRANGE_MAGIC_MULTIPLIER) : 1
 }
 
 function getHappiness() {
@@ -62,7 +59,7 @@ function getHappiness() {
     const butlerEffect = getBindedItemEffect("item_butler")
     const mindreleaseEffect = getBindedTaskEffect("skill_mind_release")
     const multiverseFragment = getBindedItemEffect("item_multiverse_fragment")
-    const godsBlessings = gameData.requirements["milestone_god_s_blessings"].isCompleted() ? toInfinityNumber(GODS_BLESSINGS_MULTIPLIER) : 1
+    const godsBlessings = milestoneData["milestone_god_s_blessings"].getEffect()
     const stairWayToHeaven = getBindedItemEffect("item_stairway_to_heaven")
     const happiness = godsBlessings * meditationEffect() * butlerEffect() * mindreleaseEffect()
         * multiverseFragment() * gameData.currentProperty.getEffect() * getChallengeBonus("an_unhappy_life") * stairWayToHeaven()
@@ -199,7 +196,7 @@ function getEvilGain() {
     const oblivionEmbodiment = gameData.taskData ["skill_void_embodiment"]
     const yingYang = gameData.taskData["skill_yin_yang"]
     const inferno = milestoneData["milestone_inferno"].getEffect()
-    const theDevilInsideYou = gameData.requirements["milestone_the_devil_inside_you"].isCompleted() ? toInfinityNumber(THE_DEVIL_INSIDE_YOU_MULTIPLIER) : 1
+    const theDevilInsideYou = milestoneData["milestone_the_devil_inside_you"].getEffect()
     const stairWayToHell = getBindedItemEffect("item_highway_to_hell")
     const evilBooster = (gameData.perks.evil_booster == 1) ? toInfinityNumber(EVIL_BOOSTER_MULTIPLIER) : 1
     gainMemo.evil = toInfinityNumber(1)
@@ -229,7 +226,7 @@ function getEssenceGain() {
     const rise = milestoneData["milestone_rise_of_great_heroes"]
     const darkMagician = gameData.taskData["skill_dark_magician"]
 
-    const theNewGold = gameData.requirements["milestone_the_new_gold"].isCompleted() ? toInfinityNumber(THE_NEW_GOLD_MULTIPLIER) : toInfinityNumber(1)
+    const theNewGold = milestoneData["milestone_the_new_gold"].getEffect()
     const lifeIsValueable = milestoneData["milestone_life_is_valueable"].getEffect()
 
     gainMemo.essence = toInfinityNumber(essenceControl.getEffect())
@@ -255,7 +252,7 @@ function getDarkMatterGain() {
     const darkRuler = gameData.taskData["skill_dark_ruler"]
     const darkMatterHarvester = milestoneData["milestone_dark_matter_harvester"].getEffect()
     const darkMatterMining = milestoneData["milestone_dark_matter_mining"].getEffect()
-    const darkMatterMillionaire = gameData.requirements["milestone_dark_matter_millionaire"].isCompleted() ? toInfinityNumber(DARK_MATTER_MILLIONAIRE_MULTIPLIER) : 1
+    const darkMatterMillionaire = milestoneData["milestone_dark_matter_millionaire"].getEffect()
     const Desintegration = gameData.itemData["item_desintegration"].getEffect()
     const TheEndIsNear = getUnspentPerksDarkmatterGainBuff()
     gainMemo.dark_matter = toInfinityNumber(1)
@@ -308,7 +305,7 @@ function getUnpausedGameSpeed() {
     const timeWarping = gameData.taskData["skill_time_warping"]
     const temporalDimension = gameData.taskData["skill_temporal_dimension"]
     const timeLoop = gameData.taskData["skill_time_loop"]
-    const warpDrive = (gameData.requirements["milestone_eternal_time"].isCompleted()) ? WARP_DRIVE_MULTIPLIER : 1
+    const warpDrive = milestoneData["milestone_eternal_time"].getEffect()
     const speedSpeedSpeed = gameData.requirements["milestone_speed_speed_speed"].isCompleted() ? SPEED_SPEED_SPEED_MULTIPLIER : 1
     const timeIsAFlatCircle = gameData.requirements["milestone_time_is_a_flat_circle"].isCompleted() ? TIME_IS_A_FLAT_CIRCLE_MULTIPLIER : 1
     const timeWarpingSpeed = boostWarping * timeWarping.getEffect() * temporalDimension.getEffect() * timeLoop.getEffect() * warpDrive * speedSpeedSpeed * timeIsAFlatCircle

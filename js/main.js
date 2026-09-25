@@ -53,6 +53,7 @@ function createGameObject(data, entity, id) {
     else if ("maxXp" in entity) { data[id] = new Skill(entity) }
     else if ("tier" in entity) { data[id] = new Milestone(entity) }
     else { data[id] = new Item(entity) }
+    data[id].id = id
 }
 
 function createItemObjects() {
@@ -60,7 +61,6 @@ function createItemObjects() {
         const items = itemCategories[categoryId].items
         for (const key in items) {
             const item = new Item(items[key])
-            item.id = key
             item.categoryId = categoryId
             gameData.itemData[key] = item
         }

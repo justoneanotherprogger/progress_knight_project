@@ -150,12 +150,10 @@ const CHALLENGE_RICH_INCOME_EXPONENT = 0.35
 // --- Game speed ---
 const CHALLENGE_TIME_WARP_EXPONENT = 0.7
 const CHALLENGE_LEGENDS_WARP_EXPONENT = 0.75
-const WARP_DRIVE_MULTIPLIER = 10
 const SPEED_SPEED_SPEED_MULTIPLIER = 1000
 const TIME_IS_A_FLAT_CIRCLE_MULTIPLIER = 1000
 
 // --- Happiness ---
-const GODS_BLESSINGS_MULTIPLIER = 10000000
 const CHALLENGE_DANCE_HAPPINESS_EXPONENT = 0.075
 const CHALLENGE_UNHAPPY_HAPPINESS_EXPONENT = 0.5
 
@@ -169,16 +167,13 @@ const ESSENCE_EFFECT_MIN_THRESHOLD = 0.01
 // --- Evil Gain multipliers ---
 // Инферно: (1 + essence)^exp — ×3.3 на пороге 170k, ×5 к ~1e7, дальше ползёт
 const INFERNO_ESSENCE_EXPONENT = 0.1
-const THE_DEVIL_INSIDE_YOU_MULTIPLIER = 1e15
 const EVIL_BOOSTER_MULTIPLIER = 1e50
-const THE_NEW_GOLD_MULTIPLIER = 1000
 
 // --- Dark Matter Gain ---
 // Рост от тёмных сфер: ×5 при нуле, ×10 к 1e30, ×12.6 к 1e40
 const DARK_MATTER_HARVESTER_BASE = 5
 const DARK_MATTER_HARVESTER_EXPONENT = 0.01
 const DARK_MATTER_MINING_MULTIPLIER = 3
-const DARK_MATTER_MILLIONAIRE_MULTIPLIER = 500
 
 // --- Lifespan ---
 const LIFE_IS_VALUABLE_MULTIPLIER = 1e5
@@ -191,7 +186,6 @@ const INSPIRATION_INFINITY_FALLBACK = 1e300
 const GREED_ADULT_AGE = 20 * 365
 
 // --- Dark Matter XP ---
-const STRANGE_MAGIC_MULTIPLIER = 1e50
 
 // --- Transcendent Master ---
 // effect = 1 + base * (log10(essence))^exponent

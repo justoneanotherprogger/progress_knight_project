@@ -177,7 +177,7 @@ function renderMilestones() {
             els.essence.textContent = essenceText
 
         let desc = t(milestone.description)
-        const effect = milestone.getEffect != null ? milestone.getEffect() : milestone.baseData.effect
+        const effect = milestone.getEffect()
         if (effect != null)
             desc = "x" + format(effect, 1) + " " + desc
 

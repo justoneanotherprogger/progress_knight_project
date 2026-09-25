@@ -15,12 +15,21 @@ function matchTarget(target, key, task) {
 }
 
 function pushTargetEffects(key, task, list, container) {
-    for (const skillKey in skillBaseData) {
-        const skill = gameData.taskData[skillKey]
-        if (!skill) continue
-        const effect = skill.baseData.effect
-        if (effect.type !== container) continue
-        if (matchTarget(effect.target, skillKey, task)) list.push(skill.getEffect.bind(skill))
+    // Скиллы и вехи живут в разных таблицах, но эффекты одного вида:
+    // type == container и подходящий target. Кастомные формулы вех
+    // (setCustomEffects) подменяют getEffect, плоские считают base.
+    const sources = [
+        [skillBaseData, gameData.taskData],
+        [milestoneBaseData, milestoneData]
+    ]
+    for (const [baseData, gameObjects] of sources) {
+        for (const srcKey in baseData) {
+            const obj = gameObjects[srcKey]
+            if (!obj) continue
+            const effect = obj.baseData.effect
+            if (!effect || effect.type !== container) continue
+            if (matchTarget(effect.target, key, task)) list.push(obj.getEffect.bind(obj))
+        }
     }
 }
 

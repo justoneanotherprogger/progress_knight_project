@@ -73,11 +73,21 @@ class Milestone {
     constructor(baseData) {
         this.baseData = baseData
         this.name = baseData.name
+        this.id = null
         this.tier = baseData.tier
         this.threshold = baseData.threshold
         this.description = baseData.description
         this.tooltip = baseData.tooltip
         this.unlocked = false
+    }
+
+    // Кастомные формулы (setCustomEffects) подменяют этот метод,
+    // плоские эффекты считаются из baseData.effect.base.
+    getEffect() {
+        const effect = this.baseData.effect
+        if (effect == null) return null
+        if (!gameData.requirements[this.id].isCompleted()) return toInfinityNumber(1)
+        return toInfinityNumber(effect.base)
     }
 
     getTier() { return this.tier }
