@@ -95,14 +95,20 @@ function fitText(element, size) {
 }
 
 // Тултипы открываются по :hover, но «влезает ли снизу» CSS не решает.
-// Меряем один раз за наведение и поднимаем на разницу с нижним краем окна.
+// Меряем один раз за наведение и поднимаем на разницу с нижним краем.
+// Граница — не окно: таблицы лежат в .column с overflow-y:hidden, и обрезает
+// именно она, а её низ выше низа окна. По окну меряли — сдвига не было.
 // visibility:hidden элемент из вёрстки не убирает — прямоугольник настоящий,
 // поэтому замер не ждёт показа. Сдвиг перезаписывается каждым новым
 // наведением, так что сбрасывать его на уходе курсора не нужно.
 document.addEventListener("mouseover", e => {
     const tip = e.target.closest(".tooltipText")
     if (!tip) return
-    const overflow = tip.getBoundingClientRect().bottom - window.innerHeight
+    const clip = tip.closest(".column")
+    const limit = clip
+        ? Math.min(clip.getBoundingClientRect().bottom, window.innerHeight)
+        : window.innerHeight
+    const overflow = tip.getBoundingClientRect().bottom - limit
     tip.style.transform = overflow > 0 ? "translateY(" + -overflow + "px)" : ""
 })
 
