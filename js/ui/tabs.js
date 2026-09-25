@@ -39,7 +39,8 @@ function renderJobRow(task, rowKey) {
     const tooltipText = rowTooltip(task, rowKey)
     if (els.tooltip.innerHTML != tooltipText) els.tooltip.innerHTML = tooltipText
 
-    if (els.maxLevel.textContent != levelText) els.maxLevel.textContent = levelText
+    const maxLevelText = formatLevel(task.maxLevel)
+    if (els.maxLevel.textContent != maxLevelText) els.maxLevel.textContent = maxLevelText
     els.maxLevel.classList.toggle("hidden", gameData.rebirthOneCount == 0)
 
     const nameText = (task.isHero ? t("great") + " " : "") + t(task.name)
@@ -84,7 +85,8 @@ function renderSkillRow(task, rowKey) {
     const tooltipText = rowTooltip(task, rowKey)
     if (els.tooltip.innerHTML != tooltipText) els.tooltip.innerHTML = tooltipText
 
-    if (els.maxLevel.textContent != levelText) els.maxLevel.textContent = levelText
+    const maxLevelText = formatLevel(task.maxLevel)
+    if (els.maxLevel.textContent != maxLevelText) els.maxLevel.textContent = maxLevelText
     els.maxLevel.classList.toggle("hidden", gameData.rebirthOneCount == 0)
 
     const nameText = (task.isHero ? t("great") + " " : "") + t(task.name)
