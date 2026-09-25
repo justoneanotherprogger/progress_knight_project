@@ -2,9 +2,9 @@
 
 // Элементы строки статичны: DOM не пересоздаётся, а getRowByName +
 // querySelector — по три поиска на строку каждый кадр на ~295 строк.
-function taskRow(task) {
+function taskRow(task, rowKey) {
     if (task._row == null) {
-        const row = getRowByName(task instanceof Job ? task.name : task.id)
+        const row = getRowByName(rowKey)
         const progressBar = task.querySelector(".progressBar", row)
         const valueElement = task.querySelector(".value", row)
         task._row = {
@@ -24,8 +24,8 @@ function taskRow(task) {
     return task._row
 }
 
-function renderJobRow(task) {
-    const els = taskRow(task)
+function renderJobRow(task, rowKey) {
+    const els = taskRow(task, rowKey)
 
     const levelText = formatLevel(task.level)
     if (els.level.textContent != levelText) els.level.textContent = levelText
@@ -65,12 +65,12 @@ function renderJobs() {
     for (const key in gameData.taskData) {
         const task = gameData.taskData[key]
         if (!(task instanceof Job)) continue
-        renderJobRow(task)
+        renderJobRow(task, key)
     }
 }
 
-function renderSkillRow(task) {
-    const els = taskRow(task)
+function renderSkillRow(task, rowKey) {
+    const els = taskRow(task, rowKey)
 
     const levelText = formatLevel(task.level)
     if (els.level.textContent != levelText) els.level.textContent = levelText
@@ -105,7 +105,7 @@ function renderSkills() {
     for (const key in gameData.taskData) {
         const task = gameData.taskData[key]
         if (!(task instanceof Skill)) continue
-        renderSkillRow(task)
+        renderSkillRow(task, key)
     }
 }
 
