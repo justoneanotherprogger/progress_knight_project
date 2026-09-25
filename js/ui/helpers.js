@@ -55,8 +55,9 @@ function setRebirthButton(id, label, gainClass, gainText) {
 // а геометрию — не чаще FIT_TEXT_INTERVAL: имена задач статичны, а
 // clientWidth/getComputedStyle форсят layout, и на ~100 элементах за кадр
 // проверка кэша стоила четверть кадра. При смене шрифта, --stats-scale или
-// ресайзе посадка поправится в течение интервала.
-const FIT_TEXT_INTERVAL = 1000
+// ресайзе посадка поправится в течение интервала — отсюда и его размер:
+// короче интервал, быстрее перестраивается панель.
+const FIT_TEXT_INTERVAL = 300
 
 function fitText(element, size) {
     const toCss = typeof size === "function" ? size : k => k * size + "px"
