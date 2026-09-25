@@ -4,11 +4,11 @@ function renderChallenges() {
 	document.getElementById("activeChallengeName").textContent =
 		getChallengeTranslatedName(gameData.active_challenge);
 
-	if (gameData.active_challenge == "") {
+	if (gameData.active_challenge === "") {
 		document.getElementById("exitChallengeDiv").hidden = true;
 
 		for (let i = 1; i <= Object.keys(gameData.challenges).length; i++) {
-			const element = document.getElementById("challengeButton" + i);
+			const element = document.getElementById(`challengeButton${i}`);
 			if (element != null) {
 				element.textContent = t("enter_challenge");
 				element.classList.remove("hidden");
@@ -18,7 +18,7 @@ function renderChallenges() {
 		document.getElementById("exitChallengeDiv").hidden = false;
 
 		for (let i = 1; i <= Object.keys(gameData.challenges).length; i++) {
-			const element = document.getElementById("challengeButton" + i);
+			const element = document.getElementById(`challengeButton${i}`);
 			if (element != null) element.classList.add("hidden");
 		}
 
@@ -39,7 +39,7 @@ function renderChallenges() {
 	);
 	document.getElementById("challengeGoal3").textContent = t(
 		"challenge_goal",
-		"x" + format(getChallengeGoal("time_does_not_fly")),
+		`x${format(getChallengeGoal("time_does_not_fly"))}`,
 		t("reward_time_warping"),
 	);
 	document.getElementById("challengeGoal4").textContent = t(
@@ -111,17 +111,17 @@ function renderChallenges() {
 	}
 
 	document.getElementById("challengeReward1").hidden =
-		gameData.challenges.an_unhappy_life == 0;
+		gameData.challenges.an_unhappy_life === 0;
 	document.getElementById("challengeReward2").hidden =
-		gameData.challenges.rich_and_the_poor == 0;
+		gameData.challenges.rich_and_the_poor === 0;
 	document.getElementById("challengeReward3").hidden =
-		gameData.challenges.time_does_not_fly == 0;
+		gameData.challenges.time_does_not_fly === 0;
 	document.getElementById("challengeReward4").hidden =
-		gameData.challenges.dance_with_the_devil == 0;
+		gameData.challenges.dance_with_the_devil === 0;
 	document.getElementById("challengeReward5").hidden =
-		gameData.challenges.legends_never_die == 0;
+		gameData.challenges.legends_never_die === 0;
 	document.getElementById("challengeReward6").hidden =
-		gameData.challenges.the_darkest_time == 0;
+		gameData.challenges.the_darkest_time === 0;
 
 	renderCurrentChallengeRewardValue();
 
@@ -153,7 +153,7 @@ function renderChallenges() {
 	const lifespanDebuff = document.getElementById(
 		"challenge5MetaverseLifespanDebuff",
 	);
-	lifespanDebuff.hidden = gameData.rebirthFiveCount == 0;
+	lifespanDebuff.hidden = gameData.rebirthFiveCount === 0;
 	if (!lifespanDebuff.hidden)
 		lifespanDebuff.textContent = t("challenge_5_meta_debuff");
 }
@@ -176,12 +176,12 @@ function renderCurrentChallengeReward(blockclass) {
 }
 
 function renderCurrentChallengeRewardValue(side_bar = false) {
-	for (var i = 1; i <= Object.keys(gameData.challenges).length; i++) {
+	for (let i = 1; i <= Object.keys(gameData.challenges).length; i++) {
 		document.getElementById(
-			(side_bar ? "sidebarC" : "c") + "urrentChallengeBuff" + i,
+			`${side_bar ? "sidebarC" : "c"}urrentChallengeBuff${i}`,
 		).textContent = format(getChallengeBonus(i, true), 2);
 		if (side_bar)
-			document.getElementById("sidebarChallengeBuff" + i).textContent = format(
+			document.getElementById(`sidebarChallengeBuff${i}`).textContent = format(
 				getChallengeBonus(i),
 				2,
 			);

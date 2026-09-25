@@ -19,13 +19,13 @@ function selectElementInGroup(group, index) {
 function refreshLangButtons() {
 	const buttons = document.getElementsByClassName("lang-btn");
 	for (const el of buttons) {
-		el.classList.toggle("selected", el.dataset.lang == currentLang);
+		el.classList.toggle("selected", el.dataset.lang === currentLang);
 	}
 }
 
 function setLayout(id) {
 	gameData.settings.layout = id;
-	if (id == 0) {
+	if (id === 0) {
 		document.getElementById("skillsTabButton").classList.add("hidden");
 		document.getElementById("shopTabButton").classList.add("hidden");
 
@@ -66,7 +66,7 @@ function setLayout(id) {
 	}
 
 	// dark matter layout
-	if (id == 0) {
+	if (id === 0) {
 		document.getElementById("tabcolumnDarkMater").classList.add("hidden");
 		document
 			.getElementById("shopTab")
@@ -93,7 +93,7 @@ function setLayout(id) {
 
 	// metaverse layout
 
-	if (id == 0) {
+	if (id === 0) {
 		document.getElementById("tabcolumnMetaverse").classList.add("hidden");
 		document
 			.getElementById("metaverseTab1")
@@ -114,7 +114,7 @@ function setLayout(id) {
 			.classList.add("settings-main-column");
 	}
 
-	selectElementInGroup("Layout", id == 0 ? 1 : 0);
+	selectElementInGroup("Layout", id === 0 ? 1 : 0);
 }
 
 function setFontSize(id) {
@@ -139,7 +139,7 @@ function setFontSize(id) {
 function updateFontSizeIndicator() {
 	const label = document.getElementById("font_size");
 	if (label)
-		label.innerHTML = t("font_size") + " " + gameData.settings.fontSize + "/7";
+		label.innerHTML = `${t("font_size")} ${gameData.settings.fontSize}/7`;
 }
 
 function setSignDisplay() {
@@ -159,12 +159,12 @@ function setSignDisplay() {
 }
 
 function getQuerySelector(taskName) {
-	return "#row" + removeSpaces(removeStrangeCharacters(taskName));
+	return `#row${removeSpaces(removeStrangeCharacters(taskName))}`;
 }
 
 function getRowByName(name) {
 	return document.getElementById(
-		"row" + removeSpaces(removeStrangeCharacters(name)),
+		`row${removeSpaces(removeStrangeCharacters(name))}`,
 	);
 }
 
@@ -193,12 +193,12 @@ function setTab(selectedTab) {
 
 	gameData.settings.selectedTab = selectedTab;
 
-	const element = document.getElementById(selectedTab + "TabButton");
+	const element = document.getElementById(`${selectedTab}TabButton`);
 
 	const tabs = Array.prototype.slice.call(
 		document.getElementsByClassName("tab"),
 	);
-	tabs.forEach(function (tab) {
+	tabs.forEach((tab) => {
 		tab.style.display = "none";
 	});
 	tabElement.style.display = "flex";
@@ -216,12 +216,12 @@ function setTab(selectedTab) {
 }
 
 function setTabSettings(tab) {
-	const element = document.getElementById(tab + "TabButton");
+	const element = document.getElementById(`${tab}TabButton`);
 
 	const tabs = Array.prototype.slice.call(
 		document.getElementsByClassName("tabSettings"),
 	);
-	tabs.forEach(function (tab) {
+	tabs.forEach((tab) => {
 		tab.style.display = "none";
 	});
 	document.getElementById(tab).style.display = "flex";
@@ -234,12 +234,12 @@ function setTabSettings(tab) {
 }
 
 function setTabDarkMatter(tab) {
-	const element = document.getElementById(tab + "TabButton");
+	const element = document.getElementById(`${tab}TabButton`);
 
 	const tabs = Array.prototype.slice.call(
 		document.getElementsByClassName("tabDarkMatter"),
 	);
-	tabs.forEach(function (tab) {
+	tabs.forEach((tab) => {
 		tab.style.display = "none";
 	});
 	document.getElementById(tab).style.display = "flex";
@@ -252,12 +252,12 @@ function setTabDarkMatter(tab) {
 }
 
 function setTabMetaverse(tab) {
-	const element = document.getElementById(tab + "TabButton");
+	const element = document.getElementById(`${tab}TabButton`);
 
 	const tabs = Array.prototype.slice.call(
 		document.getElementsByClassName("tabMetaverse"),
 	);
-	tabs.forEach(function (tab) {
+	tabs.forEach((tab) => {
 		tab.style.display = "none";
 	});
 	document.getElementById(tab).style.display = "flex";
@@ -286,7 +286,7 @@ function createPerk(template, name) {
 	button.getElementsByClassName("perkCostLabel")[0].textContent = t("cost");
 	button.getElementsByClassName("perkCost")[0].textContent = getPerkCost(name);
 	button.getElementsByClassName("perkCurrency")[0].textContent = t("mpp_short");
-	button.id = "id" + removeSpaces(removeStrangeCharacters(name));
+	button.id = `id${removeSpaces(removeStrangeCharacters(name))}`;
 	button.onclick = () => {
 		buyPerk(name);
 	};
@@ -331,55 +331,53 @@ function changeTab(direction) {
 }
 
 function toggleChallenge(challengeName) {
-	if (!gameData.requirements["req_challenges_tab_button"].isCompleted()) return;
+	if (!gameData.requirements.req_challenges_tab_button.isCompleted()) return;
 
-	if (gameData.active_challenge == "") {
-		if (gameData.requirements["req_challenge_" + challengeName].isCompleted())
+	if (gameData.active_challenge === "") {
+		if (gameData.requirements[`req_challenge_${challengeName}`].isCompleted())
 			enterChallenge(challengeName);
-	} else if (gameData.active_challenge == challengeName) exitChallenge();
+	} else if (gameData.active_challenge === challengeName) exitChallenge();
 	else {
 		exitChallenge();
-		if (gameData.requirements["req_challenge_" + challengeName].isCompleted())
+		if (gameData.requirements[`req_challenge_${challengeName}`].isCompleted())
 			enterChallenge(challengeName);
 	}
 }
 
-window.addEventListener("keydown", function (e) {
+window.addEventListener("keydown", (e) => {
 	if (!e.ctrlKey && !e.shiftKey && !e.altKey) {
-		if (e.key == " " && !e.repeat) {
+		if (e.key === " " && !e.repeat) {
 			togglePause();
-			if (e.target == document.body) {
+			if (e.target === document.body) {
 				e.preventDefault();
 			}
 		}
-		if (e.key == "ArrowRight") changeTab(1);
-		if (e.key == "ArrowLeft") changeTab(-1);
+		if (e.key === "ArrowRight") changeTab(1);
+		if (e.key === "ArrowLeft") changeTab(-1);
 
 		// The "dangerous" keybinds can be disabled.
 		if (!gameData.settings.enableKeybinds) return;
 
-		if (e.key == "q") {
-			if (gameData.requirements["req_rebirth_button1"].isCompleted())
-				rebirthOne();
+		if (e.key === "q") {
+			if (gameData.requirements.req_rebirth_button1.isCompleted()) rebirthOne();
 		}
 
-		if (e.key == "e") {
-			if (gameData.requirements["req_rebirth_button2"].isCompleted())
-				rebirthTwo();
+		if (e.key === "e") {
+			if (gameData.requirements.req_rebirth_button2.isCompleted()) rebirthTwo();
 		}
 
-		if (e.key == "t") {
-			if (gameData.requirements["req_rebirth_button3"].isCompleted())
+		if (e.key === "t") {
+			if (gameData.requirements.req_rebirth_button3.isCompleted())
 				rebirthThree();
 		}
 
-		if (e.key == "u") {
-			if (gameData.requirements["req_rebirth_button4"].isCompleted())
+		if (e.key === "u") {
+			if (gameData.requirements.req_rebirth_button4.isCompleted())
 				rebirthFour();
 		}
 
-		if (e.key == "g") {
-			if (gameData.requirements["req_rebirth_button5"].isCompleted())
+		if (e.key === "g") {
+			if (gameData.requirements.req_rebirth_button5.isCompleted())
 				rebirthFive();
 		}
 

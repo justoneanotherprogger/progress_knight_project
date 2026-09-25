@@ -23,13 +23,13 @@ class Task {
 
 	getMaxLevelMultiplier() {
 		if (
-			gameData.active_challenge == "dance_with_the_devil" ||
-			gameData.active_challenge == "the_darkest_time"
+			gameData.active_challenge === "dance_with_the_devil" ||
+			gameData.active_challenge === "the_darkest_time"
 		) {
 			return 10 / (this.maxLevel + 1);
 		} else {
-			let effect = gameData.taskData["skill_cosmic_recollection"].getEffect();
-			effect = effect == 0 ? 1 : effect;
+			let effect = gameData.taskData.skill_cosmic_recollection.getEffect();
+			effect = effect === 0 ? 1 : effect;
 			return this.baseData.heroxp < 1000
 				? 1 + this.maxLevel / 10
 				: 1 + this.maxLevel / effect;
@@ -111,8 +111,8 @@ class Job extends Task {
 	}
 
 	getCategoryHeroIncomeMult() {
-		const categoryId =
-			this.categoryId || (this.categoryId = this.findJobCategoryId());
+		this.categoryId ??= this.findJobCategoryId();
+		const categoryId = this.categoryId;
 		if (!categoryId) return 1;
 		return jobCategories[categoryId].heroIncomeMult ?? 1;
 	}
@@ -129,18 +129,14 @@ class Job extends Task {
 		)
 			.times(applyMultipliers(this.baseData.income, this.incomeMultipliers))
 			.times(getChallengeBonus("rich_and_the_poor"));
-		return gameData.active_challenge == "rich_and_the_poor" ||
-			gameData.active_challenge == "the_darkest_time"
+		return gameData.active_challenge === "rich_and_the_poor" ||
+			gameData.active_challenge === "the_darkest_time"
 			? income.pow(CHALLENGE_RICH_INCOME_EXPONENT)
 			: income;
 	}
 }
 
 class Skill extends Task {
-	constructor(baseData) {
-		super(baseData);
-	}
-
 	getEffect() {
 		const level = this.level;
 		const hero = this.isHero;
@@ -238,14 +234,14 @@ class Item {
 			}
 
 			if (this.categoryId === "category_properties") {
-				if (gameData.currentProperty == this) {
+				if (gameData.currentProperty === this) {
 					effect = this.baseData.effect.heroeffect;
 					this.unlocked = true;
 				} else effect = 1;
 			}
 		} else {
 			if (
-				gameData.currentProperty != this &&
+				gameData.currentProperty !== this &&
 				!gameData.currentMisc.includes(this)
 			)
 				return 1;
@@ -272,7 +268,7 @@ class Item {
 			this.categoryId === "category_properties"
 				? "happiness"
 				: getItemEffectDescriptionKey(this.baseData.effect.target);
-		return "x" + format(effect) + " " + t(descKey);
+		return `x${format(effect)} ${t(descKey)}`;
 	}
 
 	getExpense(heroic) {
@@ -350,7 +346,7 @@ class CoinRequirement extends Requirement {
 		this.type = "coins";
 	}
 
-	getCondition(isHero, requirement) {
+	getCondition(_isHero, requirement) {
 		return gameData.coins.gte(requirement.requirement);
 	}
 }
@@ -361,7 +357,7 @@ class AgeRequirement extends Requirement {
 		this.type = "age";
 	}
 
-	getCondition(isHero, requirement) {
+	getCondition(_isHero, requirement) {
 		return daysToYears(gameData.days) >= requirement.requirement;
 	}
 }
@@ -372,7 +368,7 @@ class EvilRequirement extends Requirement {
 		this.type = "evil";
 	}
 
-	getCondition(isHero, requirement) {
+	getCondition(_isHero, requirement) {
 		// strict: «есть любое зло» — оно дробное, как материя (см. DarkMatterRequirement)
 		return requirement.strict
 			? gameData.evil.gt(requirement.requirement)
@@ -399,7 +395,7 @@ class DarkMatterRequirement extends Requirement {
 		this.type = "darkMatter";
 	}
 
-	getCondition(isHero, requirement) {
+	getCondition(_isHero, requirement) {
 		// strict: «есть любая материя» — она дробная, и порог 1 прячет топбар
 		// и категорию при значениях вроде 0.3 сразу после ребёрна.
 		return requirement.strict
@@ -414,7 +410,7 @@ class DarkOrbsRequirement extends Requirement {
 		this.type = "darkOrb";
 	}
 
-	getCondition(isHero, requirement) {
+	getCondition(_isHero, requirement) {
 		return gameData.dark_orbs >= requirement.requirement;
 	}
 }
@@ -425,7 +421,7 @@ class MetaverseRequirement extends Requirement {
 		this.type = "metaverse";
 	}
 
-	getCondition(isHero, requirement) {
+	getCondition(_isHero, requirement) {
 		return gameData.rebirthFiveCount >= requirement.requirement;
 	}
 }
@@ -436,7 +432,7 @@ class HypercubeRequirement extends Requirement {
 		this.type = "hypercube";
 	}
 
-	getCondition(isHero, requirement) {
+	getCondition(_isHero, requirement) {
 		return gameData.hypercubes >= requirement.requirement;
 	}
 }
@@ -447,7 +443,7 @@ class PerkPointRequirement extends Requirement {
 		this.type = "perkpoint";
 	}
 
-	getCondition(isHero, requirement) {
+	getCondition(_isHero, requirement) {
 		return gameData.perks_points >= requirement.requirement;
 	}
 }

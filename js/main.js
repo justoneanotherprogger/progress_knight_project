@@ -9,7 +9,7 @@ window.onerror = () => {
 
 document
 	.querySelector("#changelogTabTabButton")
-	.addEventListener("click", async function () {
+	.addEventListener("click", async () => {
 		renderChangelog();
 	});
 
@@ -33,7 +33,7 @@ function setMisc(miscName) {
 	const misc = gameData.itemData[miscName];
 	if (gameData.currentMisc.includes(misc)) {
 		for (let i = 0; i < gameData.currentMisc.length; i++) {
-			if (gameData.currentMisc[i] == misc) {
+			if (gameData.currentMisc[i] === misc) {
 				gameData.currentMisc.splice(i, 1);
 			}
 		}
@@ -121,7 +121,7 @@ function getNet() {
 }
 
 function getIncome() {
-	if (gameData.active_challenge == "the_darkest_time") return new Decimal(0);
+	if (gameData.active_challenge === "the_darkest_time") return new Decimal(0);
 
 	return gameData.currentJob.getIncome().times(getDarkMatterSkillIncome());
 }
@@ -145,7 +145,7 @@ function setTheme(index, reload = false) {
 
 	body.classList.remove("dark");
 
-	if (index == 1) {
+	if (index === 1) {
 		body.classList.add("dark");
 	}
 
@@ -175,8 +175,8 @@ createGameObjects(gameData.taskData, skillBaseData);
 createItemObjects();
 createGameObjects(milestoneData, milestoneBaseData);
 
-gameData.currentJob = gameData.taskData["job_beggar"];
-gameData.currentProperty = gameData.itemData["item_homeless"];
+gameData.currentJob = gameData.taskData.job_beggar;
+gameData.currentProperty = gameData.itemData.item_homeless;
 gameData.currentMisc = [];
 
 gameData.requirements = requirementsBaseData;
@@ -209,7 +209,7 @@ var gameloop, renderloop, saveloop;
 // а полный кадр стоит ~9 мс. Когда вкладка скрыта — рендер пропускается
 // целиком, расчёты при этом продолжаются.
 function startLoops() {
-	gameloop = setInterval(function () {
+	gameloop = setInterval(() => {
 		if (ticking) return;
 		ticking = true;
 		update();
@@ -217,7 +217,7 @@ function startLoops() {
 		ticking = false;
 	}, 1000 / updateSpeed);
 
-	renderloop = setInterval(function () {
+	renderloop = setInterval(() => {
 		if (!document.hidden) updateUI();
 	}, 1000 / renderSpeed);
 

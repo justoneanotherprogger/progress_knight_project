@@ -85,22 +85,22 @@ function format(number, decimals = 1) {
 	}
 
 	if (
-		(gameData.settings.numberNotation == 0 || tier < 3) &&
+		(gameData.settings.numberNotation === 0 || tier < 3) &&
 		tier < units.length
 	) {
 		const suffix = units[tier];
 		const scale = 10 ** (tier * 3);
 		return formatMantissa(decNumber / scale) + suffix;
 	} else {
-		if (gameData.settings.numberNotation == 1) {
+		if (gameData.settings.numberNotation === 1) {
 			const exp = Math.floor(log10);
 			// Math.pow(10, exp) becomes Infinity past 1e308; keep scaling in Decimal
 			const scaled = decNumber.div(new Decimal(10).pow(exp)).toNumber();
-			return formatMantissa(scaled) + "e" + exp;
+			return `${formatMantissa(scaled)}e${exp}`;
 		} else {
 			const exp = Math.floor(log10 / 3);
 			const scaled = decNumber.div(new Decimal(10).pow(exp * 3)).toNumber();
-			return formatMantissa(scaled) + "e" + exp * 3;
+			return `${formatMantissa(scaled)}e${exp * 3}`;
 		}
 	}
 }
@@ -151,7 +151,7 @@ function getCoinsData() {
 }
 
 function formatWhole(number, decimals = 1) {
-	if (number >= 1e3 || (number <= 0.99 && number != 0)) {
+	if (number >= 1e3 || (number <= 0.99 && number !== 0)) {
 		return format(number, decimals);
 	}
 	return format(number, 0);
@@ -182,7 +182,7 @@ function formatCoins(coins, element) {
 						: scaled.minus(
 								toInfinityNumber(diff).times(scaled.div(diff).floor()),
 							);
-				if (amount.gt(0) || (coinsDec.lt(1) && m.value == 1)) {
+				if (amount.gt(0) || (coinsDec.lt(1) && m.value === 1)) {
 					element.children[coinsUsed].textContent =
 						(m.prefix ?? "") + format(amount, amount.lt(1000) ? 0 : 2) + m.name;
 					element.children[coinsUsed].style.color = m.color;
@@ -194,7 +194,7 @@ function formatCoins(coins, element) {
 			break;
 		}
 		case 3:
-			element.children[0].textContent = "$" + format(coinsDec.div(100), 2);
+			element.children[0].textContent = `$${format(coinsDec.div(100), 2)}`;
 			element.children[0].style.color = "#E5C100";
 			element.children[0].className = "";
 			break;
@@ -208,31 +208,31 @@ function formatTime(sec_num, show_ms = false) {
 		return "unknown";
 	}
 	if (sec_num < 0) {
-		return "-" + formatTime(-sec_num, show_ms);
+		return `-${formatTime(-sec_num, show_ms)}`;
 	}
 
 	if (sec_num >= 31536000) {
 		const years = Math.floor(sec_num / 31536000);
 		if (years >= 1000) {
-			return formatWhole(years) + " years";
+			return `${formatWhole(years)} years`;
 		}
-		return years + "y " + formatTime(sec_num % 31536000, show_ms);
+		return `${years}y ${formatTime(sec_num % 31536000, show_ms)}`;
 	}
 	if (sec_num >= 86400) {
 		const days = Math.floor(sec_num / 86400);
-		return days + "d " + formatTime(sec_num % 86400, show_ms);
+		return `${days}d ${formatTime(sec_num % 86400, show_ms)}`;
 	}
 
 	let hours = Math.floor(sec_num / 3600);
 	let minutes = Math.floor((sec_num - hours * 3600) / 60);
 	let seconds = Math.floor(sec_num - hours * 3600 - minutes * 60);
 	const ms = Math.floor((sec_num - Math.floor(sec_num)) * 1000);
-	const mss = show_ms ? "." + ms.toString().padStart(3, "0") : "";
+	const mss = show_ms ? `.${ms.toString().padStart(3, "0")}` : "";
 
-	if (hours < 10) hours = "0" + hours;
-	if (minutes < 10) minutes = "0" + minutes;
-	if (seconds < 10) seconds = "0" + seconds;
-	return (sec_num > 3600 ? hours + ":" : "") + minutes + ":" + seconds + mss;
+	if (hours < 10) hours = `0${hours}`;
+	if (minutes < 10) minutes = `0${minutes}`;
+	if (seconds < 10) seconds = `0${seconds}`;
+	return `${(sec_num > 3600 ? `${hours}:` : "") + minutes}:${seconds}${mss}`;
 }
 
 function formatTreshold(number, decimals = 1, treshold = 100000) {
@@ -249,8 +249,8 @@ function formatLevel(level) {
 function formatAge(days) {
 	const years = daysToYears(days);
 	const day = getCurrentDay(days);
-	if (years > 10000) return t("age") + " " + format(years);
-	else return t("age") + " " + years + " " + t("day") + " " + day;
+	if (years > 10000) return `${t("age")} ${format(years)}`;
+	else return `${t("age")} ${years} ${t("day")} ${day}`;
 }
 
 function getBaseLog(x, y) {
@@ -281,8 +281,7 @@ function getChallengeTaskGoalProgress(taskName) {
 }
 
 function getFormattedChallengeTaskGoal(taskName, level) {
-	if (level < 100000)
-		return t(taskName) + " " + t("lvl") + " " + formatLevel(level);
+	if (level < 100000) return `${t(taskName)} ${t("lvl")} ${formatLevel(level)}`;
 	else
 		return (
 			t("great") +
@@ -306,7 +305,7 @@ const CHALLENGE_KEY_TO_NUMBER = {
 
 function getChallengeTranslatedName(challengeKey) {
 	const num = CHALLENGE_KEY_TO_NUMBER[challengeKey];
-	return num ? t("challenge_" + num + "_name") : challengeKey;
+	return num ? t(`challenge_${num}_name`) : challengeKey;
 }
 
 // --- Admin speed control ---
@@ -332,7 +331,7 @@ async function checkAdminPassword() {
 		document.getElementById("adminSpeedInput").value =
 			gameData.settings.adminSpeedMultiplier;
 		document.getElementById("adminSpeedDisplay").textContent =
-			"x" + gameData.settings.adminSpeedMultiplier;
+			`x${gameData.settings.adminSpeedMultiplier}`;
 	} else {
 		document.getElementById("adminPasswordInput").value = "";
 		document.getElementById("adminPasswordInput").style.borderColor = "red";
@@ -343,11 +342,11 @@ async function checkAdminPassword() {
 }
 
 function setAdminSpeed(value) {
-	value = Math.max(1, Math.min(1000000, parseInt(value) || 1));
+	value = Math.max(1, Math.min(1000000, parseInt(value, 10) || 1));
 	gameData.settings.adminSpeedMultiplier = value;
 	document.getElementById("adminSpeedSlider").value = Math.min(value, 1000);
 	document.getElementById("adminSpeedInput").value = value;
-	document.getElementById("adminSpeedDisplay").textContent = "x" + value;
+	document.getElementById("adminSpeedDisplay").textContent = `x${value}`;
 }
 
 function initAdminPanel() {
@@ -359,6 +358,6 @@ function initAdminPanel() {
 		document.getElementById("adminSpeedInput").value =
 			gameData.settings.adminSpeedMultiplier;
 		document.getElementById("adminSpeedDisplay").textContent =
-			"x" + gameData.settings.adminSpeedMultiplier;
+			`x${gameData.settings.adminSpeedMultiplier}`;
 	}
 }

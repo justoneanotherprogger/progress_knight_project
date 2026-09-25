@@ -9,24 +9,9 @@
 		"includes": ["**/*.js", "!**/node_modules", "!**/vendor"]
 	},
 	"linter": {
-		"enabled": true,
 		"rules": {
-			"preset": "recommended",
 			"correctness": {
-				"noUnusedVariables": "off",
-				"noUnusedFunctionParameters": "warn",
-				"noInnerDeclarations": "warn"
-			},
-			"suspicious": {
-				"noDoubleEquals": "warn",
-				"noAssignInExpressions": "off"
-			},
-			"style": {
-				"useTemplate": "off"
-			},
-			"complexity": {
-				"useArrowFunction": "off",
-				"useLiteralKeys": "off"
+				"noUnusedVariables": "off"
 			}
 		}
 	}

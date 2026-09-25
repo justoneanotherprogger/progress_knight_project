@@ -40,7 +40,7 @@ function updateRequirements() {
 }
 
 function updateStats() {
-	if (gameData.requirements["req_stats_evil_gain"].isCompleted()) {
+	if (gameData.requirements.req_stats_evil_gain.isCompleted()) {
 		gameData.stats.EvilPerSecond = getEvilGain().div(gameData.rebirthTwoTime);
 		if (gameData.stats.EvilPerSecond.gt(gameData.stats.maxEvilPerSecond)) {
 			gameData.stats.maxEvilPerSecond = gameData.stats.EvilPerSecond;
@@ -48,7 +48,7 @@ function updateStats() {
 		}
 	}
 
-	if (gameData.requirements["req_stats_essence_gain"].isCompleted()) {
+	if (gameData.requirements.req_stats_essence_gain.isCompleted()) {
 		gameData.stats.EssencePerSecond = getEssenceGain().div(
 			gameData.rebirthThreeTime,
 		);
@@ -66,13 +66,13 @@ function updateStats() {
 
 function autoPerks() {
 	if (
-		gameData.perks.auto_boost == 1 &&
+		gameData.perks.auto_boost === 1 &&
 		!gameData.boost_active &&
 		gameData.boost_cooldown <= 0
 	)
 		applyBoost();
 	if (
-		gameData.perks.auto_dark_orb == 1 &&
+		gameData.perks.auto_dark_orb === 1 &&
 		gameData.dark_matter.gte(
 			getDarkOrbGeneratorCost().times(PERK_AUTO_SACRIFICE_COST_MULTIPLIER),
 		) &&
@@ -80,13 +80,13 @@ function autoPerks() {
 	)
 		buyDarkOrbGenerator();
 	if (
-		gameData.perks.auto_dark_orb == 1 &&
+		gameData.perks.auto_dark_orb === 1 &&
 		gameData.dark_matter.gte(PERK_AUTO_DARK_ORB_MIRACLE_COST) &&
-		gameData.dark_matter_shop.a_miracle == false
+		gameData.dark_matter_shop.a_miracle === false
 	)
 		buyAMiracle();
 	if (
-		gameData.perks.auto_dark_shop == 1 &&
+		gameData.perks.auto_dark_shop === 1 &&
 		gameData.dark_orbs >= PERK_AUTO_DARK_SHOP_ORBS_THRESHOLD
 	) {
 		buyADealWithTheChairman();
@@ -95,7 +95,7 @@ function autoPerks() {
 		buyLifeCoach();
 	}
 	if (
-		gameData.perks.auto_sacrifice == 1 &&
+		gameData.perks.auto_sacrifice === 1 &&
 		gameData.hypercubes > PERK_AUTO_SACRIFICE_HYPERCUBES_THRESHOLD
 	) {
 		buyDarkMaterMult();
@@ -149,7 +149,7 @@ function autoBuy() {
 			const item = gameData.itemData[key];
 			const expense = item.getExpense();
 
-			if (item.categoryId == "category_properties") {
+			if (item.categoryId === "category_properties") {
 				if (expense.lt(income) && expense.gte(usedExpense)) {
 					gameData.currentProperty = item;
 					usedExpense = expense;
@@ -166,9 +166,9 @@ function autoBuy() {
 		if (gameData.requirements[key].isCompleted()) {
 			const item = gameData.itemData[key];
 			const expense = item.getExpense();
-			if (item.categoryId == "category_misc") {
+			if (item.categoryId === "category_misc") {
 				if (expense.lt(income.minus(usedExpense))) {
-					if (gameData.currentMisc.indexOf(item) == -1) {
+					if (gameData.currentMisc.indexOf(item) === -1) {
 						gameData.currentMisc.push(item);
 						usedExpense = usedExpense.plus(expense);
 					}
@@ -181,8 +181,10 @@ function autoBuy() {
 function increaseCoins() {
 	const gain = applySpeed(getIncome());
 	const gainIsFinite =
-		gain instanceof Decimal ? isFinite(gain.mantissa) : isFinite(gain);
-	if (!gainIsFinite || !isFinite(gameData.coins.mantissa)) return;
+		gain instanceof Decimal
+			? Number.isFinite(gain.mantissa)
+			: Number.isFinite(gain);
+	if (!gainIsFinite || !Number.isFinite(gameData.coins.mantissa)) return;
 
 	gameData.coins = gameData.coins.plus(gain);
 }
@@ -191,7 +193,7 @@ function increaseDays() {
 	gameData.days += applySpeed(1);
 	gameData.totalDays += applySpeed(1);
 	const lifespan = getLifespan();
-	if (lifespan != Infinity && gameData.days > lifespan)
+	if (lifespan !== Infinity && gameData.days > lifespan)
 		gameData.days = lifespan;
 }
 
@@ -223,7 +225,7 @@ function increaseRealtime() {
 }
 
 function applyExpenses() {
-	if (!isFinite(gameData.coins.mantissa)) return;
+	if (!Number.isFinite(gameData.coins.mantissa)) return;
 
 	gameData.coins = gameData.coins.minus(applySpeed(getExpense()));
 
@@ -235,7 +237,7 @@ function applyExpenses() {
 
 function goBankrupt() {
 	gameData.coins = new Decimal(0);
-	gameData.currentProperty = gameData.itemData["item_homeless"];
+	gameData.currentProperty = gameData.itemData.item_homeless;
 	gameData.currentMisc = [];
 }
 
@@ -259,7 +261,7 @@ function makeHeroes() {
 		const prev = getPreviousTaskInCategory(taskname);
 
 		if (
-			prev != "" &&
+			prev !== "" &&
 			(!gameData.taskData[prev].isHero ||
 				gameData.taskData[prev].level < HERO_PREV_LEVEL_MIN)
 		)
@@ -296,7 +298,7 @@ function makeHeroes() {
 		const item = gameData.itemData[key];
 		if (item.isHero) continue;
 		item.isHero = true;
-		gameData.currentProperty = gameData.itemData["item_homeless"];
+		gameData.currentProperty = gameData.itemData.item_homeless;
 		gameData.currentMisc = [];
 	}
 }

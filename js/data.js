@@ -249,7 +249,7 @@ function getPreviousTaskInCategory(task) {
 	var prev = "";
 	for (const category in jobCategories) {
 		for (const job of Object.keys(jobCategories[category].items)) {
-			if (job == task) return prev;
+			if (job === task) return prev;
 			prev = job;
 		}
 	}
@@ -257,7 +257,7 @@ function getPreviousTaskInCategory(task) {
 	prev = "";
 	for (const category in skillCategories) {
 		for (const skill of Object.keys(skillCategories[category].items)) {
-			if (skill == task) return prev;
+			if (skill === task) return prev;
 			prev = skill;
 		}
 	}

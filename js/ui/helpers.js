@@ -2,20 +2,20 @@
 
 function setTextAll(selector, text) {
 	document.querySelectorAll(selector).forEach((el) => {
-		if (el.textContent != text) el.textContent = text;
+		if (el.textContent !== text) el.textContent = text;
 	});
 }
 
 function updateButtonText(id, text) {
 	const element = document.getElementById(id);
-	if (element.textContent != text) {
+	if (element.textContent !== text) {
 		element.textContent = text;
 	}
 }
 
 function updateButtonHTML(id, html) {
 	const element = document.getElementById(id);
-	if (element.dataset.html != html) {
+	if (element.dataset.html !== html) {
 		element.innerHTML = html;
 		element.dataset.html = html;
 	}
@@ -26,7 +26,7 @@ function updateButtonHTML(id, html) {
 // никогда — тултип с разметкой переписывался бы каждый кадр. Поэтому
 // помним, что сами записали.
 function setHTML(element, html) {
-	if (element.dataset.html != html) {
+	if (element.dataset.html !== html) {
 		element.innerHTML = html;
 		element.dataset.html = html;
 	}
@@ -39,12 +39,12 @@ function setRebirthButton(id, label, gainClass, gainText) {
 	const button = document.getElementById(id);
 	const labelEl = button.querySelector(".rebirth-label");
 	const gainEl = button.querySelector(".rebirth-gain");
-	if (labelEl.textContent != label) labelEl.textContent = label;
-	if (gainEl.dataset.gainClass != gainClass) {
-		gainEl.className = "rebirth-gain " + gainClass;
+	if (labelEl.textContent !== label) labelEl.textContent = label;
+	if (gainEl.dataset.gainClass !== gainClass) {
+		gainEl.className = `rebirth-gain ${gainClass}`;
 		gainEl.dataset.gainClass = gainClass;
 	}
-	if (gainEl.textContent != gainText) gainEl.textContent = gainText;
+	if (gainEl.textContent !== gainText) gainEl.textContent = gainText;
 }
 
 // size — число (макс. размер в px) либо функция k → CSS-строка, для
@@ -59,7 +59,7 @@ function setRebirthButton(id, label, gainClass, gainText) {
 const FIT_TEXT_INTERVAL = 1000;
 
 function fitText(element, size) {
-	const toCss = typeof size === "function" ? size : (k) => k * size + "px";
+	const toCss = typeof size === "function" ? size : (k) => `${k * size}px`;
 	const text = element.textContent;
 	if (
 		text === element.dataset.fitTextText &&
@@ -70,9 +70,8 @@ function fitText(element, size) {
 
 	// computed font-size в ключе — иначе элемент под calc-масштабом не
 	// переизмерится, когда --stats-scale сменится, а клиентская ширина та же.
-	const cacheKey =
-		text + "|" + element.clientWidth + "|" + getComputedStyle(element).fontSize;
-	if (element.dataset.fitText == cacheKey) return;
+	const cacheKey = `${text}|${element.clientWidth}|${getComputedStyle(element).fontSize}`;
+	if (element.dataset.fitText === cacheKey) return;
 
 	// Скрытый элемент (display:none) не измеряется: clientWidth = 0 даёт
 	// минимальный масштаб, а кэш потом держит испорченную посадку до
@@ -122,7 +121,7 @@ document.addEventListener("mouseover", (e) => {
 	// Поэтому сначала сбрасываем — меряем настоящее положение.
 	tip.style.transform = "";
 	const overflow = tip.getBoundingClientRect().bottom - limit;
-	tip.style.transform = overflow > 0 ? "translateY(" + -overflow + "px)" : "";
+	tip.style.transform = overflow > 0 ? `translateY(${-overflow}px)` : "";
 });
 
 function renderProgressBar(task, progressFill, progressBar) {
@@ -135,13 +134,13 @@ function renderProgressBar(task, progressFill, progressBar) {
 		width = task.xp.div(task.getMaxXp()).times(100).toNumber();
 	}
 	if (width > 100) width = 100;
-	progressFill.style.width = width + "%";
+	progressFill.style.width = `${width}%`;
 
 	if (task.isHero) {
 		progressFill.classList.add("progress-fill-hero");
 		progressBar.classList.add("progress-bar-hero");
 
-		if (task == gameData.currentJob) {
+		if (task === gameData.currentJob) {
 			progressFill.classList.add("current-hero");
 			progressFill.classList.remove("current");
 		} else {
@@ -155,7 +154,7 @@ function renderProgressBar(task, progressFill, progressBar) {
 		progressFill.classList.remove("progress-fill-hero");
 		progressBar.classList.remove("progress-bar-hero");
 
-		if (task == gameData.currentJob) {
+		if (task === gameData.currentJob) {
 			progressFill.classList.add("current");
 			progressFill.classList.remove("current-hero");
 		} else {

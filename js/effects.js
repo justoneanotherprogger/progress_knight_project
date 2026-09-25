@@ -63,10 +63,10 @@ function labelKey(target) {
 	if (!target) return "";
 	if (target.kind === "resource") {
 		if (target.id === "max_level") return "effect_max_level_multiplier";
-		return "effect_" + target.id;
+		return `effect_${target.id}`;
 	}
 	let index = target.kind;
-	if (target.kind === "task") index += ":" + target.task;
-	else if (target.category) index += ":category:" + target.category;
+	if (target.kind === "task") index += `:${target.task}`;
+	else if (target.category) index += `:category:${target.category}`;
 	return EFFECT_LABEL_KEYS[index] || "";
 }

@@ -24,15 +24,13 @@ function renderBoostButton(elemName) {
 
 function renderMetaverse() {
 	document.getElementById("currentHypercubesCap").hidden =
-		getHypercubeCap() == Infinity;
+		getHypercubeCap() === Infinity;
 	document.getElementById("currentHypercubesCapValue").textContent = format(
 		getHypercubeCap(),
 	);
 
-	for (var i = 0; i < 3; i++) {
-		const elem = document.getElementById(
-			"timeTillNextHypercubePower" + (i + 1),
-		);
+	for (let i = 0; i < 3; i++) {
+		const elem = document.getElementById(`timeTillNextHypercubePower${i + 1}`);
 		const nextH = getNextPowerOfNumber(gameData.hypercubes * 10 ** i);
 		elem.textContent = t(
 			"hypercubes_in",
@@ -42,7 +40,7 @@ function renderMetaverse() {
 		if (i > 0)
 			elem.hidden =
 				nextH > getHypercubeCap() ||
-				gameData.perks_points == 0 ||
+				gameData.perks_points === 0 ||
 				gameData.hypercubes < 1e20 * 10 ** i;
 		else elem.hidden = false;
 	}
@@ -56,7 +54,7 @@ function renderMetaverse() {
 		gameData.hypercubes,
 	);
 	document.getElementById("hypercubesBonusMetaDisplay").textContent =
-		"x" + format(getHypercubeGeneration() / 0.03);
+		`x${format(getHypercubeGeneration() / 0.03)}`;
 	document.getElementById("boostCooldownMetaDisplay").textContent =
 		getBoostCooldownString();
 
@@ -139,11 +137,11 @@ function renderMetaverse() {
 		challengeAltarCost(),
 	);
 	document.getElementById("challengeAltarState").textContent =
-		gameData.metaverse.challenge_altar == 0 ? "" : t("active");
+		gameData.metaverse.challenge_altar === 0 ? "" : t("active");
 	document.getElementById("challengeAltarButton").textContent = t("buy");
 	document.getElementById("challengeAltarButton").disabled =
 		!canBuyChallengeAltar();
-	if (gameData.metaverse.challenge_altar == 0)
+	if (gameData.metaverse.challenge_altar === 0)
 		document.getElementById("challengeAltarButton").classList.remove("hidden");
 	else document.getElementById("challengeAltarButton").classList.add("hidden");
 
@@ -171,7 +169,7 @@ function renderPerks() {
 	);
 	// Info
 
-	if (gameData.requirements["milestone_the_end_is_near"].isCompleted()) {
+	if (gameData.requirements.milestone_the_end_is_near.isCompleted()) {
 		document.getElementById("mppInfo").hidden = true;
 		document.getElementById("mppInfo2").hidden = false;
 		document.getElementById("mppDMBuff").innerHTML = t(
@@ -191,13 +189,13 @@ function renderPerks() {
 
 	for (const perkName of getSortedPerks()) {
 		const key = perkName[0];
-		const button = document.getElementById("id" + key);
+		const button = document.getElementById(`id${key}`);
 
 		if (hide_next) button.classList.add("hidden");
 		else {
 			button.classList.remove("hidden");
 
-			if (gameData.perks[key] == 0) button.classList.remove("active-perk");
+			if (gameData.perks[key] === 0) button.classList.remove("active-perk");
 			else button.classList.add("active-perk");
 
 			const perk_cost = getPerkCost(key);
@@ -212,7 +210,7 @@ function renderPerks() {
 				perkNameEl.textContent = t("locked");
 				fitText(perkNameEl, 18);
 				button.classList.add("perk-locked");
-				if (index % 2 == 1) hide_next = true;
+				if (index % 2 === 1) hide_next = true;
 			}
 		}
 		index++;
@@ -225,9 +223,7 @@ function getSortedPerks() {
 		sortable.push([perkname, perks_cost[perkname]]);
 	}
 
-	sortable.sort(function (a, b) {
-		return a[1] - b[1];
-	});
+	sortable.sort((a, b) => a[1] - b[1]);
 
 	return sortable;
 }

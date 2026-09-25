@@ -99,9 +99,9 @@ function buyGottaBeFast() {
 
 // Rewards
 function getDarkOrbGeneration() {
-	if (gameData.dark_matter_shop.dark_orb_generator == 0) return new Decimal(0);
+	if (gameData.dark_matter_shop.dark_orb_generator === 0) return new Decimal(0);
 
-	const darkOrbiter = milestoneData["milestone_dark_orbiter"].getEffect();
+	const darkOrbiter = milestoneData.milestone_dark_orbiter.getEffect();
 
 	return new Decimal(100)
 		.pow(gameData.dark_matter_shop.dark_orb_generator - 1)
@@ -109,25 +109,25 @@ function getDarkOrbGeneration() {
 }
 
 function getTaaAndMagicXpGain() {
-	if (gameData.active_challenge == "the_darkest_time") return 1;
+	if (gameData.active_challenge === "the_darkest_time") return 1;
 
 	return new Decimal(4).pow(gameData.dark_matter_shop.a_deal_with_the_chairman);
 }
 
 function getAGiftFromGodEssenceGain() {
-	if (gameData.active_challenge == "the_darkest_time") return 1;
+	if (gameData.active_challenge === "the_darkest_time") return 1;
 
 	return new Decimal(2.1).pow(gameData.dark_matter_shop.a_gift_from_god);
 }
 
 function getLifeCoachIncomeGain() {
-	if (gameData.active_challenge == "the_darkest_time") return 1;
+	if (gameData.active_challenge === "the_darkest_time") return 1;
 
 	return new Decimal(14).pow(gameData.dark_matter_shop.life_coach);
 }
 
 function getGottaBeFastGain() {
-	if (gameData.active_challenge == "the_darkest_time") return 1;
+	if (gameData.active_challenge === "the_darkest_time") return 1;
 
 	return 1 + 0.2 * gameData.dark_matter_shop.gotta_be_fast;
 }
@@ -191,16 +191,16 @@ function buyDarkMatterSkill(skill_name, cost, number) {
 	if (gameData.dark_matter.gte(cost)) {
 		gameData.dark_matter = gameData.dark_matter.sub(cost);
 
-		if (gameData.dark_matter_shop[skill_name] == 0)
+		if (gameData.dark_matter_shop[skill_name] === 0)
 			gameData.dark_matter_shop[skill_name] = number;
 		else if (
-			gameData.dark_matter_shop[skill_name] == 1 &&
-			(number == 2 || number == 3)
+			gameData.dark_matter_shop[skill_name] === 1 &&
+			(number === 2 || number === 3)
 		)
 			gameData.dark_matter_shop[skill_name] = 3;
 		else if (
-			gameData.dark_matter_shop[skill_name] == 2 &&
-			(number == 1 || number == 3)
+			gameData.dark_matter_shop[skill_name] === 2 &&
+			(number === 1 || number === 3)
 		)
 			gameData.dark_matter_shop[skill_name] = 3;
 		else gameData.dark_matter = gameData.dark_matter.add(cost);
@@ -208,9 +208,9 @@ function buyDarkMatterSkill(skill_name, cost, number) {
 }
 
 function getDarkMatterSkillIncome() {
-	if (gameData.active_challenge == "the_darkest_time") return 0;
+	if (gameData.active_challenge === "the_darkest_time") return 0;
 
-	if (gameData.perks.positive_dark_mater_skills == 1) return 1;
+	if (gameData.perks.positive_dark_mater_skills === 1) return 1;
 
 	let income = 1;
 
@@ -231,7 +231,7 @@ function getDarkMatterSkillIncome() {
 }
 
 function getDarkMatterSkillTimeWarping() {
-	if (gameData.active_challenge == "the_darkest_time") return 1;
+	if (gameData.active_challenge === "the_darkest_time") return 1;
 
 	let timewarping = 1;
 
@@ -242,7 +242,7 @@ function getDarkMatterSkillTimeWarping() {
 		? 7
 		: 1;
 	timewarping *= [1, 3].includes(gameData.dark_matter_shop.multiverse_explorer)
-		? gameData.perks.positive_dark_mater_skills == 1
+		? gameData.perks.positive_dark_mater_skills === 1
 			? 1
 			: 0.001
 		: 1;
@@ -251,7 +251,7 @@ function getDarkMatterSkillTimeWarping() {
 }
 
 function getDarkMatterSkillXP() {
-	if (gameData.active_challenge == "the_darkest_time") return 1;
+	if (gameData.active_challenge === "the_darkest_time") return 1;
 
 	let xp = 1;
 
@@ -267,17 +267,17 @@ function getDarkMatterSkillXP() {
 }
 
 function getDarkMatterSkillEssence() {
-	if (gameData.active_challenge == "the_darkest_time") return 0.25;
+	if (gameData.active_challenge === "the_darkest_time") return 0.25;
 
 	let ess = 1;
 
 	ess *=
-		gameData.perks.positive_dark_mater_skills == 0 &&
+		gameData.perks.positive_dark_mater_skills === 0 &&
 		[2, 3].includes(gameData.dark_matter_shop.speed_is_life)
 			? 0.5
 			: 1;
 	ess *=
-		gameData.perks.positive_dark_mater_skills == 0 &&
+		gameData.perks.positive_dark_mater_skills === 0 &&
 		[1, 3].includes(gameData.dark_matter_shop.explosion_of_the_universe)
 			? 0.5
 			: 1;
@@ -298,7 +298,7 @@ function getDarkMatterSkillEssence() {
 }
 
 function getDarkMatterSkillEvil() {
-	if (gameData.active_challenge == "the_darkest_time") return 0.25;
+	if (gameData.active_challenge === "the_darkest_time") return 0.25;
 
 	let evil = 1;
 
@@ -306,12 +306,12 @@ function getDarkMatterSkillEvil() {
 		? 100
 		: 1;
 	evil *=
-		gameData.perks.positive_dark_mater_skills == 0 &&
+		gameData.perks.positive_dark_mater_skills === 0 &&
 		[1, 3].includes(gameData.dark_matter_shop.speed_is_life)
 			? 0.5
 			: 1;
 	evil *=
-		gameData.perks.positive_dark_mater_skills == 0 &&
+		gameData.perks.positive_dark_mater_skills === 0 &&
 		[1, 3].includes(gameData.dark_matter_shop.essence_collector)
 			? 0.5
 			: 1;
@@ -319,9 +319,9 @@ function getDarkMatterSkillEvil() {
 	return evil;
 }
 function getDarkMatterSkillDarkMater() {
-	if (gameData.active_challenge == "the_darkest_time") return 1;
+	if (gameData.active_challenge === "the_darkest_time") return 1;
 
-	return gameData.perks.positive_dark_mater_skills == 0 &&
+	return gameData.perks.positive_dark_mater_skills === 0 &&
 		[2, 3].includes(gameData.dark_matter_shop.multiverse_explorer)
 		? 0.01
 		: 1;

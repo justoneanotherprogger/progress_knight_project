@@ -100,15 +100,15 @@ function updateUI() {
 
 	const currentTab = gameData.settings.selectedTab;
 
-	if (currentTab == Tab.JOBS) {
+	if (currentTab === Tab.JOBS) {
 		updateRequiredRows(gameData.taskData, jobCategories);
 		renderHeaderRows(jobCategories);
 		renderJobs();
 	}
 
 	if (
-		currentTab == Tab.SKILLS ||
-		(gameData.settings.layout == 0 && currentTab == Tab.JOBS)
+		currentTab === Tab.SKILLS ||
+		(gameData.settings.layout === 0 && currentTab === Tab.JOBS)
 	) {
 		updateRequiredRows(gameData.taskData, skillCategories);
 		renderHeaderRows(skillCategories);
@@ -116,25 +116,25 @@ function updateUI() {
 	}
 
 	if (
-		currentTab == Tab.SHOP ||
-		(gameData.settings.layout == 0 && currentTab == Tab.JOBS)
+		currentTab === Tab.SHOP ||
+		(gameData.settings.layout === 0 && currentTab === Tab.JOBS)
 	) {
 		updateRequiredRows(gameData.itemData, itemCategories);
 		renderHeaderRows(itemCategories);
 		renderShop();
 	}
 
-	if (currentTab == Tab.CHALLENGES) renderChallenges();
+	if (currentTab === Tab.CHALLENGES) renderChallenges();
 
-	if (currentTab == Tab.MILESTONES) {
+	if (currentTab === Tab.MILESTONES) {
 		updateRequiredRows(milestoneData, milestoneCategories);
 		renderHeaderRows(milestoneCategories);
 		renderMilestones();
 	}
 
-	if (currentTab == Tab.DARK_MATTER) renderDarkMatter();
+	if (currentTab === Tab.DARK_MATTER) renderDarkMatter();
 
-	if (currentTab == Tab.METAVERSE) renderMetaverse();
+	if (currentTab === Tab.METAVERSE) renderMetaverse();
 
-	if (currentTab == Tab.SETTINGS) renderSettings();
+	if (currentTab === Tab.SETTINGS) renderSettings();
 }

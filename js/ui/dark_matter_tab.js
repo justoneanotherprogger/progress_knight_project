@@ -10,12 +10,12 @@ function getDarkMatterSkillDesc(key, level) {
 	const skillValue = gameData.dark_matter_shop[key];
 
 	// Default: just positive effect (level 1)
-	let desc = t(key + "_" + level);
+	let desc = t(`${key}_${level}`);
 
 	// For level 2, always show negative effect regardless of actual skillValue
 	// because the UI always shows level 2 (when both_dark_mater_skills == 1)
-	if (level == 2) {
-		desc += t(key + "_" + level + "_neg");
+	if (level === 2) {
+		desc += t(`${key}_${level}_neg`);
 	}
 
 	// For level 1, no negative effect
@@ -31,7 +31,7 @@ function renderDarkMatter() {
 		gameData.dark_matter,
 	);
 	document.getElementById("darkMatterSkillsDisplay").textContent =
-		gameData.settings.layout == 0 ? "" : format(gameData.dark_matter);
+		gameData.settings.layout === 0 ? "" : format(gameData.dark_matter);
 	document.getElementById("darkOrbsShopDisplay").textContent = formatTreshold(
 		gameData.dark_orbs,
 	);
@@ -160,7 +160,7 @@ function renderDarkMatter() {
 
 	// Skill tree title label
 	document.getElementById("skillTreePageDarkMaterTitle").textContent =
-		t("dark_matter") + ": ";
+		`${t("dark_matter")}: `;
 
 	// Ability descriptions
 	document.getElementById("speedIsLife1Desc").innerHTML =
@@ -208,77 +208,77 @@ function renderDarkMatter() {
 	// Dark Matter Ability tree
 	renderSkillTreeButton(
 		document.getElementById("speedIsLife1"),
-		gameData.dark_matter_shop.speed_is_life != 0,
+		gameData.dark_matter_shop.speed_is_life !== 0,
 		[1, 3].includes(gameData.dark_matter_shop.speed_is_life),
 		gameData.dark_matter.gte(100),
 	);
 	renderSkillTreeButton(
 		document.getElementById("speedIsLife2"),
-		gameData.dark_matter_shop.speed_is_life != 0,
+		gameData.dark_matter_shop.speed_is_life !== 0,
 		[2, 3].includes(gameData.dark_matter_shop.speed_is_life),
 		gameData.dark_matter.gte(100),
 	);
 
 	renderSkillTreeButton(
 		document.getElementById("yourGreatestDebt1"),
-		gameData.dark_matter_shop.your_greatest_debt != 0,
+		gameData.dark_matter_shop.your_greatest_debt !== 0,
 		[1, 3].includes(gameData.dark_matter_shop.your_greatest_debt),
 		gameData.dark_matter.gte(1000),
 	);
 	renderSkillTreeButton(
 		document.getElementById("yourGreatestDebt2"),
-		gameData.dark_matter_shop.your_greatest_debt != 0,
+		gameData.dark_matter_shop.your_greatest_debt !== 0,
 		[2, 3].includes(gameData.dark_matter_shop.your_greatest_debt),
 		gameData.dark_matter.gte(1000),
 	);
 
 	renderSkillTreeButton(
 		document.getElementById("essenceCollector1"),
-		gameData.dark_matter_shop.essence_collector != 0,
+		gameData.dark_matter_shop.essence_collector !== 0,
 		[1, 3].includes(gameData.dark_matter_shop.essence_collector),
 		gameData.dark_matter.gte(10000),
 	);
 	renderSkillTreeButton(
 		document.getElementById("essenceCollector2"),
-		gameData.dark_matter_shop.essence_collector != 0,
+		gameData.dark_matter_shop.essence_collector !== 0,
 		[2, 3].includes(gameData.dark_matter_shop.essence_collector),
 		gameData.dark_matter.gte(10000),
 	);
 
 	renderSkillTreeButton(
 		document.getElementById("explosionOfTheUniverse1"),
-		gameData.dark_matter_shop.explosion_of_the_universe != 0,
+		gameData.dark_matter_shop.explosion_of_the_universe !== 0,
 		[1, 3].includes(gameData.dark_matter_shop.explosion_of_the_universe),
 		gameData.dark_matter.gte(100000),
 	);
 	renderSkillTreeButton(
 		document.getElementById("explosionOfTheUniverse2"),
-		gameData.dark_matter_shop.explosion_of_the_universe != 0,
+		gameData.dark_matter_shop.explosion_of_the_universe !== 0,
 		[2, 3].includes(gameData.dark_matter_shop.explosion_of_the_universe),
 		gameData.dark_matter.gte(100000),
 	);
 
 	renderSkillTreeButton(
 		document.getElementById("multiverseExplorer1"),
-		gameData.dark_matter_shop.multiverse_explorer != 0,
+		gameData.dark_matter_shop.multiverse_explorer !== 0,
 		[1, 3].includes(gameData.dark_matter_shop.multiverse_explorer),
 		gameData.dark_matter.gte(100000000),
 	);
 	renderSkillTreeButton(
 		document.getElementById("multiverseExplorer2"),
-		gameData.dark_matter_shop.multiverse_explorer != 0,
+		gameData.dark_matter_shop.multiverse_explorer !== 0,
 		[2, 3].includes(gameData.dark_matter_shop.multiverse_explorer),
 		gameData.dark_matter.gte(100000000),
 	);
 
 	const effects = document.getElementsByClassName("negative-effect");
 	for (const effect of effects) {
-		effect.hidden = gameData.perks.positive_dark_mater_skills == 1;
+		effect.hidden = gameData.perks.positive_dark_mater_skills === 1;
 	}
 
 	// turn off OR
 	const ors = document.getElementsByClassName("darkMatterSkillOR");
 	for (const elem of ors) {
-		elem.hidden = gameData.perks.both_dark_mater_skills == 1;
+		elem.hidden = gameData.perks.both_dark_mater_skills === 1;
 	}
 }

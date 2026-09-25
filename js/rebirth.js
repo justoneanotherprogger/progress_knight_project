@@ -36,7 +36,7 @@ function rebirthTwo() {
 function rebirthThree() {
 	gameData.rebirthThreeCount += 1;
 	gameData.essence = gameData.essence.add(getEssenceGain());
-	if (!isFinite(gameData.essence.mantissa))
+	if (!Number.isFinite(gameData.essence.mantissa))
 		gameData.essence = new Decimal(REBIRTH_THREE_ESSENCE_CAP);
 	gameData.evil = evilTranGain();
 
@@ -66,8 +66,8 @@ function rebirthFour() {
 	gameData.evil = new Decimal(0);
 
 	if (
-		gameData.metaverse.challenge_altar == 0 &&
-		gameData.perks.save_challenges == 0
+		gameData.metaverse.challenge_altar === 0 &&
+		gameData.perks.save_challenges === 0
 	) {
 		for (const challenge in gameData.challenges) {
 			gameData.challenges[challenge] = 0;
@@ -109,7 +109,7 @@ function rebirthFive() {
 	gameData.dark_matter_shop.gotta_be_fast = 0;
 	gameData.dark_matter_shop.life_coach = 0;
 
-	if (gameData.perks.keep_dark_mater_skills == 0) {
+	if (gameData.perks.keep_dark_mater_skills === 0) {
 		gameData.dark_matter_shop.speed_is_life = 0;
 		gameData.dark_matter_shop.your_greatest_debt = 0;
 		gameData.dark_matter_shop.essence_collector = 0;
@@ -117,7 +117,7 @@ function rebirthFive() {
 		gameData.dark_matter_shop.multiverse_explorer = 0;
 	}
 
-	if (gameData.perks.save_challenges == 0) {
+	if (gameData.perks.save_challenges === 0) {
 		for (const challenge in gameData.challenges) {
 			gameData.challenges[challenge] = 0;
 		}
@@ -129,8 +129,8 @@ function rebirthFive() {
 		gameData.requirements[key].completed = false;
 	}
 
-	gameData.requirements["req_skill_tree_tab_tab_button"].completed = false;
-	gameData.requirements["req_skill_tree_page"].completed = false;
+	gameData.requirements.req_skill_tree_tab_tab_button.completed = false;
+	gameData.requirements.req_skill_tree_page.completed = false;
 
 	if (
 		gameData.stats.fastest5 == null ||
@@ -168,39 +168,38 @@ function rebirthFive() {
 
 function applyMilestones() {
 	if (
-		(gameData.requirements["milestone_magic_eye"].isCompleted() &&
-			gameData.requirements["req_rebirth_note_2"].isCompleted()) ||
-		gameData.requirements["milestone_almighty_eye"].isCompleted()
+		(gameData.requirements.milestone_magic_eye.isCompleted() &&
+			gameData.requirements.req_rebirth_note_2.isCompleted()) ||
+		gameData.requirements.milestone_almighty_eye.isCompleted()
 	) {
 		for (const taskName in gameData.taskData) {
 			const task = gameData.taskData[taskName];
-			const effect = gameData.taskData["skill_cosmic_recollection"].getEffect();
-			const maxlevel = Math.floor(task.level * (effect == 0 ? 1 : effect));
+			const effect = gameData.taskData.skill_cosmic_recollection.getEffect();
+			const maxlevel = Math.floor(task.level * (effect === 0 ? 1 : effect));
 			if (maxlevel > task.maxLevel) task.maxLevel = maxlevel;
 		}
 	}
 
 	if (canSimulate()) {
 		if (
-			gameData.requirements["milestone_deal_with_the_devil"].isCompleted() &&
-			gameData.requirements["req_rebirth_note_3"].isCompleted()
+			gameData.requirements.milestone_deal_with_the_devil.isCompleted() &&
+			gameData.requirements.req_rebirth_note_3.isCompleted()
 		) {
 			if (gameData.evil.eq(0)) gameData.evil = new Decimal(1);
 			if (gameData.evil.lt(getEvilGain()))
 				gameData.evil = gameData.evil.times(EVIL_GROWTH_EXPONENT_DEAL);
 		}
-		if (gameData.requirements["milestone_hell_portal"].isCompleted()) {
+		if (gameData.requirements.milestone_hell_portal.isCompleted()) {
 			if (gameData.evil.eq(0)) gameData.evil = new Decimal(1);
 			if (gameData.evil.lt(getEvilGain())) {
-				const exponent = gameData.requirements[
-					"milestone_mind_control"
-				].isCompleted()
-					? EVIL_GROWTH_EXPONENT_MIND_CONTROL
-					: EVIL_GROWTH_EXPONENT_HELL;
+				const exponent =
+					gameData.requirements.milestone_mind_control.isCompleted()
+						? EVIL_GROWTH_EXPONENT_MIND_CONTROL
+						: EVIL_GROWTH_EXPONENT_HELL;
 				gameData.evil = gameData.evil.times(exponent);
 			}
 		}
-		if (gameData.requirements["milestone_galactic_emperor"].isCompleted()) {
+		if (gameData.requirements.milestone_galactic_emperor.isCompleted()) {
 			if (gameData.essence.eq(0)) gameData.essence = new Decimal(1);
 			if (
 				gameData.essence.lt(
@@ -208,7 +207,7 @@ function applyMilestones() {
 				)
 			)
 				gameData.essence = gameData.essence.times(ESSENCE_GROWTH_EXPONENT);
-			if (!isFinite(gameData.essence.mantissa))
+			if (!Number.isFinite(gameData.essence.mantissa))
 				gameData.essence = new Decimal(REBIRTH_THREE_ESSENCE_CAP);
 		}
 	}
@@ -217,15 +216,15 @@ function applyMilestones() {
 function rebirthReset(set_tab_to_jobs = true) {
 	if (set_tab_to_jobs) {
 		if (
-			(gameData.settings.selectedTab == Tab.METAVERSE &&
+			(gameData.settings.selectedTab === Tab.METAVERSE &&
 				gameData.hypercubes > 0) ||
-			(gameData.settings.selectedTab == Tab.CHALLENGES &&
+			(gameData.settings.selectedTab === Tab.CHALLENGES &&
 				gameData.evil.gt(PERK_AUTO_DARK_SHOP_ORBS_THRESHOLD)) ||
-			(gameData.settings.selectedTab == Tab.MILESTONES &&
+			(gameData.settings.selectedTab === Tab.MILESTONES &&
 				gameData.essence.gt(0)) ||
-			(gameData.settings.selectedTab == Tab.DARK_MATTER &&
+			(gameData.settings.selectedTab === Tab.DARK_MATTER &&
 				gameData.dark_matter.gt(0)) ||
-			gameData.settings.selectedTab == Tab.REBIRTH
+			gameData.settings.selectedTab === Tab.REBIRTH
 		) {
 			// do not switch tab
 		} else setTab("jobs");
@@ -233,8 +232,8 @@ function rebirthReset(set_tab_to_jobs = true) {
 	gameData.coins = new Decimal(0);
 	gameData.days = DEFAULT_STARTING_AGE;
 	gameData.realtime = 0;
-	gameData.currentJob = gameData.taskData["job_beggar"];
-	gameData.currentProperty = gameData.itemData["item_homeless"];
+	gameData.currentJob = gameData.taskData.job_beggar;
+	gameData.currentProperty = gameData.itemData.item_homeless;
 	gameData.currentMisc = [];
 	gameData.stats.EssencePerSecond = new Decimal(0);
 	gameData.stats.maxEssencePerSecond = new Decimal(0);
@@ -252,7 +251,7 @@ function rebirthReset(set_tab_to_jobs = true) {
 	}
 
 	for (const itemName in gameData.itemData) {
-		var item = gameData.itemData[itemName];
+		const item = gameData.itemData[itemName];
 		item.isHero = false;
 	}
 
@@ -277,26 +276,26 @@ function rebirthReset(set_tab_to_jobs = true) {
 		gameData.requirements[requirementKey].completed = true;
 		if (
 			requirementKey === "milestone_magic_eye" &&
-			gameData.rebirthOneCount == 0
+			gameData.rebirthOneCount === 0
 		)
 			gameData.rebirthOneCount = 1;
 	}
 }
 
 function applyPerks() {
-	if (gameData.perks.instant_evil == 1) {
+	if (gameData.perks.instant_evil === 1) {
 		if (gameData.evil.lt(getEvilGain().times(PERK_INSTANT_GAIN_MULTIPLIER)))
 			gameData.evil = getEvilGain().times(PERK_INSTANT_GAIN_MULTIPLIER);
 	}
-	if (gameData.perks.instant_essence == 1) {
+	if (gameData.perks.instant_essence === 1) {
 		if (
 			gameData.essence.lt(getEssenceGain().times(PERK_INSTANT_GAIN_MULTIPLIER))
 		)
 			gameData.essence = getEssenceGain().times(PERK_INSTANT_GAIN_MULTIPLIER);
-		if (!isFinite(gameData.essence.mantissa))
+		if (!Number.isFinite(gameData.essence.mantissa))
 			gameData.essence = new Decimal(REBIRTH_THREE_ESSENCE_CAP);
 	}
-	if (gameData.perks.instant_dark_matter == 1) {
+	if (gameData.perks.instant_dark_matter === 1) {
 		if (
 			gameData.dark_matter.lt(
 				getDarkMatterGain().times(PERK_INSTANT_GAIN_MULTIPLIER),

@@ -28,24 +28,26 @@ function renderJobRow(task, rowKey) {
 	const els = taskRow(task, rowKey);
 
 	const levelText = formatLevel(task.level);
-	if (els.level.textContent != levelText) els.level.textContent = levelText;
+	if (els.level.textContent !== levelText) els.level.textContent = levelText;
 
 	const xpGainText = task.getXpGainFormatted();
-	if (els.xpGain.textContent != xpGainText) els.xpGain.textContent = xpGainText;
+	if (els.xpGain.textContent !== xpGainText)
+		els.xpGain.textContent = xpGainText;
 
 	const xpLeftText = task.getXpLeftFormatted();
-	if (els.xpLeft.textContent != xpLeftText) els.xpLeft.textContent = xpLeftText;
+	if (els.xpLeft.textContent !== xpLeftText)
+		els.xpLeft.textContent = xpLeftText;
 
 	const tooltipText = rowTooltip(task, rowKey);
 	setHTML(els.tooltip, tooltipText);
 
 	const maxLevelText = formatLevel(task.maxLevel);
-	if (els.maxLevel.textContent != maxLevelText)
+	if (els.maxLevel.textContent !== maxLevelText)
 		els.maxLevel.textContent = maxLevelText;
-	els.maxLevel.classList.toggle("hidden", gameData.rebirthOneCount == 0);
+	els.maxLevel.classList.toggle("hidden", gameData.rebirthOneCount === 0);
 
-	const nameText = (task.isHero ? t("great") + " " : "") + t(task.name);
-	if (els.name.textContent != nameText) els.name.textContent = nameText;
+	const nameText = (task.isHero ? `${t("great")} ` : "") + t(task.name);
+	if (els.name.textContent !== nameText) els.name.textContent = nameText;
 	els.name.style.whiteSpace = "nowrap";
 	fitText(els.name, 16);
 	renderProgressBar(task, els.progressFill, els.progressBar);
@@ -75,24 +77,26 @@ function renderSkillRow(task, rowKey) {
 	const els = taskRow(task, rowKey);
 
 	const levelText = formatLevel(task.level);
-	if (els.level.textContent != levelText) els.level.textContent = levelText;
+	if (els.level.textContent !== levelText) els.level.textContent = levelText;
 
 	const xpGainText = task.getXpGainFormatted();
-	if (els.xpGain.textContent != xpGainText) els.xpGain.textContent = xpGainText;
+	if (els.xpGain.textContent !== xpGainText)
+		els.xpGain.textContent = xpGainText;
 
 	const xpLeftText = task.getXpLeftFormatted();
-	if (els.xpLeft.textContent != xpLeftText) els.xpLeft.textContent = xpLeftText;
+	if (els.xpLeft.textContent !== xpLeftText)
+		els.xpLeft.textContent = xpLeftText;
 
 	const tooltipText = rowTooltip(task, rowKey);
 	setHTML(els.tooltip, tooltipText);
 
 	const maxLevelText = formatLevel(task.maxLevel);
-	if (els.maxLevel.textContent != maxLevelText)
+	if (els.maxLevel.textContent !== maxLevelText)
 		els.maxLevel.textContent = maxLevelText;
-	els.maxLevel.classList.toggle("hidden", gameData.rebirthOneCount == 0);
+	els.maxLevel.classList.toggle("hidden", gameData.rebirthOneCount === 0);
 
-	const nameText = (task.isHero ? t("great") + " " : "") + t(task.name);
-	if (els.name.textContent != nameText) els.name.textContent = nameText;
+	const nameText = (task.isHero ? `${t("great")} ` : "") + t(task.name);
+	if (els.name.textContent !== nameText) els.name.textContent = nameText;
 	els.name.style.whiteSpace = "nowrap";
 	fitText(els.name, 16);
 	renderProgressBar(task, els.progressFill, els.progressBar);
@@ -101,7 +105,8 @@ function renderSkillRow(task, rowKey) {
 	els.effect.style.display = true;
 
 	const effectText = task.getEffectDescription();
-	if (els.effect.textContent != effectText) els.effect.textContent = effectText;
+	if (els.effect.textContent !== effectText)
+		els.effect.textContent = effectText;
 	fitText(els.effect, 16);
 }
 
@@ -133,11 +138,11 @@ function renderShop() {
 		els.button.disabled = gameData.coins.lt(item.getExpense());
 
 		const nameText = t(item.name);
-		if (els.name.textContent != nameText) els.name.textContent = nameText;
+		if (els.name.textContent !== nameText) els.name.textContent = nameText;
 
 		if (els.tooltip) {
 			const tooltipText = t(item.baseData.tooltip);
-			if (els.tooltip.textContent != tooltipText)
+			if (els.tooltip.textContent !== tooltipText)
 				els.tooltip.textContent = tooltipText;
 		}
 
@@ -145,20 +150,20 @@ function renderShop() {
 
 		const color = itemCategories[item.categoryId].headerColor;
 		const bgColor =
-			gameData.currentMisc.includes(item) || item == gameData.currentProperty
+			gameData.currentMisc.includes(item) || item === gameData.currentProperty
 				? color
 				: "white";
-		if (els.active.style.backgroundColor != bgColor)
+		if (els.active.style.backgroundColor !== bgColor)
 			els.active.style.backgroundColor = bgColor;
 
 		const effectText = item.getEffectDescription();
-		if (els.effect.textContent != effectText)
+		if (els.effect.textContent !== effectText)
 			els.effect.textContent = effectText;
 		formatCoins(item.getExpense(), els.expense);
 	}
 
 	const autoBuyToggle = document.getElementById("autoBuyToggle");
-	if (autoBuyToggle && autoBuyToggle.checked != gameData.autoBuyEnabled)
+	if (autoBuyToggle && autoBuyToggle.checked !== gameData.autoBuyEnabled)
 		autoBuyToggle.checked = gameData.autoBuyEnabled;
 }
 
@@ -180,23 +185,24 @@ function renderMilestones() {
 		const els = milestone._row;
 
 		const essenceText = format(milestone.threshold);
-		if (els.essence.textContent != essenceText)
+		if (els.essence.textContent !== essenceText)
 			els.essence.textContent = essenceText;
 
 		let desc = t(milestone.description);
 		const effect = milestone.getEffect();
-		if (effect != null) desc = "x" + format(effect, 1) + " " + desc;
+		if (effect != null) desc = `x${format(effect, 1)} ${desc}`;
 
-		if (els.description.textContent != desc) els.description.textContent = desc;
+		if (els.description.textContent !== desc)
+			els.description.textContent = desc;
 
 		const nameText = t(milestone.name);
-		if (els.name.textContent != nameText) els.name.textContent = nameText;
+		if (els.name.textContent !== nameText) els.name.textContent = nameText;
 		els.name.style.whiteSpace = "nowrap";
 		fitText(els.name, 16);
 
 		if (els.tooltip) {
 			const tooltipText = t(milestone.tooltip);
-			if (els.tooltip.textContent != tooltipText)
+			if (els.tooltip.textContent !== tooltipText)
 				els.tooltip.textContent = tooltipText;
 		}
 	}
@@ -319,17 +325,17 @@ function renderSettings() {
 
 	// Challenge Stats
 	document.getElementById("stats_challenge_1").hidden =
-		gameData.challenges.an_unhappy_life == 0;
+		gameData.challenges.an_unhappy_life === 0;
 	document.getElementById("stats_challenge_2").hidden =
-		gameData.challenges.rich_and_the_poor == 0;
+		gameData.challenges.rich_and_the_poor === 0;
 	document.getElementById("stats_challenge_3").hidden =
-		gameData.challenges.time_does_not_fly == 0;
+		gameData.challenges.time_does_not_fly === 0;
 	document.getElementById("stats_challenge_4").hidden =
-		gameData.challenges.dance_with_the_devil == 0;
+		gameData.challenges.dance_with_the_devil === 0;
 	document.getElementById("stats_challenge_5").hidden =
-		gameData.challenges.legends_never_die == 0;
+		gameData.challenges.legends_never_die === 0;
 	document.getElementById("stats_challenge_6").hidden =
-		gameData.challenges.the_darkest_time == 0;
+		gameData.challenges.the_darkest_time === 0;
 
 	document.getElementById("challengeHappinessBuffDisplay").textContent = format(
 		getChallengeBonus("an_unhappy_life"),
@@ -359,24 +365,24 @@ function renderRequirements() {
 			// Класс пишется только при реальной смене: за весь забег
 			// требование закрывается максимум один раз, а отрисовка
 			// гоняется каждый кадр.
-			if (element.classList.contains("hidden") == visible)
+			if (element.classList.contains("hidden") === visible)
 				element.classList.toggle("hidden", !visible);
 		}
 	}
 }
 
 function updateHeaderColumns(headerRow, categoryType) {
-	if (categoryType == jobCategories || categoryType == skillCategories) {
+	if (categoryType === jobCategories || categoryType === skillCategories) {
 		const valueType = headerRow.querySelector(".valueType");
 		if (valueType)
 			valueType.textContent =
-				categoryType == jobCategories ? t("income_day") : t("effect");
+				categoryType === jobCategories ? t("income_day") : t("effect");
 		const headers = headerRow.getElementsByTagName("th");
 		headers[1].textContent = t("level");
 		headers[3].textContent = t("xp_day");
 		headers[4].textContent = t("xp_left");
 		headers[5].textContent = t("max_level");
-	} else if (categoryType == itemCategories) {
+	} else if (categoryType === itemCategories) {
 		const headers = headerRow.getElementsByTagName("th");
 		headers[1].textContent = t("active");
 		headers[2].textContent = t("effect");
@@ -397,7 +403,10 @@ function renderHeaderRows(categories) {
 				t(categoryName);
 		const maxLevelElement = headerRow.querySelector(".maxLevel");
 		if (maxLevelElement)
-			maxLevelElement.classList.toggle("hidden", gameData.rebirthOneCount == 0);
+			maxLevelElement.classList.toggle(
+				"hidden",
+				gameData.rebirthOneCount === 0,
+			);
 
 		updateHeaderColumns(headerRow, categories);
 	}
@@ -409,11 +418,11 @@ function createRequiredRow(categoryName, categoryType) {
 		.content.firstElementChild.cloneNode(true);
 	const graySpans = requiredRow.querySelectorAll("span.w3-text-gray");
 	graySpans[0].textContent = t("required");
-	if (categoryType != jobCategories && graySpans.length > 1)
+	if (categoryType !== jobCategories && graySpans.length > 1)
 		graySpans[1].textContent = t("next_effect");
 	requiredRow.classList.add("requiredRow");
 	requiredRow.classList.add(removeSpaces(categoryName));
-	requiredRow.id = "req_" + categoryName;
+	requiredRow.id = `req_${categoryName}`;
 	return requiredRow;
 }
 
@@ -422,7 +431,7 @@ function createHeaderRow(templates, categoryType, categoryName) {
 		templates.headerRow.content.firstElementChild.cloneNode(true);
 	const categoryElement = headerRow.getElementsByClassName("category")[0];
 
-	if (categoryType == itemCategories) {
+	if (categoryType === itemCategories) {
 		categoryElement.getElementsByClassName("name")[0].textContent =
 			t(categoryName);
 	} else {
@@ -443,20 +452,20 @@ function createRow(templates, name, categoryName, categoryType) {
 	const row = templates.row.content.firstElementChild.cloneNode(true);
 
 	let displayName = name;
-	let tooltipKey = "tt_" + name;
-	if (categoryType == skillCategories || categoryType == jobCategories) {
+	let tooltipKey = `tt_${name}`;
+	if (categoryType === skillCategories || categoryType === jobCategories) {
 		const entity = gameData.taskData[name];
 		if (entity) {
 			displayName = entity.name;
 			tooltipKey = entity.baseData.tooltip;
 		}
-	} else if (categoryType == itemCategories) {
+	} else if (categoryType === itemCategories) {
 		const entity = gameData.itemData[name];
 		if (entity) {
 			displayName = entity.name;
 			tooltipKey = entity.baseData.tooltip;
 		}
-	} else if (categoryType == milestoneCategories) {
+	} else if (categoryType === milestoneCategories) {
 		const entity = milestoneData[name];
 		if (entity) {
 			displayName = entity.name;
@@ -466,11 +475,11 @@ function createRow(templates, name, categoryName, categoryType) {
 
 	row.getElementsByClassName("name")[0].textContent = t(displayName);
 	row.getElementsByClassName("tooltipText")[0].textContent = t(tooltipKey);
-	row.id = "row" + removeSpaces(removeStrangeCharacters(name));
+	row.id = `row${removeSpaces(removeStrangeCharacters(name))}`;
 
-	if (categoryType == itemCategories) {
+	if (categoryType === itemCategories) {
 		row.getElementsByClassName("button")[0].onclick =
-			categoryName == "category_properties"
+			categoryName === "category_properties"
 				? () => {
 						setCurrentProperty(name);
 					}
@@ -485,16 +494,16 @@ function createRow(templates, name, categoryName, categoryType) {
 function createAllRows(categoryType, tableId) {
 	const templates = {
 		headerRow: document.getElementsByClassName(
-			categoryType == itemCategories
+			categoryType === itemCategories
 				? "headerRowItemTemplate"
-				: categoryType == milestoneCategories
+				: categoryType === milestoneCategories
 					? "headerRowMilestoneTemplate"
 					: "headerRowTaskTemplate",
 		)[0],
 		row: document.getElementsByClassName(
-			categoryType == itemCategories
+			categoryType === itemCategories
 				? "rowItemTemplate"
-				: categoryType == milestoneCategories
+				: categoryType === milestoneCategories
 					? "rowMilestoneTemplate"
 					: "rowTaskTemplate",
 		)[0],
@@ -508,7 +517,7 @@ function createAllRows(categoryType, tableId) {
 
 		const category = categoryType[categoryName];
 		if (Array.isArray(category)) {
-			category.forEach(function (name) {
+			category.forEach((name) => {
 				const row = createRow(templates, name, categoryName, categoryType);
 				table.appendChild(row);
 			});
@@ -535,7 +544,7 @@ function updateRequiredRows(data, categoryType) {
 	for (const requiredRow of requiredRows) {
 		const graySpans = requiredRow.querySelectorAll("span.w3-text-gray");
 		graySpans[0].textContent = t("required");
-		if (categoryType != jobCategories && graySpans.length > 1)
+		if (categoryType !== jobCategories && graySpans.length > 1)
 			graySpans[1].textContent = t("next_effect");
 		let nextEntity = null;
 		let nextEntityName = null;
@@ -553,7 +562,7 @@ function updateRequiredRows(data, categoryType) {
 			if (i >= entries.length - 1) break;
 
 			const requirements = gameData.requirements[entityName];
-			if (requirements && i == 0) {
+			if (requirements && i === 0) {
 				if (!requirements.isCompleted()) {
 					nextEntityName = entityName;
 					nextEntity = data[entityName];
@@ -618,8 +627,8 @@ function updateRequiredRows(data, categoryType) {
 
 			let finalText = "";
 			const effectText = "";
-			if (data == gameData.taskData) {
-				if (categoryType != jobCategories) {
+			if (data === gameData.taskData) {
+				if (categoryType !== jobCategories) {
 					effectElement.classList.remove("hiddenTask");
 					effectValueElement.textContent = nextEntity.unlocked
 						? t(labelKey(nextEntity.baseData.effect.target))
@@ -628,25 +637,20 @@ function updateRequiredRows(data, categoryType) {
 
 				if (requirementObject instanceof EvilRequirement) {
 					evilElement.classList.remove("hiddenTask");
-					evilElement.textContent =
-						format(requirements[0].requirement) + " " + t("evil");
+					evilElement.textContent = `${format(requirements[0].requirement)} ${t("evil")}`;
 				} else if (requirementObject instanceof EssenceRequirement) {
 					essenceElement.classList.remove("hiddenTask");
-					essenceElement.textContent =
-						format(requirements[0].requirement) + " " + t("essence");
+					essenceElement.textContent = `${format(requirements[0].requirement)} ${t("essence")}`;
 				} else if (requirementObject instanceof DarkMatterRequirement) {
 					darkMatterElement.classList.remove("hiddenTask");
-					darkMatterElement.textContent =
-						format(requirements[0].requirement) + " " + t("dark_matter");
+					darkMatterElement.textContent = `${format(requirements[0].requirement)} ${t("dark_matter")}`;
 				} else if (requirementObject instanceof MetaverseRequirement) {
 				} else if (requirementObject instanceof HypercubeRequirement) {
 					hypercubeElement.classList.remove("hiddenTask");
-					hypercubeElement.textContent =
-						format(requirements[0].requirement) + " " + t("hypercubes");
+					hypercubeElement.textContent = `${format(requirements[0].requirement)} ${t("hypercubes")}`;
 				} else if (requirementObject instanceof AgeRequirement) {
 					essenceElement.classList.remove("hiddenTask");
-					essenceElement.textContent =
-						t("age") + " " + format(requirements[0].requirement);
+					essenceElement.textContent = `${t("age")} ${format(requirements[0].requirement)}`;
 				} else {
 					levelElement.classList.remove("hiddenTask");
 					for (const requirement of requirements) {
@@ -664,7 +668,7 @@ function updateRequiredRows(data, categoryType) {
 					finalText = finalText.substring(0, finalText.length - 1);
 					levelElement.textContent = finalText;
 				}
-			} else if (data == gameData.itemData) {
+			} else if (data === gameData.itemData) {
 				coinElement.classList.remove("hiddenTask");
 				formatCoins(requirements[0].requirement, coinElement);
 
@@ -672,10 +676,9 @@ function updateRequiredRows(data, categoryType) {
 				effectValueElement.textContent = nextEntity.unlocked
 					? nextEntity.getEffectDescription()
 					: t("unknown");
-			} else if (data == milestoneData) {
+			} else if (data === milestoneData) {
 				essenceElement.classList.remove("hiddenTask");
-				essenceElement.textContent =
-					format(requirements[0].requirement) + " " + t("essence");
+				essenceElement.textContent = `${format(requirements[0].requirement)} ${t("essence")}`;
 
 				if (nextEntity.baseData.description != null) {
 					effectElement.classList.remove("hiddenTask");
@@ -702,9 +705,9 @@ function getHeroicRequiredTooltip(task) {
 	let reqlist = "";
 	let prevReq = "";
 
-	if (prev != "") {
-		var prevTask = gameData.taskData[prev];
-		var prevlvl = prevTask.isHero ? prevTask.level : 0;
+	if (prev !== "") {
+		const prevTask = gameData.taskData[prev];
+		const prevlvl = prevTask.isHero ? prevTask.level : 0;
 		if (prevlvl < 20)
 			prevReq =
 				t("great") +
@@ -718,7 +721,7 @@ function getHeroicRequiredTooltip(task) {
 	if (requirementObject instanceof EvilRequirement) {
 		reqlist +=
 			format(
-				requirements[0].herequirement == undefined
+				requirements[0].herequirement === undefined
 					? requirements[0].requirement
 					: requirements[0].herequirement,
 			) +
@@ -728,7 +731,7 @@ function getHeroicRequiredTooltip(task) {
 	} else if (requirementObject instanceof EssenceRequirement) {
 		reqlist +=
 			format(
-				requirements[0].herequirement == undefined
+				requirements[0].herequirement === undefined
 					? requirements[0].requirement
 					: requirements[0].herequirement,
 			) +
@@ -740,7 +743,7 @@ function getHeroicRequiredTooltip(task) {
 			t("age") +
 			" " +
 			format(
-				requirements[0].herequirement == undefined
+				requirements[0].herequirement === undefined
 					? requirements[0].requirement
 					: requirements[0].herequirement,
 			) +
@@ -748,7 +751,7 @@ function getHeroicRequiredTooltip(task) {
 	} else if (requirementObject instanceof DarkMatterRequirement) {
 		reqlist +=
 			format(
-				requirements[0].herequirement == undefined
+				requirements[0].herequirement === undefined
 					? requirements[0].requirement
 					: requirements[0].herequirement,
 			) +
@@ -765,7 +768,7 @@ function getHeroicRequiredTooltip(task) {
 					: requirement.herequirement;
 
 			if (task_check.isHero && task_check.level >= reqvalue) continue;
-			if (prev != "" && requirement.task == prev) {
+			if (prev !== "" && requirement.task === prev) {
 				if (reqvalue <= 20) continue;
 				else
 					prevReq =
@@ -795,7 +798,7 @@ function getHeroicRequiredTooltip(task) {
 
 	reqlist += prevReq;
 	reqlist = reqlist.substring(0, reqlist.length - 4);
-	tooltip += reqlist + "</span>";
+	tooltip += `${reqlist}</span>`;
 	return tooltip;
 }
 
@@ -805,8 +808,8 @@ function renderChangelog() {
 
 	let html = `<table style="width:100%; border-collapse:collapse;">`;
 	for (const entry of CHANGELOG) {
-		const items = entry[currentLang] || entry["en"];
-		html += `<tr><td style="text-align:center; font-weight:bold; padding-top:0.8em; padding-bottom:0.2em;">version ${entry["version"]} / ${entry["date"]}</td></tr>`;
+		const items = entry[currentLang] || entry.en;
+		html += `<tr><td style="text-align:center; font-weight:bold; padding-top:0.8em; padding-bottom:0.2em;">version ${entry.version} / ${entry.date}</td></tr>`;
 		for (const item of items) {
 			html += `<tr><td style="padding:0.15em 0; vertical-align:top;">${item}</td></tr>`;
 		}
@@ -816,7 +819,7 @@ function renderChangelog() {
 }
 
 function renderSkillTreeButton(element, categoryBought, elementBought, canBuy) {
-	if (gameData.perks.both_dark_mater_skills == 0) {
+	if (gameData.perks.both_dark_mater_skills === 0) {
 		element.disabled = categoryBought | !canBuy;
 
 		if (categoryBought) {

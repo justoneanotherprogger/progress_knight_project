@@ -73,7 +73,7 @@ function coerceValue(value, template) {
 // (бесконечность живёт в layer), так что ветка лечит только NaN, как и старый код.
 function parseDecimal(value) {
 	const decimal = toInfinityNumber(value);
-	if (!isFinite(decimal.mantissa)) return new Decimal(0);
+	if (!Number.isFinite(decimal.mantissa)) return new Decimal(0);
 	return decimal;
 }
 
@@ -215,7 +215,7 @@ function deserialize(dto, gameData) {
 	// Ресурсы: отсутствующий ключ = 0
 	for (const key of DECIMAL_FIELDS) gameData[key] = parseDecimal(dto[key]);
 	for (const key of NUMBER_FIELDS) gameData[key] = Number(dto[key] ?? 0);
-	for (const key of BOOLEAN_FIELDS) gameData[key] = dto[key] ? true : false;
+	for (const key of BOOLEAN_FIELDS) gameData[key] = !!dto[key];
 	gameData.active_challenge = dto.active_challenge ?? "";
 
 	// Мета-прогресс: ключи из контента, отсутствующие = 0/false
@@ -228,10 +228,9 @@ function deserialize(dto, gameData) {
 
 	// Выбор игрока — id разрешаются по контенту
 	gameData.currentJob =
-		gameData.taskData[dto.currentJob] ?? gameData.taskData["job_beggar"];
+		gameData.taskData[dto.currentJob] ?? gameData.taskData.job_beggar;
 	gameData.currentProperty =
-		gameData.itemData[dto.currentProperty] ??
-		gameData.itemData["item_homeless"];
+		gameData.itemData[dto.currentProperty] ?? gameData.itemData.item_homeless;
 	gameData.currentMisc = (Array.isArray(dto.currentMisc) ? dto.currentMisc : [])
 		.map((id) => gameData.itemData[id])
 		.filter((item) => item != null);
@@ -244,8 +243,8 @@ function deserialize(dto, gameData) {
 	const itemData = dto.itemData ?? {};
 	for (const key in gameData.itemData) {
 		const savedItem = itemData[key];
-		gameData.itemData[key].unlocked = savedItem?.unlocked ? true : false;
-		gameData.itemData[key].isHero = savedItem?.isHero ? true : false;
+		gameData.itemData[key].unlocked = !!savedItem?.unlocked;
+		gameData.itemData[key].isHero = !!savedItem?.isHero;
 	}
 
 	// Кэш выполненности доверяем сейву целиком: он сносится только при
@@ -284,8 +283,8 @@ function applyTask(task, saved) {
 	task.level = Number(saved.level ?? 0);
 	task.maxLevel = Number(saved.maxLevel ?? 0);
 	task.xp = parseDecimal(saved.xp);
-	task.isHero = saved.isHero ? true : false;
-	task.unlocked = saved.unlocked ? true : false;
+	task.isHero = !!saved.isHero;
+	task.unlocked = !!saved.unlocked;
 }
 
 function applySettings(settings, source) {
@@ -334,8 +333,8 @@ function peekSettingFromSave(setting) {
 		if (save == null) return gameData.settings[setting];
 		const gameDataSave = JSON.parse(save);
 		if (
-			gameDataSave.settings == undefined ||
-			gameDataSave.settings[setting] == undefined
+			gameDataSave.settings === undefined ||
+			gameDataSave.settings[setting] === undefined
 		)
 			return gameData.settings[setting];
 		return coerceValue(
@@ -382,7 +381,7 @@ function resetGameData() {
 function importGameData() {
 	try {
 		const importExportBox = document.getElementById("importExportBox");
-		if (importExportBox.value == "") {
+		if (importExportBox.value === "") {
 			alert(
 				'It looks like you tried to load an empty save... Paste save data into the box, then click "Import Save" again.',
 			);
@@ -407,7 +406,7 @@ function exportGameData() {
 	importExportBox.value = saveString;
 	copyTextToClipboard(saveString);
 	setTimeout(() => {
-		if (importExportBox.value == saveString) {
+		if (importExportBox.value === saveString) {
 			importExportBox.value = "";
 		}
 	}, EXPORT_TOOLTIP_TIMEOUT);
@@ -419,7 +418,7 @@ function copyTextToClipboard(text) {
 			const tooltip = document.getElementById("exportTooltip");
 			tooltip.innerHTML = t("save_copied");
 		},
-		(err) => {},
+		(_err) => {},
 	);
 }
 

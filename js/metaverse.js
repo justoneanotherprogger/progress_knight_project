@@ -1,18 +1,18 @@
 function getHypercubeGeneration() {
-	if (gameData.rebirthFiveCount == 0) return 0;
+	if (gameData.rebirthFiveCount === 0) return 0;
 
-	const tesseractEffect = gameData.itemData["item_tesseract"].getEffect();
-	const hypersphereEffect = gameData.itemData["item_hypersphere"].getEffect();
+	const tesseractEffect = gameData.itemData.item_tesseract.getEffect();
+	const hypersphereEffect = gameData.itemData.item_hypersphere.getEffect();
 
 	return (
 		0.03 *
 		hypersphereEffect *
 		tesseractEffect *
-		(gameData.metaverse.hypercube_gain_modifier == 0
+		(gameData.metaverse.hypercube_gain_modifier === 0
 			? 1
 			: gameData.metaverse.hypercube_gain_modifier) *
-		(gameData.perks.hypercube_boost == 1 ? 10 : 1) *
-		(gameData.perks.hyper_speed == 1 ? 1000 : 1)
+		(gameData.perks.hypercube_boost === 1 ? 10 : 1) *
+		(gameData.perks.hyper_speed === 1 ? 1000 : 1)
 	);
 }
 
@@ -29,13 +29,13 @@ function getTimeTillNextHypercubePower(add_power = 0) {
 }
 
 function getBoostTimeSeconds() {
-	return gameData.metaverse.boost_timer_modifier == 0
+	return gameData.metaverse.boost_timer_modifier === 0
 		? 60.0
 		: 60.0 * gameData.metaverse.boost_timer_modifier;
 }
 
 function getBoostCooldownSeconds() {
-	return gameData.metaverse.boost_cooldown_modifier == 0
+	return gameData.metaverse.boost_cooldown_modifier === 0
 		? 60.0 * 10.0
 		: (60.0 * 10.0) / gameData.metaverse.boost_cooldown_modifier;
 }
@@ -98,7 +98,7 @@ function buyHypercubeGain() {
 }
 
 function evilTranGain() {
-	return gameData.metaverse.evil_tran_gain == 0
+	return gameData.metaverse.evil_tran_gain === 0
 		? new Decimal(0)
 		: new Decimal(250000 * 10 ** gameData.metaverse.evil_tran_gain);
 }
@@ -119,7 +119,7 @@ function buyEvilTran() {
 }
 
 function essenceMultGain() {
-	return gameData.metaverse.essence_gain_modifier == 0
+	return gameData.metaverse.essence_gain_modifier === 0
 		? 1
 		: 10 ** gameData.metaverse.essence_gain_modifier;
 }
@@ -145,7 +145,7 @@ function challengeAltarCost() {
 
 function canBuyChallengeAltar() {
 	return (
-		gameData.metaverse.challenge_altar == 0 &&
+		gameData.metaverse.challenge_altar === 0 &&
 		gameData.hypercubes >= challengeAltarCost()
 	);
 }
@@ -158,7 +158,7 @@ function buyChallengeAltar() {
 }
 
 function darkMatterMultGain() {
-	return gameData.metaverse.dark_mater_gain_modifer == 0
+	return gameData.metaverse.dark_mater_gain_modifer === 0
 		? 1
 		: new Decimal(10).pow(gameData.metaverse.dark_mater_gain_modifer);
 }
@@ -183,8 +183,8 @@ function buyDarkMaterMult() {
 function getMetaversePerkPointsGain() {
 	if (gameData.essence.gte(1e90))
 		return (
-			(gameData.perks.more_perk_points == 1 ? 10 : 1) *
-			(gameData.perks.double_perk_points_gain == 1 ? 2 : 1) *
+			(gameData.perks.more_perk_points === 1 ? 10 : 1) *
+			(gameData.perks.double_perk_points_gain === 1 ? 2 : 1) *
 			(Math.floor(gameData.essence.log10()) - 89)
 		);
 
@@ -211,7 +211,7 @@ const perks_cost = {
 };
 
 function getMetaversePerkName(perkName) {
-	return t("perk_" + perkName);
+	return t(`perk_${perkName}`);
 }
 
 function getPerkCost(perkName) {
@@ -223,12 +223,12 @@ function canBuyPerk(perkName) {
 }
 
 function buyPerk(perkName) {
-	if (gameData.perks[perkName] == 0) {
+	if (gameData.perks[perkName] === 0) {
 		if (canBuyPerk(perkName)) {
 			gameData.perks_points -= getPerkCost(perkName);
 			gameData.perks[perkName] = 1;
 
-			if (perkName == "both_dark_mater_skills") {
+			if (perkName === "both_dark_mater_skills") {
 				buySpeedOfLife(3);
 				buyYourGreatestDebt(3);
 				buyEssenceCollector(3);
@@ -240,16 +240,16 @@ function buyPerk(perkName) {
 		gameData.perks[perkName] = 0;
 		gameData.perks_points += getPerkCost(perkName);
 
-		if (perkName == "both_dark_mater_skills") {
-			if (gameData.dark_matter_shop.speed_is_life == 3)
+		if (perkName === "both_dark_mater_skills") {
+			if (gameData.dark_matter_shop.speed_is_life === 3)
 				gameData.dark_matter_shop.speed_is_life = 2;
-			if (gameData.dark_matter_shop.your_greatest_debt == 3)
+			if (gameData.dark_matter_shop.your_greatest_debt === 3)
 				gameData.dark_matter_shop.your_greatest_debt = 1;
-			if (gameData.dark_matter_shop.essence_collector == 3)
+			if (gameData.dark_matter_shop.essence_collector === 3)
 				gameData.dark_matter_shop.essence_collector = 2;
-			if (gameData.dark_matter_shop.explosion_of_the_universe == 3)
+			if (gameData.dark_matter_shop.explosion_of_the_universe === 3)
 				gameData.dark_matter_shop.explosion_of_the_universe = 2;
-			if (gameData.dark_matter_shop.multiverse_explorer == 3)
+			if (gameData.dark_matter_shop.multiverse_explorer === 3)
 				gameData.dark_matter_shop.multiverse_explorer = 2;
 		}
 	}
@@ -258,14 +258,14 @@ function buyPerk(perkName) {
 function getTotalPerkPoints() {
 	let total = gameData.perks_points;
 	for (const key of Object.keys(gameData.perks)) {
-		if (gameData.perks[key] == 1) total += getPerkCost(key);
+		if (gameData.perks[key] === 1) total += getPerkCost(key);
 	}
 	return total;
 }
 
 function collectPerkPoints(value) {
 	for (const key of Object.keys(gameData.perks)) {
-		if (gameData.perks[key] == value) {
+		if (gameData.perks[key] === value) {
 			buyPerk(key);
 		}
 	}
@@ -273,16 +273,16 @@ function collectPerkPoints(value) {
 
 function getBoostCooldownString() {
 	return gameData.boost_active
-		? t("active") + ": " + formatTime(gameData.boost_timer)
+		? `${t("active")}: ${formatTime(gameData.boost_timer)}`
 		: gameData.boost_cooldown <= 0
 			? t("boost_ready")
 			: t("boost_cooldown", formatTime(gameData.boost_cooldown));
 }
 
 function getTimeIsAFlatCircleXP() {
-	if (gameData.active_challenge == "the_darkest_time") return 1;
+	if (gameData.active_challenge === "the_darkest_time") return 1;
 
-	return gameData.requirements["milestone_time_is_a_flat_circle"].isCompleted()
+	return gameData.requirements.milestone_time_is_a_flat_circle.isCompleted()
 		? 1e50
 		: 1;
 }
@@ -290,7 +290,7 @@ function getTimeIsAFlatCircleXP() {
 function getUnspentPerksDarkmatterGainBuff() {
 	const effect = softcap(gameData.perks_points * 0.0027 + 2, 75, 0.01);
 
-	return gameData.requirements["milestone_the_end_is_near"].isCompleted()
+	return gameData.requirements.milestone_the_end_is_near.isCompleted()
 		? 10 ** effect
 		: 1;
 }

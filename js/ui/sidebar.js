@@ -4,14 +4,15 @@
 // загрузке сейва, поэтому getElementById кэшируется один раз.
 const elCache = {};
 function el(id) {
-	return (elCache[id] ??= document.getElementById(id));
+	elCache[id] ??= document.getElementById(id);
+	return elCache[id];
 }
 
 // Текст пишется только при смене: безусловный textContent каждый кадр
 // форсит перерасчёт layout, даже когда строка не изменилась.
 function setText(id, text) {
 	const e = el(id);
-	if (e.textContent != text) e.textContent = text;
+	if (e.textContent !== text) e.textContent = text;
 }
 
 function renderSideBar() {
@@ -21,7 +22,7 @@ function renderSideBar() {
 	const currentJobName = progressBar.querySelector(".name");
 	currentJobName.style.whiteSpace = "nowrap";
 	currentJobName.textContent =
-		(task.isHero ? t("great") + " " : "") +
+		(task.isHero ? `${t("great")} ` : "") +
 		t(task.name) +
 		" " +
 		t("lvl") +
@@ -46,27 +47,27 @@ function renderSideBar() {
 	fitText(boostCooldownDisplay, 16);
 	updateButtonHTML(
 		"pauseButton",
-		"⏳ " + (gameData.paused ? t("play") : t("pause")),
+		`⏳ ${gameData.paused ? t("play") : t("pause")}`,
 	);
 	updateButtonText("rebirthBtn1", t("rebirth_1"));
 	setRebirthButton(
 		"rebirthBtn2",
 		t("rebirth_2"),
 		"color-evil",
-		"(+" + format(getEvilGain()) + " " + t("evil") + ")",
+		`(+${format(getEvilGain())} ${t("evil")})`,
 	);
 	setRebirthButton(
 		"rebirthBtn3",
 		t("rebirth_3"),
 		"color-essence",
-		"(+" + format(getEssenceGain()) + " " + t("essence") + ")",
+		`(+${format(getEssenceGain())} ${t("essence")})`,
 	);
 	fitText(el("rebirthBtn3"), 16);
 	setRebirthButton(
 		"rebirthBtn4",
 		t("rebirth_4"),
 		"color-dark-matter",
-		"(+" + format(getDarkMatterGain()) + " " + t("dark_matter") + ")",
+		`(+${format(getDarkMatterGain())} ${t("dark_matter")})`,
 	);
 	fitText(el("rebirthBtn4"), 16);
 	if (gameData.essence.gt(1e90))
@@ -85,7 +86,7 @@ function renderSideBar() {
 			"rebirthBtn5",
 			t("rebirth_5"),
 			"color-hypercubes",
-			"(" + format(getHypercubeCap(1)) + " " + t("hypercubes") + ")",
+			`(${format(getHypercubeCap(1))} ${t("hypercubes")})`,
 		);
 	else setRebirthButton("rebirthBtn5", t("rebirth_5"), "", "");
 	fitText(el("rebirthBtn5"), 16);
@@ -96,7 +97,7 @@ function renderSideBar() {
 	// styles.css сильнее инлайна.
 	boostPanel.classList.toggle(
 		"hidden",
-		!gameData.requirements["req_metaverse_tab_button"].isCompleted(),
+		!gameData.requirements.req_metaverse_tab_button.isCompleted(),
 	);
 	renderBoostButton("boostButton");
 
@@ -124,7 +125,7 @@ function renderSideBar() {
 	el("timeWarping").hidden = getUnpausedGameSpeed() / baseGameSpeed <= 1;
 	setText(
 		"timeWarpingDisplay",
-		"x" + format(getUnpausedGameSpeed() / baseGameSpeed, 2),
+		`x${format(getUnpausedGameSpeed() / baseGameSpeed, 2)}`,
 	);
 
 	setText("hypercubesDisplay", formatTreshold(gameData.hypercubes));
@@ -140,8 +141,8 @@ function renderSideBar() {
 	// между mousedown и mouseup и съесть клик по кнопке ребёрна.
 	const rebirthButton5 = el("rebirthButton5");
 	const rebirth5Hidden =
-		getHypercubeCap() == Infinity && gameData.essence.lt(1e90);
-	if (rebirthButton5.hidden != rebirth5Hidden)
+		getHypercubeCap() === Infinity && gameData.essence.lt(1e90);
+	if (rebirthButton5.hidden !== rebirth5Hidden)
 		rebirthButton5.hidden = rebirth5Hidden;
 
 	// Embrace evil indicator
@@ -158,13 +159,13 @@ function renderSideBar() {
 
 	// Hide the rebirthOneButton from the sidebar when you have `Almighty Eye` unlocked.
 	el("rebirthButton1").hidden =
-		gameData.requirements["milestone_almighty_eye"].isCompleted();
+		gameData.requirements.milestone_almighty_eye.isCompleted();
 
 	// Change sidebar when paused
 	el("info").classList.toggle("game-paused", gameData.paused);
 
 	// Challenges
-	if (gameData.active_challenge == "") {
+	if (gameData.active_challenge === "") {
 		el("challengeTitle").hidden = true;
 		el("info").classList.remove("challenge");
 	} else {
@@ -207,8 +208,8 @@ function updateQuickBarHeight() {
 	const desired = Math.max(0, window.innerHeight - top - QUICK_BAR_BOTTOM_GAP);
 	const current = parseFloat(panel.style.height);
 
-	if (isNaN(current) || Math.abs(current - desired) > 0.5)
-		panel.style.height = desired + "px";
+	if (Number.isNaN(current) || Math.abs(current - desired) > 0.5)
+		panel.style.height = `${desired}px`;
 }
 
 window.addEventListener("resize", updateQuickBarHeight, { passive: true });
@@ -239,7 +240,7 @@ function updateResourceScale() {
 		"|" +
 		(document.getElementById("timeWarping").hidden ? 0 : 1);
 
-	if (resourceScaleCache.key != visibleKey) {
+	if (resourceScaleCache.key !== visibleKey) {
 		stats.style.setProperty("--stats-scale", 1);
 		resourceScaleCache.desired = stats.scrollHeight;
 		stats.style.setProperty("--stats-scale", resourceScaleCache.scale);
@@ -249,7 +250,7 @@ function updateResourceScale() {
 	const available = stats.clientHeight;
 	const scale =
 		available <= 0 ? 1 : Math.min(1, available / resourceScaleCache.desired);
-	if (scale != resourceScaleCache.scale) {
+	if (scale !== resourceScaleCache.scale) {
 		stats.style.setProperty("--stats-scale", scale);
 		resourceScaleCache.scale = scale;
 	}
