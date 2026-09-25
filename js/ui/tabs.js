@@ -36,7 +36,7 @@ function renderJobRow(task, rowKey) {
     const xpLeftText = task.getXpLeftFormatted()
     if (els.xpLeft.textContent != xpLeftText) els.xpLeft.textContent = xpLeftText
 
-    const tooltipText = rowTooltip(task)
+    const tooltipText = rowTooltip(task, rowKey)
     if (els.tooltip.innerHTML != tooltipText) els.tooltip.innerHTML = tooltipText
 
     if (els.maxLevel.textContent != levelText) els.maxLevel.textContent = levelText
@@ -54,10 +54,10 @@ function renderJobRow(task, rowKey) {
     formatCoins(task.getIncome(), els.income)
 }
 
-function rowTooltip(task) {
+function rowTooltip(task, rowKey) {
     let tooltip = t(task.baseData.tooltip)
     if (!task.isHero && isHeroesUnlocked())
-        tooltip += getHeroicRequiredTooltip(task.id)
+        tooltip += getHeroicRequiredTooltip(rowKey)
     return tooltip
 }
 
@@ -81,7 +81,7 @@ function renderSkillRow(task, rowKey) {
     const xpLeftText = task.getXpLeftFormatted()
     if (els.xpLeft.textContent != xpLeftText) els.xpLeft.textContent = xpLeftText
 
-    const tooltipText = rowTooltip(task)
+    const tooltipText = rowTooltip(task, rowKey)
     if (els.tooltip.innerHTML != tooltipText) els.tooltip.innerHTML = tooltipText
 
     if (els.maxLevel.textContent != levelText) els.maxLevel.textContent = levelText
