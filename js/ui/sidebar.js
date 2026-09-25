@@ -54,7 +54,10 @@ function renderSideBar() {
     fitText(el("rebirthBtn5"), 16)
     const boostPanel = el("boostPanel")
     boostPanel.style.whiteSpace = "nowrap"
-    boostPanel.hidden = gameData.rebirthFiveCount == 0
+    // Класс, а не свойство hidden: у панели инлайновый display:flex, он сильнее
+    // браузерного [hidden] и свойство перестало её прятать. Класс .hidden из
+    // styles.css сильнее инлайна.
+    boostPanel.classList.toggle("hidden", !gameData.requirements["req_metaverse_tab_button"].isCompleted())
     renderBoostButton("boostButton")
 
     formatCoins(gameData.coins, el("coinDisplay"))
