@@ -113,7 +113,7 @@
     "category_mage_collegium": {
       "name": "category_mage_collegium",
       "headerColor": "#C71585",
-      "heroIncomeMult": 1e6,
+      "heroIncomeMult": 1000000.0,
       "items": {
         "job_student": {
           "name": "job_student",
@@ -176,7 +176,7 @@
     "category_the_void": {
       "name": "category_the_void",
       "headerColor": "#762B91",
-      "heroIncomeMult": 1e11,
+      "heroIncomeMult": 100000000000.0,
       "items": {
         "job_corrupted": {
           "name": "job_corrupted",
@@ -239,7 +239,7 @@
     "category_galactic_council": {
       "name": "category_galactic_council",
       "headerColor": "#D5C010",
-      "heroIncomeMult": 1e11,
+      "heroIncomeMult": 100000000000.0,
       "items": {
         "job_eternal_wanderer": {
           "name": "job_eternal_wanderer",
@@ -281,32 +281,32 @@
     "category_metaverse_guards": {
       "name": "category_metaverse_guards",
       "headerColor": "rgb(9, 160, 230)",
-      "heroIncomeMult": 1e11,
+      "heroIncomeMult": 100000000000.0,
       "items": {
         "job_snow_crash": {
           "name": "job_snow_crash",
-          "maxXp": 1e999,
+          "maxXp": "1e400",
           "income": 2.5e+52,
           "heroxp": 1015,
           "tooltip": "job_snow_crash_tooltip"
         },
         "job_player_one": {
           "name": "job_player_one",
-          "maxXp": 1e999,
+          "maxXp": "1e450",
           "income": 2.5e+54,
           "heroxp": 1200,
           "tooltip": "job_player_one_tooltip"
         },
         "job_lost_in_the_dark": {
           "name": "job_lost_in_the_dark",
-          "maxXp": 1e999,
+          "maxXp": "1e500",
           "income": 2.5e+58,
           "heroxp": 1358,
           "tooltip": "job_lost_in_the_dark_tooltip"
         },
         "job_omega": {
           "name": "job_omega",
-          "maxXp": 1e999,
+          "maxXp": "1e550",
           "income": 2.5e+62,
           "heroxp": 3120,
           "tooltip": "job_omega_tooltip"
