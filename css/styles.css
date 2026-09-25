@@ -9,7 +9,10 @@ table {
 	font-variant: normal;
 }
 
-td {
+/* Селектор вендорского типа: `.w3-table td` (0,1,1) перебивает его же правило
+   из w3.css порядком подключения, наш файл идёт после. Специфичности
+   элемента `td` (0,0,1) не хватало — вендор побеждал и ставил vertical-align: top. */
+.w3-table td {
 	vertical-align: middle;
 }
 
@@ -213,6 +216,24 @@ body {
 .progress-fill-finished {
 	height: 1.6em;
 	background-color: rgb(212, 80, 30);
+}
+
+/* Объявлено выше .hidden: специфичность классов равна, побеждает тот, кто ниже.
+   Инлайновый display:flex здесь означал, что .hidden панель не прятал —
+   инлайн сильнее правила без !important. */
+.boost-panel {
+	color: gray;
+	margin-top: 0.8em;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5em;
+}
+
+/* Столбик maxLevel — это th/td внутри .w3-table, а вендор даёт им
+   display:table-cell (0,1,1) и перебивает этим .hidden (0,1,0). */
+.w3-table .maxLevel.hidden {
+	display: none;
 }
 
 .hidden {
