@@ -165,7 +165,7 @@ window.addEventListener("scroll", updateQuickBarHeight, { passive: true })
 updateQuickBarHeight()
 
 const resourceScaleCache = { key: "", desired: 0, scale: 1 }
-const RESOURCE_SCALE_INTERVAL = 1000
+const RESOURCE_SCALE_INTERVAL = 300
 
 // Scales #resourceStats so its content always fits the space flex gives it.
 function updateResourceScale() {
@@ -173,8 +173,9 @@ function updateResourceScale() {
     if (!stats) return
 
     // clientHeight/scrollHeight — forced layout, а панель стабильна почти
-    // всё время. Не чаще раза в секунду: при ресайзе или смене масштаба
-    // поправится в течение интервала.
+    // всё время. Гейтим по времени, а не по ключу: при ресайзе ширина панели
+    // меняется каждый кадр, и проверка ключа дала бы переобмер в полсекунды —
+    // панель заметно дёргалась бы, пока не устаканилась.
     const now = performance.now()
     if (now - (resourceScaleCache.at || 0) < RESOURCE_SCALE_INTERVAL)
         return
