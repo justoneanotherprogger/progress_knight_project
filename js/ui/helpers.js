@@ -110,6 +110,10 @@ document.addEventListener("mouseover", e => {
     const limit = clip
         ? Math.min(clip.getBoundingClientRect().bottom, window.innerHeight)
         : window.innerHeight
+    // Замерять со сдвигом от прошлого наведения нельзя: getBoundingClientRect
+    // его учитывает, overflow выходит ноль, и тултип прыгает обратно за край.
+    // Поэтому сначала сбрасываем — меряем настоящее положение.
+    tip.style.transform = ""
     const overflow = tip.getBoundingClientRect().bottom - limit
     tip.style.transform = overflow > 0 ? "translateY(" + -overflow + "px)" : ""
 })
