@@ -188,7 +188,7 @@ function rebirthReset(set_tab_to_jobs = true) {
     if (set_tab_to_jobs) {
         if (gameData.settings.selectedTab == Tab.METAVERSE && gameData.hypercubes > 0
             || gameData.settings.selectedTab == Tab.CHALLENGES && gameData.evil.gt(PERK_AUTO_DARK_SHOP_ORBS_THRESHOLD)
-            || gameData.settings.selectedTab == Tab.MILESTONES && gameData.essence > 0
+            || gameData.settings.selectedTab == Tab.MILESTONES && gameData.essence.gt(0)
             || gameData.settings.selectedTab == Tab.DARK_MATTER && gameData.dark_matter.gt(0)
             || gameData.settings.selectedTab == Tab.REBIRTH
         ) {

@@ -181,7 +181,9 @@ function updateResourceScale() {
     resourceScaleCache.at = now
 
     const panel = document.getElementById("info")
-    const visibleKey = panel.clientHeight + "|" + (document.getElementById("timeWarping").classList.contains("hidden") ? 0 : 1)
+    // Св-ство hidden, а не класс: строка выше прячет через .hidden, а класс
+    // hidden тут не появляется — ключ не менялся бы и переобмер не срабатывал.
+    const visibleKey = panel.clientHeight + "|" + (document.getElementById("timeWarping").hidden ? 0 : 1)
 
     if (resourceScaleCache.key != visibleKey) {
         stats.style.setProperty("--stats-scale", 1)
