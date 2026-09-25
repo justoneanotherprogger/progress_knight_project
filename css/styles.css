@@ -316,6 +316,12 @@ button:focus {
     opacity: 0.8;
 }
 
+/* Тултипы, которые заполняются по событию (а не наведением), до заполнения
+   не должны показывать пустую плашку. */
+.tooltip .tooltipText:empty {
+    display: none;
+}
+
 .tooltip-pointer .tooltipText-pointer {
     visibility: hidden;
     width: 20em;
