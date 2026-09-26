@@ -1,799 +1,962 @@
 {
-  "requirementsSpecs": {
-    "category_mage_collegium": {
-      "type": "task",
-      "selectors": [".category_mage_collegium"],
-      "requirements": [{"task": "skill_concentration", "requirement": 200}, {"task": "skill_meditation", "requirement": 200}]
-    },
-    "category_galactic_council": {
-      "type": "age",
-      "selectors": [".category_galactic_council"],
-      "requirements": [{"requirement": 10000}]
-    },
-    "category_the_void": {
-      "type": "age",
-      "selectors": [".category_the_void"],
-      "requirements": [{"requirement": 1000}]
-    },
-    "category_void_manipulation": {
-      "type": "age",
-      "selectors": [".category_void_manipulation"],
-      "requirements": [{"requirement": 1000}]
-    },
-    "category_celestial_powers": {
-      "type": "age",
-      "selectors": [".category_celestial_powers"],
-      "requirements": [{"requirement": 10000}]
-    },
-    "category_dark_magic": {
-      "type": "evil",
-      "selectors": [".category_dark_magic"],
-      "requirements": [{"requirement": 0, "strict": true}]
-    },
-    "category_almightiness": {
-      "type": "essence",
-      "selectors": [".category_almightiness"],
-      "requirements": [{"requirement": 1}]
-    },
-    "category_darkness": {
-      "type": "darkMatter",
-      "selectors": [".category_darkness"],
-      "requirements": [{"requirement": 0, "strict": true}]
-    },
-    "category_metaverse_guards": {
-      "type": "essence",
-      "selectors": [".category_metaverse_guards"],
-      "requirements": [{"requirement": 1e+90}]
-    },
-    "req_rebirth_tab_button": {
-      "type": "age",
-      "selectors": ["#rebirthTabButton"],
-      "requirements": [{"requirement": 25}]
-    },
-    "req_rebirth_note_0": {
-      "type": "age",
-      "selectors": ["#rebirth_note_0"],
-      "requirements": [{"requirement": 25}]
-    },
-    "req_rebirth_note_1": {
-      "type": "age",
-      "selectors": ["#rebirth_note_1"],
-      "requirements": [{"requirement": 45}]
-    },
-    "req_rebirth_note_2": {
-      "type": "age",
-      "selectors": ["#rebirth_note_2"],
-      "requirements": [{"requirement": 65}]
-    },
-    "req_rebirth_note_2_info": {
-      "type": "age",
-      "selectors": ["#rebirth_note_2_info"],
-      "requirements": [{"requirement": 65}]
-    },
-    "req_rebirth_note_2_hint": {
-      "type": "age",
-      "selectors": ["#rebirth_note_2_hint"],
-      "requirements": [{"requirement": 65}]
-    },
-    "req_rebirth_note_3": {
-      "type": "age",
-      "selectors": ["#rebirth_note_3"],
-      "requirements": [{"requirement": 200}]
-    },
-    "req_rebirth_note_3_hint": {
-      "type": "age",
-      "selectors": ["#rebirth_note_3_hint"],
-      "requirements": [{"requirement": 200}]
-    },
-    "req_rebirth_note_3_info": {
-      "type": "age",
-      "selectors": ["#rebirth_note_3_info"],
-      "requirements": [{"requirement": 200}]
-    },
-    "req_rebirth_note_4": {
-      "type": "age",
-      "selectors": ["#rebirth_note_4"],
-      "requirements": [{"requirement": 1000}]
-    },
-    "req_rebirth_note_4_hint": {
-      "type": "age",
-      "selectors": ["#rebirth_note_4_hint"],
-      "requirements": [{"requirement": 1000}]
-    },
-    "req_rebirth_note_4_unlock": {
-      "type": "age",
-      "selectors": ["#rebirth_note_4_unlock"],
-      "requirements": [{"requirement": 1000}]
-    },
-    "req_rebirth_note_5": {
-      "type": "age",
-      "selectors": ["#rebirth_note_5"],
-      "requirements": [{"requirement": 10000}]
-    },
-    "req_rebirth_note_5_unlock": {
-      "type": "age",
-      "selectors": ["#rebirth_note_5_unlock"],
-      "requirements": [{"requirement": 10000}]
-    },
-    "req_rebirth_note_5_info": {
-      "type": "age",
-      "selectors": ["#rebirth_note_5_info"],
-      "requirements": [{"requirement": 10000}]
-    },
-    "req_rebirth_note_5_warning": {
-      "type": "age",
-      "selectors": ["#rebirth_note_5_warning"],
-      "requirements": [{"requirement": 10000}]
-    },
-    "req_rebirth_note_6": {
-      "type": "task",
-      "selectors": ["#rebirth_note_6"],
-      "requirements": [{"task": "skill_cosmic_recollection", "requirement": 1}]
-    },
-    "req_rebirth_note_7": {
-      "type": "essence",
-      "selectors": ["#rebirth_note_7"],
-      "requirements": [{"requirement": 50000000000.0}]
-    },
-    "req_rebirth_note_7_info": {
-      "type": "essence",
-      "selectors": ["#rebirth_note_7_info"],
-      "requirements": [{"requirement": 50000000000.0}]
-    },
-    "req_rebirth_note_8": {
-      "type": "essence",
-      "selectors": ["#rebirth_note_8"],
-      "requirements": [{"requirement": 1e+60}]
-    },
-    "req_rebirth_note_8_info": {
-      "type": "essence",
-      "selectors": ["#rebirth_note_8_info"],
-      "requirements": [{"requirement": 1e+60}]
-    },
-    "req_hypercube_cap_text": {
-      "type": "essence",
-      "selectors": ["#hypercube_cap_text"],
-      "requirements": [{"requirement": 1e+60}]
-    },
-    "req_perk_points_gain_text": {
-      "type": "essence",
-      "selectors": ["#perk_points_gain_text"],
-      "requirements": [{"requirement": 1e+60}]
-    },
-    "req_rebirth_button1": {
-      "type": "age",
-      "selectors": ["#rebirthButton1"],
-      "requirements": [{"requirement": 65}]
-    },
-    "req_rebirth_button2": {
-      "type": "age",
-      "selectors": ["#rebirthButton2"],
-      "requirements": [{"requirement": 200}]
-    },
-    "req_rebirth_button3": {
-      "type": "task",
-      "selectors": ["#rebirthButton3"],
-      "requirements": [{"task": "skill_cosmic_recollection", "requirement": 1}]
-    },
-    "req_rebirth_button4": {
-      "type": "essence",
-      "selectors": ["#rebirthButton4"],
-      "requirements": [{"requirement": 50000000000.0}]
-    },
-    "req_rebirth_button5": {
-      "type": "essence",
-      "selectors": ["#rebirthButton5"],
-      "requirements": [{"requirement": 1e+60}]
-    },
-    "req_stats_evil_gain": {
-      "type": "age",
-      "selectors": ["#stats_evil_gain"],
-      "requirements": [{"requirement": 200}]
-    },
-    "req_stats_essence_gain": {
-      "type": "task",
-      "selectors": ["#stats_essence_gain"],
-      "requirements": [{"task": "skill_cosmic_recollection", "requirement": 1}]
-    },
-    "req_quick_task_display": {
-      "type": "age",
-      "selectors": ["#quickTaskDisplay"],
-      "requirements": [{"requirement": 20}]
-    },
-    "req_evil_info": {
-      "type": "evil",
-      "selectors": ["#evilInfo"],
-      "requirements": [{"requirement": 0, "strict": true}]
-    },
-    "req_essence_info": {
-      "type": "essence",
-      "selectors": ["#essenceInfo"],
-      "requirements": [{"requirement": 1}]
-    },
-    "req_dark_matter_info": {
-      "type": "darkMatter",
-      "selectors": ["#darkMatterInfo"],
-      "requirements": [{"requirement": 0, "strict": true}]
-    },
-    "req_dark_orbs_info": {
-      "type": "darkOrb",
-      "selectors": ["#darkOrbsInfo"],
-      "requirements": [{"requirement": 1}]
-    },
-    "req_hypercubes_info": {
-      "type": "hypercube",
-      "selectors": ["#hypercubesInfo"],
-      "requirements": [{"requirement": 1}]
-    },
-    "job_beggar": {
-      "type": "task",
-      "selectors": ["#rowjob_beggar"],
-      "requirements": []
-    },
-    "job_farmer": {
-      "type": "task",
-      "selectors": ["#rowjob_farmer"],
-      "requirements": [{"task": "job_beggar", "requirement": 10}]
-    },
-    "job_fisherman": {
-      "type": "task",
-      "selectors": ["#rowjob_fisherman"],
-      "requirements": [{"task": "job_farmer", "requirement": 10}]
-    },
-    "job_miner": {
-      "type": "task",
-      "selectors": ["#rowjob_miner"],
-      "requirements": [{"task": "skill_strength", "requirement": 10}, {"task": "job_fisherman", "requirement": 10}]
-    },
-    "job_blacksmith": {
-      "type": "task",
-      "selectors": ["#rowjob_blacksmith"],
-      "requirements": [{"task": "skill_strength", "requirement": 30}, {"task": "job_miner", "requirement": 10}]
-    },
-    "job_merchant": {
-      "type": "task",
-      "selectors": ["#rowjob_merchant"],
-      "requirements": [{"task": "skill_bargaining", "requirement": 50}, {"task": "job_blacksmith", "requirement": 10}]
-    },
-    "job_squire": {
-      "type": "task",
-      "selectors": ["#rowjob_squire"],
-      "requirements": [{"task": "skill_strength", "requirement": 5}]
-    },
-    "job_footman": {
-      "type": "task",
-      "selectors": ["#rowjob_footman"],
-      "requirements": [{"task": "skill_strength", "requirement": 20}, {"task": "job_squire", "requirement": 10}]
-    },
-    "job_veteran_footman": {
-      "type": "task",
-      "selectors": ["#rowjob_veteran_footman"],
-      "requirements": [{"task": "skill_battle_tactics", "requirement": 40}, {"task": "job_footman", "requirement": 10}]
-    },
-    "job_centenary": {
-      "type": "task",
-      "selectors": ["#rowjob_centenary"],
-      "requirements": [{"task": "skill_strength", "requirement": 100}, {"task": "job_veteran_footman", "requirement": 10}]
-    },
-    "job_knight": {
-      "type": "task",
-      "selectors": ["#rowjob_knight"],
-      "requirements": [{"task": "skill_battle_tactics", "requirement": 150}, {"task": "job_centenary", "requirement": 10}]
-    },
-    "job_veteran_knight": {
-      "type": "task",
-      "selectors": ["#rowjob_veteran_knight"],
-      "requirements": [{"task": "skill_strength", "requirement": 300}, {"task": "job_knight", "requirement": 10}]
-    },
-    "job_holy_knight": {
-      "type": "task",
-      "selectors": ["#rowjob_holy_knight"],
-      "requirements": [{"task": "skill_mana_control", "requirement": 500}, {"task": "job_veteran_knight", "requirement": 10}]
-    },
-    "job_lieutenant_general": {
-      "type": "task",
-      "selectors": ["#rowjob_lieutenant_general"],
-      "requirements": [{"task": "skill_mana_control", "requirement": 1000}, {"task": "skill_battle_tactics", "requirement": 1000}, {"task": "job_holy_knight", "requirement": 10}]
-    },
-    "job_student": {
-      "type": "task",
-      "selectors": ["#rowjob_student"],
-      "requirements": [{"task": "skill_concentration", "requirement": 200}, {"task": "skill_meditation", "requirement": 200}]
-    },
-    "job_apprentice_mage": {
-      "type": "task",
-      "selectors": ["#rowjob_apprentice_mage"],
-      "requirements": [{"task": "skill_mana_control", "requirement": 400}, {"task": "job_student", "requirement": 10}]
-    },
-    "job_adept_mage": {
-      "type": "task",
-      "selectors": ["#rowjob_adept_mage"],
-      "requirements": [{"task": "skill_mana_control", "requirement": 700}, {"task": "job_apprentice_mage", "requirement": 10}]
-    },
-    "job_master_wizard": {
-      "type": "task",
-      "selectors": ["#rowjob_master_wizard"],
-      "requirements": [{"task": "skill_mana_control", "requirement": 1000}, {"task": "job_adept_mage", "requirement": 10}]
-    },
-    "job_archmage": {
-      "type": "task",
-      "selectors": ["#rowjob_archmage"],
-      "requirements": [{"task": "skill_mana_control", "requirement": 1200}, {"task": "job_master_wizard", "requirement": 10}]
-    },
-    "job_chronomancer": {
-      "type": "task",
-      "selectors": ["#rowjob_chronomancer"],
-      "requirements": [{"task": "skill_mana_control", "requirement": 1500}, {"task": "skill_meditation", "requirement": 1500}, {"task": "job_archmage", "requirement": 25}]
-    },
-    "job_chairman": {
-      "type": "task",
-      "selectors": ["#rowjob_chairman"],
-      "requirements": [{"task": "skill_mana_control", "requirement": 2000}, {"task": "skill_productivity", "requirement": 2000}, {"task": "job_chronomancer", "requirement": 50}]
-    },
-    "job_imperator": {
-      "type": "task",
-      "selectors": ["#rowjob_imperator"],
-      "requirements": [{"task": "skill_all_seeing_eye", "requirement": 3000, "herequirement": 650}, {"task": "skill_concentration", "requirement": 3000}, {"task": "job_chairman", "requirement": 666}]
-    },
-    "job_corrupted": {
-      "type": "age",
-      "selectors": ["#rowjob_corrupted"],
-      "requirements": [{"requirement": 1000}]
-    },
-    "job_void_slave": {
-      "type": "task",
-      "selectors": ["#rowjob_void_slave"],
-      "requirements": [{"task": "job_corrupted", "requirement": 30}]
-    },
-    "job_void_fiend": {
-      "type": "task",
-      "selectors": ["#rowjob_void_fiend"],
-      "requirements": [{"task": "skill_brainwashing", "requirement": 3000}, {"task": "job_void_slave", "requirement": 200}]
-    },
-    "job_abyss_anomaly": {
-      "type": "task",
-      "selectors": ["#rowjob_abyss_anomaly"],
-      "requirements": [{"task": "skill_mind_release", "requirement": 3000, "herequirement": 100}, {"task": "job_void_fiend", "requirement": 200, "herequirement": 100}]
-    },
-    "job_void_wraith": {
-      "type": "task",
-      "selectors": ["#rowjob_void_wraith"],
-      "requirements": [{"task": "skill_temporal_dimension", "requirement": 3400}, {"task": "job_abyss_anomaly", "requirement": 300, "herequirement": 180}]
-    },
-    "job_void_reaver": {
-      "type": "task",
-      "selectors": ["#rowjob_void_reaver"],
-      "requirements": [{"task": "skill_void_amplification", "requirement": 3400, "herequirement": 180}, {"task": "job_void_wraith", "requirement": 250, "herequirement": 125}]
-    },
-    "job_void_lord": {
-      "type": "task",
-      "selectors": ["#rowjob_void_lord"],
-      "requirements": [{"task": "skill_void_symbiosis", "requirement": 3800, "herequirement": 200}, {"task": "job_void_reaver", "requirement": 150}]
-    },
-    "job_abyss_god": {
-      "type": "task",
-      "selectors": ["#rowjob_abyss_god"],
-      "requirements": [{"task": "skill_void_embodiment", "requirement": 4700, "herequirement": 300}, {"task": "job_void_lord", "requirement": 750, "herequirement": 125}]
-    },
-    "job_eternal_wanderer": {
-      "type": "age",
-      "selectors": ["#rowjob_eternal_wanderer"],
-      "requirements": [{"requirement": 10000}]
-    },
-    "job_nova": {
-      "type": "task",
-      "selectors": ["#rowjob_nova"],
-      "requirements": [{"task": "job_eternal_wanderer", "requirement": 15}, {"task": "skill_cosmic_longevity", "requirement": 4000, "herequirement": 180}]
-    },
-    "job_sigma_proioxis": {
-      "type": "task",
-      "selectors": ["#rowjob_sigma_proioxis"],
-      "requirements": [{"task": "job_nova", "requirement": 200}, {"task": "skill_cosmic_recollection", "requirement": 4500, "herequirement": 350}]
-    },
-    "job_acallaris": {
-      "type": "task",
-      "selectors": ["#rowjob_acallaris"],
-      "requirements": [{"task": "skill_galactic_command", "requirement": 5000, "herequirement": 250}, {"task": "job_sigma_proioxis", "requirement": 1000, "herequirement": 480}]
-    },
-    "job_one_above_all": {
-      "type": "task",
-      "selectors": ["#rowjob_one_above_all"],
-      "requirements": [{"task": "skill_meditation", "requirement": 6300}, {"task": "job_acallaris", "requirement": 1400, "herequirement": 500}]
-    },
-    "job_snow_crash": {
-      "type": "essence",
-      "selectors": ["#rowjob_snow_crash"],
-      "requirements": [{"requirement": 1e+90, "herequirement": 1e+120}]
-    },
-    "job_player_one": {
-      "type": "task",
-      "selectors": ["#rowjob_player_one"],
-      "requirements": [{"task": "job_snow_crash", "requirement": 1000, "herequirement": 160000}]
-    },
-    "job_lost_in_the_dark": {
-      "type": "task",
-      "selectors": ["#rowjob_lost_in_the_dark"],
-      "requirements": [{"task": "job_player_one", "requirement": 2500, "herequirement": 158000}]
-    },
-    "job_omega": {
-      "type": "task",
-      "selectors": ["#rowjob_omega"],
-      "requirements": [{"task": "job_lost_in_the_dark", "requirement": 25000, "herequirement": 185000}]
-    },
-    "item_homeless": {
-      "type": "coins",
-      "selectors": ["#rowitem_homeless"],
-      "requirements": [{"requirement": 0}]
-    },
-    "item_tent": {
-      "type": "coins",
-      "selectors": ["#rowitem_tent"],
-      "requirements": [{"requirement": 0}]
-    },
-    "item_wooden_hut": {
-      "type": "coins",
-      "selectors": ["#rowitem_wooden_hut"],
-      "requirements": [{"itemRef": "item_wooden_hut", "multiplier": 100}]
-    },
-    "item_cottage": {
-      "type": "coins",
-      "selectors": ["#rowitem_cottage"],
-      "requirements": [{"itemRef": "item_cottage", "multiplier": 100}]
-    },
-    "item_house": {
-      "type": "coins",
-      "selectors": ["#rowitem_house"],
-      "requirements": [{"itemRef": "item_house", "multiplier": 100}]
-    },
-    "item_large_house": {
-      "type": "coins",
-      "selectors": ["#rowitem_large_house"],
-      "requirements": [{"itemRef": "item_large_house", "multiplier": 100}]
-    },
-    "item_small_palace": {
-      "type": "coins",
-      "selectors": ["#rowitem_small_palace"],
-      "requirements": [{"itemRef": "item_small_palace", "multiplier": 100}]
-    },
-    "item_grand_palace": {
-      "type": "coins",
-      "selectors": ["#rowitem_grand_palace"],
-      "requirements": [{"itemRef": "item_grand_palace", "multiplier": 100}]
-    },
-    "item_town_ruler": {
-      "type": "coins",
-      "selectors": ["#rowitem_town_ruler"],
-      "requirements": [{"itemRef": "item_town_ruler", "multiplier": 100}]
-    },
-    "item_city_ruler": {
-      "type": "coins",
-      "selectors": ["#rowitem_city_ruler"],
-      "requirements": [{"itemRef": "item_city_ruler", "multiplier": 100}]
-    },
-    "item_nation_ruler": {
-      "type": "coins",
-      "selectors": ["#rowitem_nation_ruler"],
-      "requirements": [{"itemRef": "item_nation_ruler", "multiplier": 100}]
-    },
-    "item_pocket_dimension": {
-      "type": "coins",
-      "selectors": ["#rowitem_pocket_dimension"],
-      "requirements": [{"itemRef": "item_pocket_dimension", "multiplier": 100}]
-    },
-    "item_void_realm": {
-      "type": "coins",
-      "selectors": ["#rowitem_void_realm"],
-      "requirements": [{"itemRef": "item_void_realm", "multiplier": 100}]
-    },
-    "item_void_universe": {
-      "type": "coins",
-      "selectors": ["#rowitem_void_universe"],
-      "requirements": [{"itemRef": "item_void_universe", "multiplier": 100}]
-    },
-    "item_astral_realm": {
-      "type": "coins",
-      "selectors": ["#rowitem_astral_realm"],
-      "requirements": [{"itemRef": "item_astral_realm", "multiplier": 100}]
-    },
-    "item_galactic_throne": {
-      "type": "coins",
-      "selectors": ["#rowitem_galactic_throne"],
-      "requirements": [{"itemRef": "item_galactic_throne", "multiplier": 100}]
-    },
-    "item_spaceship": {
-      "type": "coins",
-      "selectors": ["#rowitem_spaceship"],
-      "requirements": [{"itemRef": "item_spaceship", "multiplier": 100}]
-    },
-    "item_planet": {
-      "type": "coins",
-      "selectors": ["#rowitem_planet"],
-      "requirements": [{"itemRef": "item_planet", "multiplier": 100}]
-    },
-    "item_ringworld": {
-      "type": "coins",
-      "selectors": ["#rowitem_ringworld"],
-      "requirements": [{"itemRef": "item_ringworld", "multiplier": 100}]
-    },
-    "item_stellar_neighborhood": {
-      "type": "coins",
-      "selectors": ["#rowitem_stellar_neighborhood"],
-      "requirements": [{"requirement": 1e+65}]
-    },
-    "item_galaxy": {
-      "type": "coins",
-      "selectors": ["#rowitem_galaxy"],
-      "requirements": [{"requirement": 1e+72}]
-    },
-    "item_supercluster": {
-      "type": "coins",
-      "selectors": ["#rowitem_supercluster"],
-      "requirements": [{"requirement": 1e+80}]
-    },
-    "item_galaxy_filament": {
-      "type": "coins",
-      "selectors": ["#rowitem_galaxy_filament"],
-      "requirements": [{"requirement": 1e+90}]
-    },
-    "item_observable_universe": {
-      "type": "coins",
-      "selectors": ["#rowitem_observable_universe"],
-      "requirements": [{"requirement": 1e+102}]
-    },
-    "item_multiverse": {
-      "type": "coins",
-      "selectors": ["#rowitem_multiverse"],
-      "requirements": [{"requirement": 1e+116}]
-    },
-    "item_quantum_world": {
-      "type": "coins",
-      "selectors": ["#rowitem_quantum_world"],
-      "requirements": [{"requirement": 1e+124}]
-    },
-    "item_bootes_void": {
-      "type": "coins",
-      "selectors": ["#rowitem_bootes_void"],
-      "requirements": [{"requirement": 1e+152}]
-    },
-    "item_book": {
-      "type": "coins",
-      "selectors": ["#rowitem_book"],
-      "requirements": [{"requirement": 0}]
-    },
-    "item_dumbbells": {
-      "type": "coins",
-      "selectors": ["#rowitem_dumbbells"],
-      "requirements": [{"itemRef": "item_dumbbells", "multiplier": 100}]
-    },
-    "item_personal_squire": {
-      "type": "coins",
-      "selectors": ["#rowitem_personal_squire"],
-      "requirements": [{"itemRef": "item_personal_squire", "multiplier": 100}]
-    },
-    "item_steel_longsword": {
-      "type": "coins",
-      "selectors": ["#rowitem_steel_longsword"],
-      "requirements": [{"itemRef": "item_steel_longsword", "multiplier": 100}]
-    },
-    "item_butler": {
-      "type": "coins",
-      "selectors": ["#rowitem_butler"],
-      "requirements": [{"itemRef": "item_butler", "multiplier": 100}]
-    },
-    "item_sapphire_charm": {
-      "type": "coins",
-      "selectors": ["#rowitem_sapphire_charm"],
-      "requirements": [{"itemRef": "item_sapphire_charm", "multiplier": 100}]
-    },
-    "item_study_desk": {
-      "type": "coins",
-      "selectors": ["#rowitem_study_desk"],
-      "requirements": [{"itemRef": "item_study_desk", "multiplier": 100}]
-    },
-    "item_library": {
-      "type": "coins",
-      "selectors": ["#rowitem_library"],
-      "requirements": [{"itemRef": "item_library", "multiplier": 100}]
-    },
-    "item_observatory": {
-      "type": "coins",
-      "selectors": ["#rowitem_observatory"],
-      "requirements": [{"itemRef": "item_observatory", "multiplier": 100}]
-    },
-    "item_minds_eye": {
-      "type": "coins",
-      "selectors": ["#rowitem_minds_eye"],
-      "requirements": [{"itemRef": "item_minds_eye", "multiplier": 100}]
-    },
-    "item_void_necklace": {
-      "type": "coins",
-      "selectors": ["#rowitem_void_necklace"],
-      "requirements": [{"itemRef": "item_void_necklace", "multiplier": 100}]
-    },
-    "item_void_armor": {
-      "type": "coins",
-      "selectors": ["#rowitem_void_armor"],
-      "requirements": [{"itemRef": "item_void_armor", "multiplier": 100}]
-    },
-    "item_void_blade": {
-      "type": "coins",
-      "selectors": ["#rowitem_void_blade"],
-      "requirements": [{"itemRef": "item_void_blade", "multiplier": 100}]
-    },
-    "item_void_orb": {
-      "type": "coins",
-      "selectors": ["#rowitem_void_orb"],
-      "requirements": [{"itemRef": "item_void_orb", "multiplier": 100}]
-    },
-    "item_void_dust": {
-      "type": "coins",
-      "selectors": ["#rowitem_void_dust"],
-      "requirements": [{"itemRef": "item_void_dust", "multiplier": 100}]
-    },
-    "item_celestial_robe": {
-      "type": "coins",
-      "selectors": ["#rowitem_celestial_robe"],
-      "requirements": [{"itemRef": "item_celestial_robe", "multiplier": 100}]
-    },
-    "item_universe_fragment": {
-      "type": "coins",
-      "selectors": ["#rowitem_universe_fragment"],
-      "requirements": [{"itemRef": "item_universe_fragment", "multiplier": 100}]
-    },
-    "item_multiverse_fragment": {
-      "type": "coins",
-      "selectors": ["#rowitem_multiverse_fragment"],
-      "requirements": [{"itemRef": "item_multiverse_fragment", "multiplier": 100}]
-    },
-    "item_stairway_to_heaven": {
-      "type": "coins",
-      "selectors": ["#rowitem_stairway_to_heaven"],
-      "requirements": [{"itemRef": "item_stairway_to_heaven", "multiplier": 100}]
-    },
-    "item_highway_to_hell": {
-      "type": "coins",
-      "selectors": ["#rowitem_highway_to_hell"],
-      "requirements": [{"itemRef": "item_highway_to_hell", "multiplier": 100}]
-    },
-    "item_tesseract": {
-      "type": "coins",
-      "selectors": ["#rowitem_tesseract"],
-      "requirements": [{"requirement": 1e+112}]
-    },
-    "item_desintegration": {
-      "type": "coins",
-      "selectors": ["#rowitem_desintegration"],
-      "requirements": [{"requirement": 1e+122}]
-    },
-    "item_custom_galaxy": {
-      "type": "coins",
-      "selectors": ["#rowitem_custom_galaxy"],
-      "requirements": [{"requirement": 1e+134}]
-    },
-    "item_hypersphere": {
-      "type": "coins",
-      "selectors": ["#rowitem_hypersphere"],
-      "requirements": [{"requirement": 1e+160}]
-    },
-    "req_milestones_tab_button": {
-      "type": "essence",
-      "selectors": ["#milestonesTabButton"],
-      "requirements": [{"requirement": 1}]
-    },
-    "req_dark_matter_tab_button": {
-      "type": "darkMatter",
-      "selectors": ["#darkMatterTabButton"],
-      "requirements": [{"requirement": 0, "strict": true}]
-    },
-    "req_skill_tree_tab_tab_button": {
-      "type": "essence",
-      "selectors": ["#skillTreeTabTabButton"],
-      "requirements": [{"requirement": 1e+20}]
-    },
-    "req_skill_tree_page": {
-      "type": "essence",
-      "selectors": ["#skillTreePage"],
-      "requirements": [{"requirement": 1e+20}]
-    },
-    "req_challenges_tab_button": {
-      "type": "evil",
-      "selectors": ["#challengesTabButton"],
-      "requirements": [{"requirement": 10000}]
-    },
-    "req_challenge_an_unhappy_life": {
-      "type": "evil",
-      "selectors": ["#anUnhappyLifeChallenge"],
-      "requirements": [{"requirement": 10000}]
-    },
-    "req_challenge_rich_and_the_poor": {
-      "type": "evil",
-      "selectors": ["#theRichAndThePoorChallenge"],
-      "requirements": [{"requirement": 1000000}]
-    },
-    "req_challenge_time_does_not_fly": {
-      "type": "essence",
-      "selectors": ["#timeDoesNotFlyChallenge"],
-      "requirements": [{"requirement": 10000}]
-    },
-    "req_challenge_dance_with_the_devil": {
-      "type": "essence",
-      "selectors": ["#danceWithTheDevilChallenge"],
-      "requirements": [{"requirement": 1000000.0}]
-    },
-    "req_challenge_legends_never_die": {
-      "type": "essence",
-      "selectors": ["#legendsNeverDieChallenge"],
-      "requirements": [{"requirement": 25000000.0}]
-    },
-    "req_challenge_the_darkest_time": {
-      "type": "essence",
-      "selectors": ["#theDarkestTimeChallenge"],
-      "requirements": [{"requirement": 1e+47}]
-    },
-    "req_metaverse_tab_button": {
-      "type": "metaverse",
-      "selectors": ["#metaverseTabButton"],
-      "requirements": [{"requirement": 1}]
-    },
-    "req_increase_hypercube_gain_altar": {
-      "type": "hypercube",
-      "selectors": ["#IncreaseHypercubeGainAltar"],
-      "requirements": [{"requirement": 1}]
-    },
-    "req_reduce_boost_cooldown_altar": {
-      "type": "hypercube",
-      "selectors": ["#ReduceBoostCooldownAltar"],
-      "requirements": [{"requirement": 500}]
-    },
-    "req_increase_boost_duration_altar": {
-      "type": "hypercube",
-      "selectors": ["#IncreaseBoostDurationAltar"],
-      "requirements": [{"requirement": 2500}]
-    },
-    "req_evil_altar": {
-      "type": "hypercube",
-      "selectors": ["#EvilAltar"],
-      "requirements": [{"requirement": 50000000}]
-    },
-    "req_essence_altar": {
-      "type": "hypercube",
-      "selectors": ["#EssenceAltar"],
-      "requirements": [{"requirement": 500000000}]
-    },
-    "req_challenge_altar": {
-      "type": "hypercube",
-      "selectors": ["#ChallengeAltar"],
-      "requirements": [{"requirement": 1000000000000000.0}]
-    },
-    "req_dark_mater_altar": {
-      "type": "hypercube",
-      "selectors": ["#DarkMaterAltar"],
-      "requirements": [{"requirement": 1e+17}]
-    },
-    "req_metaverse_page2": {
-      "type": "perkpoint",
-      "selectors": ["#metaversePage2"],
-      "requirements": [{"requirement": 1}]
-    },
-    "req_metaverse_tab2_tab_button": {
-      "type": "perkpoint",
-      "selectors": ["#metaverseTab2TabButton"],
-      "requirements": [{"requirement": 1}]
-    },
-    "category_heroic_milestones": {
-      "type": "essence",
-      "selectors": [".category_heroic_milestones"],
-      "requirements": [{"requirement": 400000}]
-    },
-    "category_dark_milestones": {
-      "type": "essence",
-      "selectors": [".category_dark_milestones"],
-      "requirements": [{"requirement": 50000000000.0}]
-    },
-    "category_metaverse_milestones": {
-      "type": "essence",
-      "selectors": [".category_metaverse_milestones"],
-      "requirements": [{"requirement": 1e+60}]
-    }
-  }
+	"requirementsSpecs": {
+		"category_mage_collegium": {
+			"type": "task",
+			"selectors": [".category_mage_collegium"],
+			"requirements": [
+				{ "task": "skill_concentration", "requirement": 200 },
+				{ "task": "skill_meditation", "requirement": 200 }
+			]
+		},
+		"category_galactic_council": {
+			"type": "age",
+			"selectors": [".category_galactic_council"],
+			"requirements": [{ "requirement": 10000 }]
+		},
+		"category_the_void": {
+			"type": "age",
+			"selectors": [".category_the_void"],
+			"requirements": [{ "requirement": 1000 }]
+		},
+		"category_void_manipulation": {
+			"type": "age",
+			"selectors": [".category_void_manipulation"],
+			"requirements": [{ "requirement": 1000 }]
+		},
+		"category_celestial_powers": {
+			"type": "age",
+			"selectors": [".category_celestial_powers"],
+			"requirements": [{ "requirement": 10000 }]
+		},
+		"category_dark_magic": {
+			"type": "evil",
+			"selectors": [".category_dark_magic"],
+			"requirements": [{ "requirement": 0, "strict": true }]
+		},
+		"category_almightiness": {
+			"type": "essence",
+			"selectors": [".category_almightiness"],
+			"requirements": [{ "requirement": 1 }]
+		},
+		"category_darkness": {
+			"type": "darkMatter",
+			"selectors": [".category_darkness"],
+			"requirements": [{ "requirement": 0, "strict": true }]
+		},
+		"category_metaverse_guards": {
+			"type": "essence",
+			"selectors": [".category_metaverse_guards"],
+			"requirements": [{ "requirement": 1e90 }]
+		},
+		"req_rebirth_tab_button": {
+			"type": "age",
+			"selectors": ["#rebirthTabButton"],
+			"requirements": [{ "requirement": 25 }]
+		},
+		"req_rebirth_note_0": {
+			"type": "age",
+			"selectors": ["#rebirth_note_0"],
+			"requirements": [{ "requirement": 25 }]
+		},
+		"req_rebirth_note_1": {
+			"type": "age",
+			"selectors": ["#rebirth_note_1"],
+			"requirements": [{ "requirement": 45 }]
+		},
+		"req_rebirth_note_2": {
+			"type": "age",
+			"selectors": ["#rebirth_note_2"],
+			"requirements": [{ "requirement": 65 }]
+		},
+		"req_rebirth_note_2_info": {
+			"type": "age",
+			"selectors": ["#rebirth_note_2_info"],
+			"requirements": [{ "requirement": 65 }]
+		},
+		"req_rebirth_note_2_hint": {
+			"type": "age",
+			"selectors": ["#rebirth_note_2_hint"],
+			"requirements": [{ "requirement": 65 }]
+		},
+		"req_rebirth_note_3": {
+			"type": "age",
+			"selectors": ["#rebirth_note_3"],
+			"requirements": [{ "requirement": 200 }]
+		},
+		"req_rebirth_note_3_hint": {
+			"type": "age",
+			"selectors": ["#rebirth_note_3_hint"],
+			"requirements": [{ "requirement": 200 }]
+		},
+		"req_rebirth_note_3_info": {
+			"type": "age",
+			"selectors": ["#rebirth_note_3_info"],
+			"requirements": [{ "requirement": 200 }]
+		},
+		"req_rebirth_note_4": {
+			"type": "age",
+			"selectors": ["#rebirth_note_4"],
+			"requirements": [{ "requirement": 1000 }]
+		},
+		"req_rebirth_note_4_hint": {
+			"type": "age",
+			"selectors": ["#rebirth_note_4_hint"],
+			"requirements": [{ "requirement": 1000 }]
+		},
+		"req_rebirth_note_4_unlock": {
+			"type": "age",
+			"selectors": ["#rebirth_note_4_unlock"],
+			"requirements": [{ "requirement": 1000 }]
+		},
+		"req_rebirth_note_5": {
+			"type": "age",
+			"selectors": ["#rebirth_note_5"],
+			"requirements": [{ "requirement": 10000 }]
+		},
+		"req_rebirth_note_5_unlock": {
+			"type": "age",
+			"selectors": ["#rebirth_note_5_unlock"],
+			"requirements": [{ "requirement": 10000 }]
+		},
+		"req_rebirth_note_5_info": {
+			"type": "age",
+			"selectors": ["#rebirth_note_5_info"],
+			"requirements": [{ "requirement": 10000 }]
+		},
+		"req_rebirth_note_5_warning": {
+			"type": "age",
+			"selectors": ["#rebirth_note_5_warning"],
+			"requirements": [{ "requirement": 10000 }]
+		},
+		"req_rebirth_note_6": {
+			"type": "task",
+			"selectors": ["#rebirth_note_6"],
+			"requirements": [
+				{ "task": "skill_cosmic_recollection", "requirement": 1 }
+			]
+		},
+		"req_rebirth_note_7": {
+			"type": "essence",
+			"selectors": ["#rebirth_note_7"],
+			"requirements": [{ "requirement": 50000000000.0 }]
+		},
+		"req_rebirth_note_7_info": {
+			"type": "essence",
+			"selectors": ["#rebirth_note_7_info"],
+			"requirements": [{ "requirement": 50000000000.0 }]
+		},
+		"req_rebirth_note_8": {
+			"type": "essence",
+			"selectors": ["#rebirth_note_8"],
+			"requirements": [{ "requirement": 1e60 }]
+		},
+		"req_rebirth_note_8_info": {
+			"type": "essence",
+			"selectors": ["#rebirth_note_8_info"],
+			"requirements": [{ "requirement": 1e60 }]
+		},
+		"req_hypercube_cap_text": {
+			"type": "essence",
+			"selectors": ["#hypercube_cap_text"],
+			"requirements": [{ "requirement": 1e60 }]
+		},
+		"req_perk_points_gain_text": {
+			"type": "essence",
+			"selectors": ["#perk_points_gain_text"],
+			"requirements": [{ "requirement": 1e60 }]
+		},
+		"req_rebirth_button1": {
+			"type": "age",
+			"selectors": ["#rebirthButton1"],
+			"requirements": [{ "requirement": 65 }]
+		},
+		"req_rebirth_button2": {
+			"type": "age",
+			"selectors": ["#rebirthButton2"],
+			"requirements": [{ "requirement": 200 }]
+		},
+		"req_rebirth_button3": {
+			"type": "task",
+			"selectors": ["#rebirthButton3"],
+			"requirements": [
+				{ "task": "skill_cosmic_recollection", "requirement": 1 }
+			]
+		},
+		"req_rebirth_button4": {
+			"type": "essence",
+			"selectors": ["#rebirthButton4"],
+			"requirements": [{ "requirement": 50000000000.0 }]
+		},
+		"req_rebirth_button5": {
+			"type": "essence",
+			"selectors": ["#rebirthButton5"],
+			"requirements": [{ "requirement": 1e60 }]
+		},
+		"req_stats_evil_gain": {
+			"type": "age",
+			"selectors": ["#stats_evil_gain"],
+			"requirements": [{ "requirement": 200 }]
+		},
+		"req_stats_essence_gain": {
+			"type": "task",
+			"selectors": ["#stats_essence_gain"],
+			"requirements": [
+				{ "task": "skill_cosmic_recollection", "requirement": 1 }
+			]
+		},
+		"req_quick_task_display": {
+			"type": "age",
+			"selectors": ["#quickTaskDisplay"],
+			"requirements": [{ "requirement": 20 }]
+		},
+		"req_evil_info": {
+			"type": "evil",
+			"selectors": ["#evilInfo"],
+			"requirements": [{ "requirement": 0, "strict": true }]
+		},
+		"req_essence_info": {
+			"type": "essence",
+			"selectors": ["#essenceInfo"],
+			"requirements": [{ "requirement": 1 }]
+		},
+		"req_dark_matter_info": {
+			"type": "darkMatter",
+			"selectors": ["#darkMatterInfo"],
+			"requirements": [{ "requirement": 0, "strict": true }]
+		},
+		"req_dark_orbs_info": {
+			"type": "darkOrb",
+			"selectors": ["#darkOrbsInfo"],
+			"requirements": [{ "requirement": 1 }]
+		},
+		"req_hypercubes_info": {
+			"type": "hypercube",
+			"selectors": ["#hypercubesInfo"],
+			"requirements": [{ "requirement": 1 }]
+		},
+		"job_beggar": {
+			"type": "task",
+			"selectors": ["#rowjob_beggar"],
+			"requirements": []
+		},
+		"job_farmer": {
+			"type": "task",
+			"selectors": ["#rowjob_farmer"],
+			"requirements": [{ "task": "job_beggar", "requirement": 10 }]
+		},
+		"job_fisherman": {
+			"type": "task",
+			"selectors": ["#rowjob_fisherman"],
+			"requirements": [{ "task": "job_farmer", "requirement": 10 }]
+		},
+		"job_miner": {
+			"type": "task",
+			"selectors": ["#rowjob_miner"],
+			"requirements": [
+				{ "task": "skill_strength", "requirement": 10 },
+				{ "task": "job_fisherman", "requirement": 10 }
+			]
+		},
+		"job_blacksmith": {
+			"type": "task",
+			"selectors": ["#rowjob_blacksmith"],
+			"requirements": [
+				{ "task": "skill_strength", "requirement": 30 },
+				{ "task": "job_miner", "requirement": 10 }
+			]
+		},
+		"job_merchant": {
+			"type": "task",
+			"selectors": ["#rowjob_merchant"],
+			"requirements": [
+				{ "task": "skill_bargaining", "requirement": 50 },
+				{ "task": "job_blacksmith", "requirement": 10 }
+			]
+		},
+		"job_squire": {
+			"type": "task",
+			"selectors": ["#rowjob_squire"],
+			"requirements": [{ "task": "skill_strength", "requirement": 5 }]
+		},
+		"job_footman": {
+			"type": "task",
+			"selectors": ["#rowjob_footman"],
+			"requirements": [
+				{ "task": "skill_strength", "requirement": 20 },
+				{ "task": "job_squire", "requirement": 10 }
+			]
+		},
+		"job_veteran_footman": {
+			"type": "task",
+			"selectors": ["#rowjob_veteran_footman"],
+			"requirements": [
+				{ "task": "skill_battle_tactics", "requirement": 40 },
+				{ "task": "job_footman", "requirement": 10 }
+			]
+		},
+		"job_centenary": {
+			"type": "task",
+			"selectors": ["#rowjob_centenary"],
+			"requirements": [
+				{ "task": "skill_strength", "requirement": 100 },
+				{ "task": "job_veteran_footman", "requirement": 10 }
+			]
+		},
+		"job_knight": {
+			"type": "task",
+			"selectors": ["#rowjob_knight"],
+			"requirements": [
+				{ "task": "skill_battle_tactics", "requirement": 150 },
+				{ "task": "job_centenary", "requirement": 10 }
+			]
+		},
+		"job_veteran_knight": {
+			"type": "task",
+			"selectors": ["#rowjob_veteran_knight"],
+			"requirements": [
+				{ "task": "skill_strength", "requirement": 300 },
+				{ "task": "job_knight", "requirement": 10 }
+			]
+		},
+		"job_holy_knight": {
+			"type": "task",
+			"selectors": ["#rowjob_holy_knight"],
+			"requirements": [
+				{ "task": "skill_mana_control", "requirement": 500 },
+				{ "task": "job_veteran_knight", "requirement": 10 }
+			]
+		},
+		"job_lieutenant_general": {
+			"type": "task",
+			"selectors": ["#rowjob_lieutenant_general"],
+			"requirements": [
+				{ "task": "skill_mana_control", "requirement": 1000 },
+				{ "task": "skill_battle_tactics", "requirement": 1000 },
+				{ "task": "job_holy_knight", "requirement": 10 }
+			]
+		},
+		"job_student": {
+			"type": "task",
+			"selectors": ["#rowjob_student"],
+			"requirements": [
+				{ "task": "skill_concentration", "requirement": 200 },
+				{ "task": "skill_meditation", "requirement": 200 }
+			]
+		},
+		"job_apprentice_mage": {
+			"type": "task",
+			"selectors": ["#rowjob_apprentice_mage"],
+			"requirements": [
+				{ "task": "skill_mana_control", "requirement": 400 },
+				{ "task": "job_student", "requirement": 10 }
+			]
+		},
+		"job_adept_mage": {
+			"type": "task",
+			"selectors": ["#rowjob_adept_mage"],
+			"requirements": [
+				{ "task": "skill_mana_control", "requirement": 700 },
+				{ "task": "job_apprentice_mage", "requirement": 10 }
+			]
+		},
+		"job_master_wizard": {
+			"type": "task",
+			"selectors": ["#rowjob_master_wizard"],
+			"requirements": [
+				{ "task": "skill_mana_control", "requirement": 1000 },
+				{ "task": "job_adept_mage", "requirement": 10 }
+			]
+		},
+		"job_archmage": {
+			"type": "task",
+			"selectors": ["#rowjob_archmage"],
+			"requirements": [
+				{ "task": "skill_mana_control", "requirement": 1200 },
+				{ "task": "job_master_wizard", "requirement": 10 }
+			]
+		},
+		"job_chronomancer": {
+			"type": "task",
+			"selectors": ["#rowjob_chronomancer"],
+			"requirements": [
+				{ "task": "skill_mana_control", "requirement": 1500 },
+				{ "task": "skill_meditation", "requirement": 1500 },
+				{ "task": "job_archmage", "requirement": 25 }
+			]
+		},
+		"job_chairman": {
+			"type": "task",
+			"selectors": ["#rowjob_chairman"],
+			"requirements": [
+				{ "task": "skill_mana_control", "requirement": 2000 },
+				{ "task": "skill_productivity", "requirement": 2000 },
+				{ "task": "job_chronomancer", "requirement": 50 }
+			]
+		},
+		"job_imperator": {
+			"type": "task",
+			"selectors": ["#rowjob_imperator"],
+			"requirements": [
+				{
+					"task": "skill_all_seeing_eye",
+					"requirement": 3000,
+					"herequirement": 650
+				},
+				{ "task": "skill_concentration", "requirement": 3000 },
+				{ "task": "job_chairman", "requirement": 666 }
+			]
+		},
+		"job_corrupted": {
+			"type": "age",
+			"selectors": ["#rowjob_corrupted"],
+			"requirements": [{ "requirement": 1000 }]
+		},
+		"job_void_slave": {
+			"type": "task",
+			"selectors": ["#rowjob_void_slave"],
+			"requirements": [{ "task": "job_corrupted", "requirement": 30 }]
+		},
+		"job_void_fiend": {
+			"type": "task",
+			"selectors": ["#rowjob_void_fiend"],
+			"requirements": [
+				{ "task": "skill_brainwashing", "requirement": 3000 },
+				{ "task": "job_void_slave", "requirement": 200 }
+			]
+		},
+		"job_abyss_anomaly": {
+			"type": "task",
+			"selectors": ["#rowjob_abyss_anomaly"],
+			"requirements": [
+				{
+					"task": "skill_mind_release",
+					"requirement": 3000,
+					"herequirement": 100
+				},
+				{ "task": "job_void_fiend", "requirement": 200, "herequirement": 100 }
+			]
+		},
+		"job_void_wraith": {
+			"type": "task",
+			"selectors": ["#rowjob_void_wraith"],
+			"requirements": [
+				{ "task": "skill_temporal_dimension", "requirement": 3400 },
+				{
+					"task": "job_abyss_anomaly",
+					"requirement": 300,
+					"herequirement": 180
+				}
+			]
+		},
+		"job_void_reaver": {
+			"type": "task",
+			"selectors": ["#rowjob_void_reaver"],
+			"requirements": [
+				{
+					"task": "skill_void_amplification",
+					"requirement": 3400,
+					"herequirement": 180
+				},
+				{ "task": "job_void_wraith", "requirement": 250, "herequirement": 125 }
+			]
+		},
+		"job_void_lord": {
+			"type": "task",
+			"selectors": ["#rowjob_void_lord"],
+			"requirements": [
+				{
+					"task": "skill_void_symbiosis",
+					"requirement": 3800,
+					"herequirement": 200
+				},
+				{ "task": "job_void_reaver", "requirement": 150 }
+			]
+		},
+		"job_abyss_god": {
+			"type": "task",
+			"selectors": ["#rowjob_abyss_god"],
+			"requirements": [
+				{
+					"task": "skill_void_embodiment",
+					"requirement": 4700,
+					"herequirement": 300
+				},
+				{ "task": "job_void_lord", "requirement": 750, "herequirement": 125 }
+			]
+		},
+		"job_eternal_wanderer": {
+			"type": "age",
+			"selectors": ["#rowjob_eternal_wanderer"],
+			"requirements": [{ "requirement": 10000 }]
+		},
+		"job_nova": {
+			"type": "task",
+			"selectors": ["#rowjob_nova"],
+			"requirements": [
+				{ "task": "job_eternal_wanderer", "requirement": 15 },
+				{
+					"task": "skill_cosmic_longevity",
+					"requirement": 4000,
+					"herequirement": 180
+				}
+			]
+		},
+		"job_sigma_proioxis": {
+			"type": "task",
+			"selectors": ["#rowjob_sigma_proioxis"],
+			"requirements": [
+				{ "task": "job_nova", "requirement": 200 },
+				{
+					"task": "skill_cosmic_recollection",
+					"requirement": 4500,
+					"herequirement": 350
+				}
+			]
+		},
+		"job_acallaris": {
+			"type": "task",
+			"selectors": ["#rowjob_acallaris"],
+			"requirements": [
+				{
+					"task": "skill_galactic_command",
+					"requirement": 5000,
+					"herequirement": 250
+				},
+				{
+					"task": "job_sigma_proioxis",
+					"requirement": 1000,
+					"herequirement": 480
+				}
+			]
+		},
+		"job_one_above_all": {
+			"type": "task",
+			"selectors": ["#rowjob_one_above_all"],
+			"requirements": [
+				{ "task": "skill_meditation", "requirement": 6300 },
+				{ "task": "job_acallaris", "requirement": 1400, "herequirement": 500 }
+			]
+		},
+		"job_snow_crash": {
+			"type": "essence",
+			"selectors": ["#rowjob_snow_crash"],
+			"requirements": [{ "requirement": 1e90, "herequirement": 1e120 }]
+		},
+		"job_player_one": {
+			"type": "task",
+			"selectors": ["#rowjob_player_one"],
+			"requirements": [
+				{
+					"task": "job_snow_crash",
+					"requirement": 1000,
+					"herequirement": 160000
+				}
+			]
+		},
+		"job_lost_in_the_dark": {
+			"type": "task",
+			"selectors": ["#rowjob_lost_in_the_dark"],
+			"requirements": [
+				{
+					"task": "job_player_one",
+					"requirement": 2500,
+					"herequirement": 158000
+				}
+			]
+		},
+		"job_omega": {
+			"type": "task",
+			"selectors": ["#rowjob_omega"],
+			"requirements": [
+				{
+					"task": "job_lost_in_the_dark",
+					"requirement": 25000,
+					"herequirement": 185000
+				}
+			]
+		},
+		"item_homeless": {
+			"type": "coins",
+			"selectors": ["#rowitem_homeless"],
+			"requirements": [{ "requirement": 0 }]
+		},
+		"item_tent": {
+			"type": "coins",
+			"selectors": ["#rowitem_tent"],
+			"requirements": [{ "requirement": 0 }]
+		},
+		"item_wooden_hut": {
+			"type": "coins",
+			"selectors": ["#rowitem_wooden_hut"],
+			"requirements": [{ "itemRef": "item_wooden_hut", "multiplier": 100 }]
+		},
+		"item_cottage": {
+			"type": "coins",
+			"selectors": ["#rowitem_cottage"],
+			"requirements": [{ "itemRef": "item_cottage", "multiplier": 100 }]
+		},
+		"item_house": {
+			"type": "coins",
+			"selectors": ["#rowitem_house"],
+			"requirements": [{ "itemRef": "item_house", "multiplier": 100 }]
+		},
+		"item_large_house": {
+			"type": "coins",
+			"selectors": ["#rowitem_large_house"],
+			"requirements": [{ "itemRef": "item_large_house", "multiplier": 100 }]
+		},
+		"item_small_palace": {
+			"type": "coins",
+			"selectors": ["#rowitem_small_palace"],
+			"requirements": [{ "itemRef": "item_small_palace", "multiplier": 100 }]
+		},
+		"item_grand_palace": {
+			"type": "coins",
+			"selectors": ["#rowitem_grand_palace"],
+			"requirements": [{ "itemRef": "item_grand_palace", "multiplier": 100 }]
+		},
+		"item_town_ruler": {
+			"type": "coins",
+			"selectors": ["#rowitem_town_ruler"],
+			"requirements": [{ "itemRef": "item_town_ruler", "multiplier": 100 }]
+		},
+		"item_city_ruler": {
+			"type": "coins",
+			"selectors": ["#rowitem_city_ruler"],
+			"requirements": [{ "itemRef": "item_city_ruler", "multiplier": 100 }]
+		},
+		"item_nation_ruler": {
+			"type": "coins",
+			"selectors": ["#rowitem_nation_ruler"],
+			"requirements": [{ "itemRef": "item_nation_ruler", "multiplier": 100 }]
+		},
+		"item_pocket_dimension": {
+			"type": "coins",
+			"selectors": ["#rowitem_pocket_dimension"],
+			"requirements": [
+				{ "itemRef": "item_pocket_dimension", "multiplier": 100 }
+			]
+		},
+		"item_void_realm": {
+			"type": "coins",
+			"selectors": ["#rowitem_void_realm"],
+			"requirements": [{ "itemRef": "item_void_realm", "multiplier": 100 }]
+		},
+		"item_void_universe": {
+			"type": "coins",
+			"selectors": ["#rowitem_void_universe"],
+			"requirements": [{ "itemRef": "item_void_universe", "multiplier": 100 }]
+		},
+		"item_astral_realm": {
+			"type": "coins",
+			"selectors": ["#rowitem_astral_realm"],
+			"requirements": [{ "itemRef": "item_astral_realm", "multiplier": 100 }]
+		},
+		"item_galactic_throne": {
+			"type": "coins",
+			"selectors": ["#rowitem_galactic_throne"],
+			"requirements": [{ "itemRef": "item_galactic_throne", "multiplier": 100 }]
+		},
+		"item_spaceship": {
+			"type": "coins",
+			"selectors": ["#rowitem_spaceship"],
+			"requirements": [{ "itemRef": "item_spaceship", "multiplier": 100 }]
+		},
+		"item_planet": {
+			"type": "coins",
+			"selectors": ["#rowitem_planet"],
+			"requirements": [{ "itemRef": "item_planet", "multiplier": 100 }]
+		},
+		"item_ringworld": {
+			"type": "coins",
+			"selectors": ["#rowitem_ringworld"],
+			"requirements": [{ "itemRef": "item_ringworld", "multiplier": 100 }]
+		},
+		"item_stellar_neighborhood": {
+			"type": "coins",
+			"selectors": ["#rowitem_stellar_neighborhood"],
+			"requirements": [{ "requirement": 1e65 }]
+		},
+		"item_galaxy": {
+			"type": "coins",
+			"selectors": ["#rowitem_galaxy"],
+			"requirements": [{ "requirement": 1e72 }]
+		},
+		"item_supercluster": {
+			"type": "coins",
+			"selectors": ["#rowitem_supercluster"],
+			"requirements": [{ "requirement": 1e80 }]
+		},
+		"item_galaxy_filament": {
+			"type": "coins",
+			"selectors": ["#rowitem_galaxy_filament"],
+			"requirements": [{ "requirement": 1e90 }]
+		},
+		"item_observable_universe": {
+			"type": "coins",
+			"selectors": ["#rowitem_observable_universe"],
+			"requirements": [{ "requirement": 1e102 }]
+		},
+		"item_multiverse": {
+			"type": "coins",
+			"selectors": ["#rowitem_multiverse"],
+			"requirements": [{ "requirement": 1e116 }]
+		},
+		"item_quantum_world": {
+			"type": "coins",
+			"selectors": ["#rowitem_quantum_world"],
+			"requirements": [{ "requirement": 1e124 }]
+		},
+		"item_bootes_void": {
+			"type": "coins",
+			"selectors": ["#rowitem_bootes_void"],
+			"requirements": [{ "requirement": 1e152 }]
+		},
+		"item_book": {
+			"type": "coins",
+			"selectors": ["#rowitem_book"],
+			"requirements": [{ "requirement": 0 }]
+		},
+		"item_dumbbells": {
+			"type": "coins",
+			"selectors": ["#rowitem_dumbbells"],
+			"requirements": [{ "itemRef": "item_dumbbells", "multiplier": 100 }]
+		},
+		"item_personal_squire": {
+			"type": "coins",
+			"selectors": ["#rowitem_personal_squire"],
+			"requirements": [{ "itemRef": "item_personal_squire", "multiplier": 100 }]
+		},
+		"item_steel_longsword": {
+			"type": "coins",
+			"selectors": ["#rowitem_steel_longsword"],
+			"requirements": [{ "itemRef": "item_steel_longsword", "multiplier": 100 }]
+		},
+		"item_butler": {
+			"type": "coins",
+			"selectors": ["#rowitem_butler"],
+			"requirements": [{ "itemRef": "item_butler", "multiplier": 100 }]
+		},
+		"item_sapphire_charm": {
+			"type": "coins",
+			"selectors": ["#rowitem_sapphire_charm"],
+			"requirements": [{ "itemRef": "item_sapphire_charm", "multiplier": 100 }]
+		},
+		"item_study_desk": {
+			"type": "coins",
+			"selectors": ["#rowitem_study_desk"],
+			"requirements": [{ "itemRef": "item_study_desk", "multiplier": 100 }]
+		},
+		"item_library": {
+			"type": "coins",
+			"selectors": ["#rowitem_library"],
+			"requirements": [{ "itemRef": "item_library", "multiplier": 100 }]
+		},
+		"item_observatory": {
+			"type": "coins",
+			"selectors": ["#rowitem_observatory"],
+			"requirements": [{ "itemRef": "item_observatory", "multiplier": 100 }]
+		},
+		"item_minds_eye": {
+			"type": "coins",
+			"selectors": ["#rowitem_minds_eye"],
+			"requirements": [{ "itemRef": "item_minds_eye", "multiplier": 100 }]
+		},
+		"item_void_necklace": {
+			"type": "coins",
+			"selectors": ["#rowitem_void_necklace"],
+			"requirements": [{ "itemRef": "item_void_necklace", "multiplier": 100 }]
+		},
+		"item_void_armor": {
+			"type": "coins",
+			"selectors": ["#rowitem_void_armor"],
+			"requirements": [{ "itemRef": "item_void_armor", "multiplier": 100 }]
+		},
+		"item_void_blade": {
+			"type": "coins",
+			"selectors": ["#rowitem_void_blade"],
+			"requirements": [{ "itemRef": "item_void_blade", "multiplier": 100 }]
+		},
+		"item_void_orb": {
+			"type": "coins",
+			"selectors": ["#rowitem_void_orb"],
+			"requirements": [{ "itemRef": "item_void_orb", "multiplier": 100 }]
+		},
+		"item_void_dust": {
+			"type": "coins",
+			"selectors": ["#rowitem_void_dust"],
+			"requirements": [{ "itemRef": "item_void_dust", "multiplier": 100 }]
+		},
+		"item_celestial_robe": {
+			"type": "coins",
+			"selectors": ["#rowitem_celestial_robe"],
+			"requirements": [{ "itemRef": "item_celestial_robe", "multiplier": 100 }]
+		},
+		"item_universe_fragment": {
+			"type": "coins",
+			"selectors": ["#rowitem_universe_fragment"],
+			"requirements": [
+				{ "itemRef": "item_universe_fragment", "multiplier": 100 }
+			]
+		},
+		"item_multiverse_fragment": {
+			"type": "coins",
+			"selectors": ["#rowitem_multiverse_fragment"],
+			"requirements": [
+				{ "itemRef": "item_multiverse_fragment", "multiplier": 100 }
+			]
+		},
+		"item_stairway_to_heaven": {
+			"type": "coins",
+			"selectors": ["#rowitem_stairway_to_heaven"],
+			"requirements": [
+				{ "itemRef": "item_stairway_to_heaven", "multiplier": 100 }
+			]
+		},
+		"item_highway_to_hell": {
+			"type": "coins",
+			"selectors": ["#rowitem_highway_to_hell"],
+			"requirements": [{ "itemRef": "item_highway_to_hell", "multiplier": 100 }]
+		},
+		"item_tesseract": {
+			"type": "coins",
+			"selectors": ["#rowitem_tesseract"],
+			"requirements": [{ "requirement": 1e112 }]
+		},
+		"item_desintegration": {
+			"type": "coins",
+			"selectors": ["#rowitem_desintegration"],
+			"requirements": [{ "requirement": 1e122 }]
+		},
+		"item_custom_galaxy": {
+			"type": "coins",
+			"selectors": ["#rowitem_custom_galaxy"],
+			"requirements": [{ "requirement": 1e134 }]
+		},
+		"item_hypersphere": {
+			"type": "coins",
+			"selectors": ["#rowitem_hypersphere"],
+			"requirements": [{ "requirement": 1e160 }]
+		},
+		"req_milestones_tab_button": {
+			"type": "essence",
+			"selectors": ["#milestonesTabButton"],
+			"requirements": [{ "requirement": 1 }]
+		},
+		"req_dark_matter_tab_button": {
+			"type": "darkMatter",
+			"selectors": ["#darkMatterTabButton"],
+			"requirements": [{ "requirement": 0, "strict": true }]
+		},
+		"req_skill_tree_tab_tab_button": {
+			"type": "essence",
+			"selectors": ["#skillTreeTabTabButton"],
+			"requirements": [{ "requirement": 1e20 }]
+		},
+		"req_skill_tree_page": {
+			"type": "essence",
+			"selectors": ["#skillTreePage"],
+			"requirements": [{ "requirement": 1e20 }]
+		},
+		"req_challenges_tab_button": {
+			"type": "evil",
+			"selectors": ["#challengesTabButton"],
+			"requirements": [{ "requirement": 10000 }]
+		},
+		"req_challenge_an_unhappy_life": {
+			"type": "evil",
+			"selectors": ["#anUnhappyLifeChallenge"],
+			"requirements": [{ "requirement": 10000 }]
+		},
+		"req_challenge_rich_and_the_poor": {
+			"type": "evil",
+			"selectors": ["#theRichAndThePoorChallenge"],
+			"requirements": [{ "requirement": 1000000 }]
+		},
+		"req_challenge_time_does_not_fly": {
+			"type": "essence",
+			"selectors": ["#timeDoesNotFlyChallenge"],
+			"requirements": [{ "requirement": 10000 }]
+		},
+		"req_challenge_dance_with_the_devil": {
+			"type": "essence",
+			"selectors": ["#danceWithTheDevilChallenge"],
+			"requirements": [{ "requirement": 1000000.0 }]
+		},
+		"req_challenge_legends_never_die": {
+			"type": "essence",
+			"selectors": ["#legendsNeverDieChallenge"],
+			"requirements": [{ "requirement": 25000000.0 }]
+		},
+		"req_challenge_the_darkest_time": {
+			"type": "essence",
+			"selectors": ["#theDarkestTimeChallenge"],
+			"requirements": [{ "requirement": 1e47 }]
+		},
+		"req_metaverse_tab_button": {
+			"type": "metaverse",
+			"selectors": ["#metaverseTabButton"],
+			"requirements": [{ "requirement": 1 }]
+		},
+		"req_increase_hypercube_gain_altar": {
+			"type": "hypercube",
+			"selectors": ["#IncreaseHypercubeGainAltar"],
+			"requirements": [{ "requirement": 1 }]
+		},
+		"req_reduce_boost_cooldown_altar": {
+			"type": "hypercube",
+			"selectors": ["#ReduceBoostCooldownAltar"],
+			"requirements": [{ "requirement": 500 }]
+		},
+		"req_increase_boost_duration_altar": {
+			"type": "hypercube",
+			"selectors": ["#IncreaseBoostDurationAltar"],
+			"requirements": [{ "requirement": 2500 }]
+		},
+		"req_evil_altar": {
+			"type": "hypercube",
+			"selectors": ["#EvilAltar"],
+			"requirements": [{ "requirement": 50000000 }]
+		},
+		"req_essence_altar": {
+			"type": "hypercube",
+			"selectors": ["#EssenceAltar"],
+			"requirements": [{ "requirement": 500000000 }]
+		},
+		"req_challenge_altar": {
+			"type": "hypercube",
+			"selectors": ["#ChallengeAltar"],
+			"requirements": [{ "requirement": 1000000000000000.0 }]
+		},
+		"req_dark_mater_altar": {
+			"type": "hypercube",
+			"selectors": ["#DarkMaterAltar"],
+			"requirements": [{ "requirement": 1e17 }]
+		},
+		"req_metaverse_page2": {
+			"type": "perkpoint",
+			"selectors": ["#metaversePage2"],
+			"requirements": [{ "requirement": 1 }]
+		},
+		"req_metaverse_tab2_tab_button": {
+			"type": "perkpoint",
+			"selectors": ["#metaverseTab2TabButton"],
+			"requirements": [{ "requirement": 1 }]
+		},
+		"category_heroic_milestones": {
+			"type": "essence",
+			"selectors": [".category_heroic_milestones"],
+			"requirements": [{ "requirement": 400000 }]
+		},
+		"category_dark_milestones": {
+			"type": "essence",
+			"selectors": [".category_dark_milestones"],
+			"requirements": [{ "requirement": 50000000000.0 }]
+		},
+		"category_metaverse_milestones": {
+			"type": "essence",
+			"selectors": [".category_metaverse_milestones"],
+			"requirements": [{ "requirement": 1e60 }]
+		}
+	}
 }

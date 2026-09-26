@@ -1,119 +1,124 @@
 /* w3 overrides */
 
+table {
+	white-space: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-style: normal;
+	text-align: start;
+	font-variant: normal;
+}
+
+/* Селектор вендорского типа: `.w3-table td` (0,1,1) перебивает его же правило
+   из w3.css порядком подключения, наш файл идёт после. Специфичности
+   элемента `td` (0,0,1) не хватало — вендор побеждал и ставил vertical-align: top. */
+.w3-table td {
+	vertical-align: middle;
+}
+
 .info-box {
-    border-left: 3px solid #4a90d9;
-    background: rgba(74, 144, 217, 0.10);
-    padding: 0.45em 0.7em;
-    margin-bottom: 0.9em;
+	border-left: 3px solid #4a90d9;
+	background: rgba(74, 144, 217, 0.1);
+	padding: 0.45em 0.7em;
+	margin-bottom: 0.9em;
 }
 
 .hint-box {
-    font-style: italic;
-    color: gray;
-    margin-bottom: 0.9em;
+	font-style: italic;
+	color: gray;
+	margin-bottom: 0.9em;
 }
 
 .warning-box {
-    border-left: 3px solid #d9a13a;
-    background: rgba(217, 161, 58, 0.10);
-    padding: 0.45em 0.7em;
-    margin-bottom: 0.9em;
+	border-left: 3px solid #d9a13a;
+	background: rgba(217, 161, 58, 0.1);
+	padding: 0.45em 0.7em;
+	margin-bottom: 0.9em;
 }
 
 .headerRow th {
-    white-space: nowrap;
+	white-space: nowrap;
 }
 
-.w3-button, .w3-bar-item {
-    padding: 0.4em 0.8em;
+.w3-button,
+.w3-bar-item {
+	padding: 0.4em 0.8em;
 }
 
 .w3-margin {
-    margin: 0.8em !important
+	margin: 0.8em;
 }
 
 .w3-margin-top {
-    margin-top: 0.8em !important
+	margin-top: 0.8em;
 }
 
 .w3-margin-bottom {
-    margin-bottom: 0.8em !important
+	margin-bottom: 0.8em;
 }
 
 .w3-margin-left {
-    margin-left: 0.8em !important
+	margin-left: 0.8em;
 }
 
 .w3-margin-right {
-    margin-right: 0.8em !important
+	margin-right: 0.8em;
 }
 
 .w3-bordered tr {
-    border-bottom: 0.05em solid #ddd
+	border-bottom: 0.05em solid #ddd;
 }
 
 .w3-striped tbody tr:nth-child(even) {
-    background-color: #f1f1f1
+	background-color: #f1f1f1;
 }
 
 .w3-bordered th {
-    height: 2em;
-    padding: 0.4em 1em 0 1em;
+	height: 2em;
+	padding: 0.4em 1em 0 1em;
 }
 
 .w3-bordered td {
-    height: 2em;
-    padding: 0 0 0 0;
-    padding-left: 0.8em;
+	height: 2em;
+	padding: 0 0 0 0;
+	padding-left: 0.8em;
 }
 
-.w3-table td:first-child, .w3-table th:first-child {
-    padding-left: 0.3em;
+.w3-table td:first-child,
+.w3-table th:first-child {
+	padding-left: 0.3em;
 }
 
 .w3-padding {
-    padding: 0.4em 0.8em !important;
+	padding: 0.4em 0.8em;
 }
 
 /*main*/
 
 body {
-    background-color: rgb(243, 243, 243);
+	background-color: rgb(243, 243, 243);
 }
 
 .text-caption {
-    font-size: larger;
-    text-align: center;
+	font-size: larger;
+	text-align: center;
 }
 
 #resources .text-caption + div {
-    text-align: center;
+	text-align: center;
 }
 
 #info .text-caption + div {
-    text-align: center;
+	text-align: center;
 }
 
 #info #inspiration_decay,
 #info #greed_rise {
-    text-align: center;
-}
-
-table {
-    white-space: normal;
-    line-height: normal;
-    font-weight: normal;
-    font-style: normal;
-    text-align: start;
-    font-variant: normal;
-}
-
-td {
-    vertical-align: middle !important;
+	text-align: center;
 }
 
 .legendary {
-    color: rgb(245, 119, 13);
+	color: rgb(245, 119, 13);
 }
 
 /* .effect {
@@ -121,22 +126,22 @@ td {
 } */
 
 .current {
-    background-color: orange !important;    
+	background-color: orange;
 }
 
 .current-hero {
-    background-color: rgb(39, 234, 17) !important;
+	background-color: rgb(39, 234, 17);
 }
 
 .progress-text {
-    position: absolute;
-    top: 5%;
-    left: 0.5em;
-    right: 0;
-    bottom: 0%;
-    color: white;
-    display: flex;
-    align-items: center;
+	position: absolute;
+	top: 5%;
+	left: 0.5em;
+	right: 0;
+	bottom: 0%;
+	color: white;
+	display: flex;
+	align-items: center;
 }
 
 /* Первая колонка таблиц задач не держит ширину: полоска у неё width: 100%,
@@ -145,7 +150,7 @@ td {
    min-width фиксирует сетку, не трогая поведение остальных колонок. */
 #jobTable tr > :first-child,
 #skillTable tr > :first-child {
-    min-width: 18em;
+	min-width: 18em;
 }
 
 /* fixed держит колонки по ширинам из шапки (20em имя, 18em эффект).
@@ -155,367 +160,399 @@ td {
    подписи шапки не скачут при переключении вкладок. */
 #jobTable,
 #skillTable {
-    table-layout: fixed;
+	table-layout: fixed;
 }
 
-#jobTable td.level, #jobTable th.level,
-#jobTable td.xpGain, #jobTable th.xpGain,
-#jobTable td.xpLeft, #jobTable th.xpLeft,
-#jobTable td.maxLevel, #jobTable th.maxLevel,
-#skillTable td.level, #skillTable th.level,
-#skillTable td.xpGain, #skillTable th.xpGain,
-#skillTable td.xpLeft, #skillTable th.xpLeft,
-#skillTable td.maxLevel, #skillTable th.maxLevel {
-    text-align: center;
+#jobTable td.level,
+#jobTable th.level,
+#jobTable td.xpGain,
+#jobTable th.xpGain,
+#jobTable td.xpLeft,
+#jobTable th.xpLeft,
+#jobTable td.maxLevel,
+#jobTable th.maxLevel,
+#skillTable td.level,
+#skillTable th.level,
+#skillTable td.xpGain,
+#skillTable th.xpGain,
+#skillTable td.xpLeft,
+#skillTable th.xpLeft,
+#skillTable td.maxLevel,
+#skillTable th.maxLevel {
+	text-align: center;
 }
 
 .progress-bar {
-    margin-top: 0.05em;
-    position: relative;
-    background-color: rgb(12, 101, 173);    
-    width: 100%;
+	margin-top: 0.05em;
+	position: relative;
+	background-color: rgb(12, 101, 173);
+	width: 100%;
 }
 
 .progress-fill {
-    height: 1.6em;
-    background-color: rgb(46, 148, 231);
+	height: 1.6em;
+	background-color: rgb(46, 148, 231);
 }
 
 .progress-bar-hero {
-    margin-top: 0.05em;
-    position: relative;
-    background-color: rgb(108, 59, 59);
-    width: 100%;
+	margin-top: 0.05em;
+	position: relative;
+	background-color: rgb(108, 59, 59);
+	width: 100%;
 }
 
 .progress-fill-hero {
-    height: 1.6em;
-    background-color: rgb(165, 60, 21);
+	height: 1.6em;
+	background-color: rgb(165, 60, 21);
 }
 
 .progress-bar-finished {
-    margin-top: 0.05em;
-    position: relative;
-    background-color: rgb(165, 60, 21);    
-    width: 100%;
+	margin-top: 0.05em;
+	position: relative;
+	background-color: rgb(165, 60, 21);
+	width: 100%;
 }
 
 .progress-fill-finished {
-    height: 1.6em;
-    background-color: rgb(212, 80, 30);
+	height: 1.6em;
+	background-color: rgb(212, 80, 30);
 }
 
-.hidden {
-    display: none !important;
+/* Инлайновые стили раньше жили прямо в разметке и перебивали .hidden —
+   инлайн сильнее правила без !important. Отсюда класс, а не style. */
+.boost-panel {
+	color: gray;
+	margin-top: 0.8em;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5em;
+}
+
+/* Награда за испытание в шапке вкладки. Инлайновый display:inline не давал
+   .hidden спрятать неактивные испытания, и в шапке светились бонусы всех шести. */
+.challenge-reward {
+	display: inline;
+	padding-left: 1em;
+}
+
+/* Дополнительная колонка вкладки метавселенной. setTab прячет её классом
+   .hidden при уходе с вкладки, и инлайновый display:flex делал это напрасно. */
+.metaverse-tabcolumn {
+	display: flex;
+}
+
+/* Столбик maxLevel — это th/td внутри .w3-table, а вендор даёт им
+   display:table-cell (0,1,1) и перебивает этим .hidden (0,1,0). */
+.w3-table .maxLevel.hidden {
+	display: none;
 }
 
 .hiddenTask {
-    display: none !important;
+	display: none;
 }
 
 .button {
-    border: 0.1em groove black !important;
+	border: 0.1em groove black;
 }
 
 .button-no-button {
-    color: white !important;
-    border: 0 !important;
-    width: 100%;
-    text-align: left;
+	color: white;
+	border: 0;
+	width: 100%;
+	text-align: left;
 }
 
 .button-no-button:hover {
-    cursor: pointer; 
+	cursor: pointer;
 }
 
 .item-button {
-    background-color: white;
-    text-align: center;
-    width: 93%;
-    height: 1.8em;
-    padding: 0;
+	background-color: white;
+	text-align: center;
+	width: 93%;
+	height: 1.8em;
+	padding: 0;
 }
 
 .item-button:hover {
-    cursor: pointer;
-    background-color: rgb(192, 192, 192);
+	cursor: pointer;
+	background-color: rgb(192, 192, 192);
 }
 
 .item-header-row:hover {
-    cursor: pointer;    
+	cursor: pointer;
 }
 
 button:focus {
-    outline: none;
+	outline: none;
 }
 
 .scroll {
-    overflow-y: auto;    
+	overflow-y: auto;
 }
 
-.tooltip, .tooltip-pointer {
-    position: relative;
-    display: inline-block;
+.tooltip,
+.tooltip-pointer {
+	position: relative;
+	display: inline-block;
 }
 
 .challenge-title {
-    color: red;
-    border-bottom: 0.1em solid red;
-    padding-bottom: 0.4em;
-    margin-bottom: 0.4em;
+	color: red;
+	border-bottom: 0.1em solid red;
+	padding-bottom: 0.4em;
+	margin-bottom: 0.4em;
 }
 
 .challenge {
-    border: 0.1em solid red;
+	border: 0.1em solid red;
 }
 
 .game-paused {
-    border: 0.1em solid blue;
+	border: 0.1em solid blue;
 }
 
 .dark-matter-title {
-    color:gold;
-    border-bottom: 0.1em solid goldenrod;
-    padding-bottom: 0.4em;
-    margin-bottom: 0.4em;
+	color: gold;
+	border-bottom: 0.1em solid goldenrod;
+	padding-bottom: 0.4em;
+	margin-bottom: 0.4em;
 }
 
 .metaverse-title {
-    color: rgb(24, 210, 217);
-    border-bottom: 0.1em solid rgb(24, 210, 217);
-    padding-bottom: 0.4em;
-    margin-bottom: 0.4em;
+	color: rgb(24, 210, 217);
+	border-bottom: 0.1em solid rgb(24, 210, 217);
+	padding-bottom: 0.4em;
+	margin-bottom: 0.4em;
 }
-  
+
 .tooltip .tooltipText {
-    visibility: hidden;
-    width: 25em;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    padding: 0.5em 0.5em;
+	visibility: hidden;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	padding: 0.5em 0.5em;
 
-    border-style: solid;
-    border-width: 3px;
-    border-color: rgb(92, 92, 247);
-    border-radius: 6px;
+	border-style: solid;
+	border-width: 3px;
+	border-color: rgb(92, 92, 247);
+	border-radius: 6px;
 
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 102%;
-    width: 32em;
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 102%;
+	width: 32em;
 
-    opacity: 0;
-    transition: opacity 0.5s;
+	opacity: 0;
+	transition: opacity 0.5s;
 }
 
 .tooltip:hover .tooltipText {
-    visibility: visible;
-    opacity: 0.8;
+	visibility: visible;
+	opacity: 0.8;
 }
 
 /* Тултипы, которые заполняются по событию (а не наведением), до заполнения
    не должны показывать пустую плашку. */
 .tooltip .tooltipText:empty {
-    display: none;
+	display: none;
 }
 
 /* Подтверждение экспорта: под кнопкой, а не справа — там поле ввода, и текст
    перекрывал бы его. Шрифт обычный: .text-caption даёт larger, а подпись
    к кнопке на большом шрифте много места занимает зря. */
 #exportTooltip {
-    top: 100%;
-    left: 0;
-    width: 18em;
-    font-size: small;
+	top: 100%;
+	left: 0;
+	width: 18em;
+	font-size: small;
 }
 
 .tooltip-pointer .tooltipText-pointer {
-    visibility: hidden;
-    width: 20em;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 0.5em;
-    padding: 0.5em 0.5em;
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 5%;       
-    opacity: 0;
-    transition: opacity 0.5s;
+	visibility: hidden;
+	width: 20em;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	border-radius: 0.5em;
+	padding: 0.5em 0.5em;
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 5%;
+	opacity: 0;
+	transition: opacity 0.5s;
 }
 
 .tooltip-pointer:hover .tooltipText-pointer {
-    visibility: visible;
-    opacity: 0.8;
+	visibility: visible;
+	opacity: 0.8;
 }
 
 .topbar-element {
-    font-size: small;
-    max-width: 15rem;
+	font-size: small;
+	max-width: 15rem;
 }
 
 .slidecontainer {
-    width: 100%;
+	width: 100%;
 }
 
 .inline {
-    display: inline-block;
+	display: inline-block;
 }
 
 .panel {
-    background-color: white;
-    border-color: rgb(243, 243, 243);
+	background-color: white;
+	border-color: rgb(243, 243, 243);
 }
 
-.small-margin  {
-    margin-bottom: 0.1em;
+.small-margin {
+	margin-bottom: 0.1em;
 }
 
 .heading {
-  position: relative;
+	position: relative;
 }
 
 .header img {
-  position: static;
-  float: left;
-  width: 36px;
-  height: 36px;
+	position: static;
+	float: left;
+	width: 36px;
+	height: 36px;
 }
 
 .header h1 {
-  position: static;
-  top: 2px;
-  left: 10px;
+	position: static;
+	top: 2px;
+	left: 10px;
 }
 
 .row {
-    display: flex;
-    align-items: flex-start;
+	display: flex;
+	align-items: flex-start;
 }
 
 .column {
-    display: flex;
-    flex-direction: column;
-    overflow-x: auto;
-    overflow-y: hidden;
+	display: flex;
+	flex-direction: column;
+	overflow-x: auto;
+	overflow-y: hidden;
 }
 
 .quick-bar {
-    position: sticky;
-    top: 146px;
-    height: calc(100vh - 146px);
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
+	position: sticky;
+	top: 146px;
+	height: calc(100vh - 146px);
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
 }
 
 #quickTaskDisplay,
 #pauseButton {
-    margin-top: 0.8em;
+	margin-top: 0.8em;
 }
 
 #resourceStats {
-    flex: 1 1 auto;
-    min-height: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    --stats-scale: 1;
+	flex: 1 1 auto;
+	min-height: 0;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	--stats-scale: 1;
 }
 
 #resourceStats .text-caption {
-    font-size: calc(20px * var(--stats-scale));
-    padding-top: calc(0.2em * var(--stats-scale));
-    white-space: nowrap;
+	font-size: calc(20px * var(--stats-scale));
+	padding-top: calc(0.2em * var(--stats-scale));
+	white-space: nowrap;
 }
 
 #resourceStats .resource-desc {
-    font-size: calc(16px * var(--stats-scale));
+	font-size: calc(16px * var(--stats-scale));
 }
 
 .tabs-tab-column {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    display: flex;
-    justify-content: space-between;
-    width: 65em;
-    height: auto;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	display: flex;
+	justify-content: space-between;
+	width: 65em;
+	height: auto;
 }
 
 .tabs-main-column {
-    width: 65em;
-    height: auto;
-    float: right;
-    margin-bottom: 0.8em;
+	width: 65em;
+	height: auto;
+	float: right;
+	margin-bottom: 0.8em;
 }
 
 .plain-tab-column {
-    width: 164em;
-    height: auto;
+	width: 164em;
+	height: auto;
 }
 
 .plain-main-column {
-    width: 164em;
-    height: auto;
-    float: right;
-    margin-bottom: 4em;
+	width: 164em;
+	height: auto;
+	float: right;
+	margin-bottom: 4em;
 }
 
 .page-column {
-    width: 56em;
-    height: auto;
+	width: 56em;
+	height: auto;
 }
 
 .settings-main-column {
-    width: 56em;
-    height: auto;
-    float: right;
-    margin-bottom: 4em;
+	width: 56em;
+	height: auto;
+	float: right;
+	margin-bottom: 4em;
 }
 
 .baritem {
-    height: auto;
-    text-align: center;
+	height: auto;
+	text-align: center;
 }
 
-
 .outer-circle {
-    width: 1.7em;
-    height: 1.7em;
-    border-radius: 50%;
-    border: solid 0.12em #ccc;    
+	width: 1.7em;
+	height: 1.7em;
+	border-radius: 50%;
+	border: solid 0.12em #ccc;
 }
 
 .center-g-inside {
-    display: grid;
-    place-items: center;    
+	display: grid;
+	place-items: center;
 }
 
-
-.inner-circle {    
-    width: 80%;
-    height: 80%;
-    border-radius: 50%;
+.inner-circle {
+	width: 80%;
+	height: 80%;
+	border-radius: 50%;
 }
 
 .selected {
-    color: rgb(39, 234, 17)!important 
+	color: rgb(39, 234, 17);
 }
 
 .reward {
-    color: rgb(64, 237, 23);
-    padding-bottom: 0.5em;
+	color: rgb(64, 237, 23);
+	padding-bottom: 0.5em;
 }
 
 .rebirth-label {
-    white-space: nowrap;
-    overflow: hidden;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 /* Gain-текст на кнопках ребёрна меняется каждый кадр, fitText постоянно
@@ -526,220 +563,234 @@ button:focus {
 #rebirthBtn3,
 #rebirthBtn4,
 #rebirthBtn5 {
-    min-height: 40px;
+	min-height: 40px;
 }
 
 .sidebarChallengeReward {
-    text-align: center;
+	text-align: center;
 }
 
 .perk {
-    background-color: #EA4C89;
-    border-style: solid;
-    border-width: 0.1em;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    font-size: larger;
-    height: 4em;
-    line-height: 1.5em;
-    list-style: none;
-    margin: 0;
-    outline: none;
-    padding: 0.5em 0.5em;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    transition: color 100ms;
-    vertical-align: baseline;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    margin: 0.6em 0.7em 0.6em 0.7em;    
+	background-color: #ea4c89;
+	border-style: solid;
+	border-width: 0.1em;
+	box-sizing: border-box;
+	color: #ffffff;
+	cursor: pointer;
+	display: inline-block;
+	font-size: larger;
+	height: 4em;
+	line-height: 1.5em;
+	list-style: none;
+	outline: none;
+	padding: 0.5em 0.5em;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	transition: color 100ms;
+	vertical-align: baseline;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	margin: 0.6em 0.7em 0.6em 0.7em;
 }
 
 .perk:hover {
-    background-color: #C2386F;
+	background-color: #c2386f;
 }
 
 .perk .perkName {
-    white-space: nowrap;
-    overflow: hidden;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 #settings ul,
 #statsTab ul {
-    list-style: none;
-    padding-left: 0;
+	list-style: none;
+	padding-left: 0;
 }
 
 #settings ul {
-    margin: 0;
+	margin: 0;
 }
 
 #statsTab ul {
-    margin: 1em 0;
+	margin: 1em 0;
 }
 
 .perk-grid {
-    display: grid;
-    grid-template-columns: 27em 27em
+	display: grid;
+	grid-template-columns: 27em 27em;
 }
 
 .active-perk {
-    background-color: green;
+	background-color: green;
 }
 
 .active-perk:hover {
-    background-color: #02bb11;
+	background-color: #02bb11;
 }
 
 .perk-tool {
-    background-color: #066182;
-    height: 2.5em;
+	background-color: #066182;
+	height: 2.5em;
 }
 
 .perk-tool:hover {
-    background-color: #0691c3;
+	background-color: #0691c3;
 }
 
-.perk-locked, .perk-locked:hover{
-    background-color: #3e3e3e;
+.perk-locked,
+.perk-locked:hover {
+	background-color: #3e3e3e;
 }
 
 .color-happiness {
-    color: rgb(15, 105, 207);
+	color: rgb(15, 105, 207);
 }
 .color-evil {
-    color: rgb(240, 0, 0);
+	color: rgb(240, 0, 0);
 }
 .color-essence {
-    color: rgb(24, 210, 217);
+	color: rgb(24, 210, 217);
 }
 .color-dark-matter {
-    color: rgb(132, 99, 206);
+	color: rgb(132, 99, 206);
 }
 .color-dark-orbs {
-    color: rgb(143, 114, 207);
+	color: rgb(143, 114, 207);
 }
 .color-time-warping {
-    color: rgb(204, 34, 219);
+	color: rgb(204, 34, 219);
 }
 .color-hypercubes {
-    color: rgb(9, 160, 230);
+	color: rgb(9, 160, 230);
 }
 .color-perk-points {
-    color: rgb(217, 24, 119);
+	color: rgb(217, 24, 119);
 }
 .color-income {
-    color: lightgreen;
+	color: lightgreen;
 }
 
 .perk-boost {
-    margin: 0;
-    padding: 0.2em 0.5em 1em 0.5em;
-    height: 2em;
+	margin: 0;
+	padding: 0.2em 0.5em 1em 0.5em;
+	height: 2em;
 }
 
-.perk-boost-cooldown, .perk-boost-cooldown:hover {
-    background-color: #066182;
+.perk-boost-cooldown,
+.perk-boost-cooldown:hover {
+	background-color: #066182;
 }
 
-.perk-boost-active, .perk-boost-active:hover {
-    background-color: #02bb11;
+.perk-boost-active,
+.perk-boost-active:hover {
+	background-color: #02bb11;
 }
 
 .button-transcend {
-    background-color: #b8f4cb !important;
+	background-color: #b8f4cb;
 }
 
 .button-transcend:hover {
-    background-color: #cef5da !important;   
+	background-color: #cef5da;
 }
 
 .button-evil {
-    background-color: #f0b5b5 !important;
+	background-color: #f0b5b5;
 }
 
 .button-evil:hover {
-    background-color: #f2caca !important;
+	background-color: #f2caca;
 }
 
 .rowtitle {
-    padding: 0.3em 1em 0em 1em !important;
+	padding: 0.3em 1em 0em 1em;
 }
 
 .congrats {
-    margin-top: 1em;
-    padding: 1em 1em 1em 1em !important;
-    font-size: 320%;
-    color: #d30202;
-    text-align: center;
-    border: 0.01em solid red;
-    border-radius: 0.5em;
-    animation: currency-rainbow 40s infinite;
+	margin-top: 1em;
+	padding: 1em 1em 1em 1em;
+	font-size: 320%;
+	color: #d30202;
+	text-align: center;
+	border: 0.01em solid red;
+	border-radius: 0.5em;
+	animation: currency-rainbow 40s infinite;
 }
 
 .resource {
-    margin-block-start: auto;
-    margin-block-end: auto;
+	margin-block-start: auto;
+	margin-block-end: auto;
 }
 
 /* Language switcher */
 .lang-btn {
-    margin: 0.2em;
+	margin: 0.2em;
 }
 
 /* Autobuy toggle */
 .autobuy-toggle-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 0.5em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 0.5em;
 }
 
 .toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5em;
-    cursor: pointer;
-    user-select: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5em;
+	cursor: pointer;
+	user-select: none;
 }
 
 .toggle input {
-    display: none;
+	display: none;
 }
 
 .toggle .slider {
-    width: 3em;
-    height: 1.6em;
-    background-color: #bbb;
-    border-radius: 1.6em;
-    position: relative;
-    transition: background-color 0.2s;
+	width: 3em;
+	height: 1.6em;
+	background-color: #bbb;
+	border-radius: 1.6em;
+	position: relative;
+	transition: background-color 0.2s;
 }
 
 .toggle .slider::before {
-    content: "";
-    position: absolute;
-    width: 1.2em;
-    height: 1.2em;
-    left: 0.2em;
-    top: 0.2em;
-    background-color: #fff;
-    border-radius: 50%;
-    transition: transform 0.2s;
+	content: "";
+	position: absolute;
+	width: 1.2em;
+	height: 1.2em;
+	left: 0.2em;
+	top: 0.2em;
+	background-color: #fff;
+	border-radius: 50%;
+	transition: transform 0.2s;
 }
 
 .toggle input:checked + .slider {
-    background-color: #4CAF50;
+	background-color: #4caf50;
 }
 
 .toggle input:checked + .slider::before {
-    transform: translateX(1.4em);
+	transform: translateX(1.4em);
 }
 
 .toggle .toggle-label {
-    font-size: small;
+	font-size: small;
+}
+
+/* .hidden объявлен последним намеренно: он равен по специфичности любому
+   одиночному классу с display, и побеждает только будучи ниже. Инлайн-стиль
+   элемента сильнее любого правила без !important, поэтому скрываемое прячется
+   классом, а не style.display. Проверено на .boost-panel, .challenge-reward,
+   .metaverse-tabcolumn и .perk — четыре разных места, где .hidden иначе
+   проигрывал соседнему display. Вендорские правила со специфичностью выше
+   (0,1,1 и больше) перебивают по-прежнему — им нужен составной селектор, см
+   .w3-table .maxLevel.hidden выше. */
+.hidden {
+	display: none;
 }

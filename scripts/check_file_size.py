@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import json
 import sys
+from fnmatch import fnmatch
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -36,14 +37,23 @@ def count_lines(path: Path) -> int:
         sys.exit(2)
 
 
-def collect_files(extensions: list[str], exclude_dirs: list[str]) -> list[Path]:
+def collect_files(
+    extensions: list[str], exclude_dirs: list[str], exclude_files: list[str]
+) -> list[Path]:
     exts = {f".{e.lstrip('.')}" for e in extensions}
     excluded = set(exclude_dirs)
     found: list[Path] = []
     for path in REPO_ROOT.rglob("*"):
         if not path.is_file() or path.suffix.lower() not in exts:
             continue
-        if any(part in excluded for part in path.relative_to(REPO_ROOT).parts):
+        rel = path.relative_to(REPO_ROOT).as_posix()
+        if any(part in excluded for part in rel.split("/")):
+            continue
+        # Generated files that must live in the repo root (the deploy serves
+        # index.html as /) are not fixable by splitting, so they are excluded by
+        # repo-relative glob. Keep patterns narrow: *.html would also hide the
+        # Jinja templates in templates/.
+        if any(fnmatch(rel, pattern) for pattern in exclude_files):
             continue
         found.append(path)
     return sorted(found)
@@ -54,6 +64,7 @@ def main() -> int:
     limit: int = config["limit"]
     extensions: list[str] = config["extensions"]
     exclude_dirs: list[str] = config.get("exclude_dirs", [])
+    exclude_files: list[str] = config.get("exclude_files", [])
     # Normalize keys to repo-root-relative posix paths regardless of platform.
     baseline = {
         Path(k).as_posix(): v for k, v in config.get("baseline", {}).items()
@@ -63,7 +74,7 @@ def main() -> int:
     checked = 0
     max_lines = 0
 
-    for path in collect_files(extensions, exclude_dirs):
+    for path in collect_files(extensions, exclude_dirs, exclude_files):
         rel = path.relative_to(REPO_ROOT).as_posix()
         lines = count_lines(path)
         checked += 1

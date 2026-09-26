@@ -1,41 +1,41 @@
 {
-  "permanentUnlocks": [
-    "req_quick_task_display",
-    "req_rebirth_tab_button",
-    "req_milestones_tab_button",
-    "req_dark_matter_tab_button",
-    "req_skill_tree_tab_tab_button",
-    "req_skill_tree_page",
-    "req_metaverse_tab_button",
-    "req_metaverse_page2",
-    "req_metaverse_tab2_tab_button",
-    "req_challenges_tab_button",
-    "req_challenge_an_unhappy_life",
-    "req_challenge_rich_and_the_poor",
-    "req_challenge_time_does_not_fly",
-    "req_challenge_dance_with_the_devil",
-    "req_challenge_legends_never_die",
-    "req_challenge_the_darkest_time"
-  ],
-  "metaverseUnlocks": [
-    "req_reduce_boost_cooldown_altar",
-    "req_increase_boost_duration_altar",
-    "req_increase_hypercube_gain_altar",
-    "req_evil_altar",
-    "req_essence_altar",
-    "req_challenge_altar",
-    "req_dark_mater_altar"
-  ],
-  "metaverseResetUnlocks": [
-    "category_darkness",
-    "skill_dark_prince",
-    "skill_dark_ruler",
-    "skill_immortal_ruler",
-    "skill_dark_magician",
-    "skill_universal_ruler",
-    "skill_blinded_by_darkness"
-  ],
-  "shopPermanentUnlocks": {
-    "a_miracle": "milestone_magic_eye"
-  }
+	"permanentUnlocks": [
+		"req_quick_task_display",
+		"req_rebirth_tab_button",
+		"req_milestones_tab_button",
+		"req_dark_matter_tab_button",
+		"req_skill_tree_tab_tab_button",
+		"req_skill_tree_page",
+		"req_metaverse_tab_button",
+		"req_metaverse_page2",
+		"req_metaverse_tab2_tab_button",
+		"req_challenges_tab_button",
+		"req_challenge_an_unhappy_life",
+		"req_challenge_rich_and_the_poor",
+		"req_challenge_time_does_not_fly",
+		"req_challenge_dance_with_the_devil",
+		"req_challenge_legends_never_die",
+		"req_challenge_the_darkest_time"
+	],
+	"metaverseUnlocks": [
+		"req_reduce_boost_cooldown_altar",
+		"req_increase_boost_duration_altar",
+		"req_increase_hypercube_gain_altar",
+		"req_evil_altar",
+		"req_essence_altar",
+		"req_challenge_altar",
+		"req_dark_mater_altar"
+	],
+	"metaverseResetUnlocks": [
+		"category_darkness",
+		"skill_dark_prince",
+		"skill_dark_ruler",
+		"skill_immortal_ruler",
+		"skill_dark_magician",
+		"skill_universal_ruler",
+		"skill_blinded_by_darkness"
+	],
+	"shopPermanentUnlocks": {
+		"a_miracle": "milestone_magic_eye"
+	}
 }
