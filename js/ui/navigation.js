@@ -371,9 +371,13 @@ export function toggleChallenge(challengeName) {
 window.addEventListener("keydown", (e) => {
 	if (!e.ctrlKey && !e.shiftKey && !e.altKey) {
 		if (e.key === " " && !e.repeat) {
-			togglePause();
+			// Space на сфокусированной кнопке должен нажимать её, а не паузу: иначе
+			// хоткей и встроенная активация кнопки срабатывают вдвоём, и пауза
+			// выглядит как «ничего не произошло». На body (фокуса на контроле нет) —
+			// пауза, и preventDefault гасит прокрутку страницы.
 			if (e.target === document.body) {
 				e.preventDefault();
+				togglePause();
 			}
 		}
 		if (e.key === "ArrowRight") changeTab(1);
