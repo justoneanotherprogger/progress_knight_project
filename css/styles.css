@@ -238,6 +238,13 @@ body {
 	padding-left: 1em;
 }
 
+/* Дополнительная колонка вкладки метавселенной. setTab прячет её классом
+   .hidden при уходе с вкладки, поэтому инлайновый display:flex здесь был
+   не просто мусором, а поломкой скрытия. */
+.metaverse-tabcolumn {
+	display: flex;
+}
+
 /* Столбик maxLevel — это th/td внутри .w3-table, а вендор даёт им
    display:table-cell (0,1,1) и перебивает этим .hidden (0,1,0). */
 .w3-table .maxLevel.hidden {
