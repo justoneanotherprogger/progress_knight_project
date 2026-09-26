@@ -34,9 +34,12 @@ import {
 	createItemObjects,
 	createSkillRequirements,
 	setCurrency,
+	setEnableKeybinds,
 	setNotation,
+	setTheme,
 	startLoops,
 	toggleAutoBuy,
+	togglePause,
 } from "./main.js";
 import {
 	applyBoost,
@@ -51,8 +54,21 @@ import {
 } from "./metaverse.js";
 import { createMilestoneRequirements, milestoneData } from "./milestones.js";
 import { addMultipliers, setCustomEffects } from "./multipliers.js";
+import {
+	rebirthFive,
+	rebirthFour,
+	rebirthOne,
+	rebirthThree,
+	rebirthTwo,
+} from "./rebirth.js";
 import { requirementsBaseData } from "./requirements.js";
-import { loadGameData } from "./save.js";
+import {
+	exportGameData,
+	importGameData,
+	loadGameData,
+	outExportButton,
+	resetGameData,
+} from "./save.js";
 import { initializeUI, refreshSettingsButtons, updateUI } from "./ui/init.js";
 import {
 	refreshLangButtons,
@@ -83,7 +99,8 @@ document
 
 // Мост для HTML-атрибутов: onclick="buyBoostDuration()" в шаблонах не видит модульные
 // функции. Публикуем только то, что зовут из разметки; внутри игры всё идёт через
-// import.
+// import. Полноту списка проверяет scripts/check_inline_handlers.py — не дописывай
+// руками, добавь функцию в шаблон и почини список по выводу проверки.
 Object.assign(window, {
 	applyBoost,
 	buyADealWithTheChairman,
@@ -108,15 +125,31 @@ Object.assign(window, {
 	collectPerkPoints,
 	enterChallenge,
 	exitChallenge,
+	exportGameData,
+	importGameData,
+	outExportButton,
+	rebirthFive,
+	rebirthFour,
+	rebirthOne,
+	rebirthThree,
+	rebirthTwo,
+	resetGameData,
 	resetSkillTree,
 	setAdminSpeed,
 	setCurrency,
+	setEnableKeybinds,
 	setFontSize,
 	setLang,
 	setLayout,
 	setNotation,
 	setStickySidebar,
+	setTab,
+	setTabDarkMatter,
+	setTabMetaverse,
+	setTabSettings,
+	setTheme,
 	toggleAutoBuy,
+	togglePause,
 });
 
 // Загрузка сейва, первый рендер и старт циклов расчёта и рендера.

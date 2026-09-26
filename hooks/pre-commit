@@ -1,6 +1,8 @@
 #!/bin/sh
 # Source file size ratchet — see scripts/check_file_size.py.
+# Inline handler bridge — module functions are invisible to HTML attributes.
 # Biome lint + format check; `npm run fix` applies safe fixes.
 # Enable repo-local hooks once per clone: git config core.hooksPath hooks
 npm run --silent lint -- --reporter=summary || exit 1
 python scripts/check_file_size.py || exit 1
+python scripts/check_inline_handlers.py || exit 1

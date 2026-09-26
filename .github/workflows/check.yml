@@ -24,6 +24,9 @@ jobs:
       - name: Check source file sizes
         run: python scripts/check_file_size.py
 
+      - name: Check inline handler bridge
+        run: python scripts/check_inline_handlers.py
+
   lint:
     name: Biome lint
     runs-on: ubuntu-latest
