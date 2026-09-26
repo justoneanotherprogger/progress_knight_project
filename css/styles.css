@@ -133,6 +133,14 @@ body {
 	background-color: rgb(39, 234, 17);
 }
 
+.progress-fill.current {
+	background-color: orange;
+}
+
+.progress-fill-hero.current-hero {
+	background-color: rgb(39, 234, 17);
+}
+
 .progress-text {
 	position: absolute;
 	top: 5%;
