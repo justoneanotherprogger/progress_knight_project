@@ -48,6 +48,12 @@ Biome (`biome.json`, `@biomejs/biome` в devDependencies). `npm run lint` — п
 `hooks/pre-commit` перед коммитом, рядом с рэтчетом размеров. Хук включается один раз
 на клон: `git config core.hooksPath hooks`.
 
+Экспорты из `js/`, на которые больше никто не ссылается, ловит
+`scripts/check_unused_exports.py`: он ищет каждое `export` по всему репозиторию
+и падает на именах без ссылок. Biome экспорт считает использованием, а граф кода
+не видит HTML-мост, поэтому мимо обоих мёртвый код проходит. Вручную:
+`python scripts/check_unused_exports.py`.
+
 Сгенерированные файлы (`translations.js`, `*_data.js`, `index.html`) в проверку не
 попадают — Biome уважает `.gitignore`; `vendor/` исключён отдельно.
 

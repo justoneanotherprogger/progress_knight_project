@@ -6,3 +6,5 @@
 npm run --silent lint -- --reporter=summary || exit 1
 python scripts/check_file_size.py || exit 1
 python scripts/check_inline_handlers.py || exit 1
+# Unused exports — Biome counts an export as used, and the code graph cannot see the HTML bridge.
+python scripts/check_unused_exports.py || exit 1
