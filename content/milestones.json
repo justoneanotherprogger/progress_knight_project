@@ -1,462 +1,462 @@
 {
-    "milestoneCategories": {
-        "category_essence_milestones": {
-            "name": "category_essence_milestones",
-            "headerColor": "#0066ff",
-            "items": {
-                "milestone_magic_eye": {
-                    "name": "milestone_magic_eye_name",
-                    "description": "milestone_magic_eye_desc",
-                    "tooltip": "milestone_magic_eye_tooltip",
-                    "threshold": 5000,
-                    "tier": 1
-                },
-                "milestone_almighty_eye": {
-                    "name": "milestone_almighty_eye_name",
-                    "description": "milestone_almighty_eye_desc",
-                    "tooltip": "milestone_almighty_eye_tooltip",
-                    "threshold": 15000,
-                    "tier": 2
-                },
-                "milestone_deal_with_the_devil": {
-                    "name": "milestone_deal_with_the_devil_name",
-                    "description": "milestone_deal_with_the_devil_desc",
-                    "tooltip": "milestone_deal_with_the_devil_tooltip",
-                    "threshold": 30000,
-                    "tier": 3
-                },
-                "milestone_transcendent_master": {
-                    "name": "milestone_transcendent_master_name",
-                    "description": "milestone_transcendent_master_desc",
-                    "tooltip": "milestone_transcendent_master_tooltip",
-                    "threshold": 50000,
-                    "tier": 4
-                },
-                "milestone_eternal_time": {
-                    "name": "milestone_eternal_time_name",
-                    "description": "milestone_eternal_time_desc",
-                    "tooltip": "milestone_eternal_time_tooltip",
-                    "threshold": 75000,
-                    "tier": 5,
-                    "effect": {
-                        "type": "multiply",
-                        "target": {
-                            "kind": "resource",
-                            "id": "gamespeed"
-                        },
-                        "base": 10
-                    }
-                },
-                "milestone_hell_portal": {
-                    "name": "milestone_hell_portal_name",
-                    "description": "milestone_hell_portal_desc",
-                    "tooltip": "milestone_hell_portal_tooltip",
-                    "threshold": 120000,
-                    "tier": 6
-                },
-                "milestone_inferno": {
-                    "name": "milestone_inferno_name",
-                    "description": "milestone_inferno_desc",
-                    "tooltip": "milestone_inferno_tooltip",
-                    "threshold": 170000,
-                    "tier": 7
-                },
-                "milestone_god_s_blessings": {
-                    "name": "milestone_god_s_blessings_name",
-                    "description": "milestone_god_s_blessings_desc",
-                    "tooltip": "milestone_god_s_blessings_tooltip",
-                    "threshold": 250000,
-                    "tier": 8,
-                    "effect": {
-                        "type": "multiply",
-                        "target": {
-                            "kind": "resource",
-                            "id": "happiness"
-                        },
-                        "base": 10000000
-                    }
-                },
-                "milestone_faint_hope": {
-                    "name": "milestone_faint_hope_name",
-                    "description": "milestone_faint_hope_desc",
-                    "tooltip": "milestone_faint_hope_tooltip",
-                    "threshold": 400000,
-                    "tier": 9
-                }
-            }
-        },
-        "category_heroic_milestones": {
-            "name": "category_heroic_milestones",
-            "headerColor": "#ff6600",
-            "items": {
-                "milestone_new_beginning": {
-                    "name": "milestone_new_beginning_name",
-                    "description": "milestone_new_beginning_desc",
-                    "tooltip": "milestone_new_beginning_tooltip",
-                    "threshold": 5000000,
-                    "tier": 10
-                },
-                "milestone_rise_of_great_heroes": {
-                    "name": "milestone_rise_of_great_heroes_name",
-                    "description": "milestone_rise_of_great_heroes_desc",
-                    "tooltip": "milestone_rise_of_great_heroes_tooltip",
-                    "threshold": 10000000,
-                    "tier": 11,
-                    "effect": {
-                        "type": "multiply",
-                        "target": {
-                            "kind": "hero"
-                        },
-                        "base": 10000
-                    }
-                },
-                "milestone_lazy_heroes": {
-                    "name": "milestone_lazy_heroes_name",
-                    "description": "milestone_lazy_heroes_desc",
-                    "tooltip": "milestone_lazy_heroes_tooltip",
-                    "threshold": 20000000,
-                    "tier": 12,
-                    "effect": {
-                        "type": "multiply",
-                        "target": {
-                            "kind": "hero"
-                        },
-                        "base": 1000000000000.0
-                    }
-                },
-                "milestone_dirty_heroes": {
-                    "name": "milestone_dirty_heroes_name",
-                    "description": "milestone_dirty_heroes_desc",
-                    "tooltip": "milestone_dirty_heroes_tooltip",
-                    "threshold": 30000000,
-                    "tier": 13,
-                    "effect": {
-                        "type": "multiply",
-                        "target": {
-                            "kind": "hero"
-                        },
-                        "base": 1000000000000000.0
-                    }
-                },
-                "milestone_angry_heroes": {
-                    "name": "milestone_angry_heroes_name",
-                    "description": "milestone_angry_heroes_desc",
-                    "tooltip": "milestone_angry_heroes_tooltip",
-                    "threshold": 50000000,
-                    "tier": 14,
-                    "effect": {
-                        "type": "multiply",
-                        "target": {
-                            "kind": "hero"
-                        },
-                        "base": 1000000000000000.0
-                    }
-                },
-                "milestone_tired_heroes": {
-                    "name": "milestone_tired_heroes_name",
-                    "description": "milestone_tired_heroes_desc",
-                    "tooltip": "milestone_tired_heroes_tooltip",
-                    "threshold": 100000000,
-                    "tier": 15,
-                    "effect": {
-                        "type": "multiply",
-                        "target": {
-                            "kind": "hero"
-                        },
-                        "base": 1000000000000000.0
-                    }
-                },
-                "milestone_scared_heroes": {
-                    "name": "milestone_scared_heroes_name",
-                    "description": "milestone_scared_heroes_desc",
-                    "tooltip": "milestone_scared_heroes_tooltip",
-                    "threshold": 150000000,
-                    "tier": 16,
-                    "effect": {
-                        "type": "multiply",
-                        "target": {
-                            "kind": "hero"
-                        },
-                        "base": 1000000000000000.0
-                    }
-                },
-                "milestone_good_heroes": {
-                    "name": "milestone_good_heroes_name",
-                    "description": "milestone_good_heroes_desc",
-                    "tooltip": "milestone_good_heroes_tooltip",
-                    "threshold": 200000000,
-                    "tier": 17,
-                    "effect": {
-                        "type": "multiply",
-                        "target": {
-                            "kind": "hero"
-                        },
-                        "base": 1000000000000000.0
-                    }
-                },
-                "milestone_funny_heroes": {
-                    "name": "milestone_funny_heroes_name",
-                    "description": "milestone_funny_heroes_desc",
-                    "tooltip": "milestone_funny_heroes_tooltip",
-                    "threshold": 300000000,
-                    "tier": 18,
-                    "effect": {
-                        "type": "multiply",
-                        "target": {
-                            "kind": "hero"
-                        },
-                        "base": 1e+25
-                    }
-                },
-                "milestone_beautiful_heroes": {
-                    "name": "milestone_beautiful_heroes_name",
-                    "description": "milestone_beautiful_heroes_desc",
-                    "tooltip": "milestone_beautiful_heroes_tooltip",
-                    "threshold": 400000000,
-                    "tier": 19,
-                    "effect": {
-                        "type": "multiply",
-                        "target": {
-                            "kind": "hero"
-                        },
-                        "base": 1e+50
-                    }
-                },
-                "milestone_awesome_heroes": {
-                    "name": "milestone_awesome_heroes_name",
-                    "description": "milestone_awesome_heroes_desc",
-                    "tooltip": "milestone_awesome_heroes_tooltip",
-                    "threshold": 500000000,
-                    "tier": 20,
-                    "effect": {
-                        "type": "multiply",
-                        "target": {
-                            "kind": "hero"
-                        },
-                        "base": 10000000000.0
-                    }
-                },
-                "milestone_furious_heroes": {
-                    "name": "milestone_furious_heroes_name",
-                    "description": "milestone_furious_heroes_desc",
-                    "tooltip": "milestone_furious_heroes_tooltip",
-                    "threshold": 750000000,
-                    "tier": 21,
-                    "effect": {
-                        "type": "multiply",
-                        "target": {
-                            "kind": "hero"
-                        },
-                        "base": 1e+18
-                    }
-                },
-                "milestone_superb_heroes": {
-                    "name": "milestone_superb_heroes_name",
-                    "description": "milestone_superb_heroes_desc",
-                    "tooltip": "milestone_superb_heroes_tooltip",
-                    "threshold": 10000000000,
-                    "tier": 22,
-                    "effect": {
-                        "type": "multiply",
-                        "target": {
-                            "kind": "hero"
-                        },
-                        "base": 1000.0
-                    }
-                },
-                "milestone_a_new_beginning": {
-                    "name": "milestone_a_new_beginning_name",
-                    "description": "milestone_a_new_beginning_desc",
-                    "tooltip": "milestone_a_new_beginning_tooltip",
-                    "threshold": 50000000000.0,
-                    "tier": 23
-                }
-            }
-        },
-        "category_dark_milestones": {
-            "name": "category_dark_milestones",
-            "headerColor": "#873160",
-            "items": {
-                "milestone_mind_control": {
-                    "name": "milestone_mind_control_name",
-                    "description": "milestone_mind_control_desc",
-                    "tooltip": "milestone_mind_control_tooltip",
-                    "threshold": 10000000000000.0,
-                    "tier": 24
-                },
-                "milestone_galactic_emperor": {
-                    "name": "milestone_galactic_emperor_name",
-                    "description": "milestone_galactic_emperor_desc",
-                    "tooltip": "milestone_galactic_emperor_tooltip",
-                    "threshold": 1000000000000000.0,
-                    "tier": 25
-                },
-                "milestone_dark_matter_harvester": {
-                    "name": "milestone_dark_matter_harvester_name",
-                    "description": "milestone_dark_matter_harvester_desc",
-                    "tooltip": "milestone_dark_matter_harvester_tooltip",
-                    "threshold": 1e+17,
-                    "tier": 26
-                },
-                "milestone_a_dark_era": {
-                    "name": "milestone_a_dark_era_name",
-                    "description": "milestone_a_dark_era_desc",
-                    "tooltip": "milestone_a_dark_era_tooltip",
-                    "threshold": 1e+20,
-                    "tier": 27
-                },
-                "milestone_dark_matter_mining": {
-                    "name": "milestone_dark_matter_mining_name",
-                    "description": "milestone_dark_matter_mining_desc",
-                    "tooltip": "milestone_dark_matter_mining_tooltip",
-                    "threshold": 1e+22,
-                    "tier": 28
-                },
-                "milestone_dark_orbiter": {
-                    "name": "milestone_dark_orbiter_name",
-                    "description": "milestone_dark_orbiter_desc",
-                    "tooltip": "milestone_dark_orbiter_tooltip",
-                    "threshold": 1e+25,
-                    "tier": 29,
-                    "effect": {
-                        "type": "multiply",
-                        "target": {
-                            "kind": "resource",
-                            "id": "dark_orb_generation"
-                        },
-                        "base": 10000000000.0
-                    }
-                },
-                "milestone_the_new_gold": {
-                    "name": "milestone_the_new_gold_name",
-                    "description": "milestone_the_new_gold_desc",
-                    "tooltip": "milestone_the_new_gold_tooltip",
-                    "threshold": 1e+30,
-                    "tier": 30,
-                    "effect": {
-                        "type": "multiply",
-                        "target": {
-                            "kind": "resource",
-                            "id": "essence_gain"
-                        },
-                        "base": 1000
-                    }
-                },
-                "milestone_the_devil_inside_you": {
-                    "name": "milestone_the_devil_inside_you_name",
-                    "description": "milestone_the_devil_inside_you_desc",
-                    "tooltip": "milestone_the_devil_inside_you_tooltip",
-                    "threshold": 1e+35,
-                    "tier": 31,
-                    "effect": {
-                        "type": "multiply",
-                        "target": {
-                            "kind": "resource",
-                            "id": "evil_gain"
-                        },
-                        "base": 1000000000000000.0
-                    }
-                },
-                "milestone_strange_magic": {
-                    "name": "milestone_strange_magic_name",
-                    "description": "milestone_strange_magic_desc",
-                    "tooltip": "milestone_strange_magic_tooltip",
-                    "threshold": 1e+38,
-                    "tier": 32,
-                    "effect": {
-                        "type": "xp",
-                        "target": {
-                            "kind": "skill",
-                            "category": "category_darkness"
-                        },
-                        "base": 1e+50
-                    }
-                },
-                "milestone_speed_speed_speed": {
-                    "name": "milestone_speed_speed_speed_name",
-                    "description": "milestone_speed_speed_speed_desc",
-                    "tooltip": "milestone_speed_speed_speed_tooltip",
-                    "threshold": 1e+40,
-                    "tier": 33
-                },
-                "milestone_life_is_valueable": {
-                    "name": "milestone_life_is_valueable_name",
-                    "description": "milestone_life_is_valueable_desc",
-                    "tooltip": "milestone_life_is_valueable_tooltip",
-                    "threshold": 1e+47,
-                    "tier": 34
-                },
-                "milestone_dark_matter_millionaire": {
-                    "name": "milestone_dark_matter_millionaire_name",
-                    "description": "milestone_dark_matter_millionaire_desc",
-                    "tooltip": "milestone_dark_matter_millionaire_tooltip",
-                    "threshold": 1e+55,
-                    "tier": 35,
-                    "effect": {
-                        "type": "multiply",
-                        "target": {
-                            "kind": "resource",
-                            "id": "dark_matter_gain"
-                        },
-                        "base": 500
-                    }
-                },
-                "milestone_the_new_dark_matter": {
-                    "name": "milestone_the_new_dark_matter_name",
-                    "description": "milestone_the_new_dark_matter_desc",
-                    "tooltip": "milestone_the_new_dark_matter_tooltip",
-                    "threshold": 1e+60,
-                    "tier": 36
-                }
-            }
-        },
-        "category_metaverse_milestones": {
-            "name": "category_metaverse_milestones",
-            "headerColor": "#09a0e6",
-            "items": {
-                "milestone_strong_hope": {
-                    "name": "milestone_strong_hope_name",
-                    "description": "milestone_strong_hope_desc",
-                    "tooltip": "milestone_strong_hope_tooltip",
-                    "threshold": 1e+70,
-                    "tier": 37
-                },
-                "milestone_ruler_of_the_metaverse": {
-                    "name": "milestone_ruler_of_the_metaverse_name",
-                    "description": "milestone_ruler_of_the_metaverse_desc",
-                    "tooltip": "milestone_ruler_of_the_metaverse_tooltip",
-                    "threshold": 1e+90,
-                    "tier": 38
-                },
-                "milestone_a_new_hope": {
-                    "name": "milestone_a_new_hope_name",
-                    "description": "milestone_a_new_hope_desc",
-                    "tooltip": "milestone_a_new_hope_tooltip",
-                    "threshold": 1e+95,
-                    "tier": 39
-                },
-                "milestone_time_is_a_flat_circle": {
-                    "name": "milestone_time_is_a_flat_circle_name",
-                    "description": "milestone_time_is_a_flat_circle_desc",
-                    "tooltip": "milestone_time_is_a_flat_circle_tooltip",
-                    "threshold": 1e+100,
-                    "tier": 40
-                },
-                "milestone_the_end_is_near": {
-                    "name": "milestone_the_end_is_near_name",
-                    "description": "milestone_the_end_is_near_desc",
-                    "tooltip": "milestone_the_end_is_near_tooltip",
-                    "threshold": 1e+200,
-                    "tier": 50
-                },
-                "milestone_the_end": {
-                    "name": "milestone_the_end_name",
-                    "description": "milestone_the_end_desc",
-                    "tooltip": "milestone_the_end_tooltip",
-                    "threshold": 1e+300,
-                    "tier": 99
-                }
-            }
-        }
-    }
+	"milestoneCategories": {
+		"category_essence_milestones": {
+			"name": "category_essence_milestones",
+			"headerColor": "#0066ff",
+			"items": {
+				"milestone_magic_eye": {
+					"name": "milestone_magic_eye_name",
+					"description": "milestone_magic_eye_desc",
+					"tooltip": "milestone_magic_eye_tooltip",
+					"threshold": 5000,
+					"tier": 1
+				},
+				"milestone_almighty_eye": {
+					"name": "milestone_almighty_eye_name",
+					"description": "milestone_almighty_eye_desc",
+					"tooltip": "milestone_almighty_eye_tooltip",
+					"threshold": 15000,
+					"tier": 2
+				},
+				"milestone_deal_with_the_devil": {
+					"name": "milestone_deal_with_the_devil_name",
+					"description": "milestone_deal_with_the_devil_desc",
+					"tooltip": "milestone_deal_with_the_devil_tooltip",
+					"threshold": 30000,
+					"tier": 3
+				},
+				"milestone_transcendent_master": {
+					"name": "milestone_transcendent_master_name",
+					"description": "milestone_transcendent_master_desc",
+					"tooltip": "milestone_transcendent_master_tooltip",
+					"threshold": 50000,
+					"tier": 4
+				},
+				"milestone_eternal_time": {
+					"name": "milestone_eternal_time_name",
+					"description": "milestone_eternal_time_desc",
+					"tooltip": "milestone_eternal_time_tooltip",
+					"threshold": 75000,
+					"tier": 5,
+					"effect": {
+						"type": "multiply",
+						"target": {
+							"kind": "resource",
+							"id": "gamespeed"
+						},
+						"base": 10
+					}
+				},
+				"milestone_hell_portal": {
+					"name": "milestone_hell_portal_name",
+					"description": "milestone_hell_portal_desc",
+					"tooltip": "milestone_hell_portal_tooltip",
+					"threshold": 120000,
+					"tier": 6
+				},
+				"milestone_inferno": {
+					"name": "milestone_inferno_name",
+					"description": "milestone_inferno_desc",
+					"tooltip": "milestone_inferno_tooltip",
+					"threshold": 170000,
+					"tier": 7
+				},
+				"milestone_god_s_blessings": {
+					"name": "milestone_god_s_blessings_name",
+					"description": "milestone_god_s_blessings_desc",
+					"tooltip": "milestone_god_s_blessings_tooltip",
+					"threshold": 250000,
+					"tier": 8,
+					"effect": {
+						"type": "multiply",
+						"target": {
+							"kind": "resource",
+							"id": "happiness"
+						},
+						"base": 10000000
+					}
+				},
+				"milestone_faint_hope": {
+					"name": "milestone_faint_hope_name",
+					"description": "milestone_faint_hope_desc",
+					"tooltip": "milestone_faint_hope_tooltip",
+					"threshold": 400000,
+					"tier": 9
+				}
+			}
+		},
+		"category_heroic_milestones": {
+			"name": "category_heroic_milestones",
+			"headerColor": "#ff6600",
+			"items": {
+				"milestone_new_beginning": {
+					"name": "milestone_new_beginning_name",
+					"description": "milestone_new_beginning_desc",
+					"tooltip": "milestone_new_beginning_tooltip",
+					"threshold": 5000000,
+					"tier": 10
+				},
+				"milestone_rise_of_great_heroes": {
+					"name": "milestone_rise_of_great_heroes_name",
+					"description": "milestone_rise_of_great_heroes_desc",
+					"tooltip": "milestone_rise_of_great_heroes_tooltip",
+					"threshold": 10000000,
+					"tier": 11,
+					"effect": {
+						"type": "multiply",
+						"target": {
+							"kind": "hero"
+						},
+						"base": 10000
+					}
+				},
+				"milestone_lazy_heroes": {
+					"name": "milestone_lazy_heroes_name",
+					"description": "milestone_lazy_heroes_desc",
+					"tooltip": "milestone_lazy_heroes_tooltip",
+					"threshold": 20000000,
+					"tier": 12,
+					"effect": {
+						"type": "multiply",
+						"target": {
+							"kind": "hero"
+						},
+						"base": 1000000000000.0
+					}
+				},
+				"milestone_dirty_heroes": {
+					"name": "milestone_dirty_heroes_name",
+					"description": "milestone_dirty_heroes_desc",
+					"tooltip": "milestone_dirty_heroes_tooltip",
+					"threshold": 30000000,
+					"tier": 13,
+					"effect": {
+						"type": "multiply",
+						"target": {
+							"kind": "hero"
+						},
+						"base": 1000000000000000.0
+					}
+				},
+				"milestone_angry_heroes": {
+					"name": "milestone_angry_heroes_name",
+					"description": "milestone_angry_heroes_desc",
+					"tooltip": "milestone_angry_heroes_tooltip",
+					"threshold": 50000000,
+					"tier": 14,
+					"effect": {
+						"type": "multiply",
+						"target": {
+							"kind": "hero"
+						},
+						"base": 1000000000000000.0
+					}
+				},
+				"milestone_tired_heroes": {
+					"name": "milestone_tired_heroes_name",
+					"description": "milestone_tired_heroes_desc",
+					"tooltip": "milestone_tired_heroes_tooltip",
+					"threshold": 100000000,
+					"tier": 15,
+					"effect": {
+						"type": "multiply",
+						"target": {
+							"kind": "hero"
+						},
+						"base": 1000000000000000.0
+					}
+				},
+				"milestone_scared_heroes": {
+					"name": "milestone_scared_heroes_name",
+					"description": "milestone_scared_heroes_desc",
+					"tooltip": "milestone_scared_heroes_tooltip",
+					"threshold": 150000000,
+					"tier": 16,
+					"effect": {
+						"type": "multiply",
+						"target": {
+							"kind": "hero"
+						},
+						"base": 1000000000000000.0
+					}
+				},
+				"milestone_good_heroes": {
+					"name": "milestone_good_heroes_name",
+					"description": "milestone_good_heroes_desc",
+					"tooltip": "milestone_good_heroes_tooltip",
+					"threshold": 200000000,
+					"tier": 17,
+					"effect": {
+						"type": "multiply",
+						"target": {
+							"kind": "hero"
+						},
+						"base": 1000000000000000.0
+					}
+				},
+				"milestone_funny_heroes": {
+					"name": "milestone_funny_heroes_name",
+					"description": "milestone_funny_heroes_desc",
+					"tooltip": "milestone_funny_heroes_tooltip",
+					"threshold": 300000000,
+					"tier": 18,
+					"effect": {
+						"type": "multiply",
+						"target": {
+							"kind": "hero"
+						},
+						"base": 1e25
+					}
+				},
+				"milestone_beautiful_heroes": {
+					"name": "milestone_beautiful_heroes_name",
+					"description": "milestone_beautiful_heroes_desc",
+					"tooltip": "milestone_beautiful_heroes_tooltip",
+					"threshold": 400000000,
+					"tier": 19,
+					"effect": {
+						"type": "multiply",
+						"target": {
+							"kind": "hero"
+						},
+						"base": 1e50
+					}
+				},
+				"milestone_awesome_heroes": {
+					"name": "milestone_awesome_heroes_name",
+					"description": "milestone_awesome_heroes_desc",
+					"tooltip": "milestone_awesome_heroes_tooltip",
+					"threshold": 500000000,
+					"tier": 20,
+					"effect": {
+						"type": "multiply",
+						"target": {
+							"kind": "hero"
+						},
+						"base": 10000000000.0
+					}
+				},
+				"milestone_furious_heroes": {
+					"name": "milestone_furious_heroes_name",
+					"description": "milestone_furious_heroes_desc",
+					"tooltip": "milestone_furious_heroes_tooltip",
+					"threshold": 750000000,
+					"tier": 21,
+					"effect": {
+						"type": "multiply",
+						"target": {
+							"kind": "hero"
+						},
+						"base": 1e18
+					}
+				},
+				"milestone_superb_heroes": {
+					"name": "milestone_superb_heroes_name",
+					"description": "milestone_superb_heroes_desc",
+					"tooltip": "milestone_superb_heroes_tooltip",
+					"threshold": 10000000000,
+					"tier": 22,
+					"effect": {
+						"type": "multiply",
+						"target": {
+							"kind": "hero"
+						},
+						"base": 1000.0
+					}
+				},
+				"milestone_a_new_beginning": {
+					"name": "milestone_a_new_beginning_name",
+					"description": "milestone_a_new_beginning_desc",
+					"tooltip": "milestone_a_new_beginning_tooltip",
+					"threshold": 50000000000.0,
+					"tier": 23
+				}
+			}
+		},
+		"category_dark_milestones": {
+			"name": "category_dark_milestones",
+			"headerColor": "#873160",
+			"items": {
+				"milestone_mind_control": {
+					"name": "milestone_mind_control_name",
+					"description": "milestone_mind_control_desc",
+					"tooltip": "milestone_mind_control_tooltip",
+					"threshold": 10000000000000.0,
+					"tier": 24
+				},
+				"milestone_galactic_emperor": {
+					"name": "milestone_galactic_emperor_name",
+					"description": "milestone_galactic_emperor_desc",
+					"tooltip": "milestone_galactic_emperor_tooltip",
+					"threshold": 1000000000000000.0,
+					"tier": 25
+				},
+				"milestone_dark_matter_harvester": {
+					"name": "milestone_dark_matter_harvester_name",
+					"description": "milestone_dark_matter_harvester_desc",
+					"tooltip": "milestone_dark_matter_harvester_tooltip",
+					"threshold": 1e17,
+					"tier": 26
+				},
+				"milestone_a_dark_era": {
+					"name": "milestone_a_dark_era_name",
+					"description": "milestone_a_dark_era_desc",
+					"tooltip": "milestone_a_dark_era_tooltip",
+					"threshold": 1e20,
+					"tier": 27
+				},
+				"milestone_dark_matter_mining": {
+					"name": "milestone_dark_matter_mining_name",
+					"description": "milestone_dark_matter_mining_desc",
+					"tooltip": "milestone_dark_matter_mining_tooltip",
+					"threshold": 1e22,
+					"tier": 28
+				},
+				"milestone_dark_orbiter": {
+					"name": "milestone_dark_orbiter_name",
+					"description": "milestone_dark_orbiter_desc",
+					"tooltip": "milestone_dark_orbiter_tooltip",
+					"threshold": 1e25,
+					"tier": 29,
+					"effect": {
+						"type": "multiply",
+						"target": {
+							"kind": "resource",
+							"id": "dark_orb_generation"
+						},
+						"base": 10000000000.0
+					}
+				},
+				"milestone_the_new_gold": {
+					"name": "milestone_the_new_gold_name",
+					"description": "milestone_the_new_gold_desc",
+					"tooltip": "milestone_the_new_gold_tooltip",
+					"threshold": 1e30,
+					"tier": 30,
+					"effect": {
+						"type": "multiply",
+						"target": {
+							"kind": "resource",
+							"id": "essence_gain"
+						},
+						"base": 1000
+					}
+				},
+				"milestone_the_devil_inside_you": {
+					"name": "milestone_the_devil_inside_you_name",
+					"description": "milestone_the_devil_inside_you_desc",
+					"tooltip": "milestone_the_devil_inside_you_tooltip",
+					"threshold": 1e35,
+					"tier": 31,
+					"effect": {
+						"type": "multiply",
+						"target": {
+							"kind": "resource",
+							"id": "evil_gain"
+						},
+						"base": 1000000000000000.0
+					}
+				},
+				"milestone_strange_magic": {
+					"name": "milestone_strange_magic_name",
+					"description": "milestone_strange_magic_desc",
+					"tooltip": "milestone_strange_magic_tooltip",
+					"threshold": 1e38,
+					"tier": 32,
+					"effect": {
+						"type": "xp",
+						"target": {
+							"kind": "skill",
+							"category": "category_darkness"
+						},
+						"base": 1e50
+					}
+				},
+				"milestone_speed_speed_speed": {
+					"name": "milestone_speed_speed_speed_name",
+					"description": "milestone_speed_speed_speed_desc",
+					"tooltip": "milestone_speed_speed_speed_tooltip",
+					"threshold": 1e40,
+					"tier": 33
+				},
+				"milestone_life_is_valueable": {
+					"name": "milestone_life_is_valueable_name",
+					"description": "milestone_life_is_valueable_desc",
+					"tooltip": "milestone_life_is_valueable_tooltip",
+					"threshold": 1e47,
+					"tier": 34
+				},
+				"milestone_dark_matter_millionaire": {
+					"name": "milestone_dark_matter_millionaire_name",
+					"description": "milestone_dark_matter_millionaire_desc",
+					"tooltip": "milestone_dark_matter_millionaire_tooltip",
+					"threshold": 1e55,
+					"tier": 35,
+					"effect": {
+						"type": "multiply",
+						"target": {
+							"kind": "resource",
+							"id": "dark_matter_gain"
+						},
+						"base": 500
+					}
+				},
+				"milestone_the_new_dark_matter": {
+					"name": "milestone_the_new_dark_matter_name",
+					"description": "milestone_the_new_dark_matter_desc",
+					"tooltip": "milestone_the_new_dark_matter_tooltip",
+					"threshold": 1e60,
+					"tier": 36
+				}
+			}
+		},
+		"category_metaverse_milestones": {
+			"name": "category_metaverse_milestones",
+			"headerColor": "#09a0e6",
+			"items": {
+				"milestone_strong_hope": {
+					"name": "milestone_strong_hope_name",
+					"description": "milestone_strong_hope_desc",
+					"tooltip": "milestone_strong_hope_tooltip",
+					"threshold": 1e70,
+					"tier": 37
+				},
+				"milestone_ruler_of_the_metaverse": {
+					"name": "milestone_ruler_of_the_metaverse_name",
+					"description": "milestone_ruler_of_the_metaverse_desc",
+					"tooltip": "milestone_ruler_of_the_metaverse_tooltip",
+					"threshold": 1e90,
+					"tier": 38
+				},
+				"milestone_a_new_hope": {
+					"name": "milestone_a_new_hope_name",
+					"description": "milestone_a_new_hope_desc",
+					"tooltip": "milestone_a_new_hope_tooltip",
+					"threshold": 1e95,
+					"tier": 39
+				},
+				"milestone_time_is_a_flat_circle": {
+					"name": "milestone_time_is_a_flat_circle_name",
+					"description": "milestone_time_is_a_flat_circle_desc",
+					"tooltip": "milestone_time_is_a_flat_circle_tooltip",
+					"threshold": 1e100,
+					"tier": 40
+				},
+				"milestone_the_end_is_near": {
+					"name": "milestone_the_end_is_near_name",
+					"description": "milestone_the_end_is_near_desc",
+					"tooltip": "milestone_the_end_is_near_tooltip",
+					"threshold": 1e200,
+					"tier": 50
+				},
+				"milestone_the_end": {
+					"name": "milestone_the_end_name",
+					"description": "milestone_the_end_desc",
+					"tooltip": "milestone_the_end_tooltip",
+					"threshold": 1e300,
+					"tier": 99
+				}
+			}
+		}
+	}
 }

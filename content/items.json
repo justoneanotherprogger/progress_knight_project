@@ -1,841 +1,841 @@
 {
-  "itemCategories": {
-    "category_properties": {
-      "name": "category_properties",
-      "headerColor": "#219ebc",
-      "items": {
-        "item_homeless": {
-          "name": "item_homeless_name",
-          "expense": {
-            "base": 0,
-            "heroExp": 2
-          },
-          "effect": {
-            "base": 1,
-            "heroeffect": 2000000.0,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_homeless_tooltip"
-        },
-        "item_tent": {
-          "name": "item_tent_name",
-          "expense": {
-            "base": 15,
-            "heroExp": 2
-          },
-          "effect": {
-            "base": 1.4,
-            "heroeffect": 20000000.0,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_tent_tooltip"
-        },
-        "item_wooden_hut": {
-          "name": "item_wooden_hut_name",
-          "expense": {
-            "base": 100,
-            "heroExp": 3
-          },
-          "effect": {
-            "base": 2,
-            "heroeffect": 200000000.0,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_wooden_hut_tooltip"
-        },
-        "item_cottage": {
-          "name": "item_cottage_name",
-          "expense": {
-            "base": 750,
-            "heroExp": 3
-          },
-          "effect": {
-            "base": 3.5,
-            "heroeffect": 2000000000.0,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_cottage_tooltip"
-        },
-        "item_house": {
-          "name": "item_house_name",
-          "expense": {
-            "base": 3000,
-            "heroExp": 4
-          },
-          "effect": {
-            "base": 6,
-            "heroeffect": 20000000000.0,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_house_tooltip"
-        },
-        "item_large_house": {
-          "name": "item_large_house_name",
-          "expense": {
-            "base": 25000,
-            "heroExp": 4
-          },
-          "effect": {
-            "base": 12,
-            "heroeffect": 200000000000.0,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_large_house_tooltip"
-        },
-        "item_small_palace": {
-          "name": "item_small_palace_name",
-          "expense": {
-            "base": 300000,
-            "heroExp": 5
-          },
-          "effect": {
-            "base": 25,
-            "heroeffect": 2000000000000.0,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_small_palace_tooltip"
-        },
-        "item_grand_palace": {
-          "name": "item_grand_palace_name",
-          "expense": {
-            "base": 5000000,
-            "heroExp": 5
-          },
-          "effect": {
-            "base": 60,
-            "heroeffect": 20000000000000.0,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_grand_palace_tooltip"
-        },
-        "item_town_ruler": {
-          "name": "item_town_ruler_name",
-          "expense": {
-            "base": 35000000,
-            "heroExp": 6
-          },
-          "effect": {
-            "base": 120,
-            "heroeffect": 2000000000000000.0,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_town_ruler_tooltip"
-        },
-        "item_city_ruler": {
-          "name": "item_city_ruler_name",
-          "expense": {
-            "base": 1100000000.0,
-            "heroExp": 7
-          },
-          "effect": {
-            "base": 500,
-            "heroeffect": 2e+17,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_city_ruler_tooltip"
-        },
-        "item_nation_ruler": {
-          "name": "item_nation_ruler_name",
-          "expense": {
-            "base": 13000000000.0,
-            "heroExp": 8
-          },
-          "effect": {
-            "base": 1200,
-            "heroeffect": 2e+19,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_nation_ruler_tooltip"
-        },
-        "item_pocket_dimension": {
-          "name": "item_pocket_dimension_name",
-          "expense": {
-            "base": 49000000000.0,
-            "heroExp": 9
-          },
-          "effect": {
-            "base": 5000,
-            "heroeffect": 2e+22,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_pocket_dimension_tooltip"
-        },
-        "item_void_realm": {
-          "name": "item_void_realm_name",
-          "expense": {
-            "base": 121000000000.0,
-            "heroExp": 10
-          },
-          "effect": {
-            "base": 15000,
-            "heroeffect": 2e+25,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_void_realm_tooltip"
-        },
-        "item_void_universe": {
-          "name": "item_void_universe_name",
-          "expense": {
-            "base": 2000000000000.0,
-            "heroExp": 11
-          },
-          "effect": {
-            "base": 30000,
-            "heroeffect": 2e+28,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_void_universe_tooltip"
-        },
-        "item_astral_realm": {
-          "name": "item_astral_realm_name",
-          "expense": {
-            "base": 160000000000000.0,
-            "heroExp": 12
-          },
-          "effect": {
-            "base": 150000,
-            "heroeffect": 2e+31,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_astral_realm_tooltip"
-        },
-        "item_galactic_throne": {
-          "name": "item_galactic_throne_name",
-          "expense": {
-            "base": 5000000000000000.0,
-            "heroExp": 13
-          },
-          "effect": {
-            "base": 300000,
-            "heroeffect": 2e+35,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_galactic_throne_tooltip"
-        },
-        "item_spaceship": {
-          "name": "item_spaceship_name",
-          "expense": {
-            "base": 1e+18,
-            "heroExp": 15
-          },
-          "effect": {
-            "base": 1500000,
-            "heroeffect": 5e+42,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_spaceship_tooltip"
-        },
-        "item_planet": {
-          "name": "item_planet_name",
-          "expense": {
-            "base": 1e+22,
-            "heroExp": 16
-          },
-          "effect": {
-            "base": 5000000,
-            "heroeffect": 5e+46,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_planet_tooltip"
-        },
-        "item_ringworld": {
-          "name": "item_ringworld_name",
-          "expense": {
-            "base": 1e+24,
-            "heroExp": 17
-          },
-          "effect": {
-            "base": 50000000,
-            "heroeffect": 5e+49,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_ringworld_tooltip"
-        },
-        "item_stellar_neighborhood": {
-          "name": "item_stellar_neighborhood_name",
-          "expense": {
-            "base": 1e+27,
-            "heroExp": 17
-          },
-          "effect": {
-            "base": 60000000,
-            "heroeffect": 6e+49,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_stellar_neighborhood_tooltip"
-        },
-        "item_galaxy": {
-          "name": "item_galaxy_name",
-          "expense": {
-            "base": 1e+30,
-            "heroExp": 18
-          },
-          "effect": {
-            "base": 75000000,
-            "heroeffect": 7.5e+49,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_galaxy_tooltip"
-        },
-        "item_supercluster": {
-          "name": "item_supercluster_name",
-          "expense": {
-            "base": 1e+33,
-            "heroExp": 20
-          },
-          "effect": {
-            "base": 100000000,
-            "heroeffect": 1e+50,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_supercluster_tooltip"
-        },
-        "item_galaxy_filament": {
-          "name": "item_galaxy_filament_name",
-          "expense": {
-            "base": 1e+36,
-            "heroExp": 25
-          },
-          "effect": {
-            "base": 1000000000,
-            "heroeffect": 1e+52,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_galaxy_filament_tooltip"
-        },
-        "item_observable_universe": {
-          "name": "item_observable_universe_name",
-          "expense": {
-            "base": 1e+39,
-            "heroExp": 30
-          },
-          "effect": {
-            "base": 10000000000,
-            "heroeffect": 1e+54,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_observable_universe_tooltip"
-        },
-        "item_multiverse": {
-          "name": "item_multiverse_name",
-          "expense": {
-            "base": 1e+42,
-            "heroExp": 35
-          },
-          "effect": {
-            "base": 100000000000,
-            "heroeffect": 1e+60,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_multiverse_tooltip"
-        },
-        "item_quantum_world": {
-          "name": "item_quantum_world_name",
-          "expense": {
-            "base": 1e+49,
-            "heroExp": 40
-          },
-          "effect": {
-            "base": 1000000000000,
-            "heroeffect": 1e+64,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_quantum_world_tooltip"
-        },
-        "item_bootes_void": {
-          "name": "item_bootes_void_name",
-          "expense": {
-            "base": 3e+74,
-            "heroExp": 40
-          },
-          "effect": {
-            "base": 1000000000000,
-            "heroeffect": 1e+80,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_bootes_void_tooltip"
-        }
-      }
-    },
-    "category_misc": {
-      "name": "category_misc",
-      "headerColor": "#b56576",
-      "items": {
-        "item_book": {
-          "name": "item_book_name",
-          "expense": {
-            "base": 10,
-            "heroExp": 2
-          },
-          "effect": {
-            "base": 1.5,
-            "heroeffect": 10,
-            "target": {
-              "type": "xp",
-              "scope": {
-                "kind": "skill"
-              }
-            }
-          },
-          "tooltip": "item_book_tooltip"
-        },
-        "item_dumbbells": {
-          "name": "item_dumbbells_name",
-          "expense": {
-            "base": 50,
-            "heroExp": 2
-          },
-          "effect": {
-            "base": 1.5,
-            "heroeffect": 10,
-            "target": {
-              "type": "xp",
-              "scope": {
-                "task": "skill_strength"
-              }
-            }
-          },
-          "tooltip": "item_dumbbells_tooltip"
-        },
-        "item_personal_squire": {
-          "name": "item_personal_squire_name",
-          "expense": {
-            "base": 200,
-            "heroExp": 3
-          },
-          "effect": {
-            "base": 2,
-            "heroeffect": 10,
-            "target": {
-              "type": "xp",
-              "scope": {
-                "kind": "job"
-              }
-            }
-          },
-          "tooltip": "item_personal_squire_tooltip"
-        },
-        "item_steel_longsword": {
-          "name": "item_steel_longsword_name",
-          "expense": {
-            "base": 1000,
-            "heroExp": 3
-          },
-          "effect": {
-            "base": 2,
-            "heroeffect": 10,
-            "target": {
-              "type": "xp",
-              "scope": {
-                "kind": "job",
-                "category": "category_military"
-              }
-            }
-          },
-          "tooltip": "item_steel_longsword_tooltip"
-        },
-        "item_butler": {
-          "name": "item_butler_name",
-          "expense": {
-            "base": 7500,
-            "heroExp": 4
-          },
-          "effect": {
-            "base": 1.5,
-            "heroeffect": 10,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_butler_tooltip"
-        },
-        "item_sapphire_charm": {
-          "name": "item_sapphire_charm_name",
-          "expense": {
-            "base": 50000,
-            "heroExp": 4
-          },
-          "effect": {
-            "base": 3,
-            "heroeffect": 10,
-            "target": {
-              "type": "xp",
-              "scope": {
-                "kind": "skill",
-                "category": "category_magic"
-              }
-            }
-          },
-          "tooltip": "item_sapphire_charm_tooltip"
-        },
-        "item_study_desk": {
-          "name": "item_study_desk_name",
-          "expense": {
-            "base": 1000000,
-            "heroExp": 5
-          },
-          "effect": {
-            "base": 2,
-            "heroeffect": 10,
-            "target": {
-              "type": "xp",
-              "scope": {
-                "kind": "skill"
-              }
-            }
-          },
-          "tooltip": "item_study_desk_tooltip"
-        },
-        "item_library": {
-          "name": "item_library_name",
-          "expense": {
-            "base": 10000000.0,
-            "heroExp": 5
-          },
-          "effect": {
-            "base": 2,
-            "heroeffect": 10,
-            "target": {
-              "type": "xp",
-              "scope": {
-                "kind": "skill"
-              }
-            }
-          },
-          "tooltip": "item_library_tooltip"
-        },
-        "item_observatory": {
-          "name": "item_observatory_name",
-          "expense": {
-            "base": 140000000.0,
-            "heroExp": 6
-          },
-          "effect": {
-            "base": 5,
-            "heroeffect": 10,
-            "target": {
-              "type": "xp",
-              "scope": {
-                "kind": "skill",
-                "category": "category_magic"
-              }
-            }
-          },
-          "tooltip": "item_observatory_tooltip"
-        },
-        "item_minds_eye": {
-          "name": "item_minds_eye_name",
-          "expense": {
-            "base": 3250000000.0,
-            "heroExp": 8
-          },
-          "effect": {
-            "base": 10,
-            "heroeffect": 10,
-            "target": {
-              "type": "xp",
-              "scope": {
-                "kind": "skill",
-                "category": "category_fundamentals"
-              }
-            }
-          },
-          "tooltip": "item_minds_eye_tooltip"
-        },
-        "item_void_necklace": {
-          "name": "item_void_necklace_name",
-          "expense": {
-            "base": 28000000000.0,
-            "heroExp": 10
-          },
-          "effect": {
-            "base": 3,
-            "heroeffect": 10,
-            "target": {
-              "type": "xp",
-              "scope": {
-                "kind": "skill",
-                "category": "category_void_manipulation"
-              }
-            }
-          },
-          "tooltip": "item_void_necklace_tooltip"
-        },
-        "item_void_armor": {
-          "name": "item_void_armor_name",
-          "expense": {
-            "base": 197000000000.0,
-            "heroExp": 10
-          },
-          "effect": {
-            "base": 3,
-            "heroeffect": 10,
-            "target": {
-              "type": "xp",
-              "scope": {
-                "kind": "job",
-                "category": "category_the_void"
-              }
-            }
-          },
-          "tooltip": "item_void_armor_tooltip"
-        },
-        "item_void_blade": {
-          "name": "item_void_blade_name",
-          "expense": {
-            "base": 500000000000.0,
-            "heroExp": 11
-          },
-          "effect": {
-            "base": 3,
-            "heroeffect": 10,
-            "target": {
-              "type": "xp",
-              "scope": {
-                "kind": "skill"
-              }
-            }
-          },
-          "tooltip": "item_void_blade_tooltip"
-        },
-        "item_void_orb": {
-          "name": "item_void_orb_name",
-          "expense": {
-            "base": 1200000000000.0,
-            "heroExp": 11
-          },
-          "effect": {
-            "base": 3,
-            "heroeffect": 10,
-            "target": {
-              "type": "xp",
-              "scope": {
-                "kind": "skill",
-                "category": "category_void_manipulation"
-              }
-            }
-          },
-          "tooltip": "item_void_orb_tooltip"
-        },
-        "item_void_dust": {
-          "name": "item_void_dust_name",
-          "expense": {
-            "base": 25000000000000.0,
-            "heroExp": 12
-          },
-          "effect": {
-            "base": 3,
-            "heroeffect": 10,
-            "target": {
-              "type": "xp",
-              "scope": {
-                "kind": "job",
-                "category": "category_the_void"
-              }
-            }
-          },
-          "tooltip": "item_void_dust_tooltip"
-        },
-        "item_celestial_robe": {
-          "name": "item_celestial_robe_name",
-          "expense": {
-            "base": 300000000000000.0,
-            "heroExp": 12
-          },
-          "effect": {
-            "base": 5,
-            "heroeffect": 10,
-            "target": {
-              "type": "xp",
-              "scope": {
-                "kind": "job",
-                "category": "category_galactic_council"
-              }
-            }
-          },
-          "tooltip": "item_celestial_robe_tooltip"
-        },
-        "item_universe_fragment": {
-          "name": "item_universe_fragment_name",
-          "expense": {
-            "base": 1.85e+16,
-            "heroExp": 13
-          },
-          "effect": {
-            "base": 3,
-            "heroeffect": 1000000,
-            "target": {
-              "type": "xp",
-              "scope": {
-                "kind": "skill"
-              }
-            }
-          },
-          "tooltip": "item_universe_fragment_tooltip"
-        },
-        "item_multiverse_fragment": {
-          "name": "item_multiverse_fragment_name",
-          "expense": {
-            "base": 2e+17,
-            "heroExp": 15
-          },
-          "effect": {
-            "base": 5,
-            "heroeffect": 1000000,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_multiverse_fragment_tooltip"
-        },
-        "item_stairway_to_heaven": {
-          "name": "item_stairway_to_heaven_name",
-          "expense": {
-            "base": 1e+38,
-            "heroExp": 30
-          },
-          "effect": {
-            "base": 10,
-            "heroeffect": 1000000,
-            "target": {
-              "type": "happiness"
-            }
-          },
-          "tooltip": "item_stairway_to_heaven_tooltip"
-        },
-        "item_highway_to_hell": {
-          "name": "item_highway_to_hell_name",
-          "expense": {
-            "base": 1e+42,
-            "heroExp": 30
-          },
-          "effect": {
-            "base": 10,
-            "heroeffect": 1000000,
-            "target": {
-              "type": "evil_gain"
-            }
-          },
-          "tooltip": "item_highway_to_hell_tooltip"
-        },
-        "item_tesseract": {
-          "name": "item_tesseract_name",
-          "expense": {
-            "base": 1e+48,
-            "heroExp": 30
-          },
-          "effect": {
-            "base": 1,
-            "heroeffect": 10,
-            "target": {
-              "type": "hypercube_gain"
-            }
-          },
-          "tooltip": "item_tesseract_tooltip"
-        },
-        "item_desintegration": {
-          "name": "item_desintegration_name",
-          "expense": {
-            "base": 1e+55,
-            "heroExp": 30
-          },
-          "effect": {
-            "base": 1,
-            "heroeffect": 100,
-            "target": {
-              "type": "dark_matter_gain"
-            }
-          },
-          "tooltip": "item_desintegration_tooltip"
-        },
-        "item_custom_galaxy": {
-          "name": "item_custom_galaxy_name",
-          "expense": {
-            "base": 1e+64,
-            "heroExp": 30
-          },
-          "effect": {
-            "base": 1,
-            "heroeffect": 1e+100,
-            "target": {
-              "type": "xp",
-              "scope": {
-                "kind": "skill"
-              }
-            }
-          },
-          "tooltip": "item_custom_galaxy_tooltip"
-        },
-        "item_hypersphere": {
-          "name": "item_hypersphere_name",
-          "expense": {
-            "base": 1e+91,
-            "heroExp": 30
-          },
-          "effect": {
-            "base": 1,
-            "heroeffect": 1e+50,
-            "target": {
-              "type": "hypercube_gain"
-            }
-          },
-          "tooltip": "item_hypersphere_tooltip"
-        }
-      }
-    }
-  }
+	"itemCategories": {
+		"category_properties": {
+			"name": "category_properties",
+			"headerColor": "#219ebc",
+			"items": {
+				"item_homeless": {
+					"name": "item_homeless_name",
+					"expense": {
+						"base": 0,
+						"heroExp": 2
+					},
+					"effect": {
+						"base": 1,
+						"heroeffect": 2000000.0,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_homeless_tooltip"
+				},
+				"item_tent": {
+					"name": "item_tent_name",
+					"expense": {
+						"base": 15,
+						"heroExp": 2
+					},
+					"effect": {
+						"base": 1.4,
+						"heroeffect": 20000000.0,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_tent_tooltip"
+				},
+				"item_wooden_hut": {
+					"name": "item_wooden_hut_name",
+					"expense": {
+						"base": 100,
+						"heroExp": 3
+					},
+					"effect": {
+						"base": 2,
+						"heroeffect": 200000000.0,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_wooden_hut_tooltip"
+				},
+				"item_cottage": {
+					"name": "item_cottage_name",
+					"expense": {
+						"base": 750,
+						"heroExp": 3
+					},
+					"effect": {
+						"base": 3.5,
+						"heroeffect": 2000000000.0,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_cottage_tooltip"
+				},
+				"item_house": {
+					"name": "item_house_name",
+					"expense": {
+						"base": 3000,
+						"heroExp": 4
+					},
+					"effect": {
+						"base": 6,
+						"heroeffect": 20000000000.0,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_house_tooltip"
+				},
+				"item_large_house": {
+					"name": "item_large_house_name",
+					"expense": {
+						"base": 25000,
+						"heroExp": 4
+					},
+					"effect": {
+						"base": 12,
+						"heroeffect": 200000000000.0,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_large_house_tooltip"
+				},
+				"item_small_palace": {
+					"name": "item_small_palace_name",
+					"expense": {
+						"base": 300000,
+						"heroExp": 5
+					},
+					"effect": {
+						"base": 25,
+						"heroeffect": 2000000000000.0,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_small_palace_tooltip"
+				},
+				"item_grand_palace": {
+					"name": "item_grand_palace_name",
+					"expense": {
+						"base": 5000000,
+						"heroExp": 5
+					},
+					"effect": {
+						"base": 60,
+						"heroeffect": 20000000000000.0,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_grand_palace_tooltip"
+				},
+				"item_town_ruler": {
+					"name": "item_town_ruler_name",
+					"expense": {
+						"base": 35000000,
+						"heroExp": 6
+					},
+					"effect": {
+						"base": 120,
+						"heroeffect": 2000000000000000.0,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_town_ruler_tooltip"
+				},
+				"item_city_ruler": {
+					"name": "item_city_ruler_name",
+					"expense": {
+						"base": 1100000000.0,
+						"heroExp": 7
+					},
+					"effect": {
+						"base": 500,
+						"heroeffect": 2e17,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_city_ruler_tooltip"
+				},
+				"item_nation_ruler": {
+					"name": "item_nation_ruler_name",
+					"expense": {
+						"base": 13000000000.0,
+						"heroExp": 8
+					},
+					"effect": {
+						"base": 1200,
+						"heroeffect": 2e19,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_nation_ruler_tooltip"
+				},
+				"item_pocket_dimension": {
+					"name": "item_pocket_dimension_name",
+					"expense": {
+						"base": 49000000000.0,
+						"heroExp": 9
+					},
+					"effect": {
+						"base": 5000,
+						"heroeffect": 2e22,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_pocket_dimension_tooltip"
+				},
+				"item_void_realm": {
+					"name": "item_void_realm_name",
+					"expense": {
+						"base": 121000000000.0,
+						"heroExp": 10
+					},
+					"effect": {
+						"base": 15000,
+						"heroeffect": 2e25,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_void_realm_tooltip"
+				},
+				"item_void_universe": {
+					"name": "item_void_universe_name",
+					"expense": {
+						"base": 2000000000000.0,
+						"heroExp": 11
+					},
+					"effect": {
+						"base": 30000,
+						"heroeffect": 2e28,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_void_universe_tooltip"
+				},
+				"item_astral_realm": {
+					"name": "item_astral_realm_name",
+					"expense": {
+						"base": 160000000000000.0,
+						"heroExp": 12
+					},
+					"effect": {
+						"base": 150000,
+						"heroeffect": 2e31,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_astral_realm_tooltip"
+				},
+				"item_galactic_throne": {
+					"name": "item_galactic_throne_name",
+					"expense": {
+						"base": 5000000000000000.0,
+						"heroExp": 13
+					},
+					"effect": {
+						"base": 300000,
+						"heroeffect": 2e35,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_galactic_throne_tooltip"
+				},
+				"item_spaceship": {
+					"name": "item_spaceship_name",
+					"expense": {
+						"base": 1e18,
+						"heroExp": 15
+					},
+					"effect": {
+						"base": 1500000,
+						"heroeffect": 5e42,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_spaceship_tooltip"
+				},
+				"item_planet": {
+					"name": "item_planet_name",
+					"expense": {
+						"base": 1e22,
+						"heroExp": 16
+					},
+					"effect": {
+						"base": 5000000,
+						"heroeffect": 5e46,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_planet_tooltip"
+				},
+				"item_ringworld": {
+					"name": "item_ringworld_name",
+					"expense": {
+						"base": 1e24,
+						"heroExp": 17
+					},
+					"effect": {
+						"base": 50000000,
+						"heroeffect": 5e49,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_ringworld_tooltip"
+				},
+				"item_stellar_neighborhood": {
+					"name": "item_stellar_neighborhood_name",
+					"expense": {
+						"base": 1e27,
+						"heroExp": 17
+					},
+					"effect": {
+						"base": 60000000,
+						"heroeffect": 6e49,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_stellar_neighborhood_tooltip"
+				},
+				"item_galaxy": {
+					"name": "item_galaxy_name",
+					"expense": {
+						"base": 1e30,
+						"heroExp": 18
+					},
+					"effect": {
+						"base": 75000000,
+						"heroeffect": 7.5e49,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_galaxy_tooltip"
+				},
+				"item_supercluster": {
+					"name": "item_supercluster_name",
+					"expense": {
+						"base": 1e33,
+						"heroExp": 20
+					},
+					"effect": {
+						"base": 100000000,
+						"heroeffect": 1e50,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_supercluster_tooltip"
+				},
+				"item_galaxy_filament": {
+					"name": "item_galaxy_filament_name",
+					"expense": {
+						"base": 1e36,
+						"heroExp": 25
+					},
+					"effect": {
+						"base": 1000000000,
+						"heroeffect": 1e52,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_galaxy_filament_tooltip"
+				},
+				"item_observable_universe": {
+					"name": "item_observable_universe_name",
+					"expense": {
+						"base": 1e39,
+						"heroExp": 30
+					},
+					"effect": {
+						"base": 10000000000,
+						"heroeffect": 1e54,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_observable_universe_tooltip"
+				},
+				"item_multiverse": {
+					"name": "item_multiverse_name",
+					"expense": {
+						"base": 1e42,
+						"heroExp": 35
+					},
+					"effect": {
+						"base": 100000000000,
+						"heroeffect": 1e60,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_multiverse_tooltip"
+				},
+				"item_quantum_world": {
+					"name": "item_quantum_world_name",
+					"expense": {
+						"base": 1e49,
+						"heroExp": 40
+					},
+					"effect": {
+						"base": 1000000000000,
+						"heroeffect": 1e64,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_quantum_world_tooltip"
+				},
+				"item_bootes_void": {
+					"name": "item_bootes_void_name",
+					"expense": {
+						"base": 3e74,
+						"heroExp": 40
+					},
+					"effect": {
+						"base": 1000000000000,
+						"heroeffect": 1e80,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_bootes_void_tooltip"
+				}
+			}
+		},
+		"category_misc": {
+			"name": "category_misc",
+			"headerColor": "#b56576",
+			"items": {
+				"item_book": {
+					"name": "item_book_name",
+					"expense": {
+						"base": 10,
+						"heroExp": 2
+					},
+					"effect": {
+						"base": 1.5,
+						"heroeffect": 10,
+						"target": {
+							"type": "xp",
+							"scope": {
+								"kind": "skill"
+							}
+						}
+					},
+					"tooltip": "item_book_tooltip"
+				},
+				"item_dumbbells": {
+					"name": "item_dumbbells_name",
+					"expense": {
+						"base": 50,
+						"heroExp": 2
+					},
+					"effect": {
+						"base": 1.5,
+						"heroeffect": 10,
+						"target": {
+							"type": "xp",
+							"scope": {
+								"task": "skill_strength"
+							}
+						}
+					},
+					"tooltip": "item_dumbbells_tooltip"
+				},
+				"item_personal_squire": {
+					"name": "item_personal_squire_name",
+					"expense": {
+						"base": 200,
+						"heroExp": 3
+					},
+					"effect": {
+						"base": 2,
+						"heroeffect": 10,
+						"target": {
+							"type": "xp",
+							"scope": {
+								"kind": "job"
+							}
+						}
+					},
+					"tooltip": "item_personal_squire_tooltip"
+				},
+				"item_steel_longsword": {
+					"name": "item_steel_longsword_name",
+					"expense": {
+						"base": 1000,
+						"heroExp": 3
+					},
+					"effect": {
+						"base": 2,
+						"heroeffect": 10,
+						"target": {
+							"type": "xp",
+							"scope": {
+								"kind": "job",
+								"category": "category_military"
+							}
+						}
+					},
+					"tooltip": "item_steel_longsword_tooltip"
+				},
+				"item_butler": {
+					"name": "item_butler_name",
+					"expense": {
+						"base": 7500,
+						"heroExp": 4
+					},
+					"effect": {
+						"base": 1.5,
+						"heroeffect": 10,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_butler_tooltip"
+				},
+				"item_sapphire_charm": {
+					"name": "item_sapphire_charm_name",
+					"expense": {
+						"base": 50000,
+						"heroExp": 4
+					},
+					"effect": {
+						"base": 3,
+						"heroeffect": 10,
+						"target": {
+							"type": "xp",
+							"scope": {
+								"kind": "skill",
+								"category": "category_magic"
+							}
+						}
+					},
+					"tooltip": "item_sapphire_charm_tooltip"
+				},
+				"item_study_desk": {
+					"name": "item_study_desk_name",
+					"expense": {
+						"base": 1000000,
+						"heroExp": 5
+					},
+					"effect": {
+						"base": 2,
+						"heroeffect": 10,
+						"target": {
+							"type": "xp",
+							"scope": {
+								"kind": "skill"
+							}
+						}
+					},
+					"tooltip": "item_study_desk_tooltip"
+				},
+				"item_library": {
+					"name": "item_library_name",
+					"expense": {
+						"base": 10000000.0,
+						"heroExp": 5
+					},
+					"effect": {
+						"base": 2,
+						"heroeffect": 10,
+						"target": {
+							"type": "xp",
+							"scope": {
+								"kind": "skill"
+							}
+						}
+					},
+					"tooltip": "item_library_tooltip"
+				},
+				"item_observatory": {
+					"name": "item_observatory_name",
+					"expense": {
+						"base": 140000000.0,
+						"heroExp": 6
+					},
+					"effect": {
+						"base": 5,
+						"heroeffect": 10,
+						"target": {
+							"type": "xp",
+							"scope": {
+								"kind": "skill",
+								"category": "category_magic"
+							}
+						}
+					},
+					"tooltip": "item_observatory_tooltip"
+				},
+				"item_minds_eye": {
+					"name": "item_minds_eye_name",
+					"expense": {
+						"base": 3250000000.0,
+						"heroExp": 8
+					},
+					"effect": {
+						"base": 10,
+						"heroeffect": 10,
+						"target": {
+							"type": "xp",
+							"scope": {
+								"kind": "skill",
+								"category": "category_fundamentals"
+							}
+						}
+					},
+					"tooltip": "item_minds_eye_tooltip"
+				},
+				"item_void_necklace": {
+					"name": "item_void_necklace_name",
+					"expense": {
+						"base": 28000000000.0,
+						"heroExp": 10
+					},
+					"effect": {
+						"base": 3,
+						"heroeffect": 10,
+						"target": {
+							"type": "xp",
+							"scope": {
+								"kind": "skill",
+								"category": "category_void_manipulation"
+							}
+						}
+					},
+					"tooltip": "item_void_necklace_tooltip"
+				},
+				"item_void_armor": {
+					"name": "item_void_armor_name",
+					"expense": {
+						"base": 197000000000.0,
+						"heroExp": 10
+					},
+					"effect": {
+						"base": 3,
+						"heroeffect": 10,
+						"target": {
+							"type": "xp",
+							"scope": {
+								"kind": "job",
+								"category": "category_the_void"
+							}
+						}
+					},
+					"tooltip": "item_void_armor_tooltip"
+				},
+				"item_void_blade": {
+					"name": "item_void_blade_name",
+					"expense": {
+						"base": 500000000000.0,
+						"heroExp": 11
+					},
+					"effect": {
+						"base": 3,
+						"heroeffect": 10,
+						"target": {
+							"type": "xp",
+							"scope": {
+								"kind": "skill"
+							}
+						}
+					},
+					"tooltip": "item_void_blade_tooltip"
+				},
+				"item_void_orb": {
+					"name": "item_void_orb_name",
+					"expense": {
+						"base": 1200000000000.0,
+						"heroExp": 11
+					},
+					"effect": {
+						"base": 3,
+						"heroeffect": 10,
+						"target": {
+							"type": "xp",
+							"scope": {
+								"kind": "skill",
+								"category": "category_void_manipulation"
+							}
+						}
+					},
+					"tooltip": "item_void_orb_tooltip"
+				},
+				"item_void_dust": {
+					"name": "item_void_dust_name",
+					"expense": {
+						"base": 25000000000000.0,
+						"heroExp": 12
+					},
+					"effect": {
+						"base": 3,
+						"heroeffect": 10,
+						"target": {
+							"type": "xp",
+							"scope": {
+								"kind": "job",
+								"category": "category_the_void"
+							}
+						}
+					},
+					"tooltip": "item_void_dust_tooltip"
+				},
+				"item_celestial_robe": {
+					"name": "item_celestial_robe_name",
+					"expense": {
+						"base": 300000000000000.0,
+						"heroExp": 12
+					},
+					"effect": {
+						"base": 5,
+						"heroeffect": 10,
+						"target": {
+							"type": "xp",
+							"scope": {
+								"kind": "job",
+								"category": "category_galactic_council"
+							}
+						}
+					},
+					"tooltip": "item_celestial_robe_tooltip"
+				},
+				"item_universe_fragment": {
+					"name": "item_universe_fragment_name",
+					"expense": {
+						"base": 1.85e16,
+						"heroExp": 13
+					},
+					"effect": {
+						"base": 3,
+						"heroeffect": 1000000,
+						"target": {
+							"type": "xp",
+							"scope": {
+								"kind": "skill"
+							}
+						}
+					},
+					"tooltip": "item_universe_fragment_tooltip"
+				},
+				"item_multiverse_fragment": {
+					"name": "item_multiverse_fragment_name",
+					"expense": {
+						"base": 2e17,
+						"heroExp": 15
+					},
+					"effect": {
+						"base": 5,
+						"heroeffect": 1000000,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_multiverse_fragment_tooltip"
+				},
+				"item_stairway_to_heaven": {
+					"name": "item_stairway_to_heaven_name",
+					"expense": {
+						"base": 1e38,
+						"heroExp": 30
+					},
+					"effect": {
+						"base": 10,
+						"heroeffect": 1000000,
+						"target": {
+							"type": "happiness"
+						}
+					},
+					"tooltip": "item_stairway_to_heaven_tooltip"
+				},
+				"item_highway_to_hell": {
+					"name": "item_highway_to_hell_name",
+					"expense": {
+						"base": 1e42,
+						"heroExp": 30
+					},
+					"effect": {
+						"base": 10,
+						"heroeffect": 1000000,
+						"target": {
+							"type": "evil_gain"
+						}
+					},
+					"tooltip": "item_highway_to_hell_tooltip"
+				},
+				"item_tesseract": {
+					"name": "item_tesseract_name",
+					"expense": {
+						"base": 1e48,
+						"heroExp": 30
+					},
+					"effect": {
+						"base": 1,
+						"heroeffect": 10,
+						"target": {
+							"type": "hypercube_gain"
+						}
+					},
+					"tooltip": "item_tesseract_tooltip"
+				},
+				"item_desintegration": {
+					"name": "item_desintegration_name",
+					"expense": {
+						"base": 1e55,
+						"heroExp": 30
+					},
+					"effect": {
+						"base": 1,
+						"heroeffect": 100,
+						"target": {
+							"type": "dark_matter_gain"
+						}
+					},
+					"tooltip": "item_desintegration_tooltip"
+				},
+				"item_custom_galaxy": {
+					"name": "item_custom_galaxy_name",
+					"expense": {
+						"base": 1e64,
+						"heroExp": 30
+					},
+					"effect": {
+						"base": 1,
+						"heroeffect": 1e100,
+						"target": {
+							"type": "xp",
+							"scope": {
+								"kind": "skill"
+							}
+						}
+					},
+					"tooltip": "item_custom_galaxy_tooltip"
+				},
+				"item_hypersphere": {
+					"name": "item_hypersphere_name",
+					"expense": {
+						"base": 1e91,
+						"heroExp": 30
+					},
+					"effect": {
+						"base": 1,
+						"heroeffect": 1e50,
+						"target": {
+							"type": "hypercube_gain"
+						}
+					},
+					"tooltip": "item_hypersphere_tooltip"
+				}
+			}
+		}
+	}
 }
