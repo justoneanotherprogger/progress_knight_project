@@ -384,10 +384,6 @@ export function getHeroicDarkMatterXpGain(task) {
 	return task.isHero ? getDarkMatterXpGain().pow(3) : 1;
 }
 
-export function getDarkOrbs() {
-	return gameData.dark_orbs;
-}
-
 export function getGameSpeed() {
 	if (!canSimulate()) return 0;
 
