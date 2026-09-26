@@ -230,6 +230,14 @@ body {
 	gap: 0.5em;
 }
 
+/* Награда за испытание в шапке вкладки. Та же история, что у .boost-panel:
+   инлайновый display:inline не давал .hidden спрятать неактивные испытания,
+   и в шапке светились бонусы всех шести сразу. */
+.challenge-reward {
+	display: inline;
+	padding-left: 1em;
+}
+
 /* Столбик maxLevel — это th/td внутри .w3-table, а вендор даёт им
    display:table-cell (0,1,1) и перебивает этим .hidden (0,1,0). */
 .w3-table .maxLevel.hidden {
