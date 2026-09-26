@@ -1,6 +1,54 @@
 // multipliers.js — multiplier setup functions
 
-function addMultipliers() {
+import { jobCategories } from "../dist/js/jobs_data.js";
+import { skillCategories } from "../dist/js/skills_data.js";
+import {
+	getDarkMatter,
+	getDarkMatterXpGain,
+	getEssenceXpGain,
+	getEvilXpGain,
+	getGreed,
+	getHappiness,
+	getHeroicDarkMatterXpGain,
+	getInspiration,
+	getUnpausedGameSpeed,
+	toInfinityNumber,
+} from "./calculations.js";
+import { Job, Skill } from "./classes.js";
+import {
+	getDarkMatterSkillXP,
+	getLifeCoachIncomeGain,
+	getTaaAndMagicXpGain,
+} from "./dark_matter.js";
+import {
+	DARK_MATTER_HARVESTER_BASE,
+	DARK_MATTER_HARVESTER_EXPONENT,
+	DARK_MATTER_MINING_MULTIPLIER,
+	FAINT_HOPE_A_NEW_HOPE_DECAY,
+	FAINT_HOPE_A_NEW_HOPE_SOFTCAP,
+	FAINT_HOPE_INFINITY,
+	FAINT_HOPE_KICKIN_BASE,
+	FAINT_HOPE_KICKIN_LOG_COEFFICIENT,
+	FAINT_HOPE_KICKIN_MIN,
+	FAINT_HOPE_REBIRTH_DIVISOR,
+	FAINT_HOPE_SOFTCAP,
+	FAINT_HOPE_SPEED_COEFFICIENT,
+	FAINT_HOPE_SPEED_EXPONENT,
+	FAINT_HOPE_SPEED_SOFTCAP,
+	gameData,
+	getBindedItemEffect,
+	INFERNO_ESSENCE_EXPONENT,
+	RISE_HEROES_DENOMINATOR,
+	RISE_HEROES_NUMERATOR,
+	TRANSCENDENT_MASTER_BASE,
+	TRANSCENDENT_MASTER_EXPONENT,
+} from "./data.js";
+import { pushTargetEffects } from "./effects.js";
+import { getTimeIsAFlatCircleXP } from "./metaverse.js";
+import { milestoneData } from "./milestones.js";
+import { softcap } from "./utils.js";
+
+export function addMultipliers() {
 	for (const key in gameData.taskData) {
 		const task = gameData.taskData[key];
 
@@ -92,7 +140,7 @@ function addMultipliers() {
 	}
 }
 
-function setCustomEffects() {
+export function setCustomEffects() {
 	const inferno = milestoneData.milestone_inferno;
 	inferno.getEffect = () => {
 		if (!gameData.requirements.milestone_inferno.isCompleted())

@@ -1,4 +1,16 @@
-function getHypercubeGeneration() {
+import { t } from "../dist/js/translations.js";
+import { applyUnpausedSpeed } from "./calculations.js";
+import {
+	buyEssenceCollector,
+	buyExplosionOfTheUniverse,
+	buyMultiverseExplorer,
+	buySpeedOfLife,
+	buyYourGreatestDebt,
+} from "./dark_matter.js";
+import { gameData, updateSpeed } from "./data.js";
+import { formatTime, softcap } from "./utils.js";
+
+export function getHypercubeGeneration() {
 	if (gameData.rebirthFiveCount === 0) return 0;
 
 	const tesseractEffect = gameData.itemData.item_tesseract.getEffect();
@@ -16,11 +28,11 @@ function getHypercubeGeneration() {
 	);
 }
 
-function getNextPowerOfNumber(number, add_power = 0) {
+export function getNextPowerOfNumber(number, add_power = 0) {
 	return 10 ** (add_power + Math.ceil(Math.log10(number)));
 }
 
-function getTimeTillNextHypercubePower(add_power = 0) {
+export function getTimeTillNextHypercubePower(add_power = 0) {
 	return (
 		(getNextPowerOfNumber(gameData.hypercubes, add_power) -
 			gameData.hypercubes) /
@@ -28,23 +40,23 @@ function getTimeTillNextHypercubePower(add_power = 0) {
 	);
 }
 
-function getBoostTimeSeconds() {
+export function getBoostTimeSeconds() {
 	return gameData.metaverse.boost_timer_modifier === 0
 		? 60.0
 		: 60.0 * gameData.metaverse.boost_timer_modifier;
 }
 
-function getBoostCooldownSeconds() {
+export function getBoostCooldownSeconds() {
 	return gameData.metaverse.boost_cooldown_modifier === 0
 		? 60.0 * 10.0
 		: (60.0 * 10.0) / gameData.metaverse.boost_cooldown_modifier;
 }
 
-function canApplyBoost() {
+export function canApplyBoost() {
 	return gameData.boost_cooldown <= 0 && !gameData.boost_active;
 }
 
-function applyBoost() {
+export function applyBoost() {
 	if (canApplyBoost()) {
 		gameData.boost_timer = getBoostTimeSeconds();
 		gameData.boost_active = true;
@@ -52,126 +64,126 @@ function applyBoost() {
 }
 
 // shop
-function reduceBoostCooldownCost() {
+export function reduceBoostCooldownCost() {
 	return 1000 * 3 ** (gameData.metaverse.boost_cooldown_modifier - 1);
 }
 
-function canBuyReduceBoostCooldown() {
+export function canBuyReduceBoostCooldown() {
 	return gameData.hypercubes >= reduceBoostCooldownCost();
 }
 
-function buyReduceBoostCooldown() {
+export function buyReduceBoostCooldown() {
 	if (canBuyReduceBoostCooldown()) {
 		gameData.hypercubes -= reduceBoostCooldownCost();
 		gameData.metaverse.boost_cooldown_modifier += 1;
 	}
 }
 
-function boostDurationCost() {
+export function boostDurationCost() {
 	return 5000 * 5 ** (gameData.metaverse.boost_timer_modifier - 1);
 }
 
-function canBuyBoostDuration() {
+export function canBuyBoostDuration() {
 	return gameData.hypercubes >= boostDurationCost();
 }
 
-function buyBoostDuration() {
+export function buyBoostDuration() {
 	if (canBuyBoostDuration()) {
 		gameData.hypercubes -= boostDurationCost();
 		gameData.metaverse.boost_timer_modifier += 1;
 	}
 }
 
-function hypercubeGainCost() {
+export function hypercubeGainCost() {
 	return 800 * 1.5 ** (gameData.metaverse.hypercube_gain_modifier - 1);
 }
 
-function canBuyHypercubeGain() {
+export function canBuyHypercubeGain() {
 	return gameData.hypercubes >= hypercubeGainCost();
 }
 
-function buyHypercubeGain() {
+export function buyHypercubeGain() {
 	if (canBuyHypercubeGain()) {
 		gameData.hypercubes -= hypercubeGainCost();
 		gameData.metaverse.hypercube_gain_modifier += 1;
 	}
 }
 
-function evilTranGain() {
+export function evilTranGain() {
 	return gameData.metaverse.evil_tran_gain === 0
 		? new Decimal(0)
 		: new Decimal(250000 * 10 ** gameData.metaverse.evil_tran_gain);
 }
 
-function evilTranCost() {
+export function evilTranCost() {
 	return 100000000 * 10 ** gameData.metaverse.evil_tran_gain;
 }
 
-function canBuyEvilTran() {
+export function canBuyEvilTran() {
 	return gameData.hypercubes >= evilTranCost();
 }
 
-function buyEvilTran() {
+export function buyEvilTran() {
 	if (canBuyEvilTran()) {
 		gameData.hypercubes -= evilTranCost();
 		gameData.metaverse.evil_tran_gain += 1;
 	}
 }
 
-function essenceMultGain() {
+export function essenceMultGain() {
 	return gameData.metaverse.essence_gain_modifier === 0
 		? 1
 		: 10 ** gameData.metaverse.essence_gain_modifier;
 }
 
-function essenceMultCost() {
+export function essenceMultCost() {
 	return 1e9 * 10 ** gameData.metaverse.essence_gain_modifier;
 }
 
-function canBuyEssenceMult() {
+export function canBuyEssenceMult() {
 	return gameData.hypercubes >= essenceMultCost();
 }
 
-function buyEssenceMult() {
+export function buyEssenceMult() {
 	if (canBuyEssenceMult()) {
 		gameData.hypercubes -= essenceMultCost();
 		gameData.metaverse.essence_gain_modifier += 1;
 	}
 }
 
-function challengeAltarCost() {
+export function challengeAltarCost() {
 	return 1e10;
 }
 
-function canBuyChallengeAltar() {
+export function canBuyChallengeAltar() {
 	return (
 		gameData.metaverse.challenge_altar === 0 &&
 		gameData.hypercubes >= challengeAltarCost()
 	);
 }
 
-function buyChallengeAltar() {
+export function buyChallengeAltar() {
 	if (canBuyChallengeAltar()) {
 		gameData.hypercubes -= challengeAltarCost();
 		gameData.metaverse.challenge_altar = 1;
 	}
 }
 
-function darkMatterMultGain() {
+export function darkMatterMultGain() {
 	return gameData.metaverse.dark_mater_gain_modifer === 0
 		? 1
 		: new Decimal(10).pow(gameData.metaverse.dark_mater_gain_modifer);
 }
 
-function darkMatterMultCost() {
+export function darkMatterMultCost() {
 	return 1e19 * 10 ** gameData.metaverse.dark_mater_gain_modifer;
 }
 
-function canBuyDarkMatterMult() {
+export function canBuyDarkMatterMult() {
 	return gameData.hypercubes >= darkMatterMultCost();
 }
 
-function buyDarkMaterMult() {
+export function buyDarkMaterMult() {
 	if (canBuyDarkMatterMult()) {
 		gameData.hypercubes -= darkMatterMultCost();
 		gameData.metaverse.dark_mater_gain_modifer += 1;
@@ -180,7 +192,7 @@ function buyDarkMaterMult() {
 
 // perks
 
-function getMetaversePerkPointsGain() {
+export function getMetaversePerkPointsGain() {
 	if (gameData.essence.gte(1e90))
 		return (
 			(gameData.perks.more_perk_points === 1 ? 10 : 1) *
@@ -191,7 +203,7 @@ function getMetaversePerkPointsGain() {
 	return 0;
 }
 
-const perks_cost = {
+export const perks_cost = {
 	auto_dark_orb: 1,
 	auto_dark_shop: 1,
 	auto_boost: 1,
@@ -210,19 +222,19 @@ const perks_cost = {
 	more_perk_points: 5000,
 };
 
-function getMetaversePerkName(perkName) {
+export function getMetaversePerkName(perkName) {
 	return t(`perk_${perkName}`);
 }
 
-function getPerkCost(perkName) {
+export function getPerkCost(perkName) {
 	return perks_cost[perkName];
 }
 
-function canBuyPerk(perkName) {
+export function canBuyPerk(perkName) {
 	return gameData.perks_points >= getPerkCost(perkName);
 }
 
-function buyPerk(perkName) {
+export function buyPerk(perkName) {
 	if (gameData.perks[perkName] === 0) {
 		if (canBuyPerk(perkName)) {
 			gameData.perks_points -= getPerkCost(perkName);
@@ -255,7 +267,7 @@ function buyPerk(perkName) {
 	}
 }
 
-function getTotalPerkPoints() {
+export function getTotalPerkPoints() {
 	let total = gameData.perks_points;
 	for (const key of Object.keys(gameData.perks)) {
 		if (gameData.perks[key] === 1) total += getPerkCost(key);
@@ -263,7 +275,7 @@ function getTotalPerkPoints() {
 	return total;
 }
 
-function collectPerkPoints(value) {
+export function collectPerkPoints(value) {
 	for (const key of Object.keys(gameData.perks)) {
 		if (gameData.perks[key] === value) {
 			buyPerk(key);
@@ -271,7 +283,7 @@ function collectPerkPoints(value) {
 	}
 }
 
-function getBoostCooldownString() {
+export function getBoostCooldownString() {
 	return gameData.boost_active
 		? `${t("active")}: ${formatTime(gameData.boost_timer)}`
 		: gameData.boost_cooldown <= 0
@@ -279,7 +291,7 @@ function getBoostCooldownString() {
 			: t("boost_cooldown", formatTime(gameData.boost_cooldown));
 }
 
-function getTimeIsAFlatCircleXP() {
+export function getTimeIsAFlatCircleXP() {
 	if (gameData.active_challenge === "the_darkest_time") return 1;
 
 	return gameData.requirements.milestone_time_is_a_flat_circle.isCompleted()
@@ -287,7 +299,7 @@ function getTimeIsAFlatCircleXP() {
 		: 1;
 }
 
-function getUnspentPerksDarkmatterGainBuff() {
+export function getUnspentPerksDarkmatterGainBuff() {
 	const effect = softcap(gameData.perks_points * 0.0027 + 2, 75, 0.01);
 
 	return gameData.requirements.milestone_the_end_is_near.isCompleted()
@@ -295,7 +307,7 @@ function getUnspentPerksDarkmatterGainBuff() {
 		: 1;
 }
 
-function getHypercubeCap(next = 0) {
+export function getHypercubeCap(next = 0) {
 	if (
 		getTotalPerkPoints() >= 1 ||
 		(next > 0 && getMetaversePerkPointsGain() > 0)

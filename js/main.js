@@ -1,5 +1,71 @@
 // main.js — entry point
 
+import { itemCategories } from "../dist/js/items_data.js";
+import { jobBaseData } from "../dist/js/jobs_data.js";
+import { milestoneBaseData } from "../dist/js/milestones_data.js";
+import { skillBaseData } from "../dist/js/skills_data.js";
+import { applyTranslations, setLang } from "../dist/js/translations.js";
+import { toInfinityNumber } from "./calculations.js";
+import { enterChallenge, exitChallenge } from "./challenges.js";
+import {
+	DarkMatterRequirement,
+	EssenceRequirement,
+	EvilRequirement,
+	Item,
+	Job,
+	Milestone,
+	Skill,
+	TaskRequirement,
+} from "./classes.js";
+import {
+	buyADealWithTheChairman,
+	buyAGiftFromGod,
+	buyAMiracle,
+	buyDarkOrbGenerator,
+	buyEssenceCollector,
+	buyExplosionOfTheUniverse,
+	buyGottaBeFast,
+	buyLifeCoach,
+	buyMultiverseExplorer,
+	buySpeedOfLife,
+	buyYourGreatestDebt,
+	getDarkMatterSkillIncome,
+	resetSkillTree,
+} from "./dark_matter.js";
+import { gameData, renderSpeed, updateSpeed } from "./data.js";
+import { update } from "./gameLoop.js";
+import {
+	applyBoost,
+	buyBoostDuration,
+	buyChallengeAltar,
+	buyDarkMaterMult,
+	buyEssenceMult,
+	buyEvilTran,
+	buyHypercubeGain,
+	buyReduceBoostCooldown,
+	collectPerkPoints,
+} from "./metaverse.js";
+import { createMilestoneRequirements, milestoneData } from "./milestones.js";
+import { addMultipliers, setCustomEffects } from "./multipliers.js";
+import { requirementsBaseData } from "./requirements.js";
+import { loadGameData, saveGameData } from "./save.js";
+import { initializeUI, refreshSettingsButtons, updateUI } from "./ui/init.js";
+import {
+	getQuerySelector,
+	refreshLangButtons,
+	selectElementInGroup,
+	setFontSize,
+	setLayout,
+	setStickySidebar,
+	setTab,
+	setTabDarkMatter,
+	setTabMetaverse,
+	setTabSettings,
+	updateFontSizeIndicator,
+} from "./ui/navigation.js";
+import { renderChangelog } from "./ui/tabs.js";
+import { checkAdminPassword, initAdminPanel, setAdminSpeed } from "./utils.js";
+
 // Ошибка в коде — не сообщение игроку, а сигнал «игра сломалась»: останавливаем
 // симуляцию, чтобы время не тикало по битому состоянию. Диагностика — в консоли
 // браузера, через onerror, штатно.
@@ -13,21 +79,21 @@ document
 		renderChangelog();
 	});
 
-function togglePause() {
+export function togglePause() {
 	gameData.paused = !gameData.paused;
 }
 
-function toggleAutoBuy() {
+export function toggleAutoBuy() {
 	gameData.autoBuyEnabled = document.getElementById("autoBuyToggle").checked;
 }
 
-function setCurrentProperty(propertyName) {
+export function setCurrentProperty(propertyName) {
 	if (gameData.paused) return;
 	gameData.autoBuyEnabled = false;
 	gameData.currentProperty = gameData.itemData[propertyName];
 }
 
-function setMisc(miscName) {
+export function setMisc(miscName) {
 	if (gameData.paused) return;
 	gameData.autoBuyEnabled = false;
 	const misc = gameData.itemData[miscName];
@@ -42,11 +108,11 @@ function setMisc(miscName) {
 	}
 }
 
-function createGameObjects(data, baseData) {
+export function createGameObjects(data, baseData) {
 	for (const key in baseData) createGameObject(data, baseData[key], key);
 }
 
-function createGameObject(data, entity, id) {
+export function createGameObject(data, entity, id) {
 	if ("income" in entity) {
 		data[id] = new Job(entity);
 	} else if ("maxXp" in entity) {
@@ -59,7 +125,7 @@ function createGameObject(data, entity, id) {
 	data[id].id = id;
 }
 
-function createItemObjects() {
+export function createItemObjects() {
 	for (const categoryId in itemCategories) {
 		const items = itemCategories[categoryId].items;
 		for (const key in items) {
@@ -71,7 +137,7 @@ function createItemObjects() {
 	}
 }
 
-function createSkillRequirements() {
+export function createSkillRequirements() {
 	for (const key in skillBaseData) {
 		const skill = skillBaseData[key];
 		const req = skill.requirement;
@@ -106,27 +172,27 @@ function createSkillRequirements() {
 	}
 }
 
-function setCurrency(index) {
+export function setCurrency(index) {
 	gameData.settings.currencyNotation = index;
 	selectElementInGroup("CurrencyNotation", index);
 }
 
-function setNotation(index) {
+export function setNotation(index) {
 	gameData.settings.numberNotation = index;
 	selectElementInGroup("Notation", index);
 }
 
-function getNet() {
+export function getNet() {
 	return getIncome().minus(getExpense()).abs();
 }
 
-function getIncome() {
+export function getIncome() {
 	if (gameData.active_challenge === "the_darkest_time") return new Decimal(0);
 
 	return gameData.currentJob.getIncome().times(getDarkMatterSkillIncome());
 }
 
-function getExpense() {
+export function getExpense() {
 	var expense = toInfinityNumber(gameData.currentProperty.getExpense());
 	for (const misc of gameData.currentMisc) {
 		expense = expense.plus(misc.getExpense());
@@ -134,13 +200,13 @@ function getExpense() {
 	return expense;
 }
 
-function validateTheme(index) {
+export function validateTheme(index) {
 	// Незнакомые значения (в т.ч. theme=2 из выпиленной colorblind-темы)
 	// дают светлый дефолт — валидация на входе, а не в setTheme
 	return index === 1 ? 1 : 0;
 }
 
-function setTheme(index, reload = false) {
+export function setTheme(index, reload = false) {
 	const body = document.getElementById("body");
 
 	body.classList.remove("dark");
@@ -158,13 +224,50 @@ function setTheme(index, reload = false) {
 	}
 }
 
-function setEnableKeybinds(enableKeybinds) {
+export function setEnableKeybinds(enableKeybinds) {
 	gameData.settings.enableKeybinds = enableKeybinds;
 	selectElementInGroup("EnableKeybinds", enableKeybinds ? 0 : 1);
 	document
 		.getElementById("keybindsList")
 		.classList.toggle("hidden", !enableKeybinds);
 }
+
+// Мост для HTML-атрибутов: onclick="buyBoostDuration()" в шаблонах не видит модульные функции.
+// Публикуем только то, что зовут из разметки; внутри игры всё идёт через import.
+Object.assign(window, {
+	applyBoost,
+	buyADealWithTheChairman,
+	buyAGiftFromGod,
+	buyAMiracle,
+	buyBoostDuration,
+	buyChallengeAltar,
+	buyDarkMaterMult,
+	buyDarkOrbGenerator,
+	buyEssenceCollector,
+	buyEssenceMult,
+	buyEvilTran,
+	buyExplosionOfTheUniverse,
+	buyGottaBeFast,
+	buyHypercubeGain,
+	buyLifeCoach,
+	buyMultiverseExplorer,
+	buyReduceBoostCooldown,
+	buySpeedOfLife,
+	buyYourGreatestDebt,
+	checkAdminPassword,
+	collectPerkPoints,
+	enterChallenge,
+	exitChallenge,
+	resetSkillTree,
+	setAdminSpeed,
+	setCurrency,
+	setFontSize,
+	setLang,
+	setLayout,
+	setNotation,
+	setStickySidebar,
+	toggleAutoBuy,
+});
 
 // Initialization
 
@@ -200,15 +303,15 @@ setTabSettings("settingsTab");
 setTabDarkMatter("shopTab");
 setTabMetaverse("metaverseTab1");
 
-let ticking = false;
+export let ticking = false;
 
-var gameloop, renderloop, saveloop;
+export var gameloop, renderloop, saveloop;
 
 // Расчёты гоняются на updateSpeed (20 Гц) — игровая логика должна быть плавной.
 // Рендер на renderSpeed (10 Гц) отдельным интервалом: глаз не различает разницу,
 // а полный кадр стоит ~9 мс. Когда вкладка скрыта — рендер пропускается
 // целиком, расчёты при этом продолжаются.
-function startLoops() {
+export function startLoops() {
 	gameloop = setInterval(() => {
 		if (ticking) return;
 		ticking = true;

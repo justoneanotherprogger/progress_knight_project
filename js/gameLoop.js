@@ -1,6 +1,58 @@
 // gameLoop.js — game loop, auto functions, game state
 
-function update() {
+import {
+	applySpeed,
+	canSimulate,
+	getEssenceGain,
+	getEvilGain,
+	getGameSpeed,
+	getLifespan,
+	isHeroesUnlocked,
+	resetGainMemo,
+} from "./calculations.js";
+import { EssenceRequirement, Job, Skill, TaskRequirement } from "./classes.js";
+import {
+	buyADealWithTheChairman,
+	buyAGiftFromGod,
+	buyAMiracle,
+	buyDarkOrbGenerator,
+	buyGottaBeFast,
+	buyLifeCoach,
+	getDarkOrbGeneration,
+	getDarkOrbGeneratorCost,
+	isDecimalInfinity,
+} from "./dark_matter.js";
+import {
+	gameData,
+	getPreviousTaskInCategory,
+	HERO_PREV_LEVEL_MIN,
+	PERK_AUTO_DARK_ORB_MIRACLE_COST,
+	PERK_AUTO_DARK_SHOP_ORBS_THRESHOLD,
+	PERK_AUTO_SACRIFICE_COST_MULTIPLIER,
+	PERK_AUTO_SACRIFICE_HYPERCUBES_THRESHOLD,
+	updateSpeed,
+} from "./data.js";
+import { getExpense, getIncome } from "./main.js";
+import {
+	applyBoost,
+	boostDurationCost,
+	buyBoostDuration,
+	buyChallengeAltar,
+	buyDarkMaterMult,
+	buyEssenceMult,
+	buyEvilTran,
+	buyHypercubeGain,
+	buyReduceBoostCooldown,
+	evilTranCost,
+	getBoostCooldownSeconds,
+	getHypercubeCap,
+	getHypercubeGeneration,
+	hypercubeGainCost,
+	reduceBoostCooldownCost,
+} from "./metaverse.js";
+import { applyMilestones, applyPerks } from "./rebirth.js";
+
+export function update() {
 	resetGainMemo();
 	makeHeroes();
 	increaseRealtime();
@@ -34,12 +86,12 @@ function update() {
 	updateRequirements();
 }
 
-function updateRequirements() {
+export function updateRequirements() {
 	// Call isCompleted on every requirement as that function caches its result in requirement.completed
 	for (const i in gameData.requirements) gameData.requirements[i].isCompleted();
 }
 
-function updateStats() {
+export function updateStats() {
 	if (gameData.requirements.req_stats_evil_gain.isCompleted()) {
 		gameData.stats.EvilPerSecond = getEvilGain().div(gameData.rebirthTwoTime);
 		if (gameData.stats.EvilPerSecond.gt(gameData.stats.maxEvilPerSecond)) {
@@ -64,7 +116,7 @@ function updateStats() {
 		gameData.stats.maxEssenceReached = gameData.essence;
 }
 
-function autoPerks() {
+export function autoPerks() {
 	if (
 		gameData.perks.auto_boost === 1 &&
 		!gameData.boost_active &&
@@ -124,7 +176,7 @@ function autoPerks() {
 	}
 }
 
-function autoPromote() {
+export function autoPromote() {
 	let maxIncome = new Decimal(0);
 	for (const key in gameData.taskData) {
 		const task = gameData.taskData[key];
@@ -138,7 +190,7 @@ function autoPromote() {
 	}
 }
 
-function autoBuy() {
+export function autoBuy() {
 	if (!gameData.autoBuyEnabled) return;
 
 	let usedExpense = new Decimal(0);
@@ -178,7 +230,7 @@ function autoBuy() {
 	}
 }
 
-function increaseCoins() {
+export function increaseCoins() {
 	const gain = applySpeed(getIncome());
 	const gainIsFinite =
 		gain instanceof Decimal
@@ -189,7 +241,7 @@ function increaseCoins() {
 	gameData.coins = gameData.coins.plus(gain);
 }
 
-function increaseDays() {
+export function increaseDays() {
 	gameData.days += applySpeed(1);
 	gameData.totalDays += applySpeed(1);
 	const lifespan = getLifespan();
@@ -197,7 +249,7 @@ function increaseDays() {
 		gameData.days = lifespan;
 }
 
-function increaseRealtime() {
+export function increaseRealtime() {
 	if (!canSimulate()) return;
 
 	const realDiff = 1.0 / updateSpeed;
@@ -224,7 +276,7 @@ function increaseRealtime() {
 	}
 }
 
-function applyExpenses() {
+export function applyExpenses() {
 	if (!Number.isFinite(gameData.coins.mantissa)) return;
 
 	gameData.coins = gameData.coins.minus(applySpeed(getExpense()));
@@ -235,13 +287,13 @@ function applyExpenses() {
 	}
 }
 
-function goBankrupt() {
+export function goBankrupt() {
 	gameData.coins = new Decimal(0);
 	gameData.currentProperty = gameData.itemData.item_homeless;
 	gameData.currentMisc = [];
 }
 
-function makeHero(task) {
+export function makeHero(task) {
 	if ((task instanceof Job || task instanceof Skill) && !task.isHero) {
 		task.level = 0;
 		task.maxLevel = 0;
@@ -250,7 +302,7 @@ function makeHero(task) {
 	}
 }
 
-function makeHeroes() {
+export function makeHeroes() {
 	if (!isHeroesUnlocked()) return;
 
 	for (const taskname in gameData.taskData) {

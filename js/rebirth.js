@@ -1,6 +1,32 @@
 // rebirth.js — rebirth and milestone logic
 
-function rebirthOne() {
+import {
+	metaverseResetUnlocks,
+	metaverseUnlocks,
+	permanentUnlocks,
+	shopPermanentUnlocks,
+} from "../dist/js/unlocks_data.js";
+import {
+	canSimulate,
+	getDarkMatterGain,
+	getEssenceGain,
+	getEvilGain,
+} from "./calculations.js";
+import {
+	DEFAULT_STARTING_AGE,
+	ESSENCE_GROWTH_EXPONENT,
+	EVIL_GROWTH_EXPONENT_DEAL,
+	EVIL_GROWTH_EXPONENT_HELL,
+	EVIL_GROWTH_EXPONENT_MIND_CONTROL,
+	gameData,
+	PERK_AUTO_DARK_SHOP_ORBS_THRESHOLD,
+	PERK_INSTANT_GAIN_MULTIPLIER,
+	REBIRTH_THREE_ESSENCE_CAP,
+} from "./data.js";
+import { evilTranGain, getMetaversePerkPointsGain } from "./metaverse.js";
+import { setTab, Tab } from "./ui/navigation.js";
+
+export function rebirthOne() {
 	gameData.rebirthOneCount += 1;
 	if (
 		gameData.stats.fastest1 == null ||
@@ -12,7 +38,7 @@ function rebirthOne() {
 	rebirthReset();
 }
 
-function rebirthTwo() {
+export function rebirthTwo() {
 	gameData.rebirthTwoCount += 1;
 	gameData.evil = gameData.evil.add(getEvilGain());
 
@@ -33,7 +59,7 @@ function rebirthTwo() {
 	}
 }
 
-function rebirthThree() {
+export function rebirthThree() {
 	gameData.rebirthThreeCount += 1;
 	gameData.essence = gameData.essence.add(getEssenceGain());
 	if (!Number.isFinite(gameData.essence.mantissa))
@@ -59,7 +85,7 @@ function rebirthThree() {
 	gameData.active_challenge = "";
 }
 
-function rebirthFour() {
+export function rebirthFour() {
 	gameData.rebirthFourCount += 1;
 	gameData.dark_matter = gameData.dark_matter.add(getDarkMatterGain());
 	gameData.essence = new Decimal(0);
@@ -94,7 +120,7 @@ function rebirthFour() {
 	gameData.active_challenge = "";
 }
 
-function rebirthFive() {
+export function rebirthFive() {
 	gameData.rebirthFiveCount += 1;
 	gameData.perks_points += getMetaversePerkPointsGain();
 	gameData.essence = new Decimal(0);
@@ -166,7 +192,7 @@ function rebirthFive() {
 	gameData.active_challenge = "";
 }
 
-function applyMilestones() {
+export function applyMilestones() {
 	if (
 		(gameData.requirements.milestone_magic_eye.isCompleted() &&
 			gameData.requirements.req_rebirth_note_2.isCompleted()) ||
@@ -213,7 +239,7 @@ function applyMilestones() {
 	}
 }
 
-function rebirthReset(set_tab_to_jobs = true) {
+export function rebirthReset(set_tab_to_jobs = true) {
 	if (set_tab_to_jobs) {
 		if (
 			(gameData.settings.selectedTab === Tab.METAVERSE &&
@@ -282,7 +308,7 @@ function rebirthReset(set_tab_to_jobs = true) {
 	}
 }
 
-function applyPerks() {
+export function applyPerks() {
 	if (gameData.perks.instant_evil === 1) {
 		if (gameData.evil.lt(getEvilGain().times(PERK_INSTANT_GAIN_MULTIPLIER)))
 			gameData.evil = getEvilGain().times(PERK_INSTANT_GAIN_MULTIPLIER);

@@ -1,6 +1,23 @@
 // ui/challenges_tab.js — challenges tab rendering
 
-function renderChallenges() {
+import { t } from "../../dist/js/translations.js";
+import { getChallengeBonus, getChallengeGoal } from "../challenges.js";
+import {
+	CHALLENGE_DANCE_HAPPINESS_EXPONENT,
+	CHALLENGE_LEGENDS_WARP_EXPONENT,
+	CHALLENGE_RICH_INCOME_EXPONENT,
+	CHALLENGE_TIME_WARP_EXPONENT,
+	CHALLENGE_UNHAPPY_HAPPINESS_EXPONENT,
+	gameData,
+	LIFESPAN_CHALLENGE_EXPONENT,
+} from "../data.js";
+import {
+	format,
+	getChallengeTranslatedName,
+	getFormattedChallengeTaskGoal,
+} from "../utils.js";
+
+export function renderChallenges() {
 	document.getElementById("activeChallengeName").textContent =
 		getChallengeTranslatedName(gameData.active_challenge);
 
@@ -158,7 +175,7 @@ function renderChallenges() {
 		lifespanDebuff.textContent = t("challenge_5_meta_debuff");
 }
 
-function renderCurrentChallengeReward(blockclass) {
+export function renderCurrentChallengeReward(blockclass) {
 	const elements = document.getElementsByClassName(blockclass);
 	for (const elementReward of elements) {
 		if (elementReward.classList.contains(gameData.active_challenge)) {
@@ -175,7 +192,7 @@ function renderCurrentChallengeReward(blockclass) {
 	}
 }
 
-function renderCurrentChallengeRewardValue(side_bar = false) {
+export function renderCurrentChallengeRewardValue(side_bar = false) {
 	for (let i = 1; i <= Object.keys(gameData.challenges).length; i++) {
 		document.getElementById(
 			`${side_bar ? "sidebarC" : "c"}urrentChallengeBuff${i}`,

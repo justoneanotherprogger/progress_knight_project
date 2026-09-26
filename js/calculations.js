@@ -1,12 +1,67 @@
 // calculations.js — pure calculation functions
 // Uses Decimal from break_infinity.js
 
-function toInfinityNumber(n) {
+import { skillCategories } from "../dist/js/skills_data.js";
+import { t } from "../dist/js/translations.js";
+import { getChallengeBonus } from "./challenges.js";
+import { Job } from "./classes.js";
+import {
+	getAGiftFromGodEssenceGain,
+	getDarkMatterSkillDarkMater,
+	getDarkMatterSkillEssence,
+	getDarkMatterSkillEvil,
+	getDarkMatterSkillTimeWarping,
+	getGottaBeFastGain,
+} from "./dark_matter.js";
+import {
+	baseGameSpeed,
+	baseLifespan,
+	CHALLENGE_DANCE_HAPPINESS_EXPONENT,
+	CHALLENGE_LEGENDS_WARP_EXPONENT,
+	CHALLENGE_TIME_WARP_EXPONENT,
+	CHALLENGE_UNHAPPY_HAPPINESS_EXPONENT,
+	COINPILE_LOG_BASE,
+	COINPILE_MULTIPLIER,
+	ESSENCE_EFFECT_DIVISOR,
+	ESSENCE_EFFECT_EXPONENT,
+	ESSENCE_EFFECT_MIN_THRESHOLD,
+	EVIL_BOOSTER_MULTIPLIER,
+	EVIL_EFFECT_DIVISOR,
+	EVIL_EFFECT_EXPONENT,
+	GREED_ADULT_AGE,
+	gameData,
+	getBindedItemEffect,
+	getBindedTaskEffect,
+	HERO_LEVEL_UNLOCK_THRESHOLD,
+	HERO_XP_BASE_JOB,
+	INSPIRATION_FLAT_BONUS,
+	INSPIRATION_INFINITY_FALLBACK,
+	INSPIRATION_LOG_BASE,
+	LIFE_IS_VALUABLE_MULTIPLIER,
+	LIFESPAN_CHALLENGE_EXPONENT,
+	LIFESPAN_CHALLENGE_FLAT,
+	METAVERSE_BOOST_WARP_DEFAULT,
+	SPEED_SPEED_SPEED_LIFESPAN,
+	SPEED_SPEED_SPEED_MULTIPLIER,
+	TASK_HERO_XP_GROWTH,
+	TASK_XP_GROWTH,
+	TIME_IS_A_FLAT_CIRCLE_MULTIPLIER,
+	updateSpeed,
+} from "./data.js";
+import {
+	darkMatterMultGain,
+	essenceMultGain,
+	getUnspentPerksDarkmatterGainBuff,
+} from "./metaverse.js";
+import { milestoneData } from "./milestones.js";
+import { getBaseLog } from "./utils.js";
+
+export function toInfinityNumber(n) {
 	if (typeof n === "undefined" || n === null) return new Decimal(0);
 	return new Decimal(n);
 }
 
-function formatInfinityNumber(num) {
+export function formatInfinityNumber(num) {
 	if (typeof num === "undefined" || num === null) return "0";
 	var b = new Decimal(num);
 	var str = b.toString();
@@ -39,7 +94,7 @@ function formatInfinityNumber(num) {
 	return parseFloat(str).toFixed(2);
 }
 
-function getHeroXpGainMultipliers(job) {
+export function getHeroXpGainMultipliers(job) {
 	let baseMult = job instanceof Job ? HERO_XP_BASE_JOB : 1;
 	for (const id in milestoneData) {
 		const effect = milestoneData[id].baseData.effect;
@@ -53,7 +108,7 @@ function getHeroXpGainMultipliers(job) {
 	return baseMult;
 }
 
-function getHappiness() {
+export function getHappiness() {
 	if (
 		gameData.active_challenge === "legends_never_die" ||
 		gameData.active_challenge === "the_darkest_time"
@@ -81,11 +136,11 @@ function getHappiness() {
 	return happiness;
 }
 
-function getEvil() {
+export function getEvil() {
 	return gameData.evil;
 }
 
-function getEvilXpGain() {
+export function getEvilXpGain() {
 	if (
 		gameData.active_challenge === "legends_never_die" ||
 		gameData.active_challenge === "the_darkest_time"
@@ -101,11 +156,11 @@ function getEvilXpGain() {
 	return getEvil();
 }
 
-function getEssence() {
+export function getEssence() {
 	return gameData.essence;
 }
 
-function getEssenceXpGain() {
+export function getEssenceXpGain() {
 	if (
 		gameData.active_challenge === "dance_with_the_devil" ||
 		gameData.active_challenge === "the_darkest_time"
@@ -121,7 +176,7 @@ function getEssenceXpGain() {
 	return getEssence();
 }
 
-function applyMultipliers(value, multipliers) {
+export function applyMultipliers(value, multipliers) {
 	var finalMultiplier = new Decimal(1);
 	multipliers.forEach((multiplierFunction) => {
 		finalMultiplier = finalMultiplier.times(
@@ -131,7 +186,7 @@ function applyMultipliers(value, multipliers) {
 	return toInfinityNumber(value).times(finalMultiplier);
 }
 
-function applySpeed(value) {
+export function applySpeed(value) {
 	if (value === 0) return 0;
 	if (value instanceof Decimal)
 		return value.times(getGameSpeed()).div(updateSpeed);
@@ -139,7 +194,7 @@ function applySpeed(value) {
 	return (value * getGameSpeed()) / updateSpeed;
 }
 
-function applyUnpausedSpeed(value) {
+export function applyUnpausedSpeed(value) {
 	if (value === 0) return 0;
 	if (value === Infinity) return Infinity;
 	if (value instanceof Decimal)
@@ -147,19 +202,19 @@ function applyUnpausedSpeed(value) {
 	return (value * getUnpausedGameSpeed()) / updateSpeed;
 }
 
-function getTaskBaseXp(task) {
+export function getTaskBaseXp(task) {
 	if (task.isHero)
 		return new Decimal(10).pow(task.baseData.heroxp).times(task.baseData.maxXp);
 	return toInfinityNumber(task.baseData.maxXp);
 }
 
-function getTaskGrowth(task) {
+export function getTaskGrowth(task) {
 	return task.isHero ? TASK_HERO_XP_GROWTH : TASK_XP_GROWTH;
 }
 
 // Стоимость перехода с level на level+1. Растёт геометрически,
 // поэтому для больших уровней нужен Decimal, а не Number.
-function getTaskMaxXp(task, level) {
+export function getTaskMaxXp(task, level) {
 	return getTaskBaseXp(task)
 		.times(level + 1)
 		.times(new Decimal(getTaskGrowth(task)).pow(level));
@@ -168,7 +223,7 @@ function getTaskMaxXp(task, level) {
 // Суммарная стоимость k уровней, начиная с level.
 // Σ (level+1+i)·r^(level+i) раскладывается в сумму двух геометрических прогрессий:
 // (level+1)·Σr^i + Σi·r^i, что даёт замкнутую формулу вместо O(k) цикла.
-function getTaskXpRange(task, level, k) {
+export function getTaskXpRange(task, level, k) {
 	if (k <= 0) return new Decimal(0);
 	const r = new Decimal(getTaskGrowth(task));
 	const rm1 = r.sub(1);
@@ -189,9 +244,9 @@ function getTaskXpRange(task, level, k) {
 // искать уровни галопом и бинарным поиском: O(log k) вызовов формулы суммы.
 // Потолок нужен для Infinity-значений xp (множители gain могут дать Infinity):
 // тогда сумма никогда не превзойдёт xp, и галоп ушёл бы в бесконечный цикл.
-const MAX_LEVELS_PER_TICK = 1e9;
+export const MAX_LEVELS_PER_TICK = 1e9;
 
-function getTaskLevelsToClimb(task, level, xp) {
+export function getTaskLevelsToClimb(task, level, xp) {
 	let lo = 0;
 	let hi = 1;
 	while (hi < MAX_LEVELS_PER_TICK && getTaskXpRange(task, level, hi).lte(xp)) {
@@ -213,15 +268,15 @@ function getTaskLevelsToClimb(task, level, xp) {
 // сбрасывает его в начале, все остальные вызовы до следующего тика читают
 // результат. Сталость — максимум один тик (50 мс), для плавных величин
 // незаметна.
-const gainMemo = { evil: null, essence: null, dark_matter: null };
+export const gainMemo = { evil: null, essence: null, dark_matter: null };
 
-function resetGainMemo() {
+export function resetGainMemo() {
 	gainMemo.evil = null;
 	gainMemo.essence = null;
 	gainMemo.dark_matter = null;
 }
 
-function getEvilGain() {
+export function getEvilGain() {
 	if (gainMemo.evil != null) return gainMemo.evil;
 
 	const evilControl = gameData.taskData.skill_evil_control;
@@ -254,7 +309,7 @@ function getEvilGain() {
 	return gainMemo.evil;
 }
 
-function getEssenceGain() {
+export function getEssenceGain() {
 	if (gainMemo.essence != null) return gainMemo.essence;
 
 	const essenceControl = gameData.taskData.skill_yin_yang;
@@ -284,7 +339,7 @@ function getEssenceGain() {
 	return gainMemo.essence;
 }
 
-function getDarkMatterGain() {
+export function getDarkMatterGain() {
 	if (gainMemo.dark_matter != null) return gainMemo.dark_matter;
 
 	const darkRuler = gameData.taskData.skill_dark_ruler;
@@ -311,11 +366,11 @@ function getDarkMatterGain() {
 	return gainMemo.dark_matter;
 }
 
-function getDarkMatter() {
+export function getDarkMatter() {
 	return gameData.dark_matter;
 }
 
-function getDarkMatterXpGain() {
+export function getDarkMatterXpGain() {
 	if (getDarkMatter().lt(1)) return toInfinityNumber(1);
 
 	return getDarkMatter().add(1);
@@ -325,21 +380,21 @@ function getDarkMatterXpGain() {
 // кубом бонуса, поверх общего для навыков Тьмы. isHero — живое поле
 // задачи, читается на каждом тике, поэтому слой откатывается при
 // перерождении и возвращается при новой героизации.
-function getHeroicDarkMatterXpGain(task) {
+export function getHeroicDarkMatterXpGain(task) {
 	return task.isHero ? getDarkMatterXpGain().pow(3) : 1;
 }
 
-function getDarkOrbs() {
+export function getDarkOrbs() {
 	return gameData.dark_orbs;
 }
 
-function getGameSpeed() {
+export function getGameSpeed() {
 	if (!canSimulate()) return 0;
 
 	return getUnpausedGameSpeed();
 }
 
-function getUnpausedGameSpeed() {
+export function getUnpausedGameSpeed() {
 	const boostWarping = gameData.boost_active ? METAVERSE_BOOST_WARP_DEFAULT : 1;
 	const timeWarping = gameData.taskData.skill_time_warping;
 	const temporalDimension = gameData.taskData.skill_temporal_dimension;
@@ -378,7 +433,7 @@ function getUnpausedGameSpeed() {
 	return gameSpeed;
 }
 
-function getLifespan() {
+export function getLifespan() {
 	const coinpile =
 		COINPILE_MULTIPLIER * gameData.coins.plus(1).log(COINPILE_LOG_BASE);
 	const immortality = gameData.taskData.skill_life_essence;
@@ -414,17 +469,17 @@ function getLifespan() {
 	return lifespan;
 }
 
-function isAlive() {
+export function isAlive() {
 	const lifespan = getLifespan();
 	return gameData.days < lifespan || lifespan === Infinity;
 }
 
-function canSimulate() {
+export function canSimulate() {
 	// Сломанная игра не тикает: hasError — не смерть, поэтому в isAlive его нет.
 	return !gameData.paused && !gameData.hasError && isAlive();
 }
 
-function isHeroesUnlocked() {
+export function isHeroesUnlocked() {
 	return (
 		gameData.requirements.milestone_new_beginning.isCompleted() &&
 		(gameData.taskData.job_one_above_all.level >= HERO_LEVEL_UNLOCK_THRESHOLD ||
@@ -432,7 +487,7 @@ function isHeroesUnlocked() {
 	);
 }
 
-function getInspiration() {
+export function getInspiration() {
 	const age = gameData.days;
 	const lifespan =
 		getLifespan() === Infinity ? INSPIRATION_INFINITY_FALLBACK : getLifespan();
@@ -442,16 +497,15 @@ function getInspiration() {
 	);
 }
 
-function getGreed() {
+export function getGreed() {
 	const age = gameData.days;
 	return getBaseLog(GREED_ADULT_AGE, age);
 }
 
-function isNextDarkMagicSkillInReach() {
+export function isNextDarkMagicSkillInReach() {
 	const totalEvil = gameData.evil.add(getEvilGain());
 
 	for (const key in gameData.taskData) {
-		const skill = gameData.taskData[key];
 		if (key in skillCategories.category_dark_magic.items) {
 			const requirement = gameData.requirements[key];
 			if (!requirement.isCompleted()) {

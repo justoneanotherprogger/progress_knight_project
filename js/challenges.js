@@ -1,4 +1,15 @@
-function enterChallenge(challengeName) {
+import {
+	getEvilGain,
+	getHappiness,
+	getUnpausedGameSpeed,
+	toInfinityNumber,
+} from "./calculations.js";
+import { baseGameSpeed, gameData } from "./data.js";
+import { getIncome } from "./main.js";
+import { rebirthReset } from "./rebirth.js";
+import { getChallengeTaskGoalProgress, softcap } from "./utils.js";
+
+export function enterChallenge(challengeName) {
 	rebirthReset(false);
 	gameData.active_challenge = challengeName;
 	gameData.rebirthOneTime = 0;
@@ -10,7 +21,7 @@ function enterChallenge(challengeName) {
 	}
 }
 
-function exitChallenge() {
+export function exitChallenge() {
 	setChallengeProgress();
 	rebirthReset(false);
 	gameData.active_challenge = "";
@@ -23,13 +34,13 @@ function exitChallenge() {
 	}
 }
 
-function toChallengeDecimal(value, fallback = 0) {
+export function toChallengeDecimal(value, fallback = 0) {
 	const dec = toInfinityNumber(value);
 	// Decimal from break_infinity.js stores NaN as Number.NaN in mantissa
 	return Number.isNaN(dec.mantissa) ? new Decimal(fallback) : dec;
 }
 
-function updateChallengeProgress(key, value) {
+export function updateChallengeProgress(key, value) {
 	const newValue = toChallengeDecimal(value, 0);
 	const current = toChallengeDecimal(gameData.challenges[key], 0);
 	if (newValue.gt(current)) {
@@ -37,7 +48,7 @@ function updateChallengeProgress(key, value) {
 	}
 }
 
-function setChallengeProgress() {
+export function setChallengeProgress() {
 	if (gameData.active_challenge === "an_unhappy_life") {
 		updateChallengeProgress("an_unhappy_life", getHappiness());
 	}
@@ -70,7 +81,7 @@ function setChallengeProgress() {
 	}
 }
 
-function getChallengeBonus(challenge_name, current = false) {
+export function getChallengeBonus(challenge_name, current = false) {
 	// Convert challenge values to Decimal if they are strings
 	const val1 = current
 		? getHappiness()
@@ -111,7 +122,7 @@ function getChallengeBonus(challenge_name, current = false) {
 	}
 }
 
-function getChallengeGoal(challenge_name) {
+export function getChallengeGoal(challenge_name) {
 	if (challenge_name === "an_unhappy_life" || challenge_name === 1) {
 		return toChallengeDecimal(gameData.challenges.an_unhappy_life, 0).add(1);
 	}

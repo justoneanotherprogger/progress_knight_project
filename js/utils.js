@@ -1,4 +1,8 @@
-function softcap(value, cap, power = 0.5) {
+import { t } from "../dist/js/translations.js";
+import { formatInfinityNumber, toInfinityNumber } from "./calculations.js";
+import { gameData } from "./data.js";
+
+export function softcap(value, cap, power = 0.5) {
 	if (value <= cap) return value;
 
 	// Use Decimal for large numbers to avoid Infinity from Math.pow
@@ -9,7 +13,7 @@ function softcap(value, cap, power = 0.5) {
 
 // Знаки после точки для мантиссы из [1, 1000): до трёх значащих цифр —
 // 9.99k, 99.9k, 999k.
-function significantDecimals(scaled) {
+export function significantDecimals(scaled) {
 	if (scaled >= 100) return 0;
 	if (scaled >= 10) return 1;
 	return 2;
@@ -19,14 +23,14 @@ function significantDecimals(scaled) {
 // реальное — 9997 опыта читаются как «9.99k», а не округлённое «10.0k».
 // Хвостовые нули сохраняются — фиксированная длина строки не дрожит
 // при быстром росте значения.
-function formatMantissa(scaled) {
+export function formatMantissa(scaled) {
 	const decimals = significantDecimals(scaled);
 	const factor = 10 ** decimals;
 	const truncated = Math.floor(scaled * factor) / factor;
 	return truncated.toFixed(decimals);
 }
 
-function format(number, decimals = 1) {
+export function format(number, decimals = 1) {
 	// Convert to Decimal for large numbers
 	const decNumber = toInfinityNumber(number);
 
@@ -105,7 +109,7 @@ function format(number, decimals = 1) {
 	}
 }
 
-function getCoinsData() {
+export function getCoinsData() {
 	switch (gameData.settings.currencyNotation) {
 		case 0:
 			return [
@@ -150,14 +154,14 @@ function getCoinsData() {
 	}
 }
 
-function formatWhole(number, decimals = 1) {
+export function formatWhole(number, decimals = 1) {
 	if (number >= 1e3 || (number <= 0.99 && number !== 0)) {
 		return format(number, decimals);
 	}
 	return format(number, 0);
 }
 
-function formatCoins(coins, element) {
+export function formatCoins(coins, element) {
 	for (const c of element.children) {
 		c.textContent = "";
 	}
@@ -203,7 +207,7 @@ function formatCoins(coins, element) {
 	}
 }
 
-function formatTime(sec_num, show_ms = false) {
+export function formatTime(sec_num, show_ms = false) {
 	if (sec_num == null) {
 		return "unknown";
 	}
@@ -235,52 +239,52 @@ function formatTime(sec_num, show_ms = false) {
 	return `${(sec_num > 3600 ? `${hours}:` : "") + minutes}:${seconds}${mss}`;
 }
 
-function formatTreshold(number, decimals = 1, treshold = 100000) {
+export function formatTreshold(number, decimals = 1, treshold = 100000) {
 	if (number < treshold) return Math.floor(number);
 	else return format(number, decimals);
 }
 
-function formatLevel(level) {
+export function formatLevel(level) {
 	if (level >= 100000) return format(level);
 
 	return level.toLocaleString();
 }
 
-function formatAge(days) {
+export function formatAge(days) {
 	const years = daysToYears(days);
 	const day = getCurrentDay(days);
 	if (years > 10000) return `${t("age")} ${format(years)}`;
 	else return `${t("age")} ${years} ${t("day")} ${day}`;
 }
 
-function getBaseLog(x, y) {
+export function getBaseLog(x, y) {
 	return Math.log(y) / Math.log(x);
 }
 
-function daysToYears(days) {
+export function daysToYears(days) {
 	return Math.floor(days / 365);
 }
 
-function getCurrentDay(days) {
+export function getCurrentDay(days) {
 	return Math.floor(days - daysToYears(days) * 365);
 }
 
-function removeSpaces(string) {
+export function removeSpaces(string) {
 	return string.replace(/ /g, "");
 }
 
-function removeStrangeCharacters(string) {
+export function removeStrangeCharacters(string) {
 	return string.replace(/'/g, "");
 }
 
-function getChallengeTaskGoalProgress(taskName) {
+export function getChallengeTaskGoalProgress(taskName) {
 	if (!Object.keys(gameData.taskData).includes(taskName)) return 0;
 	if (gameData.taskData[taskName].isHero)
 		return gameData.taskData[taskName].level * 1000;
 	else return gameData.taskData[taskName].level;
 }
 
-function getFormattedChallengeTaskGoal(taskName, level) {
+export function getFormattedChallengeTaskGoal(taskName, level) {
 	if (level < 100000) return `${t(taskName)} ${t("lvl")} ${formatLevel(level)}`;
 	else
 		return (
@@ -294,7 +298,7 @@ function getFormattedChallengeTaskGoal(taskName, level) {
 		);
 }
 
-const CHALLENGE_KEY_TO_NUMBER = {
+export const CHALLENGE_KEY_TO_NUMBER = {
 	an_unhappy_life: 1,
 	rich_and_the_poor: 2,
 	time_does_not_fly: 3,
@@ -303,16 +307,16 @@ const CHALLENGE_KEY_TO_NUMBER = {
 	the_darkest_time: 6,
 };
 
-function getChallengeTranslatedName(challengeKey) {
+export function getChallengeTranslatedName(challengeKey) {
 	const num = CHALLENGE_KEY_TO_NUMBER[challengeKey];
 	return num ? t(`challenge_${num}_name`) : challengeKey;
 }
 
 // --- Admin speed control ---
-const ADMIN_PASSWORD_HASH =
+export const ADMIN_PASSWORD_HASH =
 	"26fa8e11b8b065f18e533c8f40889ccd019546d631772508ca68c272e686e45a";
 
-async function checkAdminPassword() {
+export async function checkAdminPassword() {
 	const input = document.getElementById("adminPasswordInput").value;
 	const encoder = new TextEncoder();
 	const data = encoder.encode(input);
@@ -341,7 +345,7 @@ async function checkAdminPassword() {
 	}
 }
 
-function setAdminSpeed(value) {
+export function setAdminSpeed(value) {
 	value = Math.max(1, Math.min(1000000, parseInt(value, 10) || 1));
 	gameData.settings.adminSpeedMultiplier = value;
 	document.getElementById("adminSpeedSlider").value = Math.min(value, 1000);
@@ -349,7 +353,7 @@ function setAdminSpeed(value) {
 	document.getElementById("adminSpeedDisplay").textContent = `x${value}`;
 }
 
-function initAdminPanel() {
+export function initAdminPanel() {
 	if (gameData.settings.isAdmin) {
 		document.getElementById("adminPasswordRow").classList.add("hidden");
 		document.getElementById("adminSpeedRow").classList.remove("hidden");

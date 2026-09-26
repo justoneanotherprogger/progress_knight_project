@@ -1,21 +1,68 @@
 // ui/sidebar.js — sidebar rendering
 
+import { t } from "../../dist/js/translations.js";
+import {
+	getDarkMatterGain,
+	getEssenceGain,
+	getEvilGain,
+	getGreed,
+	getHappiness,
+	getInspiration,
+	getLifespan,
+	getUnpausedGameSpeed,
+	isAlive,
+	isNextDarkMagicSkillInReach,
+} from "../calculations.js";
+import { baseGameSpeed, gameData } from "../data.js";
+import { getExpense, getIncome, getNet } from "../main.js";
+import {
+	getBoostCooldownString,
+	getHypercubeCap,
+	getMetaversePerkPointsGain,
+} from "../metaverse.js";
+import { isNextMilestoneInReach } from "../milestones.js";
+import {
+	daysToYears,
+	format,
+	formatAge,
+	formatCoins,
+	formatLevel,
+	formatTime,
+	formatTreshold,
+	formatWhole,
+	getChallengeTranslatedName,
+} from "../utils.js";
+import {
+	renderCurrentChallengeReward,
+	renderCurrentChallengeRewardValue,
+} from "./challenges_tab.js";
+import {
+	fitText,
+	renderProgressBar,
+	setRebirthButton,
+	setTextAll,
+	updateButtonHTML,
+	updateButtonText,
+} from "./helpers.js";
+import { renderBoostButton } from "./metaverse_tab.js";
+import { setSignDisplay } from "./navigation.js";
+
 // Элементы сайдбара статичны: DOM не пересоздаётся ни при ребёрне, ни при
 // загрузке сейва, поэтому getElementById кэшируется один раз.
-const elCache = {};
-function el(id) {
+export const elCache = {};
+export function el(id) {
 	elCache[id] ??= document.getElementById(id);
 	return elCache[id];
 }
 
 // Текст пишется только при смене: безусловный textContent каждый кадр
 // форсит перерасчёт layout, даже когда строка не изменилась.
-function setText(id, text) {
+export function setText(id, text) {
 	const e = el(id);
 	if (e.textContent !== text) e.textContent = text;
 }
 
-function renderSideBar() {
+export function renderSideBar() {
 	const task = gameData.currentJob;
 
 	const progressBar = el("quickTaskDisplay").getElementsByClassName("job")[0];
@@ -196,11 +243,11 @@ function renderSideBar() {
 // Recalculated on scroll/resize only — never per frame — so the layout it
 // triggers cannot feed back into the measurement. top is clamped to the
 // sticky offset so a scrolled-off panel cannot request an unbounded height.
-const BASE_EM =
+export const BASE_EM =
 	parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
-const QUICK_BAR_BOTTOM_GAP = 8 + Math.round(BASE_EM * 0.8);
+export const QUICK_BAR_BOTTOM_GAP = 8 + Math.round(BASE_EM * 0.8);
 
-function updateQuickBarHeight() {
+export function updateQuickBarHeight() {
 	const panel = document.getElementById("info");
 	if (!panel) return;
 
@@ -216,11 +263,11 @@ window.addEventListener("resize", updateQuickBarHeight, { passive: true });
 window.addEventListener("scroll", updateQuickBarHeight, { passive: true });
 updateQuickBarHeight();
 
-const resourceScaleCache = { key: "", desired: 0, scale: 1 };
-const RESOURCE_SCALE_INTERVAL = 300;
+export const resourceScaleCache = { key: "", desired: 0, scale: 1 };
+export const RESOURCE_SCALE_INTERVAL = 300;
 
 // Scales #resourceStats so its content always fits the space flex gives it.
-function updateResourceScale() {
+export function updateResourceScale() {
 	const stats = document.getElementById("resourceStats");
 	if (!stats) return;
 

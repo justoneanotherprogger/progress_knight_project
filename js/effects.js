@@ -1,6 +1,13 @@
 // effects.js — target-based effect dispatch
 
-function matchTarget(target, key, task) {
+import { jobCategories } from "../dist/js/jobs_data.js";
+import { milestoneBaseData } from "../dist/js/milestones_data.js";
+import { skillBaseData, skillCategories } from "../dist/js/skills_data.js";
+import { Job, Skill } from "./classes.js";
+import { gameData } from "./data.js";
+import { milestoneData } from "./milestones.js";
+
+export function matchTarget(target, key, task) {
 	if (!target) return false;
 	switch (target.kind) {
 		case "all":
@@ -24,7 +31,7 @@ function matchTarget(target, key, task) {
 	}
 }
 
-function pushTargetEffects(key, task, list, container) {
+export function pushTargetEffects(key, task, list, container) {
 	// Скиллы и вехи живут в разных таблицах, но эффекты одного вида:
 	// type == container и подходящий target. Кастомные формулы вех
 	// (setCustomEffects) подменяют getEffect, плоские считают base.
@@ -44,7 +51,7 @@ function pushTargetEffects(key, task, list, container) {
 	}
 }
 
-const EFFECT_LABEL_KEYS = {
+export const EFFECT_LABEL_KEYS = {
 	all: "effect_all_xp",
 	skill: "effect_skill_xp",
 	"skill:category:category_fundamentals": "effect_fundamentals_xp",
@@ -59,7 +66,7 @@ const EFFECT_LABEL_KEYS = {
 	item: "effect_expense_reduction",
 };
 
-function labelKey(target) {
+export function labelKey(target) {
 	if (!target) return "";
 	if (target.kind === "resource") {
 		if (target.id === "max_level") return "effect_max_level_multiplier";

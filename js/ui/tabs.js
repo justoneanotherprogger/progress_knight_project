@@ -1,8 +1,40 @@
 // ui/tabs.js — tab content rendering: jobs, skills, shop, challenges, milestones, metaverse, dark matter, settings, rows, perks
 
+import { itemCategories } from "../../dist/js/items_data.js";
+import { jobCategories } from "../../dist/js/jobs_data.js";
+import { milestoneCategories } from "../../dist/js/milestones_data.js";
+import { skillCategories } from "../../dist/js/skills_data.js";
+import { CHANGELOG, currentLang, t } from "../../dist/js/translations.js";
+import { isHeroesUnlocked } from "../calculations.js";
+import { getChallengeBonus } from "../challenges.js";
+import {
+	AgeRequirement,
+	DarkMatterRequirement,
+	EssenceRequirement,
+	EvilRequirement,
+	HypercubeRequirement,
+	Job,
+	MetaverseRequirement,
+	Skill,
+} from "../classes.js";
+import { gameData, getPreviousTaskInCategory } from "../data.js";
+import { labelKey } from "../effects.js";
+import { setCurrentProperty, setMisc } from "../main.js";
+import { milestoneData } from "../milestones.js";
+import {
+	format,
+	formatCoins,
+	formatLevel,
+	formatTime,
+	removeSpaces,
+	removeStrangeCharacters,
+} from "../utils.js";
+import { fitText, renderProgressBar, setHTML } from "./helpers.js";
+import { getRowByName } from "./navigation.js";
+
 // Элементы строки статичны: DOM не пересоздаётся, а getRowByName +
 // querySelector — по три поиска на строку каждый кадр на ~295 строк.
-function taskRow(task, rowKey) {
+export function taskRow(task, rowKey) {
 	if (task._row == null) {
 		const row = getRowByName(rowKey);
 		const progressBar = task.querySelector(".progressBar", row);
@@ -24,7 +56,7 @@ function taskRow(task, rowKey) {
 	return task._row;
 }
 
-function renderJobRow(task, rowKey) {
+export function renderJobRow(task, rowKey) {
 	const els = taskRow(task, rowKey);
 
 	const levelText = formatLevel(task.level);
@@ -58,14 +90,14 @@ function renderJobRow(task, rowKey) {
 	formatCoins(task.getIncome(), els.income);
 }
 
-function rowTooltip(task, rowKey) {
+export function rowTooltip(task, rowKey) {
 	let tooltip = t(task.baseData.tooltip);
 	if (!task.isHero && isHeroesUnlocked())
 		tooltip += getHeroicRequiredTooltip(rowKey);
 	return tooltip;
 }
 
-function renderJobs() {
+export function renderJobs() {
 	for (const key in gameData.taskData) {
 		const task = gameData.taskData[key];
 		if (!(task instanceof Job)) continue;
@@ -73,7 +105,7 @@ function renderJobs() {
 	}
 }
 
-function renderSkillRow(task, rowKey) {
+export function renderSkillRow(task, rowKey) {
 	const els = taskRow(task, rowKey);
 
 	const levelText = formatLevel(task.level);
@@ -110,7 +142,7 @@ function renderSkillRow(task, rowKey) {
 	fitText(els.effect, 16);
 }
 
-function renderSkills() {
+export function renderSkills() {
 	for (const key in gameData.taskData) {
 		const task = gameData.taskData[key];
 		if (!(task instanceof Skill)) continue;
@@ -118,7 +150,7 @@ function renderSkills() {
 	}
 }
 
-function renderShop() {
+export function renderShop() {
 	for (const key in gameData.itemData) {
 		const item = gameData.itemData[key];
 		if (item._row == null) {
@@ -170,7 +202,7 @@ function renderShop() {
 // Строки вех статичны: порог и перевод большую часть времени не меняются,
 // а getRowByName + querySelector — по три поиска по дереву на строку.
 // Закэшированные элементы и последний записанный текст живут на самой вехе.
-function renderMilestones() {
+export function renderMilestones() {
 	for (const key in milestoneData) {
 		const milestone = milestoneData[key];
 		if (milestone._row == null) {
@@ -208,7 +240,7 @@ function renderMilestones() {
 	}
 }
 
-function renderSettings() {
+export function renderSettings() {
 	// Stats
 	const date = new Date(gameData.stats.startDate);
 	document.getElementById("startDateDisplay").textContent =
@@ -357,7 +389,7 @@ function renderSettings() {
 		format(getChallengeBonus("the_darkest_time"), 2);
 }
 
-function renderRequirements() {
+export function renderRequirements() {
 	for (const key in gameData.requirements) {
 		const requirement = gameData.requirements[key];
 		const visible = requirement.isCompleted();
@@ -371,7 +403,7 @@ function renderRequirements() {
 	}
 }
 
-function updateHeaderColumns(headerRow, categoryType) {
+export function updateHeaderColumns(headerRow, categoryType) {
 	if (categoryType === jobCategories || categoryType === skillCategories) {
 		const valueType = headerRow.querySelector(".valueType");
 		if (valueType)
@@ -390,7 +422,7 @@ function updateHeaderColumns(headerRow, categoryType) {
 	}
 }
 
-function renderHeaderRows(categories) {
+export function renderHeaderRows(categories) {
 	for (const categoryName in categories) {
 		const className = removeSpaces(categoryName);
 		const headerRow = document.getElementsByClassName(className)[0];
@@ -412,7 +444,7 @@ function renderHeaderRows(categories) {
 	}
 }
 
-function createRequiredRow(categoryName, categoryType) {
+export function createRequiredRow(categoryName, categoryType) {
 	const requiredRow = document
 		.querySelector(".requiredRowTemplate")
 		.content.firstElementChild.cloneNode(true);
@@ -426,7 +458,7 @@ function createRequiredRow(categoryName, categoryType) {
 	return requiredRow;
 }
 
-function createHeaderRow(templates, categoryType, categoryName) {
+export function createHeaderRow(templates, categoryType, categoryName) {
 	const headerRow =
 		templates.headerRow.content.firstElementChild.cloneNode(true);
 	const categoryElement = headerRow.getElementsByClassName("category")[0];
@@ -448,7 +480,7 @@ function createHeaderRow(templates, categoryType, categoryName) {
 	return headerRow;
 }
 
-function createRow(templates, name, categoryName, categoryType) {
+export function createRow(templates, name, categoryName, categoryType) {
 	const row = templates.row.content.firstElementChild.cloneNode(true);
 
 	let displayName = name;
@@ -491,7 +523,7 @@ function createRow(templates, name, categoryName, categoryType) {
 	return row;
 }
 
-function createAllRows(categoryType, tableId) {
+export function createAllRows(categoryType, tableId) {
 	const templates = {
 		headerRow: document.getElementsByClassName(
 			categoryType === itemCategories
@@ -534,12 +566,12 @@ function createAllRows(categoryType, tableId) {
 	}
 }
 
-function getTaskNameLocale(taskRef) {
+export function getTaskNameLocale(taskRef) {
 	const entity = gameData.taskData[taskRef];
 	return entity ? entity.name : taskRef;
 }
 
-function updateRequiredRows(data, categoryType) {
+export function updateRequiredRows(data, categoryType) {
 	const requiredRows = document.getElementsByClassName("requiredRow");
 	for (const requiredRow of requiredRows) {
 		const graySpans = requiredRow.querySelectorAll("span.w3-text-gray");
@@ -626,7 +658,6 @@ function updateRequiredRows(data, categoryType) {
 			effectElement.classList.add("hiddenTask");
 
 			let finalText = "";
-			const effectText = "";
 			if (data === gameData.taskData) {
 				if (categoryType !== jobCategories) {
 					effectElement.classList.remove("hiddenTask");
@@ -693,7 +724,7 @@ function updateRequiredRows(data, categoryType) {
 	}
 }
 
-function getHeroicRequiredTooltip(task) {
+export function getHeroicRequiredTooltip(task) {
 	const requirementObject = gameData.requirements[task];
 	const requirements = requirementObject.requirements;
 	const prev = getPreviousTaskInCategory(task);
@@ -802,7 +833,7 @@ function getHeroicRequiredTooltip(task) {
 	return tooltip;
 }
 
-function renderChangelog() {
+export function renderChangelog() {
 	const container = document.getElementById("changelog");
 	if (!container) return;
 
@@ -818,7 +849,12 @@ function renderChangelog() {
 	container.innerHTML = html;
 }
 
-function renderSkillTreeButton(element, categoryBought, elementBought, canBuy) {
+export function renderSkillTreeButton(
+	element,
+	categoryBought,
+	elementBought,
+	canBuy,
+) {
 	if (gameData.perks.both_dark_mater_skills === 0) {
 		element.disabled = categoryBought | !canBuy;
 

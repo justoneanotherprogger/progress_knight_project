@@ -1,14 +1,36 @@
 // ui/dark_matter_tab.js — dark matter tab rendering
 
-function renderDarkMatterShopButton(elemName, condition) {
+import { t } from "../../dist/js/translations.js";
+import {
+	canBuyADealWithTheChairman,
+	canBuyAGiftFromGod,
+	canBuyAMiracle,
+	canBuyDarkOrbGenerator,
+	canBuyGottaBeFast,
+	canBuyLifeCoach,
+	getADealWithTheChairmanCost,
+	getAGiftFromGodCost,
+	getAGiftFromGodEssenceGain,
+	getDarkOrbGeneration,
+	getDarkOrbGeneratorCost,
+	getGottaBeFastCost,
+	getGottaBeFastGain,
+	getLifeCoachCost,
+	getLifeCoachIncomeGain,
+	getTaaAndMagicXpGain,
+	isDecimalInfinity,
+} from "../dark_matter.js";
+import { gameData } from "../data.js";
+import { format, formatTreshold } from "../utils.js";
+import { renderSkillTreeButton } from "./tabs.js";
+
+export function renderDarkMatterShopButton(elemName, condition) {
 	document.getElementById(elemName).disabled = !condition;
 }
 
-function getDarkMatterSkillDesc(key, level) {
+export function getDarkMatterSkillDesc(key, level) {
 	// key: "speed_is_life", "your_greatest_debt", etc.
 	// level: 1, 2 (we only show 1 or 2 in UI, 3 is handled internally)
-	const skillValue = gameData.dark_matter_shop[key];
-
 	// Default: just positive effect (level 1)
 	let desc = t(`${key}_${level}`);
 
@@ -23,7 +45,7 @@ function getDarkMatterSkillDesc(key, level) {
 	return desc;
 }
 
-function renderDarkMatter() {
+export function renderDarkMatter() {
 	// Display currency
 	document.getElementById("darkMatterShopCurrency").textContent =
 		t("dark_matter");

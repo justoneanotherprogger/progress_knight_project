@@ -1,4 +1,7 @@
-﻿var gameData = {
+import { jobCategories } from "../dist/js/jobs_data.js";
+import { skillCategories } from "../dist/js/skills_data.js";
+
+export var gameData = {
 	taskData: {},
 	itemData: {},
 
@@ -125,127 +128,127 @@
 	boost_active: false,
 };
 
-const updateSpeed = 20;
-const renderSpeed = 20;
-const baseLifespan = 365 * 65;
-const baseGameSpeed = 30;
-const heroIncomeMult = 2.5e18;
+export const updateSpeed = 20;
+export const renderSpeed = 20;
+export const baseLifespan = 365 * 65;
+export const baseGameSpeed = 30;
+export const heroIncomeMult = 2.5e18;
 
 // --- Hero XP ---
-const HERO_XP_BASE_JOB = 50000;
+export const HERO_XP_BASE_JOB = 50000;
 
 // --- Task XP cost ---
-const TASK_XP_GROWTH = 1.01;
-const TASK_HERO_XP_GROWTH = 1.08;
+export const TASK_XP_GROWTH = 1.01;
+export const TASK_HERO_XP_GROWTH = 1.08;
 
 // --- Lifespan ---
-const COINPILE_LOG_BASE = 10;
-const COINPILE_MULTIPLIER = 20;
-const LIFESPAN_CHALLENGE_EXPONENT = 0.72;
-const LIFESPAN_CHALLENGE_FLAT = 365 * 25;
-const DEFAULT_STARTING_AGE = 365 * 16;
+export const COINPILE_LOG_BASE = 10;
+export const COINPILE_MULTIPLIER = 20;
+export const LIFESPAN_CHALLENGE_EXPONENT = 0.72;
+export const LIFESPAN_CHALLENGE_FLAT = 365 * 25;
+export const DEFAULT_STARTING_AGE = 365 * 16;
 
 // --- Income ---
-const CHALLENGE_RICH_INCOME_EXPONENT = 0.35;
+export const CHALLENGE_RICH_INCOME_EXPONENT = 0.35;
 
 // --- Game speed ---
-const CHALLENGE_TIME_WARP_EXPONENT = 0.7;
-const CHALLENGE_LEGENDS_WARP_EXPONENT = 0.75;
-const SPEED_SPEED_SPEED_MULTIPLIER = 1000;
-const TIME_IS_A_FLAT_CIRCLE_MULTIPLIER = 1000;
+export const CHALLENGE_TIME_WARP_EXPONENT = 0.7;
+export const CHALLENGE_LEGENDS_WARP_EXPONENT = 0.75;
+export const SPEED_SPEED_SPEED_MULTIPLIER = 1000;
+export const TIME_IS_A_FLAT_CIRCLE_MULTIPLIER = 1000;
 
 // --- Happiness ---
-const CHALLENGE_DANCE_HAPPINESS_EXPONENT = 0.075;
-const CHALLENGE_UNHAPPY_HAPPINESS_EXPONENT = 0.5;
+export const CHALLENGE_DANCE_HAPPINESS_EXPONENT = 0.075;
+export const CHALLENGE_UNHAPPY_HAPPINESS_EXPONENT = 0.5;
 
 // --- Evil / Essence gain ---
-const EVIL_EFFECT_DIVISOR = 1e3;
-const EVIL_EFFECT_EXPONENT = 0.35;
-const ESSENCE_EFFECT_DIVISOR = 1e2;
-const ESSENCE_EFFECT_EXPONENT = 0.35;
-const ESSENCE_EFFECT_MIN_THRESHOLD = 0.01;
+export const EVIL_EFFECT_DIVISOR = 1e3;
+export const EVIL_EFFECT_EXPONENT = 0.35;
+export const ESSENCE_EFFECT_DIVISOR = 1e2;
+export const ESSENCE_EFFECT_EXPONENT = 0.35;
+export const ESSENCE_EFFECT_MIN_THRESHOLD = 0.01;
 
 // --- Evil Gain multipliers ---
 // Инферно: (1 + essence)^exp — ×3.3 на пороге 170k, ×5 к ~1e7, дальше ползёт
-const INFERNO_ESSENCE_EXPONENT = 0.1;
-const EVIL_BOOSTER_MULTIPLIER = 1e50;
+export const INFERNO_ESSENCE_EXPONENT = 0.1;
+export const EVIL_BOOSTER_MULTIPLIER = 1e50;
 
 // --- Dark Matter Gain ---
 // Рост от тёмных сфер: ×5 при нуле, ×10 к 1e30, ×12.6 к 1e40
-const DARK_MATTER_HARVESTER_BASE = 5;
-const DARK_MATTER_HARVESTER_EXPONENT = 0.01;
-const DARK_MATTER_MINING_MULTIPLIER = 3;
+export const DARK_MATTER_HARVESTER_BASE = 5;
+export const DARK_MATTER_HARVESTER_EXPONENT = 0.01;
+export const DARK_MATTER_MINING_MULTIPLIER = 3;
 
 // --- Lifespan ---
-const LIFE_IS_VALUABLE_MULTIPLIER = 1e5;
-const SPEED_SPEED_SPEED_LIFESPAN = 1000;
+export const LIFE_IS_VALUABLE_MULTIPLIER = 1e5;
+export const SPEED_SPEED_SPEED_LIFESPAN = 1000;
 
 // --- Inspiration / Greed ---
-const INSPIRATION_LOG_BASE = 10;
-const INSPIRATION_FLAT_BONUS = 0.7;
-const INSPIRATION_INFINITY_FALLBACK = 1e300;
-const GREED_ADULT_AGE = 20 * 365;
+export const INSPIRATION_LOG_BASE = 10;
+export const INSPIRATION_FLAT_BONUS = 0.7;
+export const INSPIRATION_INFINITY_FALLBACK = 1e300;
+export const GREED_ADULT_AGE = 20 * 365;
 
 // --- Dark Matter XP ---
 
 // --- Transcendent Master ---
 // effect = 1 + base * (log10(essence))^exponent
 // x1.5 на пороге 5e4, x10 к 1e20 — подгонка по двум точкам
-const TRANSCENDENT_MASTER_BASE = 0.0225;
-const TRANSCENDENT_MASTER_EXPONENT = 2;
+export const TRANSCENDENT_MASTER_BASE = 0.0225;
+export const TRANSCENDENT_MASTER_EXPONENT = 2;
 
 // --- Faint Hope ---
-const FAINT_HOPE_INFINITY = 1e308;
-const FAINT_HOPE_A_NEW_HOPE_SOFTCAP = 10000000;
-const FAINT_HOPE_A_NEW_HOPE_DECAY = 0.01;
-const FAINT_HOPE_SPEED_COEFFICIENT = 7.5275;
-const FAINT_HOPE_SPEED_EXPONENT = 0.0053;
-const FAINT_HOPE_KICKIN_MIN = 0.15;
-const FAINT_HOPE_KICKIN_LOG_COEFFICIENT = 0.082;
-const FAINT_HOPE_KICKIN_BASE = 1.1754;
-const FAINT_HOPE_REBIRTH_DIVISOR = 1000;
-const FAINT_HOPE_SOFTCAP = 1000;
-const FAINT_HOPE_SPEED_SOFTCAP = 10000000;
+export const FAINT_HOPE_INFINITY = 1e308;
+export const FAINT_HOPE_A_NEW_HOPE_SOFTCAP = 10000000;
+export const FAINT_HOPE_A_NEW_HOPE_DECAY = 0.01;
+export const FAINT_HOPE_SPEED_COEFFICIENT = 7.5275;
+export const FAINT_HOPE_SPEED_EXPONENT = 0.0053;
+export const FAINT_HOPE_KICKIN_MIN = 0.15;
+export const FAINT_HOPE_KICKIN_LOG_COEFFICIENT = 0.082;
+export const FAINT_HOPE_KICKIN_BASE = 1.1754;
+export const FAINT_HOPE_REBIRTH_DIVISOR = 1000;
+export const FAINT_HOPE_SOFTCAP = 1000;
+export const FAINT_HOPE_SPEED_SOFTCAP = 10000000;
 
 // --- Rise of Great Heroes ---
-const RISE_HEROES_NUMERATOR = 3;
-const RISE_HEROES_DENOMINATOR = 7;
+export const RISE_HEROES_NUMERATOR = 3;
+export const RISE_HEROES_DENOMINATOR = 7;
 
 // --- Milestone / passive growth ---
-const EVIL_GROWTH_EXPONENT_DEAL = 1.001;
-const EVIL_GROWTH_EXPONENT_HELL = 1.01;
-const EVIL_GROWTH_EXPONENT_MIND_CONTROL = 1.07;
-const ESSENCE_GROWTH_EXPONENT = 1.002;
+export const EVIL_GROWTH_EXPONENT_DEAL = 1.001;
+export const EVIL_GROWTH_EXPONENT_HELL = 1.01;
+export const EVIL_GROWTH_EXPONENT_MIND_CONTROL = 1.07;
+export const ESSENCE_GROWTH_EXPONENT = 1.002;
 
 // --- Heroes unlock ---
-const HERO_LEVEL_UNLOCK_THRESHOLD = 2000;
-const HERO_PREV_LEVEL_MIN = 20;
+export const HERO_LEVEL_UNLOCK_THRESHOLD = 2000;
+export const HERO_PREV_LEVEL_MIN = 20;
 
 // --- Rebirth max level cap ---
-const REBIRTH_THREE_ESSENCE_CAP = 1e308;
+export const REBIRTH_THREE_ESSENCE_CAP = 1e308;
 
 // --- Perks thresholds ---
-const PERK_AUTO_DARK_ORB_MIRACLE_COST = 100;
-const PERK_AUTO_DARK_SHOP_ORBS_THRESHOLD = 1000;
-const PERK_AUTO_SACRIFICE_HYPERCUBES_THRESHOLD = 1000;
-const PERK_AUTO_SACRIFICE_COST_MULTIPLIER = 100;
-const PERK_INSTANT_GAIN_MULTIPLIER = 10;
+export const PERK_AUTO_DARK_ORB_MIRACLE_COST = 100;
+export const PERK_AUTO_DARK_SHOP_ORBS_THRESHOLD = 1000;
+export const PERK_AUTO_SACRIFICE_HYPERCUBES_THRESHOLD = 1000;
+export const PERK_AUTO_SACRIFICE_COST_MULTIPLIER = 100;
+export const PERK_INSTANT_GAIN_MULTIPLIER = 10;
 
 // --- Metaverse ---
-const METAVERSE_BOOST_WARP_DEFAULT = 100;
+export const METAVERSE_BOOST_WARP_DEFAULT = 100;
 
 // --- Save ---
-const EXPORT_TOOLTIP_TIMEOUT = 15 * 1000;
+export const EXPORT_TOOLTIP_TIMEOUT = 15 * 1000;
 
 // --- Skill effect ---
-const SKILL_HERO_LEVEL_MULTIPLIER = 1000;
-const SKILL_HERO_FLAT_BONUS = 8000;
-const SKILL_LEVEL_EXPONENT_BASE = 1.01;
+export const SKILL_HERO_LEVEL_MULTIPLIER = 1000;
+export const SKILL_HERO_FLAT_BONUS = 8000;
+export const SKILL_LEVEL_EXPONENT_BASE = 1.01;
 
 // --- Job income hero ---
-const JOB_INCOME_HERO_BASE_MULTIPLIER = 4;
+export const JOB_INCOME_HERO_BASE_MULTIPLIER = 4;
 
-function getPreviousTaskInCategory(task) {
+export function getPreviousTaskInCategory(task) {
 	var prev = "";
 	for (const category in jobCategories) {
 		for (const job of Object.keys(jobCategories[category].items)) {
@@ -264,12 +267,12 @@ function getPreviousTaskInCategory(task) {
 	return prev;
 }
 
-function getBindedTaskEffect(taskName) {
+export function getBindedTaskEffect(taskName) {
 	const task = gameData.taskData[taskName];
 	return task.getEffect.bind(task);
 }
 
-function getBindedItemEffect(itemName) {
+export function getBindedItemEffect(itemName) {
 	const item = gameData.itemData[itemName];
 	return item.getEffect.bind(item);
 }

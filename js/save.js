@@ -1,15 +1,26 @@
 // save.js — save/load/import/export functions
 
+import { t } from "../dist/js/translations.js";
+import { toInfinityNumber } from "./calculations.js";
+import { EXPORT_TOOLTIP_TIMEOUT, gameData } from "./data.js";
+import { gameloop, renderloop, saveloop, startLoops } from "./main.js";
+
 // --- DTO-формат сейва ---
 // Все числа хранятся строками, нулевые/дефолтные значения не пишутся.
 // Ключи taskData/itemData/requirements и мета-прогресса берутся из контента
 // (gameData после инициализации), из сейва применяются только значения.
 
 // Ресурсы, хранящиеся как Decimal
-const DECIMAL_FIELDS = ["coins", "evil", "essence", "dark_matter", "dark_orbs"];
+export const DECIMAL_FIELDS = [
+	"coins",
+	"evil",
+	"essence",
+	"dark_matter",
+	"dark_orbs",
+];
 
 // Ресурсы и таймеры, хранящиеся числами
-const NUMBER_FIELDS = [
+export const NUMBER_FIELDS = [
 	"days",
 	"totalDays",
 	"hypercubes",
@@ -31,19 +42,19 @@ const NUMBER_FIELDS = [
 ];
 
 // Булевы флаги состояния
-const BOOLEAN_FIELDS = ["paused", "boost_active", "autoBuyEnabled"];
+export const BOOLEAN_FIELDS = ["paused", "boost_active", "autoBuyEnabled"];
 
 // stats, пересчитываемые каждый тик в updateStats — не сериализуются
-const TRANSIENT_STATS = ["EvilPerSecond", "EssencePerSecond"];
+export const TRANSIENT_STATS = ["EvilPerSecond", "EssencePerSecond"];
 
 // stats, хранящиеся как Decimal
-const DECIMAL_STATS = [
+export const DECIMAL_STATS = [
 	"maxEvilPerSecond",
 	"maxEssencePerSecond",
 	"maxEssenceReached",
 ];
 
-function isDefaultValue(value) {
+export function isDefaultValue(value) {
 	if (value === null || value === undefined) return true;
 	if (typeof value === "bigint") return value === 0n;
 	if (value instanceof Decimal) return value.eq(new Decimal(0));
@@ -54,13 +65,13 @@ function isDefaultValue(value) {
 	return false;
 }
 
-function decimalToString(value) {
+export function decimalToString(value) {
 	if (value instanceof Decimal) return value.toString();
 	return String(value);
 }
 
 // Преобразует значение к типу образца (механическое правило: строка из сейва → нужный тип)
-function coerceValue(value, template) {
+export function coerceValue(value, template) {
 	if (typeof template === "boolean")
 		return value === true || value === 1 || value === "1";
 	if (typeof template === "number") return Number(value);
@@ -72,7 +83,7 @@ function coerceValue(value, template) {
 
 // Decimal из значения сейва. У break_infinity mantissa конечна даже у Infinity
 // (бесконечность живёт в layer), так что ветка лечит только NaN, как и старый код.
-function parseDecimal(value) {
+export function parseDecimal(value) {
 	const decimal = toInfinityNumber(value);
 	if (!Number.isFinite(decimal.mantissa)) return new Decimal(0);
 	return decimal;
@@ -81,13 +92,13 @@ function parseDecimal(value) {
 // --- Сериализация ---
 
 // Значение мета-прогресса: boolean → 1, число/Decimal → строка, null если дефолт
-function scalarToString(value) {
+export function scalarToString(value) {
 	if (typeof value === "boolean") return value ? 1 : null;
 	if (isDefaultValue(value)) return null;
 	return decimalToString(value);
 }
 
-function serializeMap(map) {
+export function serializeMap(map) {
 	const dto = {};
 	for (const key in map) {
 		const value = scalarToString(map[key]);
@@ -96,7 +107,7 @@ function serializeMap(map) {
 	return dto;
 }
 
-function serializeTask(task) {
+export function serializeTask(task) {
 	const dto = {};
 	if (!isDefaultValue(task.level)) dto.level = String(task.level);
 	if (!isDefaultValue(task.maxLevel)) dto.maxLevel = String(task.maxLevel);
@@ -106,7 +117,7 @@ function serializeTask(task) {
 	return dto;
 }
 
-function serialize(gameData) {
+export function serialize(gameData) {
 	const dto = {};
 
 	// Ресурсы
@@ -163,7 +174,7 @@ function serialize(gameData) {
 	return dto;
 }
 
-function serializeSettings(settings) {
+export function serializeSettings(settings) {
 	const dto = {};
 	for (const key in settings) {
 		const value = settings[key];
@@ -182,7 +193,7 @@ function serializeSettings(settings) {
 	return dto;
 }
 
-function serializeStats(stats) {
+export function serializeStats(stats) {
 	const dto = {};
 	for (const key in stats) {
 		if (TRANSIENT_STATS.includes(key)) continue;
@@ -202,7 +213,7 @@ function serializeStats(stats) {
 }
 
 // Ключ задачи в контенте по самому объекту
-function findTaskId(gameData, task) {
+export function findTaskId(gameData, task) {
 	for (const key in gameData.taskData)
 		if (gameData.taskData[key] === task) return key;
 	return null;
@@ -210,7 +221,7 @@ function findTaskId(gameData, task) {
 
 // --- Десериализация ---
 
-function deserialize(dto, gameData) {
+export function deserialize(dto, gameData) {
 	if (dto == null) return gameData;
 
 	// Ресурсы: отсутствующий ключ = 0
@@ -262,7 +273,7 @@ function deserialize(dto, gameData) {
 	return gameData;
 }
 
-function applyMap(target, source) {
+export function applyMap(target, source) {
 	source = source ?? {};
 	for (const key in target) {
 		if (!(key in source)) {
@@ -273,13 +284,13 @@ function applyMap(target, source) {
 	}
 }
 
-function applyChallenges(challenges, source) {
+export function applyChallenges(challenges, source) {
 	source = source ?? {};
 	for (const key in challenges)
 		challenges[key] = key in source ? String(source[key]) : 0;
 }
 
-function applyTask(task, saved) {
+export function applyTask(task, saved) {
 	saved = saved ?? {};
 	task.level = Number(saved.level ?? 0);
 	task.maxLevel = Number(saved.maxLevel ?? 0);
@@ -288,7 +299,7 @@ function applyTask(task, saved) {
 	task.unlocked = !!saved.unlocked;
 }
 
-function applySettings(settings, source) {
+export function applySettings(settings, source) {
 	// Нет блока в сейве — остаётся дефолт целиком
 	if (source == null) return;
 	for (const key in settings) {
@@ -297,7 +308,7 @@ function applySettings(settings, source) {
 	}
 }
 
-function applyStats(stats, source) {
+export function applyStats(stats, source) {
 	if (source == null) source = {};
 	for (const key in stats) {
 		if (TRANSIENT_STATS.includes(key)) continue; // пересчитываются каждый тик
@@ -324,11 +335,11 @@ function applyStats(stats, source) {
 
 // --- Save / load ---
 
-function saveGameData() {
+export function saveGameData() {
 	localStorage.setItem("gameDataSave", JSON.stringify(serialize(gameData)));
 }
 
-function peekSettingFromSave(setting) {
+export function peekSettingFromSave(setting) {
 	try {
 		const save = localStorage.getItem("gameDataSave");
 		if (save == null) return gameData.settings[setting];
@@ -351,7 +362,7 @@ function peekSettingFromSave(setting) {
 	}
 }
 
-function loadGameData() {
+export function loadGameData() {
 	try {
 		const dto = JSON.parse(localStorage.getItem("gameDataSave"));
 
@@ -367,7 +378,7 @@ function loadGameData() {
 	}
 }
 
-function resetGameData() {
+export function resetGameData() {
 	clearInterval(saveloop);
 	clearInterval(gameloop);
 	clearInterval(renderloop);
@@ -379,7 +390,7 @@ function resetGameData() {
 	location.reload();
 }
 
-function importGameData() {
+export function importGameData() {
 	try {
 		const importExportBox = document.getElementById("importExportBox");
 		if (importExportBox.value === "") {
@@ -394,14 +405,14 @@ function importGameData() {
 		clearInterval(gameloop);
 		localStorage.setItem("gameDataSave", saveString);
 		location.reload();
-	} catch (error) {
+	} catch {
 		alert(
 			"It looks like you tried to load a corrupted save... If this issue persists, feel free to contact the developers!",
 		);
 	}
 }
 
-function exportGameData() {
+export function exportGameData() {
 	const importExportBox = document.getElementById("importExportBox");
 	const saveString = window.btoa(JSON.stringify(serialize(gameData)));
 	importExportBox.value = saveString;
@@ -413,7 +424,7 @@ function exportGameData() {
 	}, EXPORT_TOOLTIP_TIMEOUT);
 }
 
-function copyTextToClipboard(text) {
+export function copyTextToClipboard(text) {
 	navigator.clipboard.writeText(text).then(
 		() => {
 			const tooltip = document.getElementById("exportTooltip");
@@ -423,7 +434,7 @@ function copyTextToClipboard(text) {
 	);
 }
 
-function outExportButton() {
+export function outExportButton() {
 	const tooltip = document.getElementById("exportTooltip");
 	tooltip.textContent = "";
 }

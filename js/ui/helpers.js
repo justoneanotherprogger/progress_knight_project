@@ -1,19 +1,21 @@
 // ui/helpers.js — small UI utility functions
 
-function setTextAll(selector, text) {
+import { gameData } from "../data.js";
+
+export function setTextAll(selector, text) {
 	document.querySelectorAll(selector).forEach((el) => {
 		if (el.textContent !== text) el.textContent = text;
 	});
 }
 
-function updateButtonText(id, text) {
+export function updateButtonText(id, text) {
 	const element = document.getElementById(id);
 	if (element.textContent !== text) {
 		element.textContent = text;
 	}
 }
 
-function updateButtonHTML(id, html) {
+export function updateButtonHTML(id, html) {
 	const element = document.getElementById(id);
 	if (element.dataset.html !== html) {
 		element.innerHTML = html;
@@ -25,7 +27,7 @@ function updateButtonHTML(id, html) {
 // разметку (style="color: red" → "color: red;"), и строки не сходятся
 // никогда — тултип с разметкой переписывался бы каждый кадр. Поэтому
 // помним, что сами записали.
-function setHTML(element, html) {
+export function setHTML(element, html) {
 	if (element.dataset.html !== html) {
 		element.innerHTML = html;
 		element.dataset.html = html;
@@ -35,7 +37,7 @@ function setHTML(element, html) {
 // innerHTML здесь нельзя: значение gain меняется каждый кадр, и пересоздание
 // узла под курсором между mousedown и mouseup съедает клик. Цвет живёт на
 // самом span, перезаписывается только текст.
-function setRebirthButton(id, label, gainClass, gainText) {
+export function setRebirthButton(id, label, gainClass, gainText) {
 	const button = document.getElementById(id);
 	const labelEl = button.querySelector(".rebirth-label");
 	const gainEl = button.querySelector(".rebirth-gain");
@@ -56,9 +58,9 @@ function setRebirthButton(id, label, gainClass, gainText) {
 // clientWidth/getComputedStyle форсят layout, и на ~100 элементах за кадр
 // проверка кэша стоила четверть кадра. При смене шрифта, --stats-scale или
 // ресайзе посадка поправится в течение интервала.
-const FIT_TEXT_INTERVAL = 1000;
+export const FIT_TEXT_INTERVAL = 1000;
 
-function fitText(element, size) {
+export function fitText(element, size) {
 	const toCss = typeof size === "function" ? size : (k) => `${k * size}px`;
 	const text = element.textContent;
 	if (
@@ -124,7 +126,7 @@ document.addEventListener("mouseover", (e) => {
 	tip.style.transform = overflow > 0 ? `translateY(${-overflow}px)` : "";
 });
 
-function renderProgressBar(task, progressFill, progressBar) {
+export function renderProgressBar(task, progressFill, progressBar) {
 	let width;
 	if (task.level > 10000) {
 		// На таких уровнях реальный прогресс по xp незаметен глазу,

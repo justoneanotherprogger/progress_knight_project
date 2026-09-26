@@ -1,21 +1,25 @@
 // Costs Dark Matter
-function getDarkOrbGeneratorCost() {
+import { getDarkMatter } from "./calculations.js";
+import { gameData } from "./data.js";
+import { milestoneData } from "./milestones.js";
+
+export function getDarkOrbGeneratorCost() {
 	return new Decimal(1.2).pow(gameData.dark_matter_shop.dark_orb_generator);
 }
 
-function isDecimalInfinity(value) {
+export function isDecimalInfinity(value) {
 	if (typeof value !== "object") return value === Infinity;
 	return value.toString() === "Infinity";
 }
 
-function canBuyDarkOrbGenerator() {
+export function canBuyDarkOrbGenerator() {
 	return (
 		gameData.dark_matter.gte(getDarkOrbGeneratorCost()) &&
 		!isDecimalInfinity(getDarkOrbGeneration())
 	);
 }
 
-function buyDarkOrbGenerator() {
+export function buyDarkOrbGenerator() {
 	if (canBuyDarkOrbGenerator()) {
 		gameData.dark_matter = gameData.dark_matter.sub(getDarkOrbGeneratorCost());
 		gameData.dark_matter_shop.dark_orb_generator += 1;
@@ -23,74 +27,74 @@ function buyDarkOrbGenerator() {
 }
 
 // Costs Dark Orbs
-function getADealWithTheChairmanCost() {
+export function getADealWithTheChairmanCost() {
 	return new Decimal(1e3).pow(
 		gameData.dark_matter_shop.a_deal_with_the_chairman + 1,
 	);
 }
 
-function canBuyADealWithTheChairman() {
+export function canBuyADealWithTheChairman() {
 	return (
 		gameData.dark_orbs.gte(getADealWithTheChairmanCost()) &&
 		!isDecimalInfinity(getADealWithTheChairmanCost())
 	);
 }
 
-function buyADealWithTheChairman() {
+export function buyADealWithTheChairman() {
 	if (canBuyADealWithTheChairman()) {
 		gameData.dark_orbs = gameData.dark_orbs.sub(getADealWithTheChairmanCost());
 		gameData.dark_matter_shop.a_deal_with_the_chairman += 1;
 	}
 }
 
-function getAGiftFromGodCost() {
+export function getAGiftFromGodCost() {
 	return new Decimal(1e5).pow(gameData.dark_matter_shop.a_gift_from_god + 1);
 }
 
-function canBuyAGiftFromGod() {
+export function canBuyAGiftFromGod() {
 	return (
 		gameData.dark_orbs.gte(getAGiftFromGodCost()) &&
 		!isDecimalInfinity(getAGiftFromGodCost())
 	);
 }
 
-function buyAGiftFromGod() {
+export function buyAGiftFromGod() {
 	if (canBuyAGiftFromGod()) {
 		gameData.dark_orbs = gameData.dark_orbs.sub(getAGiftFromGodCost());
 		gameData.dark_matter_shop.a_gift_from_god += 1;
 	}
 }
 
-function getLifeCoachCost() {
+export function getLifeCoachCost() {
 	return new Decimal(1e10).pow(gameData.dark_matter_shop.life_coach + 1);
 }
 
-function canBuyLifeCoach() {
+export function canBuyLifeCoach() {
 	return (
 		gameData.dark_orbs.gte(getLifeCoachCost()) &&
 		!isDecimalInfinity(getLifeCoachCost())
 	);
 }
 
-function buyLifeCoach() {
+export function buyLifeCoach() {
 	if (canBuyLifeCoach()) {
 		gameData.dark_orbs = gameData.dark_orbs.sub(getLifeCoachCost());
 		gameData.dark_matter_shop.life_coach += 1;
 	}
 }
 
-function getGottaBeFastCost() {
+export function getGottaBeFastCost() {
 	return new Decimal(5e7).pow(gameData.dark_matter_shop.gotta_be_fast + 1);
 }
 
-function canBuyGottaBeFast() {
+export function canBuyGottaBeFast() {
 	return (
 		gameData.dark_orbs.gte(getGottaBeFastCost()) &&
 		!isDecimalInfinity(getGottaBeFastCost())
 	);
 }
 
-function buyGottaBeFast() {
+export function buyGottaBeFast() {
 	if (canBuyGottaBeFast()) {
 		gameData.dark_orbs = gameData.dark_orbs.sub(getGottaBeFastCost());
 		gameData.dark_matter_shop.gotta_be_fast += 1;
@@ -98,7 +102,7 @@ function buyGottaBeFast() {
 }
 
 // Rewards
-function getDarkOrbGeneration() {
+export function getDarkOrbGeneration() {
 	if (gameData.dark_matter_shop.dark_orb_generator === 0) return new Decimal(0);
 
 	const darkOrbiter = milestoneData.milestone_dark_orbiter.getEffect();
@@ -108,40 +112,40 @@ function getDarkOrbGeneration() {
 		.times(darkOrbiter);
 }
 
-function getTaaAndMagicXpGain() {
+export function getTaaAndMagicXpGain() {
 	if (gameData.active_challenge === "the_darkest_time") return 1;
 
 	return new Decimal(4).pow(gameData.dark_matter_shop.a_deal_with_the_chairman);
 }
 
-function getAGiftFromGodEssenceGain() {
+export function getAGiftFromGodEssenceGain() {
 	if (gameData.active_challenge === "the_darkest_time") return 1;
 
 	return new Decimal(2.1).pow(gameData.dark_matter_shop.a_gift_from_god);
 }
 
-function getLifeCoachIncomeGain() {
+export function getLifeCoachIncomeGain() {
 	if (gameData.active_challenge === "the_darkest_time") return 1;
 
 	return new Decimal(14).pow(gameData.dark_matter_shop.life_coach);
 }
 
-function getGottaBeFastGain() {
+export function getGottaBeFastGain() {
 	if (gameData.active_challenge === "the_darkest_time") return 1;
 
 	return 1 + 0.2 * gameData.dark_matter_shop.gotta_be_fast;
 }
 
-function getAMiracleCost() {
+export function getAMiracleCost() {
 	return 10;
 }
 
 // Permanent unlocks
-function canBuyAMiracle() {
+export function canBuyAMiracle() {
 	return getDarkMatter().gte(getAMiracleCost());
 }
 
-function buyAMiracle() {
+export function buyAMiracle() {
 	if (canBuyAMiracle()) {
 		gameData.dark_matter_shop.a_miracle = true;
 		gameData.dark_matter = gameData.dark_matter.sub(getAMiracleCost());
@@ -149,7 +153,7 @@ function buyAMiracle() {
 }
 
 // Skill tree
-function resetSkillTree() {
+export function resetSkillTree() {
 	if (
 		(gameData.dark_matter.lt(1e11) &&
 			confirm(
@@ -167,27 +171,27 @@ function resetSkillTree() {
 	return false;
 }
 
-function buySpeedOfLife(number) {
+export function buySpeedOfLife(number) {
 	buyDarkMatterSkill("speed_is_life", 100, number);
 }
 
-function buyYourGreatestDebt(number) {
+export function buyYourGreatestDebt(number) {
 	buyDarkMatterSkill("your_greatest_debt", 1000, number);
 }
 
-function buyEssenceCollector(number) {
+export function buyEssenceCollector(number) {
 	buyDarkMatterSkill("essence_collector", 10000, number);
 }
 
-function buyExplosionOfTheUniverse(number) {
+export function buyExplosionOfTheUniverse(number) {
 	buyDarkMatterSkill("explosion_of_the_universe", 100000, number);
 }
 
-function buyMultiverseExplorer(number) {
+export function buyMultiverseExplorer(number) {
 	buyDarkMatterSkill("multiverse_explorer", 100000000, number);
 }
 
-function buyDarkMatterSkill(skill_name, cost, number) {
+export function buyDarkMatterSkill(skill_name, cost, number) {
 	if (gameData.dark_matter.gte(cost)) {
 		gameData.dark_matter = gameData.dark_matter.sub(cost);
 
@@ -207,7 +211,7 @@ function buyDarkMatterSkill(skill_name, cost, number) {
 	}
 }
 
-function getDarkMatterSkillIncome() {
+export function getDarkMatterSkillIncome() {
 	if (gameData.active_challenge === "the_darkest_time") return 0;
 
 	if (gameData.perks.positive_dark_mater_skills === 1) return 1;
@@ -230,7 +234,7 @@ function getDarkMatterSkillIncome() {
 	return income;
 }
 
-function getDarkMatterSkillTimeWarping() {
+export function getDarkMatterSkillTimeWarping() {
 	if (gameData.active_challenge === "the_darkest_time") return 1;
 
 	let timewarping = 1;
@@ -250,7 +254,7 @@ function getDarkMatterSkillTimeWarping() {
 	return timewarping;
 }
 
-function getDarkMatterSkillXP() {
+export function getDarkMatterSkillXP() {
 	if (gameData.active_challenge === "the_darkest_time") return 1;
 
 	let xp = 1;
@@ -266,7 +270,7 @@ function getDarkMatterSkillXP() {
 	return xp;
 }
 
-function getDarkMatterSkillEssence() {
+export function getDarkMatterSkillEssence() {
 	if (gameData.active_challenge === "the_darkest_time") return 0.25;
 
 	let ess = 1;
@@ -297,7 +301,7 @@ function getDarkMatterSkillEssence() {
 	return ess;
 }
 
-function getDarkMatterSkillEvil() {
+export function getDarkMatterSkillEvil() {
 	if (gameData.active_challenge === "the_darkest_time") return 0.25;
 
 	let evil = 1;
@@ -318,7 +322,7 @@ function getDarkMatterSkillEvil() {
 
 	return evil;
 }
-function getDarkMatterSkillDarkMater() {
+export function getDarkMatterSkillDarkMater() {
 	if (gameData.active_challenge === "the_darkest_time") return 1;
 
 	return gameData.perks.positive_dark_mater_skills === 0 &&

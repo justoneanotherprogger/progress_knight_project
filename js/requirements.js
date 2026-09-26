@@ -1,6 +1,23 @@
 // Factory: builds requirement instances from declarative JSON specs (content/requirements.json)
 
-function buildRequirementsFromSpec(specs) {
+import { itemBaseData } from "../dist/js/items_data.js";
+import { requirementsSpecs } from "../dist/js/requirements_data.js";
+import { metaverseUnlocks, permanentUnlocks } from "../dist/js/unlocks_data.js";
+import {
+	AgeRequirement,
+	CoinRequirement,
+	DarkMatterRequirement,
+	DarkOrbsRequirement,
+	EssenceRequirement,
+	EvilRequirement,
+	HypercubeRequirement,
+	MetaverseRequirement,
+	PerkPointRequirement,
+	TaskRequirement,
+} from "./classes.js";
+import { removeSpaces, removeStrangeCharacters } from "./utils.js";
+
+export function buildRequirementsFromSpec(specs) {
 	const result = {};
 	for (const [key, spec] of Object.entries(specs)) {
 		const selectors = spec.selectors.map((s) =>
@@ -56,4 +73,5 @@ function buildRequirementsFromSpec(specs) {
 	return result;
 }
 
-const requirementsBaseData = buildRequirementsFromSpec(requirementsSpecs);
+export const requirementsBaseData =
+	buildRequirementsFromSpec(requirementsSpecs);

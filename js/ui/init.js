@@ -1,6 +1,40 @@
 // ui/init.js — initialization and UI update loop
 
-function initializeUI() {
+import { itemCategories } from "../../dist/js/items_data.js";
+import { jobCategories } from "../../dist/js/jobs_data.js";
+import { milestoneCategories } from "../../dist/js/milestones_data.js";
+import { skillCategories } from "../../dist/js/skills_data.js";
+import { t } from "../../dist/js/translations.js";
+import { gameData } from "../data.js";
+import { setCurrency, setNotation, setTheme, validateTheme } from "../main.js";
+import { milestoneData } from "../milestones.js";
+import { peekSettingFromSave } from "../save.js";
+import { renderChallenges } from "./challenges_tab.js";
+import { renderDarkMatter } from "./dark_matter_tab.js";
+import { renderMetaverse } from "./metaverse_tab.js";
+import {
+	createPerks,
+	refreshLangButtons,
+	selectElementInGroup,
+	setFontSize,
+	setLayout,
+	setStickySidebar,
+	Tab,
+} from "./navigation.js";
+import { renderSideBar } from "./sidebar.js";
+import {
+	createAllRows,
+	renderHeaderRows,
+	renderJobs,
+	renderMilestones,
+	renderRequirements,
+	renderSettings,
+	renderShop,
+	renderSkills,
+	updateRequiredRows,
+} from "./tabs.js";
+
+export function initializeUI() {
 	/*
         Initializes the UI. Adds all html elements required for rendering.
     */
@@ -33,7 +67,7 @@ function initializeUI() {
 	refreshLangButtons();
 }
 
-function refreshSettingsButtons() {
+export function refreshSettingsButtons() {
 	const legends = {
 		CurrencyNotation: [
 			"currency_medieval",
@@ -83,7 +117,7 @@ function refreshSettingsButtons() {
 		keybindsList.classList.toggle("hidden", !gameData.settings.enableKeybinds);
 }
 
-function updateUI() {
+export function updateUI() {
 	/*
         NOTE: To ensure that performance does not decrease,
         please only call the render function when the user can actually see the content.

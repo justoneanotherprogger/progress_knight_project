@@ -1,6 +1,44 @@
 // ui/metaverse_tab.js — metaverse tab rendering
 
-function renderBoostButton(elemName) {
+import { t } from "../../dist/js/translations.js";
+import { getUnpausedGameSpeed } from "../calculations.js";
+import { gameData } from "../data.js";
+import {
+	boostDurationCost,
+	canApplyBoost,
+	canBuyBoostDuration,
+	canBuyChallengeAltar,
+	canBuyDarkMatterMult,
+	canBuyEssenceMult,
+	canBuyEvilTran,
+	canBuyHypercubeGain,
+	canBuyReduceBoostCooldown,
+	challengeAltarCost,
+	darkMatterMultCost,
+	darkMatterMultGain,
+	essenceMultCost,
+	essenceMultGain,
+	evilTranCost,
+	evilTranGain,
+	getBoostCooldownSeconds,
+	getBoostCooldownString,
+	getBoostTimeSeconds,
+	getHypercubeCap,
+	getHypercubeGeneration,
+	getMetaversePerkName,
+	getNextPowerOfNumber,
+	getPerkCost,
+	getTimeTillNextHypercubePower,
+	getTotalPerkPoints,
+	getUnspentPerksDarkmatterGainBuff,
+	hypercubeGainCost,
+	perks_cost,
+	reduceBoostCooldownCost,
+} from "../metaverse.js";
+import { format, formatTime, formatTreshold } from "../utils.js";
+import { fitText } from "./helpers.js";
+
+export function renderBoostButton(elemName) {
 	// render boost button to look nicier :)
 	const boostButton = document.getElementById(elemName);
 	if (boostButton == null) return;
@@ -22,7 +60,7 @@ function renderBoostButton(elemName) {
 	boostButton.disabled = !canApplyBoost();
 }
 
-function renderMetaverse() {
+export function renderMetaverse() {
 	document.getElementById("currentHypercubesCap").hidden =
 		getHypercubeCap() === Infinity;
 	document.getElementById("currentHypercubesCapValue").textContent = format(
@@ -160,7 +198,7 @@ function renderMetaverse() {
 	renderPerks();
 }
 
-function renderPerks() {
+export function renderPerks() {
 	document.getElementById("perkPointDisplay").textContent = formatTreshold(
 		gameData.perks_points,
 	);
@@ -217,7 +255,7 @@ function renderPerks() {
 	}
 }
 
-function getSortedPerks() {
+export function getSortedPerks() {
 	const sortable = [];
 	for (var perkname in perks_cost) {
 		sortable.push([perkname, perks_cost[perkname]]);

@@ -1,4 +1,28 @@
-class Task {
+import { jobCategories } from "../dist/js/jobs_data.js";
+import { t } from "../dist/js/translations.js";
+import {
+	applyMultipliers,
+	applySpeed,
+	getHeroXpGainMultipliers,
+	getTaskLevelsToClimb,
+	getTaskMaxXp,
+	getTaskXpRange,
+	toInfinityNumber,
+} from "./calculations.js";
+import { getChallengeBonus } from "./challenges.js";
+import {
+	CHALLENGE_RICH_INCOME_EXPONENT,
+	gameData,
+	heroIncomeMult,
+	JOB_INCOME_HERO_BASE_MULTIPLIER,
+	SKILL_HERO_FLAT_BONUS,
+	SKILL_HERO_LEVEL_MULTIPLIER,
+	SKILL_LEVEL_EXPONENT_BASE,
+} from "./data.js";
+import { labelKey } from "./effects.js";
+import { daysToYears, format, getBaseLog } from "./utils.js";
+
+export class Task {
 	constructor(baseData) {
 		this.baseData = baseData;
 		this.name = baseData.name;
@@ -72,7 +96,7 @@ class Task {
 	}
 }
 
-class Milestone {
+export class Milestone {
 	constructor(baseData) {
 		this.baseData = baseData;
 		this.name = baseData.name;
@@ -99,7 +123,7 @@ class Milestone {
 	}
 }
 
-class Job extends Task {
+export class Job extends Task {
 	constructor(baseData) {
 		super(baseData);
 		this.incomeMultipliers = [];
@@ -136,7 +160,7 @@ class Job extends Task {
 	}
 }
 
-class Skill extends Task {
+export class Skill extends Task {
 	getEffect() {
 		const level = this.level;
 		const hero = this.isHero;
@@ -186,7 +210,7 @@ class Skill extends Task {
 	}
 }
 
-function getItemEffectDescriptionKey(target) {
+export function getItemEffectDescriptionKey(target) {
 	if (!target) return "effect_happiness";
 	switch (target.type) {
 		case "happiness":
@@ -211,7 +235,7 @@ function getItemEffectDescriptionKey(target) {
 	return "effect_skill_xp";
 }
 
-class Item {
+export class Item {
 	constructor(baseData) {
 		this.baseData = baseData;
 		this.name = baseData.name;
@@ -285,7 +309,7 @@ class Item {
 	}
 }
 
-class Requirement {
+export class Requirement {
 	constructor(querySelectors, requirements) {
 		this.querySelectors = querySelectors;
 		this.elements = [];
@@ -322,7 +346,7 @@ class Requirement {
 	}
 }
 
-class TaskRequirement extends Requirement {
+export class TaskRequirement extends Requirement {
 	constructor(querySelectors, requirements) {
 		super(querySelectors, requirements);
 		this.type = "task";
@@ -340,7 +364,7 @@ class TaskRequirement extends Requirement {
 	}
 }
 
-class CoinRequirement extends Requirement {
+export class CoinRequirement extends Requirement {
 	constructor(querySelectors, requirements) {
 		super(querySelectors, requirements);
 		this.type = "coins";
@@ -351,7 +375,7 @@ class CoinRequirement extends Requirement {
 	}
 }
 
-class AgeRequirement extends Requirement {
+export class AgeRequirement extends Requirement {
 	constructor(querySelectors, requirements) {
 		super(querySelectors, requirements);
 		this.type = "age";
@@ -362,7 +386,7 @@ class AgeRequirement extends Requirement {
 	}
 }
 
-class EvilRequirement extends Requirement {
+export class EvilRequirement extends Requirement {
 	constructor(querySelectors, requirements) {
 		super(querySelectors, requirements);
 		this.type = "evil";
@@ -376,7 +400,7 @@ class EvilRequirement extends Requirement {
 	}
 }
 
-class EssenceRequirement extends Requirement {
+export class EssenceRequirement extends Requirement {
 	constructor(querySelectors, requirements) {
 		super(querySelectors, requirements);
 		this.type = "essence";
@@ -389,7 +413,7 @@ class EssenceRequirement extends Requirement {
 	}
 }
 
-class DarkMatterRequirement extends Requirement {
+export class DarkMatterRequirement extends Requirement {
 	constructor(querySelectors, requirements) {
 		super(querySelectors, requirements);
 		this.type = "darkMatter";
@@ -404,7 +428,7 @@ class DarkMatterRequirement extends Requirement {
 	}
 }
 
-class DarkOrbsRequirement extends Requirement {
+export class DarkOrbsRequirement extends Requirement {
 	constructor(querySelectors, requirements) {
 		super(querySelectors, requirements);
 		this.type = "darkOrb";
@@ -415,7 +439,7 @@ class DarkOrbsRequirement extends Requirement {
 	}
 }
 
-class MetaverseRequirement extends Requirement {
+export class MetaverseRequirement extends Requirement {
 	constructor(querySelectors, requirements) {
 		super(querySelectors, requirements);
 		this.type = "metaverse";
@@ -426,7 +450,7 @@ class MetaverseRequirement extends Requirement {
 	}
 }
 
-class HypercubeRequirement extends Requirement {
+export class HypercubeRequirement extends Requirement {
 	constructor(querySelectors, requirements) {
 		super(querySelectors, requirements);
 		this.type = "hypercube";
@@ -437,7 +461,7 @@ class HypercubeRequirement extends Requirement {
 	}
 }
 
-class PerkPointRequirement extends Requirement {
+export class PerkPointRequirement extends Requirement {
 	constructor(querySelectors, requirements) {
 		super(querySelectors, requirements);
 		this.type = "perkpoint";

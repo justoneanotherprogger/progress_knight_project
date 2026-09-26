@@ -1,14 +1,37 @@
 // ui/navigation.js — navigation, settings, tab switching, keyboard shortcuts
 
-function setStickySidebar(sticky) {
+import { currentLang, t } from "../../dist/js/translations.js";
+import { enterChallenge, exitChallenge } from "../challenges.js";
+import { gameData } from "../data.js";
+import { getExpense, getIncome, getNet, togglePause } from "../main.js";
+import { buyPerk, getMetaversePerkName, getPerkCost } from "../metaverse.js";
+import {
+	rebirthFive,
+	rebirthFour,
+	rebirthOne,
+	rebirthThree,
+	rebirthTwo,
+} from "../rebirth.js";
+import { removeSpaces, removeStrangeCharacters } from "../utils.js";
+import { fitText } from "./helpers.js";
+import { updateUI } from "./init.js";
+import { getSortedPerks } from "./metaverse_tab.js";
+
+export function setStickySidebar(sticky) {
 	gameData.settings.stickySidebar = sticky;
-	settingsStickySidebar.checked = sticky;
-	info.style.position = sticky ? "sticky" : "initial";
-	resources.style.position = sticky ? "sticky" : "initial";
-	tabcolumn.style.position = sticky ? "sticky" : "initial";
+	document.getElementById("settingsStickySidebar").checked = sticky;
+	document.getElementById("info").style.position = sticky
+		? "sticky"
+		: "initial";
+	document.getElementById("resources").style.position = sticky
+		? "sticky"
+		: "initial";
+	document.getElementById("tabcolumn").style.position = sticky
+		? "sticky"
+		: "initial";
 }
 
-function selectElementInGroup(group, index) {
+export function selectElementInGroup(group, index) {
 	const elements = document.getElementsByClassName(group);
 	for (const el of elements) {
 		el.classList.remove("selected");
@@ -16,14 +39,14 @@ function selectElementInGroup(group, index) {
 	elements[index].classList.add("selected");
 }
 
-function refreshLangButtons() {
+export function refreshLangButtons() {
 	const buttons = document.getElementsByClassName("lang-btn");
 	for (const el of buttons) {
 		el.classList.toggle("selected", el.dataset.lang === currentLang);
 	}
 }
 
-function setLayout(id) {
+export function setLayout(id) {
 	gameData.settings.layout = id;
 	if (id === 0) {
 		document.getElementById("skillsTabButton").classList.add("hidden");
@@ -117,7 +140,7 @@ function setLayout(id) {
 	selectElementInGroup("Layout", id === 0 ? 1 : 0);
 }
 
-function setFontSize(id) {
+export function setFontSize(id) {
 	const fontSizes = {
 		0: "xx-small",
 		1: "x-small",
@@ -137,13 +160,13 @@ function setFontSize(id) {
 	updateFontSizeIndicator();
 }
 
-function updateFontSizeIndicator() {
+export function updateFontSizeIndicator() {
 	const label = document.getElementById("font_size");
 	if (label)
 		label.innerHTML = `${t("font_size")} ${gameData.settings.fontSize}/7`;
 }
 
-function setSignDisplay() {
+export function setSignDisplay() {
 	const signDisplay = document.getElementById("signDisplay");
 	if (!signDisplay) return;
 
@@ -159,17 +182,17 @@ function setSignDisplay() {
 	}
 }
 
-function getQuerySelector(taskName) {
+export function getQuerySelector(taskName) {
 	return `#row${removeSpaces(removeStrangeCharacters(taskName))}`;
 }
 
-function getRowByName(name) {
+export function getRowByName(name) {
 	return document.getElementById(
 		`row${removeSpaces(removeStrangeCharacters(name))}`,
 	);
 }
 
-const Tab = Object.freeze({
+export const Tab = Object.freeze({
 	JOBS: "jobs",
 	SKILLS: "skills",
 	SHOP: "shop",
@@ -184,7 +207,7 @@ const Tab = Object.freeze({
 /**
  * @param {Tab} selectedTab
  */
-function setTab(selectedTab) {
+export function setTab(selectedTab) {
 	const tabElement = document.getElementById(selectedTab);
 
 	if (tabElement == null) {
@@ -216,7 +239,7 @@ function setTab(selectedTab) {
 	element.classList.add("w3-blue-gray");
 }
 
-function setTabSettings(tab) {
+export function setTabSettings(tab) {
 	const element = document.getElementById(`${tab}TabButton`);
 
 	const tabs = Array.prototype.slice.call(
@@ -234,7 +257,7 @@ function setTabSettings(tab) {
 	element.classList.add("w3-blue-gray");
 }
 
-function setTabDarkMatter(tab) {
+export function setTabDarkMatter(tab) {
 	const element = document.getElementById(`${tab}TabButton`);
 
 	const tabs = Array.prototype.slice.call(
@@ -252,7 +275,7 @@ function setTabDarkMatter(tab) {
 	element.classList.add("w3-blue-gray");
 }
 
-function setTabMetaverse(tab) {
+export function setTabMetaverse(tab) {
 	const element = document.getElementById(`${tab}TabButton`);
 
 	const tabs = Array.prototype.slice.call(
@@ -270,7 +293,7 @@ function setTabMetaverse(tab) {
 	element.classList.add("w3-blue-gray");
 }
 
-function createPerks(perkLayoutName) {
+export function createPerks(perkLayoutName) {
 	const buttonTemplate = document.getElementsByClassName("perkItem");
 	const perksLayout = document.getElementById(perkLayoutName);
 	for (const perkName of getSortedPerks()) {
@@ -279,7 +302,7 @@ function createPerks(perkLayoutName) {
 	}
 }
 
-function createPerk(template, name) {
+export function createPerk(template, name) {
 	const button = template[0].content.firstElementChild.cloneNode(true);
 	const perkNameEl = button.getElementsByClassName("perkName")[0];
 	perkNameEl.textContent = getMetaversePerkName(name);
@@ -296,7 +319,7 @@ function createPerk(template, name) {
 }
 
 // Keyboard shortcuts + Loadouts ( courtesy of Pseiko )
-function changeTab(direction) {
+export function changeTab(direction) {
 	const tabs = Array.prototype.slice.call(
 		document.getElementsByClassName("tab"),
 	);
@@ -331,7 +354,7 @@ function changeTab(direction) {
 	setTab(tabs[targetTab].id);
 }
 
-function toggleChallenge(challengeName) {
+export function toggleChallenge(challengeName) {
 	if (!gameData.requirements.req_challenges_tab_button.isCompleted()) return;
 
 	if (gameData.active_challenge === "") {
