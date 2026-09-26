@@ -134,6 +134,7 @@ function setFontSize(id) {
 
 	gameData.settings.fontSize = id;
 	document.getElementById("body").style.fontSize = fontSizes[id];
+	updateFontSizeIndicator();
 }
 
 function updateFontSizeIndicator() {
