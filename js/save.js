@@ -11,6 +11,7 @@ const DECIMAL_FIELDS = ["coins", "evil", "essence", "dark_matter", "dark_orbs"];
 // Ресурсы и таймеры, хранящиеся числами
 const NUMBER_FIELDS = [
 	"days",
+	"totalDays",
 	"hypercubes",
 	"perks_points",
 	"rebirthOneCount",
