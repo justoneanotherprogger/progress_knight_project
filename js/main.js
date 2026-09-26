@@ -1,12 +1,8 @@
 // main.js — entry point
 
 import { itemCategories } from "../dist/js/items_data.js";
-import { jobBaseData } from "../dist/js/jobs_data.js";
-import { milestoneBaseData } from "../dist/js/milestones_data.js";
 import { skillBaseData } from "../dist/js/skills_data.js";
-import { applyTranslations, setLang } from "../dist/js/translations.js";
 import { toInfinityNumber } from "./calculations.js";
-import { enterChallenge, exitChallenge } from "./challenges.js";
 import {
 	DarkMatterRequirement,
 	EssenceRequirement,
@@ -17,67 +13,16 @@ import {
 	Skill,
 	TaskRequirement,
 } from "./classes.js";
-import {
-	buyADealWithTheChairman,
-	buyAGiftFromGod,
-	buyAMiracle,
-	buyDarkOrbGenerator,
-	buyEssenceCollector,
-	buyExplosionOfTheUniverse,
-	buyGottaBeFast,
-	buyLifeCoach,
-	buyMultiverseExplorer,
-	buySpeedOfLife,
-	buyYourGreatestDebt,
-	getDarkMatterSkillIncome,
-	resetSkillTree,
-} from "./dark_matter.js";
+import { getDarkMatterSkillIncome } from "./dark_matter.js";
 import { gameData, renderSpeed, updateSpeed } from "./data.js";
 import { update } from "./gameLoop.js";
-import {
-	applyBoost,
-	buyBoostDuration,
-	buyChallengeAltar,
-	buyDarkMaterMult,
-	buyEssenceMult,
-	buyEvilTran,
-	buyHypercubeGain,
-	buyReduceBoostCooldown,
-	collectPerkPoints,
-} from "./metaverse.js";
-import { createMilestoneRequirements, milestoneData } from "./milestones.js";
-import { addMultipliers, setCustomEffects } from "./multipliers.js";
-import { requirementsBaseData } from "./requirements.js";
-import { loadGameData, saveGameData } from "./save.js";
-import { initializeUI, refreshSettingsButtons, updateUI } from "./ui/init.js";
-import {
-	getQuerySelector,
-	refreshLangButtons,
-	selectElementInGroup,
-	setFontSize,
-	setLayout,
-	setStickySidebar,
-	setTab,
-	setTabDarkMatter,
-	setTabMetaverse,
-	setTabSettings,
-	updateFontSizeIndicator,
-} from "./ui/navigation.js";
-import { renderChangelog } from "./ui/tabs.js";
-import { checkAdminPassword, initAdminPanel, setAdminSpeed } from "./utils.js";
+import { saveGameData } from "./save.js";
+import { updateUI } from "./ui/init.js";
+import { getQuerySelector, selectElementInGroup } from "./ui/navigation.js";
 
-// Ошибка в коде — не сообщение игроку, а сигнал «игра сломалась»: останавливаем
-// симуляцию, чтобы время не тикало по битому состоянию. Диагностика — в консоли
-// браузера, через onerror, штатно.
-window.onerror = () => {
-	gameData.hasError = true;
-};
-
-document
-	.querySelector("#changelogTabTabButton")
-	.addEventListener("click", async () => {
-		renderChangelog();
-	});
+// Тела здесь нет намеренно: запуск игры живёт в boot.js, потому что main.js
+// импортируют семь модулей и его собственное тело выполнялось бы внутри цикла
+// импортов. Пояснение — в шапке boot.js.
 
 export function togglePause() {
 	gameData.paused = !gameData.paused;
@@ -232,77 +177,6 @@ export function setEnableKeybinds(enableKeybinds) {
 		.classList.toggle("hidden", !enableKeybinds);
 }
 
-// Мост для HTML-атрибутов: onclick="buyBoostDuration()" в шаблонах не видит модульные функции.
-// Публикуем только то, что зовут из разметки; внутри игры всё идёт через import.
-Object.assign(window, {
-	applyBoost,
-	buyADealWithTheChairman,
-	buyAGiftFromGod,
-	buyAMiracle,
-	buyBoostDuration,
-	buyChallengeAltar,
-	buyDarkMaterMult,
-	buyDarkOrbGenerator,
-	buyEssenceCollector,
-	buyEssenceMult,
-	buyEvilTran,
-	buyExplosionOfTheUniverse,
-	buyGottaBeFast,
-	buyHypercubeGain,
-	buyLifeCoach,
-	buyMultiverseExplorer,
-	buyReduceBoostCooldown,
-	buySpeedOfLife,
-	buyYourGreatestDebt,
-	checkAdminPassword,
-	collectPerkPoints,
-	enterChallenge,
-	exitChallenge,
-	resetSkillTree,
-	setAdminSpeed,
-	setCurrency,
-	setFontSize,
-	setLang,
-	setLayout,
-	setNotation,
-	setStickySidebar,
-	toggleAutoBuy,
-});
-
-// Initialization
-
-// Loads the game save, does the initial render and starts the game update and render loop.
-
-createGameObjects(gameData.taskData, jobBaseData);
-createGameObjects(gameData.taskData, skillBaseData);
-createItemObjects();
-createGameObjects(milestoneData, milestoneBaseData);
-
-gameData.currentJob = gameData.taskData.job_beggar;
-gameData.currentProperty = gameData.itemData.item_homeless;
-gameData.currentMisc = [];
-
-gameData.requirements = requirementsBaseData;
-
-createSkillRequirements();
-createMilestoneRequirements();
-
-loadGameData();
-
-initializeUI();
-initAdminPanel();
-
-setCustomEffects();
-addMultipliers();
-
-applyTranslations();
-update();
-
-setTab(gameData.settings.selectedTab);
-setTabSettings("settingsTab");
-setTabDarkMatter("shopTab");
-setTabMetaverse("metaverseTab1");
-
 export let ticking = false;
 
 export var gameloop, renderloop, saveloop;
@@ -326,14 +200,3 @@ export function startLoops() {
 
 	saveloop = setInterval(saveGameData, 3000);
 }
-
-startLoops();
-
-// Re-apply translations when language changes
-document.addEventListener("i18n:changed", () => {
-	updateUI();
-	refreshSettingsButtons();
-	refreshLangButtons();
-	updateFontSizeIndicator();
-	renderChangelog();
-});
