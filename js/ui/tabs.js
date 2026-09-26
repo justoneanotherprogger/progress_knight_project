@@ -4,7 +4,7 @@ import { itemCategories } from "../../dist/js/items_data.js";
 import { jobCategories } from "../../dist/js/jobs_data.js";
 import { milestoneCategories } from "../../dist/js/milestones_data.js";
 import { skillCategories } from "../../dist/js/skills_data.js";
-import { CHANGELOG, currentLang, t } from "../../dist/js/translations.js";
+import { t } from "../../dist/js/translations.js";
 import { isHeroesUnlocked } from "../calculations.js";
 import { getChallengeBonus } from "../challenges.js";
 import {
@@ -831,22 +831,6 @@ export function getHeroicRequiredTooltip(task) {
 	reqlist = reqlist.substring(0, reqlist.length - 4);
 	tooltip += `${reqlist}</span>`;
 	return tooltip;
-}
-
-export function renderChangelog() {
-	const container = document.getElementById("changelog");
-	if (!container) return;
-
-	let html = `<table style="width:100%; border-collapse:collapse;">`;
-	for (const entry of CHANGELOG) {
-		const items = entry[currentLang] || entry.en;
-		html += `<tr><td style="text-align:center; font-weight:bold; padding-top:0.8em; padding-bottom:0.2em;">version ${entry.version} / ${entry.date}</td></tr>`;
-		for (const item of items) {
-			html += `<tr><td style="padding:0.15em 0; vertical-align:top;">${item}</td></tr>`;
-		}
-	}
-	html += `</table>`;
-	container.innerHTML = html;
 }
 
 export function renderSkillTreeButton(

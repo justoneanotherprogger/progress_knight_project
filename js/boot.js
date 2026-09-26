@@ -81,7 +81,6 @@ import {
 	setTabSettings,
 	updateFontSizeIndicator,
 } from "./ui/navigation.js";
-import { renderChangelog } from "./ui/tabs.js";
 import { checkAdminPassword, initAdminPanel, setAdminSpeed } from "./utils.js";
 
 // Ошибка в коде — не сообщение игроку, а сигнал «игра сломалась»: останавливаем
@@ -90,12 +89,6 @@ import { checkAdminPassword, initAdminPanel, setAdminSpeed } from "./utils.js";
 window.onerror = () => {
 	gameData.hasError = true;
 };
-
-document
-	.querySelector("#changelogTabTabButton")
-	.addEventListener("click", async () => {
-		renderChangelog();
-	});
 
 // Мост для HTML-атрибутов: onclick="buyBoostDuration()" в шаблонах не видит модульные
 // функции. Публикуем только то, что зовут из разметки; внутри игры всё идёт через
@@ -198,5 +191,4 @@ document.addEventListener("i18n:changed", () => {
 	refreshSettingsButtons();
 	refreshLangButtons();
 	updateFontSizeIndicator();
-	renderChangelog();
 });

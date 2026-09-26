@@ -155,7 +155,6 @@ perk_points_gain_text: "You will gain <span class=\"color-perk-points\"><span id
 # Settings
 stats_tab_header: Statistics
 settings_tab_header: Settings
-changelog_tab_header: Changelog
 import_save: Import save
 export_save: Export save
 import_save_placeholder: Enter save here

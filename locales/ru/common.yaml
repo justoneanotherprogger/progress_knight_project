@@ -155,7 +155,6 @@ perk_points_gain_text: 'Вы получите <span class="color-perk-points"><s
 # Settings
 stats_tab_header: Статистика
 settings_tab_header: Настройки
-changelog_tab_header: История изменений
 import_save: Импорт сохранения
 export_save: Экспорт сохранения
 import_save_placeholder: Вставьте сохранение сюда

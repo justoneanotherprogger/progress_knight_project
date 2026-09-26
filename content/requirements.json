@@ -204,11 +204,6 @@
 				{ "task": "skill_cosmic_recollection", "requirement": 1 }
 			]
 		},
-		"req_quick_task_display": {
-			"type": "age",
-			"selectors": ["#quickTaskDisplay"],
-			"requirements": [{ "requirement": 20 }]
-		},
 		"req_evil_info": {
 			"type": "evil",
 			"selectors": ["#evilInfo"],
