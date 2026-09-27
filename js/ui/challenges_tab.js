@@ -11,19 +11,10 @@ import {
 	gameData,
 	LIFESPAN_CHALLENGE_EXPONENT,
 } from "../data.js";
-import {
-	format,
-	getChallengeTranslatedName,
-	getFormattedChallengeTaskGoal,
-} from "../utils.js";
+import { format, getFormattedChallengeTaskGoal } from "../utils.js";
 
 export function renderChallenges() {
-	document.getElementById("activeChallengeName").textContent =
-		getChallengeTranslatedName(gameData.active_challenge);
-
 	if (gameData.active_challenge === "") {
-		document.getElementById("exitChallengeDiv").hidden = true;
-
 		for (let i = 1; i <= Object.keys(gameData.challenges).length; i++) {
 			const element = document.getElementById(`challengeButton${i}`);
 			if (element != null) {
@@ -32,14 +23,10 @@ export function renderChallenges() {
 			}
 		}
 	} else {
-		document.getElementById("exitChallengeDiv").hidden = false;
-
 		for (let i = 1; i <= Object.keys(gameData.challenges).length; i++) {
 			const element = document.getElementById(`challengeButton${i}`);
 			if (element != null) element.classList.add("hidden");
 		}
-
-		renderCurrentChallengeReward("currentChallengeReward");
 	}
 
 	//TODO (indomit)
@@ -140,8 +127,6 @@ export function renderChallenges() {
 	document.getElementById("challengeReward6").hidden =
 		gameData.challenges.the_darkest_time === 0;
 
-	renderCurrentChallengeRewardValue();
-
 	document.getElementById("challengeHappinessBuff").textContent = format(
 		getChallengeBonus("an_unhappy_life"),
 		2,
@@ -192,15 +177,13 @@ export function renderCurrentChallengeReward(blockclass) {
 	}
 }
 
-export function renderCurrentChallengeRewardValue(side_bar = false) {
+export function renderCurrentChallengeRewardValue() {
 	for (let i = 1; i <= Object.keys(gameData.challenges).length; i++) {
-		document.getElementById(
-			`${side_bar ? "sidebarC" : "c"}urrentChallengeBuff${i}`,
-		).textContent = format(getChallengeBonus(i, true), 2);
-		if (side_bar)
-			document.getElementById(`sidebarChallengeBuff${i}`).textContent = format(
-				getChallengeBonus(i),
-				2,
-			);
+		document.getElementById(`sidebarCurrentChallengeBuff${i}`).textContent =
+			format(getChallengeBonus(i, true), 2);
+		document.getElementById(`sidebarChallengeBuff${i}`).textContent = format(
+			getChallengeBonus(i),
+			2,
+		);
 	}
 }

@@ -212,9 +212,14 @@ export function renderSideBar() {
 	el("info").classList.toggle("game-paused", gameData.paused);
 
 	// Challenges
+	// Прячем обёртку, а не кнопки: renderRequirements() (ui/tabs.js)
+	// переписывает .hidden у #rebirthButton1..5 каждый кадр, а первую и
+	// пятую скрывает ещё и этот модуль.
 	if (gameData.active_challenge === "") {
 		el("challengeTitle").hidden = true;
 		el("info").classList.remove("challenge");
+		el("rebirthGroup").hidden = false;
+		el("exit_challenge").hidden = true;
 	} else {
 		setText(
 			"challengeName",
@@ -222,9 +227,11 @@ export function renderSideBar() {
 		);
 		el("challengeTitle").hidden = false;
 		el("info").classList.add("challenge");
+		el("rebirthGroup").hidden = true;
+		el("exit_challenge").hidden = false;
 		// challenge reward
 		renderCurrentChallengeReward("sidebarChallengeReward");
-		renderCurrentChallengeRewardValue(true);
+		renderCurrentChallengeRewardValue();
 	}
 
 	updateResourceScale();
