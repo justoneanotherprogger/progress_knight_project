@@ -55,8 +55,6 @@ col_item: Предмет
 max_short: Макс
 income_day: Доход/день
 expense_day: Расход/день
-milestone_tier: Уровень Вехи
-milestone: Веха
 autobuy_toggle: Авто-покупка
 all_xp: весь опыт
 or: ИЛИ
@@ -96,7 +94,6 @@ rebirth_4: Свернуть вселенную
 rebirth_5: Метавселенная
 go_to_metaverse: Перейти в Метавселенную
 perk_points: Очки даров
-unlock_hypercubes: Разблокировать гиперкубы
 
 # Misc
 required: Требуется для следующего
@@ -283,8 +280,6 @@ welcome_metaverse: '<b>Добро пожаловать в Метавселенн
 lifespan_infinite: Продолжительность жизни теперь бесконечна.
 
 metaverse_hypercube_hint: Чем больше у вас гиперкубов, тем больше возможностей для жертвоприношений откроется.
-
-sacrifice: Жертвовать
 
 metaverse_perks: Дары Метавселенной
 

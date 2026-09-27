@@ -55,8 +55,6 @@ col_item: Item
 max_short: Max
 income_day: Income/day
 expense_day: Expense/day
-milestone_tier: Milestone Tier
-milestone: Milestone
 autobuy_toggle: Auto-buy
 all_xp: all XP
 or: OR
@@ -96,7 +94,6 @@ rebirth_4: Collapse the universe
 rebirth_5: Metaverse
 go_to_metaverse: Go to Metaverse
 perk_points: Perk Points
-unlock_hypercubes: Unlock Hypercubes
 
 # Misc
 required: Required for next
@@ -283,8 +280,6 @@ welcome_metaverse: "<b>Welcome to Metaverse!</b>"
 lifespan_infinite: Lifespan is now infinite.
 
 metaverse_hypercube_hint: The more hypercubes you have, the more sacrifice opportunities will open up.
-
-sacrifice: Sacrifice
 
 metaverse_perks: Metaverse Perks
 
