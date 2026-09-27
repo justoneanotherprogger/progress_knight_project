@@ -135,7 +135,7 @@ export function renderSideBar() {
 			"color-hypercubes",
 			`(${format(getHypercubeCap(1))} ${t("hypercubes")})`,
 		);
-	else setRebirthButton("rebirthBtn5", t("rebirth_5"), "", "");
+	else setRebirthButton("rebirthBtn5", t("go_to_metaverse"), "", "");
 	fitText(el("rebirthBtn5"), 16);
 	const boostPanel = el("boostPanel");
 	boostPanel.style.whiteSpace = "nowrap";
