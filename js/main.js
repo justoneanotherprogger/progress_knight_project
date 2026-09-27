@@ -33,13 +33,11 @@ export function toggleAutoBuy() {
 }
 
 export function setCurrentProperty(propertyName) {
-	if (gameData.paused) return;
 	gameData.autoBuyEnabled = false;
 	gameData.currentProperty = gameData.itemData[propertyName];
 }
 
 export function setMisc(miscName) {
-	if (gameData.paused) return;
 	gameData.autoBuyEnabled = false;
 	const misc = gameData.itemData[miscName];
 	if (gameData.currentMisc.includes(misc)) {
