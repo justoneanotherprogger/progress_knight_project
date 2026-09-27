@@ -214,12 +214,14 @@ export function renderSideBar() {
 	// Challenges
 	// Прячем обёртку, а не кнопки: renderRequirements() (ui/tabs.js)
 	// переписывает .hidden у #rebirthButton1..5 каждый кадр, а первую и
-	// пятую скрывает ещё и этот модуль.
+	// пятую скрывает ещё и этот модуль. И классом, а не атрибутом hidden:
+	// vendor/w3.css:39 задаёт .w3-button{display:inline-block} и перебивает
+	// браузерное [hidden]{display:none} — так же делает renderRequirements().
 	if (gameData.active_challenge === "") {
 		el("challengeTitle").hidden = true;
 		el("info").classList.remove("challenge");
-		el("rebirthGroup").hidden = false;
-		el("exit_challenge").hidden = true;
+		el("rebirthGroup").classList.remove("hidden");
+		el("exit_challenge").classList.add("hidden");
 	} else {
 		setText(
 			"challengeName",
@@ -227,8 +229,8 @@ export function renderSideBar() {
 		);
 		el("challengeTitle").hidden = false;
 		el("info").classList.add("challenge");
-		el("rebirthGroup").hidden = true;
-		el("exit_challenge").hidden = false;
+		el("rebirthGroup").classList.add("hidden");
+		el("exit_challenge").classList.remove("hidden");
 		// challenge reward
 		renderCurrentChallengeReward("sidebarChallengeReward");
 		renderCurrentChallengeRewardValue();
