@@ -1,5 +1,6 @@
 <div id="info" class="panel w3-padding quick-bar" style="width:20em">
 				<div id="challengeTitle" class="challenge-title" hidden="hidden">
+					<div id="challenge_title" style="text-align: center;"></div>
 					<span id="challengeTitleLabel"></span>: <span id="challengeName"></span>
 					<div style="padding-top:0.3em">
 						<div class="sidebarChallengeReward an_unhappy_life hidden"><span class="color-happiness" id="reward_happiness"></span> x<span id="sidebarCurrentChallengeBuff1"></span> / x<span id="sidebarChallengeBuff1"></span></div>
@@ -54,19 +55,22 @@
 						<div style="color: gray" class="sidebar-element resource-desc" id="time_warping_desc"></div>
 					</div>
 				</div>
-				<div id="rebirthButton1" class="hidden">
-					<button id="rebirthBtn1" class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100%" onClick="rebirthOne()"></button>
+				<div id="rebirthGroup">
+					<div id="rebirthButton1" class="hidden">
+						<button id="rebirthBtn1" class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100%" onClick="rebirthOne()"></button>
+					</div>
+					<div id="rebirthButton2" class="hidden">
+						<button id="rebirthBtn2" class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100% " onClick="rebirthTwo()"><span class="rebirth-label"></span> <span class="rebirth-gain"></span></button>
+					</div>
+					<div id="rebirthButton3" class="hidden">
+						<button id="rebirthBtn3" class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100% " onClick="rebirthThree()"><span class="rebirth-label"></span> <span class="rebirth-gain"></span></button>
+					</div>
+					<div id="rebirthButton4" class="hidden">
+						<button id="rebirthBtn4" class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100% " onClick="rebirthFour()"><span class="rebirth-label"></span> <span class="rebirth-gain"></span></button>
+					</div>
+					<div id="rebirthButton5" class="hidden">
+						<button id="rebirthBtn5" class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100% " onClick="rebirthFive()"><span class="rebirth-label"></span> <span class="rebirth-gain"></span></button>
+					</div>
 				</div>
-				<div id="rebirthButton2" class="hidden">
-					<button id="rebirthBtn2" class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100% " onClick="rebirthTwo()"><span class="rebirth-label"></span> <span class="rebirth-gain"></span></button>
-				</div>
-				<div id="rebirthButton3" class="hidden">
-					<button id="rebirthBtn3" class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100% " onClick="rebirthThree()"><span class="rebirth-label"></span> <span class="rebirth-gain"></span></button>
-				</div>
-				<div id="rebirthButton4" class="hidden">
-					<button id="rebirthBtn4" class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100% " onClick="rebirthFour()"><span class="rebirth-label"></span> <span class="rebirth-gain"></span></button>
-				</div>
-				<div id="rebirthButton5" class="hidden">
-					<button id="rebirthBtn5" class="w3-button button" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100% " onClick="rebirthFive()"><span class="rebirth-label"></span> <span class="rebirth-gain"></span></button>
-				</div>
+				<button id="exit_challenge" class="w3-button button hidden" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100%" onClick="exitChallenge()"></button>
 			</div>

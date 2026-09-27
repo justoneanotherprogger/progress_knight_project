@@ -33,10 +33,8 @@ boost: Boost
 task: Task
 age: Age
 day: Day
-age_display_default: Age 14 Day 0
 death_title: Age has caught up to you
 death_desc: Your age has met your lifespan
-error_site_broken: ⚠️ Oh no! It looks like something on the site broke.. If this issue persists, feel free to contact the developers.
 
 # Tabs
 tab_hero: Jobs
@@ -50,15 +48,9 @@ tab_metaverse: Metaverse
 tab_settings: Settings
 
 # Table headers
-col_job: Job
-col_item: Item
-max_short: Max
 income_day: Income/day
 expense_day: Expense/day
-milestone_tier: Milestone Tier
-milestone: Milestone
 autobuy_toggle: Auto-buy
-all_xp: all XP
 or: OR
 
 # Sidebar resources
@@ -96,7 +88,6 @@ rebirth_4: Collapse the universe
 rebirth_5: Metaverse
 go_to_metaverse: Go to Metaverse
 perk_points: Perk Points
-unlock_hypercubes: Unlock Hypercubes
 
 # Misc
 required: Required for next
@@ -106,26 +97,18 @@ infinity: Infinity
 active: Active
 locked: Locked
 effect: Effect
-goal: Goal
-reward: Reward
 level: Level
 xp_day: XP/day
 xp_left: XP left
 max_level: Max lvl
-value_type: Value type
 cost: Cost
 buy: Buy
 accepted: Accepted
 rejected: Rejected
-upgrade: Upgrade
 reset_abilities: Reset Abilities
 version: Version 0.1.0
-lang_en: English
-lang_ru: Русский
-tab_abilities: Abilities
 great: "★★★"
 lvl: lvl
-essence_lower: essence
 challenge_title: In challenge
 
 # Rebirth / Amulet tab
@@ -256,27 +239,11 @@ challenge_rewards_active: Challenge rewards are always active, even in challenge
 
 exit_challenge: Exit challenge
 
-current_challenge: "Current challenge:"
-
 enter_challenge: Enter challenge
 
 challengeTitleLabel: Challenge
 
 # Challenge names and descriptions
-
-current_reward_happiness: "Current reward: Multiplies Life Comfort by"
-
-current_reward_income: "Current reward: Multiplies Income by"
-
-current_reward_timewarping: "Current reward: Multiplies Time Warping by"
-
-current_reward_essence: "Current reward: Multiplies Essence gain by"
-
-current_reward_evil: "Current reward: Multiplies Evil gain by"
-
-current_reward_dark_matter: "Current reward: Multiplies Dark Matter gain by"
-
-dark_matter_shop: Dark Matter
 
 dark_orbs_shop: Dark Orbs
 
@@ -297,8 +264,6 @@ welcome_metaverse: "<b>Welcome to Metaverse!</b>"
 lifespan_infinite: Lifespan is now infinite.
 
 metaverse_hypercube_hint: The more hypercubes you have, the more sacrifice opportunities will open up.
-
-sacrifice: Sacrifice
 
 metaverse_perks: Metaverse Perks
 

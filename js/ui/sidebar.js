@@ -135,7 +135,7 @@ export function renderSideBar() {
 			"color-hypercubes",
 			`(${format(getHypercubeCap(1))} ${t("hypercubes")})`,
 		);
-	else setRebirthButton("rebirthBtn5", t("rebirth_5"), "", "");
+	else setRebirthButton("rebirthBtn5", t("go_to_metaverse"), "", "");
 	fitText(el("rebirthBtn5"), 16);
 	const boostPanel = el("boostPanel");
 	boostPanel.style.whiteSpace = "nowrap";
@@ -212,9 +212,16 @@ export function renderSideBar() {
 	el("info").classList.toggle("game-paused", gameData.paused);
 
 	// Challenges
+	// Прячем обёртку, а не кнопки: renderRequirements() (ui/tabs.js)
+	// переписывает .hidden у #rebirthButton1..5 каждый кадр, а первую и
+	// пятую скрывает ещё и этот модуль. И классом, а не атрибутом hidden:
+	// vendor/w3.css:39 задаёт .w3-button{display:inline-block} и перебивает
+	// браузерное [hidden]{display:none} — так же делает renderRequirements().
 	if (gameData.active_challenge === "") {
 		el("challengeTitle").hidden = true;
 		el("info").classList.remove("challenge");
+		el("rebirthGroup").classList.remove("hidden");
+		el("exit_challenge").classList.add("hidden");
 	} else {
 		setText(
 			"challengeName",
@@ -222,9 +229,11 @@ export function renderSideBar() {
 		);
 		el("challengeTitle").hidden = false;
 		el("info").classList.add("challenge");
+		el("rebirthGroup").classList.add("hidden");
+		el("exit_challenge").classList.remove("hidden");
 		// challenge reward
 		renderCurrentChallengeReward("sidebarChallengeReward");
-		renderCurrentChallengeRewardValue(true);
+		renderCurrentChallengeRewardValue();
 	}
 
 	updateResourceScale();

@@ -33,10 +33,8 @@ boost: Ускорение
 task: Задание
 age: Возраст
 day: День
-age_display_default: Возраст 14 День 0
 death_title: Возраст догнал вас
 death_desc: Ваш возраст достиг предела продолжительности жизни
-error_site_broken: О нет! Похоже, что-то на сайте сломалось.. Если проблема сохраняется, свяжитесь с разработчиками.
 
 # Tabs
 tab_hero: Работы
@@ -50,15 +48,9 @@ tab_metaverse: Метавселенная
 tab_settings: Настройки
 
 # Table headers
-col_job: Работа
-col_item: Предмет
-max_short: Макс
 income_day: Доход/день
 expense_day: Расход/день
-milestone_tier: Уровень Вехи
-milestone: Веха
 autobuy_toggle: Авто-покупка
-all_xp: весь опыт
 or: ИЛИ
 
 # Sidebar resources
@@ -96,7 +88,6 @@ rebirth_4: Свернуть вселенную
 rebirth_5: Метавселенная
 go_to_metaverse: Перейти в Метавселенную
 perk_points: Очки даров
-unlock_hypercubes: Разблокировать гиперкубы
 
 # Misc
 required: Требуется для следующего
@@ -106,26 +97,18 @@ infinity: Бесконечность
 active: Активно
 locked: Заблокировано
 effect: Эффект
-goal: Цель
-reward: Награда
 level: Уровень
 xp_day: Опыт/дн.
 xp_left: До уровня
 max_level: Макс.
-value_type: Тип значения
 cost: Стоимость
 buy: Купить
 accepted: Выбрано
 rejected: Отвергнуто
-upgrade: Улучшить
 reset_abilities: Сбросить способности
 version: Версия 0.1.0
-lang_en: English
-lang_ru: Русский
-tab_abilities: Способности
 great: "★★★"
 lvl: ур.
-essence_lower: эссенции
 challenge_title: В испытании
 
 # Rebirth / Amulet tab
@@ -256,27 +239,11 @@ challenge_rewards_active: Награды за испытания всегда а
 
 exit_challenge: Выйти из испытания
 
-current_challenge: 'Текущее испытание:'
-
 enter_challenge: Начать испытание
 
 challengeTitleLabel: Испытание
 
 # Challenge names and descriptions
-
-current_reward_happiness: 'Текущая награда: Умножает Удобства жизни на'
-
-current_reward_income: 'Текущая награда: Умножает Доход на'
-
-current_reward_timewarping: 'Текущая награда: Умножает Искажение времени на'
-
-current_reward_essence: 'Текущая награда: Умножает получение Эссенции на'
-
-current_reward_evil: 'Текущая награда: Умножает получение Зла на'
-
-current_reward_dark_matter: 'Текущая награда: Умножает получение Тёмной материи на'
-
-dark_matter_shop: Тёмная материя
 
 dark_orbs_shop: Тёмные сферы
 
@@ -297,8 +264,6 @@ welcome_metaverse: '<b>Добро пожаловать в Метавселенн
 lifespan_infinite: Продолжительность жизни теперь бесконечна.
 
 metaverse_hypercube_hint: Чем больше у вас гиперкубов, тем больше возможностей для жертвоприношений откроется.
-
-sacrifice: Жертвовать
 
 metaverse_perks: Дары Метавселенной
 

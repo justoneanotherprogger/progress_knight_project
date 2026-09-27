@@ -301,6 +301,7 @@ export function renderDarkMatter() {
 	// turn off OR
 	const ors = document.getElementsByClassName("darkMatterSkillOR");
 	for (const elem of ors) {
+		elem.textContent = t("or");
 		elem.hidden = gameData.perks.both_dark_mater_skills === 1;
 	}
 }

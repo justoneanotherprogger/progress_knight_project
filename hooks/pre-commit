@@ -8,3 +8,5 @@ python scripts/check_file_size.py || exit 1
 python scripts/check_inline_handlers.py || exit 1
 # Unused exports — Biome counts an export as used, and the code graph cannot see the HTML bridge.
 python scripts/check_unused_exports.py || exit 1
+# Locale keys with no carrier — an id in a template, a t() call, or a data-driven lookup.
+python scripts/check_locale_keys.py || exit 1

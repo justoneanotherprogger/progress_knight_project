@@ -173,7 +173,7 @@ export function setEnableKeybinds(enableKeybinds) {
 	gameData.settings.enableKeybinds = enableKeybinds;
 	selectElementInGroup("EnableKeybinds", enableKeybinds ? 0 : 1);
 	document
-		.getElementById("keybindsList")
+		.getElementById("dangerousKeybinds")
 		.classList.toggle("hidden", !enableKeybinds);
 }
 

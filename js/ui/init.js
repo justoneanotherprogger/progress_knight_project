@@ -112,9 +112,12 @@ export function refreshSettingsButtons() {
 		if (el) el.textContent = t(keyHints[id]);
 	}
 
-	const keybindsList = document.getElementById("keybindsList");
-	if (keybindsList)
-		keybindsList.classList.toggle("hidden", !gameData.settings.enableKeybinds);
+	const dangerousKeybinds = document.getElementById("dangerousKeybinds");
+	if (dangerousKeybinds)
+		dangerousKeybinds.classList.toggle(
+			"hidden",
+			!gameData.settings.enableKeybinds,
+		);
 }
 
 export function updateUI() {
