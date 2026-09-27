@@ -19,7 +19,7 @@ import {
 } from "../classes.js";
 import { gameData, getPreviousTaskInCategory } from "../data.js";
 import { labelKey } from "../effects.js";
-import { setCurrentProperty, setMisc } from "../main.js";
+import { setCurrentJob, setCurrentProperty, setMisc } from "../main.js";
 import { milestoneData } from "../milestones.js";
 import {
 	format,
@@ -518,6 +518,13 @@ export function createRow(templates, name, categoryName, categoryType) {
 				: () => {
 						setMisc(name);
 					};
+	}
+
+	if (categoryType === jobCategories) {
+		row.style.cursor = "pointer";
+		row.onclick = () => {
+			setCurrentJob(name);
+		};
 	}
 
 	return row;

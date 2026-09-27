@@ -53,6 +53,14 @@ export function setMisc(miscName) {
 	}
 }
 
+export function setCurrentJob(jobName) {
+	if (gameData.paused) return;
+	const job = gameData.taskData[jobName];
+	if (!(job instanceof Job) || !gameData.requirements[jobName].isCompleted())
+		return;
+	gameData.currentJob = job;
+}
+
 export function createGameObjects(data, baseData) {
 	for (const key in baseData) createGameObject(data, baseData[key], key);
 }
