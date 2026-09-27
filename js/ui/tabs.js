@@ -418,7 +418,7 @@ export function updateHeaderColumns(headerRow, categoryType) {
 		const headers = headerRow.getElementsByTagName("th");
 		headers[1].textContent = t("active");
 		headers[2].textContent = t("effect");
-		headers[3].textContent = t("cost");
+		headers[3].textContent = t("expense_day");
 	}
 }
 
