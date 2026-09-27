@@ -24,6 +24,10 @@ LOCALES = ROOT / "locales"
 # A key counts as used when it shows up in one of these shapes.
 ID_IN_TEMPLATE = re.compile(r'id="([A-Za-z_][\w]*)"')
 STRING_LITERAL = re.compile(r'"([A-Za-z_][\w]*)"')
+# A class name is a quoted string too — blank it out so it never counts as a key reference.
+CLASS_NAMES = re.compile(
+    r'class="[^"]*"|classList\.(?:add|remove|toggle)\(\s*"[^"]*"'
+)
 
 SOURCES = ("templates/**/*.html", "js/**/*.js", "content/*.json", "build.py")
 # Not searched: locales/ would make every key reference itself, dist/ and
@@ -87,6 +91,7 @@ def scan(paths: list[Path]) -> tuple[set[str], set[str]]:
         except (OSError, UnicodeDecodeError) as exc:
             print(f"error: cannot read {rel}: {exc}", file=sys.stderr)
             sys.exit(2)
+        text = CLASS_NAMES.sub("", text)
         if path.suffix == ".html":
             used.update(ID_IN_TEMPLATE.findall(text))
         literals.update(STRING_LITERAL.findall(text))
