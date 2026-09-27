@@ -19,13 +19,13 @@ export function renderChallenges() {
 			const element = document.getElementById(`challengeButton${i}`);
 			if (element != null) {
 				element.textContent = t("enter_challenge");
-				element.classList.remove("hidden");
+				element.disabled = false;
 			}
 		}
 	} else {
 		for (let i = 1; i <= Object.keys(gameData.challenges).length; i++) {
 			const element = document.getElementById(`challengeButton${i}`);
-			if (element != null) element.classList.add("hidden");
+			if (element != null) element.disabled = true;
 		}
 	}
 
