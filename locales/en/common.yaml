@@ -33,10 +33,8 @@ boost: Boost
 task: Task
 age: Age
 day: Day
-age_display_default: Age 14 Day 0
 death_title: Age has caught up to you
 death_desc: Your age has met your lifespan
-error_site_broken: ⚠️ Oh no! It looks like something on the site broke.. If this issue persists, feel free to contact the developers.
 
 # Tabs
 tab_hero: Jobs
@@ -50,13 +48,9 @@ tab_metaverse: Metaverse
 tab_settings: Settings
 
 # Table headers
-col_job: Job
-col_item: Item
-max_short: Max
 income_day: Income/day
 expense_day: Expense/day
 autobuy_toggle: Auto-buy
-all_xp: all XP
 or: OR
 
 # Sidebar resources
@@ -103,26 +97,18 @@ infinity: Infinity
 active: Active
 locked: Locked
 effect: Effect
-goal: Goal
-reward: Reward
 level: Level
 xp_day: XP/day
 xp_left: XP left
 max_level: Max lvl
-value_type: Value type
 cost: Cost
 buy: Buy
 accepted: Accepted
 rejected: Rejected
-upgrade: Upgrade
 reset_abilities: Reset Abilities
 version: Version 0.1.0
-lang_en: English
-lang_ru: Русский
-tab_abilities: Abilities
 great: "★★★"
 lvl: lvl
-essence_lower: essence
 challenge_title: In challenge
 
 # Rebirth / Amulet tab
@@ -258,8 +244,6 @@ enter_challenge: Enter challenge
 challengeTitleLabel: Challenge
 
 # Challenge names and descriptions
-
-dark_matter_shop: Dark Matter
 
 dark_orbs_shop: Dark Orbs
 
