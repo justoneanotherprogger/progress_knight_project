@@ -765,8 +765,13 @@ export function updateRequiredRows(data, categoryType) {
 					? nextEntity.getEffectDescription()
 					: t("unknown");
 			} else if (data === milestoneData) {
-				essenceElement.classList.remove("hiddenTask");
-				essenceElement.textContent = `${format(requirements[0].requirement)} ${t("essence")}`;
+				if (requirementObject instanceof EvilRequirement) {
+					evilElement.classList.remove("hiddenTask");
+					evilElement.textContent = `${format(requirements[0].requirement)} ${t("evil")}`;
+				} else {
+					essenceElement.classList.remove("hiddenTask");
+					essenceElement.textContent = `${format(requirements[0].requirement)} ${t("essence")}`;
+				}
 
 				if (nextEntity.baseData.description != null) {
 					effectElement.classList.remove("hiddenTask");
