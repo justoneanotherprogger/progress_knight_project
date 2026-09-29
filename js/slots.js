@@ -93,12 +93,12 @@ export function getSkillSlotCost() {
 
 export function canBuyJobSlot() {
 	const cost = getJobSlotCost();
-	return gameData.evil.gte(cost) && cost.isFinite();
+	return gameData.evil.gte(cost);
 }
 
 export function canBuySkillSlot() {
 	const cost = getSkillSlotCost();
-	return gameData.evil.gte(cost) && cost.isFinite();
+	return gameData.evil.gte(cost);
 }
 
 export function buyJobSlot() {
