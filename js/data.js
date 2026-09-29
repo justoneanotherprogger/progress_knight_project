@@ -118,6 +118,12 @@ export var gameData = {
 		challenge_altar: 0,
 		dark_mater_gain_modifer: 0,
 	},
+	evil_shop: {
+		// Счётчики купленных слотов: работа и навык уже качаются по одному,
+		// поэтому базовое число = 1 + счётчик.
+		job_slots: 0,
+		skill_slots: 0,
+	},
 
 	realtime: 0.0,
 	realtimeRun: 0.0,

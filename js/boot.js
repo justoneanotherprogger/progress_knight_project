@@ -69,6 +69,7 @@ import {
 	outExportButton,
 	resetGameData,
 } from "./save.js";
+import { buyJobSlot, buySkillSlot } from "./slots.js";
 import { initializeUI, refreshSettingsButtons, updateUI } from "./ui/init.js";
 import {
 	refreshLangButtons,
@@ -109,9 +110,11 @@ Object.assign(window, {
 	buyExplosionOfTheUniverse,
 	buyGottaBeFast,
 	buyHypercubeGain,
+	buyJobSlot,
 	buyLifeCoach,
 	buyMultiverseExplorer,
 	buyReduceBoostCooldown,
+	buySkillSlot,
 	buySpeedOfLife,
 	buyYourGreatestDebt,
 	checkAdminPassword,

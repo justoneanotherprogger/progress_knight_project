@@ -834,9 +834,9 @@
 			"requirements": [{ "requirement": 1e160 }]
 		},
 		"req_milestones_tab_button": {
-			"type": "essence",
+			"type": "evil",
 			"selectors": ["#milestonesTabButton"],
-			"requirements": [{ "requirement": 1 }]
+			"requirements": [{ "requirement": 0, "strict": true }]
 		},
 		"req_dark_matter_tab_button": {
 			"type": "darkMatter",

@@ -5,6 +5,27 @@
 								<table id="milestoneTable" class="w3-table w3-bordered">
 								</table>
 							</div>
+
+							<div id="evilSlotShop" class="panel page-column w3-padding" style="display:none; padding-top:2em">
+								<div class="text-caption" id="evil_slot_shop"></div>
+								<div style="color:gray; padding-bottom:1em" id="evil_slot_shop_hint"></div>
+
+								<div style="padding-top:1em">
+									<div class="tooltip"><span class="tooltipText" id="evil_slot_job_tooltip"></span><div class="text-caption" id="evil_slot_job_name"></div></div>
+									<div style="color:gray; padding-bottom:0.3em" id="evil_slot_job_desc"></div>
+									<div style="color:gray; padding-bottom:0.3em"><span id="evilSlotJobCountLabel"></span> <b id="evilSlotJobCount"></b></div>
+									<div style="color:gray; padding-bottom:0.5em"><span id="evilSlotJobCostLabel"></span>: <b id="evilSlotJobCost"></b> <span class="color-evil" id="evilSlotJobCurrency"></span></div>
+									<button class="w3-button button" id="evilSlotJobBuyButton" onclick="buyJobSlot()"></button>
+								</div>
+
+								<div style="padding-top:2em">
+									<div class="tooltip"><span class="tooltipText" id="evil_slot_skill_tooltip"></span><div class="text-caption" id="evil_slot_skill_name"></div></div>
+									<div style="color:gray; padding-bottom:0.3em" id="evil_slot_skill_desc"></div>
+									<div style="color:gray; padding-bottom:0.3em"><span id="evilSlotSkillCountLabel"></span> <b id="evilSlotSkillCount"></b></div>
+									<div style="color:gray; padding-bottom:0.5em"><span id="evilSlotSkillCostLabel"></span>: <b id="evilSlotSkillCost"></b> <span class="color-evil" id="evilSlotSkillCurrency"></span></div>
+									<button class="w3-button button" id="evilSlotSkillBuyButton" onclick="buySkillSlot()"></button>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

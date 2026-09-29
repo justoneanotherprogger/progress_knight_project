@@ -131,6 +131,7 @@ export function serialize(gameData) {
 	// Мета-прогресс — ключи пишем всегда, даже пустыми
 	dto.perks = serializeMap(gameData.perks);
 	dto.dark_matter_shop = serializeMap(gameData.dark_matter_shop);
+	dto.evil_shop = serializeMap(gameData.evil_shop);
 	dto.metaverse = serializeMap(gameData.metaverse);
 	if (!isDefaultValue(gameData.active_challenge))
 		dto.active_challenge = gameData.active_challenge;
@@ -233,6 +234,7 @@ export function deserialize(dto, gameData) {
 	// Мета-прогресс: ключи из контента, отсутствующие = 0/false
 	applyMap(gameData.perks, dto.perks);
 	applyMap(gameData.dark_matter_shop, dto.dark_matter_shop);
+	applyMap(gameData.evil_shop, dto.evil_shop);
 	applyMap(gameData.metaverse, dto.metaverse);
 
 	// Значения испытаний — Decimal-строки

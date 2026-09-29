@@ -1,5 +1,27 @@
 {
 	"milestoneCategories": {
+		"category_evil_milestones": {
+			"name": "category_evil_milestones",
+			"headerColor": "#8b0000",
+			"items": {
+				"milestone_evil_shop": {
+					"name": "milestone_evil_shop_name",
+					"description": "milestone_evil_shop_desc",
+					"tooltip": "milestone_evil_shop_tooltip",
+					"threshold": 100,
+					"tier": 1,
+					"currency": "evil"
+				},
+				"milestone_evil_autoselect_jobs": {
+					"name": "milestone_evil_autoselect_jobs_name",
+					"description": "milestone_evil_autoselect_jobs_desc",
+					"tooltip": "milestone_evil_autoselect_jobs_tooltip",
+					"threshold": 1e5,
+					"tier": 2,
+					"currency": "evil"
+				}
+			}
+		},
 		"category_essence_milestones": {
 			"name": "category_essence_milestones",
 			"headerColor": "#0066ff",

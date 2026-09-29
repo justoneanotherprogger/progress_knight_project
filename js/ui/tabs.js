@@ -22,6 +22,15 @@ import { labelKey } from "../effects.js";
 import { setCurrentJob, setCurrentProperty, setMisc } from "../main.js";
 import { milestoneData } from "../milestones.js";
 import {
+	canBuyJobSlot,
+	canBuySkillSlot,
+	getJobSlotCost,
+	getJobSlotCount,
+	getSkillSlotCost,
+	getSkillSlotCount,
+	isSlotShopUnlocked,
+} from "../slots.js";
+import {
 	format,
 	formatCoins,
 	formatLevel,
@@ -203,6 +212,41 @@ export function renderShop() {
 // а getRowByName + querySelector — по три поиска по дереву на строку.
 // Закэшированные элементы и последний записанный текст живут на самой вехе.
 export function renderMilestones() {
+	// Магазин слотов за зло: до вехи #42 скрыт, дальше обновляется каждый кадр.
+	const shop = document.getElementById("evilSlotShop");
+	const shopUnlocked = isSlotShopUnlocked();
+	shop.style.display = shopUnlocked ? "" : "none";
+	if (shopUnlocked) {
+		const byId = (id) => document.getElementById(id);
+		const setText = (el, text) => {
+			if (el.textContent !== text) el.textContent = text;
+		};
+
+		const countLabel = t("evil_slot_count_label");
+		setText(byId("evilSlotJobCountLabel"), countLabel);
+		setText(byId("evilSlotSkillCountLabel"), countLabel);
+
+		const costLabel = t("cost");
+		setText(byId("evilSlotJobCostLabel"), costLabel);
+		setText(byId("evilSlotSkillCostLabel"), costLabel);
+
+		const currencyLabel = t("evil");
+		setText(byId("evilSlotJobCurrency"), currencyLabel);
+		setText(byId("evilSlotSkillCurrency"), currencyLabel);
+
+		const jobButton = byId("evilSlotJobBuyButton");
+		setText(jobButton, t("buy"));
+		jobButton.disabled = !canBuyJobSlot();
+		const skillButton = byId("evilSlotSkillBuyButton");
+		setText(skillButton, t("buy"));
+		skillButton.disabled = !canBuySkillSlot();
+
+		setText(byId("evilSlotJobCount"), format(getJobSlotCount()));
+		setText(byId("evilSlotSkillCount"), format(getSkillSlotCount()));
+		setText(byId("evilSlotJobCost"), format(getJobSlotCost()));
+		setText(byId("evilSlotSkillCost"), format(getSkillSlotCost()));
+	}
+
 	for (const key in milestoneData) {
 		const milestone = milestoneData[key];
 		if (milestone._row == null) {
@@ -504,6 +548,12 @@ export function createRow(templates, name, categoryName, categoryType) {
 			tooltipKey = entity.baseData.tooltip;
 		}
 	}
+
+	// В шаблоне вехи колонка валюты всегда эссенция: у вех за зло — зло.
+	if (categoryName === "category_evil_milestones")
+		row
+			.getElementsByClassName("essence")[0]
+			.classList.replace("color-essence", "color-evil");
 
 	row.getElementsByClassName("name")[0].textContent = t(displayName);
 	row.getElementsByClassName("tooltipText")[0].textContent = t(tooltipKey);
