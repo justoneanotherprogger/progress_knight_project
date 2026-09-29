@@ -207,7 +207,7 @@ evil_slot_shop: Upgrade Shop
 evil_slot_shop_hint: Paid for with Evil. Slots survive rebirth.
 evil_slot_job_name: Job Slot
 evil_slot_job_desc: +1 job levels itself — the fastest to level. The one you picked goes first and pays out.
-evil_slot_job_tooltip: The slot takes the job with the shortest time to level. Works right away, no auto-select milestone needed.
+evil_slot_job_tooltip: The slot takes the job with the shortest time to level.
 evil_slot_skill_name: Skill Slot
 evil_slot_skill_desc: +1 skill levels itself — the fastest to level by time.
 evil_slot_skill_tooltip: The slot takes the skill with the shortest time to level.
