@@ -251,6 +251,10 @@ dm_tab_shop: Shop
 
 dm_tab_abilities: Abilities
 
+milestones_tab_milestones: Milestones
+
+milestones_tab_shop: Shop
+
 abilities_warning: 'You can only choose 1 upgrade in each category; pick wisely. You can reset the abilities, but you will <b>NOT</b> get your <span class="color-dark-matter">Dark Matter</span> back!'
 
 # Dark Matter Abilities

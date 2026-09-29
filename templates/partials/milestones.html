@@ -1,12 +1,18 @@
 <div class="tab column" style="display:none" id="milestones">
+					<div id="tabcolumnMilestones" class="panel w3-margin-left" style="display: flex">
+						<div class="w3-button w3-bar-item tabButtonMilestones baritem w3-blue-gray" id="milestonesTab1TabButton" onClick="setTabMilestones('milestonesTab1')"><span id="milestones_tab_milestones"></span></div>
+						<div class="w3-button w3-bar-item tabButtonMilestones baritem" id="evilSlotShopTabButton" onClick="setTabMilestones('evilSlotShop')"><span id="milestones_tab_shop"></span></div>
+					</div>
 					<div id="maincolumnMilestones" class="panel">
 						<div id="milestonesTab1" class="tabMilestones">
 							<div id="milestonePage" class="panel page-column">
 								<table id="milestoneTable" class="w3-table w3-bordered">
 								</table>
 							</div>
+						</div>
 
-							<div id="evilSlotShop" class="panel page-column w3-padding" style="display:none; padding-top:2em">
+						<div id="evilSlotShop" class="tabMilestones">
+							<div class="panel page-column w3-padding" style="padding-top:2em">
 								<div class="text-caption" id="evil_slot_shop"></div>
 								<div style="color:gray; padding-bottom:1em" id="evil_slot_shop_hint"></div>
 

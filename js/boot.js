@@ -79,6 +79,7 @@ import {
 	setTab,
 	setTabDarkMatter,
 	setTabMetaverse,
+	setTabMilestones,
 	setTabSettings,
 	updateFontSizeIndicator,
 } from "./ui/navigation.js";
@@ -142,6 +143,7 @@ Object.assign(window, {
 	setTab,
 	setTabDarkMatter,
 	setTabMetaverse,
+	setTabMilestones,
 	setTabSettings,
 	setTheme,
 	toggleAutoBuy,
@@ -185,6 +187,7 @@ setTab(gameData.settings.selectedTab);
 setTabSettings("settingsTab");
 setTabDarkMatter("shopTab");
 setTabMetaverse("metaverseTab1");
+setTabMilestones("milestonesTab1");
 
 startLoops();
 

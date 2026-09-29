@@ -213,9 +213,11 @@ export function renderShop() {
 // Закэшированные элементы и последний записанный текст живут на самой вехе.
 export function renderMilestones() {
 	// Магазин слотов за зло: до вехи #42 скрыт, дальше обновляется каждый кадр.
-	const shop = document.getElementById("evilSlotShop");
+	// Панелью магазина рулит setTabGroup, скрываем только кнопку подвкладки.
 	const shopUnlocked = isSlotShopUnlocked();
-	shop.style.display = shopUnlocked ? "" : "none";
+	document.getElementById("evilSlotShopTabButton").style.display = shopUnlocked
+		? ""
+		: "none";
 	if (shopUnlocked) {
 		const byId = (id) => document.getElementById(id);
 		const setText = (el, text) => {

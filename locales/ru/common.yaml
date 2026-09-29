@@ -251,6 +251,10 @@ dm_tab_shop: Магазин
 
 dm_tab_abilities: Способности
 
+milestones_tab_milestones: Вехи
+
+milestones_tab_shop: Магазин
+
 abilities_warning: 'Вы можете выбрать только 1 улучшение в каждой категории; выбирайте мудро. Вы можете сбросить способности, но <b>НЕ</b> получите обратно свою <span class="color-dark-matter">Тёмную материю</span>!'
 
 # Dark Matter Abilities
