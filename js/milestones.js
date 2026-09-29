@@ -9,19 +9,18 @@ export var milestoneData = {};
 // milestoneBaseData и milestoneCategories генерируются build.py
 // в js/milestones_data.js из content/milestones.json
 
-// Валюта вехи из контента → класс требования. Незаданная валюта — эссенция,
-// как у всех вех до #42.
-const MILESTONE_REQUIREMENT_CLASSES = {
-	essence: EssenceRequirement,
-	evil: EvilRequirement,
-};
-
 export function createMilestoneRequirements() {
 	for (const key in milestoneBaseData) {
 		const milestone = milestoneData[key];
+		// Класс выбирается здесь, а не мапой на верхнем уровне модуля: цикл
+		// импортов classes.js → calculations.js → milestones.js → classes.js
+		// выполняет тело модуля раньше, чем classes.js дойдёт до объявления
+		// класса, и обращение к нему падает с TDZ. Вызов функции безопасен —
+		// createMilestoneRequirements зовётся из boot.js после инициализации.
 		const RequirementClass =
-			MILESTONE_REQUIREMENT_CLASSES[milestoneBaseData[key].currency] ??
-			EssenceRequirement;
+			milestoneBaseData[key].currency === "evil"
+				? EvilRequirement
+				: EssenceRequirement;
 		gameData.requirements[key] = new RequirementClass(
 			[getQuerySelector(key)],
 			[{ requirement: milestone.threshold }],
