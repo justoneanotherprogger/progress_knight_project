@@ -941,7 +941,7 @@
 		"category_essence_milestones": {
 			"type": "essence",
 			"selectors": [".category_essence_milestones"],
-			"requirements": [{ "requirement": 0, "strict": true }]
+			"requirements": [{ "requirement": 1 }]
 		},
 		"category_heroic_milestones": {
 			"type": "essence",
