@@ -32,6 +32,10 @@ export function toggleAutoBuy() {
 	gameData.autoBuyEnabled = document.getElementById("autoBuyToggle").checked;
 }
 
+export function toggleAutoPromote(enabled) {
+	gameData.autoPromoteEnabled = enabled;
+}
+
 export function setCurrentProperty(propertyName) {
 	gameData.autoBuyEnabled = false;
 	gameData.currentProperty = gameData.itemData[propertyName];

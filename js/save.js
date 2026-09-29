@@ -42,7 +42,12 @@ export const NUMBER_FIELDS = [
 ];
 
 // Булевы флаги состояния
-export const BOOLEAN_FIELDS = ["paused", "boost_active", "autoBuyEnabled"];
+export const BOOLEAN_FIELDS = [
+	"paused",
+	"boost_active",
+	"autoBuyEnabled",
+	"autoPromoteEnabled",
+];
 
 // stats, пересчитываемые каждый тик в updateStats — не сериализуются
 export const TRANSIENT_STATS = ["EvilPerSecond", "EssencePerSecond"];

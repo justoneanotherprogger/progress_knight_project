@@ -63,7 +63,7 @@ export function update() {
 	increaseRealtime();
 	increaseDays();
 	autoPerks();
-	if (isJobAutoSelectUnlocked()) autoPromote();
+	if (isJobAutoSelectUnlocked() && gameData.autoPromoteEnabled) autoPromote();
 	autoBuy();
 	applyExpenses();
 	// Опыт получают только задачи в активных слотах (slots.js): выбранная

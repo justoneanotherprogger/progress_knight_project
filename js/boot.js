@@ -39,6 +39,7 @@ import {
 	setTheme,
 	startLoops,
 	toggleAutoBuy,
+	toggleAutoPromote,
 	togglePause,
 } from "./main.js";
 import {
@@ -147,6 +148,7 @@ Object.assign(window, {
 	setTabSettings,
 	setTheme,
 	toggleAutoBuy,
+	toggleAutoPromote,
 	togglePause,
 });
 

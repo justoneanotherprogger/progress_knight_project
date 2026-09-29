@@ -50,6 +50,7 @@ export var gameData = {
 	currentProperty: null,
 	currentMisc: null,
 	autoBuyEnabled: true,
+	autoPromoteEnabled: true,
 
 	// Ошибка в коде останавливает симуляцию, но не выглядит смертью игрока:
 	// время встаёт на битом состоянии, отсюда и без перезагрузки не уйти.

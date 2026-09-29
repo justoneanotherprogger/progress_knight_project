@@ -51,6 +51,7 @@ tab_settings: Settings
 income_day: Income/day
 expense_day: Expense/day
 autobuy_toggle: Auto-buy
+autopromote_toggle: Auto job select
 or: OR
 
 # Sidebar resources

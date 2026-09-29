@@ -28,6 +28,7 @@ import {
 	getJobSlotCount,
 	getSkillSlotCost,
 	getSkillSlotCount,
+	isJobAutoSelectUnlocked,
 	isSlotShopUnlocked,
 } from "../slots.js";
 import {
@@ -111,6 +112,17 @@ export function renderJobs() {
 		const task = gameData.taskData[key];
 		if (!(task instanceof Job)) continue;
 		renderJobRow(task, key);
+	}
+
+	const autoPromoteRow = document.getElementById("autoPromoteToggleRow");
+	if (autoPromoteRow) {
+		autoPromoteRow.style.display = isJobAutoSelectUnlocked() ? "" : "none";
+		const autoPromoteToggle = document.getElementById("autoPromoteToggle");
+		if (
+			autoPromoteToggle &&
+			autoPromoteToggle.checked !== gameData.autoPromoteEnabled
+		)
+			autoPromoteToggle.checked = gameData.autoPromoteEnabled;
 	}
 }
 
