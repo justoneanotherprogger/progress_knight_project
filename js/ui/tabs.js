@@ -733,7 +733,12 @@ export function updateRequiredRows(data, categoryType) {
 				if (categoryType !== jobCategories) {
 					effectElement.classList.remove("hiddenTask");
 					effectValueElement.textContent = nextEntity.unlocked
-						? t(labelKey(nextEntity.baseData.effect.target))
+						? t(
+								labelKey(
+									nextEntity.baseData.effect.target,
+									nextEntity.baseData.effect.type,
+								),
+							)
 						: t("unknown");
 				}
 

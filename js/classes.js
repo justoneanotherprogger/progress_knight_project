@@ -205,7 +205,7 @@ export class Skill extends Task {
 			"x" +
 			format(this.getEffect(), 2) +
 			" " +
-			t(labelKey(this.baseData.effect.target))
+			t(labelKey(this.baseData.effect.target, this.baseData.effect.type))
 		);
 	}
 }

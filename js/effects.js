@@ -66,7 +66,13 @@ export const EFFECT_LABEL_KEYS = {
 	item: "effect_expense_reduction",
 };
 
-export function labelKey(target) {
+const EFFECT_LABEL_KEYS_INCOME = {
+	job: "effect_job_income",
+	"job:category:category_military": "effect_army_income",
+	"job:category:category_mage_collegium": "effect_collegium_income",
+};
+
+export function labelKey(target, type) {
 	if (!target) return "";
 	if (target.kind === "resource") {
 		if (target.id === "max_level") return "effect_max_level_multiplier";
@@ -75,5 +81,7 @@ export function labelKey(target) {
 	let index = target.kind;
 	if (target.kind === "task") index += `:${target.task}`;
 	else if (target.category) index += `:category:${target.category}`;
+	if (type === "income")
+		return EFFECT_LABEL_KEYS_INCOME[index] || EFFECT_LABEL_KEYS[index] || "";
 	return EFFECT_LABEL_KEYS[index] || "";
 }
