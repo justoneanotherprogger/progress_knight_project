@@ -267,7 +267,7 @@ export function deserialize(dto, gameData) {
 	}
 
 	// Кэш выполненности доверяем сейву целиком: он сносится только при
-	// перерождении (rebirthReset), а в забеге открытое остаётся открытым,
+	// перерождении (resetOne), а в забеге открытое остаётся открытым,
 	// даже если условие стало ложным — предок-герой обнулил уровень и т.п.
 	const requirements = dto.requirements ?? {};
 	for (const key in gameData.requirements) {

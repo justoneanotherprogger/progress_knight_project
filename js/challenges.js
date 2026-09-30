@@ -10,13 +10,13 @@ import { resetTwo } from "./rebirth.js";
 import { getChallengeTaskGoalProgress, softcap } from "./utils.js";
 
 export function enterChallenge(challengeName) {
-	resetTwo(false);
+	resetTwo();
 	gameData.active_challenge = challengeName;
 }
 
 export function exitChallenge() {
 	setChallengeProgress();
-	resetTwo(false);
+	resetTwo();
 	gameData.active_challenge = "";
 }
 

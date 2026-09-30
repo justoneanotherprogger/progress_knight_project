@@ -20,12 +20,10 @@ import {
 	EVIL_GROWTH_EXPONENT_HELL,
 	EVIL_GROWTH_EXPONENT_MIND_CONTROL,
 	gameData,
-	PERK_AUTO_DARK_SHOP_ORBS_THRESHOLD,
 	PERK_INSTANT_GAIN_MULTIPLIER,
 	REBIRTH_THREE_ESSENCE_CAP,
 } from "./data.js";
 import { evilTranGain, getMetaversePerkPointsGain } from "./metaverse.js";
-import { setTab, Tab } from "./ui/navigation.js";
 
 // Рубрика зла переживает престижи 1 и 2, сбрасывается на третьем и выше.
 const darkMagicUnlocks = new Set([
@@ -95,8 +93,8 @@ export function rebirthFive() {
 	resetFive();
 }
 
-export function resetTwo(set_tab_to_jobs = true) {
-	resetOne(set_tab_to_jobs);
+export function resetTwo() {
+	resetOne();
 
 	for (const taskName in gameData.taskData) {
 		const task = gameData.taskData[taskName];
@@ -158,9 +156,6 @@ function resetFive() {
 	for (const key of metaverseResetUnlocks) {
 		gameData.requirements[key].completed = false;
 	}
-
-	gameData.requirements.req_skill_tree_tab_tab_button.completed = false;
-	gameData.requirements.req_skill_tree_page.completed = false;
 
 	gameData.boost_active = false;
 	gameData.boost_timer = 0;
@@ -227,22 +222,7 @@ export function applyMilestones() {
 	}
 }
 
-function resetOne(set_tab_to_jobs = true) {
-	if (set_tab_to_jobs) {
-		if (
-			(gameData.settings.selectedTab === Tab.METAVERSE &&
-				gameData.hypercubes > 0) ||
-			(gameData.settings.selectedTab === Tab.CHALLENGES &&
-				gameData.evil.gt(PERK_AUTO_DARK_SHOP_ORBS_THRESHOLD)) ||
-			(gameData.settings.selectedTab === Tab.MILESTONES &&
-				gameData.essence.gt(0)) ||
-			(gameData.settings.selectedTab === Tab.DARK_MATTER &&
-				gameData.dark_matter.gt(0)) ||
-			gameData.settings.selectedTab === Tab.REBIRTH
-		) {
-			// do not switch tab
-		} else setTab("jobs");
-	}
+function resetOne() {
 	gameData.coins = new Decimal(0);
 	gameData.days = DEFAULT_STARTING_AGE;
 	gameData.realtime = 0;
