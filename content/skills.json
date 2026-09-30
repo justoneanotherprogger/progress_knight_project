@@ -262,11 +262,9 @@
 							"kind": "resource",
 							"id": "gamespeed"
 						},
-						"base": 1,
+						"base": 0.01,
 						"formula": {
-							"kind": "log",
-							"logBase": 10,
-							"logHeroBase": 1.005
+							"kind": "power"
 						}
 					},
 					"requirement": {
