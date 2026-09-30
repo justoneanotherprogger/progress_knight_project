@@ -33,30 +33,20 @@ export function rebirthOne() {
 		gameData.rebirthOneTime < gameData.stats.fastest1
 	)
 		gameData.stats.fastest1 = gameData.rebirthOneTime;
-	gameData.rebirthOneTime = 0;
 
-	rebirthReset();
+	resetOne();
 }
 
 export function rebirthTwo() {
 	gameData.rebirthTwoCount += 1;
 	gameData.evil = gameData.evil.add(getEvilGain());
-
 	if (
 		gameData.stats.fastest2 == null ||
 		gameData.rebirthTwoTime < gameData.stats.fastest2
 	)
 		gameData.stats.fastest2 = gameData.rebirthTwoTime;
-	gameData.rebirthOneTime = 0;
-	gameData.rebirthTwoTime = 0;
 
-	rebirthReset();
-	gameData.active_challenge = "";
-
-	for (const taskName in gameData.taskData) {
-		const task = gameData.taskData[taskName];
-		task.maxLevel = 0;
-	}
+	resetTwo();
 }
 
 export function rebirthThree() {
@@ -65,17 +55,41 @@ export function rebirthThree() {
 	if (!Number.isFinite(gameData.essence.mantissa))
 		gameData.essence = new Decimal(REBIRTH_THREE_ESSENCE_CAP);
 	gameData.evil = evilTranGain();
-
 	if (
 		gameData.stats.fastest3 == null ||
 		gameData.rebirthThreeTime < gameData.stats.fastest3
 	)
 		gameData.stats.fastest3 = gameData.rebirthThreeTime;
-	gameData.rebirthOneTime = 0;
-	gameData.rebirthTwoTime = 0;
-	gameData.rebirthThreeTime = 0;
 
-	rebirthReset();
+	resetThree();
+}
+
+export function rebirthFour() {
+	gameData.rebirthFourCount += 1;
+	gameData.dark_matter = gameData.dark_matter.add(getDarkMatterGain());
+	if (
+		gameData.stats.fastest4 == null ||
+		gameData.rebirthFourTime < gameData.stats.fastest4
+	)
+		gameData.stats.fastest4 = gameData.rebirthFourTime;
+
+	resetFour();
+}
+
+export function rebirthFive() {
+	gameData.rebirthFiveCount += 1;
+	gameData.perks_points += getMetaversePerkPointsGain();
+	if (
+		gameData.stats.fastest5 == null ||
+		gameData.rebirthFiveTime < gameData.stats.fastest5
+	)
+		gameData.stats.fastest5 = gameData.rebirthFiveTime;
+
+	resetFive();
+}
+
+export function resetTwo(set_tab_to_jobs = true) {
+	resetOne(set_tab_to_jobs);
 
 	for (const taskName in gameData.taskData) {
 		const task = gameData.taskData[taskName];
@@ -83,11 +97,15 @@ export function rebirthThree() {
 	}
 
 	gameData.active_challenge = "";
+	gameData.rebirthTwoTime = 0;
 }
 
-export function rebirthFour() {
-	gameData.rebirthFourCount += 1;
-	gameData.dark_matter = gameData.dark_matter.add(getDarkMatterGain());
+function resetThree() {
+	resetTwo();
+	gameData.rebirthThreeTime = 0;
+}
+
+function resetFour() {
 	gameData.essence = new Decimal(0);
 	gameData.evil = new Decimal(0);
 
@@ -100,31 +118,12 @@ export function rebirthFour() {
 		}
 	}
 
-	if (
-		gameData.stats.fastest4 == null ||
-		gameData.rebirthFourTime < gameData.stats.fastest4
-	)
-		gameData.stats.fastest4 = gameData.rebirthFourTime;
-	gameData.rebirthOneTime = 0;
-	gameData.rebirthTwoTime = 0;
-	gameData.rebirthThreeTime = 0;
 	gameData.rebirthFourTime = 0;
 
-	rebirthReset();
-
-	for (const taskName in gameData.taskData) {
-		const task = gameData.taskData[taskName];
-		task.maxLevel = 0;
-	}
-
-	gameData.active_challenge = "";
+	resetThree();
 }
 
-export function rebirthFive() {
-	gameData.rebirthFiveCount += 1;
-	gameData.perks_points += getMetaversePerkPointsGain();
-	gameData.essence = new Decimal(0);
-	gameData.evil = new Decimal(0);
+function resetFive() {
 	gameData.dark_matter = new Decimal(0);
 	gameData.dark_orbs = new Decimal(0);
 	gameData.dark_matter_shop.dark_orb_generator = 0;
@@ -143,12 +142,6 @@ export function rebirthFive() {
 		gameData.dark_matter_shop.multiverse_explorer = 0;
 	}
 
-	if (gameData.perks.save_challenges === 0) {
-		for (const challenge in gameData.challenges) {
-			gameData.challenges[challenge] = 0;
-		}
-	}
-
 	// Метавселенский сброс: тёмная материя обнулилась, требования по ней
 	// открываются заново.
 	for (const key of metaverseResetUnlocks) {
@@ -157,17 +150,6 @@ export function rebirthFive() {
 
 	gameData.requirements.req_skill_tree_tab_tab_button.completed = false;
 	gameData.requirements.req_skill_tree_page.completed = false;
-
-	if (
-		gameData.stats.fastest5 == null ||
-		gameData.rebirthFiveTime < gameData.stats.fastest5
-	)
-		gameData.stats.fastest5 = gameData.rebirthFiveTime;
-	gameData.rebirthOneTime = 0;
-	gameData.rebirthTwoTime = 0;
-	gameData.rebirthThreeTime = 0;
-	gameData.rebirthFourTime = 0;
-	gameData.rebirthFiveTime = 0;
 
 	gameData.boost_active = false;
 	gameData.boost_timer = 0;
@@ -182,14 +164,9 @@ export function rebirthFive() {
 	gameData.metaverse.challenge_altar = 0;
 	gameData.metaverse.dark_mater_gain_modifer = 0;
 
-	rebirthReset();
+	gameData.rebirthFiveTime = 0;
 
-	for (const taskName in gameData.taskData) {
-		const task = gameData.taskData[taskName];
-		task.maxLevel = 0;
-	}
-
-	gameData.active_challenge = "";
+	resetFour();
 }
 
 export function applyMilestones() {
@@ -239,7 +216,7 @@ export function applyMilestones() {
 	}
 }
 
-export function rebirthReset(set_tab_to_jobs = true) {
+function resetOne(set_tab_to_jobs = true) {
 	if (set_tab_to_jobs) {
 		if (
 			(gameData.settings.selectedTab === Tab.METAVERSE &&
@@ -306,6 +283,8 @@ export function rebirthReset(set_tab_to_jobs = true) {
 		)
 			gameData.rebirthOneCount = 1;
 	}
+
+	gameData.rebirthOneTime = 0;
 }
 
 export function applyPerks() {
