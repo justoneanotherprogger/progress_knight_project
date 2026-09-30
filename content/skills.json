@@ -262,7 +262,7 @@
 							"kind": "resource",
 							"id": "gamespeed"
 						},
-						"base": 0.01,
+						"base": 0.005,
 						"formula": {
 							"kind": "power"
 						}
