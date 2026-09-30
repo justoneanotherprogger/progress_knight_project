@@ -1,5 +1,6 @@
 // rebirth.js — rebirth and milestone logic
 
+import { skillCategories } from "../dist/js/skills_data.js";
 import {
 	metaverseResetUnlocks,
 	metaverseUnlocks,
@@ -25,6 +26,12 @@ import {
 } from "./data.js";
 import { evilTranGain, getMetaversePerkPointsGain } from "./metaverse.js";
 import { setTab, Tab } from "./ui/navigation.js";
+
+// Рубрика зла переживает престижи 1 и 2, сбрасывается на третьем и выше.
+const darkMagicUnlocks = new Set([
+	"category_dark_magic",
+	...Object.keys(skillCategories.category_dark_magic.items),
+]);
 
 export function rebirthOne() {
 	gameData.rebirthOneCount += 1;
@@ -103,6 +110,10 @@ export function resetTwo(set_tab_to_jobs = true) {
 function resetThree() {
 	resetTwo();
 	gameData.rebirthThreeTime = 0;
+
+	for (const key of darkMagicUnlocks) {
+		gameData.requirements[key].completed = false;
+	}
 }
 
 function resetFour() {
@@ -264,7 +275,8 @@ function resetOne(set_tab_to_jobs = true) {
 		// кэшируются до метавселенского сброса, а не до любого.
 		if (
 			requirement.completed &&
-			(permanentUnlocks.includes(key) ||
+			(darkMagicUnlocks.has(key) ||
+				permanentUnlocks.includes(key) ||
 				metaverseUnlocks.includes(key) ||
 				metaverseResetUnlocks.includes(key))
 		)
