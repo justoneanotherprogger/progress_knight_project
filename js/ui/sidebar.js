@@ -20,7 +20,7 @@ import {
 	getHypercubeCap,
 	getMetaversePerkPointsGain,
 } from "../metaverse.js";
-import { isNextMilestoneInReach } from "../milestones.js";
+import { isMilestoneInReach } from "../milestones.js";
 import {
 	daysToYears,
 	format,
@@ -194,13 +194,13 @@ export function renderSideBar() {
 
 	// Embrace evil indicator
 	const embraceEvilButton = el("rebirthButton2").querySelector(".button");
-	if (isNextDarkMagicSkillInReach())
+	if (isNextDarkMagicSkillInReach() || isMilestoneInReach("evil"))
 		embraceEvilButton.classList.add("button-evil");
 	else embraceEvilButton.classList.remove("button-evil");
 
 	// Transcend for Next Milestone indicator
 	const transcendButton = el("rebirthButton3").querySelector(".button");
-	if (isNextMilestoneInReach())
+	if (isMilestoneInReach("essence"))
 		transcendButton.classList.add("button-transcend");
 	else transcendButton.classList.remove("button-transcend");
 

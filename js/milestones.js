@@ -1,5 +1,5 @@
 import { milestoneBaseData } from "../dist/js/milestones_data.js";
-import { getEssenceGain } from "./calculations.js";
+import { getEssenceGain, getEvilGain } from "./calculations.js";
 import { EssenceRequirement, EvilRequirement } from "./classes.js";
 import { gameData } from "./data.js";
 import { getQuerySelector } from "./ui/navigation.js";
@@ -28,18 +28,21 @@ export function createMilestoneRequirements() {
 	}
 }
 
-export function isNextMilestoneInReach() {
-	const totalEssence = gameData.essence.add(getEssenceGain());
+export function isMilestoneInReach(currency) {
+	const isEvil = currency === "evil";
+	const total = isEvil
+		? gameData.evil.add(getEvilGain())
+		: gameData.essence.add(getEssenceGain());
+	const RequirementClass = isEvil ? EvilRequirement : EssenceRequirement;
 
 	for (const key in milestoneData) {
-		const requirementObject = gameData.requirements[key];
-
-		if (requirementObject instanceof EssenceRequirement) {
-			if (!requirementObject.isCompleted()) {
-				if (totalEssence.gte(requirementObject.requirements[0].requirement))
-					return true;
-			}
-		}
+		const requirement = gameData.requirements[key];
+		if (
+			requirement instanceof RequirementClass &&
+			!requirement.isCompleted() &&
+			total.gte(requirement.requirements[0].requirement)
+		)
+			return true;
 	}
 	return false;
 }
