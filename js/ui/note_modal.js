@@ -50,3 +50,20 @@ export function initNoteModal() {
 		.getElementById("noteModalOk")
 		.addEventListener("click", hideNoteModal);
 }
+
+// Главы, пройденные в прошлом, показываем сразу и без модалки: иначе на
+// возврате в игру модалка вылезла бы на каждую из них. Смотрим completed
+// сразу после загрузки сейва — дальше его затирают расчёты, которые дёргают
+// isCompleted() мимо рендера (calculations.js), и признак «только что
+// появилась» становится неразличимым с «давно выполнена».
+export function revealSeenNotes() {
+	for (const key in gameData.requirements) {
+		if (!key.startsWith("req_rebirth_note")) continue;
+		const requirement = gameData.requirements[key];
+		if (!requirement.completed) continue;
+		for (const selector of requirement.querySelectors) {
+			for (const element of document.querySelectorAll(selector))
+				element.classList.remove("hidden");
+		}
+	}
+}

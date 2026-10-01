@@ -84,6 +84,7 @@ import {
 	setTabSettings,
 	updateFontSizeIndicator,
 } from "./ui/navigation.js";
+import { revealSeenNotes } from "./ui/note_modal.js";
 import { checkAdminPassword, initAdminPanel, setAdminSpeed } from "./utils.js";
 
 // Ошибка в коде — не сообщение игроку, а сигнал «игра сломалась»: останавливаем
@@ -175,6 +176,7 @@ createSkillRequirements();
 createMilestoneRequirements();
 
 loadGameData();
+revealSeenNotes();
 
 initializeUI();
 initAdminPanel();

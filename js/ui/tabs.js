@@ -451,10 +451,6 @@ export function renderSettings() {
 export function renderRequirements() {
 	for (const key in gameData.requirements) {
 		const requirement = gameData.requirements[key];
-		// Выполнено ещё до загрузки (из сейва) — не «только что появилось».
-		// permanent не сбрасывается, поэтому так отсекаются главы, пройденные
-		// в прошлый раз: на возврате в игру модалка не должна вылезать на них.
-		const wasCompleted = requirement.completed;
 		const visible = requirement.isCompleted();
 		for (const element of requirement.elements) {
 			// Класс пишется только при реальной смене: за весь забег
@@ -462,8 +458,7 @@ export function renderRequirements() {
 			// гоняется каждый кадр.
 			if (element.classList.contains("hidden") === visible) {
 				element.classList.toggle("hidden", !visible);
-				if (visible && !wasCompleted && element.tagName === "DETAILS")
-					showNoteModal(element);
+				if (visible && element.tagName === "DETAILS") showNoteModal(element);
 			}
 		}
 	}
