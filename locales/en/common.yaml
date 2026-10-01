@@ -128,6 +128,23 @@ rebirth_note_5_warning: "Transcend will only appear if you have the <b>Cosmic Re
 rebirth_note_6: 'You began mastering Cosmic Recollection, opening the path to transcension.'
 rebirth_note_7: You are starting to become way too powerful. The end of the universe may be near...
 rebirth_note_8: You have discovered the Metaverse!
+rebirth_note_start_title: Chapter 0. The very beginning
+rebirth_note_start: 'Hello. You have begun a new life: time passes while you watch the screen, and the numbers grow on their own.
+
+On top are the tabs: jobs, skills, holdings, settings. On the left is the sidebar: your age, resources, and pause.
+
+There are choices to make: you pick your job yourself by clicking a row in the jobs table, and it brings income. You toggle holdings on and off — they grant bonuses, but they eat coins every day. Skills grow on their own as their requirements are met.
+
+Such messages arrive on their own when a new stage begins. You can always reread them in the notes on the notes tab.'
+rebirth_note_0_title: Chapter 1. The Copper Amulet
+rebirth_note_1_title: Chapter 2. The Engraving
+rebirth_note_2_title: Chapter 3. The Eye
+rebirth_note_3_title: Chapter 4. Evil
+rebirth_note_4_title: Chapter 5. The Void
+rebirth_note_5_title: Chapter 6. Transcendence
+rebirth_note_6_title: Chapter 7. Echo
+rebirth_note_7_title: Chapter 8. The End of the Universe
+rebirth_note_8_title: Chapter 9. The Metaverse
 hypercube_cap_text: "Your <span class=\"color-hypercubes\">hypercubes</span> cap will be increased to <span class=\"color-hypercubes\"><span id=\"hypercubeCapDisplay\"></span></span>."
 perk_points_gain_text: "You will gain <span class=\"color-perk-points\"><span id=\"perkPointsGainDisplay\"></span> Metaverse perk points</span>."
 

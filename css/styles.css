@@ -808,6 +808,31 @@ button:focus {
 	visibility: visible;
 }
 
+.note {
+	margin-bottom: 0.9em;
+}
+
+.note summary {
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.note[open] summary {
+	margin-bottom: 0.4em;
+}
+
+/* Текст главы приходит из локали с переносами строк между абзацами, а HTML
+   сворачивает их в пробелы — без этого четыре абзаца главы 0 слиплись бы в
+   один. */
+.note-body {
+	white-space: pre-line;
+}
+
+.note-extra {
+	margin-top: 0.6em;
+	white-space: pre-line;
+}
+
 /* .hidden объявлен последним намеренно: он равен по специфичности любому
    одиночному классу с display, и побеждает только будучи ниже. Инлайн-стиль
    элемента сильнее любого правила без !important, поэтому скрываемое прячется
