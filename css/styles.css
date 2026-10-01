@@ -828,9 +828,15 @@ button:focus {
 	white-space: pre-line;
 }
 
+/* Отступы hint-box, info-box и warning-box складывались с отступом главы и
+   давали провал в полосе: вложенный блок не схлопывает margin'ы с
+   родителем, как соседние элементы плоского списка. */
 .note-extra {
 	margin-top: 0.6em;
-	white-space: pre-line;
+}
+
+.note-extra > * {
+	margin-bottom: 0;
 }
 
 /* .hidden объявлен последним намеренно: он равен по специфичности любому
