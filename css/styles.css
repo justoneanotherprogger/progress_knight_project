@@ -360,15 +360,28 @@ button:focus {
    жмётся. */
 .rebirth-reset {
 	display: flex;
-	align-items: center;
+	align-items: stretch;
 	gap: 0.4em;
 }
 
+/* Кнопка забирает всю ширину ряда, вопросик живёт своей полосой. min-width: 0
+   обязателен: у .w3-button white-space: nowrap, и без него flex-элемент не
+   сжимается ниже содержимого — длинная подпись метавселенной вытолкнула бы
+   вопросик за пределы панели. */
+.rebirth-reset > .w3-button {
+	flex: 1;
+	min-width: 0;
+}
+
 .reset-help {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 	cursor: help;
 	color: gray;
 	font-weight: bold;
 	flex-shrink: 0;
+	padding: 0.15em 0.5em;
 }
 
 /* Подтверждение экспорта: под кнопкой, а не справа — там поле ввода, и текст
