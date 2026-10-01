@@ -143,7 +143,9 @@ export function serialize(gameData) {
 	dto.challenges = serializeMap(gameData.challenges);
 
 	// Таймеры/состояние
-	for (const key of BOOLEAN_FIELDS) if (gameData[key]) dto[key] = 1;
+	// 0 пишем явно: иначе «игрок выключил» и «поля не было в старом сейве»
+	// неразличимы, и загрузка воскресит выключенный тумблер.
+	for (const key of BOOLEAN_FIELDS) dto[key] = gameData[key] ? 1 : 0;
 
 	// Выбор игрока — только id
 	dto.currentJob = findTaskId(gameData, gameData.currentJob);
@@ -233,7 +235,8 @@ export function deserialize(dto, gameData) {
 	// Ресурсы: отсутствующий ключ = 0
 	for (const key of DECIMAL_FIELDS) gameData[key] = parseDecimal(dto[key]);
 	for (const key of NUMBER_FIELDS) gameData[key] = Number(dto[key] ?? 0);
-	for (const key of BOOLEAN_FIELDS) gameData[key] = !!dto[key];
+	for (const key of BOOLEAN_FIELDS)
+		gameData[key] = dto[key] != null ? !!dto[key] : gameData[key];
 	gameData.active_challenge = dto.active_challenge ?? "";
 
 	// Мета-прогресс: ключи из контента, отсутствующие = 0/false
