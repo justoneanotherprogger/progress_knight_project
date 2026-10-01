@@ -6,6 +6,7 @@
 
 import { t } from "../../dist/js/translations.js";
 import { gameData } from "../data.js";
+import { saveGameData } from "../save.js";
 
 // Кнопку подтверждения глушим: без этого модалка закрывается тем же кликом,
 // которым игрок нажал на вкладку или кнопку под ней.
@@ -43,6 +44,10 @@ function hideNoteModal() {
 	document.getElementById("noteModal").classList.add("hidden");
 	if (pausedByModal) gameData.paused = false;
 	pausedByModal = false;
+	// Сейв по кнопке, а не по автотаймеру: модалка ставит паузу, и если
+	// страница перезагрузится в следующие 3 секунды до срабатывания
+	// saveloop, пауза переживёт перезагрузку и игра загрузится на паузе.
+	saveGameData();
 }
 
 export function initNoteModal() {
