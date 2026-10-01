@@ -21,6 +21,7 @@ import {
 	setStickySidebar,
 	Tab,
 } from "./navigation.js";
+import { initNoteModal } from "./note_modal.js";
 import { renderSideBar } from "./sidebar.js";
 import {
 	createAllRows,
@@ -62,6 +63,8 @@ export function initializeUI() {
 		const requirement = gameData.requirements[key];
 		requirement.queryElements();
 	}
+
+	initNoteModal();
 
 	refreshSettingsButtons();
 	refreshLangButtons();

@@ -1,0 +1,52 @@
+// ui/note_modal.js — модалка новой заметки.
+//
+// Модалка одна и переиспользуемая: текст главы копируется в неё из разметки
+// заметки, поэтому заводить ключ локали на каждую главу не нужно. Показ
+// ловит renderRequirements() в момент, когда глава только что появилась.
+
+import { t } from "../../dist/js/translations.js";
+import { gameData } from "../data.js";
+
+// Кнопку подтверждения глушим: без этого модалка закрывается тем же кликом,
+// которым игрок нажал на вкладку или кнопку под ней.
+const CONFIRM_DELAY_MS = 1500;
+
+let pausedByModal = false;
+let confirmTimer = null;
+
+export function showNoteModal(note) {
+	const title = note.querySelector("summary")?.textContent ?? "";
+	const body = note.querySelector(".note-body")?.innerHTML ?? "";
+	const extras = [...note.querySelectorAll(".note-extra > *")]
+		.map((element) => element.outerHTML)
+		.join("");
+
+	document.getElementById("noteModalTitle").textContent = title;
+	document.getElementById("noteModalBody").innerHTML = body + extras;
+	document.getElementById("noteModalOk").textContent = t("note_modal_ok");
+
+	// Игрок мог поставить паузу сам: тогда модалка не должна её снимать.
+	pausedByModal = !gameData.paused;
+	gameData.paused = true;
+
+	const okButton = document.getElementById("noteModalOk");
+	okButton.disabled = true;
+	document.getElementById("noteModal").classList.remove("hidden");
+
+	clearTimeout(confirmTimer);
+	confirmTimer = setTimeout(() => {
+		okButton.disabled = false;
+	}, CONFIRM_DELAY_MS);
+}
+
+function hideNoteModal() {
+	document.getElementById("noteModal").classList.add("hidden");
+	if (pausedByModal) gameData.paused = false;
+	pausedByModal = false;
+}
+
+export function initNoteModal() {
+	document
+		.getElementById("noteModalOk")
+		.addEventListener("click", hideNoteModal);
+}

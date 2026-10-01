@@ -41,6 +41,7 @@ import {
 } from "../utils.js";
 import { fitText, renderProgressBar, setHTML } from "./helpers.js";
 import { getRowByName } from "./navigation.js";
+import { showNoteModal } from "./note_modal.js";
 
 // Элементы строки статичны: DOM не пересоздаётся, а getRowByName +
 // querySelector — по три поиска на строку каждый кадр на ~295 строк.
@@ -450,13 +451,20 @@ export function renderSettings() {
 export function renderRequirements() {
 	for (const key in gameData.requirements) {
 		const requirement = gameData.requirements[key];
+		// Выполнено ещё до загрузки (из сейва) — не «только что появилось».
+		// permanent не сбрасывается, поэтому так отсекаются главы, пройденные
+		// в прошлый раз: на возврате в игру модалка не должна вылезать на них.
+		const wasCompleted = requirement.completed;
 		const visible = requirement.isCompleted();
 		for (const element of requirement.elements) {
 			// Класс пишется только при реальной смене: за весь забег
 			// требование закрывается максимум один раз, а отрисовка
 			// гоняется каждый кадр.
-			if (element.classList.contains("hidden") === visible)
+			if (element.classList.contains("hidden") === visible) {
 				element.classList.toggle("hidden", !visible);
+				if (visible && !wasCompleted && element.tagName === "DETAILS")
+					showNoteModal(element);
+			}
 		}
 	}
 }

@@ -145,6 +145,8 @@ rebirth_note_5_title: Chapter 6. Transcendence
 rebirth_note_6_title: Chapter 7. Echo
 rebirth_note_7_title: Chapter 8. The End of the Universe
 rebirth_note_8_title: Chapter 9. The Metaverse
+
+note_modal_ok: Got it
 hypercube_cap_text: "Your <span class=\"color-hypercubes\">hypercubes</span> cap will be increased to <span class=\"color-hypercubes\"><span id=\"hypercubeCapDisplay\"></span></span>."
 perk_points_gain_text: "You will gain <span class=\"color-perk-points\"><span id=\"perkPointsGainDisplay\"></span> Metaverse perk points</span>."
 

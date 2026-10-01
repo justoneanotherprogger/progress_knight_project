@@ -839,6 +839,39 @@ button:focus {
 	margin-bottom: 0;
 }
 
+/* Модалка новой заметки. Фон — затемнение, а z-index выше тултипа (100),
+   чтобы подсказка на кнопке не перекрылась, если игрок навёл мышь в момент
+   появления главы. */
+.note-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 200;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0, 0, 0, 0.6);
+}
+
+.note-modal-box {
+	max-width: 40em;
+	padding: 1em;
+}
+
+.note-modal-title {
+	font-weight: bold;
+	margin-bottom: 0.8em;
+}
+
+/* Текст главы приходит из локали с переносами строк между абзацами. */
+.note-modal-body {
+	white-space: pre-line;
+}
+
+.note-modal-ok {
+	width: 100%;
+	margin-top: 1em;
+}
+
 /* .hidden объявлен последним намеренно: он равен по специфичности любому
    одиночному классу с display, и побеждает только будучи ниже. Инлайн-стиль
    элемента сильнее любого правила без !important, поэтому скрываемое прячется
