@@ -345,6 +345,18 @@ button:focus {
 	transition: opacity 0.5s;
 }
 
+/* Тултип появляется по наведению на сам вопросик, а не на кнопку: клик по
+   кнопке — это ресет, а подсказка не должна перехватывать наведение на всё.
+   Сайдбар у левого края, поэтому вправо (left: 102%) плашка ушла бы за край
+   экрана, а вниз перекрыла бы следующую кнопку. Растём вверх и центрируемся
+   над знаком. */
+.tooltip-up .tooltipText {
+	top: auto;
+	bottom: 105%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
 .tooltip:hover .tooltipText {
 	visibility: visible;
 	opacity: 0.8;
@@ -354,6 +366,21 @@ button:focus {
    не должны показывать пустую плашку. */
 .tooltip .tooltipText:empty {
 	display: none;
+}
+
+/* Ряд ресетной кнопки с вопросиком: кнопка тянется на всю ширину, вопросик
+   жмётся. */
+.rebirth-reset {
+	display: flex;
+	align-items: center;
+	gap: 0.4em;
+}
+
+.reset-help {
+	cursor: help;
+	color: gray;
+	font-weight: bold;
+	flex-shrink: 0;
 }
 
 /* Подтверждение экспорта: под кнопкой, а не справа — там поле ввода, и текст

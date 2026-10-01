@@ -247,3 +247,10 @@ effect_essence_gain: Essence Gain
 effect_essence_evil_gain: Essence + Evil Gain
 effect_dark_matter_gain: Dark Matter Gain
 effect_max_level_multiplier: Max Lvl Multiplier
+
+# Tooltips: Rebirths
+rebirth_note_2_info: "By touching the eyeball, you will be reborn and have to restart life again, losing all your levels and coins. However, you will gain <b>xp multipliers</b> for your heroes and skills equivalent to: <b>1 + the max level of the hero or skill / 10.</b> This means you will learn everything again much more quickly than you did in your previous life."
+rebirth_note_3_info: "If you decide to embrace <span class=\"color-evil\">evil</span>, all of your levels, coins and even max levels will be reset. You will be reborn as a fresh slate. However, you will unlock a new line of skills and gain evil, which will heavily impact your future lives."
+rebirth_note_5_info: "If you decide to <b>transcend</b>, you will be reborn once again, losing all your coins, <b><span class=\"color-evil\">evil</span></b>, current and max levels. However, you will gain essence, along with new skills that will boost you even further in your journey."
+rebirth_note_7_info: "If you decide to <b>collapse the universe</b>, all of your levels, coins, max levels, <span class=\"color-evil\">evil</span>, and <b><span class=\"color-essence\">essence</span></b> will be reset. You will be reborn as a fresh slate in a new universe, with no memory of milestones and challenges from any of your past selves. In exchange, you will unlock a third new line of skills and gain Dark Matter, which will boost you much further in your journey across the multiverse."
+rebirth_note_8_info: When you go to the Metaverse, you will lose everything that you have earned before. You will start from scratch, but over time you will become far superior.

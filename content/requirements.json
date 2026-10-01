@@ -68,11 +68,6 @@
 			"selectors": ["#rebirth_note_2"],
 			"requirements": [{ "requirement": 65 }]
 		},
-		"req_rebirth_note_2_info": {
-			"type": "age",
-			"selectors": ["#rebirth_note_2_info"],
-			"requirements": [{ "requirement": 65 }]
-		},
 		"req_rebirth_note_2_hint": {
 			"type": "age",
 			"selectors": ["#rebirth_note_2_hint"],
@@ -86,11 +81,6 @@
 		"req_rebirth_note_3_hint": {
 			"type": "age",
 			"selectors": ["#rebirth_note_3_hint"],
-			"requirements": [{ "requirement": 200 }]
-		},
-		"req_rebirth_note_3_info": {
-			"type": "age",
-			"selectors": ["#rebirth_note_3_info"],
 			"requirements": [{ "requirement": 200 }]
 		},
 		"req_rebirth_note_4": {
@@ -118,11 +108,6 @@
 			"selectors": ["#rebirth_note_5_unlock"],
 			"requirements": [{ "requirement": 10000 }]
 		},
-		"req_rebirth_note_5_info": {
-			"type": "age",
-			"selectors": ["#rebirth_note_5_info"],
-			"requirements": [{ "requirement": 10000 }]
-		},
 		"req_rebirth_note_5_warning": {
 			"type": "age",
 			"selectors": ["#rebirth_note_5_warning"],
@@ -140,19 +125,9 @@
 			"selectors": ["#rebirth_note_7"],
 			"requirements": [{ "requirement": 50000000000.0 }]
 		},
-		"req_rebirth_note_7_info": {
-			"type": "essence",
-			"selectors": ["#rebirth_note_7_info"],
-			"requirements": [{ "requirement": 50000000000.0 }]
-		},
 		"req_rebirth_note_8": {
 			"type": "essence",
 			"selectors": ["#rebirth_note_8"],
-			"requirements": [{ "requirement": 1e60 }]
-		},
-		"req_rebirth_note_8_info": {
-			"type": "essence",
-			"selectors": ["#rebirth_note_8_info"],
 			"requirements": [{ "requirement": 1e60 }]
 		},
 		"req_hypercube_cap_text": {

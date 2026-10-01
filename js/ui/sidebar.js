@@ -159,13 +159,10 @@ export function renderSideBar() {
 	setText("greedDisplay", format(getGreed()));
 
 	setText("evilDisplay", format(gameData.evil));
-	setTextAll("#evilGainDisplay", format(getEvilGain()));
 
 	setText("essenceDisplay", format(gameData.essence));
-	setTextAll("#essenceGainDisplay", format(getEssenceGain()));
 
 	setText("darkMatterDisplay", format(gameData.dark_matter));
-	setTextAll("#darkMatterGainDisplay", format(getDarkMatterGain()));
 
 	setText("darkOrbsDisplay", formatTreshold(gameData.dark_orbs));
 
