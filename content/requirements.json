@@ -51,7 +51,7 @@
 		"req_rebirth_tab_button": {
 			"type": "age",
 			"selectors": ["#rebirthTabButton"],
-			"requirements": [{ "requirement": 25 }]
+			"requirements": [{ "requirement": 0 }]
 		},
 		"req_rebirth_note_start": {
 			"type": "age",
