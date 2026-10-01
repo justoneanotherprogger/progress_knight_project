@@ -345,18 +345,6 @@ button:focus {
 	transition: opacity 0.5s;
 }
 
-/* Тултип появляется по наведению на сам вопросик, а не на кнопку: клик по
-   кнопке — это ресет, а подсказка не должна перехватывать наведение на всё.
-   Сайдбар у левого края, поэтому вправо (left: 102%) плашка ушла бы за край
-   экрана, а вниз перекрыла бы следующую кнопку. Растём вверх и центрируемся
-   над знаком. */
-.tooltip-up .tooltipText {
-	top: auto;
-	bottom: 105%;
-	left: 50%;
-	transform: translateX(-50%);
-}
-
 .tooltip:hover .tooltipText {
 	visibility: visible;
 	opacity: 0.8;
@@ -773,6 +761,33 @@ button:focus {
 
 .toggle .toggle-label {
 	font-size: small;
+}
+
+/* Слой тултипов живёт вне сайдбара: у #info overflow-y: auto включает
+   прокрутку и по горизонтали, а скрытая плашка (visibility: hidden)
+   остаётся в раскладке и раздувала ширину сайдбара. Здесь плашка одна на
+   всех и показывается по наведению на вопросик у кнопки ресета. */
+.tooltip-layer {
+	position: fixed;
+	z-index: 100;
+	width: 32em;
+	padding: 0.5em;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	border-style: solid;
+	border-width: 3px;
+	border-color: rgb(92, 92, 247);
+	border-radius: 6px;
+	opacity: 0;
+	visibility: hidden;
+	transform: translate(-50%, -100%);
+	pointer-events: none;
+}
+
+.tooltip-layer.visible {
+	opacity: 0.8;
+	visibility: visible;
 }
 
 /* .hidden объявлен последним намеренно: он равен по специфичности любому

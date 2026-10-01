@@ -269,6 +269,44 @@ window.addEventListener("resize", updateQuickBarHeight, { passive: true });
 window.addEventListener("scroll", updateQuickBarHeight, { passive: true });
 updateQuickBarHeight();
 
+// Тултип ресета живёт в слое вне сайдбара: #info прокручивается, а скрытая
+// плашка в его раскладке раздувала горизонтальную прокрутку. Позиция
+// берётся из вопросика, а пересчитывается и при прокрутке панели — иначе
+// плашка оторвалась бы от знака. Прокрутка страницы не нужна: панель sticky.
+const REBIRTH_TOOLTIPS = [
+	["rebirthBtn1", "rebirth_note_2_info"],
+	["rebirthBtn2", "rebirth_note_3_info"],
+	["rebirthBtn3", "rebirth_note_5_info"],
+	["rebirthBtn4", "rebirth_note_7_info"],
+	["rebirthBtn5", "rebirth_note_8_info"],
+];
+
+const tooltipLayer = el("tooltipLayer");
+let activeHelp = null;
+
+function placeTooltip() {
+	if (activeHelp == null) return;
+	const rect = activeHelp.getBoundingClientRect();
+	tooltipLayer.style.left = `${rect.left + rect.width / 2}px`;
+	tooltipLayer.style.top = `${rect.top}px`;
+}
+
+for (const [buttonId, key] of REBIRTH_TOOLTIPS) {
+	const help = el(buttonId).parentElement.querySelector(".reset-help");
+	help.addEventListener("mouseenter", () => {
+		activeHelp = help;
+		tooltipLayer.innerHTML = t(key);
+		placeTooltip();
+		tooltipLayer.classList.add("visible");
+	});
+	help.addEventListener("mouseleave", () => {
+		activeHelp = null;
+		tooltipLayer.classList.remove("visible");
+	});
+}
+
+el("info").addEventListener("scroll", placeTooltip, { passive: true });
+
 export const resourceScaleCache = { key: "", desired: 0, scale: 1 };
 export const RESOURCE_SCALE_INTERVAL = 300;
 
