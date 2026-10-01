@@ -862,9 +862,14 @@ button:focus {
 	margin-bottom: 0.8em;
 }
 
-/* Текст главы приходит из локали с переносами строк между абзацами. */
-.note-modal-body {
-	white-space: pre-line;
+/* Абзацы текста главы: между ними нужен зазор, переносы строк схлопнуты
+   в пробелы, поэтому отступ задаёт сам тег. */
+.note-modal-body p {
+	margin: 0 0 0.8em;
+}
+
+.note-modal-body p:last-child {
+	margin-bottom: 0;
 }
 
 .note-modal-ok {

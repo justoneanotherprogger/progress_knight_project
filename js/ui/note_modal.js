@@ -14,6 +14,18 @@ const CONFIRM_DELAY_MS = 1500;
 let pausedByModal = false;
 let confirmTimer = null;
 
+// Текст главы приходит из локали одним куском, где абзацы разделены
+// переносом строки. В HTML переносы схлопываются, поэтому режем их на
+// абзацы сами: иначе четыре абзаца главы 0 читаются как один.
+function toParagraphs(html) {
+	return html
+		.split("\n")
+		.map((chunk) => chunk.trim())
+		.filter((chunk) => chunk.length > 0)
+		.map((chunk) => `<p>${chunk}</p>`)
+		.join("");
+}
+
 export function showNoteModal(note) {
 	const title = note.querySelector("summary")?.textContent ?? "";
 	const body = note.querySelector(".note-body")?.innerHTML ?? "";
@@ -22,7 +34,8 @@ export function showNoteModal(note) {
 		.join("");
 
 	document.getElementById("noteModalTitle").textContent = title;
-	document.getElementById("noteModalBody").innerHTML = body + extras;
+	document.getElementById("noteModalBody").innerHTML =
+		toParagraphs(body) + extras;
 	document.getElementById("noteModalOk").textContent = t("note_modal_ok");
 
 	// Игрок мог поставить паузу сам: тогда модалка не должна её снимать.
