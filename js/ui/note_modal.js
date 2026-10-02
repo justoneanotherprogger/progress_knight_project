@@ -5,6 +5,7 @@
 // ловит renderRequirements() в момент, когда глава только что появилась.
 
 import { t } from "../../dist/js/translations.js";
+import { setModalPause } from "../calculations.js";
 import { gameData } from "../data.js";
 import { saveGameData } from "../save.js";
 
@@ -12,7 +13,6 @@ import { saveGameData } from "../save.js";
 // которым игрок нажал на вкладку или кнопку под ней.
 const CONFIRM_DELAY_MS = 1500;
 
-let pausedByModal = false;
 let confirmTimer = null;
 
 export function showNoteModal(note) {
@@ -26,9 +26,7 @@ export function showNoteModal(note) {
 	document.getElementById("noteModalBody").innerHTML = body + extras;
 	document.getElementById("noteModalOk").textContent = t("note_modal_ok");
 
-	// Игрок мог поставить паузу сам: тогда модалка не должна её снимать.
-	pausedByModal = !gameData.paused;
-	gameData.paused = true;
+	setModalPause(true);
 
 	const okButton = document.getElementById("noteModalOk");
 	okButton.disabled = true;
@@ -42,11 +40,10 @@ export function showNoteModal(note) {
 
 function hideNoteModal() {
 	document.getElementById("noteModal").classList.add("hidden");
-	if (pausedByModal) gameData.paused = false;
-	pausedByModal = false;
-	// Сейв по кнопке, а не по автотаймеру: модалка ставит паузу, и если
-	// страница перезагрузится в следующие 3 секунды до срабатывания
-	// saveloop, пауза переживёт перезагрузку и игра загрузится на паузе.
+	setModalPause(false);
+	// Страховка: автосейв раз в 3 секунды, а игрок может закрыть вкладку
+	// сразу после подтверждения. Пауза модалки в сейв не пишется, но
+	// сам прогресс записать сразу не помешает.
 	saveGameData();
 }
 
