@@ -40,7 +40,6 @@ import {
 	fitText,
 	renderProgressBar,
 	setRebirthButton,
-	setTextAll,
 	updateButtonHTML,
 	updateButtonText,
 } from "./helpers.js";
@@ -173,13 +172,6 @@ export function renderSideBar() {
 	);
 
 	setText("hypercubesDisplay", formatTreshold(gameData.hypercubes));
-
-	setTextAll("#hypercubeCapDisplay", format(getHypercubeCap(1)));
-
-	setTextAll(
-		"#perkPointsGainDisplay",
-		formatTreshold(getMetaversePerkPointsGain()),
-	);
 
 	// Записываем hidden только при реальной смене: обёртка может схлопнуться
 	// между mousedown и mouseup и съесть клик по кнопке ребёрна.

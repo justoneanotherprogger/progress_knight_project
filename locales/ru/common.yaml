@@ -147,9 +147,6 @@ rebirth_note_8_title: Глава 9. Метавселенная
 
 note_modal_ok: Понятно
 
-hypercube_cap_text: 'Ваш лимит <span class="color-hypercubes">гиперкубов</span> будет увеличен до <span class="color-hypercubes"><span id="hypercubeCapDisplay"></span></span>.'
-perk_points_gain_text: 'Вы получите <span class="color-perk-points"><span id="perkPointsGainDisplay"></span> очков даров Метавселенной</span>.'
-
 # Settings
 stats_tab_header: Статистика
 settings_tab_header: Настройки

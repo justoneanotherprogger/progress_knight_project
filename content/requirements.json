@@ -150,16 +150,6 @@
 			"selectors": ["[data-note=\"rebirth_note_8\"]"],
 			"requirements": [{ "requirement": 1e60 }]
 		},
-		"req_hypercube_cap_text": {
-			"type": "essence",
-			"selectors": ["#hypercube_cap_text"],
-			"requirements": [{ "requirement": 1e60 }]
-		},
-		"req_perk_points_gain_text": {
-			"type": "essence",
-			"selectors": ["#perk_points_gain_text"],
-			"requirements": [{ "requirement": 1e60 }]
-		},
 		"req_rebirth_button1": {
 			"type": "age",
 			"selectors": ["#rebirthButton1"],
