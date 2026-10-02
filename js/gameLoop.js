@@ -242,6 +242,11 @@ export function increaseCoins() {
 }
 
 export function increaseDays() {
+	// Пауза игрока и открытая модалка останавливают и старение. Без этой
+	// проверки дни шли мимо canSimulate(), и пока модалка висела на экране,
+	// игрок успевал состариться на несколько лет.
+	if (!canSimulate()) return;
+
 	gameData.days += applySpeed(1);
 	gameData.totalDays += applySpeed(1);
 	const lifespan = getLifespan();
