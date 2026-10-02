@@ -378,6 +378,15 @@ button:focus {
 	font-size: small;
 }
 
+#income-resource {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	min-width: fit-content;
+}
+
 .inline {
 	display: inline-block;
 }
