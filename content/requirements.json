@@ -58,6 +58,11 @@
 			"selectors": ["[data-note=\"rebirth_note_start\"]"],
 			"requirements": [{ "requirement": 0 }]
 		},
+		"req_rebirth_note_challenges": {
+			"type": "evil",
+			"selectors": ["[data-note=\"rebirth_note_challenges\"]"],
+			"requirements": [{ "requirement": 10000 }]
+		},
 		"req_rebirth_note_0": {
 			"type": "age",
 			"selectors": ["[data-note=\"rebirth_note_0\"]"],

@@ -132,6 +132,8 @@ rebirth_note_start_title: Chapter 0. The very beginning
 rebirth_note_start: '<p>Hello. You have begun a new life: time passes while you watch the screen, and the numbers grow on their own.</p>
 <p>There are choices to make: you pick your job yourself by clicking a row in the jobs table, and it brings income. You toggle holdings on and off — they grant bonuses, but they eat coins every day. Skills grow on their own as their requirements are met.</p>
 <p>Such messages arrive on their own when a new stage begins. You can always reread them in the notes on the notes tab.</p>'
+rebirth_note_challenges_title: Interlude. Challenges
+rebirth_note_challenges: '<p>Challenges are now available: you can voluntarily make the game harder in exchange for a reward multiplier.</p>'
 rebirth_note_0_title: Chapter 1. The Copper Amulet
 rebirth_note_1_title: Chapter 2. The Engraving
 rebirth_note_2_title: Chapter 3. The Eye
