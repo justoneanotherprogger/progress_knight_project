@@ -93,6 +93,11 @@
 			"selectors": ["[data-note=\"rebirth_note_3_hint\"]"],
 			"requirements": [{ "requirement": 200 }]
 		},
+		"req_rebirth_note_3_milestones": {
+			"type": "age",
+			"selectors": ["[data-note=\"rebirth_note_3_milestones\"]"],
+			"requirements": [{ "requirement": 200 }]
+		},
 		"req_rebirth_note_4": {
 			"type": "age",
 			"selectors": ["[data-note=\"rebirth_note_4\"]"],
