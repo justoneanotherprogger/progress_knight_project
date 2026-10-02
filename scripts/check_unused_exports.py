@@ -4,8 +4,8 @@
 Biome counts an export as a use, and the code graph cannot see the HTML bridge,
 so a function nobody references any more stays in js/ forever and nobody finds
 out: it is exported, therefore "used", therefore invisible to every linter. This
-script counts word-boundary references to every export across the whole
-repository and fails the build on a name nothing points at.
+script counts word-boundary references to every export across the source
+directories and fails the build on a name nothing points at.
 
 Run: python scripts/check_unused_exports.py
 """
@@ -18,30 +18,29 @@ ROOT = Path(__file__).resolve().parent.parent
 JS = ROOT / "js"
 
 EXPORT = re.compile(
-    r"^\s*export\s+(?:async\s+)?(?:function|const|let|class)\s+([A-Za-z_$][\w$]*)",
+    r"^[ \t]*export\s+(?:async\s+)?(?:function|const|let|class)\s+([A-Za-z_$][\w$]*)",
     re.MULTILINE,
 )
 
-# A reference can sit in a module, a template, a build script or a doc, so the
-# search is repo-wide. The extension list also keeps binaries out of the walk —
-# reading them would only raise decode errors, not find references.
+# A reference can sit in a module, a template or a build script. The walk is a
+# whitelist, not a blacklist: everything generated or third-party lives outside
+# these directories, and a stale snapshot there counts as a reference and hides
+# dead exports — graphify-out/ alone kept one dead export alive for weeks.
 EXTENSIONS = {".js", ".html", ".py", ".json", ".yaml", ".yml", ".css", ".md", ".txt"}
-EXCLUDE_DIRS = {".git", "node_modules", "dist", "vendor", "__pycache__", ".glia"}
-# Generated and served as /, so its references are the templates' business.
-EXCLUDE_FILES = {"index.html"}
+SEARCH_DIRS = ("js", "templates", "scripts")
+SEARCH_ROOT_FILES = ("build.py",)
 
 
 def collect_files() -> list[Path]:
     found: list[Path] = []
-    for path in ROOT.rglob("*"):
-        if not path.is_file() or path.suffix.lower() not in EXTENSIONS:
-            continue
-        rel = path.relative_to(ROOT).as_posix()
-        if any(part in EXCLUDE_DIRS for part in rel.split("/")):
-            continue
-        if rel in EXCLUDE_FILES:
-            continue
-        found.append(path)
+    for name in SEARCH_DIRS:
+        for path in (ROOT / name).rglob("*"):
+            if path.is_file() and path.suffix.lower() in EXTENSIONS:
+                found.append(path)
+    for name in SEARCH_ROOT_FILES:
+        path = ROOT / name
+        if path.is_file() and path.suffix.lower() in EXTENSIONS:
+            found.append(path)
     return sorted(found)
 
 
