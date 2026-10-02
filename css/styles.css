@@ -45,26 +45,6 @@ table {
 	padding: 0.4em 0.8em;
 }
 
-.w3-margin {
-	margin: 0.8em;
-}
-
-.w3-margin-top {
-	margin-top: 0.8em;
-}
-
-.w3-margin-bottom {
-	margin-bottom: 0.8em;
-}
-
-.w3-margin-left {
-	margin-left: 0.8em;
-}
-
-.w3-margin-right {
-	margin-right: 0.8em;
-}
-
 .w3-bordered tr {
 	border-bottom: 0.05em solid #ddd;
 }
