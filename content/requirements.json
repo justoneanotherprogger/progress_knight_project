@@ -140,6 +140,11 @@
 			"selectors": ["[data-note=\"rebirth_note_7\"]"],
 			"requirements": [{ "requirement": 50000000000.0 }]
 		},
+		"req_rebirth_note_7_dark_matter": {
+			"type": "essence",
+			"selectors": ["[data-note=\"rebirth_note_7_dark_matter\"]"],
+			"requirements": [{ "requirement": 5e10 }]
+		},
 		"req_rebirth_note_8": {
 			"type": "essence",
 			"selectors": ["[data-note=\"rebirth_note_8\"]"],

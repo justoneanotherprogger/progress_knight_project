@@ -34,7 +34,8 @@
 		"req_rebirth_note_4_hint",
 		"req_rebirth_note_4_unlock",
 		"req_rebirth_note_5_unlock",
-		"req_rebirth_note_5_warning"
+		"req_rebirth_note_5_warning",
+		"req_rebirth_note_7_dark_matter"
 	],
 	"metaverseUnlocks": [
 		"req_reduce_boost_cooldown_altar",
