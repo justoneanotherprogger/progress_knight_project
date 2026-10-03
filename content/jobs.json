@@ -287,28 +287,28 @@
 					"name": "job_snow_crash",
 					"maxXp": "1e330",
 					"income": 2.5e52,
-					"heroxp": 1015,
+					"heroxp": 300,
 					"tooltip": "job_snow_crash_tooltip"
 				},
 				"job_player_one": {
 					"name": "job_player_one",
 					"maxXp": "1e350",
 					"income": 2.5e54,
-					"heroxp": 1200,
+					"heroxp": 305,
 					"tooltip": "job_player_one_tooltip"
 				},
 				"job_lost_in_the_dark": {
 					"name": "job_lost_in_the_dark",
 					"maxXp": "1e370",
 					"income": 2.5e58,
-					"heroxp": 1358,
+					"heroxp": 310,
 					"tooltip": "job_lost_in_the_dark_tooltip"
 				},
 				"job_omega": {
 					"name": "job_omega",
 					"maxXp": "1e390",
 					"income": 2.5e62,
-					"heroxp": 3120,
+					"heroxp": 315,
 					"tooltip": "job_omega_tooltip"
 				}
 			}
