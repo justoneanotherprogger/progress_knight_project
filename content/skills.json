@@ -6,7 +6,7 @@
 			"items": {
 				"skill_concentration": {
 					"name": "skill_concentration_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 36,
 					"effect": {
 						"type": "xp",
@@ -26,7 +26,7 @@
 				},
 				"skill_productivity": {
 					"name": "skill_productivity_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 37,
 					"effect": {
 						"type": "xp",
@@ -51,7 +51,7 @@
 				},
 				"skill_bargaining": {
 					"name": "skill_bargaining_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 38,
 					"effect": {
 						"type": "expense_reduction",
@@ -79,7 +79,7 @@
 				},
 				"skill_meditation": {
 					"name": "skill_meditation_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 39,
 					"effect": {
 						"type": "multiply",
@@ -115,7 +115,7 @@
 			"items": {
 				"skill_strength": {
 					"name": "skill_strength_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 40,
 					"effect": {
 						"type": "income",
@@ -136,7 +136,7 @@
 				},
 				"skill_battle_tactics": {
 					"name": "skill_battle_tactics_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 41,
 					"effect": {
 						"type": "xp",
@@ -162,7 +162,7 @@
 				},
 				"skill_muscle_memory": {
 					"name": "skill_muscle_memory_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 42,
 					"effect": {
 						"type": "xp",
@@ -198,7 +198,7 @@
 			"items": {
 				"skill_mana_control": {
 					"name": "skill_mana_control_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 46,
 					"effect": {
 						"type": "xp",
@@ -228,7 +228,7 @@
 				},
 				"skill_life_essence": {
 					"name": "skill_life_essence_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 82,
 					"effect": {
 						"type": "multiply",
@@ -254,7 +254,7 @@
 				},
 				"skill_time_warping": {
 					"name": "skill_time_warping_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 82,
 					"effect": {
 						"type": "multiply",
@@ -280,7 +280,7 @@
 				},
 				"skill_astral_body": {
 					"name": "skill_astral_body_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 100,
 					"effect": {
 						"type": "multiply",
@@ -306,7 +306,7 @@
 				},
 				"skill_temporal_dimension": {
 					"name": "skill_temporal_dimension_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 115,
 					"effect": {
 						"type": "multiply",
@@ -332,7 +332,7 @@
 				},
 				"skill_all_seeing_eye": {
 					"name": "skill_all_seeing_eye_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 120,
 					"effect": {
 						"type": "income",
@@ -362,7 +362,7 @@
 				},
 				"skill_brainwashing": {
 					"name": "skill_brainwashing_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 145,
 					"effect": {
 						"type": "expense_reduction",
@@ -396,7 +396,7 @@
 			"items": {
 				"skill_dark_influence": {
 					"name": "skill_dark_influence_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 155,
 					"effect": {
 						"type": "xp",
@@ -416,7 +416,7 @@
 				},
 				"skill_evil_control": {
 					"name": "skill_evil_control_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 156,
 					"effect": {
 						"type": "multiply",
@@ -437,7 +437,7 @@
 				},
 				"skill_intimidation": {
 					"name": "skill_intimidation_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 157,
 					"effect": {
 						"type": "expense_reduction",
@@ -460,7 +460,7 @@
 				},
 				"skill_demon_training": {
 					"name": "skill_demon_training_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 174,
 					"effect": {
 						"type": "xp",
@@ -480,7 +480,7 @@
 				},
 				"skill_blood_meditation": {
 					"name": "skill_blood_meditation_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 176,
 					"effect": {
 						"type": "multiply",
@@ -501,7 +501,7 @@
 				},
 				"skill_demons_wealth": {
 					"name": "skill_demons_wealth_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 178,
 					"effect": {
 						"type": "income",
@@ -521,7 +521,7 @@
 				},
 				"skill_dark_knowledge": {
 					"name": "skill_dark_knowledge_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 180,
 					"effect": {
 						"type": "xp",
@@ -541,7 +541,7 @@
 				},
 				"skill_soul_drain": {
 					"name": "skill_soul_drain_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 190,
 					"effect": {
 						"type": "multiply",
@@ -562,7 +562,7 @@
 				},
 				"skill_void_influence": {
 					"name": "skill_void_influence_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 206,
 					"effect": {
 						"type": "xp",
@@ -582,7 +582,7 @@
 				},
 				"skill_time_loop": {
 					"name": "skill_time_loop_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 207,
 					"effect": {
 						"type": "multiply",
@@ -603,7 +603,7 @@
 				},
 				"skill_evil_incarnate": {
 					"name": "skill_evil_incarnate_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 208,
 					"effect": {
 						"type": "xp",
@@ -629,7 +629,7 @@
 			"items": {
 				"skill_absolute_wish": {
 					"name": "skill_absolute_wish_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 198,
 					"effect": {
 						"type": "multiply",
@@ -659,7 +659,7 @@
 				},
 				"skill_void_amplification": {
 					"name": "skill_void_amplification_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 251,
 					"effect": {
 						"type": "xp",
@@ -690,7 +690,7 @@
 				},
 				"skill_mind_release": {
 					"name": "skill_mind_release_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 251,
 					"effect": {
 						"type": "multiply",
@@ -717,7 +717,7 @@
 				},
 				"skill_ceaseless_abyss": {
 					"name": "skill_ceaseless_abyss_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 251,
 					"effect": {
 						"type": "multiply",
@@ -748,7 +748,7 @@
 				},
 				"skill_void_symbiosis": {
 					"name": "skill_void_symbiosis_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 253,
 					"effect": {
 						"type": "xp",
@@ -778,7 +778,7 @@
 				},
 				"skill_void_embodiment": {
 					"name": "skill_void_embodiment_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 258,
 					"effect": {
 						"type": "multiply",
@@ -809,7 +809,7 @@
 				},
 				"skill_abyss_manipulation": {
 					"name": "skill_abyss_manipulation_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 266,
 					"effect": {
 						"type": "expense_reduction",
@@ -854,7 +854,7 @@
 			"items": {
 				"skill_cosmic_longevity": {
 					"name": "skill_cosmic_longevity_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 266,
 					"effect": {
 						"type": "multiply",
@@ -880,7 +880,7 @@
 				},
 				"skill_cosmic_recollection": {
 					"name": "skill_cosmic_recollection_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 272,
 					"effect": {
 						"type": "multiply",
@@ -915,7 +915,7 @@
 				},
 				"skill_essence_collector": {
 					"name": "skill_essence_collector_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 288,
 					"effect": {
 						"type": "multiply",
@@ -952,7 +952,7 @@
 				},
 				"skill_galactic_command": {
 					"name": "skill_galactic_command_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 290,
 					"effect": {
 						"type": "expense_reduction",
@@ -991,7 +991,7 @@
 			"items": {
 				"skill_yin_yang": {
 					"name": "skill_yin_yang_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 290,
 					"effect": {
 						"type": "multiply",
@@ -1012,7 +1012,7 @@
 				},
 				"skill_parallel_universe": {
 					"name": "skill_parallel_universe_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 300,
 					"effect": {
 						"type": "xp",
@@ -1032,7 +1032,7 @@
 				},
 				"skill_higher_dimensions": {
 					"name": "skill_higher_dimensions_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 300,
 					"effect": {
 						"type": "multiply",
@@ -1053,7 +1053,7 @@
 				},
 				"skill_epiphany": {
 					"name": "skill_epiphany_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 280,
 					"effect": {
 						"type": "xp",
@@ -1080,7 +1080,7 @@
 			"items": {
 				"skill_dark_prince": {
 					"name": "skill_dark_prince_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 350,
 					"effect": {
 						"type": "xp",
@@ -1100,7 +1100,7 @@
 				},
 				"skill_dark_ruler": {
 					"name": "skill_dark_ruler_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 375,
 					"effect": {
 						"type": "multiply",
@@ -1121,7 +1121,7 @@
 				},
 				"skill_immortal_ruler": {
 					"name": "skill_immortal_ruler_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 425,
 					"effect": {
 						"type": "xp",
@@ -1141,7 +1141,7 @@
 				},
 				"skill_dark_magician": {
 					"name": "skill_dark_magician_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 475,
 					"effect": {
 						"type": "multiply",
@@ -1162,7 +1162,7 @@
 				},
 				"skill_universal_ruler": {
 					"name": "skill_universal_ruler_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 500,
 					"effect": {
 						"type": "xp",
@@ -1183,7 +1183,7 @@
 				},
 				"skill_blinded_by_darkness": {
 					"name": "skill_blinded_by_darkness_name",
-					"maxXp": 100,
+					"maxXp": "100",
 					"heroxp": 550,
 					"effect": {
 						"type": "xp",
