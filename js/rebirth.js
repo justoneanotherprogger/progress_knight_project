@@ -181,9 +181,9 @@ export function applyMilestones() {
 			gameData.requirements.req_rebirth_note_2.isCompleted()) ||
 		gameData.requirements.milestone_almighty_eye.isCompleted()
 	) {
+		const effect = gameData.taskData.skill_cosmic_recollection.getEffect();
 		for (const taskName in gameData.taskData) {
 			const task = gameData.taskData[taskName];
-			const effect = gameData.taskData.skill_cosmic_recollection.getEffect();
 			const maxlevel = Math.floor(task.level * (effect === 0 ? 1 : effect));
 			if (maxlevel > task.maxLevel) task.maxLevel = maxlevel;
 		}
