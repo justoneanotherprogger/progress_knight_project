@@ -296,6 +296,19 @@ export function renderMilestones() {
 			if (els.tooltip.textContent !== tooltipText)
 				els.tooltip.textContent = tooltipText;
 		}
+
+		const congrats = document.getElementById("congratulations");
+		const beaten = gameData.requirements.milestone_the_end.isCompleted();
+		if (congrats.hidden === beaten) {
+			congrats.hidden = !beaten;
+			const text = document.getElementById("congratulationsText");
+			const beatenText = document.getElementById("beatenTheGameText");
+			const congratsLabel = t("congratulations");
+			const beatenLabel = t("beaten_the_game");
+			if (text.textContent !== congratsLabel) text.textContent = congratsLabel;
+			if (beatenText.textContent !== beatenLabel)
+				beatenText.textContent = beatenLabel;
+		}
 	}
 }
 
