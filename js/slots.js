@@ -21,6 +21,27 @@ export function getSkillSlotCount() {
 	return 1 + gameData.evil_shop.skill_slots;
 }
 
+// Задачи в игру не добавляются, поэтому потолок слотов считаем один раз за сессию.
+let maxJobSlotCount = 0;
+let maxSkillSlotCount = 0;
+
+function countTasks(TaskClass) {
+	let count = 0;
+	for (const key in gameData.taskData)
+		if (gameData.taskData[key] instanceof TaskClass) count++;
+	return count;
+}
+
+export function getMaxJobSlotCount() {
+	if (maxJobSlotCount === 0) maxJobSlotCount = countTasks(Job);
+	return maxJobSlotCount;
+}
+
+export function getMaxSkillSlotCount() {
+	if (maxSkillSlotCount === 0) maxSkillSlotCount = countTasks(Skill);
+	return maxSkillSlotCount;
+}
+
 // Авто-выбор работ открывается вехой за зло. Пока закрыт — работу выбирает
 // игрок кликом по строке.
 export function isJobAutoSelectUnlocked() {
@@ -92,11 +113,13 @@ export function getSkillSlotCost() {
 }
 
 export function canBuyJobSlot() {
+	if (getJobSlotCount() >= getMaxJobSlotCount()) return false;
 	const cost = getJobSlotCost();
 	return gameData.evil.gte(cost);
 }
 
 export function canBuySkillSlot() {
+	if (getSkillSlotCount() >= getMaxSkillSlotCount()) return false;
 	const cost = getSkillSlotCost();
 	return gameData.evil.gte(cost);
 }
