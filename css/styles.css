@@ -416,17 +416,16 @@ button:focus {
 	margin-bottom: 0.1em;
 }
 
-.header img {
-	position: static;
-	float: left;
-	width: 36px;
-	height: 36px;
+.header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.header h1 {
+.header img {
 	position: static;
-	top: 2px;
-	left: 10px;
+	width: 36px;
+	height: 36px;
 }
 
 .row {
