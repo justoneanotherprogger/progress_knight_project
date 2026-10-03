@@ -234,7 +234,7 @@ export function renderSideBar() {
 
 // Keeps the quick bar's bottom edge above the window's bottom edge, leaving
 // room for both the browser-default body margin-bottom (8px) and the
-// .w3-margin offset (0.8em, styles.css).  After accounting for both, the
+// .game-frame offset (0.8em, styles.css).  After accounting for both, the
 // page height lands exactly on the window edge so no phantom scrollbar
 // appears.
 // sticky top can be 146px (pinned under the resources bar) or higher (page at top).

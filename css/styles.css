@@ -71,8 +71,24 @@ table {
 
 /*main*/
 
+/* Полоса прокрутки то появляется, то исчезает при переключении вкладок, а
+   обёртка центрирована: без зарезервированного поля дёргается всё содержимое.
+   scrollbar-gutter резервирует поле всегда. Chrome 94+, Firefox 97+,
+   Safari 18.2+. */
+html {
+	scrollbar-gutter: stable;
+}
+
 body {
 	background-color: rgb(243, 243, 243);
+}
+
+/* Обёртка всего интерфейса: своя ширина по содержимому, по центру окна.
+   Вертикальные отступы — как у прежнего .w3-margin, на них завязан
+   QUICK_BAR_BOTTOM_GAP (js/ui/sidebar.js). */
+.game-frame {
+	margin: 16px auto;
+	width: fit-content;
 }
 
 .text-caption {
@@ -400,17 +416,16 @@ button:focus {
 	margin-bottom: 0.1em;
 }
 
-.header img {
-	position: static;
-	float: left;
-	width: 36px;
-	height: 36px;
+.header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.header h1 {
+.header img {
 	position: static;
-	top: 2px;
-	left: 10px;
+	width: 36px;
+	height: 36px;
 }
 
 .row {
