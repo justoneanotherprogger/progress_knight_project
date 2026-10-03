@@ -51,13 +51,8 @@ export class Task {
 			gameData.active_challenge === "the_darkest_time"
 		) {
 			return 10 / (this.maxLevel + 1);
-		} else {
-			let effect = gameData.taskData.skill_cosmic_recollection.getEffect();
-			effect = effect === 0 ? 1 : effect;
-			return this.baseData.heroxp < 1000
-				? 1 + this.maxLevel / 10
-				: 1 + this.maxLevel / effect;
 		}
+		return 1 + this.maxLevel / 10;
 	}
 
 	getXpGain() {

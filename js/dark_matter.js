@@ -101,15 +101,41 @@ export function buyGottaBeFast() {
 	}
 }
 
+const DARK_ORB_SOFTCAP_BASE = new Decimal(10);
+const DARK_ORB_SOFTCAP_STEP = 100;
+const DARK_ORB_SOFTCAP_POWER = 0.95;
+
+// Прогрессивный софткап генерации сфер — лестница порогов 1e100, 1e200,
+// 1e300… На каждой ступени всё выше порога сжимается на 5% степени, и
+// результат идёт на вход следующей ступени, а не возвращается в начало.
+// Ступеней не потолок: 1e10000 на входе даёт 1e3576, 1e100000 — 1e7763.
+// Отдельная функция вместо softcap из utils.js: та даёт потолок с потолком,
+// а здесь нужна степенная кривая без верхней границы.
+function softcapDarkOrbs(value) {
+	let capped = value;
+	let exponent = DARK_ORB_SOFTCAP_STEP;
+	let threshold = DARK_ORB_SOFTCAP_BASE.pow(exponent);
+
+	while (capped.gt(threshold)) {
+		capped = threshold.times(capped.div(threshold).pow(DARK_ORB_SOFTCAP_POWER));
+		exponent += DARK_ORB_SOFTCAP_STEP;
+		threshold = DARK_ORB_SOFTCAP_BASE.pow(exponent);
+	}
+
+	return capped;
+}
+
 // Rewards
 export function getDarkOrbGeneration() {
 	if (gameData.dark_matter_shop.dark_orb_generator === 0) return new Decimal(0);
 
 	const darkOrbiter = milestoneData.milestone_dark_orbiter.getEffect();
 
-	return new Decimal(100)
-		.pow(gameData.dark_matter_shop.dark_orb_generator - 1)
-		.times(darkOrbiter);
+	return darkOrbiter.times(
+		softcapDarkOrbs(
+			new Decimal(100).pow(gameData.dark_matter_shop.dark_orb_generator - 1),
+		),
+	);
 }
 
 export function getTaaAndMagicXpGain() {

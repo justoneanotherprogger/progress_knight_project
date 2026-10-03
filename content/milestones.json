@@ -475,7 +475,7 @@
 					"name": "milestone_the_end_name",
 					"description": "milestone_the_end_desc",
 					"tooltip": "milestone_the_end_tooltip",
-					"threshold": 1e300,
+					"threshold": "1e600",
 					"tier": 99
 				}
 			}

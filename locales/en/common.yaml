@@ -103,6 +103,7 @@ xp_left: XP left
 max_level: Max lvl
 cost: Cost
 buy: Buy
+max: MAX
 accepted: Accepted
 rejected: Rejected
 reset_abilities: Reset Abilities

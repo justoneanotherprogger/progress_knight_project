@@ -26,6 +26,8 @@ import {
 	canBuySkillSlot,
 	getJobSlotCost,
 	getJobSlotCount,
+	getMaxJobSlotCount,
+	getMaxSkillSlotCount,
 	getSkillSlotCost,
 	getSkillSlotCount,
 	isJobAutoSelectUnlocked,
@@ -250,10 +252,16 @@ export function renderMilestones() {
 		setText(byId("evilSlotSkillCurrency"), currencyLabel);
 
 		const jobButton = byId("evilSlotJobBuyButton");
-		setText(jobButton, t("buy"));
+		setText(
+			jobButton,
+			getJobSlotCount() >= getMaxJobSlotCount() ? t("max") : t("buy"),
+		);
 		jobButton.disabled = !canBuyJobSlot();
 		const skillButton = byId("evilSlotSkillBuyButton");
-		setText(skillButton, t("buy"));
+		setText(
+			skillButton,
+			getSkillSlotCount() >= getMaxSkillSlotCount() ? t("max") : t("buy"),
+		);
 		skillButton.disabled = !canBuySkillSlot();
 
 		setText(byId("evilSlotJobCount"), format(getJobSlotCount()));
@@ -297,6 +305,10 @@ export function renderMilestones() {
 				els.tooltip.textContent = tooltipText;
 		}
 	}
+
+	const congrats = document.getElementById("congratulationsBanner");
+	if (congrats != null)
+		congrats.hidden = !gameData.requirements.milestone_the_end.isCompleted();
 }
 
 export function renderSettings() {
