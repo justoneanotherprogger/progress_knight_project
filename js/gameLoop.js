@@ -51,6 +51,11 @@ import {
 	reduceBoostCooldownCost,
 } from "./metaverse.js";
 import { applyMilestones, applyPerks } from "./rebirth.js";
+import {
+	getActiveJobs,
+	getActiveSkills,
+	isJobAutoSelectUnlocked,
+} from "./slots.js";
 
 export function update() {
 	resetGainMemo();
@@ -58,18 +63,13 @@ export function update() {
 	increaseRealtime();
 	increaseDays();
 	autoPerks();
-	autoPromote();
+	if (isJobAutoSelectUnlocked() && gameData.autoPromoteEnabled) autoPromote();
 	autoBuy();
 	applyExpenses();
-	for (const key in gameData.taskData) {
-		const task = gameData.taskData[key];
-		if (
-			(task instanceof Skill || task instanceof Job) &&
-			gameData.requirements[key].isCompleted()
-		) {
-			task.increaseXp();
-		}
-	}
+	// Опыт получают только задачи в активных слотах (slots.js): выбранная
+	// работа и топ-N навыков по времени до уровня.
+	for (const task of [...getActiveJobs(), ...getActiveSkills()])
+		task.increaseXp();
 	increaseCoins();
 
 	const orbGeneration = getDarkOrbGeneration();
@@ -242,6 +242,11 @@ export function increaseCoins() {
 }
 
 export function increaseDays() {
+	// Пауза игрока и открытая модалка останавливают и старение. Без этой
+	// проверки дни шли мимо canSimulate(), и пока модалка висела на экране,
+	// игрок успевал состариться на несколько лет.
+	if (!canSimulate()) return;
+
 	gameData.days += applySpeed(1);
 	gameData.totalDays += applySpeed(1);
 	const lifespan = getLifespan();

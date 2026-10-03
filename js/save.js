@@ -42,7 +42,12 @@ export const NUMBER_FIELDS = [
 ];
 
 // Булевы флаги состояния
-export const BOOLEAN_FIELDS = ["paused", "boost_active", "autoBuyEnabled"];
+export const BOOLEAN_FIELDS = [
+	"paused",
+	"boost_active",
+	"autoBuyEnabled",
+	"autoPromoteEnabled",
+];
 
 // stats, пересчитываемые каждый тик в updateStats — не сериализуются
 export const TRANSIENT_STATS = ["EvilPerSecond", "EssencePerSecond"];
@@ -131,13 +136,16 @@ export function serialize(gameData) {
 	// Мета-прогресс — ключи пишем всегда, даже пустыми
 	dto.perks = serializeMap(gameData.perks);
 	dto.dark_matter_shop = serializeMap(gameData.dark_matter_shop);
+	dto.evil_shop = serializeMap(gameData.evil_shop);
 	dto.metaverse = serializeMap(gameData.metaverse);
 	if (!isDefaultValue(gameData.active_challenge))
 		dto.active_challenge = gameData.active_challenge;
 	dto.challenges = serializeMap(gameData.challenges);
 
 	// Таймеры/состояние
-	for (const key of BOOLEAN_FIELDS) if (gameData[key]) dto[key] = 1;
+	// 0 пишем явно: иначе «игрок выключил» и «поля не было в старом сейве»
+	// неразличимы, и загрузка воскресит выключенный тумблер.
+	for (const key of BOOLEAN_FIELDS) dto[key] = gameData[key] ? 1 : 0;
 
 	// Выбор игрока — только id
 	dto.currentJob = findTaskId(gameData, gameData.currentJob);
@@ -227,12 +235,14 @@ export function deserialize(dto, gameData) {
 	// Ресурсы: отсутствующий ключ = 0
 	for (const key of DECIMAL_FIELDS) gameData[key] = parseDecimal(dto[key]);
 	for (const key of NUMBER_FIELDS) gameData[key] = Number(dto[key] ?? 0);
-	for (const key of BOOLEAN_FIELDS) gameData[key] = !!dto[key];
+	for (const key of BOOLEAN_FIELDS)
+		gameData[key] = dto[key] != null ? !!dto[key] : gameData[key];
 	gameData.active_challenge = dto.active_challenge ?? "";
 
 	// Мета-прогресс: ключи из контента, отсутствующие = 0/false
 	applyMap(gameData.perks, dto.perks);
 	applyMap(gameData.dark_matter_shop, dto.dark_matter_shop);
+	applyMap(gameData.evil_shop, dto.evil_shop);
 	applyMap(gameData.metaverse, dto.metaverse);
 
 	// Значения испытаний — Decimal-строки
@@ -260,7 +270,7 @@ export function deserialize(dto, gameData) {
 	}
 
 	// Кэш выполненности доверяем сейву целиком: он сносится только при
-	// перерождении (rebirthReset), а в забеге открытое остаётся открытым,
+	// перерождении (resetOne), а в забеге открытое остаётся открытым,
 	// даже если условие стало ложным — предок-герой обнулил уровень и т.п.
 	const requirements = dto.requirements ?? {};
 	for (const key in gameData.requirements) {

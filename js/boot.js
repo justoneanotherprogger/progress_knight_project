@@ -39,6 +39,7 @@ import {
 	setTheme,
 	startLoops,
 	toggleAutoBuy,
+	toggleAutoPromote,
 	togglePause,
 } from "./main.js";
 import {
@@ -69,6 +70,7 @@ import {
 	outExportButton,
 	resetGameData,
 } from "./save.js";
+import { buyJobSlot, buySkillSlot } from "./slots.js";
 import { initializeUI, refreshSettingsButtons, updateUI } from "./ui/init.js";
 import {
 	refreshLangButtons,
@@ -78,9 +80,11 @@ import {
 	setTab,
 	setTabDarkMatter,
 	setTabMetaverse,
+	setTabMilestones,
 	setTabSettings,
 	updateFontSizeIndicator,
 } from "./ui/navigation.js";
+import { revealSeenNotes } from "./ui/note_modal.js";
 import { checkAdminPassword, initAdminPanel, setAdminSpeed } from "./utils.js";
 
 // Ошибка в коде — не сообщение игроку, а сигнал «игра сломалась»: останавливаем
@@ -109,9 +113,11 @@ Object.assign(window, {
 	buyExplosionOfTheUniverse,
 	buyGottaBeFast,
 	buyHypercubeGain,
+	buyJobSlot,
 	buyLifeCoach,
 	buyMultiverseExplorer,
 	buyReduceBoostCooldown,
+	buySkillSlot,
 	buySpeedOfLife,
 	buyYourGreatestDebt,
 	checkAdminPassword,
@@ -139,9 +145,11 @@ Object.assign(window, {
 	setTab,
 	setTabDarkMatter,
 	setTabMetaverse,
+	setTabMilestones,
 	setTabSettings,
 	setTheme,
 	toggleAutoBuy,
+	toggleAutoPromote,
 	togglePause,
 });
 
@@ -168,6 +176,7 @@ createSkillRequirements();
 createMilestoneRequirements();
 
 loadGameData();
+revealSeenNotes();
 
 initializeUI();
 initAdminPanel();
@@ -182,6 +191,7 @@ setTab(gameData.settings.selectedTab);
 setTabSettings("settingsTab");
 setTabDarkMatter("shopTab");
 setTabMetaverse("metaverseTab1");
+setTabMilestones("milestonesTab1");
 
 startLoops();
 

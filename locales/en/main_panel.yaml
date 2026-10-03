@@ -150,6 +150,7 @@ item_tesseract_name: Tesseract
 item_desintegration_name: Desintegration
 item_custom_galaxy_name: Custom Galaxy
 item_hypersphere_name: Hypersphere
+category_evil_milestones: Evil Milestones
 category_essence_milestones: Essence Milestones
 category_heroic_milestones: Heroic Milestones
 category_dark_milestones: Dark Milestones
@@ -196,6 +197,21 @@ milestone_a_new_hope_name: A New Hope
 milestone_time_is_a_flat_circle_name: Time is a flat circle
 milestone_the_end_is_near_name: The End is near
 milestone_the_end_name: The End
+milestone_evil_shop_name: Blood Pact
+milestone_evil_shop_desc: Unlocks the upgrade shop paid for with Evil
+milestone_evil_shop_tooltip: The dark side is ready to sell. Look behind its payment — and you will see what it has to offer.
+milestone_evil_autoselect_jobs_name: Devil's Grasp
+milestone_evil_autoselect_jobs_desc: The job picks itself — the highest income
+milestone_evil_autoselect_jobs_tooltip: No more choosing who to work for. The devil takes whoever pays best.
+evil_slot_shop: Upgrade Shop
+evil_slot_shop_hint: Paid for with Evil. Slots survive rebirth.
+evil_slot_job_name: Job Slot
+evil_slot_job_desc: +1 job levels itself — the fastest to level. The one you picked goes first and pays out.
+evil_slot_job_tooltip: The slot takes the job with the shortest time to level.
+evil_slot_skill_name: Skill Slot
+evil_slot_skill_desc: +1 skill levels itself — the fastest to level by time.
+evil_slot_skill_tooltip: The slot takes the skill with the shortest time to level.
+evil_slot_count_label: "Slots:"
 
 # Milestone descriptions
 milestone_magic_eye_desc: Automatically gain max levels at age 65

@@ -1,0 +1,5 @@
+vendor/
+dist/
+node_modules/
+graphify-out/
+.glia/

@@ -50,6 +50,7 @@ export var gameData = {
 	currentProperty: null,
 	currentMisc: null,
 	autoBuyEnabled: true,
+	autoPromoteEnabled: true,
 
 	// Ошибка в коде останавливает симуляцию, но не выглядит смертью игрока:
 	// время встаёт на битом состоянии, отсюда и без перезагрузки не уйти.
@@ -117,6 +118,12 @@ export var gameData = {
 		essence_gain_modifier: 0,
 		challenge_altar: 0,
 		dark_mater_gain_modifer: 0,
+	},
+	evil_shop: {
+		// Счётчики купленных слотов: работа и навык уже качаются по одному,
+		// поэтому базовое число = 1 + счётчик.
+		job_slots: 0,
+		skill_slots: 0,
 	},
 
 	realtime: 0.0,

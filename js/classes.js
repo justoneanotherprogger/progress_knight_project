@@ -205,7 +205,7 @@ export class Skill extends Task {
 			"x" +
 			format(this.getEffect(), 2) +
 			" " +
-			t(labelKey(this.baseData.effect.target))
+			t(labelKey(this.baseData.effect.target, this.baseData.effect.type))
 		);
 	}
 }
@@ -326,7 +326,7 @@ export class Requirement {
 
 	// Выполненность фиксируется на уровне забега: условие могло стать ложным
 	// к середине забега (предок-герой обнулил уровень, эссенция потрачена),
-	// но открытое должно оставаться открытым. rebirthReset() сносит completed
+	// но открытое должно оставаться открытым. resetOne() сносит completed
 	// для неперманентных, permanentUnlocks/metaverseUnlocks и купленное в
 	// магазине тёмной материи живут вечно.
 	isCompleted() {

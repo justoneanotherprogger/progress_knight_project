@@ -112,6 +112,13 @@
 					</template>
 					<div class="tab" id="jobs">
 						<div id="jobPage" style="flex: 1; margin-left: 0.5em;">
+							<div class="autobuy-toggle-row" id="autoPromoteToggleRow" style="display:none">
+								<label class="toggle">
+									<input type="checkbox" id="autoPromoteToggle" onchange="toggleAutoPromote(this.checked)" />
+									<span class="slider"></span>
+									<span class="toggle-label" id="autopromote_toggle"></span>
+								</label>
+							</div>
 							<table id="jobTable" class="w3-table w3-bordered">
 							</table>
 						</div>

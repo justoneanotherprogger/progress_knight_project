@@ -19,8 +19,18 @@ import {
 } from "../classes.js";
 import { gameData, getPreviousTaskInCategory } from "../data.js";
 import { labelKey } from "../effects.js";
-import { setCurrentProperty, setMisc } from "../main.js";
+import { setCurrentJob, setCurrentProperty, setMisc } from "../main.js";
 import { milestoneData } from "../milestones.js";
+import {
+	canBuyJobSlot,
+	canBuySkillSlot,
+	getJobSlotCost,
+	getJobSlotCount,
+	getSkillSlotCost,
+	getSkillSlotCount,
+	isJobAutoSelectUnlocked,
+	isSlotShopUnlocked,
+} from "../slots.js";
 import {
 	format,
 	formatCoins,
@@ -31,6 +41,7 @@ import {
 } from "../utils.js";
 import { fitText, renderProgressBar, setHTML } from "./helpers.js";
 import { getRowByName } from "./navigation.js";
+import { showNoteModal } from "./note_modal.js";
 
 // Элементы строки статичны: DOM не пересоздаётся, а getRowByName +
 // querySelector — по три поиска на строку каждый кадр на ~295 строк.
@@ -102,6 +113,17 @@ export function renderJobs() {
 		const task = gameData.taskData[key];
 		if (!(task instanceof Job)) continue;
 		renderJobRow(task, key);
+	}
+
+	const autoPromoteRow = document.getElementById("autoPromoteToggleRow");
+	if (autoPromoteRow) {
+		autoPromoteRow.style.display = isJobAutoSelectUnlocked() ? "" : "none";
+		const autoPromoteToggle = document.getElementById("autoPromoteToggle");
+		if (
+			autoPromoteToggle &&
+			autoPromoteToggle.checked !== gameData.autoPromoteEnabled
+		)
+			autoPromoteToggle.checked = gameData.autoPromoteEnabled;
 	}
 }
 
@@ -203,6 +225,43 @@ export function renderShop() {
 // а getRowByName + querySelector — по три поиска по дереву на строку.
 // Закэшированные элементы и последний записанный текст живут на самой вехе.
 export function renderMilestones() {
+	// Магазин слотов за зло: до вехи #42 скрыт, дальше обновляется каждый кадр.
+	// Панелью магазина рулит setTabGroup, скрываем только кнопку подвкладки.
+	const shopUnlocked = isSlotShopUnlocked();
+	document.getElementById("evilSlotShopTabButton").style.display = shopUnlocked
+		? ""
+		: "none";
+	if (shopUnlocked) {
+		const byId = (id) => document.getElementById(id);
+		const setText = (el, text) => {
+			if (el.textContent !== text) el.textContent = text;
+		};
+
+		const countLabel = t("evil_slot_count_label");
+		setText(byId("evilSlotJobCountLabel"), countLabel);
+		setText(byId("evilSlotSkillCountLabel"), countLabel);
+
+		const costLabel = t("cost");
+		setText(byId("evilSlotJobCostLabel"), costLabel);
+		setText(byId("evilSlotSkillCostLabel"), costLabel);
+
+		const currencyLabel = t("evil");
+		setText(byId("evilSlotJobCurrency"), currencyLabel);
+		setText(byId("evilSlotSkillCurrency"), currencyLabel);
+
+		const jobButton = byId("evilSlotJobBuyButton");
+		setText(jobButton, t("buy"));
+		jobButton.disabled = !canBuyJobSlot();
+		const skillButton = byId("evilSlotSkillBuyButton");
+		setText(skillButton, t("buy"));
+		skillButton.disabled = !canBuySkillSlot();
+
+		setText(byId("evilSlotJobCount"), format(getJobSlotCount()));
+		setText(byId("evilSlotSkillCount"), format(getSkillSlotCount()));
+		setText(byId("evilSlotJobCost"), format(getJobSlotCost()));
+		setText(byId("evilSlotSkillCost"), format(getSkillSlotCost()));
+	}
+
 	for (const key in milestoneData) {
 		const milestone = milestoneData[key];
 		if (milestone._row == null) {
@@ -397,8 +456,10 @@ export function renderRequirements() {
 			// Класс пишется только при реальной смене: за весь забег
 			// требование закрывается максимум один раз, а отрисовка
 			// гоняется каждый кадр.
-			if (element.classList.contains("hidden") === visible)
+			if (element.classList.contains("hidden") === visible) {
 				element.classList.toggle("hidden", !visible);
+				if (visible && element.tagName === "DETAILS") showNoteModal(element);
+			}
 		}
 	}
 }
@@ -505,6 +566,12 @@ export function createRow(templates, name, categoryName, categoryType) {
 		}
 	}
 
+	// В шаблоне вехи колонка валюты всегда эссенция: у вех за зло — зло.
+	if (categoryName === "category_evil_milestones")
+		row
+			.getElementsByClassName("essence")[0]
+			.classList.replace("color-essence", "color-evil");
+
 	row.getElementsByClassName("name")[0].textContent = t(displayName);
 	row.getElementsByClassName("tooltipText")[0].textContent = t(tooltipKey);
 	row.id = `row${removeSpaces(removeStrangeCharacters(name))}`;
@@ -518,6 +585,13 @@ export function createRow(templates, name, categoryName, categoryType) {
 				: () => {
 						setMisc(name);
 					};
+	}
+
+	if (categoryType === jobCategories) {
+		row.style.cursor = "pointer";
+		row.onclick = () => {
+			setCurrentJob(name);
+		};
 	}
 
 	return row;
@@ -662,7 +736,12 @@ export function updateRequiredRows(data, categoryType) {
 				if (categoryType !== jobCategories) {
 					effectElement.classList.remove("hiddenTask");
 					effectValueElement.textContent = nextEntity.unlocked
-						? t(labelKey(nextEntity.baseData.effect.target))
+						? t(
+								labelKey(
+									nextEntity.baseData.effect.target,
+									nextEntity.baseData.effect.type,
+								),
+							)
 						: t("unknown");
 				}
 
@@ -708,8 +787,13 @@ export function updateRequiredRows(data, categoryType) {
 					? nextEntity.getEffectDescription()
 					: t("unknown");
 			} else if (data === milestoneData) {
-				essenceElement.classList.remove("hiddenTask");
-				essenceElement.textContent = `${format(requirements[0].requirement)} ${t("essence")}`;
+				if (requirementObject instanceof EvilRequirement) {
+					evilElement.classList.remove("hiddenTask");
+					evilElement.textContent = `${format(requirements[0].requirement)} ${t("evil")}`;
+				} else {
+					essenceElement.classList.remove("hiddenTask");
+					essenceElement.textContent = `${format(requirements[0].requirement)} ${t("essence")}`;
+				}
 
 				if (nextEntity.baseData.description != null) {
 					effectElement.classList.remove("hiddenTask");

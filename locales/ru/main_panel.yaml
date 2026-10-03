@@ -57,6 +57,7 @@ job_player_one: Игрок номер один
 job_lost_in_the_dark: Затерявшийся во тьме
 job_omega: Омега
 
+category_evil_milestones: Вехи зла
 category_essence_milestones: Вехи эссенции
 category_heroic_milestones: Героические вехи
 category_dark_milestones: Тёмные вехи
@@ -103,6 +104,21 @@ milestone_a_new_hope_name: Новая надежда
 milestone_time_is_a_flat_circle_name: Время — плоский круг
 milestone_the_end_is_near_name: Конец близок
 milestone_the_end_name: Конец
+milestone_evil_shop_name: Кровавый пакт
+milestone_evil_shop_desc: Открывает магазин улучшений за зло
+milestone_evil_shop_tooltip: Тёмная сторона готова продавать. Загляни за её счёт — и увидишь, что она готова предложить.
+milestone_evil_autoselect_jobs_name: Хватка дьявола
+milestone_evil_autoselect_jobs_desc: Работа выбирается сама — самая доходная
+milestone_evil_autoselect_jobs_tooltip: Больше не нужно выбирать, кому работать. Дьявол сам возьмёт того, кто платит лучше всех.
+evil_slot_shop: Магазин улучшений
+evil_slot_shop_hint: Оплата злом. Слоты переживают перерождение.
+evil_slot_job_name: Слот работы
+evil_slot_job_desc: +1 работа качается сама — самая быстрая по прокачке. Выбранная тобой качается первой и приносит доход.
+evil_slot_job_tooltip: Слот сам берёт работу с самым коротким временем до уровня.
+evil_slot_skill_name: Слот навыка
+evil_slot_skill_desc: +1 навык качается сам — самый быстрый по времени до уровня.
+evil_slot_skill_tooltip: Слот сам берёт навык с самым коротким временем до уровня.
+evil_slot_count_label: "Слотов:"
 
 # Skills
 skill_concentration_name: Концентрация

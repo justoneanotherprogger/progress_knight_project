@@ -1,6 +1,8 @@
 {
 	"permanentUnlocks": [
 		"req_rebirth_tab_button",
+		"req_rebirth_note_challenges",
+		"req_rebirth_note_3_milestones",
 		"req_milestones_tab_button",
 		"req_dark_matter_tab_button",
 		"req_skill_tree_tab_tab_button",
@@ -14,7 +16,26 @@
 		"req_challenge_time_does_not_fly",
 		"req_challenge_dance_with_the_devil",
 		"req_challenge_legends_never_die",
-		"req_challenge_the_darkest_time"
+		"req_challenge_the_darkest_time",
+		"milestone_evil_shop",
+		"milestone_evil_autoselect_jobs",
+		"req_rebirth_note_start",
+		"req_rebirth_note_0",
+		"req_rebirth_note_1",
+		"req_rebirth_note_2",
+		"req_rebirth_note_3",
+		"req_rebirth_note_4",
+		"req_rebirth_note_5",
+		"req_rebirth_note_6",
+		"req_rebirth_note_7",
+		"req_rebirth_note_8",
+		"req_rebirth_note_2_hint",
+		"req_rebirth_note_3_hint",
+		"req_rebirth_note_4_hint",
+		"req_rebirth_note_4_unlock",
+		"req_rebirth_note_5_unlock",
+		"req_rebirth_note_5_warning",
+		"req_rebirth_note_7_dark_matter"
 	],
 	"metaverseUnlocks": [
 		"req_reduce_boost_cooldown_altar",

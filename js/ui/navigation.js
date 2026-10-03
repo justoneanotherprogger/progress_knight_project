@@ -122,6 +122,7 @@ export function setLayout(id) {
 			.getElementById("metaverseTab1")
 			.appendChild(document.getElementById("metaversePage2"));
 		setTabMetaverse("metaverseTab1");
+		setTabMilestones("milestonesTab1");
 
 		document
 			.getElementById("maincolumnMetaverse")
@@ -239,58 +240,32 @@ export function setTab(selectedTab) {
 	element.classList.add("w3-blue-gray");
 }
 
-export function setTabSettings(tab) {
+function setTabGroup(suffix, tab) {
 	const element = document.getElementById(`${tab}TabButton`);
-
-	const tabs = Array.prototype.slice.call(
-		document.getElementsByClassName("tabSettings"),
-	);
-	tabs.forEach((tab) => {
-		tab.style.display = "none";
-	});
+	for (const panel of document.getElementsByClassName(`tab${suffix}`)) {
+		panel.style.display = "none";
+	}
 	document.getElementById(tab).style.display = "flex";
-
-	const tabButtons = document.getElementsByClassName("tabButtonSettings");
-	for (const tabButton of tabButtons) {
-		tabButton.classList.remove("w3-blue-gray");
+	for (const button of document.getElementsByClassName(`tabButton${suffix}`)) {
+		button.classList.remove("w3-blue-gray");
 	}
 	element.classList.add("w3-blue-gray");
+}
+
+export function setTabSettings(tab) {
+	setTabGroup("Settings", tab);
 }
 
 export function setTabDarkMatter(tab) {
-	const element = document.getElementById(`${tab}TabButton`);
-
-	const tabs = Array.prototype.slice.call(
-		document.getElementsByClassName("tabDarkMatter"),
-	);
-	tabs.forEach((tab) => {
-		tab.style.display = "none";
-	});
-	document.getElementById(tab).style.display = "flex";
-
-	const tabButtons = document.getElementsByClassName("tabButtonDarkMatter");
-	for (const tabButton of tabButtons) {
-		tabButton.classList.remove("w3-blue-gray");
-	}
-	element.classList.add("w3-blue-gray");
+	setTabGroup("DarkMatter", tab);
 }
 
 export function setTabMetaverse(tab) {
-	const element = document.getElementById(`${tab}TabButton`);
+	setTabGroup("Metaverse", tab);
+}
 
-	const tabs = Array.prototype.slice.call(
-		document.getElementsByClassName("tabMetaverse"),
-	);
-	tabs.forEach((tab) => {
-		tab.style.display = "none";
-	});
-	document.getElementById(tab).style.display = "flex";
-
-	const tabButtons = document.getElementsByClassName("tabButtonMetaverse");
-	for (const tabButton of tabButtons) {
-		tabButton.classList.remove("w3-blue-gray");
-	}
-	element.classList.add("w3-blue-gray");
+export function setTabMilestones(tab) {
+	setTabGroup("Milestones", tab);
 }
 
 export function createPerks(perkLayoutName) {

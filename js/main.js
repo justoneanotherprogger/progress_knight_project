@@ -32,14 +32,16 @@ export function toggleAutoBuy() {
 	gameData.autoBuyEnabled = document.getElementById("autoBuyToggle").checked;
 }
 
+export function toggleAutoPromote(enabled) {
+	gameData.autoPromoteEnabled = enabled;
+}
+
 export function setCurrentProperty(propertyName) {
-	if (gameData.paused) return;
 	gameData.autoBuyEnabled = false;
 	gameData.currentProperty = gameData.itemData[propertyName];
 }
 
 export function setMisc(miscName) {
-	if (gameData.paused) return;
 	gameData.autoBuyEnabled = false;
 	const misc = gameData.itemData[miscName];
 	if (gameData.currentMisc.includes(misc)) {
@@ -51,6 +53,13 @@ export function setMisc(miscName) {
 	} else {
 		gameData.currentMisc.push(misc);
 	}
+}
+
+export function setCurrentJob(jobName) {
+	const job = gameData.taskData[jobName];
+	if (!(job instanceof Job) || !gameData.requirements[jobName].isCompleted())
+		return;
+	gameData.currentJob = job;
 }
 
 export function createGameObjects(data, baseData) {

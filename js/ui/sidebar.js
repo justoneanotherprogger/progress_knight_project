@@ -20,7 +20,7 @@ import {
 	getHypercubeCap,
 	getMetaversePerkPointsGain,
 } from "../metaverse.js";
-import { isNextMilestoneInReach } from "../milestones.js";
+import { isMilestoneInReach } from "../milestones.js";
 import {
 	daysToYears,
 	format,
@@ -40,7 +40,6 @@ import {
 	fitText,
 	renderProgressBar,
 	setRebirthButton,
-	setTextAll,
 	updateButtonHTML,
 	updateButtonText,
 } from "./helpers.js";
@@ -159,13 +158,10 @@ export function renderSideBar() {
 	setText("greedDisplay", format(getGreed()));
 
 	setText("evilDisplay", format(gameData.evil));
-	setTextAll("#evilGainDisplay", format(getEvilGain()));
 
 	setText("essenceDisplay", format(gameData.essence));
-	setTextAll("#essenceGainDisplay", format(getEssenceGain()));
 
 	setText("darkMatterDisplay", format(gameData.dark_matter));
-	setTextAll("#darkMatterGainDisplay", format(getDarkMatterGain()));
 
 	setText("darkOrbsDisplay", formatTreshold(gameData.dark_orbs));
 
@@ -177,13 +173,6 @@ export function renderSideBar() {
 
 	setText("hypercubesDisplay", formatTreshold(gameData.hypercubes));
 
-	setTextAll("#hypercubeCapDisplay", format(getHypercubeCap(1)));
-
-	setTextAll(
-		"#perkPointsGainDisplay",
-		formatTreshold(getMetaversePerkPointsGain()),
-	);
-
 	// Записываем hidden только при реальной смене: обёртка может схлопнуться
 	// между mousedown и mouseup и съесть клик по кнопке ребёрна.
 	const rebirthButton5 = el("rebirthButton5");
@@ -194,13 +183,13 @@ export function renderSideBar() {
 
 	// Embrace evil indicator
 	const embraceEvilButton = el("rebirthButton2").querySelector(".button");
-	if (isNextDarkMagicSkillInReach())
+	if (isNextDarkMagicSkillInReach() || isMilestoneInReach("evil"))
 		embraceEvilButton.classList.add("button-evil");
 	else embraceEvilButton.classList.remove("button-evil");
 
 	// Transcend for Next Milestone indicator
 	const transcendButton = el("rebirthButton3").querySelector(".button");
-	if (isNextMilestoneInReach())
+	if (isMilestoneInReach("essence"))
 		transcendButton.classList.add("button-transcend");
 	else transcendButton.classList.remove("button-transcend");
 
@@ -271,6 +260,44 @@ export function updateQuickBarHeight() {
 window.addEventListener("resize", updateQuickBarHeight, { passive: true });
 window.addEventListener("scroll", updateQuickBarHeight, { passive: true });
 updateQuickBarHeight();
+
+// Тултип ресета живёт в слое вне сайдбара: #info прокручивается, а скрытая
+// плашка в его раскладке раздувала горизонтальную прокрутку. Позиция
+// берётся из вопросика, а пересчитывается и при прокрутке панели — иначе
+// плашка оторвалась бы от знака. Прокрутка страницы не нужна: панель sticky.
+const REBIRTH_TOOLTIPS = [
+	["rebirthBtn1", "rebirth_note_2_info"],
+	["rebirthBtn2", "rebirth_note_3_info"],
+	["rebirthBtn3", "rebirth_note_5_info"],
+	["rebirthBtn4", "rebirth_note_7_info"],
+	["rebirthBtn5", "rebirth_note_8_info"],
+];
+
+const tooltipLayer = el("tooltipLayer");
+let activeHelp = null;
+
+function placeTooltip() {
+	if (activeHelp == null) return;
+	const rect = activeHelp.getBoundingClientRect();
+	tooltipLayer.style.left = `${rect.left + rect.width / 2}px`;
+	tooltipLayer.style.top = `${rect.top}px`;
+}
+
+for (const [buttonId, key] of REBIRTH_TOOLTIPS) {
+	const help = el(buttonId).parentElement.querySelector(".reset-help");
+	help.addEventListener("mouseenter", () => {
+		activeHelp = help;
+		tooltipLayer.innerHTML = t(key);
+		placeTooltip();
+		tooltipLayer.classList.add("visible");
+	});
+	help.addEventListener("mouseleave", () => {
+		activeHelp = null;
+		tooltipLayer.classList.remove("visible");
+	});
+}
+
+el("info").addEventListener("scroll", placeTooltip, { passive: true });
 
 export const resourceScaleCache = { key: "", desired: 0, scale: 1 };
 export const RESOURCE_SCALE_INTERVAL = 300;

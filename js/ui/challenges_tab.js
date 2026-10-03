@@ -14,19 +14,12 @@ import {
 import { format, getFormattedChallengeTaskGoal } from "../utils.js";
 
 export function renderChallenges() {
-	if (gameData.active_challenge === "") {
-		for (let i = 1; i <= Object.keys(gameData.challenges).length; i++) {
-			const element = document.getElementById(`challengeButton${i}`);
-			if (element != null) {
-				element.textContent = t("enter_challenge");
-				element.disabled = false;
-			}
-		}
-	} else {
-		for (let i = 1; i <= Object.keys(gameData.challenges).length; i++) {
-			const element = document.getElementById(`challengeButton${i}`);
-			if (element != null) element.disabled = true;
-		}
+	const challengeActive = gameData.active_challenge !== "";
+	for (let i = 1; i <= Object.keys(gameData.challenges).length; i++) {
+		const element = document.getElementById(`challengeButton${i}`);
+		if (element == null) continue;
+		element.textContent = t("enter_challenge");
+		element.disabled = challengeActive;
 	}
 
 	//TODO (indomit)

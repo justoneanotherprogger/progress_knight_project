@@ -6,32 +6,18 @@ import {
 } from "./calculations.js";
 import { baseGameSpeed, gameData } from "./data.js";
 import { getIncome } from "./main.js";
-import { rebirthReset } from "./rebirth.js";
+import { resetTwo } from "./rebirth.js";
 import { getChallengeTaskGoalProgress, softcap } from "./utils.js";
 
 export function enterChallenge(challengeName) {
-	rebirthReset(false);
+	resetTwo();
 	gameData.active_challenge = challengeName;
-	gameData.rebirthOneTime = 0;
-	gameData.rebirthTwoTime = 0;
-
-	for (const taskName in gameData.taskData) {
-		const task = gameData.taskData[taskName];
-		task.maxLevel = 0;
-	}
 }
 
 export function exitChallenge() {
 	setChallengeProgress();
-	rebirthReset(false);
+	resetTwo();
 	gameData.active_challenge = "";
-	gameData.rebirthOneTime = 0;
-	gameData.rebirthTwoTime = 0;
-
-	for (const taskName in gameData.taskData) {
-		const task = gameData.taskData[taskName];
-		task.maxLevel = 0;
-	}
 }
 
 export function toChallengeDecimal(value, fallback = 0) {

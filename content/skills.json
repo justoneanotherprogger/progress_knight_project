@@ -236,11 +236,9 @@
 							"kind": "resource",
 							"id": "lifespan"
 						},
-						"base": 1,
+						"base": 0.00259,
 						"formula": {
-							"kind": "log",
-							"logBase": 30,
-							"logHeroBase": 1.01
+							"kind": "power"
 						}
 					},
 					"requirement": {
@@ -264,11 +262,9 @@
 							"kind": "resource",
 							"id": "gamespeed"
 						},
-						"base": 1,
+						"base": 0.005,
 						"formula": {
-							"kind": "log",
-							"logBase": 10,
-							"logHeroBase": 1.005
+							"kind": "power"
 						}
 					},
 					"requirement": {

@@ -470,9 +470,19 @@ export function isAlive() {
 	return gameData.days < lifespan || lifespan === Infinity;
 }
 
+// Пауза интерфейса, а не игрока: сейчас это открытая модалка новой заметки.
+// Держится здесь, а не в gameData.paused, потому что gameData целиком
+// уходит в сейв — и пауза модалки переживала бы перезагрузку страницы,
+// оставляя игру висеть на паузе, которую игрок не ставил.
+let modalPause = false;
+
+export function setModalPause(value) {
+	modalPause = value;
+}
+
 export function canSimulate() {
 	// Сломанная игра не тикает: hasError — не смерть, поэтому в isAlive его нет.
-	return !gameData.paused && !gameData.hasError && isAlive();
+	return !gameData.paused && !modalPause && !gameData.hasError && isAlive();
 }
 
 export function isHeroesUnlocked() {

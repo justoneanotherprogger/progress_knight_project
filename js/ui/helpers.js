@@ -2,12 +2,6 @@
 
 import { gameData } from "../data.js";
 
-export function setTextAll(selector, text) {
-	document.querySelectorAll(selector).forEach((el) => {
-		if (el.textContent !== text) el.textContent = text;
-	});
-}
-
 export function updateButtonText(id, text) {
 	const element = document.getElementById(id);
 	if (element.textContent !== text) {

@@ -1,5 +1,6 @@
 // rebirth.js — rebirth and milestone logic
 
+import { skillCategories } from "../dist/js/skills_data.js";
 import {
 	metaverseResetUnlocks,
 	metaverseUnlocks,
@@ -19,12 +20,16 @@ import {
 	EVIL_GROWTH_EXPONENT_HELL,
 	EVIL_GROWTH_EXPONENT_MIND_CONTROL,
 	gameData,
-	PERK_AUTO_DARK_SHOP_ORBS_THRESHOLD,
 	PERK_INSTANT_GAIN_MULTIPLIER,
 	REBIRTH_THREE_ESSENCE_CAP,
 } from "./data.js";
 import { evilTranGain, getMetaversePerkPointsGain } from "./metaverse.js";
-import { setTab, Tab } from "./ui/navigation.js";
+
+// Рубрика зла переживает престижи 1 и 2, сбрасывается на третьем и выше.
+const darkMagicUnlocks = new Set([
+	"category_dark_magic",
+	...Object.keys(skillCategories.category_dark_magic.items),
+]);
 
 export function rebirthOne() {
 	gameData.rebirthOneCount += 1;
@@ -33,30 +38,20 @@ export function rebirthOne() {
 		gameData.rebirthOneTime < gameData.stats.fastest1
 	)
 		gameData.stats.fastest1 = gameData.rebirthOneTime;
-	gameData.rebirthOneTime = 0;
 
-	rebirthReset();
+	resetOne();
 }
 
 export function rebirthTwo() {
 	gameData.rebirthTwoCount += 1;
 	gameData.evil = gameData.evil.add(getEvilGain());
-
 	if (
 		gameData.stats.fastest2 == null ||
 		gameData.rebirthTwoTime < gameData.stats.fastest2
 	)
 		gameData.stats.fastest2 = gameData.rebirthTwoTime;
-	gameData.rebirthOneTime = 0;
-	gameData.rebirthTwoTime = 0;
 
-	rebirthReset();
-	gameData.active_challenge = "";
-
-	for (const taskName in gameData.taskData) {
-		const task = gameData.taskData[taskName];
-		task.maxLevel = 0;
-	}
+	resetTwo();
 }
 
 export function rebirthThree() {
@@ -65,17 +60,41 @@ export function rebirthThree() {
 	if (!Number.isFinite(gameData.essence.mantissa))
 		gameData.essence = new Decimal(REBIRTH_THREE_ESSENCE_CAP);
 	gameData.evil = evilTranGain();
-
 	if (
 		gameData.stats.fastest3 == null ||
 		gameData.rebirthThreeTime < gameData.stats.fastest3
 	)
 		gameData.stats.fastest3 = gameData.rebirthThreeTime;
-	gameData.rebirthOneTime = 0;
-	gameData.rebirthTwoTime = 0;
-	gameData.rebirthThreeTime = 0;
 
-	rebirthReset();
+	resetThree();
+}
+
+export function rebirthFour() {
+	gameData.rebirthFourCount += 1;
+	gameData.dark_matter = gameData.dark_matter.add(getDarkMatterGain());
+	if (
+		gameData.stats.fastest4 == null ||
+		gameData.rebirthFourTime < gameData.stats.fastest4
+	)
+		gameData.stats.fastest4 = gameData.rebirthFourTime;
+
+	resetFour();
+}
+
+export function rebirthFive() {
+	gameData.rebirthFiveCount += 1;
+	gameData.perks_points += getMetaversePerkPointsGain();
+	if (
+		gameData.stats.fastest5 == null ||
+		gameData.rebirthFiveTime < gameData.stats.fastest5
+	)
+		gameData.stats.fastest5 = gameData.rebirthFiveTime;
+
+	resetFive();
+}
+
+export function resetTwo() {
+	resetOne();
 
 	for (const taskName in gameData.taskData) {
 		const task = gameData.taskData[taskName];
@@ -83,11 +102,19 @@ export function rebirthThree() {
 	}
 
 	gameData.active_challenge = "";
+	gameData.rebirthTwoTime = 0;
 }
 
-export function rebirthFour() {
-	gameData.rebirthFourCount += 1;
-	gameData.dark_matter = gameData.dark_matter.add(getDarkMatterGain());
+function resetThree() {
+	resetTwo();
+	gameData.rebirthThreeTime = 0;
+
+	for (const key of darkMagicUnlocks) {
+		gameData.requirements[key].completed = false;
+	}
+}
+
+function resetFour() {
 	gameData.essence = new Decimal(0);
 	gameData.evil = new Decimal(0);
 
@@ -100,31 +127,12 @@ export function rebirthFour() {
 		}
 	}
 
-	if (
-		gameData.stats.fastest4 == null ||
-		gameData.rebirthFourTime < gameData.stats.fastest4
-	)
-		gameData.stats.fastest4 = gameData.rebirthFourTime;
-	gameData.rebirthOneTime = 0;
-	gameData.rebirthTwoTime = 0;
-	gameData.rebirthThreeTime = 0;
 	gameData.rebirthFourTime = 0;
 
-	rebirthReset();
-
-	for (const taskName in gameData.taskData) {
-		const task = gameData.taskData[taskName];
-		task.maxLevel = 0;
-	}
-
-	gameData.active_challenge = "";
+	resetThree();
 }
 
-export function rebirthFive() {
-	gameData.rebirthFiveCount += 1;
-	gameData.perks_points += getMetaversePerkPointsGain();
-	gameData.essence = new Decimal(0);
-	gameData.evil = new Decimal(0);
+function resetFive() {
 	gameData.dark_matter = new Decimal(0);
 	gameData.dark_orbs = new Decimal(0);
 	gameData.dark_matter_shop.dark_orb_generator = 0;
@@ -143,31 +151,11 @@ export function rebirthFive() {
 		gameData.dark_matter_shop.multiverse_explorer = 0;
 	}
 
-	if (gameData.perks.save_challenges === 0) {
-		for (const challenge in gameData.challenges) {
-			gameData.challenges[challenge] = 0;
-		}
-	}
-
 	// Метавселенский сброс: тёмная материя обнулилась, требования по ней
 	// открываются заново.
 	for (const key of metaverseResetUnlocks) {
 		gameData.requirements[key].completed = false;
 	}
-
-	gameData.requirements.req_skill_tree_tab_tab_button.completed = false;
-	gameData.requirements.req_skill_tree_page.completed = false;
-
-	if (
-		gameData.stats.fastest5 == null ||
-		gameData.rebirthFiveTime < gameData.stats.fastest5
-	)
-		gameData.stats.fastest5 = gameData.rebirthFiveTime;
-	gameData.rebirthOneTime = 0;
-	gameData.rebirthTwoTime = 0;
-	gameData.rebirthThreeTime = 0;
-	gameData.rebirthFourTime = 0;
-	gameData.rebirthFiveTime = 0;
 
 	gameData.boost_active = false;
 	gameData.boost_timer = 0;
@@ -182,14 +170,9 @@ export function rebirthFive() {
 	gameData.metaverse.challenge_altar = 0;
 	gameData.metaverse.dark_mater_gain_modifer = 0;
 
-	rebirthReset();
+	gameData.rebirthFiveTime = 0;
 
-	for (const taskName in gameData.taskData) {
-		const task = gameData.taskData[taskName];
-		task.maxLevel = 0;
-	}
-
-	gameData.active_challenge = "";
+	resetFour();
 }
 
 export function applyMilestones() {
@@ -239,22 +222,7 @@ export function applyMilestones() {
 	}
 }
 
-export function rebirthReset(set_tab_to_jobs = true) {
-	if (set_tab_to_jobs) {
-		if (
-			(gameData.settings.selectedTab === Tab.METAVERSE &&
-				gameData.hypercubes > 0) ||
-			(gameData.settings.selectedTab === Tab.CHALLENGES &&
-				gameData.evil.gt(PERK_AUTO_DARK_SHOP_ORBS_THRESHOLD)) ||
-			(gameData.settings.selectedTab === Tab.MILESTONES &&
-				gameData.essence.gt(0)) ||
-			(gameData.settings.selectedTab === Tab.DARK_MATTER &&
-				gameData.dark_matter.gt(0)) ||
-			gameData.settings.selectedTab === Tab.REBIRTH
-		) {
-			// do not switch tab
-		} else setTab("jobs");
-	}
+function resetOne() {
 	gameData.coins = new Decimal(0);
 	gameData.days = DEFAULT_STARTING_AGE;
 	gameData.realtime = 0;
@@ -287,7 +255,8 @@ export function rebirthReset(set_tab_to_jobs = true) {
 		// кэшируются до метавселенского сброса, а не до любого.
 		if (
 			requirement.completed &&
-			(permanentUnlocks.includes(key) ||
+			(darkMagicUnlocks.has(key) ||
+				permanentUnlocks.includes(key) ||
 				metaverseUnlocks.includes(key) ||
 				metaverseResetUnlocks.includes(key))
 		)
@@ -306,6 +275,8 @@ export function rebirthReset(set_tab_to_jobs = true) {
 		)
 			gameData.rebirthOneCount = 1;
 	}
+
+	gameData.rebirthOneTime = 0;
 }
 
 export function applyPerks() {

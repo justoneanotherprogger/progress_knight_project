@@ -1,4 +1,4 @@
-# Progress Knight Quest — мод
+# Progress Knight Quest — λ
 
 Продолжение игры Progress Knight Quest, оригинал которой лежит на https://indomit.github.io/progress_knight_2/ . Это мод с моим видением баланса и названий в игре.
 
