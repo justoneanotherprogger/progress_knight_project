@@ -75,6 +75,14 @@ body {
 	background-color: rgb(243, 243, 243);
 }
 
+/* Обёртка всего интерфейса: своя ширина по содержимому, по центру окна.
+   Вертикальные отступы — как у прежнего .w3-margin, на них завязан
+   QUICK_BAR_BOTTOM_GAP (js/ui/sidebar.js). */
+.game-frame {
+	margin: 16px auto;
+	width: fit-content;
+}
+
 .text-caption {
 	font-size: larger;
 	text-align: center;
