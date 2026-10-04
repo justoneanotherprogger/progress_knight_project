@@ -649,8 +649,12 @@ button:focus {
 .color-dark-matter {
 	color: rgb(132, 99, 206);
 }
+/* Тёмные сферы — чёрные с белым ореолом: на почти чёрном фоне тёмной темы
+   (css/dark.css) от букв остаётся только свечение, и это читается как «провал»
+   в экране. Ореол взят по образцу .currency-shadow из css/currencies.css. */
 .color-dark-orbs {
-	color: rgb(143, 114, 207);
+	color: #000;
+	text-shadow: 0 0 5px rgba(255, 255, 255, 0.9);
 }
 .color-time-warping {
 	color: rgb(204, 34, 219);
