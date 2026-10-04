@@ -107,7 +107,6 @@ max: Макс.
 accepted: Выбрано
 rejected: Отвергнуто
 reset_abilities: Сбросить способности
-version: Версия 0.1.0
 great: "★★★"
 lvl: ур.
 challenge_title: В испытании
@@ -166,7 +165,6 @@ language: Язык
 sticky_sidebar: Закреплённые панели (верхняя и боковая)
 currency_notation: Обозначение валют
 number_notation: Обозначение чисел
-font_size: Размер шрифта
 color_scheme: Цветовая схема
 dangerous_keybinds: Опасные горячие клавиши
 
@@ -180,10 +178,6 @@ currency_modern: Современное $
 notation_standard: Стандартное
 notation_scientific: Научное
 notation_engineering: Инженерное
-
-# Font size
-font_smaller: Меньше
-font_larger: Больше
 
 # Theme options
 theme_light: Светлая

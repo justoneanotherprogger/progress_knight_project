@@ -74,14 +74,12 @@ import { buyJobSlot, buySkillSlot } from "./slots.js";
 import { initializeUI, refreshSettingsButtons, updateUI } from "./ui/init.js";
 import {
 	refreshLangButtons,
-	setFontSize,
 	setStickySidebar,
 	setTab,
 	setTabDarkMatter,
 	setTabMetaverse,
 	setTabMilestones,
 	setTabSettings,
-	updateFontSizeIndicator,
 } from "./ui/navigation.js";
 import { revealSeenNotes } from "./ui/note_modal.js";
 import { checkAdminPassword, initAdminPanel, setAdminSpeed } from "./utils.js";
@@ -136,7 +134,6 @@ Object.assign(window, {
 	setAdminSpeed,
 	setCurrency,
 	setEnableKeybinds,
-	setFontSize,
 	setLang,
 	setNotation,
 	setStickySidebar,
@@ -198,5 +195,4 @@ document.addEventListener("i18n:changed", () => {
 	updateUI();
 	refreshSettingsButtons();
 	refreshLangButtons();
-	updateFontSizeIndicator();
 });

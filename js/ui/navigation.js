@@ -46,32 +46,6 @@ export function refreshLangButtons() {
 	}
 }
 
-export function setFontSize(id) {
-	const fontSizes = {
-		0: "xx-small",
-		1: "x-small",
-		2: "small",
-		3: "medium",
-		4: "large",
-		5: "x-large",
-		6: "xx-large",
-		7: "xxx-large",
-	};
-
-	if (id < 0) id = 0;
-	if (id > 7) id = 7;
-
-	gameData.settings.fontSize = id;
-	document.getElementById("body").style.fontSize = fontSizes[id];
-	updateFontSizeIndicator();
-}
-
-export function updateFontSizeIndicator() {
-	const label = document.getElementById("font_size");
-	if (label)
-		label.innerHTML = `${t("font_size")} ${gameData.settings.fontSize}/7`;
-}
-
 export function setSignDisplay() {
 	const signDisplay = document.getElementById("signDisplay");
 	if (!signDisplay) return;

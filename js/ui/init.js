@@ -16,7 +16,6 @@ import {
 	createPerks,
 	refreshLangButtons,
 	selectElementInGroup,
-	setFontSize,
 	setStickySidebar,
 	Tab,
 } from "./navigation.js";
@@ -46,7 +45,6 @@ export function initializeUI() {
 
 	createPerks("perksLayout");
 
-	setFontSize(peekSettingFromSave("fontSize"));
 	setNotation(peekSettingFromSave("numberNotation"));
 	setCurrency(peekSettingFromSave("currencyNotation"));
 	setStickySidebar(peekSettingFromSave("stickySidebar"));
@@ -91,11 +89,6 @@ export function refreshSettingsButtons() {
 			if (buttons[i]) buttons[i].textContent = t(keys[i]);
 		}
 	}
-	const fontButtons = document.querySelectorAll(
-		'#settings button[onclick*="setFontSize"]',
-	);
-	if (fontButtons[0]) fontButtons[0].textContent = t("font_smaller");
-	if (fontButtons[1]) fontButtons[1].textContent = t("font_larger");
 	const importBox = document.getElementById("importExportBox");
 	if (importBox) importBox.placeholder = t("import_save_placeholder");
 
