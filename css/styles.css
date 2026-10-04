@@ -792,8 +792,8 @@ button:focus {
 	border-radius: 6px;
 	opacity: 0;
 	visibility: hidden;
-	/* −5px: плашка не липла к вопросику */
-	transform: translate(-50%, calc(-100% - 5px));
+	/* X двигает transform, Y — placeTip в ui/sidebar.js: так плашка поджимается к краям окна, а не уезжает за них. */
+	transform: translate(-50%, 0);
 	pointer-events: none;
 }
 

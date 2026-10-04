@@ -261,43 +261,55 @@ window.addEventListener("resize", updateQuickBarHeight, { passive: true });
 window.addEventListener("scroll", updateQuickBarHeight, { passive: true });
 updateQuickBarHeight();
 
-// Тултип ресета живёт в слое вне сайдбара: #info прокручивается, а скрытая
-// плашка в его раскладке раздувала горизонтальную прокрутку. Позиция
-// берётся из вопросика, а пересчитывается и при прокрутке панели — иначе
-// плашка оторвалась бы от знака. Прокрутка страницы не нужна: панель sticky.
-const REBIRTH_TOOLTIPS = [
-	["rebirthBtn1", "rebirth_note_2_info"],
-	["rebirthBtn2", "rebirth_note_3_info"],
-	["rebirthBtn3", "rebirth_note_5_info"],
-	["rebirthBtn4", "rebirth_note_7_info"],
-	["rebirthBtn5", "rebirth_note_8_info"],
-];
-
+// Один тултип на весь экран: слой #tooltipLayer живёт вне .game-frame
+// (templates/index.html), поэтому его не режут overflow ни панели топбара,
+// ни .column с таблицами. Источник текста и сторона — на самом элементе
+// (data-tip, data-tip-side), поэтому список ключей в коде не нужен.
 const tooltipLayer = el("tooltipLayer");
-let activeHelp = null;
+const TIP_GAP = 5;
+const TIP_PAD = 8;
+let activeTip = null;
 
-function placeTooltip() {
-	if (activeHelp == null) return;
-	const rect = activeHelp.getBoundingClientRect();
-	tooltipLayer.style.left = `${rect.left + rect.width / 2}px`;
-	tooltipLayer.style.top = `${rect.top}px`;
+function placeTip(owner) {
+	const rect = owner.getBoundingClientRect();
+	// Центрируем плашку по элементу, но не даём ей выйти за края окна:
+	// не влезает слева — сдвигаем вправо, не влезает справа — влево.
+	const half = tooltipLayer.offsetWidth / 2;
+	const center = Math.min(
+		Math.max(rect.left + rect.width / 2, half + TIP_PAD),
+		window.innerWidth - half - TIP_PAD,
+	);
+	tooltipLayer.style.left = `${center}px`;
+	// По умолчанию снизу: строка валюты в топбаре, под ней всегда есть место.
+	tooltipLayer.style.top =
+		owner.dataset.tipSide === "top"
+			? `${rect.top - tooltipLayer.offsetHeight - TIP_GAP}px`
+			: `${rect.bottom + TIP_GAP}px`;
 }
 
-for (const [buttonId, key] of REBIRTH_TOOLTIPS) {
-	const help = el(buttonId).parentElement.querySelector(".reset-help");
-	help.addEventListener("mouseenter", () => {
-		activeHelp = help;
-		tooltipLayer.innerHTML = t(key);
-		placeTooltip();
+function hideTip() {
+	activeTip = null;
+	tooltipLayer.classList.remove("visible");
+}
+
+for (const owner of document.querySelectorAll("[data-tip]")) {
+	owner.addEventListener("mouseenter", () => {
+		activeTip = owner;
+		tooltipLayer.innerHTML = t(owner.dataset.tip);
+		placeTip(owner);
 		tooltipLayer.classList.add("visible");
 	});
-	help.addEventListener("mouseleave", () => {
-		activeHelp = null;
-		tooltipLayer.classList.remove("visible");
-	});
+	owner.addEventListener("mouseleave", hideTip);
 }
 
-el("info").addEventListener("scroll", placeTooltip, { passive: true });
+// Панель сайдбара прокручивается: плашка над вопросиком уехала бы с ним.
+el("info").addEventListener(
+	"scroll",
+	() => {
+		if (activeTip) placeTip(activeTip);
+	},
+	{ passive: true },
+);
 
 export const resourceScaleCache = { key: "", desired: 0, scale: 1 };
 export const RESOURCE_SCALE_INTERVAL = 300;
