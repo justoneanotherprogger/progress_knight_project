@@ -306,9 +306,14 @@ export function renderMilestones() {
 		}
 	}
 
+	// Классом, а не свойством: в разметке баннер спрятан классом .hidden,
+	// а свойство hidden его не снимает — баннер оставался невидимым всегда.
 	const congrats = document.getElementById("congratulationsBanner");
 	if (congrats != null)
-		congrats.hidden = !gameData.requirements.milestone_the_end.isCompleted();
+		congrats.classList.toggle(
+			"hidden",
+			!gameData.requirements.milestone_the_end.isCompleted(),
+		);
 }
 
 export function renderSettings() {

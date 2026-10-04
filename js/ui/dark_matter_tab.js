@@ -22,6 +22,7 @@ import {
 } from "../dark_matter.js";
 import { gameData } from "../data.js";
 import { format, formatTreshold } from "../utils.js";
+import { setHTML } from "./helpers.js";
 import { renderSkillTreeButton } from "./tabs.js";
 
 export function renderDarkMatterShopButton(elemName, condition) {
@@ -31,19 +32,27 @@ export function renderDarkMatterShopButton(elemName, condition) {
 export function getDarkMatterSkillDesc(key, level) {
 	// key: "speed_is_life", "your_greatest_debt", etc.
 	// level: 1, 2 (we only show 1 or 2 in UI, 3 is handled internally)
-	// Default: just positive effect (level 1)
 	let desc = t(`${key}_${level}`);
 
-	// For level 2, always show negative effect regardless of actual skillValue
-	// because the UI always shows level 2 (when both_dark_mater_skills == 1)
-	if (level === 2) {
+	// Негатив есть у обоих уровней и по расчёту действует на обоих
+	// (dark_matter.js: [1, 3] и [2, 3]). Перк положительных способностей
+	// отключает его в расчёте — значит, и в тексте его быть не должно.
+	if (gameData.perks.positive_dark_mater_skills === 0)
 		desc += t(`${key}_${level}_neg`);
-	}
-
-	// For level 1, no negative effect
 
 	return desc;
 }
+
+// Ключ способности → префикс id в разметке. Мапой, а не преобразованием имён:
+// id в разметке в camelCase, из ключа он не выводится. Полный перенос этих
+// данных в контент заведён задачей в трекере.
+const SKILL_DESC_IDS = {
+	speed_is_life: "speedIsLife",
+	your_greatest_debt: "yourGreatestDebt",
+	essence_collector: "essenceCollector",
+	explosion_of_the_universe: "explosionOfTheUniverse",
+	multiverse_explorer: "multiverseExplorer",
+};
 
 export function renderDarkMatter() {
 	// Display currency
@@ -186,26 +195,16 @@ export function renderDarkMatter() {
 		`${t("dark_matter")}: `;
 
 	// Ability descriptions
-	document.getElementById("speedIsLife1Desc").innerHTML =
-		getDarkMatterSkillDesc("speed_is_life", 1);
-	document.getElementById("speedIsLife2Desc").innerHTML =
-		getDarkMatterSkillDesc("speed_is_life", 2);
-	document.getElementById("yourGreatestDebt1Desc").innerHTML =
-		getDarkMatterSkillDesc("your_greatest_debt", 1);
-	document.getElementById("yourGreatestDebt2Desc").innerHTML =
-		getDarkMatterSkillDesc("your_greatest_debt", 2);
-	document.getElementById("essenceCollector1Desc").innerHTML =
-		getDarkMatterSkillDesc("essence_collector", 1);
-	document.getElementById("essenceCollector2Desc").innerHTML =
-		getDarkMatterSkillDesc("essence_collector", 2);
-	document.getElementById("explosionOfTheUniverse1Desc").innerHTML =
-		getDarkMatterSkillDesc("explosion_of_the_universe", 1);
-	document.getElementById("explosionOfTheUniverse2Desc").innerHTML =
-		getDarkMatterSkillDesc("explosion_of_the_universe", 2);
-	document.getElementById("multiverseExplorer1Desc").innerHTML =
-		getDarkMatterSkillDesc("multiverse_explorer", 1);
-	document.getElementById("multiverseExplorer2Desc").innerHTML =
-		getDarkMatterSkillDesc("multiverse_explorer", 2);
+	// setHTML, а не innerHTML: текст меняется только при покупке перка или
+	// уровня, а innerHTML пересоздаёт узлы на каждом кадре.
+	for (const [key, idPrefix] of Object.entries(SKILL_DESC_IDS)) {
+		for (const level of [1, 2]) {
+			setHTML(
+				document.getElementById(`${idPrefix}${level}Desc`),
+				getDarkMatterSkillDesc(key, level),
+			);
+		}
+	}
 
 	// Dark Matter Ability tree - cost labels and currency
 	document.getElementById("speedIsLifeCurrencyLabel").textContent = t("cost");
@@ -293,11 +292,6 @@ export function renderDarkMatter() {
 		[2, 3].includes(gameData.dark_matter_shop.multiverse_explorer),
 		gameData.dark_matter.gte(100000000),
 	);
-
-	const effects = document.getElementsByClassName("negative-effect");
-	for (const effect of effects) {
-		effect.hidden = gameData.perks.positive_dark_mater_skills === 1;
-	}
 
 	// turn off OR
 	const ors = document.getElementsByClassName("darkMatterSkillOR");
