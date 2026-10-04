@@ -81,17 +81,6 @@ export function renderDarkMatter() {
 	document.getElementById("resetAbilitiesButton").textContent =
 		t("reset_abilities");
 
-	// Shop item titles (ensure translated even if applyTranslations missed them)
-	document.getElementById("dark_orb_generator").textContent =
-		t("dark_orb_generator");
-	document.getElementById("a_miracle").textContent = t("a_miracle");
-	document.getElementById("a_deal_with_chairman").textContent = t(
-		"a_deal_with_chairman",
-	);
-	document.getElementById("a_gift_from_god").textContent = t("a_gift_from_god");
-	document.getElementById("gotta_be_fast").textContent = t("gotta_be_fast");
-	document.getElementById("life_coach").textContent = t("life_coach");
-
 	// Cost labels
 	document.getElementById("darkOrbGeneratorCostLabel").textContent = t("cost");
 	document.getElementById("darkOrbGeneratorCurrency").textContent =
@@ -179,19 +168,6 @@ export function renderDarkMatter() {
 	renderDarkMatterShopButton("aGiftFromGodBuyButton", canBuyAGiftFromGod());
 	renderDarkMatterShopButton("gottaBeFastBuyButton", canBuyGottaBeFast());
 	renderDarkMatterShopButton("lifeCoachBuyButton", canBuyLifeCoach());
-
-	// Dark Matter Ability tree — titles
-	document.getElementById("speed_is_life").textContent = t("speed_is_life");
-	document.getElementById("your_greatest_debt").textContent =
-		t("your_greatest_debt");
-	document.getElementById("essence_collector").textContent =
-		t("essence_collector");
-	document.getElementById("explosion_of_the_universe").textContent = t(
-		"explosion_of_the_universe",
-	);
-	document.getElementById("multiverse_explorer").textContent = t(
-		"multiverse_explorer",
-	);
 
 	// Skill tree title label
 	document.getElementById("skillTreePageDarkMaterTitle").textContent =
