@@ -36,7 +36,7 @@ import {
 	reduceBoostCooldownCost,
 } from "../metaverse.js";
 import { format, formatTime, formatTreshold } from "../utils.js";
-import { fitText, updateButtonText } from "./helpers.js";
+import { fitText, setHTML, updateButtonText } from "./helpers.js";
 
 export function renderBoostButton(elemName) {
 	// render boost button to look nicier :)
@@ -63,9 +63,7 @@ export function renderBoostButton(elemName) {
 export function renderMetaverse() {
 	document.getElementById("currentHypercubesCap").hidden =
 		getHypercubeCap() === Infinity;
-	document.getElementById("currentHypercubesCapValue").textContent = format(
-		getHypercubeCap(),
-	);
+	updateButtonText("currentHypercubesCapValue", format(getHypercubeCap()));
 
 	for (let i = 0; i < 3; i++) {
 		const elem = document.getElementById(`timeTillNextHypercubePower${i + 1}`);
@@ -88,9 +86,7 @@ export function renderMetaverse() {
 	// Display currency
 	updateButtonText("metaverseHypercubes", t("hypercubes"));
 
-	document.getElementById("hypercubesMetaDisplay").textContent = format(
-		gameData.hypercubes,
-	);
+	updateButtonText("hypercubesMetaDisplay", format(gameData.hypercubes));
 	document.getElementById("hypercubesBonusMetaDisplay").textContent =
 		`x${format(getHypercubeGeneration() / 0.03)}`;
 	document.getElementById("boostCooldownMetaDisplay").textContent =
@@ -112,60 +108,56 @@ export function renderMetaverse() {
 	updateButtonText("darkMatterMultCostLabel", t("cost"));
 	updateButtonText("darkMatterMultCostCurrency", t("hypercubes"));
 
-	document.getElementById("reduceBoostCooldown").innerHTML = t(
-		"current_cooldown",
-		formatTime(getBoostCooldownSeconds()),
+	setHTML(
+		document.getElementById("reduceBoostCooldown"),
+		t("current_cooldown", formatTime(getBoostCooldownSeconds())),
 	);
-	document.getElementById("reduceBoostCooldownCost").textContent = format(
-		reduceBoostCooldownCost(),
+	updateButtonText(
+		"reduceBoostCooldownCost",
+		format(reduceBoostCooldownCost()),
 	);
 	updateButtonText("reduceBoostCooldownBuyButton", t("buy"));
 	document.getElementById("reduceBoostCooldownBuyButton").disabled =
 		!canBuyReduceBoostCooldown();
 
-	document.getElementById("boostDuration").innerHTML = t(
-		"current_duration",
-		formatTime(getBoostTimeSeconds()),
+	setHTML(
+		document.getElementById("boostDuration"),
+		t("current_duration", formatTime(getBoostTimeSeconds())),
 	);
-	document.getElementById("boostDurationCost").textContent = format(
-		boostDurationCost(),
-	);
+	updateButtonText("boostDurationCost", format(boostDurationCost()));
 	updateButtonText("boostDurationBuyButton", t("buy"));
 	document.getElementById("boostDurationBuyButton").disabled =
 		!canBuyBoostDuration();
 
-	document.getElementById("hypercubeGain").innerHTML = t(
-		"current_gain_per_s",
-		format(getHypercubeGeneration() * getUnpausedGameSpeed(), 2),
+	setHTML(
+		document.getElementById("hypercubeGain"),
+		t(
+			"current_gain_per_s",
+			format(getHypercubeGeneration() * getUnpausedGameSpeed(), 2),
+		),
 	);
-	document.getElementById("hypercubeGainCost").textContent = format(
-		hypercubeGainCost(),
-	);
+	updateButtonText("hypercubeGainCost", format(hypercubeGainCost()));
 	updateButtonText("hypercubeGainBuyButton", t("buy"));
 	document.getElementById("hypercubeGainBuyButton").disabled =
 		!canBuyHypercubeGain();
 
-	document.getElementById("evilTranGain").innerHTML = t(
-		"current_gain",
-		format(evilTranGain(), 2),
+	setHTML(
+		document.getElementById("evilTranGain"),
+		t("current_gain", format(evilTranGain(), 2)),
 	);
-	document.getElementById("evilTranCost").textContent = format(evilTranCost());
+	updateButtonText("evilTranCost", format(evilTranCost()));
 	updateButtonText("evilTranBuyButton", t("buy"));
 	document.getElementById("evilTranBuyButton").disabled = !canBuyEvilTran();
 
-	document.getElementById("essenceMultGain").innerHTML = t(
-		"current_multiplier",
-		format(essenceMultGain(), 2),
+	setHTML(
+		document.getElementById("essenceMultGain"),
+		t("current_multiplier", format(essenceMultGain(), 2)),
 	);
-	document.getElementById("essenceMultCost").textContent = format(
-		essenceMultCost(),
-	);
+	updateButtonText("essenceMultCost", format(essenceMultCost()));
 	updateButtonText("essenceMultButton", t("buy"));
 	document.getElementById("essenceMultButton").disabled = !canBuyEssenceMult();
 
-	document.getElementById("challengeAltarCost").textContent = format(
-		challengeAltarCost(),
-	);
+	updateButtonText("challengeAltarCost", format(challengeAltarCost()));
 	document.getElementById("challengeAltarState").textContent =
 		gameData.metaverse.challenge_altar === 0 ? "" : t("active");
 	updateButtonText("challengeAltarButton", t("buy"));
@@ -175,13 +167,11 @@ export function renderMetaverse() {
 		document.getElementById("challengeAltarButton").classList.remove("hidden");
 	else document.getElementById("challengeAltarButton").classList.add("hidden");
 
-	document.getElementById("darkMatterMultGain").innerHTML = t(
-		"current_multiplier",
-		format(darkMatterMultGain(), 2),
+	setHTML(
+		document.getElementById("darkMatterMultGain"),
+		t("current_multiplier", format(darkMatterMultGain(), 2)),
 	);
-	document.getElementById("darkMatterMultCost").textContent = format(
-		darkMatterMultCost(),
-	);
+	updateButtonText("darkMatterMultCost", format(darkMatterMultCost()));
 	updateButtonText("darkMaterMultButton", t("buy"));
 	document.getElementById("darkMaterMultButton").disabled =
 		!canBuyDarkMatterMult();
@@ -191,25 +181,24 @@ export function renderMetaverse() {
 }
 
 export function renderPerks() {
-	document.getElementById("perkPointDisplay").textContent = formatTreshold(
-		gameData.perks_points,
-	);
-	document.getElementById("totalPerkPointDisplay").textContent = formatTreshold(
-		getTotalPerkPoints(),
+	updateButtonText("perkPointDisplay", formatTreshold(gameData.perks_points));
+	updateButtonText(
+		"totalPerkPointDisplay",
+		formatTreshold(getTotalPerkPoints()),
 	);
 	// Info
 
 	if (gameData.requirements.milestone_the_end_is_near.isCompleted()) {
 		document.getElementById("mppInfo").hidden = true;
 		document.getElementById("mppInfo2").hidden = false;
-		document.getElementById("mppDMBuff").innerHTML = t(
-			"perks_dm_bonus",
-			format(getUnspentPerksDarkmatterGainBuff()),
+		setHTML(
+			document.getElementById("mppDMBuff"),
+			t("perks_dm_bonus", format(getUnspentPerksDarkmatterGainBuff())),
 		);
 	} else {
 		document.getElementById("mppInfo").hidden = false;
 		document.getElementById("mppInfo2").hidden = true;
-		document.getElementById("mppInfo").innerHTML = t("perks_info");
+		setHTML(document.getElementById("mppInfo"), t("perks_info"));
 	}
 
 	// PerkButtons

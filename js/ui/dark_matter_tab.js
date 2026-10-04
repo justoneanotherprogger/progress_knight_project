@@ -57,15 +57,9 @@ const SKILL_DESC_IDS = {
 export function renderDarkMatter() {
 	// Display currency
 	updateButtonText("darkMatterShopCurrency", t("dark_matter"));
-	document.getElementById("darkMatterShopDisplay").textContent = format(
-		gameData.dark_matter,
-	);
-	document.getElementById("darkMatterSkillsDisplay").textContent = format(
-		gameData.dark_matter,
-	);
-	document.getElementById("darkOrbsShopDisplay").textContent = formatTreshold(
-		gameData.dark_orbs,
-	);
+	updateButtonText("darkMatterShopDisplay", format(gameData.dark_matter));
+	updateButtonText("darkMatterSkillsDisplay", format(gameData.dark_matter));
+	updateButtonText("darkOrbsShopDisplay", formatTreshold(gameData.dark_orbs));
 
 	// Shop button texts
 	updateButtonText("darkOrbGeneratorBuyButton", t("buy"));
@@ -100,12 +94,11 @@ export function renderDarkMatter() {
 		document.getElementById("darkOrbGeneratorDesc"),
 		t("dark_orb_generator_desc", format(getDarkOrbGeneration())),
 	);
-	document.getElementById("darkOrbGeneratorCost").textContent = format(
-		getDarkOrbGeneratorCost(),
-	);
+	updateButtonText("darkOrbGeneratorCost", format(getDarkOrbGeneratorCost()));
 
-	document.getElementById("aDealWithTheChairmanCost").textContent = format(
-		getADealWithTheChairmanCost(),
+	updateButtonText(
+		"aDealWithTheChairmanCost",
+		format(getADealWithTheChairmanCost()),
 	);
 	setHTML(
 		document.getElementById("aDealWithTheChairmanDesc"),
@@ -116,25 +109,19 @@ export function renderDarkMatter() {
 		document.getElementById("aGiftFromGodDesc"),
 		t("a_gift_from_god_desc", format(getAGiftFromGodEssenceGain())),
 	);
-	document.getElementById("aGiftFromGodCost").textContent = format(
-		getAGiftFromGodCost(),
-	);
+	updateButtonText("aGiftFromGodCost", format(getAGiftFromGodCost()));
 
 	setHTML(
 		document.getElementById("gottaBeFastDesc"),
 		t("gotta_be_fast_desc", format(getGottaBeFastGain(), 2)),
 	);
-	document.getElementById("gottaBeFastCost").textContent = format(
-		getGottaBeFastCost(),
-	);
+	updateButtonText("gottaBeFastCost", format(getGottaBeFastCost()));
 
 	setHTML(
 		document.getElementById("lifeCoachDesc"),
 		t("life_coach_desc", format(getLifeCoachIncomeGain())),
 	);
-	document.getElementById("lifeCoachCost").textContent = format(
-		getLifeCoachCost(),
-	);
+	updateButtonText("lifeCoachCost", format(getLifeCoachCost()));
 
 	if (gameData.dark_matter_shop.a_miracle)
 		document.getElementById("aMiracleBuyButton").classList.add("hidden");

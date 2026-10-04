@@ -41,7 +41,12 @@ import {
 	removeSpaces,
 	removeStrangeCharacters,
 } from "../utils.js";
-import { fitText, renderProgressBar, setHTML } from "./helpers.js";
+import {
+	fitText,
+	renderProgressBar,
+	setHTML,
+	updateButtonText,
+} from "./helpers.js";
 import { getRowByName } from "./navigation.js";
 import { showNoteModal } from "./note_modal.js";
 
@@ -323,18 +328,13 @@ export function renderSettings() {
 		date.toLocaleDateString();
 
 	const currentDate = new Date();
-	document.getElementById("playedDaysDisplay").textContent = format(
-		(currentDate.getTime() - date.getTime()) / (1000 * 3600 * 24),
-		2,
+	updateButtonText(
+		"playedDaysDisplay",
+		format((currentDate.getTime() - date.getTime()) / (1000 * 3600 * 24), 2),
 	);
-	document.getElementById("playedRealTimeDisplay").textContent = formatTime(
-		gameData.realtimeRun,
-	);
+	updateButtonText("playedRealTimeDisplay", formatTime(gameData.realtimeRun));
 
-	document.getElementById("playedGameTimeDisplay").textContent = format(
-		gameData.totalDays,
-		2,
-	);
+	updateButtonText("playedGameTimeDisplay", format(gameData.totalDays, 2));
 
 	if (gameData.rebirthOneCount > 0)
 		document.getElementById("statsRebirth1").classList.remove("hidden");
@@ -367,69 +367,74 @@ export function renderSettings() {
 	document.getElementById("rebirthFiveCountDisplay").textContent =
 		gameData.rebirthFiveCount;
 
-	document.getElementById("rebirthOneTimeDisplay").textContent = formatTime(
-		gameData.rebirthOneTime,
-		true,
+	updateButtonText(
+		"rebirthOneTimeDisplay",
+		formatTime(gameData.rebirthOneTime, true),
 	);
-	document.getElementById("rebirthTwoTimeDisplay").textContent = formatTime(
-		gameData.rebirthTwoTime,
-		true,
+	updateButtonText(
+		"rebirthTwoTimeDisplay",
+		formatTime(gameData.rebirthTwoTime, true),
 	);
-	document.getElementById("rebirthThreeTimeDisplay").textContent = formatTime(
-		gameData.rebirthThreeTime,
-		true,
+	updateButtonText(
+		"rebirthThreeTimeDisplay",
+		formatTime(gameData.rebirthThreeTime, true),
 	);
-	document.getElementById("rebirthFourTimeDisplay").textContent = formatTime(
-		gameData.rebirthFourTime,
-		true,
+	updateButtonText(
+		"rebirthFourTimeDisplay",
+		formatTime(gameData.rebirthFourTime, true),
 	);
-	document.getElementById("rebirthFiveTimeDisplay").textContent = formatTime(
-		gameData.rebirthFiveTime,
-		true,
+	updateButtonText(
+		"rebirthFiveTimeDisplay",
+		formatTime(gameData.rebirthFiveTime, true),
 	);
 
-	document.getElementById("rebirthOneFastestDisplay").textContent = formatTime(
-		gameData.stats.fastest1,
-		true,
+	updateButtonText(
+		"rebirthOneFastestDisplay",
+		formatTime(gameData.stats.fastest1, true),
 	);
-	document.getElementById("rebirthTwoFastestDisplay").textContent = formatTime(
-		gameData.stats.fastest2,
-		true,
+	updateButtonText(
+		"rebirthTwoFastestDisplay",
+		formatTime(gameData.stats.fastest2, true),
 	);
-	document.getElementById("rebirthThreeFastestDisplay").textContent =
-		formatTime(gameData.stats.fastest3, true);
-	document.getElementById("rebirthFourFastestDisplay").textContent = formatTime(
-		gameData.stats.fastest4,
-		true,
+	updateButtonText(
+		"rebirthThreeFastestDisplay",
+		formatTime(gameData.stats.fastest3, true),
 	);
-	document.getElementById("rebirthFiveFastestDisplay").textContent = formatTime(
-		gameData.stats.fastest5,
-		true,
+	updateButtonText(
+		"rebirthFourFastestDisplay",
+		formatTime(gameData.stats.fastest4, true),
+	);
+	updateButtonText(
+		"rebirthFiveFastestDisplay",
+		formatTime(gameData.stats.fastest5, true),
 	);
 
 	// Gain Stats
-	document.getElementById("evilPerSecondDisplay").textContent = format(
-		gameData.stats.EvilPerSecond,
-		3,
+	updateButtonText(
+		"evilPerSecondDisplay",
+		format(gameData.stats.EvilPerSecond, 3),
 	);
-	document.getElementById("maxEvilPerSecondDisplay").textContent = format(
-		gameData.stats.maxEvilPerSecond,
-		3,
+	updateButtonText(
+		"maxEvilPerSecondDisplay",
+		format(gameData.stats.maxEvilPerSecond, 3),
 	);
-	document.getElementById("maxEvilPerSecondRtDisplay").textContent = formatTime(
-		gameData.stats.maxEvilPerSecondRt,
+	updateButtonText(
+		"maxEvilPerSecondRtDisplay",
+		formatTime(gameData.stats.maxEvilPerSecondRt),
 	);
 
-	document.getElementById("essencePerSecondDisplay").textContent = format(
-		gameData.stats.EssencePerSecond,
-		3,
+	updateButtonText(
+		"essencePerSecondDisplay",
+		format(gameData.stats.EssencePerSecond, 3),
 	);
-	document.getElementById("maxEssencePerSecondDisplay").textContent = format(
-		gameData.stats.maxEssencePerSecond,
-		3,
+	updateButtonText(
+		"maxEssencePerSecondDisplay",
+		format(gameData.stats.maxEssencePerSecond, 3),
 	);
-	document.getElementById("maxEssencePerSecondRtDisplay").textContent =
-		formatTime(gameData.stats.maxEssencePerSecondRt);
+	updateButtonText(
+		"maxEssencePerSecondRtDisplay",
+		formatTime(gameData.stats.maxEssencePerSecondRt),
+	);
 
 	// Challenge Stats
 	document.getElementById("stats_challenge_1").hidden =
@@ -445,24 +450,30 @@ export function renderSettings() {
 	document.getElementById("stats_challenge_6").hidden =
 		gameData.challenges.the_darkest_time === 0;
 
-	document.getElementById("challengeHappinessBuffDisplay").textContent = format(
-		getChallengeBonus("an_unhappy_life"),
-		2,
+	updateButtonText(
+		"challengeHappinessBuffDisplay",
+		format(getChallengeBonus("an_unhappy_life"), 2),
 	);
-	document.getElementById("challengeIncomeBuffDisplay").textContent = format(
-		getChallengeBonus("rich_and_the_poor"),
-		2,
+	updateButtonText(
+		"challengeIncomeBuffDisplay",
+		format(getChallengeBonus("rich_and_the_poor"), 2),
 	);
-	document.getElementById("challengeTimewarpingBuffDisplay").textContent =
-		format(getChallengeBonus("time_does_not_fly"), 2);
-	document.getElementById("challengeEssenceGainBuffDisplay").textContent =
-		format(getChallengeBonus("dance_with_the_devil"), 2);
-	document.getElementById("challengeEvilGainBuffDisplay").textContent = format(
-		getChallengeBonus("legends_never_die"),
-		2,
+	updateButtonText(
+		"challengeTimewarpingBuffDisplay",
+		format(getChallengeBonus("time_does_not_fly"), 2),
 	);
-	document.getElementById("challengeDarkMaterGainBuffDisplay").textContent =
-		format(getChallengeBonus("the_darkest_time"), 2);
+	updateButtonText(
+		"challengeEssenceGainBuffDisplay",
+		format(getChallengeBonus("dance_with_the_devil"), 2),
+	);
+	updateButtonText(
+		"challengeEvilGainBuffDisplay",
+		format(getChallengeBonus("legends_never_die"), 2),
+	);
+	updateButtonText(
+		"challengeDarkMaterGainBuffDisplay",
+		format(getChallengeBonus("the_darkest_time"), 2),
+	);
 }
 
 export function renderRequirements() {

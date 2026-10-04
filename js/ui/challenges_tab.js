@@ -121,29 +121,29 @@ export function renderChallenges() {
 	document.getElementById("challengeReward6").hidden =
 		gameData.challenges.the_darkest_time === 0;
 
-	document.getElementById("challengeHappinessBuff").textContent = format(
-		getChallengeBonus("an_unhappy_life"),
-		2,
+	updateButtonText(
+		"challengeHappinessBuff",
+		format(getChallengeBonus("an_unhappy_life"), 2),
 	);
-	document.getElementById("challengeIncomeBuff").textContent = format(
-		getChallengeBonus("rich_and_the_poor"),
-		2,
+	updateButtonText(
+		"challengeIncomeBuff",
+		format(getChallengeBonus("rich_and_the_poor"), 2),
 	);
-	document.getElementById("challengeTimewarpingBuff").textContent = format(
-		getChallengeBonus("time_does_not_fly"),
-		2,
+	updateButtonText(
+		"challengeTimewarpingBuff",
+		format(getChallengeBonus("time_does_not_fly"), 2),
 	);
-	document.getElementById("challengeEssenceGainBuff").textContent = format(
-		getChallengeBonus("dance_with_the_devil"),
-		2,
+	updateButtonText(
+		"challengeEssenceGainBuff",
+		format(getChallengeBonus("dance_with_the_devil"), 2),
 	);
-	document.getElementById("challengeEvilGainBuff").textContent = format(
-		getChallengeBonus("legends_never_die"),
-		2,
+	updateButtonText(
+		"challengeEvilGainBuff",
+		format(getChallengeBonus("legends_never_die"), 2),
 	);
-	document.getElementById("challengeDarkMatterGainBuff").textContent = format(
-		getChallengeBonus("the_darkest_time"),
-		2,
+	updateButtonText(
+		"challengeDarkMatterGainBuff",
+		format(getChallengeBonus("the_darkest_time"), 2),
 	);
 
 	const lifespanDebuff = document.getElementById(
