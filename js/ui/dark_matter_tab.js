@@ -110,9 +110,12 @@ export function renderDarkMatter() {
 	document.getElementById("lifeCoachCurrency").textContent = t("dark_orbs");
 
 	// Dark Matter Shop
-	document.getElementById("dark_orb_generator_desc").innerHTML = t(
-		"dark_orb_generator_desc",
-		format(getDarkOrbGeneration()),
+	// setHTML, а не innerHTML: описания статичны и меняются только при покупке,
+	// а прямая запись пересоздаёт узлы каждый кадр — вложенный span с классом
+	// color-dark-orbs начинал анимацию заново и не подрагивал.
+	setHTML(
+		document.getElementById("dark_orb_generator_desc"),
+		t("dark_orb_generator_desc", format(getDarkOrbGeneration())),
 	);
 	document.getElementById("darkOrbGeneratorCost").textContent = format(
 		getDarkOrbGeneratorCost(),
@@ -121,30 +124,30 @@ export function renderDarkMatter() {
 	document.getElementById("aDealWithTheChairmanCost").textContent = format(
 		getADealWithTheChairmanCost(),
 	);
-	document.getElementById("a_deal_with_chairman_desc").innerHTML = t(
-		"a_deal_with_chairman_desc",
-		format(getTaaAndMagicXpGain()),
+	setHTML(
+		document.getElementById("a_deal_with_chairman_desc"),
+		t("a_deal_with_chairman_desc", format(getTaaAndMagicXpGain())),
 	);
 
-	document.getElementById("a_gift_from_god_desc").innerHTML = t(
-		"a_gift_from_god_desc",
-		format(getAGiftFromGodEssenceGain()),
+	setHTML(
+		document.getElementById("a_gift_from_god_desc"),
+		t("a_gift_from_god_desc", format(getAGiftFromGodEssenceGain())),
 	);
 	document.getElementById("aGiftFromGodCost").textContent = format(
 		getAGiftFromGodCost(),
 	);
 
-	document.getElementById("gotta_be_fast_desc").innerHTML = t(
-		"gotta_be_fast_desc",
-		format(getGottaBeFastGain(), 2),
+	setHTML(
+		document.getElementById("gotta_be_fast_desc"),
+		t("gotta_be_fast_desc", format(getGottaBeFastGain(), 2)),
 	);
 	document.getElementById("gottaBeFastCost").textContent = format(
 		getGottaBeFastCost(),
 	);
 
-	document.getElementById("life_coach_desc").innerHTML = t(
-		"life_coach_desc",
-		format(getLifeCoachIncomeGain()),
+	setHTML(
+		document.getElementById("life_coach_desc"),
+		t("life_coach_desc", format(getLifeCoachIncomeGain())),
 	);
 	document.getElementById("lifeCoachCost").textContent = format(
 		getLifeCoachCost(),
