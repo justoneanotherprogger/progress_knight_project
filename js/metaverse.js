@@ -300,7 +300,11 @@ export function getTimeIsAFlatCircleXP() {
 }
 
 export function getUnspentPerksDarkmatterGainBuff() {
-	const effect = softcap(gameData.perks_points * 0.0027 + 2, 75, 0.01);
+	// power = скорость насыщения: показатель растёт как power·log10(от нераспределённых даров).
+	// Было 0.01 — каждый десятикратный рост даров давал +1 к показателю и буст
+	// упирался в стену. 0.05 даёт насыщение в пять раз медленнее — для проверки,
+	// достижим ли конец.
+	const effect = softcap(gameData.perks_points * 0.0027 + 2, 75, 0.05);
 
 	return gameData.requirements.milestone_the_end_is_near.isCompleted()
 		? 10 ** effect
