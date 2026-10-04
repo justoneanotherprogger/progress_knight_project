@@ -60,23 +60,23 @@ export function renderChallenges() {
 	);
 
 	// Показатели эффектов берутся из констант, чтобы текст не рассинхронизировался с механикой
-	document.getElementById("challenge_1_desc").textContent = t(
+	document.getElementById("challenge1Desc").textContent = t(
 		"challenge_1_desc",
 		CHALLENGE_UNHAPPY_HAPPINESS_EXPONENT,
 	);
-	document.getElementById("challenge_2_desc").textContent = t(
+	document.getElementById("challenge2Desc").textContent = t(
 		"challenge_2_desc",
 		CHALLENGE_RICH_INCOME_EXPONENT,
 	);
-	document.getElementById("challenge_3_desc").textContent = t(
+	document.getElementById("challenge3Desc").textContent = t(
 		"challenge_3_desc",
 		CHALLENGE_TIME_WARP_EXPONENT,
 	);
-	document.getElementById("challenge_4_desc").textContent = t(
+	document.getElementById("challenge4Desc").textContent = t(
 		"challenge_4_desc",
 		CHALLENGE_DANCE_HAPPINESS_EXPONENT,
 	);
-	document.getElementById("challenge_5_desc").textContent = t(
+	document.getElementById("challenge5Desc").textContent = t(
 		"challenge_5_desc",
 		LIFESPAN_CHALLENGE_EXPONENT,
 		CHALLENGE_LEGENDS_WARP_EXPONENT,

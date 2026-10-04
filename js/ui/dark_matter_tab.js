@@ -114,7 +114,7 @@ export function renderDarkMatter() {
 	// а прямая запись пересоздаёт узлы каждый кадр — вложенный span с классом
 	// color-dark-orbs начинал анимацию заново и не подрагивал.
 	setHTML(
-		document.getElementById("dark_orb_generator_desc"),
+		document.getElementById("darkOrbGeneratorDesc"),
 		t("dark_orb_generator_desc", format(getDarkOrbGeneration())),
 	);
 	document.getElementById("darkOrbGeneratorCost").textContent = format(
@@ -125,12 +125,12 @@ export function renderDarkMatter() {
 		getADealWithTheChairmanCost(),
 	);
 	setHTML(
-		document.getElementById("a_deal_with_chairman_desc"),
+		document.getElementById("aDealWithTheChairmanDesc"),
 		t("a_deal_with_chairman_desc", format(getTaaAndMagicXpGain())),
 	);
 
 	setHTML(
-		document.getElementById("a_gift_from_god_desc"),
+		document.getElementById("aGiftFromGodDesc"),
 		t("a_gift_from_god_desc", format(getAGiftFromGodEssenceGain())),
 	);
 	document.getElementById("aGiftFromGodCost").textContent = format(
@@ -138,7 +138,7 @@ export function renderDarkMatter() {
 	);
 
 	setHTML(
-		document.getElementById("gotta_be_fast_desc"),
+		document.getElementById("gottaBeFastDesc"),
 		t("gotta_be_fast_desc", format(getGottaBeFastGain(), 2)),
 	);
 	document.getElementById("gottaBeFastCost").textContent = format(
@@ -146,7 +146,7 @@ export function renderDarkMatter() {
 	);
 
 	setHTML(
-		document.getElementById("life_coach_desc"),
+		document.getElementById("lifeCoachDesc"),
 		t("life_coach_desc", format(getLifeCoachIncomeGain())),
 	);
 	document.getElementById("lifeCoachCost").textContent = format(
