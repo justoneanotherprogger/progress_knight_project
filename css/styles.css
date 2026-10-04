@@ -442,8 +442,10 @@ button:focus {
 
 .quick-bar {
 	position: sticky;
-	top: 146px;
-	height: calc(100vh - 146px);
+	/* Липкая граница и высота пересчитываются в updateQuickBarHeight
+	   (js/ui/sidebar.js). Значение ниже — только до первого расчёта. */
+	top: 0;
+	height: calc(100vh);
 	display: flex;
 	flex-direction: column;
 	overflow-y: auto;

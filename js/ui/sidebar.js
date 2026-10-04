@@ -237,7 +237,9 @@ export function renderSideBar() {
 // .game-frame offset (0.8em, styles.css).  After accounting for both, the
 // page height lands exactly on the window edge so no phantom scrollbar
 // appears.
-// sticky top can be 146px (pinned under the resources bar) or higher (page at top).
+// sticky top — это измеренная нижняя граница топбара (см.
+// updateQuickBarHeight), либо фактическое положение панели, пока страница
+// не прокручена и панель стоит ниже этой границы.
 // Recalculated on scroll/resize only — never per frame — so the layout it
 // triggers cannot feed back into the measurement. top is clamped to the
 // sticky offset so a scrolled-off panel cannot request an unbounded height.
@@ -249,7 +251,16 @@ export function updateQuickBarHeight() {
 	const panel = document.getElementById("info");
 	if (!panel) return;
 
-	const top = Math.max(146, panel.getBoundingClientRect().top);
+	// Липкая граница — фактическая нижняя граница топбара: она зависит от
+	// шрифта и от того, что нарисовано в шапке, поэтому меряем, а не держим
+	// число в разметке. От панели замер не зависит, обратной связи нет.
+	const bar = document.getElementById("resources");
+	const barBottom = bar ? bar.getBoundingClientRect().bottom : 0;
+	const currentTop = parseFloat(panel.style.top);
+	if (Number.isNaN(currentTop) || Math.abs(currentTop - barBottom) > 0.5)
+		panel.style.top = `${barBottom}px`;
+
+	const top = Math.max(barBottom, panel.getBoundingClientRect().top);
 	const desired = Math.max(0, window.innerHeight - top - QUICK_BAR_BOTTOM_GAP);
 	const current = parseFloat(panel.style.height);
 
