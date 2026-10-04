@@ -96,6 +96,12 @@ body {
 	text-align: center;
 }
 
+/* Перечисление горячих клавиш: заголовок центрирован через .text-caption,
+   а сами строки — обычные div'ы, и text-align от соседа не наследуется. */
+#keybindsList {
+	text-align: center;
+}
+
 #resources .text-caption + div {
 	text-align: center;
 }
