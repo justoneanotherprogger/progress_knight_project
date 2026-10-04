@@ -17,7 +17,6 @@ import {
 	refreshLangButtons,
 	selectElementInGroup,
 	setFontSize,
-	setLayout,
 	setStickySidebar,
 	Tab,
 } from "./navigation.js";
@@ -47,7 +46,6 @@ export function initializeUI() {
 
 	createPerks("perksLayout");
 
-	setLayout(peekSettingFromSave("layout"));
 	setFontSize(peekSettingFromSave("fontSize"));
 	setNotation(peekSettingFromSave("numberNotation"));
 	setCurrency(peekSettingFromSave("currencyNotation"));
@@ -83,7 +81,6 @@ export function refreshSettingsButtons() {
 			"notation_scientific",
 			"notation_engineering",
 		],
-		Layout: ["layout_standard", "layout_wide"],
 		Theme: ["theme_light", "theme_dark"],
 		EnableKeybinds: ["enabled", "disabled"],
 	};
@@ -146,19 +143,13 @@ export function updateUI() {
 		renderJobs();
 	}
 
-	if (
-		currentTab === Tab.SKILLS ||
-		(gameData.settings.layout === 0 && currentTab === Tab.JOBS)
-	) {
+	if (currentTab === Tab.SKILLS) {
 		updateRequiredRows(gameData.taskData, skillCategories);
 		renderHeaderRows(skillCategories);
 		renderSkills();
 	}
 
-	if (
-		currentTab === Tab.SHOP ||
-		(gameData.settings.layout === 0 && currentTab === Tab.JOBS)
-	) {
+	if (currentTab === Tab.SHOP) {
 		updateRequiredRows(gameData.itemData, itemCategories);
 		renderHeaderRows(itemCategories);
 		renderShop();

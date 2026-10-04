@@ -166,7 +166,6 @@ language: Language
 sticky_sidebar: Sticky panels (top and side)
 currency_notation: Currency notation
 number_notation: Number notation
-layout: Layout
 font_size: Font size
 color_scheme: Color scheme
 dangerous_keybinds: Dangerous Keybinds
@@ -181,10 +180,6 @@ currency_modern: Modern $
 notation_standard: Standard
 notation_scientific: Scientific
 notation_engineering: Engineering
-
-# Layout options
-layout_standard: Standard
-layout_wide: W I D E
 
 # Font size
 font_smaller: Smaller

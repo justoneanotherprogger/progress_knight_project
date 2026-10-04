@@ -61,7 +61,6 @@ export var gameData = {
 		theme: 1,
 		currencyNotation: 3,
 		numberNotation: 1,
-		layout: 1,
 		fontSize: 3,
 		selectedTab: "jobs",
 		enableKeybinds: false,

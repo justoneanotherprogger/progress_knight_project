@@ -166,7 +166,6 @@ language: Язык
 sticky_sidebar: Закреплённые панели (верхняя и боковая)
 currency_notation: Обозначение валют
 number_notation: Обозначение чисел
-layout: Макет
 font_size: Размер шрифта
 color_scheme: Цветовая схема
 dangerous_keybinds: Опасные горячие клавиши
@@ -181,10 +180,6 @@ currency_modern: Современное $
 notation_standard: Стандартное
 notation_scientific: Научное
 notation_engineering: Инженерное
-
-# Layout options
-layout_standard: Стандартный
-layout_wide: Ш И Р О К И Й
 
 # Font size
 font_smaller: Меньше

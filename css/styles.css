@@ -490,18 +490,6 @@ button:focus {
 	margin-bottom: 0.8em;
 }
 
-.plain-tab-column {
-	width: 164em;
-	height: auto;
-}
-
-.plain-main-column {
-	width: 164em;
-	height: auto;
-	float: right;
-	margin-bottom: 4em;
-}
-
 .page-column {
 	width: 56em;
 	height: auto;

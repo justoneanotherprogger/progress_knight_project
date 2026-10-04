@@ -52,8 +52,9 @@ export function renderDarkMatter() {
 	document.getElementById("darkMatterShopDisplay").textContent = format(
 		gameData.dark_matter,
 	);
-	document.getElementById("darkMatterSkillsDisplay").textContent =
-		gameData.settings.layout === 0 ? "" : format(gameData.dark_matter);
+	document.getElementById("darkMatterSkillsDisplay").textContent = format(
+		gameData.dark_matter,
+	);
 	document.getElementById("darkOrbsShopDisplay").textContent = formatTreshold(
 		gameData.dark_orbs,
 	);

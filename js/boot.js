@@ -75,7 +75,6 @@ import { initializeUI, refreshSettingsButtons, updateUI } from "./ui/init.js";
 import {
 	refreshLangButtons,
 	setFontSize,
-	setLayout,
 	setStickySidebar,
 	setTab,
 	setTabDarkMatter,
@@ -139,7 +138,6 @@ Object.assign(window, {
 	setEnableKeybinds,
 	setFontSize,
 	setLang,
-	setLayout,
 	setNotation,
 	setStickySidebar,
 	setTab,
