@@ -649,12 +649,34 @@ button:focus {
 .color-dark-matter {
 	color: rgb(132, 99, 206);
 }
+@keyframes dark-orbs-distort {
+	0%,
+	100% {
+		text-shadow: 0 0 5px rgba(255, 255, 255, 0.9);
+		transform: translate(0, 0);
+	}
+	20% {
+		text-shadow: 1px -1px 6px rgba(255, 255, 255, 0.6);
+		transform: translate(0.5px, -0.5px);
+	}
+	45% {
+		text-shadow: -1px 1px 4px rgba(255, 255, 255, 0.9);
+		transform: translate(-0.5px, 0.5px);
+	}
+	70% {
+		text-shadow: 1px 1px 7px rgba(255, 255, 255, 0.5);
+		transform: translate(0.5px, 0.5px);
+	}
+}
 /* Тёмные сферы — чёрные с белым ореолом: на почти чёрном фоне тёмной темы
    (css/dark.css) от букв остаётся только свечение, и это читается как «провал»
-   в экране. Ореол взят по образцу .currency-shadow из css/currencies.css. */
+   в экране. Ореол взят по образцу .currency-shadow из css/currencies.css.
+   Анимация колеблет ореол и слегка смещает текст — «дисторт» вместо статики;
+   transform на строчном элементе раскладку не двигает. */
 .color-dark-orbs {
 	color: #000;
 	text-shadow: 0 0 5px rgba(255, 255, 255, 0.9);
+	animation: dark-orbs-distort 2s infinite;
 }
 .color-time-warping {
 	color: rgb(204, 34, 219);
