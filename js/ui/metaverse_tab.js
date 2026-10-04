@@ -36,7 +36,7 @@ import {
 	reduceBoostCooldownCost,
 } from "../metaverse.js";
 import { format, formatTime, formatTreshold } from "../utils.js";
-import { fitText } from "./helpers.js";
+import { fitText, updateButtonText } from "./helpers.js";
 
 export function renderBoostButton(elemName) {
 	// render boost button to look nicier :)
@@ -86,7 +86,7 @@ export function renderMetaverse() {
 	renderBoostButton("boostMetaButton");
 
 	// Display currency
-	document.getElementById("metaverseHypercubes").textContent = t("hypercubes");
+	updateButtonText("metaverseHypercubes", t("hypercubes"));
 
 	document.getElementById("hypercubesMetaDisplay").textContent = format(
 		gameData.hypercubes,
@@ -97,27 +97,20 @@ export function renderMetaverse() {
 		getBoostCooldownString();
 
 	// Cost labels & currencies
-	document.getElementById("hypercubeGainCostLabel").textContent = t("cost");
-	document.getElementById("hypercubeGainCostCurrency").textContent =
-		t("hypercubes");
-	document.getElementById("reduceBoostCooldownCostLabel").textContent =
-		t("cost");
-	document.getElementById("reduceBoostCooldownCostCurrency").textContent =
-		t("hypercubes");
-	document.getElementById("boostDurationCostLabel").textContent = t("cost");
-	document.getElementById("boostDurationCostCurrency").textContent =
-		t("hypercubes");
-	document.getElementById("evilTranCostLabel").textContent = t("cost");
-	document.getElementById("evilTranCostCurrency").textContent = t("hypercubes");
-	document.getElementById("essenceMultCostLabel").textContent = t("cost");
-	document.getElementById("essenceMultCostCurrency").textContent =
-		t("hypercubes");
-	document.getElementById("challengeAltarCostLabel").textContent = t("cost");
-	document.getElementById("challengeAltarCostCurrency").textContent =
-		t("hypercubes");
-	document.getElementById("darkMatterMultCostLabel").textContent = t("cost");
-	document.getElementById("darkMatterMultCostCurrency").textContent =
-		t("hypercubes");
+	updateButtonText("hypercubeGainCostLabel", t("cost"));
+	updateButtonText("hypercubeGainCostCurrency", t("hypercubes"));
+	updateButtonText("reduceBoostCooldownCostLabel", t("cost"));
+	updateButtonText("reduceBoostCooldownCostCurrency", t("hypercubes"));
+	updateButtonText("boostDurationCostLabel", t("cost"));
+	updateButtonText("boostDurationCostCurrency", t("hypercubes"));
+	updateButtonText("evilTranCostLabel", t("cost"));
+	updateButtonText("evilTranCostCurrency", t("hypercubes"));
+	updateButtonText("essenceMultCostLabel", t("cost"));
+	updateButtonText("essenceMultCostCurrency", t("hypercubes"));
+	updateButtonText("challengeAltarCostLabel", t("cost"));
+	updateButtonText("challengeAltarCostCurrency", t("hypercubes"));
+	updateButtonText("darkMatterMultCostLabel", t("cost"));
+	updateButtonText("darkMatterMultCostCurrency", t("hypercubes"));
 
 	document.getElementById("reduceBoostCooldown").innerHTML = t(
 		"current_cooldown",
@@ -126,8 +119,7 @@ export function renderMetaverse() {
 	document.getElementById("reduceBoostCooldownCost").textContent = format(
 		reduceBoostCooldownCost(),
 	);
-	document.getElementById("reduceBoostCooldownBuyButton").textContent =
-		t("buy");
+	updateButtonText("reduceBoostCooldownBuyButton", t("buy"));
 	document.getElementById("reduceBoostCooldownBuyButton").disabled =
 		!canBuyReduceBoostCooldown();
 
@@ -138,7 +130,7 @@ export function renderMetaverse() {
 	document.getElementById("boostDurationCost").textContent = format(
 		boostDurationCost(),
 	);
-	document.getElementById("boostDurationBuyButton").textContent = t("buy");
+	updateButtonText("boostDurationBuyButton", t("buy"));
 	document.getElementById("boostDurationBuyButton").disabled =
 		!canBuyBoostDuration();
 
@@ -149,7 +141,7 @@ export function renderMetaverse() {
 	document.getElementById("hypercubeGainCost").textContent = format(
 		hypercubeGainCost(),
 	);
-	document.getElementById("hypercubeGainBuyButton").textContent = t("buy");
+	updateButtonText("hypercubeGainBuyButton", t("buy"));
 	document.getElementById("hypercubeGainBuyButton").disabled =
 		!canBuyHypercubeGain();
 
@@ -158,7 +150,7 @@ export function renderMetaverse() {
 		format(evilTranGain(), 2),
 	);
 	document.getElementById("evilTranCost").textContent = format(evilTranCost());
-	document.getElementById("evilTranBuyButton").textContent = t("buy");
+	updateButtonText("evilTranBuyButton", t("buy"));
 	document.getElementById("evilTranBuyButton").disabled = !canBuyEvilTran();
 
 	document.getElementById("essenceMultGain").innerHTML = t(
@@ -168,7 +160,7 @@ export function renderMetaverse() {
 	document.getElementById("essenceMultCost").textContent = format(
 		essenceMultCost(),
 	);
-	document.getElementById("essenceMultButton").textContent = t("buy");
+	updateButtonText("essenceMultButton", t("buy"));
 	document.getElementById("essenceMultButton").disabled = !canBuyEssenceMult();
 
 	document.getElementById("challengeAltarCost").textContent = format(
@@ -176,7 +168,7 @@ export function renderMetaverse() {
 	);
 	document.getElementById("challengeAltarState").textContent =
 		gameData.metaverse.challenge_altar === 0 ? "" : t("active");
-	document.getElementById("challengeAltarButton").textContent = t("buy");
+	updateButtonText("challengeAltarButton", t("buy"));
 	document.getElementById("challengeAltarButton").disabled =
 		!canBuyChallengeAltar();
 	if (gameData.metaverse.challenge_altar === 0)
@@ -190,7 +182,7 @@ export function renderMetaverse() {
 	document.getElementById("darkMatterMultCost").textContent = format(
 		darkMatterMultCost(),
 	);
-	document.getElementById("darkMaterMultButton").textContent = t("buy");
+	updateButtonText("darkMaterMultButton", t("buy"));
 	document.getElementById("darkMaterMultButton").disabled =
 		!canBuyDarkMatterMult();
 

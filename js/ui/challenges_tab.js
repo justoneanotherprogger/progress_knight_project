@@ -12,13 +12,14 @@ import {
 	LIFESPAN_CHALLENGE_EXPONENT,
 } from "../data.js";
 import { format, getFormattedChallengeTaskGoal } from "../utils.js";
+import { updateButtonText } from "./helpers.js";
 
 export function renderChallenges() {
 	const challengeActive = gameData.active_challenge !== "";
 	for (let i = 1; i <= Object.keys(gameData.challenges).length; i++) {
 		const element = document.getElementById(`challengeButton${i}`);
 		if (element == null) continue;
-		element.textContent = t("enter_challenge");
+		updateButtonText(`challengeButton${i}`, t("enter_challenge"));
 		element.disabled = challengeActive;
 	}
 

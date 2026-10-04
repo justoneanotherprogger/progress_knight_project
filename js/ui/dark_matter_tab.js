@@ -22,7 +22,7 @@ import {
 } from "../dark_matter.js";
 import { gameData } from "../data.js";
 import { format, formatTreshold } from "../utils.js";
-import { setHTML } from "./helpers.js";
+import { setHTML, updateButtonText } from "./helpers.js";
 import { renderSkillTreeButton } from "./tabs.js";
 
 export function renderDarkMatterShopButton(elemName, condition) {
@@ -56,8 +56,7 @@ const SKILL_DESC_IDS = {
 
 export function renderDarkMatter() {
 	// Display currency
-	document.getElementById("darkMatterShopCurrency").textContent =
-		t("dark_matter");
+	updateButtonText("darkMatterShopCurrency", t("dark_matter"));
 	document.getElementById("darkMatterShopDisplay").textContent = format(
 		gameData.dark_matter,
 	);
@@ -69,34 +68,29 @@ export function renderDarkMatter() {
 	);
 
 	// Shop button texts
-	document.getElementById("darkOrbGeneratorBuyButton").textContent = t("buy");
-	document.getElementById("aMiracleBuyButton").textContent = t("buy");
-	document.getElementById("aDealWithTheChairmanBuyButton").textContent =
-		t("buy");
-	document.getElementById("aGiftFromGodBuyButton").textContent = t("buy");
-	document.getElementById("gottaBeFastBuyButton").textContent = t("buy");
-	document.getElementById("lifeCoachBuyButton").textContent = t("buy");
+	updateButtonText("darkOrbGeneratorBuyButton", t("buy"));
+	updateButtonText("aMiracleBuyButton", t("buy"));
+	updateButtonText("aDealWithTheChairmanBuyButton", t("buy"));
+	updateButtonText("aGiftFromGodBuyButton", t("buy"));
+	updateButtonText("gottaBeFastBuyButton", t("buy"));
+	updateButtonText("lifeCoachBuyButton", t("buy"));
 
 	// Reset abilities button
-	document.getElementById("resetAbilitiesButton").textContent =
-		t("reset_abilities");
+	updateButtonText("resetAbilitiesButton", t("reset_abilities"));
 
 	// Cost labels
-	document.getElementById("darkOrbGeneratorCostLabel").textContent = t("cost");
-	document.getElementById("darkOrbGeneratorCurrency").textContent =
-		t("dark_matter");
-	document.getElementById("aMiracleCostLabel").textContent = t("cost");
-	document.getElementById("aMiracleCurrency").textContent = t("dark_matter");
-	document.getElementById("aDealWithTheChairmanCostLabel").textContent =
-		t("cost");
-	document.getElementById("aDealWithTheChairmanCurrency").textContent =
-		t("dark_orbs");
-	document.getElementById("aGiftFromGodCostLabel").textContent = t("cost");
-	document.getElementById("aGiftFromGodCurrency").textContent = t("dark_orbs");
-	document.getElementById("gottaBeFastCostLabel").textContent = t("cost");
-	document.getElementById("gottaBeFastCurrency").textContent = t("dark_orbs");
-	document.getElementById("lifeCoachCostLabel").textContent = t("cost");
-	document.getElementById("lifeCoachCurrency").textContent = t("dark_orbs");
+	updateButtonText("darkOrbGeneratorCostLabel", t("cost"));
+	updateButtonText("darkOrbGeneratorCurrency", t("dark_matter"));
+	updateButtonText("aMiracleCostLabel", t("cost"));
+	updateButtonText("aMiracleCurrency", t("dark_matter"));
+	updateButtonText("aDealWithTheChairmanCostLabel", t("cost"));
+	updateButtonText("aDealWithTheChairmanCurrency", t("dark_orbs"));
+	updateButtonText("aGiftFromGodCostLabel", t("cost"));
+	updateButtonText("aGiftFromGodCurrency", t("dark_orbs"));
+	updateButtonText("gottaBeFastCostLabel", t("cost"));
+	updateButtonText("gottaBeFastCurrency", t("dark_orbs"));
+	updateButtonText("lifeCoachCostLabel", t("cost"));
+	updateButtonText("lifeCoachCurrency", t("dark_orbs"));
 
 	// Dark Matter Shop
 	// setHTML, а не innerHTML: описания статичны и меняются только при покупке,
@@ -186,25 +180,16 @@ export function renderDarkMatter() {
 	}
 
 	// Dark Matter Ability tree - cost labels and currency
-	document.getElementById("speedIsLifeCurrencyLabel").textContent = t("cost");
-	document.getElementById("speedIsLifeCurrencyIcon").textContent =
-		t("dark_matter");
-	document.getElementById("yourGreatestDebtCurrencyLabel").textContent =
-		t("cost");
-	document.getElementById("yourGreatestDebtCurrencyIcon").textContent =
-		t("dark_matter");
-	document.getElementById("essenceCollectorCurrencyLabel").textContent =
-		t("cost");
-	document.getElementById("essenceCollectorCurrencyIcon").textContent =
-		t("dark_matter");
-	document.getElementById("explosionOfTheUniverseCurrencyLabel").textContent =
-		t("cost");
-	document.getElementById("explosionOfTheUniverseCurrencyIcon").textContent =
-		t("dark_matter");
-	document.getElementById("multiverseExplorerCurrencyLabel").textContent =
-		t("cost");
-	document.getElementById("multiverseExplorerCurrencyIcon").textContent =
-		t("dark_matter");
+	updateButtonText("speedIsLifeCurrencyLabel", t("cost"));
+	updateButtonText("speedIsLifeCurrencyIcon", t("dark_matter"));
+	updateButtonText("yourGreatestDebtCurrencyLabel", t("cost"));
+	updateButtonText("yourGreatestDebtCurrencyIcon", t("dark_matter"));
+	updateButtonText("essenceCollectorCurrencyLabel", t("cost"));
+	updateButtonText("essenceCollectorCurrencyIcon", t("dark_matter"));
+	updateButtonText("explosionOfTheUniverseCurrencyLabel", t("cost"));
+	updateButtonText("explosionOfTheUniverseCurrencyIcon", t("dark_matter"));
+	updateButtonText("multiverseExplorerCurrencyLabel", t("cost"));
+	updateButtonText("multiverseExplorerCurrencyIcon", t("dark_matter"));
 
 	// Dark Matter Ability tree
 	renderSkillTreeButton(
