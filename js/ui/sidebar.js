@@ -272,18 +272,21 @@ let activeTip = null;
 
 function placeTip(owner) {
 	const rect = owner.getBoundingClientRect();
-	// Центрируем плашку по элементу, но не даём ей выйти за края окна:
-	// не влезает слева — сдвигаем вправо, не влезает справа — влево.
-	const half = tooltipLayer.offsetWidth / 2;
-	const center = Math.min(
-		Math.max(rect.left + rect.width / 2, half + TIP_PAD),
-		window.innerWidth - half - TIP_PAD,
-	);
-	tooltipLayer.style.left = `${center}px`;
-	// По умолчанию снизу: строка валюты в топбаре, под ней всегда есть место.
+	const width = tooltipLayer.offsetWidth;
+	const height = tooltipLayer.offsetHeight;
+	// Центрируем по элементу, затем сдвигаем плашку на разницу — как у
+	// тултипов таблиц. Формулой от ширины нельзя: offsetWidth округлён,
+	// а transform считал бы от неокруглённой, и к краю выходил бы кусок.
+	let left = rect.left + rect.width / 2 - width / 2;
+	// Граница — clientWidth: innerWidth включает полосу прокрутки, и плашка
+	// уезжала за видимую область на её ширину.
+	const limit = document.documentElement.clientWidth - TIP_PAD;
+	if (left + width > limit) left -= left + width - limit;
+	if (left < TIP_PAD) left = TIP_PAD;
+	tooltipLayer.style.left = `${left}px`;
 	tooltipLayer.style.top =
 		owner.dataset.tipSide === "top"
-			? `${rect.top - tooltipLayer.offsetHeight - TIP_GAP}px`
+			? `${rect.top - height - TIP_GAP}px`
 			: `${rect.bottom + TIP_GAP}px`;
 }
 
