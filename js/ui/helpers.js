@@ -179,8 +179,57 @@ export function wobbleDarkOrbs() {
 	for (const node of document.querySelectorAll(".color-dark-orbs")) {
 		const angle = Math.random() * Math.PI * 2;
 		const x = Math.cos(angle);
-		const y = Math.sin(angle);
 		const blur = 4 + Math.random() * 3;
 		node.style.textShadow = `${x}px ${y}px ${blur}px rgba(255, 255, 255, 0.9)`;
 	}
+}
+
+const progressWidth = (percent) =>
+	`${Math.floor(Math.min(Math.max(percent, 0), 100) * 100) / 100}%`;
+
+function toggleComplete(element, complete) {
+	if (element.classList.contains("is-complete") !== complete)
+		element.classList.toggle("is-complete", complete);
+}
+
+// Полосы прогресса требований: строка «Требуется для следующего» в таблицах,
+// кнопки ребёрна, цены в магазинах. Разметка и CSS пришли из апстрима
+// (indomit/progress_knight_2). percent === null — порога нет, полоса
+// прячется. Рендер идёт каждый кадр, поэтому ширина и классы пишутся
+// только при смене: запись стиля без проверки форсит layout таблицы.
+export function renderRequirementProgress(
+	container,
+	percent,
+	pendingPercent,
+	colorClass = "color-income",
+) {
+	if (!container) return;
+	const bar = container.querySelector(".req-progress-bar");
+	const pending = container.querySelector(".req-pending-bar");
+	if (!bar || !pending) return;
+
+	const pendingValue = pendingPercent ?? percent;
+	const visible = Number.isFinite(percent);
+	const target = visible ? "visible" : "hidden";
+	if (container.dataset.reqVisible !== target) {
+		container.style.visibility = target;
+		container.dataset.reqVisible = target;
+	}
+	if (!visible) return;
+
+	const barWidth = progressWidth(percent);
+	if (bar.style.width !== barWidth) bar.style.width = barWidth;
+	const pendingWidth = progressWidth(pendingValue);
+	if (pending.style.width !== pendingWidth) pending.style.width = pendingWidth;
+
+	if (bar.dataset.reqColor !== colorClass) {
+		for (const element of [bar, pending]) {
+			if (element.dataset.reqColor)
+				element.classList.remove(element.dataset.reqColor);
+			element.classList.add(colorClass);
+			element.dataset.reqColor = colorClass;
+		}
+	}
+	toggleComplete(bar, percent >= 100);
+	toggleComplete(pending, pendingValue >= 100);
 }

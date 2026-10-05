@@ -5,7 +5,13 @@ import { jobCategories } from "../../dist/js/jobs_data.js";
 import { milestoneCategories } from "../../dist/js/milestones_data.js";
 import { skillCategories } from "../../dist/js/skills_data.js";
 import { t } from "../../dist/js/translations.js";
-import { isHeroesUnlocked } from "../calculations.js";
+import {
+	getDarkMatterGain,
+	getEssenceGain,
+	getEvilGain,
+	isHeroesUnlocked,
+	toInfinityNumber,
+} from "../calculations.js";
 import {
 	AgeRequirement,
 	DarkMatterRequirement,
@@ -18,7 +24,14 @@ import {
 } from "../classes.js";
 import { gameData, getPreviousTaskInCategory } from "../data.js";
 import { labelKey } from "../effects.js";
-import { setCurrentJob, setCurrentProperty, setMisc } from "../main.js";
+import {
+	getExpense,
+	getIncome,
+	setCurrentJob,
+	setCurrentProperty,
+	setMisc,
+} from "../main.js";
+import { getHypercubeGeneration } from "../metaverse.js";
 import { milestoneData } from "../milestones.js";
 import {
 	canBuyJobSlot,
@@ -33,15 +46,18 @@ import {
 	isSlotShopUnlocked,
 } from "../slots.js";
 import {
+	daysToYears,
 	format,
 	formatCoins,
 	formatLevel,
+	getDynamicProgress,
 	removeSpaces,
 	removeStrangeCharacters,
 } from "../utils.js";
 import {
 	fitText,
 	renderProgressBar,
+	renderRequirementProgress,
 	setElementText,
 	setHTML,
 } from "./helpers.js";
@@ -581,6 +597,9 @@ export function updateRequiredRows(data, categoryType) {
 			const hypercubeElement = requiredRow.querySelector(".hypercube");
 			const effectElement = requiredRow.querySelector(".effect");
 			const effectValueElement = requiredRow.querySelector(".effectValue");
+			const progressContainer = requiredRow.querySelector(
+				".req-progress-container",
+			);
 
 			if (
 				!coinElement ||
@@ -609,6 +628,12 @@ export function updateRequiredRows(data, categoryType) {
 			effectElement.classList.add("hiddenTask");
 
 			let finalText = "";
+			// Прогресс к требованию для полосы: percent против порога, pending —
+			// с учётом прибавки, если ребёрн открыт. null — порога нет
+			// (требование на счёт ребёрнов), полоса спрячется.
+			let percent = null;
+			let pendingPercent = null;
+			let progressColor = "color-income";
 			if (data === gameData.taskData) {
 				if (categoryType !== jobCategories) {
 					effectElement.classList.remove("hiddenTask");
@@ -631,18 +656,51 @@ export function updateRequiredRows(data, categoryType) {
 						evilElement,
 						`${format(requirements[0].requirement)} ${t("evil")}`,
 					);
+					percent = getDynamicProgress(
+						gameData.evil,
+						requirements[0].requirement,
+					);
+					pendingPercent = getDynamicProgress(
+						gameData.evil.add(
+							availableGain(getEvilGain, "req_rebirth_button2"),
+						),
+						requirements[0].requirement,
+					);
+					progressColor = "color-evil";
 				} else if (requirementObject instanceof EssenceRequirement) {
 					essenceElement.classList.remove("hiddenTask");
 					setElementText(
 						essenceElement,
 						`${format(requirements[0].requirement)} ${t("essence")}`,
 					);
+					percent = getDynamicProgress(
+						gameData.essence,
+						requirements[0].requirement,
+					);
+					pendingPercent = getDynamicProgress(
+						gameData.essence.add(
+							availableGain(getEssenceGain, "req_rebirth_button3"),
+						),
+						requirements[0].requirement,
+					);
+					progressColor = "color-essence";
 				} else if (requirementObject instanceof DarkMatterRequirement) {
 					darkMatterElement.classList.remove("hiddenTask");
 					setElementText(
 						darkMatterElement,
 						`${format(requirements[0].requirement)} ${t("dark_matter")}`,
 					);
+					percent = getDynamicProgress(
+						gameData.dark_matter,
+						requirements[0].requirement,
+					);
+					pendingPercent = getDynamicProgress(
+						gameData.dark_matter.add(
+							availableGain(getDarkMatterGain, "req_rebirth_button4"),
+						),
+						requirements[0].requirement,
+					);
+					progressColor = "color-dark-matter";
 				} else if (requirementObject instanceof MetaverseRequirement) {
 				} else if (requirementObject instanceof HypercubeRequirement) {
 					hypercubeElement.classList.remove("hiddenTask");
@@ -650,12 +708,28 @@ export function updateRequiredRows(data, categoryType) {
 						hypercubeElement,
 						`${format(requirements[0].requirement)} ${t("hypercubes")}`,
 					);
+					percent = getDynamicProgress(
+						gameData.hypercubes,
+						requirements[0].requirement,
+					);
+					pendingPercent = getDynamicProgress(
+						new Decimal(gameData.hypercubes).add(
+							availableGain(getHypercubeGeneration, "req_rebirth_button5"),
+						),
+						requirements[0].requirement,
+					);
+					progressColor = "color-hypercubes";
 				} else if (requirementObject instanceof AgeRequirement) {
 					essenceElement.classList.remove("hiddenTask");
 					setElementText(
 						essenceElement,
 						`${t("age")} ${format(requirements[0].requirement)}`,
 					);
+					percent = pendingPercent = getDynamicProgress(
+						daysToYears(gameData.days),
+						requirements[0].requirement,
+					);
+					progressColor = "color-essence";
 				} else {
 					levelElement.classList.remove("hiddenTask");
 					for (const requirement of requirements) {
@@ -670,12 +744,40 @@ export function updateRequiredRows(data, categoryType) {
 							formatLevel(requirement.requirement) +
 							",";
 					}
+					// Уровневые требования: среднее по всем условиям. Выполненное
+					// условие даёт 100, незавершённое — доля уровня с учётом xp
+					// внутри уровня; кап 0.999, чтобы условие не давало 100
+					// раньше времени.
+					let sum = 0;
+					for (const requirement of requirements) {
+						const task = gameData.taskData[requirement.task];
+						if (task.level >= requirement.requirement) {
+							sum += 100;
+							continue;
+						}
+						const xpFraction = task.xp.div(task.getMaxXp()).toNumber();
+						const exact = Math.min(
+							task.level + Math.min(Math.max(xpFraction, 0), 0.999),
+							requirement.requirement,
+						);
+						sum += (exact / requirement.requirement) * 100;
+					}
+					percent = requirements.length > 0 ? sum / requirements.length : 0;
+					pendingPercent = percent;
 					finalText = finalText.substring(0, finalText.length - 1);
 					setElementText(levelElement, finalText);
 				}
 			} else if (data === gameData.itemData) {
 				coinElement.classList.remove("hiddenTask");
 				formatCoins(requirements[0].requirement, coinElement);
+				percent = pendingPercent = getDynamicProgress(
+					gameData.coins,
+					requirements[0].requirement,
+				);
+				// Как в апстриме: когда доход меньше расхода, полоса краснеет.
+				progressColor = getIncome().gt(getExpense())
+					? "color-income"
+					: "color-evil";
 
 				effectElement.classList.remove("hiddenTask");
 				setElementText(
@@ -691,12 +793,22 @@ export function updateRequiredRows(data, categoryType) {
 						evilElement,
 						`${format(requirements[0].requirement)} ${t("evil")}`,
 					);
+					percent = pendingPercent = getDynamicProgress(
+						gameData.evil,
+						requirements[0].requirement,
+					);
+					progressColor = "color-evil";
 				} else {
 					essenceElement.classList.remove("hiddenTask");
 					setElementText(
 						essenceElement,
 						`${format(requirements[0].requirement)} ${t("essence")}`,
 					);
+					percent = pendingPercent = getDynamicProgress(
+						gameData.essence,
+						requirements[0].requirement,
+					);
+					progressColor = "color-essence";
 				}
 
 				if (nextEntity.baseData.description != null) {
@@ -709,6 +821,13 @@ export function updateRequiredRows(data, categoryType) {
 					);
 				}
 			}
+
+			renderRequirementProgress(
+				progressContainer,
+				percent,
+				pendingPercent,
+				progressColor,
+			);
 		}
 	}
 }
@@ -859,4 +978,13 @@ export function renderSkillTreeButton(
 			element.classList.remove("w3-red");
 		}
 	}
+}
+
+// Прибавка ресурса зачисляется только вместе с ребёрном, до его открытия её
+// нет: показывать её в pending раньше времени — враньё. В апстриме та же
+// оговорка внутри allowRebirth и getXGainAvailable.
+function availableGain(gain, rebirthRequirementKey) {
+	return gameData.requirements[rebirthRequirementKey].isCompleted()
+		? gain()
+		: toInfinityNumber(0);
 }

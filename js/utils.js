@@ -281,6 +281,25 @@ export function formatTreshold(number, decimals = 1, treshold = 100000) {
 	else return format(number, decimals);
 }
 
+const PROGRESS_LOG_THRESHOLD = 1e100;
+const PROGRESS_LOG_OFFSET = 99;
+
+// Прогресс в процентах для полос требований. До 1e100 — обычное отношение
+// (на больших числах полоса иначе стоит на нуле), дальше логарифм по
+// (lg − 99): разница порядков от нуля до порога. Принимает и Decimal, и
+// число. Формула из апстрима.
+export function getDynamicProgress(current, required) {
+	const cur = new Decimal(current);
+	const req = new Decimal(required);
+	if (req.lte(0) || cur.lte(0)) return 0;
+	if (cur.lt(PROGRESS_LOG_THRESHOLD) || req.lt(PROGRESS_LOG_THRESHOLD))
+		return Math.min(cur.div(req).times(100).toNumber(), 100);
+	const logReq = req.log10() - PROGRESS_LOG_OFFSET;
+	if (logReq <= 0) return 100;
+	const percent = ((cur.log10() - PROGRESS_LOG_OFFSET) / logReq) * 100;
+	return Math.min(Math.max(percent, 0), 100);
+}
+
 export function formatLevel(level) {
 	if (level >= 100000) return format(level);
 
