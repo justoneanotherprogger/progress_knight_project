@@ -89,7 +89,7 @@ export function renderDarkMatter() {
 	// Dark Matter Shop
 	// setHTML, а не innerHTML: описания статичны и меняются только при покупке,
 	// а прямая запись пересоздаёт узлы каждый кадр, и вложенный span с классом
-	// color-dark-orbs терял бы смещение, которое wobbleDarkOrbs ставит ему.
+	// color-dark-orbs терял бы ореол, который ему ставит wobbleDarkOrbs.
 	setHTML(
 		document.getElementById("darkOrbGeneratorDesc"),
 		t("dark_orb_generator_desc", format(getDarkOrbGeneration())),
