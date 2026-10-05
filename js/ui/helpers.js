@@ -178,8 +178,8 @@ export function renderProgressBar(task, progressFill, progressBar) {
 export function wobbleDarkOrbs() {
 	for (const node of document.querySelectorAll(".color-dark-orbs")) {
 		const angle = Math.random() * Math.PI * 2;
-		const x = Math.cos(angle) * 2;
-		const y = Math.sin(angle) * 2;
+		const x = Math.cos(angle);
+		const y = Math.sin(angle);
 		const blur = 4 + Math.random() * 3;
 		node.style.textShadow = `${x}px ${y}px ${blur}px rgba(255, 255, 255, 0.9)`;
 	}
