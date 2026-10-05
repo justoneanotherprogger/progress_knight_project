@@ -166,3 +166,21 @@ export function renderProgressBar(task, progressFill, progressBar) {
 		progressBar.classList.add("progress-bar");
 	}
 }
+
+// Дёргать нужно на 10 Гц, а рендер идёт на renderSpeed = 20 Гц: отмеряем
+// по времени, чтобы частота не зависела от renderSpeed.
+let lastWobble = 0;
+
+// Тёмные сферы дёргаются на пиксель в случайную сторону: смещение всегда от
+// штатной позиции, поэтому текст не уползает. Вызов — из рендер-цикла, но сам режется до 10 Гц.
+// Список берём заново: одно из этих мест — span внутри перевода, он появляется
+// в DOM в рантайме, и кэш, собранный на старте, его бы не увидел.
+export function wobbleDarkOrbs() {
+	const now = performance.now();
+	if (now - lastWobble < 100) return;
+	lastWobble = now;
+	for (const node of document.querySelectorAll(".color-dark-orbs")) {
+		const angle = Math.random() * Math.PI * 2;
+		node.style.transform = `translate(${Math.cos(angle)}px, ${Math.sin(angle)}px)`;
+	}
+}
