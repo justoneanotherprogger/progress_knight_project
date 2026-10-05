@@ -13,7 +13,7 @@ import {
 	rebirthTwo,
 } from "../rebirth.js";
 import { removeSpaces, removeStrangeCharacters } from "../utils.js";
-import { fitText } from "./helpers.js";
+import { fitText, setElementText } from "./helpers.js";
 import { updateUI } from "./init.js";
 import { getSortedPerks } from "./metaverse_tab.js";
 
@@ -51,13 +51,13 @@ export function setSignDisplay() {
 	if (!signDisplay) return;
 
 	if (getNet().gt(-1) && getNet().lt(1)) {
-		signDisplay.textContent = "";
+		setElementText(signDisplay, "");
 		signDisplay.style.color = "gray";
 	} else if (getIncome().gt(getExpense())) {
-		signDisplay.textContent = "+";
+		setElementText(signDisplay, "+");
 		signDisplay.style.color = "green";
 	} else {
-		signDisplay.textContent = "-";
+		setElementText(signDisplay, "-");
 		signDisplay.style.color = "red";
 	}
 }

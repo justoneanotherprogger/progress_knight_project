@@ -339,8 +339,10 @@ export function updateHeaderColumns(headerRow, categoryType) {
 	if (categoryType === jobCategories || categoryType === skillCategories) {
 		const valueType = headerRow.querySelector(".valueType");
 		if (valueType)
-			valueType.textContent =
-				categoryType === jobCategories ? t("income_day") : t("effect");
+			setElementText(
+				valueType,
+				categoryType === jobCategories ? t("income_day") : t("effect"),
+			);
 		const headers = headerRow.getElementsByTagName("th");
 		setElementText(headers[1], t("level"));
 		setElementText(headers[3], t("xp_day"));

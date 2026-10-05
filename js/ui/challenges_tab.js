@@ -12,7 +12,7 @@ import {
 	LIFESPAN_CHALLENGE_EXPONENT,
 } from "../data.js";
 import { format, getFormattedChallengeTaskGoal } from "../utils.js";
-import { setElementText, updateButtonText } from "./helpers.js";
+import { setElementText, setHTML, updateButtonText } from "./helpers.js";
 
 export function renderChallenges() {
 	const challengeActive = gameData.active_challenge !== "";
@@ -123,9 +123,9 @@ export function renderChallenges() {
 	for (let i = 0; i < 6; i++) {
 		const rewardElement = document.getElementById(challengeRewardIds[i]);
 		if (rewardElement != null)
-			rewardElement.innerHTML = t(
-				"challenge_reward",
-				t(challengeRewardStatKeys[i]),
+			setHTML(
+				rewardElement,
+				t("challenge_reward", t(challengeRewardStatKeys[i])),
 			);
 	}
 
@@ -194,11 +194,13 @@ export function renderCurrentChallengeReward(blockclass) {
 
 export function renderCurrentChallengeRewardValue() {
 	for (let i = 1; i <= Object.keys(gameData.challenges).length; i++) {
-		document.getElementById(`sidebarCurrentChallengeBuff${i}`).textContent =
-			format(getChallengeBonus(i, true), 2);
-		document.getElementById(`sidebarChallengeBuff${i}`).textContent = format(
-			getChallengeBonus(i),
-			2,
+		updateButtonText(
+			`sidebarCurrentChallengeBuff${i}`,
+			format(getChallengeBonus(i, true), 2),
+		);
+		updateButtonText(
+			`sidebarChallengeBuff${i}`,
+			format(getChallengeBonus(i), 2),
 		);
 	}
 }

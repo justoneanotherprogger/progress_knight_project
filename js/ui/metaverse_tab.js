@@ -232,12 +232,12 @@ export function renderPerks() {
 
 			if (total_mpp >= perk_cost) {
 				const perkNameEl = button.getElementsByClassName("perkName")[0];
-				perkNameEl.textContent = getMetaversePerkName(key);
+				setElementText(perkNameEl, getMetaversePerkName(key));
 				fitText(perkNameEl, 18);
 				button.classList.remove("perk-locked");
 			} else {
 				const perkNameEl = button.getElementsByClassName("perkName")[0];
-				perkNameEl.textContent = t("locked");
+				setElementText(perkNameEl, t("locked"));
 				fitText(perkNameEl, 18);
 				button.classList.add("perk-locked");
 				if (index % 2 === 1) hide_next = true;
