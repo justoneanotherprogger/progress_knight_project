@@ -21,8 +21,13 @@ import {
 	isDecimalInfinity,
 } from "../dark_matter.js";
 import { gameData } from "../data.js";
-import { format, formatTreshold } from "../utils.js";
-import { setElementText, setHTML, updateButtonText } from "./helpers.js";
+import { format, formatTreshold, getDynamicProgress } from "../utils.js";
+import {
+	renderRequirementProgress,
+	setElementText,
+	setHTML,
+	updateButtonText,
+} from "./helpers.js";
 import { renderSkillTreeButton } from "./tabs.js";
 
 export function renderDarkMatterShopButton(elemName, condition) {
@@ -60,6 +65,21 @@ export function renderDarkMatter() {
 	updateButtonText("darkMatterShopDisplay", format(gameData.dark_matter));
 	updateButtonText("darkMatterSkillsDisplay", format(gameData.dark_matter));
 	updateButtonText("darkOrbsShopDisplay", formatTreshold(gameData.dark_orbs));
+
+	// Полоса к цене следующего улучшения за тёмные сферы: самый дешёвый из
+	// четырёх покупок магазина, как в апстриме. pending не рисуем — сферы
+	// копятся медленно, и «pending» тут обманчив. Все цены и счётчик —
+	// Decimal, поэтому минимум через .min(), а не Math.min.
+	const nextOrbCost = getADealWithTheChairmanCost()
+		.min(getAGiftFromGodCost())
+		.min(getGottaBeFastCost())
+		.min(getLifeCoachCost());
+	renderRequirementProgress(
+		document.getElementById("darkOrbsProgress"),
+		getDynamicProgress(gameData.dark_orbs, nextOrbCost),
+		null,
+		"color-dark-matter",
+	);
 
 	// Shop button texts
 	updateButtonText("darkOrbGeneratorBuyButton", t("buy"));
