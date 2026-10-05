@@ -212,6 +212,53 @@ body {
 	background-color: rgb(165, 60, 21);
 }
 
+/* Тонкая полоса прогресса требования: строка «Требуется для следующего» в
+   таблицах, кнопки ребёрна, цены в магазинах. Яркая полоса — текущий
+   прогресс, полупрозрачная — прогресс с учётом ещё не полученного.
+   Контейнер прячется через visibility, а не display: строка не прыгает
+   высотой, когда полоса появляется. clip-path расширяет область наружу
+   контейнера высотой 0.25em — иначе свечение box-shadow срезается по краям. */
+.req-progress-container {
+	display: block;
+	position: relative;
+	visibility: hidden;
+	width: 100%;
+	height: 0.25em;
+	margin-top: 0.25em;
+	background-color: #333;
+	border-radius: 0.125em;
+	clip-path: inset(-0.625em -0.625em -0.625em -0.625em);
+}
+
+.req-pending-bar,
+.req-progress-bar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0%;
+	height: 100%;
+	background-color: currentColor;
+	border-radius: 0.125em;
+	transition: width 0.1s ease;
+}
+
+/* Прибавка, которая ещё не зачислена. */
+.req-pending-bar {
+	opacity: 0.5;
+}
+
+.req-progress-bar {
+	z-index: 2;
+}
+
+/* Порог взят: полоса светится. */
+.req-pending-bar.is-complete,
+.req-progress-bar.is-complete {
+	box-shadow:
+		0 0 0.5em currentColor,
+		0 0 0.1875em currentColor;
+}
+
 /* Инлайновые стили раньше жили прямо в разметке и перебивали .hidden —
    инлайн сильнее правила без !important. Отсюда класс, а не style. */
 .boost-panel {
