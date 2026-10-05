@@ -39,6 +39,7 @@ import {
 import {
 	fitText,
 	renderProgressBar,
+	setElementText,
 	setRebirthButton,
 	updateButtonHTML,
 	updateButtonText,
@@ -89,7 +90,7 @@ export function renderSideBar() {
 	el("deathText").classList.toggle("hidden", isAlive());
 	const boostCooldownDisplay = el("boostCooldownDisplay");
 	boostCooldownDisplay.style.whiteSpace = "nowrap";
-	boostCooldownDisplay.textContent = getBoostCooldownString();
+	setElementText(boostCooldownDisplay, getBoostCooldownString());
 	fitText(boostCooldownDisplay, 16);
 	updateButtonHTML(
 		"pauseButton",

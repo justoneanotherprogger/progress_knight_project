@@ -12,7 +12,7 @@ import {
 	LIFESPAN_CHALLENGE_EXPONENT,
 } from "../data.js";
 import { format, getFormattedChallengeTaskGoal } from "../utils.js";
-import { updateButtonText } from "./helpers.js";
+import { setElementText, updateButtonText } from "./helpers.js";
 
 export function renderChallenges() {
 	const challengeActive = gameData.active_challenge !== "";
@@ -25,62 +25,83 @@ export function renderChallenges() {
 
 	//TODO (indomit)
 
-	document.getElementById("challengeGoal1").textContent = t(
-		"challenge_goal",
-		format(getChallengeGoal("an_unhappy_life")),
-		t("reward_happiness"),
-	);
-	document.getElementById("challengeGoal2").textContent = t(
-		"challenge_goal",
-		format(getChallengeGoal("rich_and_the_poor")),
-		t("reward_income"),
-	);
-	document.getElementById("challengeGoal3").textContent = t(
-		"challenge_goal",
-		`x${format(getChallengeGoal("time_does_not_fly"))}`,
-		t("reward_time_warping"),
-	);
-	document.getElementById("challengeGoal4").textContent = t(
-		"challenge_goal",
-		format(getChallengeGoal("dance_with_the_devil")),
-		t("gain_evil"),
-	);
-	document.getElementById("challengeGoal5").textContent = t(
-		"challenge_goal_plain",
-		getFormattedChallengeTaskGoal(
-			"job_chairman",
-			Math.floor(getChallengeGoal("legends_never_die")),
+	updateButtonText(
+		"challengeGoal1",
+		t(
+			"challenge_goal",
+			format(getChallengeGoal("an_unhappy_life")),
+			t("reward_happiness"),
 		),
 	);
-	document.getElementById("challengeGoal6").textContent = t(
-		"challenge_goal_plain",
-		getFormattedChallengeTaskGoal(
-			"job_sigma_proioxis",
-			Math.floor(100 * (getChallengeGoal("the_darkest_time") - 1)),
+	updateButtonText(
+		"challengeGoal2",
+		t(
+			"challenge_goal",
+			format(getChallengeGoal("rich_and_the_poor")),
+			t("reward_income"),
+		),
+	);
+	updateButtonText(
+		"challengeGoal3",
+		t(
+			"challenge_goal",
+			`x${format(getChallengeGoal("time_does_not_fly"))}`,
+			t("reward_time_warping"),
+		),
+	);
+	updateButtonText(
+		"challengeGoal4",
+		t(
+			"challenge_goal",
+			format(getChallengeGoal("dance_with_the_devil")),
+			t("gain_evil"),
+		),
+	);
+	updateButtonText(
+		"challengeGoal5",
+		t(
+			"challenge_goal_plain",
+			getFormattedChallengeTaskGoal(
+				"job_chairman",
+				Math.floor(getChallengeGoal("legends_never_die")),
+			),
+		),
+	);
+	updateButtonText(
+		"challengeGoal6",
+		t(
+			"challenge_goal_plain",
+			getFormattedChallengeTaskGoal(
+				"job_sigma_proioxis",
+				Math.floor(100 * (getChallengeGoal("the_darkest_time") - 1)),
+			),
 		),
 	);
 
 	// Показатели эффектов берутся из констант, чтобы текст не рассинхронизировался с механикой
-	document.getElementById("challenge1Desc").textContent = t(
-		"challenge_1_desc",
-		CHALLENGE_UNHAPPY_HAPPINESS_EXPONENT,
+	updateButtonText(
+		"challenge1Desc",
+		t("challenge_1_desc", CHALLENGE_UNHAPPY_HAPPINESS_EXPONENT),
 	);
-	document.getElementById("challenge2Desc").textContent = t(
-		"challenge_2_desc",
-		CHALLENGE_RICH_INCOME_EXPONENT,
+	updateButtonText(
+		"challenge2Desc",
+		t("challenge_2_desc", CHALLENGE_RICH_INCOME_EXPONENT),
 	);
-	document.getElementById("challenge3Desc").textContent = t(
-		"challenge_3_desc",
-		CHALLENGE_TIME_WARP_EXPONENT,
+	updateButtonText(
+		"challenge3Desc",
+		t("challenge_3_desc", CHALLENGE_TIME_WARP_EXPONENT),
 	);
-	document.getElementById("challenge4Desc").textContent = t(
-		"challenge_4_desc",
-		CHALLENGE_DANCE_HAPPINESS_EXPONENT,
+	updateButtonText(
+		"challenge4Desc",
+		t("challenge_4_desc", CHALLENGE_DANCE_HAPPINESS_EXPONENT),
 	);
-	document.getElementById("challenge5Desc").textContent = t(
-		"challenge_5_desc",
-		LIFESPAN_CHALLENGE_EXPONENT,
-		CHALLENGE_LEGENDS_WARP_EXPONENT,
+	updateButtonText(
+		"challenge5Desc",
+		t(
+			"challenge_5_desc",
+			LIFESPAN_CHALLENGE_EXPONENT,
+			CHALLENGE_LEGENDS_WARP_EXPONENT,
+		),
 	);
 
 	const challengeRewardIds = [
@@ -151,7 +172,7 @@ export function renderChallenges() {
 	);
 	lifespanDebuff.hidden = gameData.rebirthFiveCount === 0;
 	if (!lifespanDebuff.hidden)
-		lifespanDebuff.textContent = t("challenge_5_meta_debuff");
+		setElementText(lifespanDebuff, t("challenge_5_meta_debuff"));
 }
 
 export function renderCurrentChallengeReward(blockclass) {

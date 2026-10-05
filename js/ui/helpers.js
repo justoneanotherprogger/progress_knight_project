@@ -2,11 +2,15 @@
 
 import { gameData } from "../data.js";
 
+// То же, что updateButtonText, но для элемента, который уже в руках: в циклах
+// id нет, а getElementById на каждой итерации лишний. textContent пересоздаёт
+// узел даже при совпадающей строке, поэтому проверка обязательна.
+export function setElementText(element, text) {
+	if (element.textContent !== text) element.textContent = text;
+}
+
 export function updateButtonText(id, text) {
-	const element = document.getElementById(id);
-	if (element.textContent !== text) {
-		element.textContent = text;
-	}
+	setElementText(document.getElementById(id), text);
 }
 
 export function updateButtonHTML(id, html) {

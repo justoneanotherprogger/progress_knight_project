@@ -1,4 +1,4 @@
-// ui/tabs.js — tab content rendering: jobs, skills, shop, challenges, milestones, metaverse, dark matter, settings, rows, perks
+// ui/tabs.js — tab content rendering: jobs, skills, shop, challenges, milestones, metaverse, dark matter, rows, perks
 
 import { itemCategories } from "../../dist/js/items_data.js";
 import { jobCategories } from "../../dist/js/jobs_data.js";
@@ -6,7 +6,6 @@ import { milestoneCategories } from "../../dist/js/milestones_data.js";
 import { skillCategories } from "../../dist/js/skills_data.js";
 import { t } from "../../dist/js/translations.js";
 import { isHeroesUnlocked } from "../calculations.js";
-import { getChallengeBonus } from "../challenges.js";
 import {
 	AgeRequirement,
 	DarkMatterRequirement,
@@ -37,15 +36,14 @@ import {
 	format,
 	formatCoins,
 	formatLevel,
-	formatTime,
 	removeSpaces,
 	removeStrangeCharacters,
 } from "../utils.js";
 import {
 	fitText,
 	renderProgressBar,
+	setElementText,
 	setHTML,
-	updateButtonText,
 } from "./helpers.js";
 import { getRowByName } from "./navigation.js";
 import { showNoteModal } from "./note_modal.js";
@@ -321,161 +319,6 @@ export function renderMilestones() {
 		);
 }
 
-export function renderSettings() {
-	// Stats
-	const date = new Date(gameData.stats.startDate);
-	document.getElementById("startDateDisplay").textContent =
-		date.toLocaleDateString();
-
-	const currentDate = new Date();
-	updateButtonText(
-		"playedDaysDisplay",
-		format((currentDate.getTime() - date.getTime()) / (1000 * 3600 * 24), 2),
-	);
-	updateButtonText("playedRealTimeDisplay", formatTime(gameData.realtimeRun));
-
-	updateButtonText("playedGameTimeDisplay", format(gameData.totalDays, 2));
-
-	if (gameData.rebirthOneCount > 0)
-		document.getElementById("statsRebirth1").classList.remove("hidden");
-	else document.getElementById("statsRebirth1").classList.add("hidden");
-
-	if (gameData.rebirthTwoCount > 0)
-		document.getElementById("statsRebirth2").classList.remove("hidden");
-	else document.getElementById("statsRebirth2").classList.add("hidden");
-
-	if (gameData.rebirthThreeCount > 0)
-		document.getElementById("statsRebirth3").classList.remove("hidden");
-	else document.getElementById("statsRebirth3").classList.add("hidden");
-
-	if (gameData.rebirthFourCount > 0)
-		document.getElementById("statsRebirth4").classList.remove("hidden");
-	else document.getElementById("statsRebirth4").classList.add("hidden");
-
-	if (gameData.rebirthFiveCount > 0)
-		document.getElementById("statsRebirth5").classList.remove("hidden");
-	else document.getElementById("statsRebirth5").classList.add("hidden");
-
-	document.getElementById("rebirthOneCountDisplay").textContent =
-		gameData.rebirthOneCount;
-	document.getElementById("rebirthTwoCountDisplay").textContent =
-		gameData.rebirthTwoCount;
-	document.getElementById("rebirthThreeCountDisplay").textContent =
-		gameData.rebirthThreeCount;
-	document.getElementById("rebirthFourCountDisplay").textContent =
-		gameData.rebirthFourCount;
-	document.getElementById("rebirthFiveCountDisplay").textContent =
-		gameData.rebirthFiveCount;
-
-	updateButtonText(
-		"rebirthOneTimeDisplay",
-		formatTime(gameData.rebirthOneTime, true),
-	);
-	updateButtonText(
-		"rebirthTwoTimeDisplay",
-		formatTime(gameData.rebirthTwoTime, true),
-	);
-	updateButtonText(
-		"rebirthThreeTimeDisplay",
-		formatTime(gameData.rebirthThreeTime, true),
-	);
-	updateButtonText(
-		"rebirthFourTimeDisplay",
-		formatTime(gameData.rebirthFourTime, true),
-	);
-	updateButtonText(
-		"rebirthFiveTimeDisplay",
-		formatTime(gameData.rebirthFiveTime, true),
-	);
-
-	updateButtonText(
-		"rebirthOneFastestDisplay",
-		formatTime(gameData.stats.fastest1, true),
-	);
-	updateButtonText(
-		"rebirthTwoFastestDisplay",
-		formatTime(gameData.stats.fastest2, true),
-	);
-	updateButtonText(
-		"rebirthThreeFastestDisplay",
-		formatTime(gameData.stats.fastest3, true),
-	);
-	updateButtonText(
-		"rebirthFourFastestDisplay",
-		formatTime(gameData.stats.fastest4, true),
-	);
-	updateButtonText(
-		"rebirthFiveFastestDisplay",
-		formatTime(gameData.stats.fastest5, true),
-	);
-
-	// Gain Stats
-	updateButtonText(
-		"evilPerSecondDisplay",
-		format(gameData.stats.EvilPerSecond, 3),
-	);
-	updateButtonText(
-		"maxEvilPerSecondDisplay",
-		format(gameData.stats.maxEvilPerSecond, 3),
-	);
-	updateButtonText(
-		"maxEvilPerSecondRtDisplay",
-		formatTime(gameData.stats.maxEvilPerSecondRt),
-	);
-
-	updateButtonText(
-		"essencePerSecondDisplay",
-		format(gameData.stats.EssencePerSecond, 3),
-	);
-	updateButtonText(
-		"maxEssencePerSecondDisplay",
-		format(gameData.stats.maxEssencePerSecond, 3),
-	);
-	updateButtonText(
-		"maxEssencePerSecondRtDisplay",
-		formatTime(gameData.stats.maxEssencePerSecondRt),
-	);
-
-	// Challenge Stats
-	document.getElementById("stats_challenge_1").hidden =
-		gameData.challenges.an_unhappy_life === 0;
-	document.getElementById("stats_challenge_2").hidden =
-		gameData.challenges.rich_and_the_poor === 0;
-	document.getElementById("stats_challenge_3").hidden =
-		gameData.challenges.time_does_not_fly === 0;
-	document.getElementById("stats_challenge_4").hidden =
-		gameData.challenges.dance_with_the_devil === 0;
-	document.getElementById("stats_challenge_5").hidden =
-		gameData.challenges.legends_never_die === 0;
-	document.getElementById("stats_challenge_6").hidden =
-		gameData.challenges.the_darkest_time === 0;
-
-	updateButtonText(
-		"challengeHappinessBuffDisplay",
-		format(getChallengeBonus("an_unhappy_life"), 2),
-	);
-	updateButtonText(
-		"challengeIncomeBuffDisplay",
-		format(getChallengeBonus("rich_and_the_poor"), 2),
-	);
-	updateButtonText(
-		"challengeTimewarpingBuffDisplay",
-		format(getChallengeBonus("time_does_not_fly"), 2),
-	);
-	updateButtonText(
-		"challengeEssenceGainBuffDisplay",
-		format(getChallengeBonus("dance_with_the_devil"), 2),
-	);
-	updateButtonText(
-		"challengeEvilGainBuffDisplay",
-		format(getChallengeBonus("legends_never_die"), 2),
-	);
-	updateButtonText(
-		"challengeDarkMaterGainBuffDisplay",
-		format(getChallengeBonus("the_darkest_time"), 2),
-	);
-}
-
 export function renderRequirements() {
 	for (const key in gameData.requirements) {
 		const requirement = gameData.requirements[key];
@@ -499,15 +342,15 @@ export function updateHeaderColumns(headerRow, categoryType) {
 			valueType.textContent =
 				categoryType === jobCategories ? t("income_day") : t("effect");
 		const headers = headerRow.getElementsByTagName("th");
-		headers[1].textContent = t("level");
-		headers[3].textContent = t("xp_day");
-		headers[4].textContent = t("xp_left");
-		headers[5].textContent = t("max_level");
+		setElementText(headers[1], t("level"));
+		setElementText(headers[3], t("xp_day"));
+		setElementText(headers[4], t("xp_left"));
+		setElementText(headers[5], t("max_level"));
 	} else if (categoryType === itemCategories) {
 		const headers = headerRow.getElementsByTagName("th");
-		headers[1].textContent = t("active");
-		headers[2].textContent = t("effect");
-		headers[3].textContent = t("expense_day");
+		setElementText(headers[1], t("active"));
+		setElementText(headers[2], t("effect"));
+		setElementText(headers[3], t("expense_day"));
 	}
 }
 
@@ -518,10 +361,12 @@ export function renderHeaderRows(categories) {
 		const categoryElement = headerRow
 			.getElementsByClassName("category")[0]
 			.querySelector(".name");
-		if (categoryElement) categoryElement.textContent = t(categoryName);
+		if (categoryElement) setElementText(categoryElement, t(categoryName));
 		else
-			headerRow.getElementsByClassName("category")[0].textContent =
-				t(categoryName);
+			setElementText(
+				headerRow.getElementsByClassName("category")[0],
+				t(categoryName),
+			);
 		const maxLevelElement = headerRow.querySelector(".maxLevel");
 		if (maxLevelElement)
 			maxLevelElement.classList.toggle(
@@ -538,9 +383,9 @@ export function createRequiredRow(categoryName, categoryType) {
 		.querySelector(".requiredRowTemplate")
 		.content.firstElementChild.cloneNode(true);
 	const graySpans = requiredRow.querySelectorAll("span.w3-text-gray");
-	graySpans[0].textContent = t("required");
+	setElementText(graySpans[0], t("required"));
 	if (categoryType !== jobCategories && graySpans.length > 1)
-		graySpans[1].textContent = t("next_effect");
+		setElementText(graySpans[1], t("next_effect"));
 	requiredRow.classList.add("requiredRow");
 	requiredRow.classList.add(removeSpaces(categoryName));
 	requiredRow.id = `req_${categoryName}`;
@@ -553,10 +398,12 @@ export function createHeaderRow(templates, categoryType, categoryName) {
 	const categoryElement = headerRow.getElementsByClassName("category")[0];
 
 	if (categoryType === itemCategories) {
-		categoryElement.getElementsByClassName("name")[0].textContent =
-			t(categoryName);
+		setElementText(
+			categoryElement.getElementsByClassName("name")[0],
+			t(categoryName),
+		);
 	} else {
-		categoryElement.textContent = t(categoryName);
+		setElementText(categoryElement, t(categoryName));
 	}
 
 	updateHeaderColumns(headerRow, categoryType);
@@ -677,9 +524,9 @@ export function updateRequiredRows(data, categoryType) {
 	const requiredRows = document.getElementsByClassName("requiredRow");
 	for (const requiredRow of requiredRows) {
 		const graySpans = requiredRow.querySelectorAll("span.w3-text-gray");
-		graySpans[0].textContent = t("required");
+		setElementText(graySpans[0], t("required"));
 		if (categoryType !== jobCategories && graySpans.length > 1)
-			graySpans[1].textContent = t("next_effect");
+			setElementText(graySpans[1], t("next_effect"));
 		let nextEntity = null;
 		let nextEntityName = null;
 		const category = categoryType[requiredRow.id.substring(4)];
@@ -763,32 +610,50 @@ export function updateRequiredRows(data, categoryType) {
 			if (data === gameData.taskData) {
 				if (categoryType !== jobCategories) {
 					effectElement.classList.remove("hiddenTask");
-					effectValueElement.textContent = nextEntity.unlocked
-						? t(
-								labelKey(
-									nextEntity.baseData.effect.target,
-									nextEntity.baseData.effect.type,
-								),
-							)
-						: t("unknown");
+					setElementText(
+						effectValueElement,
+						nextEntity.unlocked
+							? t(
+									labelKey(
+										nextEntity.baseData.effect.target,
+										nextEntity.baseData.effect.type,
+									),
+								)
+							: t("unknown"),
+					);
 				}
 
 				if (requirementObject instanceof EvilRequirement) {
 					evilElement.classList.remove("hiddenTask");
-					evilElement.textContent = `${format(requirements[0].requirement)} ${t("evil")}`;
+					setElementText(
+						evilElement,
+						`${format(requirements[0].requirement)} ${t("evil")}`,
+					);
 				} else if (requirementObject instanceof EssenceRequirement) {
 					essenceElement.classList.remove("hiddenTask");
-					essenceElement.textContent = `${format(requirements[0].requirement)} ${t("essence")}`;
+					setElementText(
+						essenceElement,
+						`${format(requirements[0].requirement)} ${t("essence")}`,
+					);
 				} else if (requirementObject instanceof DarkMatterRequirement) {
 					darkMatterElement.classList.remove("hiddenTask");
-					darkMatterElement.textContent = `${format(requirements[0].requirement)} ${t("dark_matter")}`;
+					setElementText(
+						darkMatterElement,
+						`${format(requirements[0].requirement)} ${t("dark_matter")}`,
+					);
 				} else if (requirementObject instanceof MetaverseRequirement) {
 				} else if (requirementObject instanceof HypercubeRequirement) {
 					hypercubeElement.classList.remove("hiddenTask");
-					hypercubeElement.textContent = `${format(requirements[0].requirement)} ${t("hypercubes")}`;
+					setElementText(
+						hypercubeElement,
+						`${format(requirements[0].requirement)} ${t("hypercubes")}`,
+					);
 				} else if (requirementObject instanceof AgeRequirement) {
 					essenceElement.classList.remove("hiddenTask");
-					essenceElement.textContent = `${t("age")} ${format(requirements[0].requirement)}`;
+					setElementText(
+						essenceElement,
+						`${t("age")} ${format(requirements[0].requirement)}`,
+					);
 				} else {
 					levelElement.classList.remove("hiddenTask");
 					for (const requirement of requirements) {
@@ -804,32 +669,42 @@ export function updateRequiredRows(data, categoryType) {
 							",";
 					}
 					finalText = finalText.substring(0, finalText.length - 1);
-					levelElement.textContent = finalText;
+					setElementText(levelElement, finalText);
 				}
 			} else if (data === gameData.itemData) {
 				coinElement.classList.remove("hiddenTask");
 				formatCoins(requirements[0].requirement, coinElement);
 
 				effectElement.classList.remove("hiddenTask");
-				effectValueElement.textContent = nextEntity.unlocked
-					? nextEntity.getEffectDescription()
-					: t("unknown");
+				setElementText(
+					effectValueElement,
+					nextEntity.unlocked
+						? nextEntity.getEffectDescription()
+						: t("unknown"),
+				);
 			} else if (data === milestoneData) {
 				if (requirementObject instanceof EvilRequirement) {
 					evilElement.classList.remove("hiddenTask");
-					evilElement.textContent = `${format(requirements[0].requirement)} ${t("evil")}`;
+					setElementText(
+						evilElement,
+						`${format(requirements[0].requirement)} ${t("evil")}`,
+					);
 				} else {
 					essenceElement.classList.remove("hiddenTask");
-					essenceElement.textContent = `${format(requirements[0].requirement)} ${t("essence")}`;
+					setElementText(
+						essenceElement,
+						`${format(requirements[0].requirement)} ${t("essence")}`,
+					);
 				}
 
 				if (nextEntity.baseData.description != null) {
 					effectElement.classList.remove("hiddenTask");
-					effectValueElement.textContent = gameData.stats.maxEssenceReached.gt(
-						nextEntity.threshold,
-					)
-						? t(nextEntity.baseData.description)
-						: t("unknown");
+					setElementText(
+						effectValueElement,
+						gameData.stats.maxEssenceReached.gt(nextEntity.threshold)
+							? t(nextEntity.baseData.description)
+							: t("unknown"),
+					);
 				}
 			}
 		}
@@ -956,16 +831,16 @@ export function renderSkillTreeButton(
 
 		if (categoryBought) {
 			if (elementBought) {
-				element.textContent = t("accepted");
+				setElementText(element, t("accepted"));
 				element.classList.add("w3-green");
 				element.classList.remove("w3-red");
 			} else {
-				element.textContent = t("rejected");
+				setElementText(element, t("rejected"));
 				element.classList.add("w3-red");
 				element.classList.remove("w3-green");
 			}
 		} else {
-			element.textContent = t("buy");
+			setElementText(element, t("buy"));
 			element.classList.remove("w3-green");
 			element.classList.remove("w3-red");
 		}
@@ -973,11 +848,11 @@ export function renderSkillTreeButton(
 		element.disabled = elementBought;
 
 		if (elementBought) {
-			element.textContent = t("accepted");
+			setElementText(element, t("accepted"));
 			element.classList.add("w3-green");
 			element.classList.remove("w3-red");
 		} else {
-			element.textContent = t("buy");
+			setElementText(element, t("buy"));
 			element.classList.remove("w3-green");
 			element.classList.remove("w3-red");
 		}

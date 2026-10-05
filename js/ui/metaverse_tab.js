@@ -36,13 +36,18 @@ import {
 	reduceBoostCooldownCost,
 } from "../metaverse.js";
 import { format, formatTime, formatTreshold } from "../utils.js";
-import { fitText, setHTML, updateButtonText } from "./helpers.js";
+import {
+	fitText,
+	setElementText,
+	setHTML,
+	updateButtonText,
+} from "./helpers.js";
 
 export function renderBoostButton(elemName) {
 	// render boost button to look nicier :)
 	const boostButton = document.getElementById(elemName);
 	if (boostButton == null) return;
-	boostButton.textContent = t("boost");
+	setElementText(boostButton, t("boost"));
 	if (gameData.boost_active) {
 		// active
 		boostButton.classList.add("perk-boost-active");
@@ -68,10 +73,13 @@ export function renderMetaverse() {
 	for (let i = 0; i < 3; i++) {
 		const elem = document.getElementById(`timeTillNextHypercubePower${i + 1}`);
 		const nextH = getNextPowerOfNumber(gameData.hypercubes * 10 ** i);
-		elem.textContent = t(
-			"hypercubes_in",
-			format(nextH),
-			formatTime(getTimeTillNextHypercubePower(i)),
+		setElementText(
+			elem,
+			t(
+				"hypercubes_in",
+				format(nextH),
+				formatTime(getTimeTillNextHypercubePower(i)),
+			),
 		);
 		if (i > 0)
 			elem.hidden =
@@ -87,10 +95,11 @@ export function renderMetaverse() {
 	updateButtonText("metaverseHypercubes", t("hypercubes"));
 
 	updateButtonText("hypercubesMetaDisplay", format(gameData.hypercubes));
-	document.getElementById("hypercubesBonusMetaDisplay").textContent =
-		`x${format(getHypercubeGeneration() / 0.03)}`;
-	document.getElementById("boostCooldownMetaDisplay").textContent =
-		getBoostCooldownString();
+	updateButtonText(
+		"hypercubesBonusMetaDisplay",
+		`x${format(getHypercubeGeneration() / 0.03)}`,
+	);
+	updateButtonText("boostCooldownMetaDisplay", getBoostCooldownString());
 
 	// Cost labels & currencies
 	updateButtonText("hypercubeGainCostLabel", t("cost"));
@@ -158,8 +167,10 @@ export function renderMetaverse() {
 	document.getElementById("essenceMultButton").disabled = !canBuyEssenceMult();
 
 	updateButtonText("challengeAltarCost", format(challengeAltarCost()));
-	document.getElementById("challengeAltarState").textContent =
-		gameData.metaverse.challenge_altar === 0 ? "" : t("active");
+	updateButtonText(
+		"challengeAltarState",
+		gameData.metaverse.challenge_altar === 0 ? "" : t("active"),
+	);
 	updateButtonText("challengeAltarButton", t("buy"));
 	document.getElementById("challengeAltarButton").disabled =
 		!canBuyChallengeAltar();

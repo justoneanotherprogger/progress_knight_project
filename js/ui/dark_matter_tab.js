@@ -22,7 +22,7 @@ import {
 } from "../dark_matter.js";
 import { gameData } from "../data.js";
 import { format, formatTreshold } from "../utils.js";
-import { setHTML, updateButtonText } from "./helpers.js";
+import { setElementText, setHTML, updateButtonText } from "./helpers.js";
 import { renderSkillTreeButton } from "./tabs.js";
 
 export function renderDarkMatterShopButton(elemName, condition) {
@@ -151,8 +151,7 @@ export function renderDarkMatter() {
 	renderDarkMatterShopButton("lifeCoachBuyButton", canBuyLifeCoach());
 
 	// Skill tree title label
-	document.getElementById("skillTreePageDarkMaterTitle").textContent =
-		`${t("dark_matter")}: `;
+	updateButtonText("skillTreePageDarkMaterTitle", `${t("dark_matter")}: `);
 
 	// Ability descriptions
 	// setHTML, а не innerHTML: текст меняется только при покупке перка или
@@ -247,7 +246,7 @@ export function renderDarkMatter() {
 	// turn off OR
 	const ors = document.getElementsByClassName("darkMatterSkillOR");
 	for (const elem of ors) {
-		elem.textContent = t("or");
+		setElementText(elem, t("or"));
 		elem.hidden = gameData.perks.both_dark_mater_skills === 1;
 	}
 }

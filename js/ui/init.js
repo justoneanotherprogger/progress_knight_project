@@ -20,6 +20,7 @@ import {
 	Tab,
 } from "./navigation.js";
 import { initNoteModal } from "./note_modal.js";
+import { renderSettings } from "./settings_tab.js";
 import { renderSideBar } from "./sidebar.js";
 import {
 	createAllRows,
@@ -27,7 +28,6 @@ import {
 	renderJobs,
 	renderMilestones,
 	renderRequirements,
-	renderSettings,
 	renderShop,
 	renderSkills,
 	updateRequiredRows,
