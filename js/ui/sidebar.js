@@ -9,6 +9,9 @@ import {
 	getHappiness,
 	getInspiration,
 	getLifespan,
+	getNextDarkMagicRequired,
+	getNextDarkMatterRequired,
+	getNextMilestoneRequired,
 	getUnpausedGameSpeed,
 	isAlive,
 	isNextDarkMagicSkillInReach,
@@ -31,6 +34,7 @@ import {
 	formatTreshold,
 	formatWhole,
 	getChallengeTranslatedName,
+	getDynamicProgress,
 } from "../utils.js";
 import {
 	renderCurrentChallengeReward,
@@ -39,6 +43,7 @@ import {
 import {
 	fitText,
 	renderProgressBar,
+	renderRequirementProgress,
 	setElementText,
 	setRebirthButton,
 	updateButtonHTML,
@@ -103,11 +108,25 @@ export function renderSideBar() {
 		"color-evil",
 		`(+${format(getEvilGain())} ${t("evil")})`,
 	);
+	renderRebirthProgress(
+		"rebirthBtn2",
+		gameData.evil,
+		gameData.evil.add(getEvilGain()),
+		getNextDarkMagicRequired(),
+		"color-evil",
+	);
 	setRebirthButton(
 		"rebirthBtn3",
 		t("rebirth_3"),
 		"color-essence",
 		`(+${format(getEssenceGain())} ${t("essence")})`,
+	);
+	renderRebirthProgress(
+		"rebirthBtn3",
+		gameData.essence,
+		gameData.essence.add(getEssenceGain()),
+		getNextMilestoneRequired("essence"),
+		"color-essence",
 	);
 	fitText(el("rebirthBtn3"), 16);
 	setRebirthButton(
@@ -115,6 +134,13 @@ export function renderSideBar() {
 		t("rebirth_4"),
 		"color-dark-matter",
 		`(+${format(getDarkMatterGain())} ${t("dark_matter")})`,
+	);
+	renderRebirthProgress(
+		"rebirthBtn4",
+		gameData.dark_matter,
+		gameData.dark_matter.add(getDarkMatterGain()),
+		getNextDarkMatterRequired(),
+		"color-dark-matter",
 	);
 	fitText(el("rebirthBtn4"), 16);
 	if (gameData.essence.gt(1e90))
@@ -374,3 +400,18 @@ setInterval(() => {
 	resourceScaleCache.key = "";
 	updateResourceScale();
 }, 1000);
+
+function renderRebirthProgress(
+	buttonId,
+	current,
+	pending,
+	required,
+	colorClass,
+) {
+	renderRequirementProgress(
+		el(buttonId).querySelector(".req-progress-container"),
+		required == null ? null : getDynamicProgress(current, required),
+		required == null ? null : getDynamicProgress(pending, required),
+		colorClass,
+	);
+}

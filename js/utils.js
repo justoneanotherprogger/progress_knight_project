@@ -289,6 +289,7 @@ const PROGRESS_LOG_OFFSET = 99;
 // (lg − 99): разница порядков от нуля до порога. Принимает и Decimal, и
 // число. Формула из апстрима.
 export function getDynamicProgress(current, required) {
+	if (required == null) return 0;
 	const cur = new Decimal(current);
 	const req = new Decimal(required);
 	if (req.lte(0) || cur.lte(0)) return 0;

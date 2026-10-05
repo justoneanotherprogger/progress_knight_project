@@ -4,7 +4,12 @@
 import { skillCategories } from "../dist/js/skills_data.js";
 import { t } from "../dist/js/translations.js";
 import { getChallengeBonus } from "./challenges.js";
-import { Job } from "./classes.js";
+import {
+	DarkMatterRequirement,
+	EssenceRequirement,
+	EvilRequirement,
+	Job,
+} from "./classes.js";
 import {
 	getAGiftFromGodEssenceGain,
 	getDarkMatterSkillDarkMater,
@@ -508,19 +513,43 @@ export function getGreed() {
 	return getBaseLog(GREED_ADULT_AGE, age);
 }
 
-export function isNextDarkMagicSkillInReach() {
-	const totalEvil = gameData.evil.add(getEvilGain());
-
-	for (const key in gameData.taskData) {
-		if (key in skillCategories.category_dark_magic.items) {
-			const requirement = gameData.requirements[key];
-			if (!requirement.isCompleted()) {
-				if (totalEvil.gte(requirement.requirements[0].requirement)) {
-					return true;
-				}
-			}
-		}
+export function getNextDarkMagicRequired() {
+	for (const key in skillCategories.category_dark_magic.items) {
+		const requirement = gameData.requirements[key];
+		if (requirement && !requirement.isCompleted())
+			return requirement.requirements[0].requirement;
 	}
+	return null;
+}
 
-	return false;
+export function getNextDarkMatterRequired() {
+	for (const key in gameData.requirements) {
+		const requirement = gameData.requirements[key];
+		if (
+			requirement instanceof DarkMatterRequirement &&
+			!requirement.isCompleted()
+		)
+			return requirement.requirements[0].requirement;
+	}
+	return null;
+}
+
+export function getNextMilestoneRequired(currency) {
+	const RequirementClass =
+		currency === "evil" ? EvilRequirement : EssenceRequirement;
+	for (const key in milestoneData) {
+		const requirement = gameData.requirements[key];
+		if (requirement instanceof RequirementClass && !requirement.isCompleted())
+			return requirement.requirements[0].requirement;
+	}
+	return null;
+}
+
+// Класс выбирается здесь, а не мапой на верхнем уровне модуля: цикл импортов
+// classes.js → calculations.js → milestones.js → classes.js выполняет тело
+// модуля раньше, чем classes.js дойдёт до объявления класса, и обращение к
+// нему падает с TDZ. Вызов функции безопасен.
+export function isNextDarkMagicSkillInReach() {
+	const required = getNextDarkMagicRequired();
+	return required != null && gameData.evil.add(getEvilGain()).gte(required);
 }
