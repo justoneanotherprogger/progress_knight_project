@@ -109,17 +109,27 @@ export function format(number, decimals = 1) {
 	}
 }
 
+// Массив суффиксов зависит только от нотации, а formatCoins зовётся каждый
+// кадр — и для монет, и для дохода каждой работы в таблице. Строим один раз.
+const coinsDataCache = new Map();
+
 export function getCoinsData() {
-	switch (gameData.settings.currencyNotation) {
+	const notation = gameData.settings.currencyNotation;
+	const cached = coinsDataCache.get(notation);
+	if (cached) return cached;
+
+	let data;
+	switch (notation) {
 		case 0:
-			return [
+			data = [
 				{ name: "p", color: "#79b9c7", value: 1e6 },
 				{ name: "g", color: "#E5C100", value: 10000 },
 				{ name: "s", color: "#a8a8a8", value: 100 },
 				{ name: "c", color: "#a15c2f", value: 1 },
 			];
+			break;
 		case 1:
-			return [
+			data = [
 				{
 					name: " 𒀱",
 					color: "#ffffff",
@@ -143,15 +153,20 @@ export function getCoinsData() {
 				{ name: "s", color: "#a8a8a8", value: 100 },
 				{ name: "c", color: "#a15c2f", value: 1 },
 			];
+			break;
 		case 2:
-			return [
+			data = [
 				{ name: "", color: "#E5C100", value: 240, prefix: "£" },
 				{ name: "s", color: "#a8a8a8", value: 12 },
 				{ name: "d", color: "#a15c2f", value: 1 },
 			];
+			break;
 		default:
 			throw new Error("Invalid currency notation set");
 	}
+
+	coinsDataCache.set(notation, data);
+	return data;
 }
 
 export function formatWhole(number, decimals = 1) {
@@ -162,11 +177,8 @@ export function formatWhole(number, decimals = 1) {
 }
 
 export function formatCoins(coins, element) {
-	for (const c of element.children) {
-		c.textContent = "";
-	}
-
 	const coinsDec = toInfinityNumber(coins);
+	const parts = [];
 
 	switch (gameData.settings.currencyNotation) {
 		case 0:
@@ -187,23 +199,48 @@ export function formatCoins(coins, element) {
 								toInfinityNumber(diff).times(scaled.div(diff).floor()),
 							);
 				if (amount.gt(0) || (coinsDec.lt(1) && m.value === 1)) {
-					element.children[coinsUsed].textContent =
-						(m.prefix ?? "") + format(amount, amount.lt(1000) ? 0 : 2) + m.name;
-					element.children[coinsUsed].style.color = m.color;
-					element.children[coinsUsed].className = m.class ? m.class : "";
+					parts.push({
+						text:
+							(m.prefix ?? "") +
+							format(amount, amount.lt(1000) ? 0 : 2) +
+							m.name,
+						color: m.color,
+						class: m.class ?? "",
+					});
 					coinsUsed++;
 				}
 				if (coinsUsed >= 2 || amount.gte(100)) break;
 			}
+			applyCoins(element, parts);
 			break;
 		}
 		case 3:
-			element.children[0].textContent = `$${format(coinsDec.div(100), 2)}`;
-			element.children[0].style.color = "#E5C100";
-			element.children[0].className = "";
-			break;
+			applyCoins(element, [
+				{
+					text: `$${format(coinsDec.div(100), 2)}`,
+					color: "#E5C100",
+					class: "",
+				},
+			]);
+			return;
 		default:
 			throw new Error("Invalid currency notation set");
+	}
+}
+
+// Пишет в DOM только то, что изменилось: textContent пересоздаёт узел даже
+// при совпадающей строке, а вызов идёт каждый кадр и для каждой строки.
+function applyCoins(element, parts) {
+	for (let i = 0; i < element.children.length; i++) {
+		const child = element.children[i];
+		const part = parts[i];
+		if (part === undefined) {
+			if (child.textContent !== "") child.textContent = "";
+			continue;
+		}
+		if (child.textContent !== part.text) child.textContent = part.text;
+		if (child.style.color !== part.color) child.style.color = part.color;
+		if (child.className !== part.class) child.className = part.class;
 	}
 }
 
