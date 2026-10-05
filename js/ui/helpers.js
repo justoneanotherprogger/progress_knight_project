@@ -167,13 +167,13 @@ export function renderProgressBar(task, progressFill, progressBar) {
 	}
 }
 
-// Тёмные сферы дёргаются на пиксель в случайную сторону: смещение всегда от
+// Тёмные сферы дёргаются на два пикселя в случайную сторону: смещение всегда от
 // штатной позиции, поэтому текст не уползает. Вызов — на каждом кадре рендера (20 Гц).
 // Список берём заново: одно из этих мест — span внутри перевода, он появляется
 // в DOM в рантайме, и кэш, собранный на старте, его бы не увидел.
 export function wobbleDarkOrbs() {
 	for (const node of document.querySelectorAll(".color-dark-orbs")) {
 		const angle = Math.random() * Math.PI * 2;
-		node.style.transform = `translate(${Math.cos(angle)}px, ${Math.sin(angle)}px)`;
+		node.style.transform = `translate(${Math.cos(angle) * 2}px, ${Math.sin(angle) * 2}px)`;
 	}
 }
