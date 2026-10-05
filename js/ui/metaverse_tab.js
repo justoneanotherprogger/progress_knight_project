@@ -35,9 +35,15 @@ import {
 	perks_cost,
 	reduceBoostCooldownCost,
 } from "../metaverse.js";
-import { format, formatTime, formatTreshold } from "../utils.js";
+import {
+	format,
+	formatTime,
+	formatTreshold,
+	getDynamicProgress,
+} from "../utils.js";
 import {
 	fitText,
+	renderRequirementProgress,
 	setElementText,
 	setHTML,
 	updateButtonText,
@@ -69,6 +75,31 @@ export function renderMetaverse() {
 	document.getElementById("currentHypercubesCap").hidden =
 		getHypercubeCap() === Infinity;
 	updateButtonText("currentHypercubesCapValue", format(getHypercubeCap()));
+
+	// Полоса к цене следующего алтаря: все семь алтарей покупаются за
+	// гиперкубы, берём самый дешёвый из ещё доступных. Алтарь испытания
+	// одноразовый — купленным он из списка выпадает. Цены здесь обычные
+	// числа, счёт — Decimal, поэтому сложение через new Decimal.
+	const nextAltarCost = Math.min(
+		reduceBoostCooldownCost(),
+		boostDurationCost(),
+		hypercubeGainCost(),
+		evilTranCost(),
+		essenceMultCost(),
+		gameData.metaverse.challenge_altar === 0 ? challengeAltarCost() : Infinity,
+		darkMatterMultCost(),
+	);
+	renderRequirementProgress(
+		document.getElementById("metaverseAltarProgress"),
+		Number.isFinite(nextAltarCost)
+			? getDynamicProgress(gameData.hypercubes, nextAltarCost)
+			: null,
+		getDynamicProgress(
+			new Decimal(gameData.hypercubes).add(getHypercubeGeneration()),
+			nextAltarCost,
+		),
+		"color-hypercubes",
+	);
 
 	for (let i = 0; i < 3; i++) {
 		const elem = document.getElementById(`timeTillNextHypercubePower${i + 1}`);
