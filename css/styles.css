@@ -471,8 +471,7 @@ button:focus {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	border-width: 1em 0 1em 0;
-	border-style: solid;
+	margin: 1em 0;
 }
 
 .topbar-center {
