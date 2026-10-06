@@ -198,12 +198,12 @@ body {
 	background-color: rgb(12, 101, 173);
 	width: 100%;
 	border-radius: 0.125em;
+	overflow: hidden;
 }
 
 .progress-fill {
 	height: 1.6em;
 	background-color: rgb(46, 148, 231);
-	border-radius: 0.125em;
 }
 
 .progress-bar-hero {
@@ -212,12 +212,12 @@ body {
 	background-color: rgb(108, 59, 59);
 	width: 100%;
 	border-radius: 0.125em;
+	overflow: hidden;
 }
 
 .progress-fill-hero {
 	height: 1.6em;
 	background-color: rgb(165, 60, 21);
-	border-radius: 0.125em;
 }
 
 /* Тонкая полоса прогресса требования: строка «Требуется для следующего» в
