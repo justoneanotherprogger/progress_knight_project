@@ -57,3 +57,7 @@
 .dark .button-evil:hover {
 	background-color: #641028;
 }
+
+.dark .req-progress-container {
+	background-color: rgb(78, 78, 78);
+}
