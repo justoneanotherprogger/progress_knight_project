@@ -28,7 +28,6 @@ import {
 	setHTML,
 	updateButtonText,
 } from "./helpers.js";
-import { renderSkillTreeButton } from "./tabs.js";
 
 export function renderDarkMatterShopButton(elemName, condition) {
 	document.getElementById(elemName).disabled = !condition;
@@ -268,5 +267,39 @@ export function renderDarkMatter() {
 	for (const elem of ors) {
 		setElementText(elem, t("or"));
 		elem.hidden = gameData.perks.both_dark_mater_skills === 1;
+	}
+}
+
+function renderSkillTreeButton(element, categoryBought, elementBought, canBuy) {
+	if (gameData.perks.both_dark_mater_skills === 0) {
+		element.disabled = categoryBought | !canBuy;
+
+		if (categoryBought) {
+			if (elementBought) {
+				setElementText(element, t("accepted"));
+				element.classList.add("w3-green");
+				element.classList.remove("w3-red");
+			} else {
+				setElementText(element, t("rejected"));
+				element.classList.add("w3-red");
+				element.classList.remove("w3-green");
+			}
+		} else {
+			setElementText(element, t("buy"));
+			element.classList.remove("w3-green");
+			element.classList.remove("w3-red");
+		}
+	} else {
+		element.disabled = elementBought;
+
+		if (elementBought) {
+			setElementText(element, t("accepted"));
+			element.classList.add("w3-green");
+			element.classList.remove("w3-red");
+		} else {
+			setElementText(element, t("buy"));
+			element.classList.remove("w3-green");
+			element.classList.remove("w3-red");
+		}
 	}
 }

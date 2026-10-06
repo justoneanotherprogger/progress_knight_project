@@ -1,4 +1,4 @@
-// ui/tabs.js — tab content rendering: jobs, skills, shop, challenges, milestones, metaverse, dark matter, rows, perks
+// ui/tabs.js — shop tab and shared table logic: rows, header rows, requirement rows
 
 import { itemCategories } from "../../dist/js/items_data.js";
 import { jobCategories } from "../../dist/js/jobs_data.js";
@@ -9,7 +9,6 @@ import {
 	getDarkMatterGain,
 	getEssenceGain,
 	getEvilGain,
-	isHeroesUnlocked,
 } from "../calculations.js";
 import {
 	AgeRequirement,
@@ -45,57 +44,7 @@ import {
 	resourceProgress,
 	setElementText,
 } from "./helpers.js";
-import { getRowByName } from "./navigation.js";
 import { showNoteModal } from "./note_modal.js";
-
-export function renderShop() {
-	for (const key in gameData.itemData) {
-		const item = gameData.itemData[key];
-		if (item._row == null) {
-			const row = getRowByName(key);
-			const button = row.querySelector(".button");
-			item._row = {
-				button,
-				name: button.querySelector(".name"),
-				tooltip: row.querySelector(".tooltipText"),
-				active: row.querySelector(".active"),
-				effect: row.querySelector(".effect"),
-				expense: row.querySelector(".expense"),
-			};
-		}
-		const els = item._row;
-
-		els.button.disabled = gameData.coins.lt(item.getExpense());
-
-		const nameText = t(item.name);
-		if (els.name.textContent !== nameText) els.name.textContent = nameText;
-
-		if (els.tooltip) {
-			const tooltipText = t(item.baseData.tooltip);
-			if (els.tooltip.textContent !== tooltipText)
-				els.tooltip.textContent = tooltipText;
-		}
-
-		els.name.classList.toggle("legendary", isHeroesUnlocked());
-
-		const color = itemCategories[item.categoryId].headerColor;
-		const bgColor =
-			gameData.currentMisc.includes(item) || item === gameData.currentProperty
-				? color
-				: "white";
-		if (els.active.style.backgroundColor !== bgColor)
-			els.active.style.backgroundColor = bgColor;
-
-		const effectText = item.getEffectDescription();
-		if (els.effect.textContent !== effectText)
-			els.effect.textContent = effectText;
-		formatCoins(item.getExpense(), els.expense);
-	}
-
-	const autoBuyToggle = document.getElementById("autoBuyToggle");
-	if (autoBuyToggle && autoBuyToggle.checked !== gameData.autoBuyEnabled)
-		autoBuyToggle.checked = gameData.autoBuyEnabled;
-}
 
 export function renderRequirements() {
 	for (const key in gameData.requirements) {
@@ -573,45 +522,6 @@ export function updateRequiredRows(data, categoryType) {
 				pendingPercent,
 				progressColor,
 			);
-		}
-	}
-}
-
-export function renderSkillTreeButton(
-	element,
-	categoryBought,
-	elementBought,
-	canBuy,
-) {
-	if (gameData.perks.both_dark_mater_skills === 0) {
-		element.disabled = categoryBought | !canBuy;
-
-		if (categoryBought) {
-			if (elementBought) {
-				setElementText(element, t("accepted"));
-				element.classList.add("w3-green");
-				element.classList.remove("w3-red");
-			} else {
-				setElementText(element, t("rejected"));
-				element.classList.add("w3-red");
-				element.classList.remove("w3-green");
-			}
-		} else {
-			setElementText(element, t("buy"));
-			element.classList.remove("w3-green");
-			element.classList.remove("w3-red");
-		}
-	} else {
-		element.disabled = elementBought;
-
-		if (elementBought) {
-			setElementText(element, t("accepted"));
-			element.classList.add("w3-green");
-			element.classList.remove("w3-red");
-		} else {
-			setElementText(element, t("buy"));
-			element.classList.remove("w3-green");
-			element.classList.remove("w3-red");
 		}
 	}
 }

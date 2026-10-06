@@ -22,12 +22,12 @@ import {
 } from "./navigation.js";
 import { initNoteModal } from "./note_modal.js";
 import { renderSettings } from "./settings_tab.js";
+import { renderShop } from "./shop_tab.js";
 import { renderSideBar } from "./sidebar.js";
 import {
 	createAllRows,
 	renderHeaderRows,
 	renderRequirements,
-	renderShop,
 	updateRequiredRows,
 } from "./tabs.js";
 import { renderJobs, renderSkills } from "./task_tab.js";
