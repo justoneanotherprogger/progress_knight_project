@@ -18,6 +18,10 @@
 	color: white;
 }
 
+.dark #resources {
+	border-color: rgb(32, 32, 32);
+}
+
 .dark .button-no-button {
 	border: 0;
 	color: white;

@@ -107,7 +107,7 @@ export function renderHeaderRows(categories) {
 	}
 }
 
-export function createRequiredRow(categoryName, categoryType) {
+export function createRequiredRow(categoryName, categoryType, table) {
 	const requiredRow = document
 		.querySelector(".requiredRowTemplate")
 		.content.firstElementChild.cloneNode(true);
@@ -118,6 +118,7 @@ export function createRequiredRow(categoryName, categoryType) {
 	requiredRow.classList.add("requiredRow");
 	requiredRow.classList.add(removeSpaces(categoryName));
 	requiredRow.id = `req_${categoryName}`;
+	requiredRow.firstElementChild.colSpan = table.rows[0].cells.length;
 	return requiredRow;
 }
 
@@ -239,7 +240,7 @@ export function createAllRows(categoryType, tableId) {
 			}
 		}
 
-		const requiredRow = createRequiredRow(categoryName, categoryType);
+		const requiredRow = createRequiredRow(categoryName, categoryType, table);
 		table.append(requiredRow);
 	}
 }
