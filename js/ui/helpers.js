@@ -256,3 +256,8 @@ export function resourceProgress(
 		getDynamicProgress(pending, required),
 	];
 }
+
+export function getTaskNameLocale(taskRef) {
+	const entity = gameData.taskData[taskRef];
+	return entity ? entity.name : taskRef;
+}

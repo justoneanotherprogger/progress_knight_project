@@ -26,12 +26,11 @@ import { renderSideBar } from "./sidebar.js";
 import {
 	createAllRows,
 	renderHeaderRows,
-	renderJobs,
 	renderRequirements,
 	renderShop,
-	renderSkills,
 	updateRequiredRows,
 } from "./tabs.js";
+import { renderJobs, renderSkills } from "./task_tab.js";
 
 export function initializeUI() {
 	/*
