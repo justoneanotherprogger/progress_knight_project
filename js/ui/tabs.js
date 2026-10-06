@@ -10,7 +10,6 @@ import {
 	getEssenceGain,
 	getEvilGain,
 	isHeroesUnlocked,
-	toInfinityNumber,
 } from "../calculations.js";
 import {
 	AgeRequirement,
@@ -656,15 +655,11 @@ export function updateRequiredRows(data, categoryType) {
 						evilElement,
 						`${format(requirements[0].requirement)} ${t("evil")}`,
 					);
-					percent = getDynamicProgress(
+					[percent, pendingPercent] = resourceProgress(
 						gameData.evil,
 						requirements[0].requirement,
-					);
-					pendingPercent = getDynamicProgress(
-						gameData.evil.add(
-							availableGain(getEvilGain, "req_rebirth_button2"),
-						),
-						requirements[0].requirement,
+						getEvilGain,
+						"req_rebirth_button2",
 					);
 					progressColor = "color-evil";
 				} else if (requirementObject instanceof EssenceRequirement) {
@@ -673,15 +668,11 @@ export function updateRequiredRows(data, categoryType) {
 						essenceElement,
 						`${format(requirements[0].requirement)} ${t("essence")}`,
 					);
-					percent = getDynamicProgress(
+					[percent, pendingPercent] = resourceProgress(
 						gameData.essence,
 						requirements[0].requirement,
-					);
-					pendingPercent = getDynamicProgress(
-						gameData.essence.add(
-							availableGain(getEssenceGain, "req_rebirth_button3"),
-						),
-						requirements[0].requirement,
+						getEssenceGain,
+						"req_rebirth_button3",
 					);
 					progressColor = "color-essence";
 				} else if (requirementObject instanceof DarkMatterRequirement) {
@@ -690,15 +681,11 @@ export function updateRequiredRows(data, categoryType) {
 						darkMatterElement,
 						`${format(requirements[0].requirement)} ${t("dark_matter")}`,
 					);
-					percent = getDynamicProgress(
+					[percent, pendingPercent] = resourceProgress(
 						gameData.dark_matter,
 						requirements[0].requirement,
-					);
-					pendingPercent = getDynamicProgress(
-						gameData.dark_matter.add(
-							availableGain(getDarkMatterGain, "req_rebirth_button4"),
-						),
-						requirements[0].requirement,
+						getDarkMatterGain,
+						"req_rebirth_button4",
 					);
 					progressColor = "color-dark-matter";
 				} else if (requirementObject instanceof MetaverseRequirement) {
@@ -708,15 +695,11 @@ export function updateRequiredRows(data, categoryType) {
 						hypercubeElement,
 						`${format(requirements[0].requirement)} ${t("hypercubes")}`,
 					);
-					percent = getDynamicProgress(
+					[percent, pendingPercent] = resourceProgress(
 						gameData.hypercubes,
 						requirements[0].requirement,
-					);
-					pendingPercent = getDynamicProgress(
-						new Decimal(gameData.hypercubes).add(
-							availableGain(getHypercubeGeneration, "req_rebirth_button5"),
-						),
-						requirements[0].requirement,
+						getHypercubeGeneration,
+						"req_rebirth_button5",
 					);
 					progressColor = "color-hypercubes";
 				} else if (requirementObject instanceof AgeRequirement) {
@@ -793,9 +776,11 @@ export function updateRequiredRows(data, categoryType) {
 						evilElement,
 						`${format(requirements[0].requirement)} ${t("evil")}`,
 					);
-					percent = pendingPercent = getDynamicProgress(
+					[percent, pendingPercent] = resourceProgress(
 						gameData.evil,
 						requirements[0].requirement,
+						getEvilGain,
+						"req_rebirth_button2",
 					);
 					progressColor = "color-evil";
 				} else {
@@ -804,9 +789,11 @@ export function updateRequiredRows(data, categoryType) {
 						essenceElement,
 						`${format(requirements[0].requirement)} ${t("essence")}`,
 					);
-					percent = pendingPercent = getDynamicProgress(
+					[percent, pendingPercent] = resourceProgress(
 						gameData.essence,
 						requirements[0].requirement,
+						getEssenceGain,
+						"req_rebirth_button3",
 					);
 					progressColor = "color-essence";
 				}
@@ -980,11 +967,18 @@ export function renderSkillTreeButton(
 	}
 }
 
-// Прибавка ресурса зачисляется только вместе с ребёрном, до его открытия её
-// нет: показывать её в pending раньше времени — враньё. В апстриме та же
-// оговорка внутри allowRebirth и getXGainAvailable.
-function availableGain(gain, rebirthRequirementKey) {
-	return gameData.requirements[rebirthRequirementKey].isCompleted()
-		? gain()
-		: toInfinityNumber(0);
+// Прогресс к требованию против порога: текущий ресурс и тот же ресурс с
+// прибавкой за ребёрн, если он открыт — до ребёрна прибавки нет, показывать
+// её раньше времени враньё (в апстриме за это отвечал allowRebirth внутри
+// getXGainAvailable). Ресурс приходит и Decimal, и числом (гиперкубы), отсюда
+// обёртка. Шесть веток требований повторяли эту пару вызовов, отсюда хелпер.
+function resourceProgress(current, required, gain, rebirthRequirementKey) {
+	const base = new Decimal(current);
+	const pending = gameData.requirements[rebirthRequirementKey].isCompleted()
+		? base.add(gain())
+		: base;
+	return [
+		getDynamicProgress(base, required),
+		getDynamicProgress(pending, required),
+	];
 }
