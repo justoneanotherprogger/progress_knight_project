@@ -466,6 +466,46 @@ button:focus {
 	min-width: fit-content;
 }
 
+.topbar {
+	width: 87em;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-width: 1em 0 1em 0;
+	border-style: solid;
+}
+
+.topbar-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.topbar-balance {
+	color: gray;
+	text-align: center;
+}
+
+.icon-gap {
+	padding-right: 0.3em;
+}
+
+#resources {
+	position: sticky;
+	top: 0;
+	z-index: 2;
+}
+
+#netDisplay,
+#incomeDisplay,
+#expenseDisplay {
+	display: inline;
+}
+
+#expense_text {
+	color: red;
+}
+
 .inline {
 	display: inline-block;
 }
