@@ -19,6 +19,8 @@ table {
 .info-box {
 	border-left: 3px solid #4a90d9;
 	background: rgba(74, 144, 217, 0.1);
+	border-radius: 0.25em;
+
 	padding: 0.45em 0.7em;
 	margin-bottom: 0.9em;
 }
@@ -32,6 +34,8 @@ table {
 .warning-box {
 	border-left: 3px solid #d9a13a;
 	background: rgba(217, 161, 58, 0.1);
+	border-radius: 0.25em;
+
 	padding: 0.45em 0.7em;
 	margin-bottom: 0.9em;
 }
@@ -193,11 +197,13 @@ body {
 	position: relative;
 	background-color: rgb(12, 101, 173);
 	width: 100%;
+	border-radius: 0.125em;
 }
 
 .progress-fill {
 	height: 1.6em;
 	background-color: rgb(46, 148, 231);
+	border-radius: 0.125em;
 }
 
 .progress-bar-hero {
@@ -205,11 +211,13 @@ body {
 	position: relative;
 	background-color: rgb(108, 59, 59);
 	width: 100%;
+	border-radius: 0.125em;
 }
 
 .progress-fill-hero {
 	height: 1.6em;
 	background-color: rgb(165, 60, 21);
+	border-radius: 0.125em;
 }
 
 /* Тонкая полоса прогресса требования: строка «Требуется для следующего» в
@@ -296,6 +304,7 @@ body {
 
 .button {
 	border: 0.1em groove black;
+	border-radius: 0.25em;
 }
 
 .button-no-button {
@@ -464,6 +473,7 @@ button:focus {
 .panel {
 	background-color: white;
 	border-color: rgb(243, 243, 243);
+	border-radius: 0.5em;
 }
 
 .small-margin {
@@ -561,6 +571,7 @@ button:focus {
 .baritem {
 	height: auto;
 	text-align: center;
+	border-radius: 0.25em;
 }
 
 .outer-circle {
@@ -633,6 +644,7 @@ button:focus {
 	-webkit-user-select: none;
 	touch-action: manipulation;
 	margin: 0.6em 0.7em 0.6em 0.7em;
+	border-radius: 0.5em;
 }
 
 .perk:hover {
@@ -850,6 +862,7 @@ button:focus {
 
 .note {
 	margin-bottom: 0.9em;
+	border-radius: 0.25em;
 }
 
 .note summary {
