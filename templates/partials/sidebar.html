@@ -1,8 +1,8 @@
-<div id="info" class="panel w3-padding quick-bar" style="width:21em">
+<div id="info" class="panel w3-padding quick-bar">
 				<div id="challengeTitle" class="challenge-title" hidden="hidden">
-					<div id="challenge_title" style="text-align: center;"></div>
+					<div id="challenge_title"></div>
 					<span id="challengeTitleLabel"></span>: <span id="challengeName"></span>
-					<div style="padding-top:0.3em">
+					<div class="inspiration-rewards">
 						<div class="sidebarChallengeReward an_unhappy_life hidden"><span class="color-happiness" id="reward_happiness"></span> x<span id="sidebarCurrentChallengeBuff1"></span> / x<span id="sidebarChallengeBuff1"></span></div>
 						<div class="sidebarChallengeReward rich_and_the_poor hidden"><span class="color-income" id="reward_income"></span> x<span id="sidebarCurrentChallengeBuff2"></span> / x<span id="sidebarChallengeBuff2"></span></div>
 						<div class="sidebarChallengeReward time_does_not_fly hidden"><span class="color-time-warping" id="reward_time_warping"></span> x<span id="sidebarCurrentChallengeBuff3"></span> / x<span id="sidebarChallengeBuff3"></span></div>
@@ -12,18 +12,18 @@
 					</div>
 				</div>
 				<div id="deathText" class="hidden">
-					<div class="text-caption" style="color: red" id="death_title"></div>
-					<div class="sidebar-element" style="color: gray; font-size: 12px" id="death_desc"></div>
+					<div class="text-caption" id="death_title"></div>
+					<div class="sidebar-element" id="death_desc"></div>
 				</div>
-				<div class="text-caption"><span style="padding-right: 0.3em">🎂</span><span id="ageDisplay">Age 14 Day 0</span></div>
-				<div class="sidebar-element" style="color: gray">
+				<div class="text-caption"><span class="icon-gap">🎂</span><span id="ageDisplay">Age 14 Day 0</span></div>
+				<div class="sidebar-element">
 					<div id="lifespanRow"><span id="lifespan"></span>: <span id="lifespanDisplay">70</span>&nbsp;<span id="years"></span></div>
 					<div id="realtimeRow"><span id="real_time"></span>: <span id="realtimeDisplay">00:00:00</span></div>
 				</div>
 				<button id="pauseButton" class="w3-button button sidebar-element" onClick="togglePause()" data-i18n="pause"></button>
 				<div id="boostPanel" class="sidebar-element boost-panel">
 					<button id="boostButton" class="perk perk-boost" onClick="applyBoost()"></button>
-					<span style="display: inline-block; max-width: calc(100% - 0.4em); overflow: hidden" id="boostCooldownDisplay">00:00</span>
+					<span id="boostCooldownDisplay">00:00</span>
 				</div>
 				<div id="quickTaskDisplay">
 					<div class="small-margin inline job progress-bar progressBar">
@@ -34,25 +34,25 @@
 
 				<div id="resourceStats">
 					<div>
-						<div class="text-caption"><span style="padding-right: 0.3em">🏠</span><span class="color-happiness" id="happiness"></span>: <span id="happinessDisplay"></span></div>
-						<div style="color: gray" class="sidebar-element resource-desc" id="happiness_desc"></div>
+						<div class="text-caption"><span class="icon-gap">🏠</span><span class="color-happiness" id="happiness"></span>: <span id="happinessDisplay"></span></div>
+						<div class="sidebar-element resource-desc" id="happiness_desc"></div>
 					</div>
 
 					<div>
-						<div class="text-caption"><span style="padding-right: 0.3em">✨</span><span style="color: rgb(207, 21, 15)" id="inspiration"></span>: <span id="inspirationDisplay"></span></div>
-						<div style="color: gray" class="resource-desc" id="inspiration_desc"></div>
-						<div style="color: rgb(168, 111, 111)" class="sidebar-element resource-desc" id="inspiration_decay"></div>
+						<div class="text-caption"><span class="icon-gap">✨</span><span class="color-inspiration" id="inspiration"></span>: <span id="inspirationDisplay"></span></div>
+						<div class="resource-desc" id="inspiration_desc"></div>
+						<div class="sidebar-element resource-desc" id="inspiration_decay"></div>
 					</div>
 
 					<div>
-						<div class="text-caption"><span style="padding-right: 0.3em">🤑</span><span style="color: rgb(92, 207, 15)" id="greed"></span>: <span id="greedDisplay"></span></div>
-						<div style="color: gray" class="resource-desc" id="greed_desc"></div>
-						<div style="color: rgb(168, 111, 111)" class="sidebar-element resource-desc" id="greed_rise"></div>
+						<div class="text-caption"><span class="icon-gap">🤑</span><span class="color-greed" id="greed"></span>: <span id="greedDisplay"></span></div>
+						<div class="resource-desc" id="greed_desc"></div>
+						<div class="sidebar-element resource-desc" id="greed_rise"></div>
 					</div>
 
 					<div id="timeWarping">
-						<div class="text-caption"><span style="padding-right: 0.3em">⏩</span><span class="color-time-warping" id="time_warping"></span>: <span id="timeWarpingDisplay"></span></div>
-						<div style="color: gray" class="sidebar-element resource-desc" id="time_warping_desc"></div>
+						<div class="text-caption"><span class="icon-gap">⏩</span><span class="color-time-warping" id="time_warping"></span>: <span id="timeWarpingDisplay"></span></div>
+						<div class="sidebar-element resource-desc" id="time_warping_desc"></div>
 					</div>
 				</div>
 				<div id="rebirthGroup">
@@ -102,5 +102,5 @@
 						</div>
 					</div>
 				</div>
-				<button id="exit_challenge" class="w3-button button hidden" style="margin-bottom: 0.1em; margin-top: 0.8em; width: 100%" onClick="exitChallenge()"></button>
+				<button id="exit_challenge" class="w3-button button hidden" onClick="exitChallenge()"></button>
 			</div>

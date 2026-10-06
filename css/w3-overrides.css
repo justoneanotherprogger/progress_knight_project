@@ -1,0 +1,52 @@
+/* w3 overrides */
+
+table {
+	white-space: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-style: normal;
+	text-align: start;
+	font-variant: normal;
+}
+
+/* Селектор вендорского типа: `.w3-table td` (0,1,1) перебивает его же правило
+   из w3.css порядком подключения, наш файл идёт после. Специфичности
+   элемента `td` (0,0,1) не хватало — вендор побеждал и ставил vertical-align: top. */
+.w3-table td {
+	vertical-align: middle;
+}
+
+.w3-button,
+.w3-bar-item {
+	padding: 0.4em 0.8em;
+}
+
+.w3-bordered tr {
+	border-bottom: 0.05em solid #ddd;
+}
+
+.w3-striped tbody tr:nth-child(even) {
+	background-color: #f1f1f1;
+}
+
+.w3-bordered th {
+	height: 2em;
+	padding: 0.4em 1em 0 1em;
+}
+
+.w3-bordered td {
+	height: 2em;
+	padding: 0 0 0 0;
+	padding-left: 0.8em;
+}
+
+.w3-table td:first-child,
+.w3-table th:first-child {
+	padding-left: 0.3em;
+}
+
+/* Столбик maxLevel — это th/td внутри .w3-table, а вендор даёт им
+   display:table-cell (0,1,1) и перебивает этим .hidden (0,1,0). */
+.w3-table .maxLevel.hidden {
+	display: none;
+}
