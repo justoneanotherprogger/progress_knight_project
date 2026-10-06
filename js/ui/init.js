@@ -12,6 +12,7 @@ import { peekSettingFromSave } from "../save.js";
 import { renderChallenges } from "./challenges_tab.js";
 import { renderDarkMatter } from "./dark_matter_tab.js";
 import { renderMetaverse } from "./metaverse_tab.js";
+import { renderMilestones } from "./milestones_tab.js";
 import {
 	createPerks,
 	refreshLangButtons,
@@ -26,7 +27,6 @@ import {
 	createAllRows,
 	renderHeaderRows,
 	renderJobs,
-	renderMilestones,
 	renderRequirements,
 	renderShop,
 	renderSkills,

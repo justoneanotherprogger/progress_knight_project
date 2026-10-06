@@ -32,18 +32,7 @@ import {
 } from "../main.js";
 import { getHypercubeGeneration } from "../metaverse.js";
 import { milestoneData } from "../milestones.js";
-import {
-	canBuyJobSlot,
-	canBuySkillSlot,
-	getJobSlotCost,
-	getJobSlotCount,
-	getMaxJobSlotCount,
-	getMaxSkillSlotCount,
-	getSkillSlotCost,
-	getSkillSlotCount,
-	isJobAutoSelectUnlocked,
-	isSlotShopUnlocked,
-} from "../slots.js";
+import { isJobAutoSelectUnlocked } from "../slots.js";
 import {
 	daysToYears,
 	format,
@@ -57,6 +46,7 @@ import {
 	fitText,
 	renderProgressBar,
 	renderRequirementProgress,
+	resourceProgress,
 	setElementText,
 	setHTML,
 } from "./helpers.js";
@@ -239,99 +229,6 @@ export function renderShop() {
 	const autoBuyToggle = document.getElementById("autoBuyToggle");
 	if (autoBuyToggle && autoBuyToggle.checked !== gameData.autoBuyEnabled)
 		autoBuyToggle.checked = gameData.autoBuyEnabled;
-}
-
-// Строки вех статичны: порог и перевод большую часть времени не меняются,
-// а getRowByName + querySelector — по три поиска по дереву на строку.
-// Закэшированные элементы и последний записанный текст живут на самой вехе.
-export function renderMilestones() {
-	// Магазин слотов за зло: до вехи #42 скрыт, дальше обновляется каждый кадр.
-	// Панелью магазина рулит setTabGroup, скрываем только кнопку подвкладки.
-	const shopUnlocked = isSlotShopUnlocked();
-	document.getElementById("evilSlotShopTabButton").style.display = shopUnlocked
-		? ""
-		: "none";
-	if (shopUnlocked) {
-		const byId = (id) => document.getElementById(id);
-		const setText = (el, text) => {
-			if (el.textContent !== text) el.textContent = text;
-		};
-
-		const countLabel = t("evil_slot_count_label");
-		setText(byId("evilSlotJobCountLabel"), countLabel);
-		setText(byId("evilSlotSkillCountLabel"), countLabel);
-
-		const costLabel = t("cost");
-		setText(byId("evilSlotJobCostLabel"), costLabel);
-		setText(byId("evilSlotSkillCostLabel"), costLabel);
-
-		const currencyLabel = t("evil");
-		setText(byId("evilSlotJobCurrency"), currencyLabel);
-		setText(byId("evilSlotSkillCurrency"), currencyLabel);
-
-		const jobButton = byId("evilSlotJobBuyButton");
-		setText(
-			jobButton,
-			getJobSlotCount() >= getMaxJobSlotCount() ? t("max") : t("buy"),
-		);
-		jobButton.disabled = !canBuyJobSlot();
-		const skillButton = byId("evilSlotSkillBuyButton");
-		setText(
-			skillButton,
-			getSkillSlotCount() >= getMaxSkillSlotCount() ? t("max") : t("buy"),
-		);
-		skillButton.disabled = !canBuySkillSlot();
-
-		setText(byId("evilSlotJobCount"), format(getJobSlotCount()));
-		setText(byId("evilSlotSkillCount"), format(getSkillSlotCount()));
-		setText(byId("evilSlotJobCost"), format(getJobSlotCost()));
-		setText(byId("evilSlotSkillCost"), format(getSkillSlotCost()));
-	}
-
-	for (const key in milestoneData) {
-		const milestone = milestoneData[key];
-		if (milestone._row == null) {
-			const row = getRowByName(key);
-			milestone._row = {
-				essence: row.querySelector(".essence"),
-				description: row.querySelector(".description"),
-				name: row.querySelector(".name"),
-				tooltip: row.querySelector(".tooltipText"),
-			};
-		}
-		const els = milestone._row;
-
-		const essenceText = format(milestone.threshold);
-		if (els.essence.textContent !== essenceText)
-			els.essence.textContent = essenceText;
-
-		let desc = t(milestone.description);
-		const effect = milestone.getEffect();
-		if (effect != null) desc = `x${format(effect, 1)} ${desc}`;
-
-		if (els.description.textContent !== desc)
-			els.description.textContent = desc;
-
-		const nameText = t(milestone.name);
-		if (els.name.textContent !== nameText) els.name.textContent = nameText;
-		els.name.style.whiteSpace = "nowrap";
-		fitText(els.name, 16);
-
-		if (els.tooltip) {
-			const tooltipText = t(milestone.tooltip);
-			if (els.tooltip.textContent !== tooltipText)
-				els.tooltip.textContent = tooltipText;
-		}
-	}
-
-	// Классом, а не свойством: в разметке баннер спрятан классом .hidden,
-	// а свойство hidden его не снимает — баннер оставался невидимым всегда.
-	const congrats = document.getElementById("congratulationsBanner");
-	if (congrats != null)
-		congrats.classList.toggle(
-			"hidden",
-			!gameData.requirements.milestone_the_end.isCompleted(),
-		);
 }
 
 export function renderRequirements() {
@@ -965,20 +862,4 @@ export function renderSkillTreeButton(
 			element.classList.remove("w3-red");
 		}
 	}
-}
-
-// Прогресс к требованию против порога: текущий ресурс и тот же ресурс с
-// прибавкой за ребёрн, если он открыт — до ребёрна прибавки нет, показывать
-// её раньше времени враньё (в апстриме за это отвечал allowRebirth внутри
-// getXGainAvailable). Ресурс приходит и Decimal, и числом (гиперкубы), отсюда
-// обёртка. Шесть веток требований повторяли эту пару вызовов, отсюда хелпер.
-function resourceProgress(current, required, gain, rebirthRequirementKey) {
-	const base = new Decimal(current);
-	const pending = gameData.requirements[rebirthRequirementKey].isCompleted()
-		? base.add(gain())
-		: base;
-	return [
-		getDynamicProgress(base, required),
-		getDynamicProgress(pending, required),
-	];
 }

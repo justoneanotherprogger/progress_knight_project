@@ -1,6 +1,7 @@
 // ui/helpers.js — small UI utility functions
 
 import { gameData } from "../data.js";
+import { getDynamicProgress } from "../utils.js";
 
 // То же, что updateButtonText, но для элемента, который уже в руках: в циклах
 // id нет, а getElementById на каждой итерации лишний. textContent пересоздаёт
@@ -233,4 +234,25 @@ export function renderRequirementProgress(
 	}
 	toggleComplete(bar, percent >= 100);
 	toggleComplete(pending, pendingValue >= 100);
+}
+
+// Прогресс к требованию против порога: текущий ресурс и тот же ресурс с
+// прибавкой за ребёрн, если он открыт — до ребёрна прибавки нет, показывать
+// её раньше времени враньё (в апстриме за это отвечал allowRebirth внутри
+// getXGainAvailable). Ресурс приходит и Decimal, и числом (гиперкубы), отсюда
+// обёртка. Шесть веток требований повторяли эту пару вызовов, отсюда хелпер.
+export function resourceProgress(
+	current,
+	required,
+	gain,
+	rebirthRequirementKey,
+) {
+	const base = new Decimal(current);
+	const pending = gameData.requirements[rebirthRequirementKey].isCompleted()
+		? base.add(gain())
+		: base;
+	return [
+		getDynamicProgress(base, required),
+		getDynamicProgress(pending, required),
+	];
 }
