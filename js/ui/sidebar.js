@@ -228,7 +228,7 @@ export function renderSideBar() {
 	el("info").classList.toggle("game-paused", gameData.paused);
 
 	// Challenges
-	// Прячем обёртку, а не кнопки: renderRequirements() (ui/tabs.js)
+	// Прячем обёртку, а не кнопки: renderRequirements() (ui/table.js)
 	// переписывает .hidden у #rebirthButton1..5 каждый кадр, а первую и
 	// пятую скрывает ещё и этот модуль. И классом, а не атрибутом hidden:
 	// vendor/w3.css:39 задаёт .w3-button{display:inline-block} и перебивает

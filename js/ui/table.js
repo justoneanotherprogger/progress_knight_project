@@ -1,4 +1,4 @@
-// ui/tabs.js — shop tab and shared table logic: rows, header rows, requirement rows
+// ui/table.js — shared table rendering: rows, header rows, requirement rows
 
 import { itemCategories } from "../../dist/js/items_data.js";
 import { jobCategories } from "../../dist/js/jobs_data.js";

@@ -29,7 +29,7 @@ import {
 	renderHeaderRows,
 	renderRequirements,
 	updateRequiredRows,
-} from "./tabs.js";
+} from "./table.js";
 import { renderJobs, renderSkills } from "./task_tab.js";
 
 export function initializeUI() {
