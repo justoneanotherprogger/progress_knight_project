@@ -230,17 +230,26 @@ export function formatCoins(coins, element) {
 
 // Пишет в DOM только то, что изменилось: textContent пересоздаёт узел даже
 // при совпадающей строке, а вызов идёт каждый кадр и для каждой строки.
+// Идём по частям: нехватающих детей создаём, лишние очищаем на месте —
+// разметка не растёт, а уже расставленные классы не теряются.
 function applyCoins(element, parts) {
-	for (let i = 0; i < element.children.length; i++) {
-		const child = element.children[i];
+	for (let i = 0; i < parts.length; i++) {
 		const part = parts[i];
-		if (part === undefined) {
-			if (child.textContent !== "") child.textContent = "";
-			continue;
+		let child = element.children[i];
+		if (child === undefined) {
+			child = document.createElement("span");
+			element.appendChild(child);
 		}
 		if (child.textContent !== part.text) child.textContent = part.text;
 		if (child.style.color !== part.color) child.style.color = part.color;
 		if (child.className !== part.class) child.className = part.class;
+	}
+
+	for (let i = parts.length; i < element.children.length; i++) {
+		const child = element.children[i];
+		child.textContent = "";
+		child.style.color = "";
+		child.className = "";
 	}
 }
 
