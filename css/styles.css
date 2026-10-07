@@ -614,7 +614,8 @@ button:focus {
 /* 56em у .page-column держит раскладку: с флексами и центрированием внутри при auto едет. */
 #milestonePage,
 #challengePage1,
-#rebirthPage {
+#rebirthPage,
+#milestoneShopPage {
 	width: 100%;
 }
 
