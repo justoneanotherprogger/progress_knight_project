@@ -151,6 +151,12 @@ body {
 	clip-path: inset(-0.625em -0.625em -0.625em -0.625em);
 }
 
+/* В кнопках ребёрна скрытая полоса не занимает место: здесь важна
+   компактность кнопки, а не стабильность высоты строки таблицы. */
+#rebirthGroup .req-progress-container[data-req-visible="hidden"] {
+	display: none;
+}
+
 .req-pending-bar,
 .req-progress-bar {
 	position: absolute;
