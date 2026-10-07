@@ -12,7 +12,11 @@ import { jobBaseData } from "../dist/js/jobs_data.js";
 import { milestoneBaseData } from "../dist/js/milestones_data.js";
 import { skillBaseData } from "../dist/js/skills_data.js";
 import { applyTranslations, setLang } from "../dist/js/translations.js";
-import { enterChallenge, exitChallenge } from "./challenges.js";
+import {
+	enterChallenge,
+	exitChallenge,
+	toggleChallenge,
+} from "./challenges.js";
 import {
 	buyADealWithTheChairman,
 	buyAGiftFromGod,
@@ -145,6 +149,7 @@ Object.assign(window, {
 	setTheme,
 	toggleAutoBuy,
 	toggleAutoPromote,
+	toggleChallenge,
 	togglePause,
 });
 

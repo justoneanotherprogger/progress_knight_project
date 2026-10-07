@@ -20,6 +20,11 @@ export function exitChallenge() {
 	gameData.active_challenge = "";
 }
 
+export function toggleChallenge(challengeName) {
+	if (gameData.active_challenge === challengeName) exitChallenge();
+	else enterChallenge(challengeName);
+}
+
 export function toChallengeDecimal(value, fallback = 0) {
 	const dec = toInfinityNumber(value);
 	// Decimal from break_infinity.js stores NaN as Number.NaN in mantissa

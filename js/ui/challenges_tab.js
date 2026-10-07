@@ -16,11 +16,16 @@ import { setElementText, setHTML, updateButtonText } from "./helpers.js";
 
 export function renderChallenges() {
 	const challengeActive = gameData.active_challenge !== "";
-	for (let i = 1; i <= Object.keys(gameData.challenges).length; i++) {
+	const challengeNames = Object.keys(gameData.challenges);
+	for (let i = 1; i <= challengeNames.length; i++) {
 		const element = document.getElementById(`challengeButton${i}`);
 		if (element == null) continue;
-		updateButtonText(`challengeButton${i}`, t("enter_challenge"));
-		element.disabled = challengeActive;
+		const active = gameData.active_challenge === challengeNames[i - 1];
+		updateButtonText(
+			`challengeButton${i}`,
+			t(active ? "exit_challenge" : "enter_challenge"),
+		);
+		element.disabled = challengeActive && !active;
 	}
 
 	//TODO (indomit)
