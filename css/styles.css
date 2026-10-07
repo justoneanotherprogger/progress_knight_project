@@ -382,9 +382,10 @@ button:focus {
 	position: absolute;
 	left: 0;
 	right: 0;
-	bottom: -1em;
+	bottom: 0;
 	height: 1em;
 	background-color: rgb(243, 243, 243);
+	z-index: -1;
 }
 
 .topbar-currencies {
@@ -417,6 +418,9 @@ button:focus {
 	position: sticky;
 	top: 0;
 	z-index: 2;
+	border-width: 1em 0;
+	border-style: solid;
+	border-color: rgb(243, 243, 243);
 }
 
 #netDisplay,
