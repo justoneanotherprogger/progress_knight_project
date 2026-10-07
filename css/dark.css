@@ -12,8 +12,8 @@
 	border-color: rgb(32, 32, 32);
 }
 
-.dark .topbar::after {
-	background-color: rgb(32, 32, 32);
+.dark #resources {
+	border-color: rgb(32, 32, 32);
 }
 
 .dark .button {
