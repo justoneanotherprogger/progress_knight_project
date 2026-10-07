@@ -36,3 +36,43 @@
 	text-shadow: 0 0 5px currentColor;
 	animation: currency-rainbow 12s infinite;
 }
+
+.color-inspiration {
+	color: rgb(207, 21, 15);
+}
+
+.color-greed {
+	color: rgb(92, 207, 15);
+}
+
+.color-happiness {
+	color: rgb(15, 105, 207);
+}
+.color-evil {
+	color: rgb(240, 0, 0);
+}
+.color-essence {
+	color: rgb(24, 210, 217);
+}
+.color-dark-matter {
+	color: rgb(132, 99, 206);
+}
+/* Тёмные сферы — чёрные с белым ореолом: на почти чёрном фоне тёмной темы
+   (css/dark.css) от букв остаётся только свечение, и это читается как «провал»
+   в экране. Ореол взят по образцу .currency-shadow из css/currencies.css. */
+.color-dark-orbs {
+	color: #000;
+	text-shadow: 0 0 5px rgba(255, 255, 255, 0.9);
+}
+.color-time-warping {
+	color: rgb(204, 34, 219);
+}
+.color-hypercubes {
+	color: rgb(9, 160, 230);
+}
+.color-perk-points {
+	color: rgb(217, 24, 119);
+}
+.color-income {
+	color: lightgreen;
+}

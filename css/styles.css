@@ -22,19 +22,6 @@
 	margin-bottom: 0.9em;
 }
 
-.headerRow th {
-	white-space: nowrap;
-}
-
-.headerRow th:first-child {
-	border-radius: 0.25em 0 0 0.25em;
-	padding-left: 0.6em;
-}
-
-.headerRow th:last-child {
-	border-radius: 0 0.25em 0.25em 0;
-}
-
 /*main*/
 
 /* Полоса прокрутки то появляется, то исчезает при переключении вкладок, а
@@ -115,44 +102,6 @@ body {
 	color: white;
 	display: flex;
 	align-items: center;
-}
-
-/* Первая колонка таблиц задач не держит ширину: полоска у неё width: 100%,
-   а имя и тултип — position: absolute. При авто-лайауте место под них
-   разбирают соседние колонки, и длина полосок плывёт от панели к панели.
-   min-width фиксирует сетку, не трогая поведение остальных колонок. */
-#jobTable tr > :first-child,
-#skillTable tr > :first-child {
-	min-width: 18em;
-}
-
-/* fixed держит колонки по ширинам из шапки (20em имя, 18em эффект).
-   На авто-лайауте nowrap-эффект растягивает ячейку, fitText видит
-   «всё влезло» и не сжимает кегль — таблица вылезает за контейнер.
-   Заодно обе таблицы (работы и навыки) получают одну сетку —
-   подписи шапки не скачут при переключении вкладок. */
-#jobTable,
-#skillTable {
-	table-layout: fixed;
-}
-
-#jobTable td.level,
-#jobTable th.level,
-#jobTable td.xpGain,
-#jobTable th.xpGain,
-#jobTable td.xpLeft,
-#jobTable th.xpLeft,
-#jobTable td.maxLevel,
-#jobTable th.maxLevel,
-#skillTable td.level,
-#skillTable th.level,
-#skillTable td.xpGain,
-#skillTable th.xpGain,
-#skillTable td.xpLeft,
-#skillTable th.xpLeft,
-#skillTable td.maxLevel,
-#skillTable th.maxLevel {
-	text-align: center;
 }
 
 .progress-bar {
@@ -242,13 +191,6 @@ body {
 	gap: 0.5em;
 }
 
-/* Награда за испытание в шапке вкладки. Инлайновый display:inline не давал
-   .hidden спрятать неактивные испытания, и в шапке светились бонусы всех шести. */
-.challenge-reward {
-	display: inline;
-	padding-left: 1em;
-}
-
 /* Дополнительная колонка вкладки метавселенной. setTab прячет её классом
    .hidden при уходе с вкладки, и инлайновый display:flex делал это напрасно. */
 .metaverse-tabcolumn {
@@ -312,8 +254,11 @@ button:focus {
 	margin-bottom: 0.4em;
 }
 
-.challenge {
-	border: 0.1em solid red;
+#starting_challenge,
+#challenge_advance,
+#challenge_rewards_active,
+#evil_slot_shop_hint {
+	text-align: center;
 }
 
 .game-paused {
@@ -526,14 +471,6 @@ button:focus {
 
 .resource-desc {
 	color: gray;
-}
-
-.color-inspiration {
-	color: rgb(207, 21, 15);
-}
-
-.color-greed {
-	color: rgb(92, 207, 15);
 }
 
 .inspiration-rewards {
@@ -755,38 +692,6 @@ button:focus {
 	background-color: #3e3e3e;
 }
 
-.color-happiness {
-	color: rgb(15, 105, 207);
-}
-.color-evil {
-	color: rgb(240, 0, 0);
-}
-.color-essence {
-	color: rgb(24, 210, 217);
-}
-.color-dark-matter {
-	color: rgb(132, 99, 206);
-}
-/* Тёмные сферы — чёрные с белым ореолом: на почти чёрном фоне тёмной темы
-   (css/dark.css) от букв остаётся только свечение, и это читается как «провал»
-   в экране. Ореол взят по образцу .currency-shadow из css/currencies.css. */
-.color-dark-orbs {
-	color: #000;
-	text-shadow: 0 0 5px rgba(255, 255, 255, 0.9);
-}
-.color-time-warping {
-	color: rgb(204, 34, 219);
-}
-.color-hypercubes {
-	color: rgb(9, 160, 230);
-}
-.color-perk-points {
-	color: rgb(217, 24, 119);
-}
-.color-income {
-	color: lightgreen;
-}
-
 .perk-boost {
 	margin: 0;
 	padding: 0.2em 0.5em 1em 0.5em;
@@ -986,8 +891,8 @@ button:focus {
 /* .hidden объявлен последним намеренно: он равен по специфичности любому
    одиночному классу с display, и побеждает только будучи ниже. Инлайн-стиль
    элемента сильнее любого правила без !important, поэтому скрываемое прячется
-   классом, а не style.display. Проверено на .boost-panel, .challenge-reward,
-   .metaverse-tabcolumn и .perk — четыре разных места, где .hidden иначе
+   классом, а не style.display. Проверено на .boost-panel,
+   .metaverse-tabcolumn и .perk — три разных места, где .hidden иначе
    проигрывал соседнему display. Вендорские правила со специфичностью выше
    (0,1,1 и больше) перебивают по-прежнему — им нужен составной селектор, см
    .w3-table .maxLevel.hidden выше. */

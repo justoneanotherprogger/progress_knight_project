@@ -60,3 +60,54 @@ table {
 	border-collapse: separate;
 	border-spacing: 0;
 }
+
+.headerRow th {
+	white-space: nowrap;
+}
+
+.headerRow th:first-child {
+	border-radius: 0.25em 0 0 0.25em;
+	padding-left: 0.6em;
+}
+
+.headerRow th:last-child {
+	border-radius: 0 0.25em 0.25em 0;
+}
+
+/* Первая колонка таблиц задач не держит ширину: полоска у неё width: 100%,
+   а имя и тултип — position: absolute. При авто-лайауте место под них
+   разбирают соседние колонки, и длина полосок плывёт от панели к панели.
+   min-width фиксирует сетку, не трогая поведение остальных колонок. */
+#jobTable tr > :first-child,
+#skillTable tr > :first-child {
+	min-width: 18em;
+}
+
+/* fixed держит колонки по ширинам из шапки (20em имя, 18em эффект).
+   На авто-лайауте nowrap-эффект растягивает ячейку, fitText видит
+   «всё влезло» и не сжимает кегль — таблица вылезает за контейнер.
+   Заодно обе таблицы (работы и навыки) получают одну сетку —
+   подписи шапки не скачут при переключении вкладок. */
+#jobTable,
+#skillTable {
+	table-layout: fixed;
+}
+
+#jobTable td.level,
+#jobTable th.level,
+#jobTable td.xpGain,
+#jobTable th.xpGain,
+#jobTable td.xpLeft,
+#jobTable th.xpLeft,
+#jobTable td.maxLevel,
+#jobTable th.maxLevel,
+#skillTable td.level,
+#skillTable th.level,
+#skillTable td.xpGain,
+#skillTable th.xpGain,
+#skillTable td.xpLeft,
+#skillTable th.xpLeft,
+#skillTable td.maxLevel,
+#skillTable th.maxLevel {
+	text-align: center;
+}
