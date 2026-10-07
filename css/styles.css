@@ -376,6 +376,17 @@ button:focus {
 	position: relative;
 }
 
+.topbar::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 1em;
+	background-color: rgb(243, 243, 243);
+	z-index: -1;
+}
+
 .topbar::after {
 	content: "";
 	position: absolute;
