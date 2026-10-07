@@ -365,7 +365,8 @@ button:focus {
 	gap: 1rem;
 	padding-left: 1rem;
 	padding-right: 1rem;
-	min-width: fit-content;
+	width: 320px;
+	flex-shrink: 0;
 }
 
 .topbar {
@@ -390,6 +391,10 @@ button:focus {
 .topbar-balance {
 	color: gray;
 	text-align: center;
+}
+
+.topbar-balance-block {
+	min-width: 120px;
 }
 
 .icon-gap {
