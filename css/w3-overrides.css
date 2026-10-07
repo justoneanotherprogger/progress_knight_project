@@ -50,3 +50,13 @@ table {
 .w3-table .maxLevel.hidden {
 	display: none;
 }
+
+/* В collapse браузер не рисует border-radius у ячеек, а шапкам категорий
+   скругление нужно. */
+#jobTable,
+#skillTable,
+#itemTable,
+#milestoneTable {
+	border-collapse: separate;
+	border-spacing: 0;
+}

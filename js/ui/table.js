@@ -138,8 +138,12 @@ export function createHeaderRow(templates, categoryType, categoryName) {
 
 	updateHeaderColumns(headerRow, categoryType);
 
-	headerRow.style.backgroundColor = categoryType[categoryName].headerColor;
-	headerRow.style.color = "#ffffff";
+	// Фон и цвет — на ячейках: в collapse фон строки перекрывает скругление
+	// углов у th.
+	for (const cell of headerRow.cells) {
+		cell.style.backgroundColor = categoryType[categoryName].headerColor;
+		cell.style.color = "#ffffff";
+	}
 	headerRow.classList.add(removeSpaces(categoryName));
 	headerRow.classList.add("headerRow");
 
