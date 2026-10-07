@@ -112,7 +112,7 @@ export function renderSideBar() {
 		"rebirthBtn2",
 		gameData.evil,
 		gameData.evil.add(getEvilGain()),
-		getNextDarkMagicRequired(),
+		nearestEvilTarget(),
 		"color-evil",
 	);
 	setRebirthButton(
@@ -414,4 +414,14 @@ function renderRebirthProgress(
 		required == null ? null : getDynamicProgress(pending, required),
 		colorClass,
 	);
+}
+
+/* Полоса «принять зло» идёт к ближайшей из двух целей — тёмному навыку или вехе
+   за зло: подсветка button-evil считает обе, полоса раньше считала только навык. */
+function nearestEvilTarget() {
+	const skillTarget = getNextDarkMagicRequired();
+	const milestoneTarget = getNextMilestoneRequired("evil");
+	if (skillTarget == null) return milestoneTarget;
+	if (milestoneTarget == null) return skillTarget;
+	return Math.min(skillTarget, milestoneTarget);
 }
