@@ -831,6 +831,7 @@ button:focus {
 .note summary {
 	cursor: pointer;
 	font-weight: bold;
+	text-align: center;
 }
 
 .note[open] summary {
