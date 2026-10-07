@@ -309,7 +309,7 @@ export function getEvilGain() {
 		.times(theDevilInsideYou)
 		.times(stairWayToHell())
 		.times(evilBooster)
-		.times(getGreed());
+		.times(greedFor(gameData.evil));
 
 	return gainMemo.evil;
 }
@@ -339,7 +339,7 @@ export function getEssenceGain() {
 		.times(theNewGold)
 		.times(lifeIsValueable)
 		.times(essenceMultGain())
-		.times(getGreed());
+		.times(greedFor(gameData.essence));
 
 	return gainMemo.essence;
 }
@@ -366,7 +366,7 @@ export function getDarkMatterGain() {
 		.times(darkMatterMultGain())
 		.times(Desintegration === 0 ? 1 : Desintegration)
 		.times(TheEndIsNear)
-		.times(getGreed());
+		.times(greedFor(gameData.dark_matter));
 
 	return gainMemo.dark_matter;
 }
@@ -511,6 +511,12 @@ export function getInspiration() {
 export function getGreed() {
 	const age = gameData.days;
 	return getBaseLog(GREED_ADULT_AGE, age);
+}
+
+// Жадность множит доход только по валютам, которые игрок уже получил:
+// на старте её нет, и резать/бустить ей нечего.
+function greedFor(currency) {
+	return currency.gt(0) ? getGreed() : 1;
 }
 
 export function getNextDarkMagicRequired() {
