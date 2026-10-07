@@ -233,6 +233,7 @@ export function formatCoins(coins, element) {
 // Идём по частям: нехватающих детей создаём, лишние очищаем на месте —
 // разметка не растёт, а уже расставленные классы не теряются.
 function applyCoins(element, parts) {
+	for (let i = 0; i < parts.length - 1; i++) parts[i].text += " ";
 	for (let i = 0; i < parts.length; i++) {
 		const part = parts[i];
 		let child = element.children[i];
