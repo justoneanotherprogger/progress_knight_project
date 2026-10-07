@@ -15,7 +15,7 @@ import {
 	getSkillSlotCount,
 	isSlotShopUnlocked,
 } from "../slots.js";
-import { format } from "../utils.js";
+import { format, formatWhole } from "../utils.js";
 import {
 	fitText,
 	renderRequirementProgress,
@@ -64,8 +64,8 @@ export function renderMilestones() {
 		);
 		skillButton.disabled = !canBuySkillSlot();
 
-		setText(byId("evilSlotJobCount"), format(getJobSlotCount()));
-		setText(byId("evilSlotSkillCount"), format(getSkillSlotCount()));
+		setText(byId("evilSlotJobCount"), formatWhole(getJobSlotCount()));
+		setText(byId("evilSlotSkillCount"), formatWhole(getSkillSlotCount()));
 		setText(byId("evilSlotJobCost"), format(getJobSlotCost()));
 		setText(byId("evilSlotSkillCost"), format(getSkillSlotCost()));
 
