@@ -30,11 +30,27 @@ export function renderChallenges() {
 		const element = document.getElementById(`challengeButton${i}`);
 		if (element == null) continue;
 		const active = gameData.active_challenge === challengeNames[i - 1];
+		const requirement =
+			gameData.requirements[`req_challenge_${challengeNames[i - 1]}`];
+		const met = requirement == null || requirement.isCompletedActual();
 		updateButtonText(
 			`challengeButton${i}`,
 			t(active ? "exit_challenge" : "enter_challenge"),
 		);
-		element.disabled = challengeActive && !active;
+		element.disabled = (challengeActive && !active) || (!active && !met);
+		const requirementElement = document.getElementById(
+			`challengeRequirement${i}`,
+		);
+		requirementElement.hidden = met;
+		if (!met)
+			updateButtonText(
+				`challengeRequirement${i}`,
+				t(
+					"challenge_requirement",
+					t(requirement.type),
+					format(requirement.requirements[0].requirement),
+				),
+			);
 	}
 
 	//TODO (indomit)

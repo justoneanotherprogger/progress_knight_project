@@ -239,6 +239,8 @@ challenge_advance: The more you advance in the challenge, the higher the reward.
 
 challenge_rewards_active: Challenge rewards are always active, even in challenges.
 
+challenge_requirement: "Required: {0} {1}"
+
 exit_challenge: Exit challenge
 
 enter_challenge: Enter challenge

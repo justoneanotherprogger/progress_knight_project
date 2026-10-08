@@ -10,6 +10,11 @@ import { resetTwo } from "./rebirth.js";
 import { getChallengeTaskGoalProgress, softcap } from "./utils.js";
 
 export function enterChallenge(challengeName) {
+	// Порог проверяется по условию прямо сейчас, а не по зафиксированному
+	// факту: выполнение зафиксировалось бы навсегда, и после сброса в
+	// испытание снова пустило бы.
+	const requirement = gameData.requirements[`req_challenge_${challengeName}`];
+	if (requirement != null && !requirement.isCompletedActual()) return;
 	resetTwo();
 	gameData.active_challenge = challengeName;
 }
