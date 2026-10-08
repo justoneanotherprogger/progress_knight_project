@@ -253,68 +253,8 @@ button:focus {
 	display: inline-block;
 }
 
-.challenge-title {
-	color: red;
-	border-bottom: 0.1em solid red;
-	padding-bottom: 0.4em;
-	margin-bottom: 0.4em;
-}
-
-#starting_challenge,
-#challenge_advance,
-#challenge_rewards_active,
-#evil_slot_shop_hint {
-	text-align: center;
-}
-
 .game-paused {
 	border: 0.1em solid blue;
-}
-
-.dark-matter-title {
-	color: gold;
-	border-bottom: 0.1em solid goldenrod;
-	padding-bottom: 0.4em;
-	margin-bottom: 0.4em;
-}
-
-/* Вкладка тёмной материи: раньше эти значения жили инлайнами в разметке.
-   display на корне вкладки и на колонке остались инлайнами — их переключает
-   navigation.js через style.display. */
-.dark-matter-item {
-	padding-top: 2em;
-}
-
-.dark-matter-section {
-	padding-top: 4em;
-}
-
-.dark-matter-desc {
-	color: gray;
-	padding-bottom: 0.3em;
-}
-
-.dark-matter-cost {
-	color: gray;
-	padding-bottom: 0.5em;
-}
-
-.dark-matter-warning {
-	padding-bottom: 0.5em;
-}
-
-/* Разделитель «или» между ветками дерева умений. Скрывается он свойством
-   hidden (js/ui/dark_matter_tab.js), поэтому в правиле только padding и
-   никакого display — иначе класс перебьёт скрытие. */
-.darkMatterSkillOR {
-	padding: 0.6em;
-}
-
-.metaverse-title {
-	color: rgb(24, 210, 217);
-	border-bottom: 0.1em solid rgb(24, 210, 217);
-	padding-bottom: 0.4em;
-	margin-bottom: 0.4em;
 }
 
 .tooltip .tooltipText {
