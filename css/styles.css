@@ -373,6 +373,7 @@ button:focus {
 	padding-right: 1rem;
 	width: 320px;
 	flex-shrink: 0;
+	white-space: nowrap;
 }
 
 .topbar {
@@ -425,7 +426,6 @@ button:focus {
 
 .topbar-balance-block {
 	min-width: 120px;
-	white-space: nowrap;
 }
 
 .icon-gap {
