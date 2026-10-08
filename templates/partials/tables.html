@@ -1,9 +1,9 @@
 <div id="hero">
 					<template class="headerRowTaskTemplate">
 						<tr>
-							<th class="rowtitle category" style="width: 18em"></th>
+							<th class="rowtitle category col-task-name"></th>
 							<th class="rowtitle level"></th>
-							<th class="rowtitle valueType" style="width: 18em"></th>
+							<th class="rowtitle valueType col-task-value"></th>
 							<th class="rowtitle xpGain"></th>
 							<th class="rowtitle xpLeft"></th>
 							<th class="rowtitle maxLevel"></th>
@@ -20,7 +20,7 @@
 							</td>
 							<td class="level"></td>
 							<td class="value">
-								<div class="effect" style="white-space: nowrap"></div>
+								<div class="effect nowrap"></div>
 								<div class="income">
 								</div>
 							</td>
@@ -30,14 +30,14 @@
 						</tr>
 					</template>
 					<template class="headerRowItemTemplate">
-						<tr class="item-header-row" style="cursor: default;">
-							<th class="category" style="width: 20em">
-								<button class="button-no-button" style="background-color:transparent; cursor: default;">
+						<tr class="item-header-row">
+							<th class="category col-item-name">
+								<button class="button-no-button">
 									<span class="name"></span>
 								</button>
 							</th>
 							<th></th>
-							<th style="width: 20em"></th>
+							<th class="col-item-effect"></th>
 							<th></th>
 						</tr>
 					</template>
@@ -61,8 +61,8 @@
 					</template>
 					<template class="headerRowMilestoneTemplate">
 						<tr>
-							<th style="width: 6em"></th>
-							<th style="width: 15em" class="category"></th>
+							<th class="col-milestone-currency"></th>
+							<th class="category col-milestone-name"></th>
 							<th></th>
 						</tr>
 					</template>
@@ -70,8 +70,8 @@
 						<tr>
 							<td class="essence color-essence"></td>
 							<td class="tooltip">
-								<div class="progress-bar progressBar" style="width: 100%">
-									<div class="progress-fill progressFill" style="background-color: green"></div>
+								<div class="progress-bar progressBar">
+									<div class="progress-fill progressFill milestone"></div>
 									<div class="progress-text name"></div>
 								</div>
 								<span class="tooltipText"></span>
@@ -81,14 +81,14 @@
 					</template>
 					<template class="requiredRowTemplate">
 						<tr>
-							<td style="padding-left: 0.8em;padding-top: 0.2rem;">
+							<td class="requirement-cell">
 								<div class="effect">
 									<span class="w3-text-gray nextLabel"></span>: <span class="effectValue"></span>
 								</div>
 								<span class="w3-text-gray requirementLabel"></span>:
-								<div class="value" style="display:inline">
+								<div class="value requirement-value">
 									<span class="levels color-income"></span>
-									<div class="coins" style="display:inline">
+									<div class="coins">
 									</div>
 									<span class="evil color-evil"></span>
 									<span class="essence color-essence"></span>
@@ -103,7 +103,7 @@
 						</tr>
 					</template>
 					<div class="tab" id="jobs">
-						<div id="jobPage" style="flex: 1; margin-left: 0.5em;">
+						<div id="jobPage" class="table-page">
 							<div class="autobuy-toggle-row" id="autoPromoteToggleRow" style="display:none">
 								<label class="toggle">
 									<input type="checkbox" id="autoPromoteToggle" onchange="toggleAutoPromote(this.checked)" />
@@ -116,13 +116,13 @@
 						</div>
 					</div>
 					<div class="tab" id="skills">
-						<div id="skillPage" style="flex: 1; margin-left: 0.5em;">
+						<div id="skillPage" class="table-page">
 							<table id="skillTable" class="w3-table w3-bordered">
 							</table>
 						</div>
 					</div>
 					<div class="tab" id="shop">
-						<div id="itemPage" style="flex: 1; margin-left: 0.5em;">
+						<div id="itemPage" class="table-page">
 							<div class="autobuy-toggle-row">
 								<label class="toggle">
 									<input type="checkbox" id="autoBuyToggle" onchange="toggleAutoBuy()" />

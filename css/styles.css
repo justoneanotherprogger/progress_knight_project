@@ -213,14 +213,12 @@ body {
 }
 
 .button-no-button {
+	background-color: transparent;
+	cursor: default;
 	color: white;
 	border: 0;
 	width: 100%;
 	text-align: left;
-}
-
-.button-no-button:hover {
-	cursor: pointer;
 }
 
 .item-button {
@@ -916,6 +914,17 @@ button:focus {
    раскладке родителя. */
 .challenges-tabcolumn {
 	display: contents;
+}
+
+/* Строка «Требуется»: значение требования на одной строке с подписью.
+   Отдельный класс, а не .value: классом value подписана ячейка таблицы
+   задач, и display:inline сломал бы ей раскладку. */
+.requirement-value {
+	display: inline;
+}
+
+.coins {
+	display: inline;
 }
 
 /* .hidden объявлен последним намеренно: он равен по специфичности любому

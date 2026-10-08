@@ -203,3 +203,50 @@
 	margin-bottom: 8px;
 	text-align: center;
 }
+
+/* Таблицы: ширина колонок, страницы вкладок, ячейка строки «Требуется». */
+.col-task-name {
+	width: 18em;
+}
+
+.col-task-value {
+	width: 18em;
+}
+
+.col-item-name {
+	width: 20em;
+}
+
+.col-item-effect {
+	width: 20em;
+}
+
+.col-milestone-currency {
+	width: 6em;
+}
+
+.col-milestone-name {
+	width: 15em;
+}
+
+.table-page {
+	flex: 1;
+	margin-left: 0.5em;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+.requirement-cell {
+	padding-left: 0.8em;
+	padding-top: 0.2rem;
+}
+
+.item-header-row {
+	cursor: default;
+}
+
+.progress-fill.milestone {
+	background-color: green;
+}
