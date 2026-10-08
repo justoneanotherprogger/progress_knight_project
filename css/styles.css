@@ -377,6 +377,7 @@ button:focus {
 
 .topbar {
 	width: 87em;
+	height: 75px;
 	display: flex;
 	align-items: center;
 	position: relative;
