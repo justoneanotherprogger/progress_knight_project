@@ -143,3 +143,63 @@
 .perk-cost-line {
 	font-size: smaller;
 }
+
+/* Настройки: страницы настроек и статистики, ячейки таблиц, поля ввода. */
+.settings-page {
+	flex: 1;
+	margin-left: 0.5em;
+}
+
+.settings-caption {
+	margin-top: 0.4em;
+}
+
+.settings-caption-center {
+	margin-top: 0.4em;
+	text-align: center;
+}
+
+.settings-cell {
+	padding: 0.4em;
+}
+
+.settings-cell-label {
+	padding: 0.4em;
+	width: 15em;
+}
+
+.settings-save-field {
+	width: 20em;
+}
+
+.settings-password-field {
+	width: 15em;
+}
+
+.settings-slider {
+	width: 12em;
+	vertical-align: middle;
+}
+
+.settings-number {
+	width: 6em;
+	vertical-align: middle;
+}
+
+.settings-checkbox {
+	width: 1.6em;
+	height: 1.6em;
+}
+
+.settings-form {
+	margin-top: 0.8em;
+}
+
+.settings-block {
+	margin-bottom: 8px;
+}
+
+.settings-block-center {
+	margin-bottom: 8px;
+	text-align: center;
+}
