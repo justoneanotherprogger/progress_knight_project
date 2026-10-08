@@ -424,6 +424,7 @@ button:focus {
 
 .topbar-balance-block {
 	min-width: 120px;
+	white-space: nowrap;
 }
 
 .icon-gap {
