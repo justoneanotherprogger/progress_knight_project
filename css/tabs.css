@@ -22,6 +22,25 @@
 	text-align: center;
 }
 
+.challenge-item {
+	padding-top: 2em;
+}
+
+.challenge-desc {
+	color: gray;
+	padding-bottom: 0.3em;
+}
+
+.challenge-goal {
+	color: gold;
+	padding-bottom: 0.3em;
+}
+
+.challenge-debuff {
+	color: red;
+	padding-bottom: 0.3em;
+}
+
 /* Тёмная материя: заголовок, блоки, описания, стоимость, разделитель «или».
    display на корне вкладки и на колонке остались инлайнами в разметке — их
    переключает navigation.js через style.display. */
