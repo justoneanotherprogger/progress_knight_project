@@ -66,3 +66,59 @@
 	padding-bottom: 0.4em;
 	margin-bottom: 0.4em;
 }
+
+/* Вкладка метавселенной. Голубой разделитель — цвет заголовка
+   .metaverse-title, розовый — цвет очков даров (.color-perk-points). */
+.metaverse-item {
+	padding-top: 2em;
+}
+
+.metaverse-item-tight {
+	padding-top: 1em;
+}
+
+.metaverse-desc {
+	color: gray;
+	padding-bottom: 0.3em;
+}
+
+.metaverse-cost {
+	color: gray;
+	padding-bottom: 0.5em;
+}
+
+.metaverse-gray {
+	color: gray;
+}
+
+.metaverse-caption-indent {
+	padding-left: 1em;
+}
+
+.metaverse-red {
+	color: red;
+}
+
+.metaverse-green {
+	color: rgb(10, 238, 43);
+}
+
+.metaverse-divider {
+	border-bottom: 0.1em solid rgb(24, 210, 217);
+	padding-top: 2em;
+}
+
+.metaverse-divider-perks {
+	border-bottom: 0.1em solid rgb(217, 24, 119);
+	padding-top: 2em;
+}
+
+.metaverse-divider-perks-tight {
+	border-bottom: 0.1em solid rgb(217, 24, 119);
+}
+
+/* Строка цены дара внутри .perk: шрифт меньше, потому что перк держит
+   несколько строк. */
+.perk-cost-line {
+	font-size: smaller;
+}
