@@ -1,6 +1,7 @@
 // ui/dark_matter_tab.js — dark matter tab rendering
 
 import { t } from "../../dist/js/translations.js";
+import { getDarkMatterGain } from "../calculations.js";
 import {
 	canBuyADealWithTheChairman,
 	canBuyAGiftFromGod,
@@ -11,6 +12,7 @@ import {
 	getADealWithTheChairmanCost,
 	getAGiftFromGodCost,
 	getAGiftFromGodEssenceGain,
+	getAMiracleCost,
 	getDarkOrbGeneration,
 	getDarkOrbGeneratorCost,
 	getGottaBeFastCost,
@@ -24,6 +26,7 @@ import { gameData } from "../data.js";
 import { format, formatTreshold, getDynamicProgress } from "../utils.js";
 import {
 	renderRequirementProgress,
+	resourceProgress,
 	setElementText,
 	setHTML,
 	updateButtonText,
@@ -58,6 +61,43 @@ const SKILL_DESC_IDS = {
 	multiverse_explorer: "multiverseExplorer",
 };
 
+// Покупки магазина тёмной материи: префикс id в разметке, функция цены,
+// признак pending и условие доступности. Прибавку за ребёрт показываем
+// только у тёмной материи: сферы на ребёрте не растут, а следующий
+// ребёрт их обнуляет.
+const SHOP_PURCHASES = [
+	{
+		idPrefix: "darkOrbGenerator",
+		cost: getDarkOrbGeneratorCost,
+		pending: true,
+		// Генерация сфер ушла в бесконечность: покупать больше нечего.
+		available: () => !isDecimalInfinity(getDarkOrbGeneration()),
+	},
+	{ idPrefix: "aMiracle", cost: getAMiracleCost, pending: true },
+	{ idPrefix: "aDealWithTheChairman", cost: getADealWithTheChairmanCost },
+	{ idPrefix: "aGiftFromGod", cost: getAGiftFromGodCost },
+	{ idPrefix: "gottaBeFast", cost: getGottaBeFastCost },
+	{ idPrefix: "lifeCoach", cost: getLifeCoachCost },
+];
+
+// Перки дерева: цена одна на оба уровня, поэтому полоса и проверка
+// доступности кнопок берут одно и то же число.
+const SKILL_PURCHASES = [
+	{ key: "speed_is_life", idPrefix: "speedIsLife", cost: 100 },
+	{ key: "your_greatest_debt", idPrefix: "yourGreatestDebt", cost: 1000 },
+	{ key: "essence_collector", idPrefix: "essenceCollector", cost: 10000 },
+	{
+		key: "explosion_of_the_universe",
+		idPrefix: "explosionOfTheUniverse",
+		cost: 100000,
+	},
+	{
+		key: "multiverse_explorer",
+		idPrefix: "multiverseExplorer",
+		cost: 100000000,
+	},
+];
+
 export function renderDarkMatter() {
 	// Display currency
 	updateButtonText("darkMatterShopCurrency", t("dark_matter"));
@@ -65,20 +105,26 @@ export function renderDarkMatter() {
 	updateButtonText("darkMatterSkillsDisplay", format(gameData.dark_matter));
 	updateButtonText("darkOrbsShopDisplay", formatTreshold(gameData.dark_orbs));
 
-	// Полоса к цене следующего улучшения за тёмные сферы: самый дешёвый из
-	// четырёх покупок магазина, как в апстриме. pending не рисуем — сферы
-	// копятся медленно, и «pending» тут обманчив. Все цены и счётчик —
-	// Decimal, поэтому минимум через .min(), а не Math.min.
-	const nextOrbCost = getADealWithTheChairmanCost()
-		.min(getAGiftFromGodCost())
-		.min(getGottaBeFastCost())
-		.min(getLifeCoachCost());
-	renderRequirementProgress(
-		document.getElementById("darkOrbsProgress"),
-		getDynamicProgress(gameData.dark_orbs, nextOrbCost),
-		null,
-		"color-dark-matter",
-	);
+	// Полоса к цене каждой покупки магазина: у тёмной материи с прибавкой
+	// за ребёрт, у сфер — без неё.
+	for (const purchase of SHOP_PURCHASES) {
+		const cost = purchase.cost();
+		const [percent, pendingPercent] = purchase.pending
+			? resourceProgress(
+					gameData.dark_matter,
+					cost,
+					getDarkMatterGain,
+					"req_rebirth_button4",
+				)
+			: [getDynamicProgress(gameData.dark_orbs, cost), null];
+		const visible = purchase.available?.() ?? true;
+		renderRequirementProgress(
+			document.getElementById(`${purchase.idPrefix}Progress`),
+			visible ? percent : null,
+			visible ? pendingPercent : null,
+			"color-dark-matter",
+		);
+	}
 
 	// Shop button texts
 	updateButtonText("darkOrbGeneratorBuyButton", t("buy"));
@@ -197,70 +243,32 @@ export function renderDarkMatter() {
 	updateButtonText("multiverseExplorerCurrencyIcon", t("dark_matter"));
 
 	// Dark Matter Ability tree
-	renderSkillTreeButton(
-		document.getElementById("speedIsLife1"),
-		gameData.dark_matter_shop.speed_is_life !== 0,
-		[1, 3].includes(gameData.dark_matter_shop.speed_is_life),
-		gameData.dark_matter.gte(100),
-	);
-	renderSkillTreeButton(
-		document.getElementById("speedIsLife2"),
-		gameData.dark_matter_shop.speed_is_life !== 0,
-		[2, 3].includes(gameData.dark_matter_shop.speed_is_life),
-		gameData.dark_matter.gte(100),
-	);
-
-	renderSkillTreeButton(
-		document.getElementById("yourGreatestDebt1"),
-		gameData.dark_matter_shop.your_greatest_debt !== 0,
-		[1, 3].includes(gameData.dark_matter_shop.your_greatest_debt),
-		gameData.dark_matter.gte(1000),
-	);
-	renderSkillTreeButton(
-		document.getElementById("yourGreatestDebt2"),
-		gameData.dark_matter_shop.your_greatest_debt !== 0,
-		[2, 3].includes(gameData.dark_matter_shop.your_greatest_debt),
-		gameData.dark_matter.gte(1000),
-	);
-
-	renderSkillTreeButton(
-		document.getElementById("essenceCollector1"),
-		gameData.dark_matter_shop.essence_collector !== 0,
-		[1, 3].includes(gameData.dark_matter_shop.essence_collector),
-		gameData.dark_matter.gte(10000),
-	);
-	renderSkillTreeButton(
-		document.getElementById("essenceCollector2"),
-		gameData.dark_matter_shop.essence_collector !== 0,
-		[2, 3].includes(gameData.dark_matter_shop.essence_collector),
-		gameData.dark_matter.gte(10000),
-	);
-
-	renderSkillTreeButton(
-		document.getElementById("explosionOfTheUniverse1"),
-		gameData.dark_matter_shop.explosion_of_the_universe !== 0,
-		[1, 3].includes(gameData.dark_matter_shop.explosion_of_the_universe),
-		gameData.dark_matter.gte(100000),
-	);
-	renderSkillTreeButton(
-		document.getElementById("explosionOfTheUniverse2"),
-		gameData.dark_matter_shop.explosion_of_the_universe !== 0,
-		[2, 3].includes(gameData.dark_matter_shop.explosion_of_the_universe),
-		gameData.dark_matter.gte(100000),
-	);
-
-	renderSkillTreeButton(
-		document.getElementById("multiverseExplorer1"),
-		gameData.dark_matter_shop.multiverse_explorer !== 0,
-		[1, 3].includes(gameData.dark_matter_shop.multiverse_explorer),
-		gameData.dark_matter.gte(100000000),
-	);
-	renderSkillTreeButton(
-		document.getElementById("multiverseExplorer2"),
-		gameData.dark_matter_shop.multiverse_explorer !== 0,
-		[2, 3].includes(gameData.dark_matter_shop.multiverse_explorer),
-		gameData.dark_matter.gte(100000000),
-	);
+	// Кнопки обоих уровней перка и его полоса смотрят на одно и то же
+	// состояние и цену.
+	for (const { key, idPrefix, cost } of SKILL_PURCHASES) {
+		const level = gameData.dark_matter_shop[key];
+		const canAfford = gameData.dark_matter.gte(cost);
+		for (const number of [1, 2]) {
+			renderSkillTreeButton(
+				document.getElementById(`${idPrefix}${number}`),
+				level !== 0,
+				[number, 3].includes(level),
+				canAfford,
+			);
+		}
+		const [percent, pendingPercent] = resourceProgress(
+			gameData.dark_matter,
+			cost,
+			getDarkMatterGain,
+			"req_rebirth_button4",
+		);
+		renderRequirementProgress(
+			document.getElementById(`${idPrefix}Progress`),
+			percent,
+			pendingPercent,
+			"color-dark-matter",
+		);
+	}
 
 	// turn off OR
 	const ors = document.getElementsByClassName("darkMatterSkillOR");

@@ -206,8 +206,16 @@ export function renderRequirementProgress(
 	colorClass = "color-income",
 ) {
 	if (!container) return;
-	const bar = container.querySelector(".req-progress-bar");
-	const pending = container.querySelector(".req-pending-bar");
+	// Полосы ищутся один раз на контейнер: вызовов много (строки таблиц,
+	// кнопки ребёрна, магазины), а querySelector на каждом кадре на каждом
+	// контейнере — лишняя работа. Разметку контейнера не перезаписывают,
+	// поэтому кэш не протухает.
+	if (!container._reqBars)
+		container._reqBars = [
+			container.querySelector(".req-progress-bar"),
+			container.querySelector(".req-pending-bar"),
+		];
+	const [bar, pending] = container._reqBars;
 	if (!bar || !pending) return;
 
 	const pendingValue = pendingPercent ?? percent;

@@ -13,43 +13,63 @@
 									<div class="text-caption dark-matter-title" id="dark_orb_generator"></div>
 									<div style="color:gray; padding-bottom:0.3em" id="darkOrbGeneratorDesc"></div>
 									<div style="color:gray; padding-bottom: 0.5em;"><span id="darkOrbGeneratorCostLabel"></span>: <b id="darkOrbGeneratorCost"></b> <span class="color-dark-matter" id="darkOrbGeneratorCurrency"></span></div>
+									<div id="darkOrbGeneratorProgress" class="req-progress-container">
+										<div class="req-pending-bar color-dark-matter"></div>
+										<div class="req-progress-bar color-dark-matter"></div>
+									</div>
 									<button class="w3-button button" id="darkOrbGeneratorBuyButton" onclick="buyDarkOrbGenerator()"></button>
 								</div>
 								<div style="padding-top:2em">
 									<div class="text-caption dark-matter-title" id="a_miracle"></div>
 									<div style="color:gray; padding-bottom:0.3em" id="a_miracle_desc"></div>
 									<div id="aMiracleCost" style="color:gray; padding-bottom: 0.5em;"><span id="aMiracleCostLabel"></span>: <b>10</b> <span class="color-dark-matter" id="aMiracleCurrency"></span></div>
+									<div id="aMiracleProgress" class="req-progress-container">
+										<div class="req-pending-bar color-dark-matter"></div>
+										<div class="req-progress-bar color-dark-matter"></div>
+									</div>
 									<button class="w3-button button" id="aMiracleBuyButton" onclick="buyAMiracle()"></button>
 								</div>
 								<div class="text-caption" style="padding-top:4em">
 									<div class="text-caption"><span class="color-dark-orbs" id="dark_orbs_shop"></span>: <span id="darkOrbsShopDisplay"></span></div>
 								</div>
-								<div id="darkOrbsProgress" class="req-progress-container">
-									<div class="req-pending-bar color-dark-matter"></div>
-									<div class="req-progress-bar color-dark-matter"></div>
-								</div>
 								<div style="padding-top:2em">
 									<div class="text-caption dark-matter-title" id="a_deal_with_chairman"></div>
 									<div style="color:gray; padding-bottom: 0.3em;"><span id="aDealWithTheChairmanDesc"></span></div>
 									<div style="color:gray; padding-bottom: 0.5em;"><span id="aDealWithTheChairmanCostLabel"></span>: <b id="aDealWithTheChairmanCost"></b> <span class="color-dark-orbs" id="aDealWithTheChairmanCurrency"></span></div>
+									<div id="aDealWithTheChairmanProgress" class="req-progress-container">
+										<div class="req-pending-bar color-dark-matter"></div>
+										<div class="req-progress-bar color-dark-matter"></div>
+									</div>
 									<button class="w3-button button" id="aDealWithTheChairmanBuyButton" onclick="buyADealWithTheChairman()"></button>
 								</div>
 								<div style="padding-top:2em">
 									<div class="text-caption dark-matter-title" id="a_gift_from_god"></div>
 									<div style="color:gray; padding-bottom: 0.3em;"><span id="aGiftFromGodDesc"></span></div>
 									<div style="color:gray; padding-bottom: 0.5em;"><span id="aGiftFromGodCostLabel"></span>: <b id="aGiftFromGodCost"></b> <span class="color-dark-orbs" id="aGiftFromGodCurrency"></span></div>
+									<div id="aGiftFromGodProgress" class="req-progress-container">
+										<div class="req-pending-bar color-dark-matter"></div>
+										<div class="req-progress-bar color-dark-matter"></div>
+									</div>
 									<button class="w3-button button" id="aGiftFromGodBuyButton" onclick="buyAGiftFromGod()"></button>
 								</div>
 								<div style="padding-top:2em">
 									<div class="text-caption dark-matter-title" id="gotta_be_fast"></div>
 									<div style="color:gray; padding-bottom: 0.3em;"><span id="gottaBeFastDesc"></span></div>
 									<div style="color:gray; padding-bottom: 0.5em;"><span id="gottaBeFastCostLabel"></span>: <b id="gottaBeFastCost"></b> <span class="color-dark-orbs" id="gottaBeFastCurrency"></span></div>
+									<div id="gottaBeFastProgress" class="req-progress-container">
+										<div class="req-pending-bar color-dark-matter"></div>
+										<div class="req-progress-bar color-dark-matter"></div>
+									</div>
 									<button class="w3-button button" id="gottaBeFastBuyButton" onclick="buyGottaBeFast()"></button>
 								</div>
 								<div style="padding-top:2em">
 									<div class="text-caption dark-matter-title" id="life_coach"></div>
 									<div style="color:gray; padding-bottom: 0.3em;"><span id="lifeCoachDesc"></span></div>
 									<div style="color:gray; padding-bottom: 0.5em;"><span id="lifeCoachCostLabel"></span>: <b id="lifeCoachCost"></b> <span class="color-dark-orbs" id="lifeCoachCurrency"></span></div>
+									<div id="lifeCoachProgress" class="req-progress-container">
+										<div class="req-pending-bar color-dark-matter"></div>
+										<div class="req-progress-bar color-dark-matter"></div>
+									</div>
 									<button class="w3-button button" id="lifeCoachBuyButton" onclick="buyLifeCoach()"></button>
 								</div>
 							</div>
@@ -75,6 +95,10 @@
 											<span id="speedIsLife2Desc"></span>
 										</div>
 										<div id="speedIsLifeCost" style="color:gray; padding-bottom: 0.5em;"><span id="speedIsLifeCurrencyLabel"></span>: <b>100</b> <span class="color-dark-matter" id="speedIsLifeCurrencyIcon"></span></div>
+										<div id="speedIsLifeProgress" class="req-progress-container">
+											<div class="req-pending-bar color-dark-matter"></div>
+											<div class="req-progress-bar color-dark-matter"></div>
+										</div>
 								</div>
 								<div style="padding-top:2em">
 									<div class="text-caption dark-matter-title" id="your_greatest_debt"></div>
@@ -88,6 +112,10 @@
 											<span id="yourGreatestDebt2Desc"></span>
 										</div>
 										<div id="yourGreatestDebtCost" style="color:gray; padding-bottom: 0.5em;"><span id="yourGreatestDebtCurrencyLabel"></span>: <b>1k</b> <span class="color-dark-matter" id="yourGreatestDebtCurrencyIcon"></span></div>
+										<div id="yourGreatestDebtProgress" class="req-progress-container">
+											<div class="req-pending-bar color-dark-matter"></div>
+											<div class="req-progress-bar color-dark-matter"></div>
+										</div>
 								</div>
 								<div style="padding-top:2em">
 									<div class="text-caption dark-matter-title" id="essence_collector"></div>
@@ -101,6 +129,10 @@
 											<span id="essenceCollector2Desc"></span>
 										</div>
 										<div id="essenceCollectorCost" style="color:gray; padding-bottom: 0.5em;"><span id="essenceCollectorCurrencyLabel"></span>: <b>10k</b> <span class="color-dark-matter" id="essenceCollectorCurrencyIcon"></span></div>
+										<div id="essenceCollectorProgress" class="req-progress-container">
+											<div class="req-pending-bar color-dark-matter"></div>
+											<div class="req-progress-bar color-dark-matter"></div>
+										</div>
 								</div>
 								<div style="padding-top:2em">
 									<div class="text-caption dark-matter-title" id="explosion_of_the_universe"></div>
@@ -114,6 +146,10 @@
 											<span id="explosionOfTheUniverse2Desc"></span>
 										</div>
 										<div id="explosionOfTheUniverseCost" style="color:gray; padding-bottom: 0.5em;"><span id="explosionOfTheUniverseCurrencyLabel"></span>: <b>100k</b> <span class="color-dark-matter" id="explosionOfTheUniverseCurrencyIcon"></span></div>
+										<div id="explosionOfTheUniverseProgress" class="req-progress-container">
+											<div class="req-pending-bar color-dark-matter"></div>
+											<div class="req-progress-bar color-dark-matter"></div>
+										</div>
 								</div>
 								<div style="padding-top:2em">
 									<div class="text-caption dark-matter-title" id="multiverse_explorer"></div>
@@ -127,6 +163,10 @@
 											<span id="multiverseExplorer2Desc"></span>
 										</div>
 										<div id="multiverseExplorerCost" style="color:gray; padding-bottom: 0.5em;"><span id="multiverseExplorerCurrencyLabel"></span>: <b>100M</b> <span class="color-dark-matter" id="multiverseExplorerCurrencyIcon"></span></div>
+										<div id="multiverseExplorerProgress" class="req-progress-container">
+											<div class="req-pending-bar color-dark-matter"></div>
+											<div class="req-progress-bar color-dark-matter"></div>
+										</div>
 								</div>
 							</div>
 						</div>
