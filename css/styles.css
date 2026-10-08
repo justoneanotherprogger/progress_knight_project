@@ -936,3 +936,11 @@ button:focus {
 .hidden {
 	display: none;
 }
+
+.activity-box {
+	border: 1px solid rgb(208, 208, 208);
+	border-radius: 0.5em;
+	padding: 0.5em;
+	margin: 0.5em 0;
+	background-color: rgba(0, 0, 0, 0.02);
+}
