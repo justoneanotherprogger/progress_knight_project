@@ -25,6 +25,7 @@ import {
 	getMetaversePerkPointsGain,
 } from "../metaverse.js";
 import { isMilestoneInReach } from "../milestones.js";
+import { isJobAutoSelectUnlocked } from "../slots.js";
 import {
 	daysToYears,
 	format,
@@ -100,6 +101,17 @@ export function renderSideBar() {
 		`${t("category_properties")}: ${t(property.name)}`,
 	);
 	fitText(propertyElement, 16);
+
+	// Авто-выбор сам меняет работу и недвижимость — показывать их вручную
+	// бессмысленно. Условие повторяет запуск авто-выбора в gameLoop.js.
+	// Класс, а не свойство hidden: .hidden в styles.css даёт display:none.
+	const jobVisible = !(
+		isJobAutoSelectUnlocked() && gameData.autoPromoteEnabled
+	);
+	const propertyVisible = !gameData.autoBuyEnabled;
+	el("quickTaskDisplay").classList.toggle("hidden", !jobVisible);
+	el("currentPropertyDisplay").classList.toggle("hidden", !propertyVisible);
+	el("activityBox").classList.toggle("hidden", !jobVisible && !propertyVisible);
 
 	setText("ageDisplay", formatAge(gameData.days));
 	setText("lifespanDisplay", formatWhole(daysToYears(getLifespan())));
