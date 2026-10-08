@@ -91,6 +91,7 @@ perk_points: Очки даров
 
 # Misc
 required: Требуется для следующего
+next: Следующее
 unknown: Неизвестно
 infinity: Бесконечность
 active: Активно

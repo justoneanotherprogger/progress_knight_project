@@ -91,6 +91,7 @@ perk_points: Perk Points
 
 # Misc
 required: Required for next
+next: Next
 unknown: Unknown
 infinity: Infinity
 active: Active

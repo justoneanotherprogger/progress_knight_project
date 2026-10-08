@@ -122,6 +122,7 @@ export function createRequiredRow(categoryName, table) {
 		.querySelector(".requiredRowTemplate")
 		.content.firstElementChild.cloneNode(true);
 	setElementText(requiredRow.querySelector(".requirementLabel"), t("required"));
+	setElementText(requiredRow.querySelector(".nextLabel"), t("next"));
 	requiredRow.classList.add("requiredRow");
 	requiredRow.classList.add(removeSpaces(categoryName));
 	requiredRow.id = `req_${categoryName}`;
@@ -263,6 +264,7 @@ export function updateRequiredRows(data, categoryType) {
 			requiredRow.querySelector(".requirementLabel"),
 			t("required"),
 		);
+		setElementText(requiredRow.querySelector(".nextLabel"), t("next"));
 		let nextEntity = null;
 		let nextEntityName = null;
 		const categoryName = requiredRow.id.substring(4);
