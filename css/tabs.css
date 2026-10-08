@@ -7,6 +7,7 @@
    последним в styles.css намеренно, и display из более позднего файла перебил
    бы скрытие. Скрываемые элементы прячутся классом .hidden, не style.display. */
 
+/* Испытания: заголовок активного испытания, центровка подсказок. */
 .challenge-title {
 	color: red;
 	border-bottom: 0.1em solid red;
@@ -21,6 +22,9 @@
 	text-align: center;
 }
 
+/* Тёмная материя: заголовок, блоки, описания, стоимость, разделитель «или».
+   display на корне вкладки и на колонке остались инлайнами в разметке — их
+   переключает navigation.js через style.display. */
 .dark-matter-title {
 	color: gold;
 	border-bottom: 0.1em solid goldenrod;
@@ -28,9 +32,6 @@
 	margin-bottom: 0.4em;
 }
 
-/* Вкладка тёмной материи: раньше эти значения жили инлайнами в разметке.
-   display на корне вкладки и на колонке остались инлайнами — их переключает
-   navigation.js через style.display. */
 .dark-matter-item {
 	padding-top: 2em;
 }
@@ -60,6 +61,9 @@
 	padding: 0.6em;
 }
 
+/* Метавселенная: заголовок, блоки, описания, стоимость, отступы, делиторы.
+   Голубой разделитель — цвет заголовка .metaverse-title, розовый — цвет
+   очков даров (.color-perk-points). */
 .metaverse-title {
 	color: rgb(24, 210, 217);
 	border-bottom: 0.1em solid rgb(24, 210, 217);
@@ -67,8 +71,6 @@
 	margin-bottom: 0.4em;
 }
 
-/* Вкладка метавселенной. Голубой разделитель — цвет заголовка
-   .metaverse-title, розовый — цвет очков даров (.color-perk-points). */
 .metaverse-item {
 	padding-top: 2em;
 }
