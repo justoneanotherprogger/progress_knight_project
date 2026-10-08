@@ -108,17 +108,18 @@ export function renderHeaderRows(categories) {
 }
 
 // Первая строка под таблицей: название следующего, эффект — в скобках.
-// effectText == null: строка без эффекта (работы, недвижимость, веха без описания).
-// Неизвестный эффект затирает название: строка одним словом «Неизвестно»,
-// иначе выходило «Неизвестно (Неизвестно)».
-function renderNextEntityLine(effectValueElement, nextEntity, effectText) {
-	const unknown = t("unknown");
+// Пока сущность ни разу не открывалась, строка — одно «Неизвестно», и название
+// не показываем: следующее по определению ещё не открыто. effectText == null:
+// строка без эффекта (работы, недвижимость, веха без описания).
+function renderNextEntityLine(
+	effectValueElement,
+	nextEntity,
+	effectText,
+	seen,
+) {
 	let line = t(nextEntity.name);
-	if (effectText === unknown) {
-		line = unknown;
-	} else if (effectText != null) {
-		line = `${line} (${effectText})`;
-	}
+	if (!seen) line = t("unknown");
+	else if (effectText != null) line = `${line} (${effectText})`;
 	setElementText(effectValueElement, line);
 }
 
@@ -365,17 +366,20 @@ export function updateRequiredRows(data, categoryType) {
 				// у навыков, у работ он не нужен.
 				let effectText = null;
 				if (categoryType !== jobCategories) {
-					effectText = nextEntity.unlocked
-						? t(
-								labelKey(
-									nextEntity.baseData.effect.target,
-									nextEntity.baseData.effect.type,
-								),
-							)
-						: t("unknown");
+					effectText = t(
+						labelKey(
+							nextEntity.baseData.effect.target,
+							nextEntity.baseData.effect.type,
+						),
+					);
 				}
 				effectElement.classList.remove("hiddenTask");
-				renderNextEntityLine(effectValueElement, nextEntity, effectText);
+				renderNextEntityLine(
+					effectValueElement,
+					nextEntity,
+					effectText,
+					nextEntity.unlocked,
+				);
 
 				if (requirementObject instanceof EvilRequirement) {
 					evilElement.classList.remove("hiddenTask");
@@ -494,12 +498,15 @@ export function updateRequiredRows(data, categoryType) {
 				// недвижимости в строке остаётся одно название.
 				let effectText = null;
 				if (categoryName !== "category_properties") {
-					effectText = nextEntity.unlocked
-						? nextEntity.getEffectDescription()
-						: t("unknown");
+					effectText = nextEntity.getEffectDescription();
 				}
 				effectElement.classList.remove("hiddenTask");
-				renderNextEntityLine(effectValueElement, nextEntity, effectText);
+				renderNextEntityLine(
+					effectValueElement,
+					nextEntity,
+					effectText,
+					nextEntity.unlocked,
+				);
 			} else if (data === milestoneData) {
 				if (requirementObject instanceof EvilRequirement) {
 					evilElement.classList.remove("hiddenTask");
@@ -532,12 +539,15 @@ export function updateRequiredRows(data, categoryType) {
 				// Описания может не быть — тогда строка без эффекта, одно название.
 				let effectText = null;
 				if (nextEntity.baseData.description != null) {
-					effectText = gameData.stats.maxEssenceReached.gt(nextEntity.threshold)
-						? t(nextEntity.baseData.description)
-						: t("unknown");
+					effectText = t(nextEntity.baseData.description);
 				}
 				effectElement.classList.remove("hiddenTask");
-				renderNextEntityLine(effectValueElement, nextEntity, effectText);
+				renderNextEntityLine(
+					effectValueElement,
+					nextEntity,
+					effectText,
+					gameData.stats.maxEssenceReached.gt(nextEntity.threshold),
+				);
 			}
 
 			renderRequirementProgress(
