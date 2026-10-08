@@ -111,10 +111,9 @@ export function createRequiredRow(categoryName, categoryType, table) {
 	const requiredRow = document
 		.querySelector(".requiredRowTemplate")
 		.content.firstElementChild.cloneNode(true);
-	const graySpans = requiredRow.querySelectorAll("span.w3-text-gray");
-	setElementText(graySpans[0], t("required"));
-	if (categoryType !== jobCategories && graySpans.length > 1)
-		setElementText(graySpans[1], t("next_effect"));
+	setElementText(requiredRow.querySelector(".requirementLabel"), t("required"));
+	if (categoryType !== jobCategories)
+		setElementText(requiredRow.querySelector(".effectLabel"), t("next_effect"));
 	requiredRow.classList.add("requiredRow");
 	requiredRow.classList.add(removeSpaces(categoryName));
 	requiredRow.id = `req_${categoryName}`;
@@ -252,13 +251,19 @@ export function createAllRows(categoryType, tableId) {
 export function updateRequiredRows(data, categoryType) {
 	const requiredRows = document.getElementsByClassName("requiredRow");
 	for (const requiredRow of requiredRows) {
-		const graySpans = requiredRow.querySelectorAll("span.w3-text-gray");
-		setElementText(graySpans[0], t("required"));
-		if (categoryType !== jobCategories && graySpans.length > 1)
-			setElementText(graySpans[1], t("next_effect"));
+		setElementText(
+			requiredRow.querySelector(".requirementLabel"),
+			t("required"),
+		);
+		if (categoryType !== jobCategories)
+			setElementText(
+				requiredRow.querySelector(".effectLabel"),
+				t("next_effect"),
+			);
 		let nextEntity = null;
 		let nextEntityName = null;
-		const category = categoryType[requiredRow.id.substring(4)];
+		const categoryName = requiredRow.id.substring(4);
+		const category = categoryType[categoryName];
 		if (category == null) {
 			continue;
 		}
@@ -474,13 +479,19 @@ export function updateRequiredRows(data, categoryType) {
 					? "color-income"
 					: "color-evil";
 
-				effectElement.classList.remove("hiddenTask");
-				setElementText(
-					effectValueElement,
-					nextEntity.unlocked
-						? nextEntity.getEffectDescription()
-						: t("unknown"),
-				);
+				// Эффект недвижимости дублирует её колонку эффекта в списке, поэтому
+				// у недвижимости строку не показываем — это одно и то же на каждый раз.
+				if (categoryName === "category_properties") {
+					effectElement.classList.add("hiddenTask");
+				} else {
+					effectElement.classList.remove("hiddenTask");
+					setElementText(
+						effectValueElement,
+						nextEntity.unlocked
+							? nextEntity.getEffectDescription()
+							: t("unknown"),
+					);
+				}
 			} else if (data === milestoneData) {
 				if (requirementObject instanceof EvilRequirement) {
 					evilElement.classList.remove("hiddenTask");
