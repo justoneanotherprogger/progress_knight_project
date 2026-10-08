@@ -97,7 +97,7 @@ export function renderSideBar() {
 	propertyElement.style.whiteSpace = "nowrap";
 	setText(
 		"currentPropertyDisplay",
-		`${t("category_properties")}: ${t(property.name)} (${property.getEffectDescription()})`,
+		`${t("category_properties")}: ${t(property.name)}`,
 	);
 	fitText(propertyElement, 16);
 
