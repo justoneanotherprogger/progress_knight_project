@@ -1,5 +1,6 @@
 // ui/sidebar.js — sidebar rendering
 
+import { itemCategories } from "../../dist/js/items_data.js";
 import { t } from "../../dist/js/translations.js";
 import {
 	getDarkMatterGain,
@@ -83,6 +84,22 @@ export function renderSideBar() {
 	fitText(currentJobName, 16);
 	const progressFill = progressBar.getElementsByClassName("progressFill")[0];
 	renderProgressBar(task, progressFill, progressBar);
+
+	const property = gameData.currentProperty;
+	const propertyElement = el("currentPropertyDisplay");
+	const propertyColor = itemCategories[property.categoryId].headerColor;
+	// Цвет пишется только при смене: запись стиля каждый кадр форсит
+	// пересчёт стилей элемента.
+	if (propertyElement.dataset.color !== propertyColor) {
+		propertyElement.style.color = propertyColor;
+		propertyElement.dataset.color = propertyColor;
+	}
+	propertyElement.style.whiteSpace = "nowrap";
+	setText(
+		"currentPropertyDisplay",
+		`${t("category_properties")}: ${t(property.name)} (${property.getEffectDescription()})`,
+	);
+	fitText(propertyElement, 16);
 
 	setText("ageDisplay", formatAge(gameData.days));
 	setText("lifespanDisplay", formatWhole(daysToYears(getLifespan())));
