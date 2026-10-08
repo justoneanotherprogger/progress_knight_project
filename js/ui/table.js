@@ -109,12 +109,17 @@ export function renderHeaderRows(categories) {
 
 // Первая строка под таблицей: название следующего, эффект — в скобках.
 // effectText == null: строка без эффекта (работы, недвижимость, веха без описания).
+// Неизвестный эффект затирает название: строка одним словом «Неизвестно»,
+// иначе выходило «Неизвестно (Неизвестно)».
 function renderNextEntityLine(effectValueElement, nextEntity, effectText) {
-	const name = t(nextEntity.name);
-	setElementText(
-		effectValueElement,
-		effectText == null ? name : `${name} (${effectText})`,
-	);
+	const unknown = t("unknown");
+	let line = t(nextEntity.name);
+	if (effectText === unknown) {
+		line = unknown;
+	} else if (effectText != null) {
+		line = `${line} (${effectText})`;
+	}
+	setElementText(effectValueElement, line);
 }
 
 export function createRequiredRow(categoryName, table) {
