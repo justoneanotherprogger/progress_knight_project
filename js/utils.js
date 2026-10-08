@@ -254,6 +254,21 @@ function applyCoins(element, parts) {
 	}
 }
 
+// Строка с монетами для подстановки в текст: innerHTML того же набора span'ов,
+// который собирает applyCoins, с инлайновыми цветами и классами. В разряды
+// applyCoins пишет через textContent, а чтение innerHTML экранирует
+// спецсимволы при сериализации — подстановка в строку перевода безопасна.
+//
+// Holder один на модуль: applyCoins переиспользует его детей, как в живых
+// элементах, вместо создания новых узлов на каждый вызов. В DOM он не попадает.
+let coinsHtmlHolder;
+
+export function formatCoinsHtml(coins) {
+	coinsHtmlHolder ??= document.createElement("span");
+	formatCoins(coins, coinsHtmlHolder);
+	return coinsHtmlHolder.innerHTML;
+}
+
 export function formatTime(sec_num, show_ms = false) {
 	if (sec_num == null) {
 		return "unknown";

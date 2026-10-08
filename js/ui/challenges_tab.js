@@ -11,8 +11,17 @@ import {
 	gameData,
 	LIFESPAN_CHALLENGE_EXPONENT,
 } from "../data.js";
-import { format, getFormattedChallengeTaskGoal } from "../utils.js";
-import { setElementText, setHTML, updateButtonText } from "./helpers.js";
+import {
+	format,
+	formatCoinsHtml,
+	getFormattedChallengeTaskGoal,
+} from "../utils.js";
+import {
+	setElementText,
+	setHTML,
+	updateButtonHTML,
+	updateButtonText,
+} from "./helpers.js";
 
 export function renderChallenges() {
 	const challengeActive = gameData.active_challenge !== "";
@@ -38,11 +47,11 @@ export function renderChallenges() {
 			t("reward_happiness"),
 		),
 	);
-	updateButtonText(
+	updateButtonHTML(
 		"challengeGoal2",
 		t(
 			"challenge_goal",
-			format(getChallengeGoal("rich_and_the_poor")),
+			formatCoinsHtml(getChallengeGoal("rich_and_the_poor")),
 			t("reward_income"),
 		),
 	);
