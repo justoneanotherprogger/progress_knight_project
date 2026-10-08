@@ -107,13 +107,21 @@ export function renderHeaderRows(categories) {
 	}
 }
 
-export function createRequiredRow(categoryName, categoryType, table) {
+// Первая строка под таблицей: название следующего, эффект — в скобках.
+// effectText == null: строка без эффекта (работы, недвижимость, веха без описания).
+function renderNextEntityLine(effectValueElement, nextEntity, effectText) {
+	const name = t(nextEntity.name);
+	setElementText(
+		effectValueElement,
+		effectText == null ? name : `${name} (${effectText})`,
+	);
+}
+
+export function createRequiredRow(categoryName, table) {
 	const requiredRow = document
 		.querySelector(".requiredRowTemplate")
 		.content.firstElementChild.cloneNode(true);
 	setElementText(requiredRow.querySelector(".requirementLabel"), t("required"));
-	if (categoryType !== jobCategories)
-		setElementText(requiredRow.querySelector(".effectLabel"), t("next_effect"));
 	requiredRow.classList.add("requiredRow");
 	requiredRow.classList.add(removeSpaces(categoryName));
 	requiredRow.id = `req_${categoryName}`;
@@ -243,7 +251,7 @@ export function createAllRows(categoryType, tableId) {
 			}
 		}
 
-		const requiredRow = createRequiredRow(categoryName, categoryType, table);
+		const requiredRow = createRequiredRow(categoryName, table);
 		table.append(requiredRow);
 	}
 }
@@ -255,11 +263,6 @@ export function updateRequiredRows(data, categoryType) {
 			requiredRow.querySelector(".requirementLabel"),
 			t("required"),
 		);
-		if (categoryType !== jobCategories)
-			setElementText(
-				requiredRow.querySelector(".effectLabel"),
-				t("next_effect"),
-			);
 		let nextEntity = null;
 		let nextEntityName = null;
 		const categoryName = requiredRow.id.substring(4);
@@ -351,20 +354,21 @@ export function updateRequiredRows(data, categoryType) {
 			let pendingPercent = null;
 			let progressColor = "color-income";
 			if (data === gameData.taskData) {
+				// Название следующего показываем всегда; эффект в скобках — только
+				// у навыков, у работ он не нужен.
+				let effectText = null;
 				if (categoryType !== jobCategories) {
-					effectElement.classList.remove("hiddenTask");
-					setElementText(
-						effectValueElement,
-						nextEntity.unlocked
-							? t(
-									labelKey(
-										nextEntity.baseData.effect.target,
-										nextEntity.baseData.effect.type,
-									),
-								)
-							: t("unknown"),
-					);
+					effectText = nextEntity.unlocked
+						? t(
+								labelKey(
+									nextEntity.baseData.effect.target,
+									nextEntity.baseData.effect.type,
+								),
+							)
+						: t("unknown");
 				}
+				effectElement.classList.remove("hiddenTask");
+				renderNextEntityLine(effectValueElement, nextEntity, effectText);
 
 				if (requirementObject instanceof EvilRequirement) {
 					evilElement.classList.remove("hiddenTask");
@@ -479,19 +483,16 @@ export function updateRequiredRows(data, categoryType) {
 					? "color-income"
 					: "color-evil";
 
-				// Эффект недвижимости дублирует её колонку эффекта в списке, поэтому
-				// у недвижимости строку не показываем — это одно и то же на каждый раз.
-				if (categoryName === "category_properties") {
-					effectElement.classList.add("hiddenTask");
-				} else {
-					effectElement.classList.remove("hiddenTask");
-					setElementText(
-						effectValueElement,
-						nextEntity.unlocked
-							? nextEntity.getEffectDescription()
-							: t("unknown"),
-					);
+				// Эффект недвижимости дублирует её колонку эффекта в списке — у
+				// недвижимости в строке остаётся одно название.
+				let effectText = null;
+				if (categoryName !== "category_properties") {
+					effectText = nextEntity.unlocked
+						? nextEntity.getEffectDescription()
+						: t("unknown");
 				}
+				effectElement.classList.remove("hiddenTask");
+				renderNextEntityLine(effectValueElement, nextEntity, effectText);
 			} else if (data === milestoneData) {
 				if (requirementObject instanceof EvilRequirement) {
 					evilElement.classList.remove("hiddenTask");
@@ -521,15 +522,15 @@ export function updateRequiredRows(data, categoryType) {
 					progressColor = "color-essence";
 				}
 
+				// Описания может не быть — тогда строка без эффекта, одно название.
+				let effectText = null;
 				if (nextEntity.baseData.description != null) {
-					effectElement.classList.remove("hiddenTask");
-					setElementText(
-						effectValueElement,
-						gameData.stats.maxEssenceReached.gt(nextEntity.threshold)
-							? t(nextEntity.baseData.description)
-							: t("unknown"),
-					);
+					effectText = gameData.stats.maxEssenceReached.gt(nextEntity.threshold)
+						? t(nextEntity.baseData.description)
+						: t("unknown");
 				}
+				effectElement.classList.remove("hiddenTask");
+				renderNextEntityLine(effectValueElement, nextEntity, effectText);
 			}
 
 			renderRequirementProgress(

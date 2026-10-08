@@ -91,7 +91,6 @@ perk_points: Очки даров
 
 # Misc
 required: Требуется для следующего
-next_effect: Эффект от следующего
 unknown: Неизвестно
 infinity: Бесконечность
 active: Активно
