@@ -41,7 +41,7 @@ export function renderChallenges() {
 		const requirementElement = document.getElementById(
 			`challengeRequirement${i}`,
 		);
-		requirementElement.hidden = met;
+		requirementElement.classList.toggle("hidden", met);
 		if (!met)
 			updateButtonText(
 				`challengeRequirement${i}`,
