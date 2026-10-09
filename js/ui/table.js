@@ -44,6 +44,7 @@ import {
 	resourceProgress,
 	setElementText,
 } from "./helpers.js";
+import { getEffectiveLevel } from "./levels.js";
 import { showNoteModal } from "./note_modal.js";
 
 export function renderRequirements() {
@@ -470,13 +471,13 @@ export function updateRequiredRows(data, categoryType) {
 				} else {
 					levelElement.classList.remove("hiddenTask");
 					for (const requirement of requirements) {
-						const task = gameData.taskData[requirement.task];
-						if (task.level >= requirement.requirement) continue;
+						const level = getEffectiveLevel(requirement.task);
+						if (level >= requirement.requirement) continue;
 						finalText +=
 							" " +
 							t(getTaskNameLocale(requirement.task)) +
 							" " +
-							formatLevel(task.level) +
+							formatLevel(level) +
 							"/" +
 							formatLevel(requirement.requirement) +
 							",";
@@ -488,13 +489,14 @@ export function updateRequiredRows(data, categoryType) {
 					let sum = 0;
 					for (const requirement of requirements) {
 						const task = gameData.taskData[requirement.task];
-						if (task.level >= requirement.requirement) {
+						const level = getEffectiveLevel(requirement.task);
+						if (level >= requirement.requirement) {
 							sum += 100;
 							continue;
 						}
 						const xpFraction = task.xp.div(task.getMaxXp()).toNumber();
 						const exact = Math.min(
-							task.level + Math.min(Math.max(xpFraction, 0), 0.999),
+							level + Math.min(Math.max(xpFraction, 0), 0.999),
 							requirement.requirement,
 						);
 						sum += (exact / requirement.requirement) * 100;

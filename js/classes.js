@@ -20,6 +20,7 @@ import {
 	SKILL_LEVEL_EXPONENT_BASE,
 } from "./data.js";
 import { labelKey } from "./effects.js";
+import { getEffectiveLevel } from "./ui/levels.js";
 import { daysToYears, format, getBaseLog } from "./utils.js";
 
 export class Task {
@@ -352,10 +353,7 @@ export class TaskRequirement extends Requirement {
 			return (
 				gameData.taskData[requirement.task].level >= requirement.herequirement
 			);
-		else
-			return (
-				gameData.taskData[requirement.task].level >= requirement.requirement
-			);
+		else return getEffectiveLevel(requirement.task) >= requirement.requirement;
 	}
 }
 
