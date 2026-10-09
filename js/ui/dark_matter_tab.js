@@ -203,6 +203,10 @@ export function renderDarkMatter() {
 		document.getElementById("aMiracleBuyButton").classList.add("hidden");
 	else document.getElementById("aMiracleBuyButton").classList.remove("hidden");
 
+	if (gameData.dark_matter_shop.a_miracle)
+		document.getElementById("aMiracleCost").classList.add("hidden");
+	else document.getElementById("aMiracleCost").classList.remove("hidden");
+
 	if (!isDecimalInfinity(getDarkOrbGeneration()))
 		document
 			.getElementById("darkOrbGeneratorBuyButton")

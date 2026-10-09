@@ -209,6 +209,10 @@ export function renderMetaverse() {
 		document.getElementById("challengeAltarButton").classList.remove("hidden");
 	else document.getElementById("challengeAltarButton").classList.add("hidden");
 
+	if (gameData.metaverse.challenge_altar === 0)
+		document.getElementById("challengeAltarCostRow").classList.remove("hidden");
+	else document.getElementById("challengeAltarCostRow").classList.add("hidden");
+
 	setHTML(
 		document.getElementById("darkMatterMultGain"),
 		t("current_multiplier", format(darkMatterMultGain(), 2)),
