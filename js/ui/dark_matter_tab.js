@@ -231,9 +231,6 @@ export function renderDarkMatter() {
 	renderDarkMatterShopButton("gottaBeFastBuyButton", canBuyGottaBeFast());
 	renderDarkMatterShopButton("lifeCoachBuyButton", canBuyLifeCoach());
 
-	// Skill tree title label
-	updateButtonText("skillTreePageDarkMaterTitle", `${t("dark_matter")}: `);
-
 	// Ability descriptions
 	// setHTML, а не innerHTML: текст меняется только при покупке перка или
 	// уровня, а innerHTML пересоздаёт узлы на каждом кадре.
