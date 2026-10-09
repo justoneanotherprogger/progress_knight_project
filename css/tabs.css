@@ -73,6 +73,10 @@
 	padding-bottom: 0.5em;
 }
 
+.dark-matter-green {
+	color: rgb(10, 238, 43);
+}
+
 /* Разделитель «или» между ветками дерева умений. Скрывается он свойством
    hidden (js/ui/dark_matter_tab.js), поэтому в правиле только padding и
    никакого display — иначе класс перебьёт скрытие. */

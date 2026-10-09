@@ -73,7 +73,14 @@ const SHOP_PURCHASES = [
 		// Генерация сфер ушла в бесконечность: покупать больше нечего.
 		available: () => !isDecimalInfinity(getDarkOrbGeneration()),
 	},
-	{ idPrefix: "aMiracle", cost: getAMiracleCost, pending: true },
+	// Покупка одноразовая, сбрасывается только на пятом ребёрте: после
+	// покупки полоса к цене бессмысленна.
+	{
+		idPrefix: "aMiracle",
+		cost: getAMiracleCost,
+		pending: true,
+		available: () => !gameData.dark_matter_shop.a_miracle,
+	},
 	{ idPrefix: "aDealWithTheChairman", cost: getADealWithTheChairmanCost },
 	{ idPrefix: "aGiftFromGod", cost: getAGiftFromGodCost },
 	{ idPrefix: "gottaBeFast", cost: getGottaBeFastCost },
@@ -142,6 +149,10 @@ export function renderDarkMatter() {
 	updateButtonText("darkOrbGeneratorCurrency", t("dark_matter"));
 	updateButtonText("aMiracleCostLabel", t("cost"));
 	updateButtonText("aMiracleCurrency", t("dark_matter"));
+	updateButtonText(
+		"aMiracleState",
+		gameData.dark_matter_shop.a_miracle ? t("active") : "",
+	);
 	updateButtonText("aDealWithTheChairmanCostLabel", t("cost"));
 	updateButtonText("aDealWithTheChairmanCurrency", t("dark_orbs"));
 	updateButtonText("aGiftFromGodCostLabel", t("cost"));
@@ -190,6 +201,7 @@ export function renderDarkMatter() {
 
 	if (gameData.dark_matter_shop.a_miracle)
 		document.getElementById("aMiracleBuyButton").classList.add("hidden");
+	else document.getElementById("aMiracleBuyButton").classList.remove("hidden");
 
 	if (!isDecimalInfinity(getDarkOrbGeneration()))
 		document
