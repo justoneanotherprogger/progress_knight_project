@@ -60,6 +60,28 @@ export function renderRequirements() {
 			}
 		}
 	}
+	showMilestoneCategoriesWithOpenFirstMilestone();
+}
+
+// Шапка категории вех прячется по своему требованию (эссенция ≥ 1 и выше),
+// но веха может быть куплена за тёмную материю: её требование перманентное,
+// и после ребёрта эссенция обнуляется, а веха остаётся. Тогда шапка должна
+// остаться видимой — по первой вехе категории, независимо от её условия.
+function showMilestoneCategoriesWithOpenFirstMilestone() {
+	for (const categoryName in milestoneCategories) {
+		const category = milestoneCategories[categoryName];
+		const entries =
+			category.items != null
+				? Object.keys(category.items)
+				: Object.keys(category);
+		if (entries.length === 0) continue;
+		const firstRequirement = gameData.requirements[entries[0]];
+		if (firstRequirement == null || !firstRequirement.isCompleted()) continue;
+		const categoryRequirement = gameData.requirements[categoryName];
+		if (categoryRequirement == null) continue;
+		for (const element of categoryRequirement.elements)
+			element.classList.remove("hidden");
+	}
 }
 
 export function updateHeaderColumns(headerRow, categoryType) {
