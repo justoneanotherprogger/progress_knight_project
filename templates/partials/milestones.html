@@ -1,5 +1,5 @@
 <div class="tab column" style="display:none" id="milestones">
-					<div id="tabcolumnMilestones" class="panel w3-margin-left" style="display: flex; gap: 1em">
+					<div id="tabcolumnMilestones" class="panel w3-margin-left milestones-tabcolumn">
 						<div class="w3-button w3-bar-item tabButtonMilestones baritem w3-blue-gray" id="milestonesTab1TabButton" onClick="setTabMilestones('milestonesTab1')"><span id="milestones_tab_milestones"></span></div>
 						<div class="w3-button w3-bar-item tabButtonMilestones baritem" id="evilSlotShopTabButton" onClick="setTabMilestones('evilSlotShop')"><span id="milestones_tab_shop"></span></div>
 					</div>
@@ -16,15 +16,15 @@
 						</div>
 
 						<div id="evilSlotShop" class="tabMilestones">
-							<div id="milestoneShopPage" class="panel page-column w3-padding" style="padding-top:2em">
+							<div id="milestoneShopPage" class="panel page-column w3-padding milestone-item">
 								<div class="text-caption" id="evil_slot_shop"></div>
-								<div style="color:gray; padding-bottom:1em" id="evil_slot_shop_hint"></div>
+								<div id="evil_slot_shop_hint" class="milestone-hint"></div>
 
-								<div style="padding-top:1em">
+								<div class="milestone-item-tight">
 									<div class="tooltip"><span class="tooltipText" id="evil_slot_job_tooltip"></span><div class="text-caption" id="evil_slot_job_name"></div></div>
-									<div style="color:gray; padding-bottom:0.3em" id="evil_slot_job_desc"></div>
-									<div style="color:gray; padding-bottom:0.3em"><span id="evilSlotJobCountLabel"></span> <b id="evilSlotJobCount"></b></div>
-									<div style="color:gray; padding-bottom:0.5em"><span id="evilSlotJobCostLabel"></span>: <b id="evilSlotJobCost"></b> <span class="color-evil" id="evilSlotJobCurrency"></span></div>
+									<div id="evil_slot_job_desc" class="milestone-desc"></div>
+									<div class="milestone-desc"><span id="evilSlotJobCountLabel"></span> <b id="evilSlotJobCount"></b></div>
+									<div class="milestone-cost"><span id="evilSlotJobCostLabel"></span>: <b id="evilSlotJobCost"></b> <span class="color-evil" id="evilSlotJobCurrency"></span></div>
 									<div id="evilSlotJobProgress" class="req-progress-container">
 										<div class="req-pending-bar color-evil"></div>
 										<div class="req-progress-bar color-evil"></div>
@@ -32,11 +32,11 @@
 									<button class="w3-button button" id="evilSlotJobBuyButton" onclick="buyJobSlot()"></button>
 								</div>
 
-								<div style="padding-top:2em">
+								<div class="milestone-item">
 									<div class="tooltip"><span class="tooltipText" id="evil_slot_skill_tooltip"></span><div class="text-caption" id="evil_slot_skill_name"></div></div>
-									<div style="color:gray; padding-bottom:0.3em" id="evil_slot_skill_desc"></div>
-									<div style="color:gray; padding-bottom:0.3em"><span id="evilSlotSkillCountLabel"></span> <b id="evilSlotSkillCount"></b></div>
-									<div style="color:gray; padding-bottom:0.5em"><span id="evilSlotSkillCostLabel"></span>: <b id="evilSlotSkillCost"></b> <span class="color-evil" id="evilSlotSkillCurrency"></span></div>
+									<div id="evil_slot_skill_desc" class="milestone-desc"></div>
+									<div class="milestone-desc"><span id="evilSlotSkillCountLabel"></span> <b id="evilSlotSkillCount"></b></div>
+									<div class="milestone-cost"><span id="evilSlotSkillCostLabel"></span>: <b id="evilSlotSkillCost"></b> <span class="color-evil" id="evilSlotSkillCurrency"></span></div>
 									<div id="evilSlotSkillProgress" class="req-progress-container">
 										<div class="req-pending-bar color-evil"></div>
 										<div class="req-progress-bar color-evil"></div>

@@ -250,3 +250,27 @@
 .progress-fill.milestone {
 	background-color: green;
 }
+
+/* Вехи: магазин слотов за зло — подписи, описания, цены, подсказка. */
+.milestone-item {
+	padding-top: 2em;
+}
+
+.milestone-item-tight {
+	padding-top: 1em;
+}
+
+.milestone-hint {
+	color: gray;
+	padding-bottom: 1em;
+}
+
+.milestone-desc {
+	color: gray;
+	padding-bottom: 0.3em;
+}
+
+.milestone-cost {
+	color: gray;
+	padding-bottom: 0.5em;
+}
