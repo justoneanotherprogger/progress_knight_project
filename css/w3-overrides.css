@@ -16,28 +16,35 @@ table {
 	vertical-align: middle;
 }
 
-.w3-button,
-.w3-bar-item {
+.w3-button {
 	padding: 0.4em 0.8em;
 }
 
-.w3-bordered tr {
+.table-bordered tr {
 	border-bottom: 0.05em solid #ddd;
 }
 
-.w3-striped tbody tr:nth-child(even) {
-	background-color: #f1f1f1;
-}
-
-.w3-bordered th {
+.table-bordered th {
 	height: 2em;
 	padding: 0.4em 1em 0 1em;
 }
 
-.w3-bordered td {
+.table-bordered td {
 	height: 2em;
 	padding: 0 0 0 0;
 	padding-left: 0.8em;
+}
+
+/* Регресс после выноса инлайнов настроек: одиночный класс на ячейке (0,1,0)
+   проигрывает `.table-bordered td` (0,1,1), и паддинг 0.4em исчезал — строки
+   схлопывались. Составной селектор (0,2,1) побеждает. */
+.table-bordered td.settings-cell,
+.table-bordered td.settings-cell-label {
+	padding: 0.4em;
+}
+
+.table-bordered td.requirement-cell {
+	padding-top: 0.2rem;
 }
 
 .w3-table td:first-child,

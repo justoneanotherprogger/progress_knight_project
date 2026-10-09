@@ -1,7 +1,7 @@
 <div class="tab column" style="display:none" id="settings">
 					<div id="tabcolumnSettings" class="panel w3-padding page-column">
-							<div class="w3-button w3-bar-item tabButtonSettings baritem w3-blue-gray" id="settingsTabTabButton" onClick="setTabSettings('settingsTab')"><span id="settings_tab_header"></span></div>
-							<div class="w3-button w3-bar-item tabButtonSettings baritem" id="statsTabTabButton" onClick="setTabSettings('statsTab')"><span id="stats_tab_header"></span></div>
+							<div class="w3-button tabButtonSettings baritem w3-blue-gray" id="settingsTabTabButton" onClick="setTabSettings('settingsTab')"><span id="settings_tab_header"></span></div>
+							<div class="w3-button tabButtonSettings baritem" id="statsTabTabButton" onClick="setTabSettings('statsTab')"><span id="stats_tab_header"></span></div>
 					</div>
 					<div id="maincolumnSettings" class="panel w3-margin-left w3-margin-top">
 						<div id="settingsTab" class="tabSettings">
@@ -18,7 +18,7 @@
 									</li>
 									<li>
 										<div class="text-caption settings-caption"></div>
-										<table class="w3-table w3-bordered">
+										<table class="w3-table table-bordered">
 											<tr>
 												<td id="sticky_sidebar" class="settings-cell-label"></td>
 												<td><input id="settingsStickySidebar" type="checkbox" class="settings-checkbox" onclick="setStickySidebar(this.checked)" /></td>
@@ -85,7 +85,7 @@
 								</li>
 								<li id="adminPanel" class="hidden">
 									<div class="text-caption settings-caption"></div>
-									<table class="w3-table w3-bordered">
+									<table class="w3-table table-bordered">
 										<tr id="adminPasswordRow">
 											<td id="admin_password_label" class="settings-cell-label"></td>
 											<td class="settings-cell">

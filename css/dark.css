@@ -3,10 +3,6 @@
 	color: white;
 }
 
-.dark .w3-table-all tr {
-	border-bottom: 1px solid rgb(73, 73, 73);
-}
-
 .dark .panel {
 	background-color: rgb(46, 46, 46);
 	border-color: rgb(32, 32, 32);
@@ -37,7 +33,7 @@
 	text-align: left;
 }
 
-.dark .w3-bordered tr {
+.dark .table-bordered tr {
 	border-bottom: 1px solid rgb(73, 73, 73);
 }
 
