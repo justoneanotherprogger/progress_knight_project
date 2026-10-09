@@ -729,10 +729,6 @@ button:focus {
 	background-color: #f2caca;
 }
 
-.rowtitle {
-	padding: 0.3em 1em 0em 1em;
-}
-
 .congrats {
 	margin-top: 1em;
 	padding: 1em 1em 1em 1em;
