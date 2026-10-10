@@ -181,7 +181,7 @@ export function wobbleDarkOrbs() {
 		if (node.dataset.text !== node.textContent)
 			node.dataset.text = node.textContent;
 		const angle = Math.random() * Math.PI * 2;
-		const amplitude = 1;
+		const amplitude = 0.5 + Math.random() * 0.5;
 		const label = node.firstElementChild;
 		if (label == null) continue;
 		label.style.transform = `translate(${Math.cos(angle) * amplitude}px, ${Math.sin(angle) * amplitude}px)`;
