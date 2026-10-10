@@ -16,11 +16,7 @@
 								<div class="metaverse-divider"></div>
 								<div class="metaverse-item-tight">
 									<div class="text-caption"><span class="color-hypercubes"><span id="metaverseHypercubes"></span>:</span> <span id="hypercubesMetaDisplay"></span></div>
-									<div id="currentHypercubesCap" class="metaverse-red"><span id="current_hypercubes_cap"></span> <span id="currentHypercubesCapValue"></span></div>
-									<div id="metaverseAltarProgress" class="req-progress-container">
-										<div class="req-pending-bar color-hypercubes"></div>
-										<div class="req-progress-bar color-hypercubes"></div>
-									</div>
+								<div id="currentHypercubesCap" class="metaverse-red"><span id="current_hypercubes_cap"></span> <span id="currentHypercubesCapValue"></span></div>
 									<div id="timeTillNextHypercubePower1" class="metaverse-gray"></div>
 									<div id="timeTillNextHypercubePower2" class="metaverse-gray"></div>
 									<div id="timeTillNextHypercubePower3" class="metaverse-gray"></div>
@@ -35,6 +31,10 @@
 									<div class="metaverse-desc"></div>
 									<div class="metaverse-cost"><span id="hypercubeGainCostLabel"></span>: <b id="hypercubeGainCost"></b> <span class="color-hypercubes" id="hypercubeGainCostCurrency"></span></div>
 									<div class="metaverse-desc"><span id="hypercubeGain"></span></div>
+									<div id="hypercubeGainProgress" class="req-progress-container">
+										<div class="req-pending-bar color-hypercubes"></div>
+										<div class="req-progress-bar color-hypercubes"></div>
+									</div>
 <button class="w3-button button" id="hypercubeGainBuyButton" onclick="buyHypercubeGain()"></button>
 								</div>
 								<div id="ReduceBoostCooldownAltar" class="metaverse-item">
@@ -42,6 +42,10 @@
 									<div class="metaverse-desc"></div>
 									<div class="metaverse-cost"><span id="reduceBoostCooldownCostLabel"></span>: <b id="reduceBoostCooldownCost"></b> <span class="color-hypercubes" id="reduceBoostCooldownCostCurrency"></span></div>
 									<div class="metaverse-desc"><span id="reduceBoostCooldown"></span></div>
+									<div id="reduceBoostCooldownProgress" class="req-progress-container">
+										<div class="req-pending-bar color-hypercubes"></div>
+										<div class="req-progress-bar color-hypercubes"></div>
+									</div>
 <button class="w3-button button" id="reduceBoostCooldownBuyButton" onclick="buyReduceBoostCooldown()"></button>
 								</div>
 								<div id="IncreaseBoostDurationAltar" class="metaverse-item">
@@ -49,6 +53,10 @@
 									<div class="metaverse-desc"></div>
 									<div class="metaverse-cost"><span id="boostDurationCostLabel"></span>: <b id="boostDurationCost"></b> <span class="color-hypercubes" id="boostDurationCostCurrency"></span></div>
 									<div class="metaverse-desc"><span id="boostDuration"></span></div>
+									<div id="boostDurationProgress" class="req-progress-container">
+										<div class="req-pending-bar color-hypercubes"></div>
+										<div class="req-progress-bar color-hypercubes"></div>
+									</div>
 <button class="w3-button button" id="boostDurationBuyButton" onclick="buyBoostDuration()"></button>
 								</div>
 								<div id="EvilAltar" class="metaverse-item">
@@ -56,6 +64,10 @@
 									<div class="metaverse-desc"></div>
 									<div class="metaverse-cost"><span id="evilTranCostLabel"></span>: <b id="evilTranCost"></b> <span class="color-hypercubes" id="evilTranCostCurrency"></span></div>
 									<div class="metaverse-desc"><span id="evilTranGain"></span></div>
+									<div id="evilTranProgress" class="req-progress-container">
+										<div class="req-pending-bar color-hypercubes"></div>
+										<div class="req-progress-bar color-hypercubes"></div>
+									</div>
 <button class="w3-button button" id="evilTranBuyButton" onclick="buyEvilTran()"></button>
 								</div>
 								<div id="EssenceAltar" class="metaverse-item">
@@ -63,19 +75,31 @@
 									<div class="metaverse-desc"></div>
 									<div class="metaverse-cost"><span id="essenceMultCostLabel"></span>: <b id="essenceMultCost"></b> <span class="color-hypercubes" id="essenceMultCostCurrency"></span></div>
 									<div class="metaverse-desc"><span id="essenceMultGain"></span></div>
+									<div id="essenceMultProgress" class="req-progress-container">
+										<div class="req-pending-bar color-hypercubes"></div>
+										<div class="req-progress-bar color-hypercubes"></div>
+									</div>
 <button class="w3-button button" id="essenceMultButton" onclick="buyEssenceMult()"></button>
 								</div>
 								<div id="ChallengeAltar" class="metaverse-item">
 									<div class="text-caption metaverse-title" id="altar_challenge_keep"></div>
 									<div class="metaverse-desc"><span class="metaverse-green"><b id="challengeAltarState"></b></span></div>
 									<div id="challengeAltarCostRow" class="metaverse-cost"><span id="challengeAltarCostLabel"></span>: <b id="challengeAltarCost"></b> <span class="color-hypercubes" id="challengeAltarCostCurrency"></span></div>
-									<button class="w3-button button" id="challengeAltarButton" onclick="buyChallengeAltar()"></button>
+									<div id="challengeAltarProgress" class="req-progress-container">
+										<div class="req-pending-bar color-hypercubes"></div>
+										<div class="req-progress-bar color-hypercubes"></div>
+									</div>
+<button class="w3-button button" id="challengeAltarButton" onclick="buyChallengeAltar()"></button>
 								</div>
 								<div id="DarkMaterAltar" class="metaverse-item">
 									<div class="text-caption metaverse-title" id="altar_dark_matter_mult"></div>
 									<div class="metaverse-desc"></div>
 									<div class="metaverse-cost"><span id="darkMatterMultCostLabel"></span>: <b id="darkMatterMultCost"></b> <span class="color-hypercubes" id="darkMatterMultCostCurrency"></span></div>
 									<div class="metaverse-desc"><span id="darkMatterMultGain"></span></div>
+									<div id="darkMatterMultProgress" class="req-progress-container">
+										<div class="req-pending-bar color-hypercubes"></div>
+										<div class="req-progress-bar color-hypercubes"></div>
+									</div>
 <button class="w3-button button" id="darkMaterMultButton" onclick="buyDarkMaterMult()"></button>
 								</div>
 							</div>

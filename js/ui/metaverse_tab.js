@@ -71,35 +71,43 @@ export function renderBoostButton(elemName) {
 	boostButton.disabled = !canApplyBoost();
 }
 
+// Полоса к цене каждого алтаря: покупаются за гиперкубы, цена растёт с
+// каждой. Алтарь испытания одноразовый — купленным он из списка выпадает.
+const ALTAR_PURCHASES = [
+	{ idPrefix: "hypercubeGain", cost: hypercubeGainCost },
+	{ idPrefix: "reduceBoostCooldown", cost: reduceBoostCooldownCost },
+	{ idPrefix: "boostDuration", cost: boostDurationCost },
+	{ idPrefix: "evilTran", cost: evilTranCost },
+	{ idPrefix: "essenceMult", cost: essenceMultCost },
+	{
+		idPrefix: "challengeAltar",
+		cost: challengeAltarCost,
+		available: () => gameData.metaverse.challenge_altar === 0,
+	},
+	{ idPrefix: "darkMatterMult", cost: darkMatterMultCost },
+];
+
 export function renderMetaverse() {
 	document.getElementById("currentHypercubesCap").hidden =
 		getHypercubeCap() === Infinity;
 	updateButtonText("currentHypercubesCapValue", format(getHypercubeCap()));
 
-	// Полоса к цене следующего алтаря: все семь алтарей покупаются за
-	// гиперкубы, берём самый дешёвый из ещё доступных. Алтарь испытания
-	// одноразовый — купленным он из списка выпадает. Цены здесь обычные
-	// числа, счёт — Decimal, поэтому сложение через new Decimal.
-	const nextAltarCost = Math.min(
-		reduceBoostCooldownCost(),
-		boostDurationCost(),
-		hypercubeGainCost(),
-		evilTranCost(),
-		essenceMultCost(),
-		gameData.metaverse.challenge_altar === 0 ? challengeAltarCost() : Infinity,
-		darkMatterMultCost(),
-	);
-	renderRequirementProgress(
-		document.getElementById("metaverseAltarProgress"),
-		Number.isFinite(nextAltarCost)
-			? getDynamicProgress(gameData.hypercubes, nextAltarCost)
-			: null,
-		getDynamicProgress(
-			new Decimal(gameData.hypercubes).add(getHypercubeGeneration()),
-			nextAltarCost,
-		),
-		"color-hypercubes",
-	);
+	// Полоса к цене каждого алтаря, с прибавкой за текущую генерацию.
+	for (const purchase of ALTAR_PURCHASES) {
+		const cost = purchase.cost();
+		const visible = purchase.available?.() ?? true;
+		renderRequirementProgress(
+			document.getElementById(`${purchase.idPrefix}Progress`),
+			visible ? getDynamicProgress(gameData.hypercubes, cost) : null,
+			visible
+				? getDynamicProgress(
+						new Decimal(gameData.hypercubes).add(getHypercubeGeneration()),
+						cost,
+					)
+				: null,
+			"color-hypercubes",
+		);
+	}
 
 	for (let i = 0; i < 3; i++) {
 		const elem = document.getElementById(`timeTillNextHypercubePower${i + 1}`);
