@@ -81,6 +81,7 @@
 	top: 0;
 	color: transparent;
 	-webkit-text-stroke: 0.5em #000;
+	filter: blur(0.05em);
 }
 
 .orb-text {
