@@ -110,6 +110,7 @@ export function renderDarkMatter() {
 	updateButtonText("darkMatterShopCurrency", t("dark_matter"));
 	updateButtonText("darkMatterShopDisplay", format(gameData.dark_matter));
 	updateButtonText("darkMatterSkillsDisplay", format(gameData.dark_matter));
+	updateButtonText("skillTreePageDarkMaterTitle", t("dark_matter"));
 	updateButtonText("darkOrbsShopDisplay", formatTreshold(gameData.dark_orbs));
 
 	// Полоса к цене каждой покупки магазина: у тёмной материи с прибавкой
