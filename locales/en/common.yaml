@@ -103,6 +103,8 @@ xp_left: XP left
 max_level: Max lvl
 cost: Cost
 buy: Buy
+confirm_reset_dm_abilities: Are you sure that you want to reset your Dark Matter Abilities?
+confirm_reset_game: Are you sure you want to reset the game?
 max: MAX
 accepted: Accepted
 rejected: Rejected

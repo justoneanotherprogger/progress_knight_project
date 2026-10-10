@@ -103,6 +103,8 @@ xp_left: До уровня
 max_level: Макс.
 cost: Стоимость
 buy: Купить
+confirm_reset_dm_abilities: Точно сбросить способности тёмной материи?
+confirm_reset_game: Точно сбросить игру?
 max: Макс.
 accepted: Выбрано
 rejected: Отвергнуто
