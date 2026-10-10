@@ -62,7 +62,9 @@ export class Task {
 			.times(toInfinityNumber(this.isHero ? getHeroXpGainMultipliers(this) : 1))
 			.times(
 				this.categoryId === "category_metaverse_guards"
-					? getMetaverseJobXpMult()
+					? getMetaverseJobXpMult().times(
+							this.isHero ? getMetaverseJobXpMult() : 1,
+						)
 					: 1,
 			);
 	}
