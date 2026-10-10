@@ -69,14 +69,14 @@
 	color: #ffffff;
 	display: inline-block;
 	text-shadow:
-		-0.08em 0 #000,
-		0.08em 0 #000,
-		0 -0.08em #000,
-		0 0.08em #000,
-		-0.06em -0.06em #000,
-		0.06em -0.06em #000,
-		-0.06em 0.06em #000,
-		0.06em 0.06em #000;
+		-0.15em 0 #000,
+		0.15em 0 #000,
+		0 -0.15em #000,
+		0 0.15em #000,
+		-0.11em -0.11em #000,
+		0.11em -0.11em #000,
+		-0.11em 0.11em #000,
+		0.11em 0.11em #000;
 }
 .color-time-warping {
 	color: rgb(204, 34, 219);
