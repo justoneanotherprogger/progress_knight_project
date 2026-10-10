@@ -175,7 +175,7 @@ export function renderProgressBar(task, progressFill, progressBar) {
 export function wobbleDarkOrbs() {
 	for (const node of document.querySelectorAll(".color-dark-orbs")) {
 		const angle = Math.random() * Math.PI * 2;
-		const amplitude = 2;
+		const amplitude = 1;
 		node.style.transform = `translate(${Math.cos(angle) * amplitude}px, ${Math.sin(angle) * amplitude}px)`;
 	}
 }
