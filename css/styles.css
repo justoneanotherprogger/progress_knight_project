@@ -193,8 +193,14 @@ body {
 	margin-top: 0.8em;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
 	gap: 0.5em;
+}
+
+/* Подпись таймера занимает пространство после кнопки и центрирует текст в
+   нём, а не прижимается к правому краю. */
+#boostCooldownDisplay {
+	flex: 1;
+	text-align: center;
 }
 
 .hiddenTask {
