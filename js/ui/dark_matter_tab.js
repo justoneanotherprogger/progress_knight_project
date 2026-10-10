@@ -262,10 +262,11 @@ export function renderDarkMatter() {
 	for (const { key, idPrefix, cost } of SKILL_PURCHASES) {
 		const level = gameData.dark_matter_shop[key];
 		const canAfford = gameData.dark_matter.gte(cost);
+		const bought = level !== 0;
 		for (const number of [1, 2]) {
 			renderSkillTreeButton(
 				document.getElementById(`${idPrefix}${number}`),
-				level !== 0,
+				bought,
 				[number, 3].includes(level),
 				canAfford,
 			);
@@ -278,10 +279,12 @@ export function renderDarkMatter() {
 		);
 		renderRequirementProgress(
 			document.getElementById(`${idPrefix}Progress`),
-			percent,
-			pendingPercent,
+			bought ? null : percent,
+			bought ? null : pendingPercent,
 			"color-dark-matter",
 		);
+		const costEl = document.getElementById(`${idPrefix}Cost`);
+		if (costEl != null) costEl.hidden = bought;
 	}
 
 	// turn off OR
