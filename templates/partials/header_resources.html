@@ -2,74 +2,51 @@
 			<img src="img/logos.png" alt="logos" />
 			<h3><span id="app_title"></span></h3>
 		</div>
-		<div id="resources" class="row" style="position: sticky; top: 0; z-index: 2;">
-            <div class="panel w3-padding" style="width: 87em; display: flex; align-items: center; justify-content: space-between; border-width: 1em 0 1em 0; border-style: solid;">
+		<div id="resources" class="row">
+            <div class="panel w3-padding topbar">
                 <div id="income-resource" class="topbar-element">
-					<div>
-						<div style="display: flex; align-items: center; justify-content: center;">
-							<span style="padding-right: 0.3em">💰</span>
+					<div class="topbar-balance-block">
+						<div class="topbar-center">
+							<span class="icon-gap">💰</span>
 							<div class="text-caption" id="coinDisplay">
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
 							</div>
 						</div>
-						<div style="color: gray; text-align: center;"><span id="balance"></span></div>
+						<div class="topbar-balance"><span id="balance"></span></div>
 					</div>
 					<div>
 						<div>
-							<span class="color-hypercubes" id="net_text"></span>: <b id="signDisplay"></b>
-							<div id="netDisplay" style="display: inline;">
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
+							<span class="color-net"><span id="net_text"></span>:</span> <b id="signDisplay"></b>
+							<div id="netDisplay">
 							</div>
 						</div>
 						<div>
-							<span class="color-income" id="income_text"></span>:
-							<div id="incomeDisplay" style="display: inline;">
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
+							<span class="color-income"><span id="income_text"></span>:</span>
+							<div id="incomeDisplay">
 							</div>
 						</div>
 						<div>
-							<span style="color: red" id="expense_text"></span>:
-							<div id="expenseDisplay" style="display: inline;">
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
+							<span class="color-expense"><span id="expense_text"></span>:</span>
+							<div id="expenseDisplay">
 							</div>
 						</div>
 					</div>
                 </div>
-				<div id="evilInfo" class="hidden topbar-element">
-					<div class="text-caption">					<span class="color-evil" id="evil"></span>: <span id="evilDisplay"></span></div>
-					<div style="color: gray" class="sidebar-element" id="evil_desc"></div>
-				</div>
-				<div id="essenceInfo" class="hidden topbar-element">
-					<div class="text-caption">					<span class="color-essence" id="essence"></span>: <span id="essenceDisplay"></span></div>
-					<div style="color: gray" class="sidebar-element" id="essence_desc"></div>
-				</div>
-				<div id="darkMatterInfo" class="hidden topbar-element">
-					<div class="text-caption">					<span class="color-dark-matter" id="dark_matter"></span>: <span id="darkMatterDisplay"></span></div>
-					<div style="color: gray" class="sidebar-element" id="dark_matter_desc"></div>
-				</div>
-				<div id="darkOrbsInfo" class="hidden topbar-element">
-					<div class="text-caption">					<span class="color-dark-orbs" id="dark_orbs"></span>: <span id="darkOrbsDisplay"></span></div>
-					<div style="color: gray" class="sidebar-element" id="dark_orbs_desc"></div>
-				</div>
-				<div id="hypercubesInfo" class="topbar-element">
-					<div class="text-caption">					<span class="color-hypercubes" id="hypercubes"></span>: <span id="hypercubesDisplay"></span></div>
-					<div style="color: gray" class="sidebar-element" id="hypercubes_desc"></div>
+				<div class="topbar-currencies">
+					<div id="evilInfo" class="hidden topbar-element" data-tip="evil_desc">
+						<div class="text-caption">					<span class="color-evil"><span id="evil"></span>:</span> <span id="evilDisplay"></span></div>
+					</div>
+					<div id="essenceInfo" class="hidden topbar-element" data-tip="essence_desc">
+						<div class="text-caption">					<span class="color-essence"><span id="essence"></span>:</span> <span id="essenceDisplay"></span></div>
+					</div>
+					<div id="darkMatterInfo" class="hidden topbar-element" data-tip="dark_matter_desc">
+						<div class="text-caption">					<span class="color-dark-matter"><span id="dark_matter"></span>:</span> <span id="darkMatterDisplay"></span></div>
+					</div>
+					<div id="darkOrbsInfo" class="hidden topbar-element" data-tip="dark_orbs_desc">
+						<div class="text-caption">					<span class="color-dark-orbs"><span class="orb-text"><span id="dark_orbs"></span>:</span></span> <span id="darkOrbsDisplay"></span></div>
+					</div>
+					<div id="hypercubesInfo" class="topbar-element" data-tip="hypercubes_desc">
+						<div class="text-caption">					<span class="color-hypercubes"><span id="hypercubes"></span>:</span> <span id="hypercubesDisplay"></span></div>
+					</div>
 				</div>
           	</div>
         </div>

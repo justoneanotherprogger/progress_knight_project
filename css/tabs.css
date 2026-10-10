@@ -1,0 +1,280 @@
+/* Стили вкладок: тёмная материя, метавселенная, испытания, настройки, вехи.
+   Сюда едут классы, вынесенные из инлайнов разметки, и компоненты, которые
+   живут внутри одной вкладки.
+
+   Файл подключён после styles.css и потому выигрывает при равной
+   специфичности. Правил с display здесь быть не должно: .hidden объявлен
+   последним в styles.css намеренно, и display из более позднего файла перебил
+   бы скрытие. Скрываемые элементы прячутся классом .hidden, не style.display. */
+
+/* Испытания: заголовок активного испытания, центровка подсказок. */
+.challenge-title {
+	color: red;
+	border-bottom: 0.1em solid red;
+	padding-bottom: 0.4em;
+	margin-bottom: 0.4em;
+}
+
+#starting_challenge,
+#challenge_advance,
+#challenge_rewards_active,
+#evil_slot_shop_hint {
+	text-align: center;
+}
+
+.challenge-item {
+	padding-top: 2em;
+}
+
+.challenge-desc {
+	color: gray;
+	padding-bottom: 0.3em;
+}
+
+.challenge-goal {
+	color: gold;
+	padding-bottom: 0.3em;
+}
+
+.challenge-debuff {
+	color: red;
+	padding-bottom: 0.3em;
+}
+
+/* Тёмная материя: заголовок, блоки, описания, стоимость, разделитель «или».
+   display на корне вкладки и на колонке остались инлайнами в разметке — их
+   переключает navigation.js через style.display. */
+.dark-matter-title {
+	color: gold;
+	border-bottom: 0.1em solid goldenrod;
+	padding-bottom: 0.4em;
+	margin-bottom: 0.4em;
+}
+
+.dark-matter-item {
+	padding-top: 2em;
+}
+
+.dark-matter-section {
+	padding-top: 4em;
+}
+
+.dark-matter-desc {
+	color: gray;
+	padding-bottom: 0.3em;
+}
+
+.dark-matter-cost {
+	color: gray;
+	padding-bottom: 0.5em;
+}
+
+.dark-matter-warning {
+	padding-bottom: 0.5em;
+}
+
+.dark-matter-green {
+	color: rgb(10, 238, 43);
+}
+
+/* Разделитель «или» между ветками дерева умений. Скрывается он свойством
+   hidden (js/ui/dark_matter_tab.js), поэтому в правиле только padding и
+   никакого display — иначе класс перебьёт скрытие. */
+.darkMatterSkillOR {
+	padding: 0.6em;
+}
+
+/* Метавселенная: заголовок, блоки, описания, стоимость, отступы, делиторы.
+   Голубой разделитель — цвет заголовка .metaverse-title, розовый — цвет
+   очков даров (.color-perk-points). */
+.metaverse-title {
+	color: rgb(24, 210, 217);
+	border-bottom: 0.1em solid rgb(24, 210, 217);
+	padding-bottom: 0.4em;
+	margin-bottom: 0.4em;
+}
+
+.metaverse-item {
+	padding-top: 2em;
+}
+
+.metaverse-item-tight {
+	padding-top: 1em;
+}
+
+.metaverse-desc {
+	color: gray;
+	padding-bottom: 0.3em;
+}
+
+.metaverse-cost {
+	color: gray;
+	padding-bottom: 0.5em;
+}
+
+.metaverse-gray {
+	color: gray;
+}
+
+.metaverse-caption-indent {
+	padding-left: 1em;
+}
+
+.metaverse-red {
+	color: red;
+}
+
+.metaverse-green {
+	color: rgb(10, 238, 43);
+}
+
+.metaverse-divider {
+	border-bottom: 0.1em solid rgb(24, 210, 217);
+	padding-top: 2em;
+}
+
+.metaverse-divider-perks {
+	border-bottom: 0.1em solid rgb(217, 24, 119);
+	padding-top: 2em;
+}
+
+.metaverse-divider-perks-tight {
+	border-bottom: 0.1em solid rgb(217, 24, 119);
+}
+
+/* Строка цены дара внутри .perk: шрифт меньше, потому что перк держит
+   несколько строк. */
+.perk-cost-line {
+	font-size: smaller;
+}
+
+/* Настройки: страницы настроек и статистики, ячейки таблиц, поля ввода. */
+.settings-page {
+	flex: 1;
+	margin-left: 0.5em;
+}
+
+.settings-caption {
+	margin-top: 0.4em;
+}
+
+.settings-caption-center {
+	margin-top: 0.4em;
+	text-align: center;
+}
+
+.settings-cell {
+	padding: 0.4em;
+}
+
+.settings-cell-label {
+	padding: 0.4em;
+	width: 15em;
+}
+
+.settings-save-field {
+	width: 20em;
+}
+
+.settings-password-field {
+	width: 15em;
+}
+
+.settings-slider {
+	width: 12em;
+	vertical-align: middle;
+}
+
+.settings-number {
+	width: 6em;
+	vertical-align: middle;
+}
+
+.settings-checkbox {
+	width: 1.6em;
+	height: 1.6em;
+}
+
+.settings-form {
+	margin-top: 0.8em;
+}
+
+.settings-block {
+	margin-bottom: 8px;
+}
+
+.settings-block-center {
+	margin-bottom: 8px;
+	text-align: center;
+}
+
+/* Таблицы: ширина колонок, страницы вкладок, ячейка строки «Требуется». */
+.col-task-name {
+	width: 18em;
+}
+
+.col-task-value {
+	width: 18em;
+}
+
+.col-item-name {
+	width: 20em;
+}
+
+.col-item-effect {
+	width: 20em;
+}
+
+.col-milestone-currency {
+	width: 6em;
+}
+
+.col-milestone-name {
+	width: 15em;
+}
+
+.table-page {
+	flex: 1;
+	margin-left: 0.5em;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+.requirement-cell {
+	padding-left: 0.8em;
+	padding-top: 0.2rem;
+}
+
+.item-header-row {
+	cursor: default;
+}
+
+.progress-fill.milestone {
+	background-color: green;
+}
+
+/* Вехи: магазин слотов за зло — подписи, описания, цены, подсказка. */
+.milestone-item {
+	padding-top: 2em;
+}
+
+.milestone-item-tight {
+	padding-top: 1em;
+}
+
+.milestone-hint {
+	color: gray;
+	padding-bottom: 1em;
+}
+
+.milestone-desc {
+	color: gray;
+	padding-bottom: 0.3em;
+}
+
+.milestone-cost {
+	color: gray;
+	padding-bottom: 0.5em;
+}

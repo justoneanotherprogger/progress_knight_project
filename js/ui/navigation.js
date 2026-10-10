@@ -13,7 +13,7 @@ import {
 	rebirthTwo,
 } from "../rebirth.js";
 import { removeSpaces, removeStrangeCharacters } from "../utils.js";
-import { fitText } from "./helpers.js";
+import { fitText, setElementText } from "./helpers.js";
 import { updateUI } from "./init.js";
 import { getSortedPerks } from "./metaverse_tab.js";
 
@@ -46,139 +46,18 @@ export function refreshLangButtons() {
 	}
 }
 
-export function setLayout(id) {
-	gameData.settings.layout = id;
-	if (id === 0) {
-		document.getElementById("skillsTabButton").classList.add("hidden");
-		document.getElementById("shopTabButton").classList.add("hidden");
-
-		document.getElementById("skills").classList.add("hidden");
-		document.getElementById("shop").classList.add("hidden");
-
-		document.getElementById("tabcolumn").classList.add("plain-tab-column");
-		document.getElementById("tabcolumn").classList.remove("tabs-tab-column");
-
-		document.getElementById("maincolumn").classList.add("plain-main-column");
-		document.getElementById("maincolumn").classList.remove("tabs-main-column");
-
-		document
-			.getElementById("jobs")
-			.appendChild(document.getElementById("skillPage"));
-		document
-			.getElementById("jobs")
-			.appendChild(document.getElementById("itemPage"));
-	} else {
-		document.getElementById("skillsTabButton").classList.remove("hidden");
-		document.getElementById("shopTabButton").classList.remove("hidden");
-
-		document.getElementById("skills").classList.remove("hidden");
-		document.getElementById("shop").classList.remove("hidden");
-
-		document.getElementById("tabcolumn").classList.add("tabs-tab-column");
-		document.getElementById("tabcolumn").classList.remove("plain-tab-column");
-
-		document.getElementById("maincolumn").classList.add("tabs-main-column");
-		document.getElementById("maincolumn").classList.remove("plain-main-column");
-
-		document
-			.getElementById("skills")
-			.appendChild(document.getElementById("skillPage"));
-		document
-			.getElementById("shop")
-			.appendChild(document.getElementById("itemPage"));
-	}
-
-	// dark matter layout
-	if (id === 0) {
-		document.getElementById("tabcolumnDarkMater").classList.add("hidden");
-		document
-			.getElementById("shopTab")
-			.appendChild(document.getElementById("skillTreePage"));
-		setTabDarkMatter("shopTab");
-
-		document
-			.getElementById("maincolumnDarkMatter")
-			.classList.remove("settings-main-column");
-		document.getElementById("skillTreePageDarkMaterTitle").textContent =
-			"Dark Matter Abilities ";
-	} else {
-		document.getElementById("tabcolumnDarkMater").classList.remove("hidden");
-		document
-			.getElementById("skillTreeTab")
-			.appendChild(document.getElementById("skillTreePage"));
-
-		document
-			.getElementById("maincolumnDarkMatter")
-			.classList.add("settings-main-column");
-		document.getElementById("skillTreePageDarkMaterTitle").textContent =
-			"Dark Matter: ";
-	}
-
-	// metaverse layout
-
-	if (id === 0) {
-		document.getElementById("tabcolumnMetaverse").classList.add("hidden");
-		document
-			.getElementById("metaverseTab1")
-			.appendChild(document.getElementById("metaversePage2"));
-		setTabMetaverse("metaverseTab1");
-		setTabMilestones("milestonesTab1");
-
-		document
-			.getElementById("maincolumnMetaverse")
-			.classList.remove("settings-main-column");
-	} else {
-		document.getElementById("tabcolumnMetaverse").classList.remove("hidden");
-		document
-			.getElementById("metaverseTab2")
-			.appendChild(document.getElementById("metaversePage2"));
-
-		document
-			.getElementById("maincolumnMetaverse")
-			.classList.add("settings-main-column");
-	}
-
-	selectElementInGroup("Layout", id === 0 ? 1 : 0);
-}
-
-export function setFontSize(id) {
-	const fontSizes = {
-		0: "xx-small",
-		1: "x-small",
-		2: "small",
-		3: "medium",
-		4: "large",
-		5: "x-large",
-		6: "xx-large",
-		7: "xxx-large",
-	};
-
-	if (id < 0) id = 0;
-	if (id > 7) id = 7;
-
-	gameData.settings.fontSize = id;
-	document.getElementById("body").style.fontSize = fontSizes[id];
-	updateFontSizeIndicator();
-}
-
-export function updateFontSizeIndicator() {
-	const label = document.getElementById("font_size");
-	if (label)
-		label.innerHTML = `${t("font_size")} ${gameData.settings.fontSize}/7`;
-}
-
 export function setSignDisplay() {
 	const signDisplay = document.getElementById("signDisplay");
 	if (!signDisplay) return;
 
 	if (getNet().gt(-1) && getNet().lt(1)) {
-		signDisplay.textContent = "";
+		setElementText(signDisplay, "");
 		signDisplay.style.color = "gray";
 	} else if (getIncome().gt(getExpense())) {
-		signDisplay.textContent = "+";
+		setElementText(signDisplay, "+");
 		signDisplay.style.color = "green";
 	} else {
-		signDisplay.textContent = "-";
+		setElementText(signDisplay, "-");
 		signDisplay.style.color = "red";
 	}
 }

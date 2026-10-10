@@ -4,7 +4,12 @@
 import { skillCategories } from "../dist/js/skills_data.js";
 import { t } from "../dist/js/translations.js";
 import { getChallengeBonus } from "./challenges.js";
-import { Job } from "./classes.js";
+import {
+	DarkMatterRequirement,
+	EssenceRequirement,
+	EvilRequirement,
+	Job,
+} from "./classes.js";
 import {
 	getAGiftFromGodEssenceGain,
 	getDarkMatterSkillDarkMater,
@@ -268,12 +273,29 @@ export function getTaskLevelsToClimb(task, level, xp) {
 // сбрасывает его в начале, все остальные вызовы до следующего тика читают
 // результат. Сталость — максимум один тик (50 мс), для плавных величин
 // незаметна.
-export const gainMemo = { evil: null, essence: null, dark_matter: null };
+
+// Скрытый множитель опыта работ метавселенны: 1 + гиперкубы. Считается раз
+// на тик, как остальные множители в gainMemo, и достаётся из кеша на каждое
+// значение — иначе на каждый кадр и на каждую работу множитель строился бы
+// заново.
+export function getMetaverseJobXpMult() {
+	if (gainMemo.metaverse_job_xp == null)
+		gainMemo.metaverse_job_xp = toInfinityNumber(1 + gameData.hypercubes);
+	return gainMemo.metaverse_job_xp;
+}
+
+export const gainMemo = {
+	evil: null,
+	essence: null,
+	dark_matter: null,
+	metaverse_job_xp: null,
+};
 
 export function resetGainMemo() {
 	gainMemo.evil = null;
 	gainMemo.essence = null;
 	gainMemo.dark_matter = null;
+	gainMemo.metaverse_job_xp = null;
 }
 
 export function getEvilGain() {
@@ -304,7 +326,7 @@ export function getEvilGain() {
 		.times(theDevilInsideYou)
 		.times(stairWayToHell())
 		.times(evilBooster)
-		.times(getGreed());
+		.times(greedFor(gameData.evil));
 
 	return gainMemo.evil;
 }
@@ -334,7 +356,7 @@ export function getEssenceGain() {
 		.times(theNewGold)
 		.times(lifeIsValueable)
 		.times(essenceMultGain())
-		.times(getGreed());
+		.times(greedFor(gameData.essence));
 
 	return gainMemo.essence;
 }
@@ -361,7 +383,7 @@ export function getDarkMatterGain() {
 		.times(darkMatterMultGain())
 		.times(Desintegration === 0 ? 1 : Desintegration)
 		.times(TheEndIsNear)
-		.times(getGreed());
+		.times(greedFor(gameData.dark_matter));
 
 	return gainMemo.dark_matter;
 }
@@ -508,19 +530,49 @@ export function getGreed() {
 	return getBaseLog(GREED_ADULT_AGE, age);
 }
 
-export function isNextDarkMagicSkillInReach() {
-	const totalEvil = gameData.evil.add(getEvilGain());
+// Жадность множит доход только по валютам, которые игрок уже получил:
+// на старте её нет, и резать/бустить ей нечего.
+function greedFor(currency) {
+	return currency.gt(0) ? getGreed() : 1;
+}
 
-	for (const key in gameData.taskData) {
-		if (key in skillCategories.category_dark_magic.items) {
-			const requirement = gameData.requirements[key];
-			if (!requirement.isCompleted()) {
-				if (totalEvil.gte(requirement.requirements[0].requirement)) {
-					return true;
-				}
-			}
-		}
+export function getNextDarkMagicRequired() {
+	for (const key in skillCategories.category_dark_magic.items) {
+		const requirement = gameData.requirements[key];
+		if (requirement && !requirement.isCompleted())
+			return requirement.requirements[0].requirement;
 	}
+	return null;
+}
 
-	return false;
+export function getNextDarkMatterRequired() {
+	for (const key in gameData.requirements) {
+		const requirement = gameData.requirements[key];
+		if (
+			requirement instanceof DarkMatterRequirement &&
+			!requirement.isCompleted()
+		)
+			return requirement.requirements[0].requirement;
+	}
+	return null;
+}
+
+export function getNextMilestoneRequired(currency) {
+	const RequirementClass =
+		currency === "evil" ? EvilRequirement : EssenceRequirement;
+	for (const key in milestoneData) {
+		const requirement = gameData.requirements[key];
+		if (requirement instanceof RequirementClass && !requirement.isCompleted())
+			return requirement.requirements[0].requirement;
+	}
+	return null;
+}
+
+// Класс выбирается здесь, а не мапой на верхнем уровне модуля: цикл импортов
+// classes.js → calculations.js → milestones.js → classes.js выполняет тело
+// модуля раньше, чем classes.js дойдёт до объявления класса, и обращение к
+// нему падает с TDZ. Вызов функции безопасен.
+export function isNextDarkMagicSkillInReach() {
+	const required = getNextDarkMagicRequired();
+	return required != null && gameData.evil.add(getEvilGain()).gte(required);
 }

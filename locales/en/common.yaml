@@ -20,7 +20,7 @@ evil_desc: Affects Dark Magic XP gain
 essence_desc: Affects Almightiness XP gain
 dark_matter_desc: Affects all XP gain
 dark_orbs_desc: Used to buy items in the Dark Matter shop
-hypercubes_desc: for Metaverse sacrifices
+hypercubes_desc: For Metaverse sacrifices
 
 # Sidebar
 lifespan: Lifespan
@@ -91,7 +91,7 @@ perk_points: Perk Points
 
 # Misc
 required: Required for next
-next_effect: Effect of next
+next: Next
 unknown: Unknown
 infinity: Infinity
 active: Active
@@ -103,11 +103,12 @@ xp_left: XP left
 max_level: Max lvl
 cost: Cost
 buy: Buy
+confirm_reset_dm_abilities: Are you sure that you want to reset your Dark Matter Abilities?
+confirm_reset_game: Are you sure you want to reset the game?
 max: MAX
 accepted: Accepted
 rejected: Rejected
 reset_abilities: Reset Abilities
-version: Version 0.1.0
 great: "★★★"
 lvl: lvl
 challenge_title: In challenge
@@ -166,8 +167,6 @@ language: Language
 sticky_sidebar: Sticky panels (top and side)
 currency_notation: Currency notation
 number_notation: Number notation
-layout: Layout
-font_size: Font size
 color_scheme: Color scheme
 dangerous_keybinds: Dangerous Keybinds
 
@@ -181,14 +180,6 @@ currency_modern: Modern $
 notation_standard: Standard
 notation_scientific: Scientific
 notation_engineering: Engineering
-
-# Layout options
-layout_standard: Standard
-layout_wide: W I D E
-
-# Font size
-font_smaller: Smaller
-font_larger: Larger
 
 # Theme options
 theme_light: Light
@@ -249,6 +240,8 @@ starting_challenge: "Starting a challenge will <b>reset</b> your coins, levels a
 challenge_advance: The more you advance in the challenge, the higher the reward.
 
 challenge_rewards_active: Challenge rewards are always active, even in challenges.
+
+challenge_requirement: "Required: {0} {1}"
 
 exit_challenge: Exit challenge
 

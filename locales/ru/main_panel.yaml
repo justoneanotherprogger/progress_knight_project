@@ -59,7 +59,7 @@ job_omega: Омега
 
 category_evil_milestones: Вехи зла
 category_essence_milestones: Вехи эссенции
-category_heroic_milestones: Героические вехи
+category_heroic_milestones: Звёздные вехи
 category_dark_milestones: Тёмные вехи
 category_metaverse_milestones: Вехи Метавселенной
 milestone_magic_eye_name: Магический глаз
@@ -233,19 +233,19 @@ milestone_hell_portal_desc: Пассивно получает много зла
 milestone_inferno_desc: Прирост зла (растёт от эссенции)
 milestone_god_s_blessings_desc: Удобство жизни
 milestone_faint_hope_desc: Прирост эссенции (растёт с реальным временем)
-milestone_new_beginning_desc: Открываются Великие работы, навыки и предметы
-milestone_rise_of_great_heroes_desc: Прирост эссенции (растёт от числа Великих) + опыт Великих
-milestone_lazy_heroes_desc: Опыт Великих
-milestone_dirty_heroes_desc: Опыт Великих
-milestone_angry_heroes_desc: Опыт Великих
-milestone_tired_heroes_desc: Опыт Великих
-milestone_scared_heroes_desc: Опыт Великих
-milestone_good_heroes_desc: Опыт Великих
-milestone_funny_heroes_desc: Опыт Великих
-milestone_beautiful_heroes_desc: Опыт Великих
-milestone_awesome_heroes_desc: Опыт Великих
-milestone_furious_heroes_desc: Опыт Великих
-milestone_superb_heroes_desc: Опыт Великих
+milestone_new_beginning_desc: Открываются Звёздные работы, навыки и предметы
+milestone_rise_of_great_heroes_desc: Прирост эссенции (растёт от числа Звёздных) + x1e4 опыт Звёздных
+milestone_lazy_heroes_desc: Опыт Звёздных
+milestone_dirty_heroes_desc: Опыт Звёздных
+milestone_angry_heroes_desc: Опыт Звёздных
+milestone_tired_heroes_desc: Опыт Звёздных
+milestone_scared_heroes_desc: Опыт Звёздных
+milestone_good_heroes_desc: Опыт Звёздных
+milestone_funny_heroes_desc: Опыт Звёздных
+milestone_beautiful_heroes_desc: Опыт Звёздных
+milestone_awesome_heroes_desc: Опыт Звёздных
+milestone_furious_heroes_desc: Опыт Звёздных
+milestone_superb_heroes_desc: Опыт Звёздных
 milestone_a_new_beginning_desc: Открывает Тёмную материю
 milestone_mind_control_desc: Делает Врата Ада ещё сильнее
 milestone_galactic_emperor_desc: Пассивно получает немного эссенции
@@ -327,7 +327,7 @@ life_coach_desc: 'Награда: Умножает <span class="color-income">Д
 
 dark_orb_generator: Генератор тёмных сфер
 
-dark_orb_generator_desc: 'Генерирует {0} <span class="color-dark-orbs">Тёмную сферу</span> в день'
+dark_orb_generator_desc: 'Генерирует {0} <span class="color-dark-orbs"><span class="orb-text">Тёмную сферу</span></span> в день'
 
 speed_is_life: Скорость — это жизнь
 

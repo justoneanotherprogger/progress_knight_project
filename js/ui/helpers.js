@@ -1,12 +1,17 @@
 // ui/helpers.js — small UI utility functions
 
 import { gameData } from "../data.js";
+import { getDynamicProgress } from "../utils.js";
+
+// То же, что updateButtonText, но для элемента, который уже в руках: в циклах
+// id нет, а getElementById на каждой итерации лишний. textContent пересоздаёт
+// узел даже при совпадающей строке, поэтому проверка обязательна.
+export function setElementText(element, text) {
+	if (element.textContent !== text) element.textContent = text;
+}
 
 export function updateButtonText(id, text) {
-	const element = document.getElementById(id);
-	if (element.textContent !== text) {
-		element.textContent = text;
-	}
+	setElementText(document.getElementById(id), text);
 }
 
 export function updateButtonHTML(id, html) {
@@ -161,4 +166,108 @@ export function renderProgressBar(task, progressFill, progressBar) {
 		progressFill.classList.add("progress-fill");
 		progressBar.classList.add("progress-bar");
 	}
+}
+
+// Колеблется текст, а не ореол: ореол теперь чёрный и неподвижный, он
+// только обводит буквы. Текст белый, и смещение на нём читается. Список
+// берём заново: одно из этих мест — span внутри перевода, он появляется
+// в DOM в рантайме, и кэш, собранный на старте, его бы не увидел.
+// Вызов — на каждом кадре рендера (20 Гц).
+export function wobbleDarkOrbs() {
+	for (const node of document.querySelectorAll(".color-dark-orbs")) {
+		// Обводка рисуется псевдоэлементом по data-text, поэтому подпись
+		// зеркалится сюда же. Двигается только вложенный .orb-text, обёртка
+		// с обводкой стоит на месте.
+		if (node.dataset.text !== node.textContent)
+			node.dataset.text = node.textContent;
+		const angle = Math.random() * Math.PI * 2;
+		const amplitude = 0.5 + Math.random() * 0.5;
+		const label = node.firstElementChild;
+		if (label == null) continue;
+		label.style.transform = `translate(${Math.cos(angle) * amplitude}px, ${Math.sin(angle) * amplitude}px)`;
+	}
+}
+
+const progressWidth = (percent) =>
+	`${Math.floor(Math.min(Math.max(percent, 0), 100) * 100) / 100}%`;
+
+function toggleComplete(element, complete) {
+	if (element.classList.contains("is-complete") !== complete)
+		element.classList.toggle("is-complete", complete);
+}
+
+// Полосы прогресса требований: строка «Требуется для следующего» в таблицах,
+// кнопки ребёрна, цены в магазинах. Разметка и CSS пришли из апстрима
+// (indomit/progress_knight_2). percent === null — порога нет, полоса
+// прячется. Рендер идёт каждый кадр, поэтому ширина и классы пишутся
+// только при смене: запись стиля без проверки форсит layout таблицы.
+export function renderRequirementProgress(
+	container,
+	percent,
+	pendingPercent,
+	colorClass = "color-income",
+) {
+	if (!container) return;
+	// Полосы ищутся один раз на контейнер: вызовов много (строки таблиц,
+	// кнопки ребёрна, магазины), а querySelector на каждом кадре на каждом
+	// контейнере — лишняя работа. Разметку контейнера не перезаписывают,
+	// поэтому кэш не протухает.
+	if (!container._reqBars)
+		container._reqBars = [
+			container.querySelector(".req-progress-bar"),
+			container.querySelector(".req-pending-bar"),
+		];
+	const [bar, pending] = container._reqBars;
+	if (!bar || !pending) return;
+
+	const pendingValue = pendingPercent ?? percent;
+	const visible = Number.isFinite(percent);
+	const target = visible ? "visible" : "hidden";
+	if (container.dataset.reqVisible !== target) {
+		container.style.visibility = target;
+		container.dataset.reqVisible = target;
+	}
+	if (!visible) return;
+
+	const barWidth = progressWidth(percent);
+	if (bar.style.width !== barWidth) bar.style.width = barWidth;
+	const pendingWidth = progressWidth(pendingValue);
+	if (pending.style.width !== pendingWidth) pending.style.width = pendingWidth;
+
+	if (bar.dataset.reqColor !== colorClass) {
+		for (const element of [bar, pending]) {
+			if (element.dataset.reqColor)
+				element.classList.remove(element.dataset.reqColor);
+			element.classList.add(colorClass);
+			element.dataset.reqColor = colorClass;
+		}
+	}
+	toggleComplete(bar, percent >= 100);
+	toggleComplete(pending, pendingValue >= 100);
+}
+
+// Прогресс к требованию против порога: текущий ресурс и тот же ресурс с
+// прибавкой за ребёрн, если он открыт — до ребёрна прибавки нет, показывать
+// её раньше времени враньё (в апстриме за это отвечал allowRebirth внутри
+// getXGainAvailable). Ресурс приходит и Decimal, и числом (гиперкубы), отсюда
+// обёртка. Шесть веток требований повторяли эту пару вызовов, отсюда хелпер.
+export function resourceProgress(
+	current,
+	required,
+	gain,
+	rebirthRequirementKey,
+) {
+	const base = new Decimal(current);
+	const pending = gameData.requirements[rebirthRequirementKey].isCompleted()
+		? base.add(gain())
+		: base;
+	return [
+		getDynamicProgress(base, required),
+		getDynamicProgress(pending, required),
+	];
+}
+
+export function getTaskNameLocale(taskRef) {
+	const entity = gameData.taskData[taskRef];
+	return entity ? entity.name : taskRef;
 }

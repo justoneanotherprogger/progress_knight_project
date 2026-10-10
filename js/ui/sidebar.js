@@ -1,5 +1,6 @@
 // ui/sidebar.js — sidebar rendering
 
+import { itemCategories } from "../../dist/js/items_data.js";
 import { t } from "../../dist/js/translations.js";
 import {
 	getDarkMatterGain,
@@ -9,6 +10,9 @@ import {
 	getHappiness,
 	getInspiration,
 	getLifespan,
+	getNextDarkMagicRequired,
+	getNextDarkMatterRequired,
+	getNextMilestoneRequired,
 	getUnpausedGameSpeed,
 	isAlive,
 	isNextDarkMagicSkillInReach,
@@ -21,6 +25,7 @@ import {
 	getMetaversePerkPointsGain,
 } from "../metaverse.js";
 import { isMilestoneInReach } from "../milestones.js";
+import { isJobAutoSelectUnlocked } from "../slots.js";
 import {
 	daysToYears,
 	format,
@@ -31,6 +36,7 @@ import {
 	formatTreshold,
 	formatWhole,
 	getChallengeTranslatedName,
+	getDynamicProgress,
 } from "../utils.js";
 import {
 	renderCurrentChallengeReward,
@@ -39,6 +45,8 @@ import {
 import {
 	fitText,
 	renderProgressBar,
+	renderRequirementProgress,
+	setElementText,
 	setRebirthButton,
 	updateButtonHTML,
 	updateButtonText,
@@ -78,6 +86,33 @@ export function renderSideBar() {
 	const progressFill = progressBar.getElementsByClassName("progressFill")[0];
 	renderProgressBar(task, progressFill, progressBar);
 
+	const property = gameData.currentProperty;
+	const propertyElement = el("currentPropertyDisplay");
+	const propertyColor = itemCategories[property.categoryId].headerColor;
+	// Цвет пишется только при смене: запись стиля каждый кадр форсит
+	// пересчёт стилей элемента.
+	if (propertyElement.dataset.color !== propertyColor) {
+		propertyElement.style.color = propertyColor;
+		propertyElement.dataset.color = propertyColor;
+	}
+	propertyElement.style.whiteSpace = "nowrap";
+	setText(
+		"currentPropertyDisplay",
+		`${t("category_properties")}: ${t(property.name)}`,
+	);
+	fitText(propertyElement, 16);
+
+	// Авто-выбор сам меняет работу и недвижимость — показывать их вручную
+	// бессмысленно. Условие повторяет запуск авто-выбора в gameLoop.js.
+	// Класс, а не свойство hidden: .hidden в styles.css даёт display:none.
+	const jobVisible = !(
+		isJobAutoSelectUnlocked() && gameData.autoPromoteEnabled
+	);
+	const propertyVisible = !gameData.autoBuyEnabled;
+	el("quickTaskDisplay").classList.toggle("hidden", !jobVisible);
+	el("currentPropertyDisplay").classList.toggle("hidden", !propertyVisible);
+	el("activityBox").classList.toggle("hidden", !jobVisible && !propertyVisible);
+
 	setText("ageDisplay", formatAge(gameData.days));
 	setText("lifespanDisplay", formatWhole(daysToYears(getLifespan())));
 	setText("realtimeDisplay", formatTime(gameData.realtime));
@@ -89,7 +124,7 @@ export function renderSideBar() {
 	el("deathText").classList.toggle("hidden", isAlive());
 	const boostCooldownDisplay = el("boostCooldownDisplay");
 	boostCooldownDisplay.style.whiteSpace = "nowrap";
-	boostCooldownDisplay.textContent = getBoostCooldownString();
+	setElementText(boostCooldownDisplay, getBoostCooldownString());
 	fitText(boostCooldownDisplay, 16);
 	updateButtonHTML(
 		"pauseButton",
@@ -102,11 +137,25 @@ export function renderSideBar() {
 		"color-evil",
 		`(+${format(getEvilGain())} ${t("evil")})`,
 	);
+	renderRebirthProgress(
+		"rebirthBtn2",
+		gameData.evil,
+		gameData.evil.add(getEvilGain()),
+		nearestEvilTarget(),
+		"color-evil",
+	);
 	setRebirthButton(
 		"rebirthBtn3",
 		t("rebirth_3"),
 		"color-essence",
 		`(+${format(getEssenceGain())} ${t("essence")})`,
+	);
+	renderRebirthProgress(
+		"rebirthBtn3",
+		gameData.essence,
+		gameData.essence.add(getEssenceGain()),
+		getNextMilestoneRequired("essence"),
+		"color-essence",
 	);
 	fitText(el("rebirthBtn3"), 16);
 	setRebirthButton(
@@ -114,6 +163,13 @@ export function renderSideBar() {
 		t("rebirth_4"),
 		"color-dark-matter",
 		`(+${format(getDarkMatterGain())} ${t("dark_matter")})`,
+	);
+	renderRebirthProgress(
+		"rebirthBtn4",
+		gameData.dark_matter,
+		gameData.dark_matter.add(getDarkMatterGain()),
+		getNextDarkMatterRequired(),
+		"color-dark-matter",
 	);
 	fitText(el("rebirthBtn4"), 16);
 	if (gameData.essence.gt(1e90))
@@ -201,7 +257,7 @@ export function renderSideBar() {
 	el("info").classList.toggle("game-paused", gameData.paused);
 
 	// Challenges
-	// Прячем обёртку, а не кнопки: renderRequirements() (ui/tabs.js)
+	// Прячем обёртку, а не кнопки: renderRequirements() (ui/table.js)
 	// переписывает .hidden у #rebirthButton1..5 каждый кадр, а первую и
 	// пятую скрывает ещё и этот модуль. И классом, а не атрибутом hidden:
 	// vendor/w3.css:39 задаёт .w3-button{display:inline-block} и перебивает
@@ -234,10 +290,12 @@ export function renderSideBar() {
 
 // Keeps the quick bar's bottom edge above the window's bottom edge, leaving
 // room for both the browser-default body margin-bottom (8px) and the
-// .w3-margin offset (0.8em, styles.css).  After accounting for both, the
+// .game-frame offset (0.8em, styles.css).  After accounting for both, the
 // page height lands exactly on the window edge so no phantom scrollbar
 // appears.
-// sticky top can be 146px (pinned under the resources bar) or higher (page at top).
+// sticky top — это измеренная нижняя граница топбара (см.
+// updateQuickBarHeight), либо фактическое положение панели, пока страница
+// не прокручена и панель стоит ниже этой границы.
 // Recalculated on scroll/resize only — never per frame — so the layout it
 // triggers cannot feed back into the measurement. top is clamped to the
 // sticky offset so a scrolled-off panel cannot request an unbounded height.
@@ -249,7 +307,16 @@ export function updateQuickBarHeight() {
 	const panel = document.getElementById("info");
 	if (!panel) return;
 
-	const top = Math.max(146, panel.getBoundingClientRect().top);
+	// Липкая граница — фактическая нижняя граница топбара: она зависит от
+	// шрифта и от того, что нарисовано в шапке, поэтому меряем, а не держим
+	// число в разметке. От панели замер не зависит, обратной связи нет.
+	const bar = document.getElementById("resources");
+	const barBottom = bar ? bar.getBoundingClientRect().bottom : 0;
+	const currentTop = parseFloat(panel.style.top);
+	if (Number.isNaN(currentTop) || Math.abs(currentTop - barBottom) > 0.5)
+		panel.style.top = `${barBottom}px`;
+
+	const top = Math.max(barBottom, panel.getBoundingClientRect().top);
 	const desired = Math.max(0, window.innerHeight - top - QUICK_BAR_BOTTOM_GAP);
 	const current = parseFloat(panel.style.height);
 
@@ -261,43 +328,58 @@ window.addEventListener("resize", updateQuickBarHeight, { passive: true });
 window.addEventListener("scroll", updateQuickBarHeight, { passive: true });
 updateQuickBarHeight();
 
-// Тултип ресета живёт в слое вне сайдбара: #info прокручивается, а скрытая
-// плашка в его раскладке раздувала горизонтальную прокрутку. Позиция
-// берётся из вопросика, а пересчитывается и при прокрутке панели — иначе
-// плашка оторвалась бы от знака. Прокрутка страницы не нужна: панель sticky.
-const REBIRTH_TOOLTIPS = [
-	["rebirthBtn1", "rebirth_note_2_info"],
-	["rebirthBtn2", "rebirth_note_3_info"],
-	["rebirthBtn3", "rebirth_note_5_info"],
-	["rebirthBtn4", "rebirth_note_7_info"],
-	["rebirthBtn5", "rebirth_note_8_info"],
-];
-
+// Один тултип на весь экран: слой #tooltipLayer живёт вне .game-frame
+// (templates/index.html), поэтому его не режут overflow ни панели топбара,
+// ни .column с таблицами. Источник текста и сторона — на самом элементе
+// (data-tip, data-tip-side), поэтому список ключей в коде не нужен.
 const tooltipLayer = el("tooltipLayer");
-let activeHelp = null;
+const TIP_GAP = 5;
+const TIP_PAD = 8;
+let activeTip = null;
 
-function placeTooltip() {
-	if (activeHelp == null) return;
-	const rect = activeHelp.getBoundingClientRect();
-	tooltipLayer.style.left = `${rect.left + rect.width / 2}px`;
-	tooltipLayer.style.top = `${rect.top}px`;
+function placeTip(owner) {
+	const rect = owner.getBoundingClientRect();
+	const width = tooltipLayer.offsetWidth;
+	const height = tooltipLayer.offsetHeight;
+	// Центрируем по элементу, затем сдвигаем плашку на разницу — как у
+	// тултипов таблиц. Формулой от ширины нельзя: offsetWidth округлён,
+	// а transform считал бы от неокруглённой, и к краю выходил бы кусок.
+	let left = rect.left + rect.width / 2 - width / 2;
+	// Граница — clientWidth: innerWidth включает полосу прокрутки, и плашка
+	// уезжала за видимую область на её ширину.
+	const limit = document.documentElement.clientWidth - TIP_PAD;
+	if (left + width > limit) left -= left + width - limit;
+	if (left < TIP_PAD) left = TIP_PAD;
+	tooltipLayer.style.left = `${left}px`;
+	tooltipLayer.style.top =
+		owner.dataset.tipSide === "top"
+			? `${rect.top - height - TIP_GAP}px`
+			: `${rect.bottom + TIP_GAP}px`;
 }
 
-for (const [buttonId, key] of REBIRTH_TOOLTIPS) {
-	const help = el(buttonId).parentElement.querySelector(".reset-help");
-	help.addEventListener("mouseenter", () => {
-		activeHelp = help;
-		tooltipLayer.innerHTML = t(key);
-		placeTooltip();
+function hideTip() {
+	activeTip = null;
+	tooltipLayer.classList.remove("visible");
+}
+
+for (const owner of document.querySelectorAll("[data-tip]")) {
+	owner.addEventListener("mouseenter", () => {
+		activeTip = owner;
+		tooltipLayer.innerHTML = t(owner.dataset.tip);
+		placeTip(owner);
 		tooltipLayer.classList.add("visible");
 	});
-	help.addEventListener("mouseleave", () => {
-		activeHelp = null;
-		tooltipLayer.classList.remove("visible");
-	});
+	owner.addEventListener("mouseleave", hideTip);
 }
 
-el("info").addEventListener("scroll", placeTooltip, { passive: true });
+// Панель сайдбара прокручивается: плашка над вопросиком уехала бы с ним.
+el("info").addEventListener(
+	"scroll",
+	() => {
+		if (activeTip) placeTip(activeTip);
+	},
+	{ passive: true },
+);
 
 export const resourceScaleCache = { key: "", desired: 0, scale: 1 };
 export const RESOURCE_SCALE_INTERVAL = 300;
@@ -347,3 +429,28 @@ setInterval(() => {
 	resourceScaleCache.key = "";
 	updateResourceScale();
 }, 1000);
+
+function renderRebirthProgress(
+	buttonId,
+	current,
+	pending,
+	required,
+	colorClass,
+) {
+	renderRequirementProgress(
+		el(buttonId).querySelector(".req-progress-container"),
+		required == null ? null : getDynamicProgress(current, required),
+		required == null ? null : getDynamicProgress(pending, required),
+		colorClass,
+	);
+}
+
+/* Полоса «принять зло» идёт к ближайшей из двух целей — тёмному навыку или вехе
+   за зло: подсветка button-evil считает обе, полоса раньше считала только навык. */
+function nearestEvilTarget() {
+	const skillTarget = getNextDarkMagicRequired();
+	const milestoneTarget = getNextMilestoneRequired("evil");
+	if (skillTarget == null) return milestoneTarget;
+	if (milestoneTarget == null) return skillTarget;
+	return Math.min(skillTarget, milestoneTarget);
+}

@@ -61,8 +61,6 @@ export var gameData = {
 		theme: 1,
 		currencyNotation: 3,
 		numberNotation: 1,
-		layout: 1,
-		fontSize: 3,
 		selectedTab: "jobs",
 		enableKeybinds: false,
 		isAdmin: false,
@@ -230,6 +228,9 @@ export const ESSENCE_GROWTH_EXPONENT = 1.002;
 // --- Heroes unlock ---
 export const HERO_LEVEL_UNLOCK_THRESHOLD = 2000;
 export const HERO_PREV_LEVEL_MIN = 20;
+
+// Один уровень звездной версии в обычных требованиях засчитывается как 100.
+export const STELLAR_LEVEL_RATIO = 100;
 
 // --- Rebirth max level cap ---
 export const REBIRTH_THREE_ESSENCE_CAP = 1e308;

@@ -17,6 +17,7 @@ import { getDarkMatterSkillIncome } from "./dark_matter.js";
 import { gameData, renderSpeed, updateSpeed } from "./data.js";
 import { update } from "./gameLoop.js";
 import { saveGameData } from "./save.js";
+import { wobbleDarkOrbs } from "./ui/helpers.js";
 import { updateUI } from "./ui/init.js";
 import { getQuerySelector, selectElementInGroup } from "./ui/navigation.js";
 
@@ -191,7 +192,7 @@ export let ticking = false;
 export var gameloop, renderloop, saveloop;
 
 // Расчёты гоняются на updateSpeed (20 Гц) — игровая логика должна быть плавной.
-// Рендер на renderSpeed (10 Гц) отдельным интервалом: глаз не различает разницу,
+// Рендер на renderSpeed (20 Гц) отдельным интервалом: глаз не различает разницу,
 // а полный кадр стоит ~9 мс. Когда вкладка скрыта — рендер пропускается
 // целиком, расчёты при этом продолжаются.
 export function startLoops() {
@@ -204,7 +205,9 @@ export function startLoops() {
 	}, 1000 / updateSpeed);
 
 	renderloop = setInterval(() => {
-		if (!document.hidden) updateUI();
+		if (document.hidden) return;
+		updateUI();
+		wobbleDarkOrbs();
 	}, 1000 / renderSpeed);
 
 	saveloop = setInterval(saveGameData, 3000);

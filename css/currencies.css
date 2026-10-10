@@ -36,3 +36,81 @@
 	text-shadow: 0 0 5px currentColor;
 	animation: currency-rainbow 12s infinite;
 }
+
+.color-inspiration {
+	color: rgb(207, 21, 15);
+}
+
+.color-greed {
+	color: rgb(92, 207, 15);
+}
+
+.color-happiness {
+	color: rgb(15, 105, 207);
+}
+.color-evil {
+	color: rgb(240, 0, 0);
+	font-weight: bold;
+}
+.color-essence {
+	color: rgb(24, 210, 217);
+	font-weight: bold;
+}
+.color-dark-matter {
+	color: rgb(132, 99, 206);
+	font-weight: bold;
+}
+/* Тёмные сферы — белый текст с чёрной обводкой в обеих темах: тёмные сферы —
+   тёмная обводка. Обводка рисуется псевдоэлементом и стоит на месте: transform
+   двигает элемент вместе с его начертанием, поэтому буквы и обводку пришлось
+   развести на два span'а. Подпись зеркалится в data-text, его наполняет
+   wobbleDarkOrbs (js/ui/helpers.js). Сам псевдоэлемент прозрачен — рисуется
+   только контур.
+
+   Обводка — контур по букве через -webkit-text-stroke: сдвинутые копии в
+   text-shadow читались как дублирование текста, а не как обводка. Контур
+   рисуется на неподвижном ::before, поэтому стоит на месте, пока едет текст.
+   Свойство вендорное, но поддерживается всеми современными браузерами. */
+.color-dark-orbs {
+	color: #ffffff;
+	font-weight: bold;
+	display: inline-block;
+	position: relative;
+}
+
+.color-dark-orbs::before {
+	content: attr(data-text);
+	position: absolute;
+	left: 0;
+	top: 0;
+	color: transparent;
+	-webkit-text-stroke: 0.5em #000;
+	filter: blur(0.05em);
+}
+
+.orb-text {
+	display: inline-block;
+}
+.color-time-warping {
+	color: rgb(204, 34, 219);
+}
+.color-hypercubes {
+	color: rgb(9, 160, 230);
+	animation: currency-rainbow 12s infinite;
+	font-weight: bold;
+}
+
+/* Чистыми — тоже в гиперкубах, но радуга на подписи сбивает: число
+   переливается всеми цветами вместе с подписью. Цвет тот же, анимации нет. */
+.color-net {
+	color: rgb(9, 160, 230);
+}
+.color-perk-points {
+	color: rgb(217, 24, 119);
+}
+.color-income {
+	color: lightgreen;
+}
+.color-expense {
+	color: red;
+}

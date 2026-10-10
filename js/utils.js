@@ -109,49 +109,64 @@ export function format(number, decimals = 1) {
 	}
 }
 
+// Массив суффиксов зависит только от нотации, а formatCoins зовётся каждый
+// кадр — и для монет, и для дохода каждой работы в таблице. Строим один раз.
+const coinsDataCache = new Map();
+
 export function getCoinsData() {
-	switch (gameData.settings.currencyNotation) {
+	const notation = gameData.settings.currencyNotation;
+	const cached = coinsDataCache.get(notation);
+	if (cached) return cached;
+
+	let data;
+	switch (notation) {
 		case 0:
-			return [
+			data = [
 				{ name: "p", color: "#79b9c7", value: 1e6 },
 				{ name: "g", color: "#E5C100", value: 10000 },
 				{ name: "s", color: "#a8a8a8", value: 100 },
 				{ name: "c", color: "#a15c2f", value: 1 },
 			];
+			break;
 		case 1:
-			return [
+			data = [
 				{
-					name: " 𒀱",
+					name: "ℵ",
 					color: "#ffffff",
-					value: 1e62,
+					value: 1e60,
 					class: "currency-shadow-rainbow",
 				},
-				{ name: " 𒀱", color: "#ffffff", value: 1e47, class: "currency-shadow" },
-				{ name: " 𒇫", color: "#66ccff", value: 1e41, class: "currency-shadow" },
-				{ name: "🜊", color: "#00ff00", value: 1e35, class: "currency-bold" },
-				{ name: "✹", color: "#ffffcc", value: 1e30 },
-				{ name: "∰", color: "#ff0083", value: 1e26 },
-				{ name: "Φ", color: "#27b897", value: 1e23 },
-				{ name: "Ξ", color: "#cd72ff", value: 1e20 },
-				{ name: "Δ", color: "#f5c211", value: 1e17 },
-				{ name: "d", color: "#ffffff", value: 1e14 },
-				{ name: "r", color: "#ed333b", value: 1e12 },
-				{ name: "S", color: "#6666ff", value: 1e10 },
-				{ name: "e", color: "#2ec27e", value: 1e8 },
-				{ name: "p", color: "#79b9c7", value: 1e6 },
-				{ name: "g", color: "#E5C100", value: 10000 },
-				{ name: "s", color: "#a8a8a8", value: 100 },
+				{ name: "Ω", color: "#ffffff", value: 1e54, class: "currency-shadow" },
+				{ name: "Ψ", color: "#66ccff", value: 1e48, class: "currency-shadow" },
+				{ name: "Λ", color: "#00ff00", value: 1e42, class: "currency-bold" },
+				{ name: "✹", color: "#ffffcc", value: 1e36 },
+				{ name: "∰", color: "#ff0083", value: 1e33 },
+				{ name: "Φ", color: "#27b897", value: 1e30 },
+				{ name: "Ξ", color: "#cd72ff", value: 1e27 },
+				{ name: "Δ", color: "#f5c211", value: 1e24 },
+				{ name: "d", color: "#909090", value: 1e21 },
+				{ name: "r", color: "#ed333b", value: 1e18 },
+				{ name: "S", color: "#6666ff", value: 1e15 },
+				{ name: "e", color: "#2ec27e", value: 1e12 },
+				{ name: "p", color: "#79b9c7", value: 1e9 },
+				{ name: "g", color: "#E5C100", value: 1e6 },
+				{ name: "s", color: "#a8a8a8", value: 1e3 },
 				{ name: "c", color: "#a15c2f", value: 1 },
 			];
+			break;
 		case 2:
-			return [
+			data = [
 				{ name: "", color: "#E5C100", value: 240, prefix: "£" },
 				{ name: "s", color: "#a8a8a8", value: 12 },
 				{ name: "d", color: "#a15c2f", value: 1 },
 			];
+			break;
 		default:
 			throw new Error("Invalid currency notation set");
 	}
+
+	coinsDataCache.set(notation, data);
+	return data;
 }
 
 export function formatWhole(number, decimals = 1) {
@@ -162,11 +177,8 @@ export function formatWhole(number, decimals = 1) {
 }
 
 export function formatCoins(coins, element) {
-	for (const c of element.children) {
-		c.textContent = "";
-	}
-
 	const coinsDec = toInfinityNumber(coins);
+	const parts = [];
 
 	switch (gameData.settings.currencyNotation) {
 		case 0:
@@ -187,24 +199,74 @@ export function formatCoins(coins, element) {
 								toInfinityNumber(diff).times(scaled.div(diff).floor()),
 							);
 				if (amount.gt(0) || (coinsDec.lt(1) && m.value === 1)) {
-					element.children[coinsUsed].textContent =
-						(m.prefix ?? "") + format(amount, amount.lt(1000) ? 0 : 2) + m.name;
-					element.children[coinsUsed].style.color = m.color;
-					element.children[coinsUsed].className = m.class ? m.class : "";
+					parts.push({
+						text:
+							(m.prefix ?? "") +
+							format(amount, amount.lt(1000) ? 0 : 2) +
+							m.name,
+						color: m.color,
+						class: m.class ?? "",
+					});
 					coinsUsed++;
 				}
 				if (coinsUsed >= 2 || amount.gte(100)) break;
 			}
+			applyCoins(element, parts);
 			break;
 		}
 		case 3:
-			element.children[0].textContent = `$${format(coinsDec.div(100), 2)}`;
-			element.children[0].style.color = "#E5C100";
-			element.children[0].className = "";
-			break;
+			applyCoins(element, [
+				{
+					text: `$${format(coinsDec.div(100), 2)}`,
+					color: "#E5C100",
+					class: "",
+				},
+			]);
+			return;
 		default:
 			throw new Error("Invalid currency notation set");
 	}
+}
+
+// Пишет в DOM только то, что изменилось: textContent пересоздаёт узел даже
+// при совпадающей строке, а вызов идёт каждый кадр и для каждой строки.
+// Идём по частям: нехватающих детей создаём, лишние очищаем на месте —
+// разметка не растёт, а уже расставленные классы не теряются.
+function applyCoins(element, parts) {
+	for (let i = 0; i < parts.length - 1; i++) parts[i].text += " ";
+	for (let i = 0; i < parts.length; i++) {
+		const part = parts[i];
+		let child = element.children[i];
+		if (child === undefined) {
+			child = document.createElement("span");
+			element.appendChild(child);
+		}
+		if (child.textContent !== part.text) child.textContent = part.text;
+		if (child.style.color !== part.color) child.style.color = part.color;
+		if (child.className !== part.class) child.className = part.class;
+	}
+
+	for (let i = parts.length; i < element.children.length; i++) {
+		const child = element.children[i];
+		child.textContent = "";
+		child.style.color = "";
+		child.className = "";
+	}
+}
+
+// Строка с монетами для подстановки в текст: innerHTML того же набора span'ов,
+// который собирает applyCoins, с инлайновыми цветами и классами. В разряды
+// applyCoins пишет через textContent, а чтение innerHTML экранирует
+// спецсимволы при сериализации — подстановка в строку перевода безопасна.
+//
+// Holder один на модуль: applyCoins переиспользует его детей, как в живых
+// элементах, вместо создания новых узлов на каждый вызов. В DOM он не попадает.
+let coinsHtmlHolder;
+
+export function formatCoinsHtml(coins) {
+	coinsHtmlHolder ??= document.createElement("span");
+	formatCoins(coins, coinsHtmlHolder);
+	return coinsHtmlHolder.innerHTML;
 }
 
 export function formatTime(sec_num, show_ms = false) {
@@ -242,6 +304,26 @@ export function formatTime(sec_num, show_ms = false) {
 export function formatTreshold(number, decimals = 1, treshold = 100000) {
 	if (number < treshold) return Math.floor(number);
 	else return format(number, decimals);
+}
+
+const PROGRESS_LOG_THRESHOLD = 1e100;
+const PROGRESS_LOG_OFFSET = 99;
+
+// Прогресс в процентах для полос требований. До 1e100 — обычное отношение
+// (на больших числах полоса иначе стоит на нуле), дальше логарифм по
+// (lg − 99): разница порядков от нуля до порога. Принимает и Decimal, и
+// число. Формула из апстрима.
+export function getDynamicProgress(current, required) {
+	if (required == null) return 0;
+	const cur = new Decimal(current);
+	const req = new Decimal(required);
+	if (req.lte(0) || cur.lte(0)) return 0;
+	if (cur.lt(PROGRESS_LOG_THRESHOLD) || req.lt(PROGRESS_LOG_THRESHOLD))
+		return Math.min(cur.div(req).times(100).toNumber(), 100);
+	const logReq = req.log10() - PROGRESS_LOG_OFFSET;
+	if (logReq <= 0) return 100;
+	const percent = ((cur.log10() - PROGRESS_LOG_OFFSET) / logReq) * 100;
+	return Math.min(Math.max(percent, 0), 100);
 }
 
 export function formatLevel(level) {

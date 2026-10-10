@@ -3,13 +3,21 @@
 	color: white;
 }
 
-.dark .w3-table-all tr {
-	border-bottom: 1px solid rgb(73, 73, 73);
-}
-
 .dark .panel {
 	background-color: rgb(46, 46, 46);
 	border-color: rgb(32, 32, 32);
+}
+
+.dark #resources {
+	border-color: rgb(32, 32, 32);
+}
+
+.dark .topbar::after {
+	background-color: rgb(32, 32, 32);
+}
+
+.dark .topbar::before {
+	background-color: rgb(32, 32, 32);
 }
 
 .dark .button {
@@ -25,7 +33,7 @@
 	text-align: left;
 }
 
-.dark .w3-bordered tr {
+.dark .table-bordered tr {
 	border-bottom: 1px solid rgb(73, 73, 73);
 }
 
@@ -56,4 +64,13 @@
 
 .dark .button-evil:hover {
 	background-color: #641028;
+}
+
+.dark .req-progress-container {
+	background-color: rgb(78, 78, 78);
+}
+
+.dark .activity-box {
+	border-color: rgb(73, 73, 73);
+	background-color: rgba(255, 255, 255, 0.04);
 }

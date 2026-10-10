@@ -12,7 +12,11 @@ import { jobBaseData } from "../dist/js/jobs_data.js";
 import { milestoneBaseData } from "../dist/js/milestones_data.js";
 import { skillBaseData } from "../dist/js/skills_data.js";
 import { applyTranslations, setLang } from "../dist/js/translations.js";
-import { enterChallenge, exitChallenge } from "./challenges.js";
+import {
+	enterChallenge,
+	exitChallenge,
+	toggleChallenge,
+} from "./challenges.js";
 import {
 	buyADealWithTheChairman,
 	buyAGiftFromGod,
@@ -74,15 +78,12 @@ import { buyJobSlot, buySkillSlot } from "./slots.js";
 import { initializeUI, refreshSettingsButtons, updateUI } from "./ui/init.js";
 import {
 	refreshLangButtons,
-	setFontSize,
-	setLayout,
 	setStickySidebar,
 	setTab,
 	setTabDarkMatter,
 	setTabMetaverse,
 	setTabMilestones,
 	setTabSettings,
-	updateFontSizeIndicator,
 } from "./ui/navigation.js";
 import { revealSeenNotes } from "./ui/note_modal.js";
 import { checkAdminPassword, initAdminPanel, setAdminSpeed } from "./utils.js";
@@ -137,9 +138,7 @@ Object.assign(window, {
 	setAdminSpeed,
 	setCurrency,
 	setEnableKeybinds,
-	setFontSize,
 	setLang,
-	setLayout,
 	setNotation,
 	setStickySidebar,
 	setTab,
@@ -150,6 +149,7 @@ Object.assign(window, {
 	setTheme,
 	toggleAutoBuy,
 	toggleAutoPromote,
+	toggleChallenge,
 	togglePause,
 });
 
@@ -200,5 +200,4 @@ document.addEventListener("i18n:changed", () => {
 	updateUI();
 	refreshSettingsButtons();
 	refreshLangButtons();
-	updateFontSizeIndicator();
 });

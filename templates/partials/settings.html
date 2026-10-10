@@ -1,38 +1,38 @@
 <div class="tab column" style="display:none" id="settings">
-					<div id="tabcolumnSettings" class="panel w3-padding page-column">
-							<div class="w3-button w3-bar-item tabButtonSettings baritem w3-blue-gray" id="settingsTabTabButton" onClick="setTabSettings('settingsTab')"><span id="settings_tab_header"></span></div>
-							<div class="w3-button w3-bar-item tabButtonSettings baritem" id="statsTabTabButton" onClick="setTabSettings('statsTab')"><span id="stats_tab_header"></span></div>
+					<div id="tabcolumnSettings" class="panel page-column subtab-column">
+							<div class="w3-button tabButtonSettings baritem w3-blue-gray" id="settingsTabTabButton" onClick="setTabSettings('settingsTab')"><span id="settings_tab_header"></span></div>
+							<div class="w3-button tabButtonSettings baritem" id="statsTabTabButton" onClick="setTabSettings('statsTab')"><span id="stats_tab_header"></span></div>
 					</div>
 					<div id="maincolumnSettings" class="panel w3-margin-left w3-margin-top">
 						<div id="settingsTab" class="tabSettings">
-							<div id="settingsPage" style="flex: 1; margin-left: 0.5em;">
+							<div id="settingsPage" class="settings-page">
 								<ul>
 									<li>
 										<div class="text-caption">
 										<button class="w3-button button" id="import_save" onClick="importGameData()"></button>
 										<span class="tooltip"><button class="w3-button button" id="export_save" onClick="exportGameData()" onmouseout="outExportButton()"></button><span class="tooltipText" id="exportTooltip"></span></span>
-											<form style="margin-top: 0.8em" autocomplete="off">
-												<input id="importExportBox" placeholder="Enter save here" type="text" style="width:20em">
+											<form class="settings-form" autocomplete="off">
+												<input id="importExportBox" placeholder="Enter save here" type="text" class="settings-save-field">
 											</form>
 										</div>
 									</li>
 									<li>
-										<div class="text-caption" style="margin-top: 0.4em;"></div>
-										<table class="w3-table w3-bordered">
+										<div class="text-caption settings-caption"></div>
+										<table class="w3-table table-bordered">
 											<tr>
-												<td style="padding: 0.4em; width:15em" id="sticky_sidebar"></td>
-												<td><input id="settingsStickySidebar" type="checkbox" style="width:1.6em;height:1.6em" onclick="setStickySidebar(this.checked)" /></td>
+												<td id="sticky_sidebar" class="settings-cell-label"></td>
+												<td><input id="settingsStickySidebar" type="checkbox" class="settings-checkbox" onclick="setStickySidebar(this.checked)" /></td>
 											</tr>
 											<tr>
 												<td id="language"></td>
-												<td style="padding: 0.4em">
+												<td class="settings-cell">
 													<button class="w3-button button lang-btn" data-lang="en" onclick="setLang('en')">English</button>
 													<button class="w3-button button lang-btn" data-lang="ru" onclick="setLang('ru')">Русский</button>
 												</td>
 											</tr>
 											<tr>
 												<td id="currency_notation"></td>
-												<td style="padding: 0.4em">
+												<td class="settings-cell">
 													<button class="w3-button button CurrencyNotation selected" onclick="setCurrency(0)"></button>
 													<button class="w3-button button CurrencyNotation" onclick="setCurrency(1)"></button>
 													<button class="w3-button button CurrencyNotation" onclick="setCurrency(2)"></button>
@@ -41,36 +41,22 @@
 											</tr>
 											<tr>
 												<td id="number_notation"></td>
-												<td style="padding: 0.4em">
+												<td class="settings-cell">
 													<button class="w3-button button Notation selected" onclick="setNotation(0)"></button>
 													<button class="w3-button button Notation" onclick="setNotation(1)"></button>
 													<button class="w3-button button Notation" onclick="setNotation(2)"></button>
 												</td>
 											</tr>
 											<tr>
-												<td id="layout"></td>
-												<td style="padding: 0.4em">
-													<button class="w3-button button Layout" onclick="setLayout(1)"></button>
-													<button class="w3-button button Layout" onclick="setLayout(0)"></button>
-												</td>
-											</tr>
-											<tr>
-												<td id="font_size"></td>
-												<td style="padding: 0.4em">
-													<button class="w3-button button" onclick="setFontSize(gameData.settings.fontSize - 1)"></button>
-													<button class="w3-button button" onclick="setFontSize(gameData.settings.fontSize + 1)"></button>
-												</td>
-											</tr>
-											<tr>
 												<td id="color_scheme"></td>
-												<td style="padding: 0.4em">
+												<td class="settings-cell">
 													<button class="w3-button button Theme" onClick="setTheme(0, true)"></button>
 													<button class="w3-button button Theme" onClick="setTheme(1, true)"></button>
 												</td>
 											</tr>
 											<tr>
 												<td id="dangerous_keybinds"></td>
-												<td style="padding: 0.4em">
+												<td class="settings-cell">
 													<button class="w3-button button EnableKeybinds" onClick="setEnableKeybinds(true)"></button>
 													<button class="w3-button button EnableKeybinds" onClick="setEnableKeybinds(false)"></button>
 												</td>
@@ -78,8 +64,8 @@
 										</table>
 									</li>
 									<li id="keybindsList">
-										<div class="text-caption" style="margin-top: 0.4em;" id="shortcuts"></div>
-										<div style="margin-bottom: 8px;">
+										<div class="text-caption settings-caption" id="shortcuts"></div>
+										<div class="settings-block">
 											<div id="shortcut_arrows"></div>
 											<div id="shortcut_space"></div>
 											<div id="dangerousKeybinds">
@@ -93,33 +79,33 @@
 										</div>
 									</li>
 								<li>
-									<div class="text-caption" style="margin-top: 0.4em;">
+									<div class="text-caption settings-caption">
 										<button class="w3-button button w3-red" id="hard_reset" onClick="resetGameData()"></button>
 									</div>
 								</li>
 								<li id="adminPanel" class="hidden">
-									<div class="text-caption" style="margin-top: 0.4em;"></div>
-									<table class="w3-table w3-bordered">
+									<div class="text-caption settings-caption"></div>
+									<table class="w3-table table-bordered">
 										<tr id="adminPasswordRow">
-											<td style="padding: 0.4em; width:15em" id="admin_password_label"></td>
-											<td style="padding: 0.4em">
-												<input id="adminPasswordInput" type="password" style="width:15em" />
+											<td id="admin_password_label" class="settings-cell-label"></td>
+											<td class="settings-cell">
+												<input id="adminPasswordInput" type="password" class="settings-password-field" />
 												<button class="w3-button button" id="admin_check_button" onclick="checkAdminPassword()"></button>
 											</td>
 										</tr>
 										<tr id="adminSpeedRow" class="hidden">
-											<td style="padding: 0.4em" id="admin_speed_label"></td>
-											<td style="padding: 0.4em">
-												<input id="adminSpeedSlider" type="range" min="1" max="1000" value="1" style="width:12em; vertical-align:middle" oninput="setAdminSpeed(this.value)" />
-												<input id="adminSpeedInput" type="number" min="1" max="1000000" value="1" style="width:6em; vertical-align:middle" oninput="setAdminSpeed(this.value)" />
+											<td id="admin_speed_label" class="settings-cell"></td>
+											<td class="settings-cell">
+												<input id="adminSpeedSlider" type="range" min="1" max="1000" value="1" class="settings-slider" oninput="setAdminSpeed(this.value)" />
+												<input id="adminSpeedInput" type="number" min="1" max="1000000" value="1" class="settings-number" oninput="setAdminSpeed(this.value)" />
 												<span id="adminSpeedDisplay">x1</span>
 											</td>
 										</tr>
 									</table>
 								</li>
 								<li>
-										<div class="text-caption" style="margin-top: 0.4em; text-align: center;" id="links"></div>
-										<div style="margin-bottom: 8px; text-align: center;">
+										<div class="text-caption settings-caption-center" id="links"></div>
+										<div class="settings-block-center">
 											<div id="links_based_on"></div>
 											<div id="links_based_on_2"></div>
 											<div id="links_original_game"></div>
@@ -128,11 +114,10 @@
 										</div>
 									</li>
 								</ul>
-								<span id="version" style="font-size:smaller; float:right" class="w3-text-gray"></span>
 							</div>
 						</div>
 						<div id="statsTab" class="tabSettings">
-							<div id="statsPage" style="flex: 1; margin-left: 0.5em;">
+							<div id="statsPage" class="settings-page">
 								<div>
 									<ul>
 										<li id="stats_start_date">You started playing the game on <span id="startDateDisplay"></span>, <span id="playedDaysDisplay"></span> days ago.</li>

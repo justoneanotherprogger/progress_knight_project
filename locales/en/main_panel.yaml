@@ -152,7 +152,7 @@ item_custom_galaxy_name: Custom Galaxy
 item_hypersphere_name: Hypersphere
 category_evil_milestones: Evil Milestones
 category_essence_milestones: Essence Milestones
-category_heroic_milestones: Heroic Milestones
+category_heroic_milestones: Stellar Milestones
 category_dark_milestones: Dark Milestones
 category_metaverse_milestones: Metaverse Milestones
 milestone_magic_eye_name: Magic Eye
@@ -223,19 +223,19 @@ milestone_hell_portal_desc: Passively gain a huge amount of Evil
 milestone_inferno_desc: Evil gain (grows with Essence)
 milestone_god_s_blessings_desc: Happiness
 milestone_faint_hope_desc: Essence gain (grows with real time)
-milestone_new_beginning_desc: Heroic jobs, skills and items are unlocked
-milestone_rise_of_great_heroes_desc: Essence gain (grows with number of Greats) + Great XP
-milestone_lazy_heroes_desc: Great XP
-milestone_dirty_heroes_desc: Great XP
-milestone_angry_heroes_desc: Great XP
-milestone_tired_heroes_desc: Great XP
-milestone_scared_heroes_desc: Great XP
-milestone_good_heroes_desc: Great XP
-milestone_funny_heroes_desc: Great XP
-milestone_beautiful_heroes_desc: Great XP
-milestone_awesome_heroes_desc: Great XP
-milestone_furious_heroes_desc: Great XP
-milestone_superb_heroes_desc: Great XP
+milestone_new_beginning_desc: Stellar jobs, skills and items are unlocked
+milestone_rise_of_great_heroes_desc: Essence gain (grows with number of Stellar jobs) + x1e4 Stellar XP
+milestone_lazy_heroes_desc: Stellar XP
+milestone_dirty_heroes_desc: Stellar XP
+milestone_angry_heroes_desc: Stellar XP
+milestone_tired_heroes_desc: Stellar XP
+milestone_scared_heroes_desc: Stellar XP
+milestone_good_heroes_desc: Stellar XP
+milestone_funny_heroes_desc: Stellar XP
+milestone_beautiful_heroes_desc: Stellar XP
+milestone_awesome_heroes_desc: Stellar XP
+milestone_furious_heroes_desc: Stellar XP
+milestone_superb_heroes_desc: Stellar XP
 milestone_a_new_beginning_desc: Unlocks Dark Matter
 milestone_mind_control_desc: Makes Hell Portal even stronger
 milestone_galactic_emperor_desc: Passively gain a small amount of Essence
@@ -315,7 +315,7 @@ life_coach_desc: 'Reward: Multiply <span class="color-income">Income</span> by x
 
 dark_orb_generator: Dark Orb Generator
 
-dark_orb_generator_desc: 'Generates {0} <span class="color-dark-orbs">Dark Orb</span> per day'
+dark_orb_generator_desc: 'Generates {0} <span class="color-dark-orbs"><span class="orb-text">Dark Orb</span></span> per day'
 
 speed_is_life: Speed is life
 
