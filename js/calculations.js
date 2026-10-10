@@ -273,12 +273,29 @@ export function getTaskLevelsToClimb(task, level, xp) {
 // сбрасывает его в начале, все остальные вызовы до следующего тика читают
 // результат. Сталость — максимум один тик (50 мс), для плавных величин
 // незаметна.
-export const gainMemo = { evil: null, essence: null, dark_matter: null };
+
+// Скрытый множитель опыта работ метавселенны: 1 + гиперкубы. Считается раз
+// на тик, как остальные множители в gainMemo, и достаётся из кеша на каждое
+// значение — иначе на каждый кадр и на каждую работу множитель строился бы
+// заново.
+export function getMetaverseJobXpMult() {
+	if (gainMemo.metaverse_job_xp == null)
+		gainMemo.metaverse_job_xp = toInfinityNumber(1 + gameData.hypercubes);
+	return gainMemo.metaverse_job_xp;
+}
+
+export const gainMemo = {
+	evil: null,
+	essence: null,
+	dark_matter: null,
+	metaverse_job_xp: null,
+};
 
 export function resetGainMemo() {
 	gainMemo.evil = null;
 	gainMemo.essence = null;
 	gainMemo.dark_matter = null;
+	gainMemo.metaverse_job_xp = null;
 }
 
 export function getEvilGain() {

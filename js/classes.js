@@ -4,6 +4,7 @@ import {
 	applyMultipliers,
 	applySpeed,
 	getHeroXpGainMultipliers,
+	getMetaverseJobXpMult,
 	getTaskLevelsToClimb,
 	getTaskMaxXp,
 	getTaskXpRange,
@@ -57,9 +58,13 @@ export class Task {
 	}
 
 	getXpGain() {
-		return applyMultipliers(10, this.xpMultipliers).times(
-			toInfinityNumber(this.isHero ? getHeroXpGainMultipliers(this) : 1),
-		);
+		return applyMultipliers(10, this.xpMultipliers)
+			.times(toInfinityNumber(this.isHero ? getHeroXpGainMultipliers(this) : 1))
+			.times(
+				this.categoryId === "category_metaverse_guards"
+					? getMetaverseJobXpMult()
+					: 1,
+			);
 	}
 
 	getXpGainFormatted() {
