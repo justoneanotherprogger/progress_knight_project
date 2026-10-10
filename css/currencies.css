@@ -94,6 +94,7 @@
 .color-hypercubes {
 	color: rgb(9, 160, 230);
 	animation: currency-rainbow 12s infinite;
+	font-weight: bold;
 }
 
 /* Чистыми — тоже в гиперкубах, но радуга на подписи сбивает: число
