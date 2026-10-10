@@ -529,7 +529,7 @@
 				{
 					"task": "job_snow_crash",
 					"requirement": 1000,
-					"herequirement": 160000
+					"herequirement": 10000
 				}
 			]
 		},
