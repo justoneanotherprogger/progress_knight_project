@@ -638,7 +638,7 @@ button:focus {
 	-webkit-user-select: none;
 	touch-action: manipulation;
 	margin: 0.6em 0.7em 0.6em 0.7em;
-	border-radius: 0.5em;
+	border-radius: 0.25em;
 }
 
 .perk:hover {
