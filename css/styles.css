@@ -411,10 +411,6 @@ button:focus {
 	display: inline;
 }
 
-#expense_text {
-	color: red;
-}
-
 .inline {
 	display: inline-block;
 }
