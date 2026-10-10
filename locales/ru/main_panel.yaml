@@ -327,7 +327,7 @@ life_coach_desc: 'Награда: Умножает <span class="color-income">Д
 
 dark_orb_generator: Генератор тёмных сфер
 
-dark_orb_generator_desc: 'Генерирует {0} <span class="color-dark-orbs">Тёмную сферу</span> в день'
+dark_orb_generator_desc: 'Генерирует {0} <span class="color-dark-orbs"><span class="orb-text">Тёмную сферу</span></span> в день'
 
 speed_is_life: Скорость — это жизнь
 

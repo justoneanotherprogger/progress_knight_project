@@ -315,7 +315,7 @@ life_coach_desc: 'Reward: Multiply <span class="color-income">Income</span> by x
 
 dark_orb_generator: Dark Orb Generator
 
-dark_orb_generator_desc: 'Generates {0} <span class="color-dark-orbs">Dark Orb</span> per day'
+dark_orb_generator_desc: 'Generates {0} <span class="color-dark-orbs"><span class="orb-text">Dark Orb</span></span> per day'
 
 speed_is_life: Speed is life
 
