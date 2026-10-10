@@ -168,21 +168,14 @@ export function renderProgressBar(task, progressFill, progressBar) {
 	}
 }
 
-// Дёргается ореол, а не сам текст. Текст чёрный на почти чёрном фоне, и когда
-// он двигается вместе с ореолом, глазу не за что зацепиться — движение не
-// читается. Буквы стоят на месте, а свечение вокруг них смещается и меняет
-// размытие, и это видно как «пытается вырваться». Вызов — на каждом кадре
-// рендера (20 Гц).
-//
-// Список берём заново: одно из этих мест — span внутри перевода, он появляется
+// Колеблется текст, а не ореол: ореол теперь чёрный и неподвижный, он
+// только обводит буквы. Текст белый, и смещение на нём читается. Список
+// берём заново: одно из этих мест — span внутри перевода, он появляется
 // в DOM в рантайме, и кэш, собранный на старте, его бы не увидел.
 export function wobbleDarkOrbs() {
 	for (const node of document.querySelectorAll(".color-dark-orbs")) {
 		const angle = Math.random() * Math.PI * 2;
-		const x = Math.cos(angle);
-		const y = Math.sin(angle);
-		const blur = 4 + Math.random() * 3;
-		node.style.textShadow = `${x}px ${y}px ${blur}px rgba(255, 255, 255, 0.9)`;
+		node.style.transform = `translate(${Math.cos(angle)}px, ${Math.sin(angle)}px)`;
 	}
 }
 
