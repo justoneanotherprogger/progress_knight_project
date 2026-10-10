@@ -540,7 +540,7 @@
 				{
 					"task": "job_player_one",
 					"requirement": 2500,
-					"herequirement": 158000
+					"herequirement": 10000
 				}
 			]
 		},
@@ -551,7 +551,7 @@
 				{
 					"task": "job_lost_in_the_dark",
 					"requirement": 25000,
-					"herequirement": 185000
+					"herequirement": 10000
 				}
 			]
 		},
