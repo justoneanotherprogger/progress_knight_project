@@ -172,11 +172,18 @@ export function renderProgressBar(task, progressFill, progressBar) {
 // только обводит буквы. Текст белый, и смещение на нём читается. Список
 // берём заново: одно из этих мест — span внутри перевода, он появляется
 // в DOM в рантайме, и кэш, собранный на старте, его бы не увидел.
+// Вызов — на каждом кадре рендера (20 Гц).
 export function wobbleDarkOrbs() {
 	for (const node of document.querySelectorAll(".color-dark-orbs")) {
+		// Обводка рисуется псевдоэлементом по data-text, поэтому подпись
+		// зеркалится сюда же. Двигается только вложенный .orb-text, обёртка
+		// с обводкой стоит на месте.
+		if (node.dataset.text !== node.textContent)
+			node.dataset.text = node.textContent;
 		const angle = Math.random() * Math.PI * 2;
 		const amplitude = 1;
-		node.style.transform = `translate(${Math.cos(angle) * amplitude}px, ${Math.sin(angle) * amplitude}px)`;
+		const label = node.firstElementChild;
+		label.style.transform = `translate(${Math.cos(angle) * amplitude}px, ${Math.sin(angle) * amplitude}px)`;
 	}
 }
 
