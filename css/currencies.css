@@ -93,6 +93,13 @@
 }
 .color-hypercubes {
 	color: rgb(9, 160, 230);
+	animation: currency-rainbow 12s infinite;
+}
+
+/* Чистыми — тоже в гиперкубах, но радуга на подписи сбивает: число
+   переливается всеми цветами вместе с подписью. Цвет тот же, анимации нет. */
+.color-net {
+	color: rgb(9, 160, 230);
 }
 .color-perk-points {
 	color: rgb(217, 24, 119);
