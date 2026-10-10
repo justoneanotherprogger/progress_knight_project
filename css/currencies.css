@@ -50,12 +50,15 @@
 }
 .color-evil {
 	color: rgb(240, 0, 0);
+	font-weight: bold;
 }
 .color-essence {
 	color: rgb(24, 210, 217);
+	font-weight: bold;
 }
 .color-dark-matter {
 	color: rgb(132, 99, 206);
+	font-weight: bold;
 }
 /* Тёмные сферы — белый текст с чёрной обводкой в обеих темах: тёмные сферы —
    тёмная обводка. Обводка рисуется псевдоэлементом и стоит на месте: transform
@@ -70,6 +73,7 @@
    Свойство вендорное, но поддерживается всеми современными браузерами. */
 .color-dark-orbs {
 	color: #ffffff;
+	font-weight: bold;
 	display: inline-block;
 	position: relative;
 }
