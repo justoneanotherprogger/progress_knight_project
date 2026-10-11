@@ -115,9 +115,9 @@ export function setTab(selectedTab) {
 
 	const tabButtons = document.getElementsByClassName("tabButton");
 	for (const tabButton of tabButtons) {
-		tabButton.classList.remove("w3-blue-gray");
+		tabButton.classList.remove("tab-current");
 	}
-	element.classList.add("w3-blue-gray");
+	element.classList.add("tab-current");
 }
 
 function setTabGroup(suffix, tab) {
@@ -127,9 +127,9 @@ function setTabGroup(suffix, tab) {
 	}
 	document.getElementById(tab).classList.add("open");
 	for (const button of document.getElementsByClassName(`tabButton${suffix}`)) {
-		button.classList.remove("w3-blue-gray");
+		button.classList.remove("tab-current");
 	}
-	element.classList.add("w3-blue-gray");
+	element.classList.add("tab-current");
 }
 
 export function setTabSettings(tab) {

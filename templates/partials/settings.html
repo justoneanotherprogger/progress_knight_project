@@ -1,6 +1,6 @@
 <div class="tab column" id="settings">
 					<div id="tabcolumnSettings" class="panel page-column subtab-column">
-							<div class="w3-button tabButtonSettings baritem w3-blue-gray" id="settingsTabTabButton" onClick="setTabSettings('settingsTab')"><span id="settings_tab_header"></span></div>
+							<div class="w3-button tabButtonSettings baritem tab-current" id="settingsTabTabButton" onClick="setTabSettings('settingsTab')"><span id="settings_tab_header"></span></div>
 							<div class="w3-button tabButtonSettings baritem" id="statsTabTabButton" onClick="setTabSettings('statsTab')"><span id="stats_tab_header"></span></div>
 					</div>
 					<div id="maincolumnSettings" class="panel main-column">
@@ -80,7 +80,7 @@
 									</li>
 								<li>
 									<div class="text-caption settings-caption">
-										<button class="w3-button button w3-red" id="hard_reset" onClick="resetGameData()"></button>
+										<button class="w3-button button button-danger" id="hard_reset" onClick="resetGameData()"></button>
 									</div>
 								</li>
 								<li id="adminPanel" class="hidden">

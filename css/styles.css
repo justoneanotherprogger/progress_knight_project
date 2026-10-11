@@ -101,7 +101,6 @@ body {
 	right: 0;
 	bottom: 0%;
 	color: white;
-	display: flex;
 	align-items: center;
 }
 
@@ -140,7 +139,6 @@ body {
    высотой, когда полоса появляется. clip-path расширяет область наружу
    контейнера высотой 0.25em — иначе свечение box-shadow срезается по краям. */
 .req-progress-container {
-	display: block;
 	position: relative;
 	visibility: hidden;
 	width: 100%;
@@ -150,12 +148,6 @@ body {
 	background-color: #333;
 	border-radius: 0.125em;
 	clip-path: inset(-0.625em -0.625em -0.625em -0.625em);
-}
-
-/* В кнопках ребёрна скрытая полоса не занимает место: здесь важна
-   компактность кнопки, а не стабильность высоты строки таблицы. */
-#rebirthGroup .req-progress-container[data-req-visible="hidden"] {
-	display: none;
 }
 
 .req-pending-bar,
@@ -192,7 +184,6 @@ body {
 .boost-panel {
 	color: gray;
 	margin-top: 0.8em;
-	display: flex;
 	align-items: center;
 	gap: 0.5em;
 }
@@ -202,10 +193,6 @@ body {
 #boostCooldownDisplay {
 	flex: 1;
 	text-align: center;
-}
-
-.hiddenTask {
-	display: none;
 }
 
 .button {
@@ -249,7 +236,6 @@ button:focus {
 
 .tooltip {
 	position: relative;
-	display: inline-block;
 }
 
 .game-paused {
@@ -284,16 +270,9 @@ button:focus {
 	opacity: 0.8;
 }
 
-/* Тултипы, которые заполняются по событию (а не наведением), до заполнения
-   не должны показывать пустую плашку. */
-.tooltip .tooltipText:empty {
-	display: none;
-}
-
 /* Ряд ресетной кнопки с вопросиком: кнопка тянется на всю ширину, вопросик
    жмётся. */
 .rebirth-reset {
-	display: flex;
 	/* Поля кнопки переехали в контейнер: flex-контейнер включает вертикальные
 	   margin'ы детей в свою авто-высоту, и растянутый вопросик (у него полей
 	   нет) выходил выше самой кнопки на их сумму. */
@@ -312,7 +291,6 @@ button:focus {
 }
 
 .reset-help {
-	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	cursor: help;
@@ -337,7 +315,6 @@ button:focus {
 }
 
 #income-resource {
-	display: flex;
 	align-items: center;
 	gap: 1rem;
 	padding-left: 1rem;
@@ -350,7 +327,6 @@ button:focus {
 .topbar {
 	width: 87em;
 	height: 75px;
-	display: flex;
 	align-items: center;
 	position: relative;
 }
@@ -379,13 +355,11 @@ button:focus {
 
 .topbar-currencies {
 	flex: 1;
-	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
 }
 
 .topbar-center {
-	display: flex;
 	align-items: center;
 	justify-content: center;
 }
@@ -411,16 +385,6 @@ button:focus {
 	border-color: rgb(243, 243, 243);
 }
 
-#netDisplay,
-#incomeDisplay,
-#expenseDisplay {
-	display: inline;
-}
-
-.inline {
-	display: inline-block;
-}
-
 .panel {
 	background-color: white;
 	border-color: rgb(243, 243, 243);
@@ -432,7 +396,6 @@ button:focus {
 }
 
 .header {
-	display: flex;
 	justify-content: center;
 	align-items: center;
 }
@@ -444,12 +407,10 @@ button:focus {
 }
 
 .row {
-	display: flex;
 	align-items: flex-start;
 }
 
 .column {
-	display: flex;
 	flex-direction: column;
 	overflow-x: auto;
 	overflow-y: hidden;
@@ -462,7 +423,6 @@ button:focus {
 	top: 0;
 	height: calc(100vh);
 	width: 21em;
-	display: flex;
 	flex-direction: column;
 	overflow-y: auto;
 }
@@ -493,7 +453,6 @@ button:focus {
 }
 
 #boostCooldownDisplay {
-	display: inline-block;
 	max-width: calc(100% - 0.4em);
 	overflow: hidden;
 }
@@ -512,7 +471,6 @@ button:focus {
 	flex: 1 1 auto;
 	min-height: 0;
 	overflow: hidden;
-	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	--stats-scale: 1;
@@ -544,7 +502,6 @@ button:focus {
 	margin-left: 16px;
 	padding-left: 1rem;
 	padding-right: 1rem;
-	display: flex;
 	justify-content: space-between;
 	width: 65em;
 	height: auto;
@@ -562,25 +519,6 @@ button:focus {
 .main-column {
 	margin-left: 16px;
 	margin-top: 16px;
-}
-
-/* Вкладки скрыты по умолчанию, открытую помечает setTab классом open.
-   display:flex нужен подвкладкам: класса .column у них нет, а инлайн,
-   которым их раньше показывали, уходит. */
-.tab,
-.tabSettings,
-.tabDarkMatter,
-.tabMetaverse,
-.tabMilestones {
-	display: none;
-}
-
-.tab.open,
-.tabSettings.open,
-.tabDarkMatter.open,
-.tabMetaverse.open,
-.tabMilestones.open {
-	display: flex;
 }
 
 .page-column {
@@ -609,6 +547,11 @@ button:focus {
 	border-radius: 0.25em;
 }
 
+.tab-current {
+	color: #ffffff;
+	background-color: #607d8b;
+}
+
 .outer-circle {
 	width: 1.7em;
 	height: 1.7em;
@@ -617,7 +560,6 @@ button:focus {
 }
 
 .center-g-inside {
-	display: grid;
 	place-items: center;
 }
 
@@ -663,7 +605,6 @@ button:focus {
 	box-sizing: border-box;
 	color: #ffffff;
 	cursor: pointer;
-	display: inline-block;
 	font-size: larger;
 	height: 4em;
 	line-height: 1.5em;
@@ -706,7 +647,6 @@ button:focus {
 }
 
 .perk-grid {
-	display: grid;
 	grid-template-columns: 27em 27em;
 }
 
@@ -764,6 +704,21 @@ button:focus {
 	background-color: #f2caca;
 }
 
+.button-danger {
+	color: #ffffff;
+	background-color: #f44336;
+}
+
+.button-accepted {
+	color: #ffffff;
+	background-color: #4caf50;
+}
+
+.button-rejected {
+	color: #ffffff;
+	background-color: #f44336;
+}
+
 .congrats {
 	margin-top: 1em;
 	padding: 1em 1em 1em 1em;
@@ -782,22 +737,16 @@ button:focus {
 
 /* Autobuy toggle */
 .autobuy-toggle-row {
-	display: flex;
 	justify-content: center;
 	align-items: center;
 	margin-bottom: 0.5em;
 }
 
 .toggle {
-	display: inline-flex;
 	align-items: center;
 	gap: 0.5em;
 	cursor: pointer;
 	user-select: none;
-}
-
-.toggle input {
-	display: none;
 }
 
 .toggle .slider {
@@ -892,7 +841,6 @@ button:focus {
 	position: fixed;
 	inset: 0;
 	z-index: 200;
-	display: flex;
 	align-items: center;
 	justify-content: center;
 	background: rgba(0, 0, 0, 0.6);
@@ -925,37 +873,9 @@ button:focus {
 	margin-top: 1em;
 }
 
-/* Текст требования рядом с кнопкой входа в испытание. Стили в классе, а не
-   инлайном: инлайновый display перебивал [hidden], и требование не пряталось.
-   Стоит до .hidden — при равной специфичности решает порядок. */
 .challenge-requirement {
-	display: inline-block;
 	color: red;
 	padding-left: 0.5em;
-}
-
-/* Ряд кнопки входа в испытание: кнопка и требование стоят на одной строке.
-   Здесь, а не в tabs.css: в этом файле display-правила стоят до .hidden,
-   который объявлен последним намеренно. */
-.challenge-row {
-	display: inline-block;
-}
-
-/* Колонка вкладки испытаний: своей строки не занимает, дети строятся в
-   раскладке родителя. */
-.challenges-tabcolumn {
-	display: contents;
-}
-
-/* Строка «Требуется»: значение требования на одной строке с подписью.
-   Отдельный класс, а не .value: классом value подписана ячейка таблицы
-   задач, и display:inline сломал бы ей раскладку. */
-.requirement-value {
-	display: inline;
-}
-
-.coins {
-	display: inline;
 }
 
 /* Колонка кнопок подвкладок: блок, а не flex — у настроек колонка с
@@ -978,12 +898,6 @@ button:focus {
 
 .unsticky {
 	position: static;
-}
-
-/* .hidden объявлен последним намеренно: он равен по специфичности любому
-   одиночному классу с display, и побеждает только будучи ниже. */
-.hidden {
-	display: none;
 }
 
 .activity-box {

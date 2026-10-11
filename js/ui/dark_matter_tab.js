@@ -302,29 +302,29 @@ function renderSkillTreeButton(element, categoryBought, elementBought, canBuy) {
 		if (categoryBought) {
 			if (elementBought) {
 				setElementText(element, t("accepted"));
-				element.classList.add("w3-green");
-				element.classList.remove("w3-red");
+				element.classList.add("button-accepted");
+				element.classList.remove("button-rejected");
 			} else {
 				setElementText(element, t("rejected"));
-				element.classList.add("w3-red");
-				element.classList.remove("w3-green");
+				element.classList.add("button-rejected");
+				element.classList.remove("button-accepted");
 			}
 		} else {
 			setElementText(element, t("buy"));
-			element.classList.remove("w3-green");
-			element.classList.remove("w3-red");
+			element.classList.remove("button-accepted");
+			element.classList.remove("button-rejected");
 		}
 	} else {
 		element.disabled = elementBought;
 
 		if (elementBought) {
 			setElementText(element, t("accepted"));
-			element.classList.add("w3-green");
-			element.classList.remove("w3-red");
+			element.classList.add("button-accepted");
+			element.classList.remove("button-rejected");
 		} else {
 			setElementText(element, t("buy"));
-			element.classList.remove("w3-green");
-			element.classList.remove("w3-red");
+			element.classList.remove("button-accepted");
+			element.classList.remove("button-rejected");
 		}
 	}
 }
