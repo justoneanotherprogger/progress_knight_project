@@ -13,7 +13,12 @@ table {
 	width: 100%;
 }
 
+/* `.tooltip { display: inline-block }` из display.css перебивает дефолт
+   ячейки, пока класс .table-bordered не восстановит table-cell: в
+   inline-block vertical-align не центрирует содержимое, а прижимает
+   его к верху строки. */
 .table-bordered td {
+	display: table-cell;
 	vertical-align: middle;
 }
 
@@ -65,6 +70,12 @@ table {
 #milestoneTable {
 	border-collapse: separate;
 	border-spacing: 0;
+}
+
+/* У таблиц настроек шапок категорий нет, скругление ячеек не требуется,
+   а в separate не рисуются разделители строк. */
+.settings-table {
+	border-collapse: collapse;
 }
 
 .headerRow th {
