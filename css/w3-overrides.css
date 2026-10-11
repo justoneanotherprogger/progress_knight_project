@@ -9,10 +9,11 @@ table {
 	font-variant: normal;
 }
 
-/* Селектор вендорского типа: `.w3-table td` (0,1,1) перебивает его же правило
-   из w3.css порядком подключения, наш файл идёт после. Специфичности
-   элемента `td` (0,0,1) не хватало — вендор побеждал и ставил vertical-align: top. */
-.w3-table td {
+.table-bordered {
+	width: 100%;
+}
+
+.table-bordered td {
 	vertical-align: middle;
 }
 
@@ -51,8 +52,8 @@ table {
 	color: #757575;
 }
 
-.w3-table td:first-child,
-.w3-table th:first-child {
+.table-bordered td:first-child,
+.table-bordered th:first-child {
 	padding-left: 0.3em;
 }
 
