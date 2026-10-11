@@ -66,6 +66,18 @@
 	background-color: #641028;
 }
 
+.dark .button-danger {
+	background-color: #5c1212;
+}
+
+.dark .button-accepted {
+	background-color: #065c21;
+}
+
+.dark .button-rejected {
+	background-color: #4b0317;
+}
+
 .dark .req-progress-container {
 	background-color: rgb(78, 78, 78);
 }
