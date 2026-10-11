@@ -403,7 +403,6 @@ button:focus {
 }
 
 #resources {
-	position: sticky;
 	top: 0;
 	z-index: 2;
 	border-width: 1em 0;
@@ -526,6 +525,18 @@ button:focus {
 
 #resourceStats .resource-desc {
 	font-size: calc(16px * var(--stats-scale));
+}
+
+.sign-gray {
+	color: gray;
+}
+
+.sign-green {
+	color: green;
+}
+
+.sign-red {
+	color: red;
 }
 
 .tabs-tab-column {
@@ -929,6 +940,16 @@ button:focus {
 
 .subtab-column > :not(:last-child) {
 	margin-right: 0.5em;
+}
+
+/* Липкость панелей переключается настройкой: специфичность у обоих классов
+   одинаковая, поэтому правила стоят после .quick-bar и .topbar. */
+.sticky {
+	position: sticky;
+}
+
+.unsticky {
+	position: static;
 }
 
 /* .hidden объявлен последним намеренно: он равен по специфичности любому

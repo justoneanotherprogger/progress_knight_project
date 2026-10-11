@@ -74,7 +74,6 @@ export function renderSideBar() {
 
 	const progressBar = el("quickTaskDisplay").getElementsByClassName("job")[0];
 	const currentJobName = progressBar.querySelector(".name");
-	currentJobName.style.whiteSpace = "nowrap";
 	currentJobName.textContent =
 		(task.isHero ? `${t("great")} ` : "") +
 		t(task.name) +
@@ -95,7 +94,6 @@ export function renderSideBar() {
 		propertyElement.style.color = propertyColor;
 		propertyElement.dataset.color = propertyColor;
 	}
-	propertyElement.style.whiteSpace = "nowrap";
 	setText(
 		"currentPropertyDisplay",
 		`${t("category_properties")}: ${t(property.name)}`,
@@ -117,13 +115,11 @@ export function renderSideBar() {
 	setText("lifespanDisplay", formatWhole(daysToYears(getLifespan())));
 	setText("realtimeDisplay", formatTime(gameData.realtime));
 	const lifespanRow = el("lifespanRow");
-	lifespanRow.style.whiteSpace = "nowrap";
 	fitText(lifespanRow, 16);
 
 	// Смерть — рендер, а не расчёт: isAlive() чистая и в DOM не ходит.
 	el("deathText").classList.toggle("hidden", isAlive());
 	const boostCooldownDisplay = el("boostCooldownDisplay");
-	boostCooldownDisplay.style.whiteSpace = "nowrap";
 	setElementText(boostCooldownDisplay, getBoostCooldownString());
 	fitText(boostCooldownDisplay, 16);
 	updateButtonHTML(
@@ -193,7 +189,6 @@ export function renderSideBar() {
 	else setRebirthButton("rebirthBtn5", t("go_to_metaverse"), "", "");
 	fitText(el("rebirthBtn5"), 16);
 	const boostPanel = el("boostPanel");
-	boostPanel.style.whiteSpace = "nowrap";
 	// Класс, а не свойство hidden: у панели инлайновый display:flex, он сильнее
 	// браузерного [hidden] и свойство перестало её прятать. Класс .hidden из
 	// styles.css сильнее инлайна.
@@ -283,7 +278,6 @@ export function renderSideBar() {
 
 	updateResourceScale();
 	document.querySelectorAll("#resourceStats .text-caption").forEach((e) => {
-		e.style.whiteSpace = "nowrap";
 		fitText(e, (k) => `calc(20px * var(--stats-scale) * ${k})`);
 	});
 }

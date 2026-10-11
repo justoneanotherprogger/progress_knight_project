@@ -64,6 +64,7 @@ table {
 
 .headerRow th {
 	white-space: nowrap;
+	color: #ffffff;
 }
 
 .headerRow th:first-child {
@@ -111,4 +112,16 @@ table {
 #skillTable td.maxLevel,
 #skillTable th.maxLevel {
 	text-align: center;
+}
+
+/* В строке работы блок эффекта пуст, в строке навыка — блок дохода.
+   Селектор по td.value: тот же класс .effect у строк «требуется» —
+   там он показывает «Следующее», и его гасить нельзя. */
+#jobTable td.value .effect,
+#skillTable td.value .income {
+	display: none;
+}
+
+.clickable {
+	cursor: pointer;
 }

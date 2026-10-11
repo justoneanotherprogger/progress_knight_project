@@ -131,7 +131,6 @@ export function renderMilestones() {
 
 		const nameText = t(milestone.name);
 		if (els.name.textContent !== nameText) els.name.textContent = nameText;
-		els.name.style.whiteSpace = "nowrap";
 		fitText(els.name, 16);
 
 		if (els.tooltip) {

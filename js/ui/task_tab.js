@@ -69,12 +69,8 @@ export function renderJobRow(task, rowKey) {
 
 	const nameText = (task.isHero ? `${t("great")} ` : "") + t(task.name);
 	if (els.name.textContent !== nameText) els.name.textContent = nameText;
-	els.name.style.whiteSpace = "nowrap";
 	fitText(els.name, 16);
 	renderProgressBar(task, els.progressFill, els.progressBar);
-
-	els.income.style.display = true;
-	els.effect.style.display = false;
 
 	formatCoins(task.getIncome(), els.income);
 }
@@ -95,7 +91,7 @@ export function renderJobs() {
 
 	const autoPromoteRow = document.getElementById("autoPromoteToggleRow");
 	if (autoPromoteRow) {
-		autoPromoteRow.style.display = isJobAutoSelectUnlocked() ? "" : "none";
+		autoPromoteRow.classList.toggle("hidden", !isJobAutoSelectUnlocked());
 		const autoPromoteToggle = document.getElementById("autoPromoteToggle");
 		if (
 			autoPromoteToggle &&
@@ -129,12 +125,8 @@ export function renderSkillRow(task, rowKey) {
 
 	const nameText = (task.isHero ? `${t("great")} ` : "") + t(task.name);
 	if (els.name.textContent !== nameText) els.name.textContent = nameText;
-	els.name.style.whiteSpace = "nowrap";
 	fitText(els.name, 16);
 	renderProgressBar(task, els.progressFill, els.progressBar);
-
-	els.income.style.display = false;
-	els.effect.style.display = true;
 
 	const effectText = task.getEffectDescription();
 	if (els.effect.textContent !== effectText)

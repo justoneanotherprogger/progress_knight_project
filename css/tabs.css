@@ -208,6 +208,10 @@
 	text-align: center;
 }
 
+#adminPasswordInput.invalid {
+	border-color: red;
+}
+
 /* Таблицы: ширина колонок, страницы вкладок, ячейка строки «Требуется». */
 .col-task-name {
 	width: 18em;

@@ -175,7 +175,6 @@ export function createHeaderRow(templates, categoryType, categoryName) {
 	// углов у th.
 	for (const cell of headerRow.cells) {
 		cell.style.backgroundColor = categoryType[categoryName].headerColor;
-		cell.style.color = "#ffffff";
 	}
 	headerRow.classList.add(removeSpaces(categoryName));
 	headerRow.classList.add("headerRow");
@@ -230,7 +229,7 @@ export function createRow(templates, name, categoryName, categoryType) {
 	}
 
 	if (categoryType === jobCategories) {
-		row.style.cursor = "pointer";
+		row.classList.add("clickable");
 		row.onclick = () => {
 			setCurrentJob(name);
 		};

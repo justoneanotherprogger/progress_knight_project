@@ -420,9 +420,9 @@ export async function checkAdminPassword() {
 			`x${gameData.settings.adminSpeedMultiplier}`;
 	} else {
 		document.getElementById("adminPasswordInput").value = "";
-		document.getElementById("adminPasswordInput").style.borderColor = "red";
+		document.getElementById("adminPasswordInput").classList.add("invalid");
 		setTimeout(() => {
-			document.getElementById("adminPasswordInput").style.borderColor = "";
+			document.getElementById("adminPasswordInput").classList.remove("invalid");
 		}, 1500);
 	}
 }

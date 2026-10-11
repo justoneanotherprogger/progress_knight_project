@@ -20,15 +20,11 @@ import { getSortedPerks } from "./metaverse_tab.js";
 export function setStickySidebar(sticky) {
 	gameData.settings.stickySidebar = sticky;
 	document.getElementById("settingsStickySidebar").checked = sticky;
-	document.getElementById("info").style.position = sticky
-		? "sticky"
-		: "initial";
-	document.getElementById("resources").style.position = sticky
-		? "sticky"
-		: "initial";
-	document.getElementById("tabcolumn").style.position = sticky
-		? "sticky"
-		: "initial";
+	for (const id of ["info", "resources", "tabcolumn"]) {
+		const element = document.getElementById(id);
+		element.classList.toggle("sticky", sticky);
+		element.classList.toggle("unsticky", !sticky);
+	}
 }
 
 export function selectElementInGroup(group, index) {
@@ -52,14 +48,19 @@ export function setSignDisplay() {
 
 	if (getNet().gt(-1) && getNet().lt(1)) {
 		setElementText(signDisplay, "");
-		signDisplay.style.color = "gray";
+		setSignClass(signDisplay, "sign-gray");
 	} else if (getIncome().gt(getExpense())) {
 		setElementText(signDisplay, "+");
-		signDisplay.style.color = "green";
+		setSignClass(signDisplay, "sign-green");
 	} else {
 		setElementText(signDisplay, "-");
-		signDisplay.style.color = "red";
+		setSignClass(signDisplay, "sign-red");
 	}
+}
+
+function setSignClass(element, className) {
+	element.classList.remove("sign-gray", "sign-green", "sign-red");
+	element.classList.add(className);
 }
 
 export function getQuerySelector(taskName) {
