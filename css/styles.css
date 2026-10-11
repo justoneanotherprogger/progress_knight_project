@@ -556,6 +556,25 @@ button:focus {
 	margin-bottom: 0.2em;
 }
 
+/* Вкладки скрыты по умолчанию, открытую помечает setTab классом open.
+   display:flex нужен подвкладкам: класса .column у них нет, а инлайн,
+   которым их раньше показывали, уходит. */
+.tab,
+.tabSettings,
+.tabDarkMatter,
+.tabMetaverse,
+.tabMilestones {
+	display: none;
+}
+
+.tab.open,
+.tabSettings.open,
+.tabDarkMatter.open,
+.tabMetaverse.open,
+.tabMilestones.open {
+	display: flex;
+}
+
 .page-column {
 	width: 56em;
 	height: auto;

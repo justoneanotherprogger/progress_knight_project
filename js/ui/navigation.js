@@ -104,9 +104,9 @@ export function setTab(selectedTab) {
 		document.getElementsByClassName("tab"),
 	);
 	tabs.forEach((tab) => {
-		tab.style.display = "none";
+		tab.classList.remove("open");
 	});
-	tabElement.style.display = "flex";
+	tabElement.classList.add("open");
 
 	// Рендер после показа: до этого вкладка display:none и fitText измеряет
 	// clientWidth = 0, кладя текст в минимальный масштаб. Переключение
@@ -123,9 +123,9 @@ export function setTab(selectedTab) {
 function setTabGroup(suffix, tab) {
 	const element = document.getElementById(`${tab}TabButton`);
 	for (const panel of document.getElementsByClassName(`tab${suffix}`)) {
-		panel.style.display = "none";
+		panel.classList.remove("open");
 	}
-	document.getElementById(tab).style.display = "flex";
+	document.getElementById(tab).classList.add("open");
 	for (const button of document.getElementsByClassName(`tabButton${suffix}`)) {
 		button.classList.remove("w3-blue-gray");
 	}
@@ -184,11 +184,7 @@ export function changeTab(direction) {
 
 	let currentTab = 0;
 	for (const i in tabs) {
-		if (
-			!tabs[i].style.display.includes("none") &&
-			!tabs[i].classList.contains("hidden")
-		)
-			currentTab = i * 1;
+		if (tabs[i].classList.contains("open")) currentTab = i * 1;
 	}
 	let targetTab = currentTab + direction;
 	if (targetTab < 0) {
