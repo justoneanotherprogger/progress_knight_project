@@ -32,7 +32,6 @@ table {
 
 .table-bordered th {
 	height: 2em;
-	padding: 0.4em 1em 0 1em;
 }
 
 .table-bordered td {
