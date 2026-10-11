@@ -200,15 +200,6 @@ body {
 	border-radius: 0.25em;
 }
 
-.button-no-button {
-	background-color: transparent;
-	cursor: default;
-	color: white;
-	border: 0;
-	width: 100%;
-	text-align: left;
-}
-
 .item-button {
 	background-color: white;
 	text-align: center;
@@ -220,10 +211,6 @@ body {
 .item-button:hover {
 	cursor: pointer;
 	background-color: rgb(192, 192, 192);
-}
-
-.item-header-row:hover {
-	cursor: pointer;
 }
 
 button:focus {
