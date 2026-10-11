@@ -391,6 +391,11 @@ button:focus {
 	border-radius: 0.5em;
 }
 
+/* Внутренние отступы панели: раньше вендорский w3-padding с !important. */
+.padded {
+	padding: 8px 16px;
+}
+
 .small-margin {
 	margin-bottom: 0.1em;
 }
