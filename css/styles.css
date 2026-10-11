@@ -541,6 +541,7 @@ button:focus {
 }
 
 .tabs-tab-column {
+	margin-left: 16px;
 	padding-left: 1rem;
 	padding-right: 1rem;
 	display: flex;
@@ -554,6 +555,13 @@ button:focus {
 	height: auto;
 	float: right;
 	margin-bottom: 0.2em;
+}
+
+/* Зазор между колонкой вкладок и её содержимым: раньше вендорские
+   w3-margin-left и w3-margin-top с !important. */
+.main-column {
+	margin-left: 16px;
+	margin-top: 16px;
 }
 
 /* Вкладки скрыты по умолчанию, открытую помечает setTab классом open.

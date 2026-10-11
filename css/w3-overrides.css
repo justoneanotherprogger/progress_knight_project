@@ -47,6 +47,10 @@ table {
 	padding-top: 0.2rem;
 }
 
+.label-gray {
+	color: #757575;
+}
+
 .w3-table td:first-child,
 .w3-table th:first-child {
 	padding-left: 0.3em;
