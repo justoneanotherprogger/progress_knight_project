@@ -56,6 +56,8 @@
 	display: flex;
 }
 
+#netDisplay,
+#incomeDisplay,
 #expenseDisplay {
 	display: inline;
 }
