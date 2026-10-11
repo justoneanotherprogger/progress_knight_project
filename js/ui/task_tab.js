@@ -62,10 +62,10 @@ export function renderJobRow(task, rowKey) {
 	const tooltipText = rowTooltip(task, rowKey);
 	setHTML(els.tooltip, tooltipText);
 
-	const maxLevelText = formatLevel(task.maxLevel);
+	const maxLevelText =
+		gameData.rebirthOneCount > 0 ? formatLevel(task.maxLevel) : "";
 	if (els.maxLevel.textContent !== maxLevelText)
 		els.maxLevel.textContent = maxLevelText;
-	els.maxLevel.classList.toggle("hidden", gameData.rebirthOneCount === 0);
 
 	const nameText = (task.isHero ? `${t("great")} ` : "") + t(task.name);
 	if (els.name.textContent !== nameText) els.name.textContent = nameText;
@@ -122,10 +122,10 @@ export function renderSkillRow(task, rowKey) {
 	const tooltipText = rowTooltip(task, rowKey);
 	setHTML(els.tooltip, tooltipText);
 
-	const maxLevelText = formatLevel(task.maxLevel);
+	const maxLevelText =
+		gameData.rebirthOneCount > 0 ? formatLevel(task.maxLevel) : "";
 	if (els.maxLevel.textContent !== maxLevelText)
 		els.maxLevel.textContent = maxLevelText;
-	els.maxLevel.classList.toggle("hidden", gameData.rebirthOneCount === 0);
 
 	const nameText = (task.isHero ? `${t("great")} ` : "") + t(task.name);
 	if (els.name.textContent !== nameText) els.name.textContent = nameText;

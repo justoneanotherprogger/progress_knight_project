@@ -97,7 +97,10 @@ export function updateHeaderColumns(headerRow, categoryType) {
 		setElementText(headers[1], t("level"));
 		setElementText(headers[3], t("xp_day"));
 		setElementText(headers[4], t("xp_left"));
-		setElementText(headers[5], t("max_level"));
+		setElementText(
+			headers[5],
+			gameData.rebirthOneCount > 0 ? t("max_level") : "",
+		);
 	} else if (categoryType === itemCategories) {
 		const headers = headerRow.getElementsByTagName("th");
 		setElementText(headers[1], t("active"));
@@ -119,13 +122,6 @@ export function renderHeaderRows(categories) {
 				headerRow.getElementsByClassName("category")[0],
 				t(categoryName),
 			);
-		const maxLevelElement = headerRow.querySelector(".maxLevel");
-		if (maxLevelElement)
-			maxLevelElement.classList.toggle(
-				"hidden",
-				gameData.rebirthOneCount === 0,
-			);
-
 		updateHeaderColumns(headerRow, categories);
 	}
 }

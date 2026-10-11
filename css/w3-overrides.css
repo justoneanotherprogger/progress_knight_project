@@ -52,12 +52,6 @@ table {
 	padding-left: 0.3em;
 }
 
-/* Столбик maxLevel — это th/td внутри .w3-table, а вендор даёт им
-   display:table-cell (0,1,1) и перебивает этим .hidden (0,1,0). */
-.w3-table .maxLevel.hidden {
-	display: none;
-}
-
 /* В collapse браузер не рисует border-radius у ячеек, а шапкам категорий
    скругление нужно. */
 #jobTable,
