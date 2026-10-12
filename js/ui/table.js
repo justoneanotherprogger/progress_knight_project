@@ -508,7 +508,7 @@ export function updateRequiredRows(data, categoryType) {
 					gameData.coins,
 					requirements[0].requirement,
 				);
-				// Как в апстриме: когда доход меньше расхода, полоса краснеет.
+				// Когда доход меньше расхода, полоса краснеет.
 				progressColor = getIncome().gt(getExpense())
 					? "color-income"
 					: "color-evil";
