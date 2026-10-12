@@ -219,6 +219,13 @@ body {
 	color: #000;
 }
 
+/* Заблокированная кнопка гаснет и не навязывает курсор — раньше это давал
+   вендорский бандл на .w3-button:disabled. */
+.button:disabled {
+	cursor: not-allowed;
+	opacity: 0.3;
+}
+
 .item-button {
 	background-color: white;
 	text-align: center;
