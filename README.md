@@ -1,10 +1,14 @@
 # Progress Knight Quest — λ
 
-Продолжение игры Progress Knight Quest, оригинал которой лежит на https://indomit.github.io/progress_knight_2/ . Это мод с моим видением баланса и названий в игре.
+Продолжение игры [Progress Knight Quest](https://indomit.github.io/progress_knight_2/).
+Интерфейс, темп и механики переработаны — это самостоятельная игра на основе
+оригинала, а не набор правок поверх него.
 
 ## Что это за игра
 
 «Progress Knight Quest» — инкрементальная (кликерная, idle) игра, в которой ваш персонаж живёт в фэнтезийном средневековье и шаг за шагом развивается — от простого крестьянина до могущественного мага и дальше. Игра идёт сама: герой копит опыт и навыки даже когда вы просто смотрите на экран, а вы решаете, куда направлять его развитие.
+
+![Скриншот игры: вкладка «Работы», тёмная тема](img/PKQL.jpg)
 
 ## Основные механики
 
@@ -22,4 +26,4 @@
 
 Просто откройте игру в браузере — дополнительная установка не требуется.
 
-https://justoneanotherprogger.github.io/progress_knight_project/
+[justoneanotherprogger.github.io/progress_knight_project](https://justoneanotherprogger.github.io/progress_knight_project/)
