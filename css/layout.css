@@ -194,6 +194,13 @@
 	color: gray;
 }
 
+/* Рамка на паузе. Селектор с id обязателен: у .panel свой border-color, оба
+   правила — одиночные классы, а .panel лежит ниже по файлу и перебил бы
+   одиночный .game-paused. */
+#info.game-paused {
+	border: 0.15em solid #f44336;
+}
+
 .resource-desc {
 	color: gray;
 }

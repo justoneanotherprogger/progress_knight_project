@@ -202,10 +202,6 @@ button:focus {
 	position: relative;
 }
 
-.game-paused {
-	border: 0.1em solid blue;
-}
-
 .tooltip .tooltipText {
 	visibility: hidden;
 	background-color: black;
