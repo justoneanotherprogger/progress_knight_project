@@ -1,0 +1,593 @@
+/* Раскладка: обёртка, панели, топбар, сайдбар, колонки, правила показа и
+   скрытия. Элементы интерфейса — в css/controls.css, содержимое вкладок — в
+   css/content.css, таблицы — в css/tables.css.
+
+   Файл подключается последним: .hidden объявлен в самом конце и выигрывает
+   у любого одиночного класса с display только порядком. В других файлах
+   правил с display быть не должно — они перебили бы скрытие. */
+
+/* Обёртка всего интерфейса: своя ширина по содержимому, по центру окна.
+   Вертикальные отступы связаны с QUICK_BAR_BOTTOM_GAP (js/ui/sidebar.js). */
+.game-frame {
+	margin: 16px auto;
+	width: fit-content;
+}
+
+.text-caption {
+	font-size: larger;
+	text-align: center;
+}
+
+/* Перечисление горячих клавиш: заголовок центрирован через .text-caption,
+   а сами строки — обычные div'ы, и text-align от соседа не наследуется. */
+#keybindsList {
+	text-align: center;
+}
+
+#resources .text-caption + div {
+	text-align: center;
+}
+
+#info .text-caption + div {
+	text-align: center;
+}
+
+#info #inspiration_decay,
+#info #greed_rise {
+	text-align: center;
+	color: rgb(168, 111, 111);
+}
+
+/* Ряд ресетной кнопки с вопросиком: кнопка тянется на всю ширину, вопросик
+   жмётся. */
+.rebirth-reset {
+	/* Поля кнопки переехали в контейнер: flex-контейнер включает вертикальные
+	   margin'ы детей в свою авто-высоту, и растянутый вопросик (у него полей
+	   нет) выходил выше самой кнопки на их сумму. */
+	padding: 0.8em 0 0.1em;
+	align-items: stretch;
+	gap: 0.4em;
+}
+
+/* Кнопка забирает всю ширину ряда, вопросик живёт своей полосой. min-width: 0
+   обязателен: у .button white-space: nowrap, и без него flex-элемент не
+   сжимается ниже содержимого — длинная подпись метавселенной вытолкнула бы
+   вопросик за пределы панели. */
+.rebirth-reset > button {
+	flex: 1;
+	min-width: 0;
+}
+
+.reset-help {
+	align-items: center;
+	justify-content: center;
+	cursor: help;
+	color: gray;
+	font-weight: bold;
+	flex-shrink: 0;
+	padding: 0.15em 0.5em;
+}
+
+.topbar-element {
+	font-size: small;
+}
+
+#income-resource {
+	align-items: center;
+	gap: 1rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	width: 320px;
+	flex-shrink: 0;
+	white-space: nowrap;
+}
+
+.topbar {
+	width: 87em;
+	height: 75px;
+	align-items: center;
+	position: relative;
+}
+
+.topbar::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 1em;
+	background-color: rgb(243, 243, 243);
+	z-index: -1;
+}
+
+.topbar::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 1em;
+	background-color: rgb(243, 243, 243);
+	z-index: -1;
+}
+
+.topbar-currencies {
+	flex: 1;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.topbar-center {
+	align-items: center;
+	justify-content: center;
+}
+
+.topbar-balance {
+	color: gray;
+	text-align: center;
+}
+
+.topbar-balance-block {
+	min-width: 120px;
+}
+
+.icon-gap {
+	padding-right: 0.3em;
+}
+
+#resources {
+	top: 0;
+	z-index: 2;
+	border-width: 1em 0;
+	border-style: solid;
+	border-color: rgb(243, 243, 243);
+}
+
+.panel {
+	background-color: white;
+	border-color: rgb(243, 243, 243);
+	border-radius: 0.5em;
+}
+
+/* Внутренние отступы панели. */
+.padded {
+	padding: 8px 16px;
+}
+
+.small-margin {
+	margin-bottom: 0.1em;
+}
+
+.header {
+	justify-content: center;
+	align-items: center;
+}
+
+.header img {
+	position: static;
+	width: 36px;
+	height: 36px;
+}
+
+.row {
+	align-items: flex-start;
+}
+
+.column {
+	flex-direction: column;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+.quick-bar {
+	position: sticky;
+	/* Липкая граница и высота пересчитываются в updateQuickBarHeight
+	   (js/ui/sidebar.js). Значение ниже — только до первого расчёта. */
+	top: 0;
+	height: calc(100vh);
+	width: 21em;
+	flex-direction: column;
+	overflow-y: auto;
+}
+
+.sidebar-element {
+	color: gray;
+}
+
+.resource-desc {
+	color: gray;
+}
+
+.inspiration-rewards {
+	padding-top: 0.3em;
+}
+
+#challenge_title {
+	text-align: center;
+}
+
+#death_title {
+	color: red;
+}
+
+#death_desc {
+	color: gray;
+	font-size: 12px;
+}
+
+#exit_challenge {
+	margin-bottom: 0.1em;
+	margin-top: 0.8em;
+	width: 100%;
+}
+
+#pauseButton {
+	margin-top: 0.8em;
+}
+
+#resourceStats {
+	flex: 1 1 auto;
+	min-height: 0;
+	overflow: hidden;
+	flex-direction: column;
+	justify-content: space-between;
+	--stats-scale: 1;
+}
+
+#resourceStats .text-caption {
+	font-size: calc(20px * var(--stats-scale));
+	padding-top: calc(0.2em * var(--stats-scale));
+	white-space: nowrap;
+}
+
+#resourceStats .resource-desc {
+	font-size: calc(16px * var(--stats-scale));
+}
+
+.tabs-tab-column {
+	margin-left: 16px;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	justify-content: space-between;
+	width: 65em;
+	height: auto;
+}
+
+.tabs-main-column {
+	width: 65em;
+	height: auto;
+	float: right;
+	margin-bottom: 0.2em;
+}
+
+/* Зазор между колонкой вкладок и её содержимым. */
+.main-column {
+	margin-left: 16px;
+	margin-top: 16px;
+}
+
+.page-column {
+	width: 56em;
+	height: auto;
+}
+
+/* 56em у .page-column держит раскладку: с флексами и центрированием внутри при auto едет. */
+#milestonePage,
+#challengePage1,
+#rebirthPage,
+#milestoneShopPage {
+	width: 100%;
+}
+
+.settings-main-column {
+	width: 56em;
+	height: auto;
+	float: right;
+	margin-bottom: 4em;
+}
+
+.baritem {
+	cursor: pointer;
+	display: inline-block;
+	height: auto;
+	overflow: hidden;
+	padding: 0.4em 0.8em;
+	text-align: center;
+	user-select: none;
+	vertical-align: middle;
+	white-space: nowrap;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	border-radius: 0.25em;
+}
+
+/* Ховер табов в тёмной теме тоже серый: переопределение в css/colors.css бьёт по
+   .button, которого у табов нет, и .baritem:hover доходит сам. */
+.baritem:hover {
+	background-color: #ccc;
+	color: #000;
+}
+
+.tab-current {
+	color: #ffffff;
+	background-color: #607d8b;
+}
+
+.outer-circle {
+	width: 1.7em;
+	height: 1.7em;
+	border-radius: 50%;
+	border: solid 0.12em #ccc;
+}
+
+.center-g-inside {
+	place-items: center;
+}
+
+.inner-circle {
+	width: 80%;
+	height: 80%;
+	border-radius: 50%;
+}
+
+.rebirth-label {
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+/* Gain-текст на кнопках ребёрна меняется каждый кадр, fitText постоянно
+   пересчитывает посадку и переписывает font-size инлайном — высота в em
+   плыла вместе с k. min-height, а не height: при максимальном масштабе
+   шрифта текст помещается, а не обрезается. */
+#rebirthBtn2,
+#rebirthBtn3,
+#rebirthBtn4,
+#rebirthBtn5 {
+	min-height: 40px;
+}
+
+.sidebarChallengeReward {
+	text-align: center;
+}
+
+#settings ul,
+#statsTab ul {
+	list-style: none;
+	padding-left: 0;
+}
+
+#settings ul {
+	margin: 0;
+}
+
+#statsTab ul {
+	margin: 1em 0;
+}
+
+.challenge-requirement {
+	color: red;
+	padding-left: 0.5em;
+}
+
+/* Колонка кнопок подвкладок: блок, а не flex — у настроек колонка с
+   шириной и полями, и flex её перевёл бы. Отступ и зазор заданы здесь, а не
+   пробелом между инлайн-блоками: тот держится на переносах строк разметки
+   и разъезжается при переформатировании. */
+.subtab-column {
+	padding: 0.5em 1em;
+}
+
+.subtab-column > :not(:last-child) {
+	margin-right: 0.5em;
+}
+
+/* Липкость панелей переключается настройкой: специфичность у обоих классов
+   одинаковая, поэтому правила стоят после .quick-bar и .topbar. */
+.sticky {
+	position: sticky;
+}
+
+.unsticky {
+	position: static;
+}
+
+.activity-box {
+	border: 1px solid rgb(208, 208, 208);
+	border-radius: 0.5em;
+	padding: 0.5em;
+	margin: 0.5em 0;
+	background-color: rgba(0, 0, 0, 0.02);
+}
+
+.progress-text {
+	display: flex;
+}
+
+.req-progress-container {
+	display: block;
+}
+
+/* В кнопках ребёрна скрытая полоса не занимает место: здесь важна
+   компактность кнопки, а не стабильность высоты строки таблицы. */
+#rebirthGroup .req-progress-container[data-req-visible="hidden"] {
+	display: none;
+}
+
+.boost-panel {
+	display: flex;
+}
+
+.hiddenTask {
+	display: none;
+}
+
+.tooltip {
+	display: inline-block;
+}
+
+/* Тултипы, которые заполняются по событию (а не наведением), до заполнения
+   не должны показывать пустую плашку. */
+.tooltip .tooltipText:empty {
+	display: none;
+}
+
+.rebirth-reset {
+	display: flex;
+}
+
+.reset-help {
+	display: inline-flex;
+}
+
+#income-resource {
+	display: flex;
+}
+
+.topbar {
+	display: flex;
+}
+
+.topbar-currencies {
+	display: flex;
+}
+
+.topbar-center {
+	display: flex;
+}
+
+#netDisplay,
+#incomeDisplay,
+#expenseDisplay {
+	display: inline;
+}
+
+.inline {
+	display: inline-block;
+}
+
+.header {
+	display: flex;
+}
+
+.row {
+	display: flex;
+}
+
+.column {
+	display: flex;
+}
+
+.quick-bar {
+	display: flex;
+}
+
+#boostCooldownDisplay {
+	display: inline-block;
+}
+
+#resourceStats {
+	display: flex;
+}
+
+.tabs-tab-column {
+	display: flex;
+}
+
+/* Вкладки скрыты по умолчанию, открытую помечает setTab классом open.
+   display:flex нужен подвкладкам: класса .column у них нет. */
+.tab,
+.tabSettings,
+.tabDarkMatter,
+.tabMetaverse,
+.tabMilestones {
+	display: none;
+}
+
+.tab.open,
+.tabSettings.open,
+.tabDarkMatter.open,
+.tabMetaverse.open,
+.tabMilestones.open {
+	display: flex;
+}
+
+.center-g-inside {
+	display: grid;
+}
+
+.perk {
+	display: inline-block;
+}
+
+.perk-grid {
+	display: grid;
+}
+
+.autobuy-toggle-row {
+	display: flex;
+}
+
+.toggle {
+	display: inline-flex;
+}
+
+.toggle input {
+	display: none;
+}
+
+.note-modal {
+	display: flex;
+}
+
+/* Текст требования рядом с кнопкой входа в испытание. Стили в классе, а не
+   инлайном: инлайновый display перебивал [hidden], и требование не пряталось.
+   Стоит до .hidden — при равной специфичности решает порядок. */
+.challenge-requirement {
+	display: inline-block;
+}
+
+/* Ряд кнопки входа в испытание: кнопка и требование стоят на одной строке.
+   Здесь, а не в content.css: в этом файле display-правила стоят до .hidden,
+   который объявлен последним намеренно. */
+.challenge-row {
+	display: inline-block;
+}
+
+/* Колонка вкладки испытаний: своей строки не занимает, дети строятся в
+   раскладке родителя. */
+.challenges-tabcolumn {
+	display: contents;
+}
+
+/* Строка «Требуется»: значение требования на одной строке с подписью.
+   Отдельный класс, а не .value: классом value подписана ячейка таблицы
+   задач, и display:inline сломал бы ей раскладку. */
+.requirement-value {
+	display: inline;
+}
+
+.coins {
+	display: inline;
+}
+
+/* Сферы: инлайн-блок нужен обводке по букве и анимации — они считают
+   прямоугольник элемента, и блочный ломает подчёркивание. */
+.color-dark-orbs {
+	display: inline-block;
+}
+
+.orb-text {
+	display: inline-block;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+/* .hidden объявлен последним намеренно: он равен по специфичности любому
+   одиночному классу с display, и побеждает только будучи ниже в этом файле. */
+.hidden {
+	display: none;
+}

@@ -2,8 +2,8 @@
    настройки. Классы, вынесенные из инлайнов разметки, и компоненты, живущие
    внутри вкладки. Ширины колонок и ячейки таблиц живут в css/tables.css.
 
-   Файл подключён до display.css, поэтому правил с display здесь быть не
-   должно: .hidden объявлен последним в display.css и выигрывает порядком,
+   Файл подключён до css/layout.css, поэтому правил с display здесь быть не
+   должно: .hidden объявлен последним в css/layout.css и выигрывает порядком,
    а display из более позднего файла скрытие бы перебил. */
 
 /* Испытания: заголовок активного испытания, центровка подсказок. */
@@ -148,7 +148,8 @@
 }
 
 /* Настройки: страницы настроек и статистики, поля ввода. */
-.settings-page {
+.settings-page,
+.table-page {
 	flex: 1;
 	margin-left: 0.5em;
 }
@@ -202,11 +203,6 @@
 	border-color: red;
 }
 
-.table-page {
-	flex: 1;
-	margin-left: 0.5em;
-}
-
 .progress-fill.milestone {
 	background-color: green;
 }
@@ -233,4 +229,13 @@
 .milestone-cost {
 	color: gray;
 	padding-bottom: 0.5em;
+}
+
+.reward {
+	color: rgb(64, 237, 23);
+	padding-bottom: 0.5em;
+}
+
+.selected {
+	color: rgb(39, 234, 17);
 }

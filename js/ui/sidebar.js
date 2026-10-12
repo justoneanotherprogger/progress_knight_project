@@ -102,7 +102,7 @@ export function renderSideBar() {
 
 	// Авто-выбор сам меняет работу и недвижимость — показывать их вручную
 	// бессмысленно. Условие повторяет запуск авто-выбора в gameLoop.js.
-	// Класс, а не свойство hidden: .hidden в styles.css даёт display:none.
+	// Класс, а не свойство hidden: .hidden в css/layout.css даёт display:none.
 	const jobVisible = !(
 		isJobAutoSelectUnlocked() && gameData.autoPromoteEnabled
 	);
@@ -191,7 +191,7 @@ export function renderSideBar() {
 	const boostPanel = el("boostPanel");
 	// Класс, а не свойство hidden: у панели инлайновый display:flex, он сильнее
 	// браузерного [hidden] и свойство перестало её прятать. Класс .hidden из
-	// styles.css сильнее инлайна.
+	// css/layout.css сильнее инлайна.
 	boostPanel.classList.toggle(
 		"hidden",
 		!gameData.requirements.req_metaverse_tab_button.isCompleted(),
@@ -255,7 +255,7 @@ export function renderSideBar() {
 	// Прячем обёртку, а не кнопки: renderRequirements() (ui/table.js)
 	// переписывает .hidden у #rebirthButton1..5 каждый кадр, а первую и
 	// пятую скрывает ещё и этот модуль. И классом, а не атрибутом hidden:
-	// .button в css/styles.css задаёт display:inline-block и перебивает
+	// .button в css/controls.css задаёт display:inline-block и перебивает
 	// браузерное [hidden]{display:none} — так же делает renderRequirements().
 	if (gameData.active_challenge === "") {
 		el("challengeTitle").hidden = true;
@@ -284,7 +284,7 @@ export function renderSideBar() {
 
 // Keeps the quick bar's bottom edge above the window's bottom edge, leaving
 // room for both the browser-default body margin-bottom (8px) and the
-// .game-frame offset (0.8em, styles.css).  After accounting for both, the
+// .game-frame offset (0.8em, css/layout.css).  After accounting for both, the
 // page height lands exactly on the window edge so no phantom scrollbar
 // appears.
 // sticky top — это измеренная нижняя граница топбара (см.

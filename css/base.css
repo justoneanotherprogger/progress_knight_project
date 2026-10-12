@@ -1,5 +1,9 @@
 /* Базовые правила страницы: сброс, шрифт, отступы, заголовок. */
 
+/* Полоса прокрутки то появляется, то исчезает при переключении вкладок, а
+   обёртка центрирована: без зарезервированного поля дёргается всё содержимое.
+   scrollbar-gutter резервирует поле всегда. Chrome 94+, Firefox 97+,
+   Safari 18.2+. */
 html {
 	box-sizing: border-box;
 	font-family: Verdana, sans-serif;
@@ -7,6 +11,7 @@ html {
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 	overflow-x: hidden;
+	scrollbar-gutter: stable;
 }
 
 *,
@@ -16,6 +21,8 @@ html {
 }
 
 body {
+	background-color: rgb(243, 243, 243);
+	font-size: medium;
 	margin: 0;
 }
 

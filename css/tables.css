@@ -13,7 +13,7 @@ table {
 	width: 100%;
 }
 
-/* `.tooltip { display: inline-block }` из display.css перебивает дефолт
+/* `.tooltip { display: inline-block }` из css/layout.css перебивает дефолт
    ячейки, пока класс .table-bordered не восстановит table-cell: в
    inline-block vertical-align не центрирует содержимое, а прижимает
    его к верху строки. */
