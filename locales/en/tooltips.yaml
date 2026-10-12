@@ -164,7 +164,7 @@ item_desintegration_tooltip: Why do you need it?
 item_custom_galaxy_tooltip: You know about the pocket dimension, right?
 item_hypersphere_tooltip: You gain the limitless pow... ah, you're already omnipotent...
 
-# Tooltips: Essence + Heroic Milestones
+# Tooltips: Essence + Stellar Milestones
 milestone_magic_eye_tooltip: The Eye in your Amulet starts to glow.
 milestone_almighty_eye_tooltip: The Eye in your Amulet shines like a star.
 milestone_deal_with_the_devil_tooltip: You made a deal with the Devil.
@@ -175,19 +175,19 @@ milestone_inferno_tooltip: You are at the last level of Hell. What is next?
 milestone_faint_hope_tooltip: Maybe there is hope?
 milestone_a_new_beginning_tooltip: Unlocks the ability to reset for Dark Matter
 milestone_new_beginning_tooltip: Try to upgrade One Above All to level 2000
-milestone_rise_of_great_heroes_tooltip: Great jobs and skills are slots with the ★★★
-  mark. Every active Great job or skill will increase Essence gain a bit.
-milestone_lazy_heroes_tooltip: Total Great XP multiplier is 5e20
-milestone_dirty_heroes_tooltip: Total Great XP multiplier is 5e35
-milestone_angry_heroes_tooltip: Total Great XP multiplier is 5e50
-milestone_tired_heroes_tooltip: Total Great XP multiplier is 5e65
-milestone_scared_heroes_tooltip: Total Great XP multiplier is 5e80
-milestone_good_heroes_tooltip: Total Great XP multiplier is 5e95
-milestone_funny_heroes_tooltip: Total Great XP multiplier is 5e120
-milestone_beautiful_heroes_tooltip: Total Great XP multiplier is 5e170
-milestone_awesome_heroes_tooltip: Total Great XP multiplier is 5e180
-milestone_furious_heroes_tooltip: Total Great XP multiplier is 5e198
-milestone_superb_heroes_tooltip: Total Great XP multiplier is 5e201
+milestone_rise_of_great_heroes_tooltip: Stellar jobs and skills are slots with the ★★★
+  mark. Every active Stellar job or skill will increase Essence gain a bit.
+milestone_lazy_heroes_tooltip: Total Stellar XP multiplier is 5e20
+milestone_dirty_heroes_tooltip: Total Stellar XP multiplier is 5e35
+milestone_angry_heroes_tooltip: Total Stellar XP multiplier is 5e50
+milestone_tired_heroes_tooltip: Total Stellar XP multiplier is 5e65
+milestone_scared_heroes_tooltip: Total Stellar XP multiplier is 5e80
+milestone_good_heroes_tooltip: Total Stellar XP multiplier is 5e95
+milestone_funny_heroes_tooltip: Total Stellar XP multiplier is 5e120
+milestone_beautiful_heroes_tooltip: Total Stellar XP multiplier is 5e170
+milestone_awesome_heroes_tooltip: Total Stellar XP multiplier is 5e180
+milestone_furious_heroes_tooltip: Total Stellar XP multiplier is 5e198
+milestone_superb_heroes_tooltip: Total Stellar XP multiplier is 5e201
 milestone_god_s_blessings_tooltip: May God bless you!
 
 milestone_mind_control_tooltip: Control the Devil by making him give you even more

@@ -392,7 +392,7 @@ export function resetGameData() {
 	clearInterval(saveloop);
 	clearInterval(gameloop);
 	clearInterval(renderloop);
-	if (!confirm("Are you sure you want to reset the game?")) {
+	if (!confirm(t("confirm_reset_game"))) {
 		startLoops();
 		return;
 	}

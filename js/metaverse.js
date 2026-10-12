@@ -300,7 +300,7 @@ export function getTimeIsAFlatCircleXP() {
 }
 
 export function getUnspentPerksDarkmatterGainBuff() {
-	const effect = softcap(gameData.perks_points * 0.0027 + 2, 75, 0.01);
+	const effect = softcap(gameData.perks_points * 0.0027 + 2, 75, 0.2);
 
 	return gameData.requirements.milestone_the_end_is_near.isCompleted()
 		? 10 ** effect

@@ -1,0 +1,61 @@
+/* Базовые правила страницы: сброс, шрифт, отступы, заголовок. */
+
+/* Полоса прокрутки то появляется, то исчезает при переключении вкладок, а
+   обёртка центрирована: без зарезервированного поля дёргается всё содержимое.
+   scrollbar-gutter резервирует поле всегда. Chrome 94+, Firefox 97+,
+   Safari 18.2+. */
+html {
+	box-sizing: border-box;
+	font-family: Verdana, sans-serif;
+	line-height: 1.5;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	overflow-x: hidden;
+	scrollbar-gutter: stable;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+body {
+	background-color: rgb(243, 243, 243);
+	font-size: medium;
+	margin: 0;
+}
+
+/* Ссылки приходят из локалей готовым HTML и ставятся через innerHTML, поэтому
+   в разметке шаблонов их нет. Цвет — как у окружающего текста. */
+a {
+	color: inherit;
+}
+
+button,
+input,
+select,
+textarea,
+optgroup {
+	font: inherit;
+	margin: 0;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+	-webkit-appearance: button;
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+	height: auto;
+}
+
+h3 {
+	font-family: "Segoe UI", Arial, sans-serif;
+	font-size: 24px;
+	font-weight: 400;
+	margin: 10px 0;
+}

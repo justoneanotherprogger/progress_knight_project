@@ -13,22 +13,18 @@ import {
 	rebirthTwo,
 } from "../rebirth.js";
 import { removeSpaces, removeStrangeCharacters } from "../utils.js";
-import { fitText } from "./helpers.js";
+import { fitText, setElementText } from "./helpers.js";
 import { updateUI } from "./init.js";
 import { getSortedPerks } from "./metaverse_tab.js";
 
 export function setStickySidebar(sticky) {
 	gameData.settings.stickySidebar = sticky;
 	document.getElementById("settingsStickySidebar").checked = sticky;
-	document.getElementById("info").style.position = sticky
-		? "sticky"
-		: "initial";
-	document.getElementById("resources").style.position = sticky
-		? "sticky"
-		: "initial";
-	document.getElementById("tabcolumn").style.position = sticky
-		? "sticky"
-		: "initial";
+	for (const id of ["info", "resources", "tabcolumn"]) {
+		const element = document.getElementById(id);
+		element.classList.toggle("sticky", sticky);
+		element.classList.toggle("unsticky", !sticky);
+	}
 }
 
 export function selectElementInGroup(group, index) {
@@ -46,141 +42,25 @@ export function refreshLangButtons() {
 	}
 }
 
-export function setLayout(id) {
-	gameData.settings.layout = id;
-	if (id === 0) {
-		document.getElementById("skillsTabButton").classList.add("hidden");
-		document.getElementById("shopTabButton").classList.add("hidden");
-
-		document.getElementById("skills").classList.add("hidden");
-		document.getElementById("shop").classList.add("hidden");
-
-		document.getElementById("tabcolumn").classList.add("plain-tab-column");
-		document.getElementById("tabcolumn").classList.remove("tabs-tab-column");
-
-		document.getElementById("maincolumn").classList.add("plain-main-column");
-		document.getElementById("maincolumn").classList.remove("tabs-main-column");
-
-		document
-			.getElementById("jobs")
-			.appendChild(document.getElementById("skillPage"));
-		document
-			.getElementById("jobs")
-			.appendChild(document.getElementById("itemPage"));
-	} else {
-		document.getElementById("skillsTabButton").classList.remove("hidden");
-		document.getElementById("shopTabButton").classList.remove("hidden");
-
-		document.getElementById("skills").classList.remove("hidden");
-		document.getElementById("shop").classList.remove("hidden");
-
-		document.getElementById("tabcolumn").classList.add("tabs-tab-column");
-		document.getElementById("tabcolumn").classList.remove("plain-tab-column");
-
-		document.getElementById("maincolumn").classList.add("tabs-main-column");
-		document.getElementById("maincolumn").classList.remove("plain-main-column");
-
-		document
-			.getElementById("skills")
-			.appendChild(document.getElementById("skillPage"));
-		document
-			.getElementById("shop")
-			.appendChild(document.getElementById("itemPage"));
-	}
-
-	// dark matter layout
-	if (id === 0) {
-		document.getElementById("tabcolumnDarkMater").classList.add("hidden");
-		document
-			.getElementById("shopTab")
-			.appendChild(document.getElementById("skillTreePage"));
-		setTabDarkMatter("shopTab");
-
-		document
-			.getElementById("maincolumnDarkMatter")
-			.classList.remove("settings-main-column");
-		document.getElementById("skillTreePageDarkMaterTitle").textContent =
-			"Dark Matter Abilities ";
-	} else {
-		document.getElementById("tabcolumnDarkMater").classList.remove("hidden");
-		document
-			.getElementById("skillTreeTab")
-			.appendChild(document.getElementById("skillTreePage"));
-
-		document
-			.getElementById("maincolumnDarkMatter")
-			.classList.add("settings-main-column");
-		document.getElementById("skillTreePageDarkMaterTitle").textContent =
-			"Dark Matter: ";
-	}
-
-	// metaverse layout
-
-	if (id === 0) {
-		document.getElementById("tabcolumnMetaverse").classList.add("hidden");
-		document
-			.getElementById("metaverseTab1")
-			.appendChild(document.getElementById("metaversePage2"));
-		setTabMetaverse("metaverseTab1");
-		setTabMilestones("milestonesTab1");
-
-		document
-			.getElementById("maincolumnMetaverse")
-			.classList.remove("settings-main-column");
-	} else {
-		document.getElementById("tabcolumnMetaverse").classList.remove("hidden");
-		document
-			.getElementById("metaverseTab2")
-			.appendChild(document.getElementById("metaversePage2"));
-
-		document
-			.getElementById("maincolumnMetaverse")
-			.classList.add("settings-main-column");
-	}
-
-	selectElementInGroup("Layout", id === 0 ? 1 : 0);
-}
-
-export function setFontSize(id) {
-	const fontSizes = {
-		0: "xx-small",
-		1: "x-small",
-		2: "small",
-		3: "medium",
-		4: "large",
-		5: "x-large",
-		6: "xx-large",
-		7: "xxx-large",
-	};
-
-	if (id < 0) id = 0;
-	if (id > 7) id = 7;
-
-	gameData.settings.fontSize = id;
-	document.getElementById("body").style.fontSize = fontSizes[id];
-	updateFontSizeIndicator();
-}
-
-export function updateFontSizeIndicator() {
-	const label = document.getElementById("font_size");
-	if (label)
-		label.innerHTML = `${t("font_size")} ${gameData.settings.fontSize}/7`;
-}
-
 export function setSignDisplay() {
 	const signDisplay = document.getElementById("signDisplay");
 	if (!signDisplay) return;
 
 	if (getNet().gt(-1) && getNet().lt(1)) {
-		signDisplay.textContent = "";
-		signDisplay.style.color = "gray";
+		setElementText(signDisplay, "");
+		setSignClass(signDisplay, "sign-gray");
 	} else if (getIncome().gt(getExpense())) {
-		signDisplay.textContent = "+";
-		signDisplay.style.color = "green";
+		setElementText(signDisplay, "+");
+		setSignClass(signDisplay, "sign-green");
 	} else {
-		signDisplay.textContent = "-";
-		signDisplay.style.color = "red";
+		setElementText(signDisplay, "-");
+		setSignClass(signDisplay, "sign-red");
 	}
+}
+
+function setSignClass(element, className) {
+	element.classList.remove("sign-gray", "sign-green", "sign-red");
+	element.classList.add(className);
 }
 
 export function getQuerySelector(taskName) {
@@ -224,9 +104,9 @@ export function setTab(selectedTab) {
 		document.getElementsByClassName("tab"),
 	);
 	tabs.forEach((tab) => {
-		tab.style.display = "none";
+		tab.classList.remove("open");
 	});
-	tabElement.style.display = "flex";
+	tabElement.classList.add("open");
 
 	// Рендер после показа: до этого вкладка display:none и fitText измеряет
 	// clientWidth = 0, кладя текст в минимальный масштаб. Переключение
@@ -235,21 +115,21 @@ export function setTab(selectedTab) {
 
 	const tabButtons = document.getElementsByClassName("tabButton");
 	for (const tabButton of tabButtons) {
-		tabButton.classList.remove("w3-blue-gray");
+		tabButton.classList.remove("tab-current");
 	}
-	element.classList.add("w3-blue-gray");
+	element.classList.add("tab-current");
 }
 
 function setTabGroup(suffix, tab) {
 	const element = document.getElementById(`${tab}TabButton`);
 	for (const panel of document.getElementsByClassName(`tab${suffix}`)) {
-		panel.style.display = "none";
+		panel.classList.remove("open");
 	}
-	document.getElementById(tab).style.display = "flex";
+	document.getElementById(tab).classList.add("open");
 	for (const button of document.getElementsByClassName(`tabButton${suffix}`)) {
-		button.classList.remove("w3-blue-gray");
+		button.classList.remove("tab-current");
 	}
-	element.classList.add("w3-blue-gray");
+	element.classList.add("tab-current");
 }
 
 export function setTabSettings(tab) {
@@ -304,11 +184,7 @@ export function changeTab(direction) {
 
 	let currentTab = 0;
 	for (const i in tabs) {
-		if (
-			!tabs[i].style.display.includes("none") &&
-			!tabs[i].classList.contains("hidden")
-		)
-			currentTab = i * 1;
+		if (tabs[i].classList.contains("open")) currentTab = i * 1;
 	}
 	let targetTab = currentTab + direction;
 	if (targetTab < 0) {

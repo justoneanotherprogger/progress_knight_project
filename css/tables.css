@@ -1,0 +1,181 @@
+/* Таблицы: общий каркас, шапки категорий, сетка колонок. */
+
+table {
+	white-space: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-style: normal;
+	text-align: start;
+	font-variant: normal;
+}
+
+.table-bordered {
+	width: 100%;
+}
+
+/* `.tooltip { display: inline-block }` из css/layout.css перебивает дефолт
+   ячейки, пока класс .table-bordered не восстановит table-cell: в
+   inline-block vertical-align не центрирует содержимое, а прижимает
+   его к верху строки. */
+.table-bordered td {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.table-bordered tr {
+	border-bottom: 0.05em solid #ddd;
+}
+
+.table-bordered th {
+	height: 2em;
+}
+
+.table-bordered td {
+	height: 2em;
+	padding: 0 0 0 0;
+	padding-left: 0.8em;
+}
+
+/* Регресс после выноса инлайнов настроек: одиночный класс на ячейке (0,1,0)
+   проигрывает `.table-bordered td` (0,1,1), и паддинг 0.4em исчезал — строки
+   схлопывались. Составной селектор (0,2,1) побеждает. */
+.table-bordered td.settings-cell,
+.table-bordered td.settings-cell-label {
+	padding: 0.4em;
+}
+
+.table-bordered td.requirement-cell {
+	padding-top: 0.2rem;
+}
+
+.label-gray {
+	color: #757575;
+}
+
+.table-bordered td:first-child,
+.table-bordered th:first-child {
+	padding-left: 0.3em;
+}
+
+/* В collapse браузер не рисует border-radius у ячеек, а шапкам категорий
+   скругление нужно. */
+#jobTable,
+#skillTable,
+#itemTable,
+#milestoneTable {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+
+/* У таблиц настроек шапок категорий нет, скругление ячеек не требуется,
+   а в separate не рисуются разделители строк. */
+.settings-table {
+	border-collapse: collapse;
+}
+
+.headerRow th {
+	white-space: nowrap;
+	color: #ffffff;
+}
+
+.headerRow th:first-child {
+	border-radius: 0.25em 0 0 0.25em;
+	padding-left: 0.6em;
+}
+
+.headerRow th:last-child {
+	border-radius: 0 0.25em 0.25em 0;
+}
+
+/* Первая колонка таблиц задач не держит ширину: полоска у неё width: 100%,
+   а имя и тултип — position: absolute. При авто-лайауте место под них
+   разбирают соседние колонки, и длина полосок плывёт от панели к панели.
+   min-width фиксирует сетку, не трогая поведение остальных колонок. */
+#jobTable tr > :first-child,
+#skillTable tr > :first-child {
+	min-width: 18em;
+}
+
+/* fixed держит колонки по ширинам из шапки (20em имя, 18em эффект).
+   На авто-лайауте nowrap-эффект растягивает ячейку, fitText видит
+   «всё влезло» и не сжимает кегль — таблица вылезает за контейнер.
+   Заодно обе таблицы (работы и навыки) получают одну сетку —
+   подписи шапки не скачут при переключении вкладок. */
+#jobTable,
+#skillTable {
+	table-layout: fixed;
+}
+
+#jobTable td.level,
+#jobTable th.level,
+#jobTable td.xpGain,
+#jobTable th.xpGain,
+#jobTable td.xpLeft,
+#jobTable th.xpLeft,
+#jobTable td.maxLevel,
+#jobTable th.maxLevel,
+#skillTable td.level,
+#skillTable th.level,
+#skillTable td.xpGain,
+#skillTable th.xpGain,
+#skillTable td.xpLeft,
+#skillTable th.xpLeft,
+#skillTable td.maxLevel,
+#skillTable th.maxLevel {
+	text-align: center;
+}
+
+/* В строке работы блок эффекта пуст, в строке навыка — блок дохода.
+   Селектор по td.value: тот же класс .effect у строк «требуется» —
+   там он показывает «Следующее», и его гасить нельзя. */
+#jobTable td.value .effect,
+#skillTable td.value .income {
+	display: none;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+/* Ширины колонок, ячейки таблиц настроек, строка шапки. */
+.settings-cell {
+	padding: 0.4em;
+}
+
+.settings-cell-label {
+	padding: 0.4em;
+	width: 15em;
+}
+
+.col-task-name {
+	width: 18em;
+}
+
+.col-task-value {
+	width: 18em;
+}
+
+.col-item-name {
+	width: 20em;
+}
+
+.col-item-effect {
+	width: 20em;
+}
+
+.col-milestone-currency {
+	width: 6em;
+}
+
+.col-milestone-name {
+	width: 15em;
+}
+
+.requirement-cell {
+	padding-left: 0.8em;
+	padding-top: 0.2rem;
+}
+
+.headerRow {
+	cursor: default;
+}

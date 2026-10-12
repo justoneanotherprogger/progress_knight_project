@@ -1,0 +1,191 @@
+/* Цвета: палитра валют и перекраска под тёмную тему. */
+
+@keyframes currency-rainbow {
+	0% {
+		color: #ff4040;
+	}
+	16% {
+		color: #ffff40;
+	}
+	33% {
+		color: #40ff40;
+	}
+	50% {
+		color: #40ffff;
+	}
+	66% {
+		color: #4040ff;
+	}
+	83% {
+		color: #ff40ff;
+	}
+	100% {
+		color: #ff4040;
+	}
+}
+
+.currency-bold {
+	font-weight: bold;
+}
+
+.currency-shadow {
+	font-weight: bold;
+	text-shadow: 0 0 5px currentColor;
+}
+
+.currency-shadow-rainbow {
+	font-weight: bold;
+	text-shadow: 0 0 5px currentColor;
+	animation: currency-rainbow 12s infinite;
+}
+
+.color-inspiration {
+	color: rgb(207, 21, 15);
+}
+
+.color-greed {
+	color: rgb(92, 207, 15);
+}
+
+.color-happiness {
+	color: rgb(15, 105, 207);
+}
+.color-evil {
+	color: rgb(240, 0, 0);
+	font-weight: bold;
+}
+.color-essence {
+	color: rgb(24, 210, 217);
+	font-weight: bold;
+}
+.color-dark-matter {
+	color: rgb(132, 99, 206);
+	font-weight: bold;
+}
+/* Тёмные сферы — белый текст с чёрной обводкой в обеих темах: тёмные сферы —
+   тёмная обводка. Обводка рисуется псевдоэлементом и стоит на месте: transform
+   двигает элемент вместе с его начертанием, поэтому буквы и обводку пришлось
+   развести на два span'а. Подпись зеркалится в data-text, его наполняет
+   wobbleDarkOrbs (js/ui/helpers.js). Сам псевдоэлемент прозрачен — рисуется
+   только контур.
+
+   Обводка — контур по букве через -webkit-text-stroke: сдвинутые копии в
+   text-shadow читались как дублирование текста, а не как обводка. Контур
+   рисуется на неподвижном ::before, поэтому стоит на месте, пока едет текст. */
+.color-dark-orbs {
+	color: #ffffff;
+	font-weight: bold;
+	position: relative;
+}
+
+.color-dark-orbs::before {
+	content: attr(data-text);
+	position: absolute;
+	left: 0;
+	top: 0;
+	color: transparent;
+	-webkit-text-stroke: 0.5em #000;
+	filter: blur(0.05em);
+}
+
+.color-time-warping {
+	color: rgb(204, 34, 219);
+}
+.color-hypercubes {
+	color: rgb(9, 160, 230);
+	animation: currency-rainbow 12s infinite;
+	font-weight: bold;
+}
+
+/* Чистыми — тоже в гиперкубах, но радуга на подписи сбивает: число
+   переливается всеми цветами вместе с подписью. Цвет тот же, анимации нет. */
+.color-net {
+	color: rgb(9, 160, 230);
+}
+.color-perk-points {
+	color: rgb(217, 24, 119);
+}
+.color-income {
+	color: lightgreen;
+}
+.color-expense {
+	color: red;
+}
+
+.dark {
+	background-color: rgb(32, 32, 32);
+	color: white;
+}
+
+.dark .panel {
+	background-color: rgb(46, 46, 46);
+	border-color: rgb(32, 32, 32);
+}
+
+.dark #resources {
+	border-color: rgb(32, 32, 32);
+}
+
+.dark .topbar::after {
+	background-color: rgb(32, 32, 32);
+}
+
+.dark .topbar::before {
+	background-color: rgb(32, 32, 32);
+}
+
+.dark .button {
+	background-color: rgb(31, 31, 31);
+	border-color: white;
+	color: white;
+}
+
+.dark .table-bordered tr {
+	border-bottom: 1px solid rgb(73, 73, 73);
+}
+
+.dark .button:hover {
+	background-color: rgb(82, 82, 82);
+	color: white;
+}
+
+.dark .selected {
+	color: rgb(39, 234, 17);
+}
+
+.dark .button-transcend {
+	background-color: #065c21;
+}
+
+.dark .button-transcend:hover {
+	background-color: #137030;
+}
+
+.dark .button-evil {
+	background-color: #4b0317;
+}
+
+.dark .button-evil:hover {
+	background-color: #641028;
+}
+
+.dark .button-danger {
+	background-color: #f44336;
+}
+
+.dark .button-accepted {
+	background-color: #065c21;
+}
+
+.dark .button-rejected {
+	background-color: #4b0317;
+}
+
+.dark .req-progress-container {
+	background-color: rgb(78, 78, 78);
+}
+
+.dark .activity-box {
+	border-color: rgb(73, 73, 73);
+	background-color: rgba(255, 255, 255, 0.04);
+}

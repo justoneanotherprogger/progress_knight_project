@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 {% include "partials/head.html" %}
-<body id="body" class="dark" style="font-size: x-small">
-	<div class="w3-margin">
+<body id="body" class="dark">
+	<div class="game-frame">
 		{% include "partials/header_resources.html" %}
 		{% include "partials/layout.html" %}
 	</div>
@@ -11,7 +11,7 @@
 		<div class="note-modal-box panel">
 			<div id="noteModalTitle" class="note-modal-title"></div>
 			<div id="noteModalBody" class="note-modal-body"></div>
-			<button id="noteModalOk" class="w3-button button note-modal-ok"></button>
+			<button id="noteModalOk" class="button note-modal-ok"></button>
 		</div>
 	</div>
 	{% include "partials/scripts.html" %}

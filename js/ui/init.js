@@ -12,28 +12,25 @@ import { peekSettingFromSave } from "../save.js";
 import { renderChallenges } from "./challenges_tab.js";
 import { renderDarkMatter } from "./dark_matter_tab.js";
 import { renderMetaverse } from "./metaverse_tab.js";
+import { renderMilestones } from "./milestones_tab.js";
 import {
 	createPerks,
 	refreshLangButtons,
 	selectElementInGroup,
-	setFontSize,
-	setLayout,
 	setStickySidebar,
 	Tab,
 } from "./navigation.js";
 import { initNoteModal } from "./note_modal.js";
+import { renderSettings } from "./settings_tab.js";
+import { renderShop } from "./shop_tab.js";
 import { renderSideBar } from "./sidebar.js";
 import {
 	createAllRows,
 	renderHeaderRows,
-	renderJobs,
-	renderMilestones,
 	renderRequirements,
-	renderSettings,
-	renderShop,
-	renderSkills,
 	updateRequiredRows,
-} from "./tabs.js";
+} from "./table.js";
+import { renderJobs, renderSkills } from "./task_tab.js";
 
 export function initializeUI() {
 	/*
@@ -47,8 +44,6 @@ export function initializeUI() {
 
 	createPerks("perksLayout");
 
-	setLayout(peekSettingFromSave("layout"));
-	setFontSize(peekSettingFromSave("fontSize"));
 	setNotation(peekSettingFromSave("numberNotation"));
 	setCurrency(peekSettingFromSave("currencyNotation"));
 	setStickySidebar(peekSettingFromSave("stickySidebar"));
@@ -83,7 +78,6 @@ export function refreshSettingsButtons() {
 			"notation_scientific",
 			"notation_engineering",
 		],
-		Layout: ["layout_standard", "layout_wide"],
 		Theme: ["theme_light", "theme_dark"],
 		EnableKeybinds: ["enabled", "disabled"],
 	};
@@ -94,11 +88,6 @@ export function refreshSettingsButtons() {
 			if (buttons[i]) buttons[i].textContent = t(keys[i]);
 		}
 	}
-	const fontButtons = document.querySelectorAll(
-		'#settings button[onclick*="setFontSize"]',
-	);
-	if (fontButtons[0]) fontButtons[0].textContent = t("font_smaller");
-	if (fontButtons[1]) fontButtons[1].textContent = t("font_larger");
 	const importBox = document.getElementById("importExportBox");
 	if (importBox) importBox.placeholder = t("import_save_placeholder");
 
@@ -146,19 +135,13 @@ export function updateUI() {
 		renderJobs();
 	}
 
-	if (
-		currentTab === Tab.SKILLS ||
-		(gameData.settings.layout === 0 && currentTab === Tab.JOBS)
-	) {
+	if (currentTab === Tab.SKILLS) {
 		updateRequiredRows(gameData.taskData, skillCategories);
 		renderHeaderRows(skillCategories);
 		renderSkills();
 	}
 
-	if (
-		currentTab === Tab.SHOP ||
-		(gameData.settings.layout === 0 && currentTab === Tab.JOBS)
-	) {
+	if (currentTab === Tab.SHOP) {
 		updateRequiredRows(gameData.itemData, itemCategories);
 		renderHeaderRows(itemCategories);
 		renderShop();

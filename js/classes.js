@@ -4,6 +4,7 @@ import {
 	applyMultipliers,
 	applySpeed,
 	getHeroXpGainMultipliers,
+	getMetaverseJobXpMult,
 	getTaskLevelsToClimb,
 	getTaskMaxXp,
 	getTaskXpRange,
@@ -20,6 +21,7 @@ import {
 	SKILL_LEVEL_EXPONENT_BASE,
 } from "./data.js";
 import { labelKey } from "./effects.js";
+import { getEffectiveLevel } from "./ui/levels.js";
 import { daysToYears, format, getBaseLog } from "./utils.js";
 
 export class Task {
@@ -56,9 +58,15 @@ export class Task {
 	}
 
 	getXpGain() {
-		return applyMultipliers(10, this.xpMultipliers).times(
-			toInfinityNumber(this.isHero ? getHeroXpGainMultipliers(this) : 1),
-		);
+		return applyMultipliers(10, this.xpMultipliers)
+			.times(toInfinityNumber(this.isHero ? getHeroXpGainMultipliers(this) : 1))
+			.times(
+				this.categoryId === "category_metaverse_guards"
+					? getMetaverseJobXpMult().times(
+							this.isHero ? getMetaverseJobXpMult() : 1,
+						)
+					: 1,
+			);
 	}
 
 	getXpGainFormatted() {
@@ -352,10 +360,7 @@ export class TaskRequirement extends Requirement {
 			return (
 				gameData.taskData[requirement.task].level >= requirement.herequirement
 			);
-		else
-			return (
-				gameData.taskData[requirement.task].level >= requirement.requirement
-			);
+		else return getEffectiveLevel(requirement.task) >= requirement.requirement;
 	}
 }
 

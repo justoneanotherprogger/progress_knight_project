@@ -35,14 +35,25 @@ import {
 	perks_cost,
 	reduceBoostCooldownCost,
 } from "../metaverse.js";
-import { format, formatTime, formatTreshold } from "../utils.js";
-import { fitText } from "./helpers.js";
+import {
+	format,
+	formatTime,
+	formatTreshold,
+	getDynamicProgress,
+} from "../utils.js";
+import {
+	fitText,
+	renderRequirementProgress,
+	setElementText,
+	setHTML,
+	updateButtonText,
+} from "./helpers.js";
 
 export function renderBoostButton(elemName) {
 	// render boost button to look nicier :)
 	const boostButton = document.getElementById(elemName);
 	if (boostButton == null) return;
-	boostButton.textContent = t("boost");
+	setElementText(boostButton, t("boost"));
 	if (gameData.boost_active) {
 		// active
 		boostButton.classList.add("perk-boost-active");
@@ -60,20 +71,54 @@ export function renderBoostButton(elemName) {
 	boostButton.disabled = !canApplyBoost();
 }
 
+// Полоса к цене каждого алтаря: покупаются за гиперкубы, цена растёт с
+// каждой. Алтарь испытания одноразовый — купленным он из списка выпадает.
+const ALTAR_PURCHASES = [
+	{ idPrefix: "hypercubeGain", cost: hypercubeGainCost },
+	{ idPrefix: "reduceBoostCooldown", cost: reduceBoostCooldownCost },
+	{ idPrefix: "boostDuration", cost: boostDurationCost },
+	{ idPrefix: "evilTran", cost: evilTranCost },
+	{ idPrefix: "essenceMult", cost: essenceMultCost },
+	{
+		idPrefix: "challengeAltar",
+		cost: challengeAltarCost,
+		available: () => gameData.metaverse.challenge_altar === 0,
+	},
+	{ idPrefix: "darkMatterMult", cost: darkMatterMultCost },
+];
+
 export function renderMetaverse() {
 	document.getElementById("currentHypercubesCap").hidden =
 		getHypercubeCap() === Infinity;
-	document.getElementById("currentHypercubesCapValue").textContent = format(
-		getHypercubeCap(),
-	);
+	updateButtonText("currentHypercubesCapValue", format(getHypercubeCap()));
+
+	// Полоса к цене каждого алтаря, с прибавкой за текущую генерацию.
+	for (const purchase of ALTAR_PURCHASES) {
+		const cost = purchase.cost();
+		const visible = purchase.available?.() ?? true;
+		renderRequirementProgress(
+			document.getElementById(`${purchase.idPrefix}Progress`),
+			visible ? getDynamicProgress(gameData.hypercubes, cost) : null,
+			visible
+				? getDynamicProgress(
+						new Decimal(gameData.hypercubes).add(getHypercubeGeneration()),
+						cost,
+					)
+				: null,
+			"color-hypercubes",
+		);
+	}
 
 	for (let i = 0; i < 3; i++) {
 		const elem = document.getElementById(`timeTillNextHypercubePower${i + 1}`);
 		const nextH = getNextPowerOfNumber(gameData.hypercubes * 10 ** i);
-		elem.textContent = t(
-			"hypercubes_in",
-			format(nextH),
-			formatTime(getTimeTillNextHypercubePower(i)),
+		setElementText(
+			elem,
+			t(
+				"hypercubes_in",
+				format(nextH),
+				formatTime(getTimeTillNextHypercubePower(i)),
+			),
 		);
 		if (i > 0)
 			elem.hidden =
@@ -86,111 +131,102 @@ export function renderMetaverse() {
 	renderBoostButton("boostMetaButton");
 
 	// Display currency
-	document.getElementById("metaverseHypercubes").textContent = t("hypercubes");
+	updateButtonText("metaverseHypercubes", t("hypercubes"));
 
-	document.getElementById("hypercubesMetaDisplay").textContent = format(
-		gameData.hypercubes,
+	updateButtonText("hypercubesMetaDisplay", format(gameData.hypercubes));
+	updateButtonText(
+		"hypercubesBonusMetaDisplay",
+		`x${format(getHypercubeGeneration() / 0.03)}`,
 	);
-	document.getElementById("hypercubesBonusMetaDisplay").textContent =
-		`x${format(getHypercubeGeneration() / 0.03)}`;
-	document.getElementById("boostCooldownMetaDisplay").textContent =
-		getBoostCooldownString();
+	updateButtonText("boostCooldownMetaDisplay", getBoostCooldownString());
 
 	// Cost labels & currencies
-	document.getElementById("hypercubeGainCostLabel").textContent = t("cost");
-	document.getElementById("hypercubeGainCostCurrency").textContent =
-		t("hypercubes");
-	document.getElementById("reduceBoostCooldownCostLabel").textContent =
-		t("cost");
-	document.getElementById("reduceBoostCooldownCostCurrency").textContent =
-		t("hypercubes");
-	document.getElementById("boostDurationCostLabel").textContent = t("cost");
-	document.getElementById("boostDurationCostCurrency").textContent =
-		t("hypercubes");
-	document.getElementById("evilTranCostLabel").textContent = t("cost");
-	document.getElementById("evilTranCostCurrency").textContent = t("hypercubes");
-	document.getElementById("essenceMultCostLabel").textContent = t("cost");
-	document.getElementById("essenceMultCostCurrency").textContent =
-		t("hypercubes");
-	document.getElementById("challengeAltarCostLabel").textContent = t("cost");
-	document.getElementById("challengeAltarCostCurrency").textContent =
-		t("hypercubes");
-	document.getElementById("darkMatterMultCostLabel").textContent = t("cost");
-	document.getElementById("darkMatterMultCostCurrency").textContent =
-		t("hypercubes");
+	updateButtonText("hypercubeGainCostLabel", t("cost"));
+	updateButtonText("hypercubeGainCostCurrency", t("hypercubes"));
+	updateButtonText("reduceBoostCooldownCostLabel", t("cost"));
+	updateButtonText("reduceBoostCooldownCostCurrency", t("hypercubes"));
+	updateButtonText("boostDurationCostLabel", t("cost"));
+	updateButtonText("boostDurationCostCurrency", t("hypercubes"));
+	updateButtonText("evilTranCostLabel", t("cost"));
+	updateButtonText("evilTranCostCurrency", t("hypercubes"));
+	updateButtonText("essenceMultCostLabel", t("cost"));
+	updateButtonText("essenceMultCostCurrency", t("hypercubes"));
+	updateButtonText("challengeAltarCostLabel", t("cost"));
+	updateButtonText("challengeAltarCostCurrency", t("hypercubes"));
+	updateButtonText("darkMatterMultCostLabel", t("cost"));
+	updateButtonText("darkMatterMultCostCurrency", t("hypercubes"));
 
-	document.getElementById("reduceBoostCooldown").innerHTML = t(
-		"current_cooldown",
-		formatTime(getBoostCooldownSeconds()),
+	setHTML(
+		document.getElementById("reduceBoostCooldown"),
+		t("current_cooldown", formatTime(getBoostCooldownSeconds())),
 	);
-	document.getElementById("reduceBoostCooldownCost").textContent = format(
-		reduceBoostCooldownCost(),
+	updateButtonText(
+		"reduceBoostCooldownCost",
+		format(reduceBoostCooldownCost()),
 	);
-	document.getElementById("reduceBoostCooldownBuyButton").textContent =
-		t("buy");
+	updateButtonText("reduceBoostCooldownBuyButton", t("buy"));
 	document.getElementById("reduceBoostCooldownBuyButton").disabled =
 		!canBuyReduceBoostCooldown();
 
-	document.getElementById("boostDuration").innerHTML = t(
-		"current_duration",
-		formatTime(getBoostTimeSeconds()),
+	setHTML(
+		document.getElementById("boostDuration"),
+		t("current_duration", formatTime(getBoostTimeSeconds())),
 	);
-	document.getElementById("boostDurationCost").textContent = format(
-		boostDurationCost(),
-	);
-	document.getElementById("boostDurationBuyButton").textContent = t("buy");
+	updateButtonText("boostDurationCost", format(boostDurationCost()));
+	updateButtonText("boostDurationBuyButton", t("buy"));
 	document.getElementById("boostDurationBuyButton").disabled =
 		!canBuyBoostDuration();
 
-	document.getElementById("hypercubeGain").innerHTML = t(
-		"current_gain_per_s",
-		format(getHypercubeGeneration() * getUnpausedGameSpeed(), 2),
+	setHTML(
+		document.getElementById("hypercubeGain"),
+		t(
+			"current_gain_per_s",
+			format(getHypercubeGeneration() * getUnpausedGameSpeed(), 2),
+		),
 	);
-	document.getElementById("hypercubeGainCost").textContent = format(
-		hypercubeGainCost(),
-	);
-	document.getElementById("hypercubeGainBuyButton").textContent = t("buy");
+	updateButtonText("hypercubeGainCost", format(hypercubeGainCost()));
+	updateButtonText("hypercubeGainBuyButton", t("buy"));
 	document.getElementById("hypercubeGainBuyButton").disabled =
 		!canBuyHypercubeGain();
 
-	document.getElementById("evilTranGain").innerHTML = t(
-		"current_gain",
-		format(evilTranGain(), 2),
+	setHTML(
+		document.getElementById("evilTranGain"),
+		t("current_gain", format(evilTranGain(), 2)),
 	);
-	document.getElementById("evilTranCost").textContent = format(evilTranCost());
-	document.getElementById("evilTranBuyButton").textContent = t("buy");
+	updateButtonText("evilTranCost", format(evilTranCost()));
+	updateButtonText("evilTranBuyButton", t("buy"));
 	document.getElementById("evilTranBuyButton").disabled = !canBuyEvilTran();
 
-	document.getElementById("essenceMultGain").innerHTML = t(
-		"current_multiplier",
-		format(essenceMultGain(), 2),
+	setHTML(
+		document.getElementById("essenceMultGain"),
+		t("current_multiplier", format(essenceMultGain(), 2)),
 	);
-	document.getElementById("essenceMultCost").textContent = format(
-		essenceMultCost(),
-	);
-	document.getElementById("essenceMultButton").textContent = t("buy");
+	updateButtonText("essenceMultCost", format(essenceMultCost()));
+	updateButtonText("essenceMultButton", t("buy"));
 	document.getElementById("essenceMultButton").disabled = !canBuyEssenceMult();
 
-	document.getElementById("challengeAltarCost").textContent = format(
-		challengeAltarCost(),
+	updateButtonText("challengeAltarCost", format(challengeAltarCost()));
+	updateButtonText(
+		"challengeAltarState",
+		gameData.metaverse.challenge_altar === 0 ? "" : t("active"),
 	);
-	document.getElementById("challengeAltarState").textContent =
-		gameData.metaverse.challenge_altar === 0 ? "" : t("active");
-	document.getElementById("challengeAltarButton").textContent = t("buy");
+	updateButtonText("challengeAltarButton", t("buy"));
 	document.getElementById("challengeAltarButton").disabled =
 		!canBuyChallengeAltar();
 	if (gameData.metaverse.challenge_altar === 0)
 		document.getElementById("challengeAltarButton").classList.remove("hidden");
 	else document.getElementById("challengeAltarButton").classList.add("hidden");
 
-	document.getElementById("darkMatterMultGain").innerHTML = t(
-		"current_multiplier",
-		format(darkMatterMultGain(), 2),
+	if (gameData.metaverse.challenge_altar === 0)
+		document.getElementById("challengeAltarCostRow").classList.remove("hidden");
+	else document.getElementById("challengeAltarCostRow").classList.add("hidden");
+
+	setHTML(
+		document.getElementById("darkMatterMultGain"),
+		t("current_multiplier", format(darkMatterMultGain(), 2)),
 	);
-	document.getElementById("darkMatterMultCost").textContent = format(
-		darkMatterMultCost(),
-	);
-	document.getElementById("darkMaterMultButton").textContent = t("buy");
+	updateButtonText("darkMatterMultCost", format(darkMatterMultCost()));
+	updateButtonText("darkMaterMultButton", t("buy"));
 	document.getElementById("darkMaterMultButton").disabled =
 		!canBuyDarkMatterMult();
 
@@ -199,25 +235,24 @@ export function renderMetaverse() {
 }
 
 export function renderPerks() {
-	document.getElementById("perkPointDisplay").textContent = formatTreshold(
-		gameData.perks_points,
-	);
-	document.getElementById("totalPerkPointDisplay").textContent = formatTreshold(
-		getTotalPerkPoints(),
+	updateButtonText("perkPointDisplay", formatTreshold(gameData.perks_points));
+	updateButtonText(
+		"totalPerkPointDisplay",
+		formatTreshold(getTotalPerkPoints()),
 	);
 	// Info
 
 	if (gameData.requirements.milestone_the_end_is_near.isCompleted()) {
 		document.getElementById("mppInfo").hidden = true;
 		document.getElementById("mppInfo2").hidden = false;
-		document.getElementById("mppDMBuff").innerHTML = t(
-			"perks_dm_bonus",
-			format(getUnspentPerksDarkmatterGainBuff()),
+		setHTML(
+			document.getElementById("mppDMBuff"),
+			t("perks_dm_bonus", format(getUnspentPerksDarkmatterGainBuff())),
 		);
 	} else {
 		document.getElementById("mppInfo").hidden = false;
 		document.getElementById("mppInfo2").hidden = true;
-		document.getElementById("mppInfo").innerHTML = t("perks_info");
+		setHTML(document.getElementById("mppInfo"), t("perks_info"));
 	}
 
 	// PerkButtons
@@ -240,12 +275,12 @@ export function renderPerks() {
 
 			if (total_mpp >= perk_cost) {
 				const perkNameEl = button.getElementsByClassName("perkName")[0];
-				perkNameEl.textContent = getMetaversePerkName(key);
+				setElementText(perkNameEl, getMetaversePerkName(key));
 				fitText(perkNameEl, 18);
 				button.classList.remove("perk-locked");
 			} else {
 				const perkNameEl = button.getElementsByClassName("perkName")[0];
-				perkNameEl.textContent = t("locked");
+				setElementText(perkNameEl, t("locked"));
 				fitText(perkNameEl, 18);
 				button.classList.add("perk-locked");
 				if (index % 2 === 1) hide_next = true;

@@ -178,7 +178,7 @@ function resetFive() {
 export function applyMilestones() {
 	if (
 		(gameData.requirements.milestone_magic_eye.isCompleted() &&
-			gameData.requirements.req_rebirth_note_2.isCompleted()) ||
+			gameData.requirements.req_rebirth_note_2.isCompletedActual()) ||
 		gameData.requirements.milestone_almighty_eye.isCompleted()
 	) {
 		const effect = gameData.taskData.skill_cosmic_recollection.getEffect();
@@ -192,7 +192,7 @@ export function applyMilestones() {
 	if (canSimulate()) {
 		if (
 			gameData.requirements.milestone_deal_with_the_devil.isCompleted() &&
-			gameData.requirements.req_rebirth_note_3.isCompleted()
+			gameData.requirements.req_rebirth_note_3.isCompletedActual()
 		) {
 			if (gameData.evil.eq(0)) gameData.evil = new Decimal(1);
 			if (gameData.evil.lt(getEvilGain()))

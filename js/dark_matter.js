@@ -1,4 +1,5 @@
 // Costs Dark Matter
+import { t } from "../dist/js/translations.js";
 import { getDarkMatter } from "./calculations.js";
 import { gameData } from "./data.js";
 import { milestoneData } from "./milestones.js";
@@ -182,9 +183,7 @@ export function buyAMiracle() {
 export function resetSkillTree() {
 	if (
 		(gameData.dark_matter.lt(1e11) &&
-			confirm(
-				"Are you sure that you want to reset your Dark Matter Abilities?",
-			)) ||
+			confirm(t("confirm_reset_dm_abilities"))) ||
 		gameData.dark_matter.gte(1e11)
 	) {
 		gameData.dark_matter_shop.speed_is_life = 0;
