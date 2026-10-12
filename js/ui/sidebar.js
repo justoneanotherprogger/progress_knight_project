@@ -440,7 +440,7 @@ function renderRebirthProgress(
 }
 
 /* Полоса «принять зло» идёт к ближайшей из двух целей — тёмному навыку или вехе
-   за зло: подсветка button-evil считает обе, полоса раньше считала только навык. */
+   за зло: подсветка button-evil считает обе. */
 function nearestEvilTarget() {
 	const skillTarget = getNextDarkMagicRequired();
 	const milestoneTarget = getNextMilestoneRequired("evil");
