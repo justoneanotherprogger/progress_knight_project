@@ -53,8 +53,6 @@ export function renderChallenges() {
 			);
 	}
 
-	//TODO (indomit)
-
 	updateButtonText(
 		"challengeGoal1",
 		t(
