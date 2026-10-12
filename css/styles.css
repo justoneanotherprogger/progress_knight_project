@@ -291,7 +291,7 @@ button:focus {
    обязателен: у .button white-space: nowrap, и без него flex-элемент не
    сжимается ниже содержимого — длинная подпись метавселенной вытолкнула бы
    вопросик за пределы панели. */
-.rebirth-reset > .button {
+.rebirth-reset > button {
 	flex: 1;
 	min-width: 0;
 }
@@ -557,6 +557,7 @@ button:focus {
 	display: inline-block;
 	height: auto;
 	overflow: hidden;
+	padding: 0.4em 0.8em;
 	text-align: center;
 	user-select: none;
 	vertical-align: middle;
@@ -566,6 +567,13 @@ button:focus {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	border-radius: 0.25em;
+}
+
+/* Ховер табов в тёмной теме тоже серый: переопределение в dark.css бьёт по
+   .button, которого у табов нет, и .baritem:hover доходит сам. */
+.baritem:hover {
+	background-color: #ccc;
+	color: #000;
 }
 
 .tab-current {
