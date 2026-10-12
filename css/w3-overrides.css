@@ -22,10 +22,6 @@ table {
 	vertical-align: middle;
 }
 
-.w3-button {
-	padding: 0.4em 0.8em;
-}
-
 .table-bordered tr {
 	border-bottom: 0.05em solid #ddd;
 }

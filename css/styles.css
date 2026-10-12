@@ -196,8 +196,27 @@ body {
 }
 
 .button {
+	background-color: inherit;
 	border: 0.1em groove black;
 	border-radius: 0.25em;
+	color: inherit;
+	cursor: pointer;
+	display: inline-block;
+	overflow: hidden;
+	padding: 0.4em 0.8em;
+	text-align: center;
+	user-select: none;
+	vertical-align: middle;
+	white-space: nowrap;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+.button:hover {
+	background-color: #ccc;
+	color: #000;
 }
 
 .item-button {
@@ -269,10 +288,10 @@ button:focus {
 }
 
 /* Кнопка забирает всю ширину ряда, вопросик живёт своей полосой. min-width: 0
-   обязателен: у .w3-button white-space: nowrap, и без него flex-элемент не
+   обязателен: у .button white-space: nowrap, и без него flex-элемент не
    сжимается ниже содержимого — длинная подпись метавселенной вытолкнула бы
    вопросик за пределы панели. */
-.rebirth-reset > .w3-button {
+.rebirth-reset > .button {
 	flex: 1;
 	min-width: 0;
 }
@@ -534,8 +553,18 @@ button:focus {
 }
 
 .baritem {
+	cursor: pointer;
+	display: inline-block;
 	height: auto;
+	overflow: hidden;
 	text-align: center;
+	user-select: none;
+	vertical-align: middle;
+	white-space: nowrap;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 	border-radius: 0.25em;
 }
 

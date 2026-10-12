@@ -255,7 +255,7 @@ export function renderSideBar() {
 	// Прячем обёртку, а не кнопки: renderRequirements() (ui/table.js)
 	// переписывает .hidden у #rebirthButton1..5 каждый кадр, а первую и
 	// пятую скрывает ещё и этот модуль. И классом, а не атрибутом hidden:
-	// vendor/w3.css:39 задаёт .w3-button{display:inline-block} и перебивает
+	// .button в css/styles.css задаёт display:inline-block и перебивает
 	// браузерное [hidden]{display:none} — так же делает renderRequirements().
 	if (gameData.active_challenge === "") {
 		el("challengeTitle").hidden = true;
