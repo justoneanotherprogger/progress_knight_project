@@ -1,0 +1,49 @@
+/* Базовые правила страницы: то, что раньше приходило из вендорского бандла
+   w3.css. Взят не весь normalize, а то, что на этой странице встречается. */
+
+html {
+	box-sizing: border-box;
+	font-family: Verdana, sans-serif;
+	line-height: 1.5;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+body {
+	margin: 0;
+}
+
+button,
+input,
+select,
+textarea,
+optgroup {
+	font: inherit;
+	margin: 0;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+	-webkit-appearance: button;
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+	height: auto;
+}
+
+h3 {
+	font-family: "Segoe UI", Arial, sans-serif;
+	font-size: 24px;
+	font-weight: 400;
+	margin: 10px 0;
+}
