@@ -136,3 +136,46 @@ table {
 .clickable {
 	cursor: pointer;
 }
+
+/* Ширины колонок, ячейки таблиц настроек, строка шапки. */
+.settings-cell {
+	padding: 0.4em;
+}
+
+.settings-cell-label {
+	padding: 0.4em;
+	width: 15em;
+}
+
+.col-task-name {
+	width: 18em;
+}
+
+.col-task-value {
+	width: 18em;
+}
+
+.col-item-name {
+	width: 20em;
+}
+
+.col-item-effect {
+	width: 20em;
+}
+
+.col-milestone-currency {
+	width: 6em;
+}
+
+.col-milestone-name {
+	width: 15em;
+}
+
+.requirement-cell {
+	padding-left: 0.8em;
+	padding-top: 0.2rem;
+}
+
+.headerRow {
+	cursor: default;
+}

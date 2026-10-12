@@ -1,11 +1,10 @@
-/* Стили вкладок: тёмная материя, метавселенная, испытания, настройки, вехи.
-   Сюда едут классы, вынесенные из инлайнов разметки, и компоненты, которые
-   живут внутри одной вкладки.
+/* Содержимое вкладок: испытания, тёмная материя, метавселенные, вехи,
+   настройки. Классы, вынесенные из инлайнов разметки, и компоненты, живущие
+   внутри вкладки. Ширины колонок и ячейки таблиц живут в css/tables.css.
 
    Файл подключён до display.css, поэтому правил с display здесь быть не
    должно: .hidden объявлен последним в display.css и выигрывает порядком,
-   а display из более позднего файла скрытие бы перебил. Скрываемое прячется
-   классом .hidden, не style.display. */
+   а display из более позднего файла скрытие бы перебил. */
 
 /* Испытания: заголовок активного испытания, центровка подсказок. */
 .challenge-title {
@@ -148,7 +147,7 @@
 	font-size: smaller;
 }
 
-/* Настройки: страницы настроек и статистики, ячейки таблиц, поля ввода. */
+/* Настройки: страницы настроек и статистики, поля ввода. */
 .settings-page {
 	flex: 1;
 	margin-left: 0.5em;
@@ -161,15 +160,6 @@
 .settings-caption-center {
 	margin-top: 0.4em;
 	text-align: center;
-}
-
-.settings-cell {
-	padding: 0.4em;
-}
-
-.settings-cell-label {
-	padding: 0.4em;
-	width: 15em;
 }
 
 .settings-save-field {
@@ -212,47 +202,9 @@
 	border-color: red;
 }
 
-/* Таблицы: ширина колонок, страницы вкладок, ячейка строки «Требуется». */
-.col-task-name {
-	width: 18em;
-}
-
-.col-task-value {
-	width: 18em;
-}
-
-.col-item-name {
-	width: 20em;
-}
-
-.col-item-effect {
-	width: 20em;
-}
-
-.col-milestone-currency {
-	width: 6em;
-}
-
-.col-milestone-name {
-	width: 15em;
-}
-
 .table-page {
 	flex: 1;
 	margin-left: 0.5em;
-}
-
-.nowrap {
-	white-space: nowrap;
-}
-
-.requirement-cell {
-	padding-left: 0.8em;
-	padding-top: 0.2rem;
-}
-
-.headerRow {
-	cursor: default;
 }
 
 .progress-fill.milestone {
