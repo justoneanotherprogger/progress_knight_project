@@ -73,7 +73,6 @@
 .color-dark-orbs {
 	color: #ffffff;
 	font-weight: bold;
-	display: inline-block;
 	position: relative;
 }
 
@@ -87,9 +86,6 @@
 	filter: blur(0.05em);
 }
 
-.orb-text {
-	display: inline-block;
-}
 .color-time-warping {
 	color: rgb(204, 34, 219);
 }
