@@ -48,13 +48,12 @@ import { softcap } from "./utils.js";
 // Задача входит в набор категорий: у навыков и работ они разные, а
 // несовпадение типа просто не даёт попасть в список.
 function isInCategories(key, task, only) {
+	const table = task instanceof Skill ? skillCategories : jobCategories;
 	const categories =
 		task instanceof Skill ? only.skill_categories : only.job_categories;
 
 	return (categories ?? []).some(
-		(category) =>
-			key in skillCategories[category].items ||
-			key in jobCategories[category].items,
+		(category) => key in (table[category]?.items ?? {}),
 	);
 }
 
