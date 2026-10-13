@@ -1,5 +1,6 @@
 // rebirth.js — rebirth and milestone logic
 
+import { darkMatterAbilities } from "../dist/js/dark_matter_abilities_data.js";
 import { skillCategories } from "../dist/js/skills_data.js";
 import {
 	metaverseResetUnlocks,
@@ -144,11 +145,8 @@ function resetFive() {
 	gameData.dark_matter_shop.life_coach = 0;
 
 	if (gameData.perks.keep_dark_mater_skills === 0) {
-		gameData.dark_matter_shop.speed_is_life = 0;
-		gameData.dark_matter_shop.your_greatest_debt = 0;
-		gameData.dark_matter_shop.essence_collector = 0;
-		gameData.dark_matter_shop.explosion_of_the_universe = 0;
-		gameData.dark_matter_shop.multiverse_explorer = 0;
+		for (const ability of darkMatterAbilities)
+			gameData.dark_matter_shop[ability.key] = 0;
 	}
 
 	// Метавселенский сброс: тёмная материя обнулилась, требования по ней

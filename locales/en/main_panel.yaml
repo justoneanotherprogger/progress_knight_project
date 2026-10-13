@@ -319,53 +319,53 @@ dark_orb_generator_desc: 'Generates {0} <span class="color-dark-orbs"><span clas
 
 speed_is_life: Speed is life
 
-speed_is_life_1: 'Multiply <span class="color-time-warping">Time Warping</span> by <b>3x</b>'
+speed_is_life_1: 'Multiply <span class="color-time-warping">Time Warping</span> by <b>{0}x</b>'
 
-speed_is_life_1_neg: ', but divide <span class="color-evil">Evil</span> gain by <b>2x</b>'
+speed_is_life_1_neg: ', but divide <span class="color-evil">Evil</span> gain by <b>{0}x</b>'
 
-speed_is_life_2: 'Multiply <span class="color-time-warping">Time Warping</span> by <b>7x</b>'
+speed_is_life_2: 'Multiply <span class="color-time-warping">Time Warping</span> by <b>{0}x</b>'
 
-speed_is_life_2_neg: ', but divide <span class="color-essence">Essence</span> gain by <b>2x</b>'
+speed_is_life_2_neg: ', but divide <span class="color-essence">Essence</span> gain by <b>{0}x</b>'
 
 your_greatest_debt: Your greatest debt
 
-your_greatest_debt_1: 'Multiply <span style="color:rgb(255, 204, 102)">all XP</span> gain by <b>500x</b>'
+your_greatest_debt_1: 'Multiply <span style="color:rgb(255, 204, 102)">all XP</span> gain by <b>{0}x</b>'
 
-your_greatest_debt_1_neg: ', but divide <span class="color-income">Income</span> by <b>10x</b>'
+your_greatest_debt_1_neg: ', but divide <span class="color-income">Income</span> by <b>{0}x</b>'
 
-your_greatest_debt_2: 'Multiply <span class="color-evil">Evil gain</span> by <b>100x</b>'
+your_greatest_debt_2: 'Multiply <span class="color-evil">Evil gain</span> by <b>{0}x</b>'
 
-your_greatest_debt_2_neg: ', but divide <span class="color-income">Income</span> by <b>2x</b>'
+your_greatest_debt_2_neg: ', but divide <span class="color-income">Income</span> by <b>{0}x</b>'
 
 essence_collector: Essence collector
 
-essence_collector_1: "Multiply <span class=\"color-essence\">Essence</span> gain by <b>500x</b>"
+essence_collector_1: "Multiply <span class=\"color-essence\">Essence</span> gain by <b>{0}x</b>"
 
-essence_collector_1_neg: ', but divide <span class="color-evil">Evil</span> gain by <b>2x</b>'
+essence_collector_1_neg: ', but divide <span class="color-evil">Evil</span> gain by <b>{0}x</b>'
 
-essence_collector_2: "Multiply <span class=\"color-essence\">Essence</span> gain by <b>1000x</b>"
+essence_collector_2: "Multiply <span class=\"color-essence\">Essence</span> gain by <b>{0}x</b>"
 
-essence_collector_2_neg: ', but divide <span class="color-income">Income</span> by <b>25x</b>'
+essence_collector_2_neg: ', but divide <span class="color-income">Income</span> by <b>{0}x</b>'
 
 explosion_of_the_universe: Explosion of the universe
 
-explosion_of_the_universe_1: "Multiply <span style=\"color:rgb(255, 204, 102)\">all XP</span> gain by <b>1e100x</b>"
+explosion_of_the_universe_1: "Multiply <span style=\"color:rgb(255, 204, 102)\">all XP</span> gain by <b>{0}x</b>"
 
-explosion_of_the_universe_1_neg: ', but divide <span class="color-essence">Essence</span> gain by <b>2x</b>'
+explosion_of_the_universe_1_neg: ', but divide <span class="color-essence">Essence</span> gain by <b>{0}x</b>'
 
-explosion_of_the_universe_2: "Multiply <span style=\"color:rgb(255, 204, 102)\">all XP</span> gain by <b>1e150x</b>"
+explosion_of_the_universe_2: "Multiply <span style=\"color:rgb(255, 204, 102)\">all XP</span> gain by <b>{0}x</b>"
 
-explosion_of_the_universe_2_neg: ', but divide <span class="color-income">Income</span> by <b>1e5x</b>'
+explosion_of_the_universe_2_neg: ', but divide <span class="color-income">Income</span> by <b>{0}x</b>'
 
 multiverse_explorer: Multiverse explorer
 
-multiverse_explorer_1: "Multiply <span class=\"color-essence\">Essence</span> gain by <b>5000x</b>"
+multiverse_explorer_1: "Multiply <span class=\"color-essence\">Essence</span> gain by <b>{0}x</b>"
 
-multiverse_explorer_1_neg: ', but divide <span class="color-time-warping">Time Warping</span> by <b>1000x</b>'
+multiverse_explorer_1_neg: ', but divide <span class="color-time-warping">Time Warping</span> by <b>{0}x</b>'
 
-multiverse_explorer_2: "Multiply <span class=\"color-essence\">Essence</span> gain by <b>10000x</b>"
+multiverse_explorer_2: "Multiply <span class=\"color-essence\">Essence</span> gain by <b>{0}x</b>"
 
-multiverse_explorer_2_neg: ', but divide <span class="color-dark-matter">Dark Matter</span> gain by <b>100x</b>'
+multiverse_explorer_2_neg: ', but divide <span class="color-dark-matter">Dark Matter</span> gain by <b>{0}x</b>'
 
 perk_auto_dark_orb: "Auto buy dark orb generators"
 

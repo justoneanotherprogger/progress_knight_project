@@ -1,12 +1,7 @@
+import { darkMatterAbilities } from "../dist/js/dark_matter_abilities_data.js";
 import { t } from "../dist/js/translations.js";
 import { applyUnpausedSpeed } from "./calculations.js";
-import {
-	buyEssenceCollector,
-	buyExplosionOfTheUniverse,
-	buyMultiverseExplorer,
-	buySpeedOfLife,
-	buyYourGreatestDebt,
-} from "./dark_matter.js";
+import { buyAbility } from "./dark_matter.js";
 import { gameData, updateSpeed } from "./data.js";
 import { formatTime, softcap } from "./utils.js";
 
@@ -241,11 +236,7 @@ export function buyPerk(perkName) {
 			gameData.perks[perkName] = 1;
 
 			if (perkName === "both_dark_mater_skills") {
-				buySpeedOfLife(3);
-				buyYourGreatestDebt(3);
-				buyEssenceCollector(3);
-				buyExplosionOfTheUniverse(3);
-				buyMultiverseExplorer(3);
+				for (const ability of darkMatterAbilities) buyAbility(ability.key, 3);
 			}
 		}
 	} else {
@@ -253,16 +244,10 @@ export function buyPerk(perkName) {
 		gameData.perks_points += getPerkCost(perkName);
 
 		if (perkName === "both_dark_mater_skills") {
-			if (gameData.dark_matter_shop.speed_is_life === 3)
-				gameData.dark_matter_shop.speed_is_life = 2;
-			if (gameData.dark_matter_shop.your_greatest_debt === 3)
-				gameData.dark_matter_shop.your_greatest_debt = 1;
-			if (gameData.dark_matter_shop.essence_collector === 3)
-				gameData.dark_matter_shop.essence_collector = 2;
-			if (gameData.dark_matter_shop.explosion_of_the_universe === 3)
-				gameData.dark_matter_shop.explosion_of_the_universe = 2;
-			if (gameData.dark_matter_shop.multiverse_explorer === 3)
-				gameData.dark_matter_shop.multiverse_explorer = 2;
+			for (const ability of darkMatterAbilities) {
+				if (gameData.dark_matter_shop[ability.key] === 3)
+					gameData.dark_matter_shop[ability.key] = ability.combo_fallback_level;
+			}
 		}
 	}
 }

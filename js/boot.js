@@ -18,17 +18,13 @@ import {
 	toggleChallenge,
 } from "./challenges.js";
 import {
+	buyAbility,
 	buyADealWithTheChairman,
 	buyAGiftFromGod,
 	buyAMiracle,
 	buyDarkOrbGenerator,
-	buyEssenceCollector,
-	buyExplosionOfTheUniverse,
 	buyGottaBeFast,
 	buyLifeCoach,
-	buyMultiverseExplorer,
-	buySpeedOfLife,
-	buyYourGreatestDebt,
 	resetSkillTree,
 } from "./dark_matter.js";
 import { gameData } from "./data.js";
@@ -101,6 +97,7 @@ window.onerror = () => {
 // руками, добавь функцию в шаблон и почини список по выводу проверки.
 Object.assign(window, {
 	applyBoost,
+	buyAbility,
 	buyADealWithTheChairman,
 	buyAGiftFromGod,
 	buyAMiracle,
@@ -108,19 +105,14 @@ Object.assign(window, {
 	buyChallengeAltar,
 	buyDarkMaterMult,
 	buyDarkOrbGenerator,
-	buyEssenceCollector,
 	buyEssenceMult,
 	buyEvilTran,
-	buyExplosionOfTheUniverse,
 	buyGottaBeFast,
 	buyHypercubeGain,
 	buyJobSlot,
 	buyLifeCoach,
-	buyMultiverseExplorer,
 	buyReduceBoostCooldown,
 	buySkillSlot,
-	buySpeedOfLife,
-	buyYourGreatestDebt,
 	checkAdminPassword,
 	collectPerkPoints,
 	enterChallenge,

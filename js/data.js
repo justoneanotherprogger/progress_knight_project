@@ -1,3 +1,4 @@
+import { darkMatterAbilities } from "../dist/js/dark_matter_abilities_data.js";
 import { jobCategories } from "../dist/js/jobs_data.js";
 import { skillCategories } from "../dist/js/skills_data.js";
 
@@ -101,12 +102,12 @@ export var gameData = {
 		// Permanent unlocks
 		a_miracle: false,
 
-		// SKill tree
-		speed_is_life: 0,
-		your_greatest_debt: 0,
-		essence_collector: 0,
-		explosion_of_the_universe: 0,
-		multiverse_explorer: 0,
+		// SKill tree — уровни приходят из контента, ключи не выписаны руками:
+		// старые сейвы держат те же имена, поэтому наполнение до загрузки сейва
+		// (boot.js) работает как раньше.
+		...Object.fromEntries(
+			darkMatterAbilities.map((ability) => [ability.key, 0]),
+		),
 	},
 	metaverse: {
 		boost_cooldown_modifier: 1,

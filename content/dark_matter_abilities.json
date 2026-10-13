@@ -1,0 +1,54 @@
+{
+	"darkMatterAbilities": [
+		{
+			"key": "speed_is_life",
+			"cost": 100,
+			"combo_fallback_level": 2,
+			"effects": [
+				{ "target": "timewarping", "level1": 3, "level2": 7 },
+				{ "target": "evil", "level1": 0.5, "negative": true },
+				{ "target": "essence", "level2": 0.5, "negative": true }
+			]
+		},
+		{
+			"key": "your_greatest_debt",
+			"cost": 1000,
+			"combo_fallback_level": 1,
+			"effects": [
+				{ "target": "xp", "level1": 500 },
+				{ "target": "evil", "level2": 100 },
+				{ "target": "income", "level1": 0.1, "level2": 0.5, "negative": true }
+			]
+		},
+		{
+			"key": "essence_collector",
+			"cost": 10000,
+			"combo_fallback_level": 2,
+			"effects": [
+				{ "target": "essence", "level1": 500, "level2": 1000 },
+				{ "target": "evil", "level1": 0.5, "negative": true },
+				{ "target": "income", "level2": 0.04, "negative": true }
+			]
+		},
+		{
+			"key": "explosion_of_the_universe",
+			"cost": 100000,
+			"combo_fallback_level": 2,
+			"effects": [
+				{ "target": "xp", "level1": 1e100, "level2": 1e150 },
+				{ "target": "essence", "level1": 0.5, "negative": true },
+				{ "target": "income", "level2": 0.00001, "negative": true }
+			]
+		},
+		{
+			"key": "multiverse_explorer",
+			"cost": 100000000,
+			"combo_fallback_level": 2,
+			"effects": [
+				{ "target": "essence", "level1": 5000, "level2": 10000 },
+				{ "target": "timewarping", "level1": 0.001, "negative": true },
+				{ "target": "darkMatter", "level2": 0.01, "negative": true }
+			]
+		}
+	]
+}
