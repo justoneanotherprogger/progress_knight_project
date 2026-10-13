@@ -1,5 +1,6 @@
 // ui/metaverse_tab.js — metaverse tab rendering
 
+import { metaversePerks } from "../../dist/js/metaverse_perks_data.js";
 import { t } from "../../dist/js/translations.js";
 import { getUnpausedGameSpeed } from "../calculations.js";
 import { gameData } from "../data.js";
@@ -32,7 +33,6 @@ import {
 	getTotalPerkPoints,
 	getUnspentPerksDarkmatterGainBuff,
 	hypercubeGainCost,
-	perks_cost,
 	reduceBoostCooldownCost,
 } from "../metaverse.js";
 import {
@@ -261,7 +261,7 @@ export function renderPerks() {
 	let index = 0;
 
 	for (const perkName of getSortedPerks()) {
-		const key = perkName[0];
+		const key = perkName.key;
 		const button = document.getElementById(`id${key}`);
 
 		if (hide_next) button.classList.add("hidden");
@@ -291,12 +291,5 @@ export function renderPerks() {
 }
 
 export function getSortedPerks() {
-	const sortable = [];
-	for (var perkname in perks_cost) {
-		sortable.push([perkname, perks_cost[perkname]]);
-	}
-
-	sortable.sort((a, b) => a[1] - b[1]);
-
-	return sortable;
+	return [...metaversePerks].sort((a, b) => a.cost - b.cost);
 }

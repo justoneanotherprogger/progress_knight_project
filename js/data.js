@@ -1,4 +1,6 @@
+import { darkMatterAbilities } from "../dist/js/dark_matter_abilities_data.js";
 import { jobCategories } from "../dist/js/jobs_data.js";
+import { metaversePerks } from "../dist/js/metaverse_perks_data.js";
 import { skillCategories } from "../dist/js/skills_data.js";
 
 export var gameData = {
@@ -15,22 +17,9 @@ export var gameData = {
 	hypercubes: 0,
 	perks_points: 0,
 	perks: {
-		auto_dark_orb: 0,
-		auto_dark_shop: 0,
-		auto_boost: 0,
-		instant_evil: 0,
-		instant_essence: 0,
-		hypercube_boost: 0,
-		positive_dark_mater_skills: 0,
-		save_challenges: 0,
-		auto_sacrifice: 0,
-		double_perk_points_gain: 0,
-		instant_dark_matter: 0,
-		keep_dark_mater_skills: 0,
-		hyper_speed: 0,
-		both_dark_mater_skills: 0,
-		evil_booster: 0,
-		more_perk_points: 0,
+		// Перки приходят из контента: ключи не выписаны руками, а старые
+		// сейвы держат те же имена.
+		...Object.fromEntries(metaversePerks.map((perk) => [perk.key, 0])),
 	},
 
 	paused: false,
@@ -101,12 +90,12 @@ export var gameData = {
 		// Permanent unlocks
 		a_miracle: false,
 
-		// SKill tree
-		speed_is_life: 0,
-		your_greatest_debt: 0,
-		essence_collector: 0,
-		explosion_of_the_universe: 0,
-		multiverse_explorer: 0,
+		// SKill tree — уровни приходят из контента, ключи не выписаны руками:
+		// старые сейвы держат те же имена, поэтому наполнение до загрузки сейва
+		// (boot.js) работает как раньше.
+		...Object.fromEntries(
+			darkMatterAbilities.map((ability) => [ability.key, 0]),
+		),
 	},
 	metaverse: {
 		boost_cooldown_modifier: 1,
@@ -176,7 +165,6 @@ export const ESSENCE_EFFECT_MIN_THRESHOLD = 0.01;
 // --- Evil Gain multipliers ---
 // Инферно: (1 + essence)^exp — ×3.3 на пороге 170k, ×5 к ~1e7, дальше ползёт
 export const INFERNO_ESSENCE_EXPONENT = 0.1;
-export const EVIL_BOOSTER_MULTIPLIER = 1e50;
 
 // --- Dark Matter Gain ---
 // Рост от тёмных сфер: ×5 при нуле, ×10 к 1e30, ×12.6 к 1e40
@@ -236,8 +224,6 @@ export const STELLAR_LEVEL_RATIO = 100;
 export const REBIRTH_THREE_ESSENCE_CAP = 1e308;
 
 // --- Perks thresholds ---
-export const PERK_AUTO_DARK_ORB_MIRACLE_COST = 100;
-export const PERK_AUTO_DARK_SHOP_ORBS_THRESHOLD = 1000;
 export const PERK_AUTO_SACRIFICE_HYPERCUBES_THRESHOLD = 1000;
 export const PERK_AUTO_SACRIFICE_COST_MULTIPLIER = 100;
 export const PERK_INSTANT_GAIN_MULTIPLIER = 10;

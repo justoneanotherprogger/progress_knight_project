@@ -1,0 +1,58 @@
+{
+	"darkMatterAbilities": [
+		{
+			"key": "speed_is_life",
+			"cost": 100,
+			"default_level": 2,
+			"levels": {
+				"1": { "positive": { "timewarping": 3 }, "negative": { "evil": 0.5 } },
+				"2": {
+					"positive": { "timewarping": 7 },
+					"negative": { "essence": 0.5 }
+				}
+			}
+		},
+		{
+			"key": "your_greatest_debt",
+			"cost": 1000,
+			"default_level": 1,
+			"levels": {
+				"1": { "positive": { "xp": 500 }, "negative": { "income": 0.1 } },
+				"2": { "positive": { "evil": 100 }, "negative": { "income": 0.5 } }
+			}
+		},
+		{
+			"key": "essence_collector",
+			"cost": 10000,
+			"default_level": 2,
+			"levels": {
+				"1": { "positive": { "essence": 500 }, "negative": { "evil": 0.5 } },
+				"2": { "positive": { "essence": 1000 }, "negative": { "income": 0.04 } }
+			}
+		},
+		{
+			"key": "explosion_of_the_universe",
+			"cost": 100000,
+			"default_level": 2,
+			"levels": {
+				"1": { "positive": { "xp": 1e100 }, "negative": { "essence": 0.5 } },
+				"2": { "positive": { "xp": 1e150 }, "negative": { "income": 0.00001 } }
+			}
+		},
+		{
+			"key": "multiverse_explorer",
+			"cost": 100000000,
+			"default_level": 2,
+			"levels": {
+				"1": {
+					"positive": { "essence": 5000 },
+					"negative": { "timewarping": 0.001 }
+				},
+				"2": {
+					"positive": { "essence": 10000 },
+					"negative": { "darkMatter": 0.01 }
+				}
+			}
+		}
+	]
+}

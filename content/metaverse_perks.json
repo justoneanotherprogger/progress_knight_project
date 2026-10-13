@@ -1,0 +1,80 @@
+{
+	"metaversePerks": [
+		{
+			"key": "auto_dark_orb",
+			"cost": 1,
+			"buys": [
+				{ "key": "dark_orb_generator", "cost_multiplier": 100 },
+				{ "key": "a_miracle", "min_currency": 100 }
+			]
+		},
+		{
+			"key": "auto_dark_shop",
+			"cost": 1,
+			"buys": [
+				{ "key": "a_deal_with_the_chairman", "min_currency": 1000 },
+				{ "key": "a_gift_from_god", "min_currency": 1000 },
+				{ "key": "gotta_be_fast", "min_currency": 1000 },
+				{ "key": "life_coach", "min_currency": 1000 }
+			]
+		},
+		{ "key": "auto_boost", "cost": 1 },
+		{
+			"key": "instant_evil",
+			"cost": 2,
+			"instant": { "resource": "evil" }
+		},
+		{
+			"key": "hypercube_boost",
+			"cost": 5,
+			"multiplier": { "target": "hypercube_generation", "value": 10 }
+		},
+		{
+			"key": "instant_essence",
+			"cost": 10,
+			"instant": { "resource": "essence" }
+		},
+		{ "key": "save_challenges", "cost": 15 },
+		{
+			"key": "instant_dark_matter",
+			"cost": 25,
+			"instant": { "resource": "dark_matter" }
+		},
+		{ "key": "auto_sacrifice", "cost": 40 },
+		{
+			"key": "double_perk_points_gain",
+			"cost": 50,
+			"multiplier": { "target": "perk_points", "value": 2 }
+		},
+		{
+			"key": "positive_dark_mater_skills",
+			"cost": 100,
+			"abilities": { "negative": "off" }
+		},
+		{
+			"key": "hyper_speed",
+			"cost": 200,
+			"multiplier": { "target": "hypercube_generation", "value": 1000 }
+		},
+		{
+			"key": "both_dark_mater_skills",
+			"cost": 300,
+			"abilities": { "level": 3, "on_lost": "default" }
+		},
+		{
+			"key": "keep_dark_mater_skills",
+			"cost": 500,
+			"abilities": { "keep_on_rebirth": true }
+		},
+		{
+			"key": "evil_booster",
+			"cost": 2500,
+			"multiplier": { "target": "evil_gain", "value": 1e50 }
+		},
+		{
+			"key": "more_perk_points",
+			"cost": 5000,
+			"multiplier": { "target": "perk_points", "value": 10 }
+		}
+	]
+}

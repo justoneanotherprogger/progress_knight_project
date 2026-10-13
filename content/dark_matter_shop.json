@@ -1,0 +1,68 @@
+{
+	"darkMatterShop": [
+		{
+			"key": "dark_orb_generator",
+			"name_key": "dark_orb_generator",
+			"desc_key": "dark_orb_generator_desc",
+			"currency": "dark_matter",
+			"cost": { "base": 1.2, "shift": 0 },
+			"gain": {
+				"target": "dark_orbs",
+				"base": 100,
+				"shift": -1,
+				"zero_until_bought": true,
+				"softcap": { "base": 10, "step": 100, "power": 0.95 },
+				"milestone": "milestone_dark_orbiter"
+			},
+			"requires_finite_gain": true
+		},
+		{
+			"key": "a_miracle",
+			"name_key": "a_miracle",
+			"desc_key": "a_miracle_desc",
+			"currency": "dark_matter",
+			"one_time": true,
+			"cost": { "flat": 10 }
+		},
+		{
+			"key": "a_deal_with_the_chairman",
+			"name_key": "a_deal_with_chairman",
+			"desc_key": "a_deal_with_chairman_desc",
+			"currency": "dark_orbs",
+			"cost": { "base": 1e3, "shift": 1 },
+			"gain": {
+				"target": "xp",
+				"base": 4,
+				"shift": 0,
+				"only": {
+					"skill_categories": ["category_magic"],
+					"job_categories": ["category_mage_collegium"]
+				}
+			}
+		},
+		{
+			"key": "a_gift_from_god",
+			"name_key": "a_gift_from_god",
+			"desc_key": "a_gift_from_god_desc",
+			"currency": "dark_orbs",
+			"cost": { "base": 1e5, "shift": 1 },
+			"gain": { "target": "essence", "base": 2.1, "shift": 0 }
+		},
+		{
+			"key": "gotta_be_fast",
+			"name_key": "gotta_be_fast",
+			"desc_key": "gotta_be_fast_desc",
+			"currency": "dark_orbs",
+			"cost": { "base": 5e7, "shift": 1 },
+			"gain": { "target": "timewarping", "linear": 0.2 }
+		},
+		{
+			"key": "life_coach",
+			"name_key": "life_coach",
+			"desc_key": "life_coach_desc",
+			"currency": "dark_orbs",
+			"cost": { "base": 1e10, "shift": 1 },
+			"gain": { "target": "income", "base": 14, "shift": 0 }
+		}
+	]
+}

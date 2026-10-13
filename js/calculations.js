@@ -30,7 +30,6 @@ import {
 	ESSENCE_EFFECT_DIVISOR,
 	ESSENCE_EFFECT_EXPONENT,
 	ESSENCE_EFFECT_MIN_THRESHOLD,
-	EVIL_BOOSTER_MULTIPLIER,
 	EVIL_EFFECT_DIVISOR,
 	EVIL_EFFECT_EXPONENT,
 	GREED_ADULT_AGE,
@@ -56,6 +55,7 @@ import {
 import {
 	darkMatterMultGain,
 	essenceMultGain,
+	getPerkMultiplier,
 	getUnspentPerksDarkmatterGainBuff,
 } from "./metaverse.js";
 import { milestoneData } from "./milestones.js";
@@ -310,10 +310,7 @@ export function getEvilGain() {
 	const theDevilInsideYou =
 		milestoneData.milestone_the_devil_inside_you.getEffect();
 	const stairWayToHell = getBindedItemEffect("item_highway_to_hell");
-	const evilBooster =
-		gameData.perks.evil_booster === 1
-			? toInfinityNumber(EVIL_BOOSTER_MULTIPLIER)
-			: 1;
+	const evilBooster = toInfinityNumber(getPerkMultiplier("evil_gain"));
 	gainMemo.evil = toInfinityNumber(1)
 		.times(evilControl.getEffect())
 		.times(bloodMeditation.getEffect())

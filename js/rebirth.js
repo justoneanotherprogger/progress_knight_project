@@ -1,5 +1,7 @@
 // rebirth.js — rebirth and milestone logic
 
+import { darkMatterAbilities } from "../dist/js/dark_matter_abilities_data.js";
+import { metaversePerks } from "../dist/js/metaverse_perks_data.js";
 import { skillCategories } from "../dist/js/skills_data.js";
 import {
 	metaverseResetUnlocks,
@@ -23,7 +25,12 @@ import {
 	PERK_INSTANT_GAIN_MULTIPLIER,
 	REBIRTH_THREE_ESSENCE_CAP,
 } from "./data.js";
-import { evilTranGain, getMetaversePerkPointsGain } from "./metaverse.js";
+import {
+	evilTranGain,
+	getMetaversePerkPointsGain,
+	hasAbilityPerk,
+	isPerkActive,
+} from "./metaverse.js";
 
 // Рубрика зла переживает престижи 1 и 2, сбрасывается на третьем и выше.
 const darkMagicUnlocks = new Set([
@@ -143,12 +150,9 @@ function resetFive() {
 	gameData.dark_matter_shop.gotta_be_fast = 0;
 	gameData.dark_matter_shop.life_coach = 0;
 
-	if (gameData.perks.keep_dark_mater_skills === 0) {
-		gameData.dark_matter_shop.speed_is_life = 0;
-		gameData.dark_matter_shop.your_greatest_debt = 0;
-		gameData.dark_matter_shop.essence_collector = 0;
-		gameData.dark_matter_shop.explosion_of_the_universe = 0;
-		gameData.dark_matter_shop.multiverse_explorer = 0;
+	if (!hasAbilityPerk("keep_on_rebirth")) {
+		for (const ability of darkMatterAbilities)
+			gameData.dark_matter_shop[ability.key] = 0;
 	}
 
 	// Метавселенский сброс: тёмная материя обнулилась, требования по ней
@@ -280,26 +284,25 @@ function resetOne() {
 }
 
 export function applyPerks() {
-	if (gameData.perks.instant_evil === 1) {
-		if (gameData.evil.lt(getEvilGain().times(PERK_INSTANT_GAIN_MULTIPLIER)))
-			gameData.evil = getEvilGain().times(PERK_INSTANT_GAIN_MULTIPLIER);
-	}
-	if (gameData.perks.instant_essence === 1) {
-		if (
-			gameData.essence.lt(getEssenceGain().times(PERK_INSTANT_GAIN_MULTIPLIER))
-		)
-			gameData.essence = getEssenceGain().times(PERK_INSTANT_GAIN_MULTIPLIER);
-		if (!Number.isFinite(gameData.essence.mantissa))
+	// Перки мгновенной выдачи приходят из контента: у каждого ресурс и
+	// общий множитель PERK_INSTANT_GAIN_MULTIPLIER.
+	const gains = {
+		evil: getEvilGain,
+		essence: getEssenceGain,
+		dark_matter: getDarkMatterGain,
+	};
+
+	for (const perk of metaversePerks) {
+		if (perk.instant == null || !isPerkActive(perk.key)) continue;
+
+		const resource = perk.instant.resource;
+		const gain = gains[resource]().times(PERK_INSTANT_GAIN_MULTIPLIER);
+		if (!gameData[resource].lt(gain)) continue;
+
+		gameData[resource] = gain;
+		// Эссенция после мгновенной выдачи упирается в потолок Decimal —
+		// без этой проверки следующий же кадр ломает игру.
+		if (resource === "essence" && !Number.isFinite(gameData.essence.mantissa))
 			gameData.essence = new Decimal(REBIRTH_THREE_ESSENCE_CAP);
-	}
-	if (gameData.perks.instant_dark_matter === 1) {
-		if (
-			gameData.dark_matter.lt(
-				getDarkMatterGain().times(PERK_INSTANT_GAIN_MULTIPLIER),
-			)
-		)
-			gameData.dark_matter = getDarkMatterGain().times(
-				PERK_INSTANT_GAIN_MULTIPLIER,
-			);
 	}
 }
