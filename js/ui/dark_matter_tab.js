@@ -107,13 +107,18 @@ function buildShopSection(containerId, purchases) {
 		rename("purchaseCostValue", `${purchase.prefix}CostValue`);
 		rename("purchaseProgress", `${purchase.prefix}Progress`);
 
-		const currency = rename("purchaseCurrency", `${purchase.prefix}Currency`);
-		currency.classList.add(
-			purchase.currency === "dark_orbs"
-				? "color-dark-orbs"
-				: "color-dark-matter",
+		// Обводка сфер рисуется на обёртке, а колеблется вложенный текст:
+		// wobbleDarkOrbs двигает firstElementChild. У тёмной материи обёртка
+		// пустая, стиль несёт сам текст.
+		const wrap = rename(
+			"purchaseCurrencyWrap",
+			`${purchase.prefix}CurrencyWrap`,
 		);
-		if (purchase.currency === "dark_orbs") currency.classList.add("orb-text");
+		const currency = rename("purchaseCurrency", `${purchase.prefix}Currency`);
+		if (purchase.currency === "dark_orbs") {
+			wrap.classList.add("color-dark-orbs");
+			currency.classList.add("orb-text");
+		} else currency.classList.add("color-dark-matter");
 
 		const button = rename("purchaseBuyButton", `${purchase.prefix}BuyButton`);
 		button.onclick = () => buyShopPurchase(purchase.key);
