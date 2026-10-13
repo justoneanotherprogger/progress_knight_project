@@ -10,7 +10,11 @@ import { setCurrency, setNotation, setTheme, validateTheme } from "../main.js";
 import { milestoneData } from "../milestones.js";
 import { peekSettingFromSave } from "../save.js";
 import { renderChallenges } from "./challenges_tab.js";
-import { buildAbilityTree, renderDarkMatter } from "./dark_matter_tab.js";
+import {
+	buildAbilityTree,
+	buildShop,
+	renderDarkMatter,
+} from "./dark_matter_tab.js";
 import { renderMetaverse } from "./metaverse_tab.js";
 import { renderMilestones } from "./milestones_tab.js";
 import {
@@ -44,6 +48,7 @@ export function initializeUI() {
 
 	createPerks("perksLayout");
 	buildAbilityTree();
+	buildShop();
 
 	setNotation(peekSettingFromSave("numberNotation"));
 	setCurrency(peekSettingFromSave("currencyNotation"));

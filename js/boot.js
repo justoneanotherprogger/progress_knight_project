@@ -17,16 +17,7 @@ import {
 	exitChallenge,
 	toggleChallenge,
 } from "./challenges.js";
-import {
-	buyAbility,
-	buyADealWithTheChairman,
-	buyAGiftFromGod,
-	buyAMiracle,
-	buyDarkOrbGenerator,
-	buyGottaBeFast,
-	buyLifeCoach,
-	resetSkillTree,
-} from "./dark_matter.js";
+import { buyAbility, resetSkillTree } from "./dark_matter.js";
 import { gameData } from "./data.js";
 import { update } from "./gameLoop.js";
 import {
@@ -98,19 +89,13 @@ window.onerror = () => {
 Object.assign(window, {
 	applyBoost,
 	buyAbility,
-	buyADealWithTheChairman,
-	buyAGiftFromGod,
-	buyAMiracle,
 	buyBoostDuration,
 	buyChallengeAltar,
 	buyDarkMaterMult,
-	buyDarkOrbGenerator,
 	buyEssenceMult,
 	buyEvilTran,
-	buyGottaBeFast,
 	buyHypercubeGain,
 	buyJobSlot,
-	buyLifeCoach,
 	buyReduceBoostCooldown,
 	buySkillSlot,
 	checkAdminPassword,

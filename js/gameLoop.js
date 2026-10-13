@@ -12,14 +12,9 @@ import {
 } from "./calculations.js";
 import { EssenceRequirement, Job, Skill, TaskRequirement } from "./classes.js";
 import {
-	buyADealWithTheChairman,
-	buyAGiftFromGod,
-	buyAMiracle,
-	buyDarkOrbGenerator,
-	buyGottaBeFast,
-	buyLifeCoach,
+	buyShopPurchase,
 	getDarkOrbGeneration,
-	getDarkOrbGeneratorCost,
+	getShopCost,
 	isDecimalInfinity,
 } from "./dark_matter.js";
 import {
@@ -126,25 +121,30 @@ export function autoPerks() {
 	if (
 		gameData.perks.auto_dark_orb === 1 &&
 		gameData.dark_matter.gte(
-			getDarkOrbGeneratorCost().times(PERK_AUTO_SACRIFICE_COST_MULTIPLIER),
+			getShopCost("dark_orb_generator").times(
+				PERK_AUTO_SACRIFICE_COST_MULTIPLIER,
+			),
 		) &&
 		!isDecimalInfinity(gameData.dark_orbs)
 	)
-		buyDarkOrbGenerator();
+		buyShopPurchase("dark_orb_generator");
 	if (
 		gameData.perks.auto_dark_orb === 1 &&
 		gameData.dark_matter.gte(PERK_AUTO_DARK_ORB_MIRACLE_COST) &&
 		gameData.dark_matter_shop.a_miracle === false
 	)
-		buyAMiracle();
+		buyShopPurchase("a_miracle");
 	if (
 		gameData.perks.auto_dark_shop === 1 &&
 		gameData.dark_orbs >= PERK_AUTO_DARK_SHOP_ORBS_THRESHOLD
 	) {
-		buyADealWithTheChairman();
-		buyAGiftFromGod();
-		buyGottaBeFast();
-		buyLifeCoach();
+		for (const key of [
+			"a_deal_with_the_chairman",
+			"a_gift_from_god",
+			"gotta_be_fast",
+			"life_coach",
+		])
+			buyShopPurchase(key);
 	}
 	if (
 		gameData.perks.auto_sacrifice === 1 &&
