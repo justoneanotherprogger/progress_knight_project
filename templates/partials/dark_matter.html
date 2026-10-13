@@ -84,25 +84,26 @@
 								<div class="text-caption dark-matter-warning" id="abilities_warning"></div>
 								<button class="button" id="resetAbilitiesButton" onclick="resetSkillTree()"></button>
 							</div>
-								{% for ability in darkMatterAbilities %}
+								<div id="darkMatterAbilityTree"></div>
+								<template id="darkMatterAbilityTemplate">
 									<div class="dark-matter-item">
-										<div class="text-caption dark-matter-title" id="{{ ability.key }}"></div>
+										<div class="text-caption dark-matter-title" id="abilityTitle"></div>
 										<div class="dark-matter-desc">
-											<button id="{{ ability.prefix }}1" class="button" onclick="buyAbility('{{ ability.key }}', 1)"></button> -
-											<span id="{{ ability.prefix }}1Desc"></span>
+											<button id="abilityLevel1" class="button"></button> -
+											<span id="abilityLevel1Desc"></span>
 										</div>
 										<div class="darkMatterSkillOR"></div>
 										<div class="dark-matter-desc">
-											<button id="{{ ability.prefix }}2" class="button" onclick="buyAbility('{{ ability.key }}', 2)"></button> -
-											<span id="{{ ability.prefix }}2Desc"></span>
+											<button id="abilityLevel2" class="button"></button> -
+											<span id="abilityLevel2Desc"></span>
 										</div>
-										<div id="{{ ability.prefix }}Cost" class="dark-matter-cost"><span id="{{ ability.prefix }}CurrencyLabel"></span>: <b id="{{ ability.prefix }}CostValue"></b> <span class="color-dark-matter" id="{{ ability.prefix }}CurrencyIcon"></span></div>
-										<div id="{{ ability.prefix }}Progress" class="req-progress-container">
+										<div id="abilityCost" class="dark-matter-cost"><span id="abilityCurrencyLabel"></span>: <b id="abilityCostValue"></b> <span class="color-dark-matter" id="abilityCurrencyIcon"></span></div>
+										<div id="abilityProgress" class="req-progress-container">
 											<div class="req-pending-bar color-dark-matter"></div>
 											<div class="req-progress-bar color-dark-matter"></div>
 										</div>
 									</div>
-								{% endfor %}
+								</template>
 							</div>
 						</div>
 					</div>

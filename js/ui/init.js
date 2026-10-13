@@ -10,7 +10,7 @@ import { setCurrency, setNotation, setTheme, validateTheme } from "../main.js";
 import { milestoneData } from "../milestones.js";
 import { peekSettingFromSave } from "../save.js";
 import { renderChallenges } from "./challenges_tab.js";
-import { renderDarkMatter } from "./dark_matter_tab.js";
+import { buildAbilityTree, renderDarkMatter } from "./dark_matter_tab.js";
 import { renderMetaverse } from "./metaverse_tab.js";
 import { renderMilestones } from "./milestones_tab.js";
 import {
@@ -43,6 +43,7 @@ export function initializeUI() {
 	createAllRows(milestoneCategories, "milestoneTable");
 
 	createPerks("perksLayout");
+	buildAbilityTree();
 
 	setNotation(peekSettingFromSave("numberNotation"));
 	setCurrency(peekSettingFromSave("currencyNotation"));

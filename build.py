@@ -93,7 +93,6 @@ document.addEventListener('DOMContentLoaded', applyTranslations);
 def generate_html():
     """Render index.html from Jinja2 templates."""
     env = Environment(loader=FileSystemLoader(str(TEMPLATES_DIR)), autoescape=False)
-    env.globals["darkMatterAbilities"] = load_abilities()
     template = env.get_template("index.html")
     html = template.render()
     OUTPUT_HTML.write_text(html, encoding="utf-8")

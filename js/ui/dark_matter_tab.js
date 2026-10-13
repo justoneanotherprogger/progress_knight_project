@@ -1,9 +1,10 @@
 // ui/dark_matter_tab.js — dark matter tab rendering
 
 import { darkMatterAbilities } from "../../dist/js/dark_matter_abilities_data.js";
-import { t } from "../../dist/js/translations.js";
+import { applyTranslations, t } from "../../dist/js/translations.js";
 import { getDarkMatterGain } from "../calculations.js";
 import {
+	buyAbility,
 	canBuyADealWithTheChairman,
 	canBuyAGiftFromGod,
 	canBuyAMiracle,
@@ -79,6 +80,47 @@ const SHOP_PURCHASES = [
 	{ idPrefix: "gottaBeFast", cost: getGottaBeFastCost },
 	{ idPrefix: "lifeCoach", cost: getLifeCoachCost },
 ];
+
+// Дерево способностей строится из контента один раз при старте, как строки
+// таблиц: блок из шаблона клонируется, id и обработчики проставляются по
+// префиксу. Дальше renderDarkMatter только обновляет готовые узлы.
+export function buildAbilityTree() {
+	const container = document.getElementById("darkMatterAbilityTree");
+	const template = document.getElementById("darkMatterAbilityTemplate");
+	if (container == null || template == null) return;
+
+	container.innerHTML = "";
+
+	for (const ability of darkMatterAbilities) {
+		const block = template.content.firstElementChild.cloneNode(true);
+		const rename = (from, to) => {
+			const element = block.querySelector(`#${from}`);
+			element.id = to;
+			return element;
+		};
+
+		rename("abilityTitle", ability.key);
+		for (const number of [1, 2]) {
+			const button = rename(
+				`abilityLevel${number}`,
+				`${ability.prefix}${number}`,
+			);
+			button.onclick = () => buyAbility(ability.key, number);
+			rename(`abilityLevel${number}Desc`, `${ability.prefix}${number}Desc`);
+		}
+		rename("abilityCost", `${ability.prefix}Cost`);
+		rename("abilityCostValue", `${ability.prefix}CostValue`);
+		rename("abilityCurrencyLabel", `${ability.prefix}CurrencyLabel`);
+		rename("abilityCurrencyIcon", `${ability.prefix}CurrencyIcon`);
+		rename("abilityProgress", `${ability.prefix}Progress`);
+
+		container.appendChild(block);
+	}
+
+	// Названия способностей приходят переводами по id, а блоки созданы только
+	// что — без этого вызова заголовки ждали бы смены языка.
+	applyTranslations();
+}
 
 export function renderDarkMatter() {
 	// Display currency
