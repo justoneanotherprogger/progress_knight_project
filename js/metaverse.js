@@ -246,7 +246,7 @@ export function buyPerk(perkName) {
 		if (perkName === "both_dark_mater_skills") {
 			for (const ability of darkMatterAbilities) {
 				if (gameData.dark_matter_shop[ability.key] === 3)
-					gameData.dark_matter_shop[ability.key] = ability.combo_fallback_level;
+					gameData.dark_matter_shop[ability.key] = ability.default_level;
 			}
 		}
 	}

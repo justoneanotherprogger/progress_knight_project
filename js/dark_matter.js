@@ -231,18 +231,19 @@ function getAbilityEffect(target) {
 	let mult = 1;
 
 	for (const ability of darkMatterAbilities) {
-		const level = gameData.dark_matter_shop[ability.key] ?? 0;
-		if (level === 0) continue;
+		const bought = gameData.dark_matter_shop[ability.key] ?? 0;
+		if (bought === 0) continue;
 
-		for (const effect of ability.effects) {
-			if (effect.target !== target) continue;
-			if (effect.negative && gameData.perks.positive_dark_mater_skills === 1)
-				continue;
+		for (const level of [1, 2]) {
+			if (![level, 3].includes(bought)) continue;
 
-			if (effect.level1 != null && [1, 3].includes(level))
-				mult *= effect.level1;
-			if (effect.level2 != null && [2, 3].includes(level))
-				mult *= effect.level2;
+			const effects = ability.levels[level];
+			const gain = effects.positive[target];
+			const loss = effects.negative?.[target];
+
+			if (gain != null) mult *= gain;
+			if (loss != null && gameData.perks.positive_dark_mater_skills === 0)
+				mult *= loss;
 		}
 	}
 

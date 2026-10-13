@@ -41,17 +41,15 @@ export function renderDarkMatterShopButton(elemName, condition) {
 // и его не снял перк положительных способностей. Числа берутся из контента,
 // текст — из локали, поэтому разойтись они не могут.
 function getAbilityDesc(ability, level) {
-	const value = (effect) => effect[`level${level}`];
-	const positive = ability.effects.find(
-		(effect) => !effect.negative && value(effect) != null,
-	);
-	const negative = ability.effects.find(
-		(effect) => effect.negative && value(effect) != null,
-	);
+	// На уровне ровно одна положительная и одна отрицательная цель, поэтому
+	// в описание подставляются их множители; у негатива это делитель.
+	const { positive, negative } = ability.levels[level];
+	const [gain] = Object.values(positive);
+	const [loss] = Object.values(negative);
 
-	let desc = t(`${ability.key}_${level}`, format(value(positive), 0));
-	if (negative && gameData.perks.positive_dark_mater_skills === 0)
-		desc += t(`${ability.key}_${level}_neg`, format(1 / value(negative), 0));
+	let desc = t(`${ability.key}_${level}`, format(gain, 0));
+	if (loss != null && gameData.perks.positive_dark_mater_skills === 0)
+		desc += t(`${ability.key}_${level}_neg`, format(1 / loss, 0));
 
 	return desc;
 }
