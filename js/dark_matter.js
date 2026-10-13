@@ -104,22 +104,10 @@ export function getDarkOrbGeneration() {
 	return getShopGain("dark_orbs");
 }
 
-export function getTaaAndMagicXpGain() {
-	if (gameData.active_challenge === "the_darkest_time") return 1;
-
-	return getShopGain("xp");
-}
-
 export function getAGiftFromGodEssenceGain() {
 	if (gameData.active_challenge === "the_darkest_time") return 1;
 
 	return getShopGain("essence");
-}
-
-export function getLifeCoachIncomeGain() {
-	if (gameData.active_challenge === "the_darkest_time") return 1;
-
-	return getShopGain("income");
 }
 
 export function getGottaBeFastGain() {

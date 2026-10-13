@@ -30,7 +30,15 @@
 			"desc_key": "a_deal_with_chairman_desc",
 			"currency": "dark_orbs",
 			"cost": { "base": 1e3, "shift": 1 },
-			"gain": { "target": "xp", "base": 4, "shift": 0 }
+			"gain": {
+				"target": "xp",
+				"base": 4,
+				"shift": 0,
+				"only": {
+					"skill_categories": ["category_magic"],
+					"job_categories": ["category_mage_collegium"]
+				}
+			}
 		},
 		{
 			"key": "a_gift_from_god",

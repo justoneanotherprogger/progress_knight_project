@@ -1,5 +1,6 @@
 // multipliers.js — multiplier setup functions
 
+import { darkMatterShop } from "../dist/js/dark_matter_shop_data.js";
 import { jobCategories } from "../dist/js/jobs_data.js";
 import { skillCategories } from "../dist/js/skills_data.js";
 import {
@@ -15,11 +16,7 @@ import {
 	toInfinityNumber,
 } from "./calculations.js";
 import { Job, Skill } from "./classes.js";
-import {
-	getDarkMatterSkillXP,
-	getLifeCoachIncomeGain,
-	getTaaAndMagicXpGain,
-} from "./dark_matter.js";
+import { getDarkMatterSkillXP, getShopGain } from "./dark_matter.js";
 import {
 	DARK_MATTER_HARVESTER_BASE,
 	DARK_MATTER_HARVESTER_EXPONENT,
@@ -48,6 +45,19 @@ import { getTimeIsAFlatCircleXP } from "./metaverse.js";
 import { milestoneData } from "./milestones.js";
 import { softcap } from "./utils.js";
 
+// Задача входит в набор категорий: у навыков и работ они разные, а
+// несовпадение типа просто не даёт попасть в список.
+function isInCategories(key, task, only) {
+	const categories =
+		task instanceof Skill ? only.skill_categories : only.job_categories;
+
+	return (categories ?? []).some(
+		(category) =>
+			key in skillCategories[category].items ||
+			key in jobCategories[category].items,
+	);
+}
+
 export function addMultipliers() {
 	for (const key in gameData.taskData) {
 		const task = gameData.taskData[key];
@@ -66,7 +76,6 @@ export function addMultipliers() {
 		if (task instanceof Job) {
 			task.incomeMultipliers.push(task.getLevelMultiplier.bind(task));
 			pushTargetEffects(key, task, task.incomeMultipliers, "income");
-			task.incomeMultipliers.push(getLifeCoachIncomeGain);
 			task.incomeMultipliers.push(getGreed);
 			task.xpMultipliers.push(getBindedItemEffect("item_personal_squire"));
 		} else if (task instanceof Skill) {
@@ -88,15 +97,12 @@ export function addMultipliers() {
 		) {
 			task.xpMultipliers.push(getBindedItemEffect("item_sapphire_charm"));
 			task.xpMultipliers.push(getBindedItemEffect("item_observatory"));
-			task.xpMultipliers.push(getTaaAndMagicXpGain);
 		} else if (
 			task instanceof Skill &&
 			key in skillCategories.category_void_manipulation.items
 		) {
 			task.xpMultipliers.push(getBindedItemEffect("item_void_necklace"));
 			task.xpMultipliers.push(getBindedItemEffect("item_void_orb"));
-		} else if (task.name in jobCategories.category_mage_collegium.items) {
-			task.xpMultipliers.push(getTaaAndMagicXpGain);
 		} else if (task.name in jobCategories.category_the_void.items) {
 			task.xpMultipliers.push(getBindedItemEffect("item_void_armor"));
 			task.xpMultipliers.push(getBindedItemEffect("item_void_dust"));
@@ -125,6 +131,20 @@ export function addMultipliers() {
 			// повторное добавление того же множителя, см. getDarkMatterXpGain.
 			task.xpMultipliers.push(getDarkMatterXpGain);
 			task.xpMultipliers.push(() => getHeroicDarkMatterXpGain(task));
+		}
+
+		// Награды из магазина сами выбирают задачи: без поля only множитель
+		// достаётся всем задачам этой цели, с ним — только названным
+		// категориям из контента. Награды, у которых цели нет у задач,
+		// сюда не попадают.
+		for (const purchase of darkMatterShop) {
+			const gain = purchase.gain;
+			if (gain?.target !== "income" && gain?.target !== "xp") continue;
+			if (gain.only != null && !isInCategories(key, task, gain.only)) continue;
+
+			const list =
+				gain.target === "income" ? task.incomeMultipliers : task.xpMultipliers;
+			if (list != null) list.push(() => getShopGain(gain.target));
 		}
 	}
 
