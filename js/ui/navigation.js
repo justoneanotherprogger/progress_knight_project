@@ -151,9 +151,8 @@ export function setTabMilestones(tab) {
 export function createPerks(perkLayoutName) {
 	const buttonTemplate = document.getElementsByClassName("perkItem");
 	const perksLayout = document.getElementById(perkLayoutName);
-	for (const perkName of getSortedPerks()) {
-		const perk = createPerk(buttonTemplate, perkName[0]);
-		perksLayout.appendChild(perk);
+	for (const perk of getSortedPerks()) {
+		perksLayout.appendChild(createPerk(buttonTemplate, perk.key));
 	}
 }
 

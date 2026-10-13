@@ -1,5 +1,6 @@
 // gameLoop.js — game loop, auto functions, game state
 
+import { metaversePerks } from "../dist/js/metaverse_perks_data.js";
 import {
 	applySpeed,
 	canSimulate,
@@ -14,6 +15,7 @@ import { EssenceRequirement, Job, Skill, TaskRequirement } from "./classes.js";
 import {
 	buyShopPurchase,
 	getDarkOrbGeneration,
+	getPurchase,
 	getShopCost,
 	isDecimalInfinity,
 } from "./dark_matter.js";
@@ -21,8 +23,6 @@ import {
 	gameData,
 	getPreviousTaskInCategory,
 	HERO_PREV_LEVEL_MIN,
-	PERK_AUTO_DARK_ORB_MIRACLE_COST,
-	PERK_AUTO_DARK_SHOP_ORBS_THRESHOLD,
 	PERK_AUTO_SACRIFICE_COST_MULTIPLIER,
 	PERK_AUTO_SACRIFICE_HYPERCUBES_THRESHOLD,
 	updateSpeed,
@@ -43,6 +43,7 @@ import {
 	getHypercubeCap,
 	getHypercubeGeneration,
 	hypercubeGainCost,
+	isPerkActive,
 	reduceBoostCooldownCost,
 } from "./metaverse.js";
 import { applyMilestones, applyPerks } from "./rebirth.js";
@@ -118,33 +119,22 @@ export function autoPerks() {
 		gameData.boost_cooldown <= 0
 	)
 		applyBoost();
-	if (
-		gameData.perks.auto_dark_orb === 1 &&
-		gameData.dark_matter.gte(
-			getShopCost("dark_orb_generator").times(
-				PERK_AUTO_SACRIFICE_COST_MULTIPLIER,
-			),
-		) &&
-		!isDecimalInfinity(gameData.dark_orbs)
-	)
-		buyShopPurchase("dark_orb_generator");
-	if (
-		gameData.perks.auto_dark_orb === 1 &&
-		gameData.dark_matter.gte(PERK_AUTO_DARK_ORB_MIRACLE_COST) &&
-		gameData.dark_matter_shop.a_miracle === false
-	)
-		buyShopPurchase("a_miracle");
-	if (
-		gameData.perks.auto_dark_shop === 1 &&
-		gameData.dark_orbs >= PERK_AUTO_DARK_SHOP_ORBS_THRESHOLD
-	) {
-		for (const key of [
-			"a_deal_with_the_chairman",
-			"a_gift_from_god",
-			"gotta_be_fast",
-			"life_coach",
-		])
-			buyShopPurchase(key);
+	// Автопокупки приходят из контента перков: у перка список покупок, у
+	// покупки — сколько валюты нужно. Ни одна из них не срабатывает, если
+	// валюта ушла в бесконечность.
+	for (const perk of metaversePerks) {
+		if (perk.buys == null || !isPerkActive(perk.key)) continue;
+
+		for (const rule of perk.buys) {
+			const purchase = getPurchase(rule.key);
+			if (isDecimalInfinity(gameData[purchase.currency])) continue;
+
+			const needed =
+				rule.cost_multiplier != null
+					? getShopCost(rule.key).times(rule.cost_multiplier)
+					: new Decimal(rule.min_currency);
+			if (gameData[purchase.currency].gte(needed)) buyShopPurchase(rule.key);
+		}
 	}
 	if (
 		gameData.perks.auto_sacrifice === 1 &&

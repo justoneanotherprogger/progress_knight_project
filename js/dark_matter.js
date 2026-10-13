@@ -2,9 +2,10 @@ import { darkMatterAbilities } from "../dist/js/dark_matter_abilities_data.js";
 import { darkMatterShop } from "../dist/js/dark_matter_shop_data.js";
 import { t } from "../dist/js/translations.js";
 import { gameData } from "./data.js";
+import { hasAbilityPerk } from "./metaverse.js";
 import { milestoneData } from "./milestones.js";
 
-function getPurchase(key) {
+export function getPurchase(key) {
 	return darkMatterShop.find((purchase) => purchase.key === key);
 }
 
@@ -188,8 +189,7 @@ function getAbilityEffect(target) {
 			const loss = effects.negative?.[target];
 
 			if (gain != null) mult *= gain;
-			if (loss != null && gameData.perks.positive_dark_mater_skills === 0)
-				mult *= loss;
+			if (loss != null && !hasAbilityPerk("negative")) mult *= loss;
 		}
 	}
 

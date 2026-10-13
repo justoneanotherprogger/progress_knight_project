@@ -13,6 +13,7 @@ import {
 	isDecimalInfinity,
 } from "../dark_matter.js";
 import { gameData } from "../data.js";
+import { hasAbilityPerk } from "../metaverse.js";
 import { format, formatTreshold, getDynamicProgress } from "../utils.js";
 import {
 	renderRequirementProgress,
@@ -37,7 +38,7 @@ function getAbilityDesc(ability, level) {
 	const [loss] = Object.values(negative);
 
 	let desc = t(`${ability.key}_${level}`, format(gain, 0));
-	if (loss != null && gameData.perks.positive_dark_mater_skills === 0)
+	if (loss != null && !hasAbilityPerk("negative"))
 		desc += t(`${ability.key}_${level}_neg`, format(1 / loss, 0));
 
 	return desc;
@@ -259,12 +260,12 @@ export function renderDarkMatter() {
 	const ors = document.getElementsByClassName("darkMatterSkillOR");
 	for (const elem of ors) {
 		setElementText(elem, t("or"));
-		elem.hidden = gameData.perks.both_dark_mater_skills === 1;
+		elem.hidden = hasAbilityPerk("level");
 	}
 }
 
 function renderSkillTreeButton(element, categoryBought, elementBought, canBuy) {
-	if (gameData.perks.both_dark_mater_skills === 0) {
+	if (!hasAbilityPerk("level")) {
 		element.disabled = categoryBought | !canBuy;
 
 		if (categoryBought) {

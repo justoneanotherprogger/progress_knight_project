@@ -1,4 +1,5 @@
 import { darkMatterAbilities } from "../dist/js/dark_matter_abilities_data.js";
+import { metaversePerks } from "../dist/js/metaverse_perks_data.js";
 import { t } from "../dist/js/translations.js";
 import { applyUnpausedSpeed } from "./calculations.js";
 import { buyAbility } from "./dark_matter.js";
@@ -18,8 +19,7 @@ export function getHypercubeGeneration() {
 		(gameData.metaverse.hypercube_gain_modifier === 0
 			? 1
 			: gameData.metaverse.hypercube_gain_modifier) *
-		(gameData.perks.hypercube_boost === 1 ? 10 : 1) *
-		(gameData.perks.hyper_speed === 1 ? 1000 : 1)
+		getPerkMultiplier("hypercube_generation")
 	);
 }
 
@@ -190,39 +190,49 @@ export function buyDarkMaterMult() {
 export function getMetaversePerkPointsGain() {
 	if (gameData.essence.gte(1e90))
 		return (
-			(gameData.perks.more_perk_points === 1 ? 10 : 1) *
-			(gameData.perks.double_perk_points_gain === 1 ? 2 : 1) *
+			getPerkMultiplier("perk_points") *
 			(Math.floor(gameData.essence.log10()) - 89)
 		);
 
 	return 0;
 }
 
-export const perks_cost = {
-	auto_dark_orb: 1,
-	auto_dark_shop: 1,
-	auto_boost: 1,
-	instant_evil: 2,
-	hypercube_boost: 5,
-	instant_essence: 10,
-	save_challenges: 15,
-	instant_dark_matter: 25,
-	auto_sacrifice: 40,
-	double_perk_points_gain: 50,
-	positive_dark_mater_skills: 100,
-	hyper_speed: 200,
-	both_dark_mater_skills: 300,
-	keep_dark_mater_skills: 500,
-	evil_booster: 2500,
-	more_perk_points: 5000,
-};
-
 export function getMetaversePerkName(perkName) {
 	return t(`perk_${perkName}`);
 }
 
+export function getPerk(perkName) {
+	return metaversePerks.find((perk) => perk.key === perkName);
+}
+
+export function isPerkActive(perkName) {
+	return gameData.perks[perkName] === 1;
+}
+
+// Множители перков одной цели перемножаются: генерация гиперкубов и очки
+// перков складываются из нескольких перков сразу.
+export function getPerkMultiplier(target) {
+	let multiplier = 1;
+
+	for (const perk of metaversePerks) {
+		if (perk.multiplier?.target !== target || !isPerkActive(perk.key)) continue;
+
+		multiplier *= perk.multiplier.value;
+	}
+
+	return multiplier;
+}
+
+// Активен ли хоть один перк с таким эффектом на способности. По полю, а не по
+// ключу: что именно перк делает, читается из данных.
+export function hasAbilityPerk(field) {
+	return metaversePerks.some(
+		(perk) => perk.abilities?.[field] != null && isPerkActive(perk.key),
+	);
+}
+
 export function getPerkCost(perkName) {
-	return perks_cost[perkName];
+	return getPerk(perkName).cost;
 }
 
 export function canBuyPerk(perkName) {
@@ -235,20 +245,20 @@ export function buyPerk(perkName) {
 			gameData.perks_points -= getPerkCost(perkName);
 			gameData.perks[perkName] = 1;
 
-			if (perkName === "both_dark_mater_skills") {
-				for (const ability of darkMatterAbilities) buyAbility(ability.key, 3);
-			}
+			const level = getPerk(perkName).abilities?.level;
+			if (level != null)
+				for (const ability of darkMatterAbilities)
+					buyAbility(ability.key, level);
 		}
 	} else {
 		gameData.perks[perkName] = 0;
 		gameData.perks_points += getPerkCost(perkName);
 
-		if (perkName === "both_dark_mater_skills") {
+		if (getPerk(perkName).abilities?.on_lost === "default")
 			for (const ability of darkMatterAbilities) {
 				if (gameData.dark_matter_shop[ability.key] === 3)
 					gameData.dark_matter_shop[ability.key] = ability.default_level;
 			}
-		}
 	}
 }
 
